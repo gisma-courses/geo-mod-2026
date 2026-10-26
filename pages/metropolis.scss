@@ -8,8 +8,8 @@
 
 $font-family-sans-serif: "Roboto", "Fira Sans", "Droid Serif", serif !default;
 $font-family-monospace: "JetBrains Mono", "Fira Code", monospace;
-$presentation-font-size-root: 32px;
-$presentation-line-height: 1.5em;
+$presentation-font-size-root: 26px;
+$presentation-line-height: 1.28em;
 $presentation-heading-font-weight: 400;
 
 // colors
@@ -215,4 +215,26 @@ iframe {
 
 .reveal .progress {
 	color: #23373b;
+}
+
+/*-- teaching-deck compactness: keep the Metropolis look, fit tables --*/
+.reveal .slides section table {
+  font-size: 0.80em;
+  line-height: 1.23;
+  width: 100%;
+}
+.reveal .slides section table th,
+.reveal .slides section table td {
+  padding: 0.22em 0.38em;
+  vertical-align: top;
+}
+.reveal .slides section p {
+  margin: 0.48em 0;
+}
+.reveal .slides section blockquote {
+  margin: 0.5em 0;
+  width: 95%;
+}
+.reveal .slides section .math.display {
+  margin: 0.3em 0;
 }

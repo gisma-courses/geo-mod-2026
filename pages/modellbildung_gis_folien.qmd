@@ -1,0 +1,163 @@
+---
+title: "Modellbildung im GIS"
+subtitle: "Heuristische Regeln, physikalische Näherungen, Prozessmodelle"
+author: "KlimaResilienzSchule"
+date: "2026-10-26"
+format:
+  revealjs:
+    theme: [default, metropolis.scss]
+    toc: false
+    chalkboard: true
+    menu: false
+    slide-number: true
+    transition: fade
+    incremental: false
+    smaller: false
+    navigation-mode: linear
+    controls: true
+    hash: true
+    slide-level: 1
+    width: 1280
+    height: 720
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+# Was soll das Modell leisten?
+
+**Eine Karte ist zunächst eine Darstellung.** Zum Modell wird sie, wenn wir Regeln festlegen, die aus Eingaben neue Aussagen ableiten.
+
+Am Beispiel Starkregen lautet die Frage:
+
+> Wo dürfte sich Wasser sammeln – und wie viel Wasser steht dort während eines Ereignisses?
+
+Das sind **zwei verschiedene Ansprüche**. Für den zweiten brauchen wir erheblich mehr als eine Geländekarte.
+
+# Drei Zugänge zu derselben Frage
+
+| Zugang | Was wird festgelegt? | Was kommt heraus? |
+|---|---|---|
+| **Heuristik** | begründete *Wenn–dann*-Regeln und Gewichtungen | Verdachts- oder Eignungsräume |
+| **Physikalisch begründete Näherung** | eine vereinfachte Beziehung zwischen messbaren Größen | Index, Fließweg oder geschätzte Größe |
+| **Prozessmodell** | Zustandsgrößen, Erhaltungsgleichungen, Prozessparameter und Randbedingungen | räumlich-zeitlicher Ablauf und Zustände |
+
+**Nicht drei Qualitätsstufen.** Es sind drei unterschiedliche Antworten auf unterschiedlich genaue Fragen.
+
+# 1 · Heuristische Modellierung
+
+**Annahme:** Versiegelung, Senkenlage und geringe Durchlässigkeit erhöhen die Wahrscheinlichkeit von Oberflächenwasser.
+
+Ein möglicher *Suchindex*:
+
+$$
+H = 0{,}5\,V + 0{,}3\,S + 0{,}2\,D
+$$
+
+$V$, $S$, $D$: zuvor auf 0–1 skalierte Indikatoren für Versiegelung, Senkenlage und geringe Durchlässigkeit.
+
+- **Daten:** Landbedeckung, digitales Geländemodell (DGM), optional Bodenkarte.
+- **Werkzeuge:** QGIS-Rasterrechner, Reclassify, Overlay; auch SAGA.
+- **Grenze:** Gewichte und Schwellen sind Annahmen, **keine Naturkonstanten**. $H$ ist weder Wassertiefe noch Abfluss.
+
+# GIS-Hydrologie: Rechnen ≠ Simulieren
+
+SAGA oder GRASS berechnen aus einem DGM beispielsweise **Fließrichtungen**, **Einzugsflächen** und einen **Topographic Wetness Index**:
+
+$$
+\mathrm{TWI}=\ln\!\left(\frac{a}{\tan\beta}\right)
+$$
+
+$a$: spezifische beitragende Fläche; $\beta$: lokale Hangneigung.
+
+Der Index hat einen hydrologischen Gedanken: viel Zuflussfläche bei geringem Gefälle begünstigt Vernässung.
+
+**Aber:** Ein DGM enthält weder ein konkretes Regenereignis noch Infiltrationsraten oder Strömungsdauern. Ein hoher TWI ist **keine berechnete Überflutungstiefe**.
+
+# 2 · Physikalisch begründete Näherung
+
+Wir führen einen *Prozessbezug* ein, vereinfachen ihn aber bewusst. Beispiel: Spitzenabfluss eines kleinen Einzugsgebiets mit der Rationalformel.
+
+$$
+Q_{\mathrm{max}}\approx C\,i\,A
+$$
+
+$A$: Einzugsgebietsfläche · $i$: maßgebende Regenintensität · $C$: empirischer Abflussbeiwert.
+
+- **Daten zusätzlich zum GIS:** Ereignisregen, Annahmen zur Abflussbildung, geeigneter $C$.
+- **Aussage:** grob geschätzter Spitzenabfluss bei passenden Anwendungsbedingungen.
+- **Nicht enthalten:** räumliche Wassertiefen, zeitliche Ausbreitung, differenzierte Kanalhydraulik.
+
+**Physikalisch motiviert** heißt nicht **vollständig physikalisch simuliert**.
+
+# 3 · Prozessmodell
+
+Jetzt wird die Entwicklung **in Raum und Zeit** berechnet, z. B. in einem 2D-Oberflächenabflussmodell.
+
+Vereinfachte Massenerhaltung:
+
+$$
+\frac{\partial h}{\partial t}+\nabla\!\cdot(h\,\boldsymbol{u})=r-f
+$$
+
+$h$: Wassertiefe · $\boldsymbol{u}$: Fließgeschwindigkeit · $r$: Niederschlagszufuhr · $f$: Infiltration.
+
+Hinzu kommen Strömungsgleichungen und Annahmen zu Reibung, Anfangszustand, Rändern und numerischer Lösung.
+
+**Ergebnis:** z. B. $h(x,y,t)$ und Fließgeschwindigkeiten. Auch dieses Modell ist eine **Näherung**, keine exakte Wirklichkeit.
+
+# Was steckt in SAGA GIS?
+
+| Verfahren | Liefert | Modellcharakter |
+|---|---|---|
+| Rasterrechner / gewichtete Überlagerung | Regelkarte | **heuristisch**, wenn Regeln gesetzt werden |
+| Flow Accumulation / Fließrichtung | Geländeabflussmuster | **topografischer Algorithmus** |
+| SAGA Wetness Index / TWI | Vernässungsindikator | **physikalisch motivierter Index** |
+| Terrain Flooding | berechnete Überflutungsdarstellung | **Methode und Annahmen prüfen** |
+| 2D-Hydrodynamik, z. B. HEC-RAS | Wassertiefe und Fluss über die Zeit | **Prozessmodell** |
+
+**Die Software bestimmt nicht den Modelltyp.** Entscheidend ist, welche Regeln bzw. Gleichungen das konkrete Verfahren löst.
+
+# Gleicher Raum, drei unterschiedliche Karten
+
+| Heuristische Risikokarte | Geländeindikator | 2D-Ereignissimulation |
+|---|---|---|
+| **hoch / mittel / niedrig** | **beitragende Fläche / TWI** | **Wassertiefe in m zu Zeitpunkt $t$** |
+| Wo sollte man genauer prüfen? | Wo begünstigt das Relief eine Konzentration? | Wo und wann entsteht bei *diesem* Regen Wasserstand? |
+| Bewertungsregeln | DGM + Routingalgorithmus | DGM + Regen + Reibung + Infiltration + Rand-/Anfangswerte |
+
+Eine farbige Rasterkarte verrät **nicht**, welcher dieser Ansprüche eingelöst wird. Das steht in der Methode.
+
+# Was brauche ich zusätzlich?
+
+| Heuristik | Näherung | Prozessmodell |
+|---|---|---|
+| geeignete räumliche Indikatoren | alle Größen einer vereinfachten Beziehung | Geometrie / DGM und ggf. Bauwerke |
+| Klassen, Schwellen, Gewichte | Parameter und deren Gültigkeitsbereich | zeitlich aufgelöste Antriebe |
+| räumliche Auflösung / Maßstab | zum Teil Ereignis- oder Materialdaten | Anfangs- und Randbedingungen |
+| Plausibilitätsprüfung | dimensions- und parametergeprüfte Rechnung | Numerik, Zeitschritt, Kalibrierung / Validierung |
+
+**Mehr Physik heißt auch: mehr Entscheidungen über unbekannte Größen.** Zusätzlicher Aufwand garantiert nicht automatisch ein besseres Ergebnis.
+
+# Explizit, empirisch, dynamisch: andere Achsen
+
+**Explizit:** Regeln oder Gleichungen sind nachvollziehbar formuliert. Auch eine Heuristik kann vollständig explizit sein.
+
+**Empirisch:** Beziehungen oder Parameter stammen aus Beobachtungen. Das ist mit einem physikalisch begründeten Modell kombinierbar.
+
+**Dynamisch:** Zustände ändern sich mit der Zeit. Viele GIS-Indizes sind statisch; Prozessmodelle können dynamisch sein.
+
+**Wichtig:** Diese Begriffe sind **keine weiteren Sprossen derselben Leiter**. Sie beschreiben verschiedene Eigenschaften eines Modells.
+
+# Prüfen, bevor wir behaupten
+
+**Heuristik:** Ändert sich die Karte stark, wenn wir Schwellen oder Gewichte variieren?
+
+**Geländeindex:** Was passiert bei einem anderen DGM, einer anderen Senkenkorrektur oder einem anderen Routingverfahren?
+
+**Prozessmodell:** Passen simulierte Wassertiefen, Ausdehnungen oder Abflüsse zu **unabhängigen** Beobachtungen?
+
+**Merksatz:** Erst die Frage bestimmt das Modell. Dann bestimmen Gleichungen und Daten, **was wir tatsächlich aussagen dürfen**.
+
+*Werkzeughinweise und Quellen: siehe Reader.*

@@ -1,0 +1,90 @@
+---
+title: "Modellbildung im GIS – Kurzreader"
+subtitle: "Was wir annehmen, berechnen und behaupten dürfen"
+author: "KlimaResilienzSchule"
+date: "2026-10-26"
+format:
+  html:
+    toc: false
+    number-sections: false
+    theme: cosmo
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+# Nicht jede berechnete Karte ist ein Prozessmodell
+
+Ein GIS kann Flächen überlagern, Indizes bilden, Fließwege ableiten und Modelle mit räumlichen Eingaben versorgen. Die Karte allein zeigt aber nicht, *was* berechnet wurde. Entscheidend sind die Regeln oder Gleichungen zwischen Eingangsdaten und Ergebnis. Als roter Faden dient die Frage: **Wo sammelt sich bei Starkregen Wasser?**
+
+| Modellzugang | Was wird gerechnet? | Mindestdaten | Aussage – und Grenze |
+|---|---|---|---|
+| **Heuristik** | Klassen, Regeln und gewichtete Indikatoren | Landbedeckung, ggf. DGM/Böden | Verdachtsräume; **keine** Wassertiefe |
+| **Physikalisch begründete Näherung** | vereinfachte, prozessbezogene Größenbeziehungen | je nach Formel DGM, Fläche, Regen oder Materialparameter | Index oder überschlägige Größe; nur unter ihren Annahmen gültig |
+| **Prozessmodell** | zeitabhängige Erhaltung und Transport | Gelände, Antrieb, Parameter, Anfangs-/Randbedingungen | simulierte Zustände, z. B. Wassertiefe über die Zeit; mit Modell- und Datenunsicherheit |
+
+## 1. Heuristische Regeln: begründet, aber gesetzt
+
+Wir markieren Flächen, auf denen mehrere plausible Hinweise zusammenkommen: versiegelte Oberflächen, Geländesenken, gering durchlässige Böden. Eine gewichtete Überlagerung könnte lauten:
+
+$$
+H=0{,}5V+0{,}3S+0{,}2D
+$$
+
+Die Variablen sind Indikatoren, zuvor einheitlich auf 0 bis 1 skaliert. **Die Gewichte sind eine Entscheidung der Modellierenden.** Andere plausible Gewichte erzeugen möglicherweise andere Ergebnisse. Deshalb dokumentieren wir Klassen, Grenzwerte und Gewichtungen und testen deren Einfluss. $H$ ist ein Such- oder Priorisierungsindex. Ihn als Überflutungswahrscheinlichkeit oder Wassertiefe auszugeben, wäre unbegründet.
+
+**Werkzeuge:** QGIS (Rasterrechner, Reclassification, Vektor-/Rasterüberlagerung), SAGA GIS und der QGIS-Modell-Designer für reproduzierbare Abläufe.
+
+## 2. Geländealgorithmus oder physikalische Näherung?
+
+Ein digitaler Höhenwert allein enthält noch keinen Abfluss. GIS-Werkzeuge wie **SAGA Flow Accumulation** oder **GRASS `r.watershed`** leiten aus Höhenunterschieden und einer gewählten Routingregel Fließrichtungen, Einzugsflächen oder Akkumulationsmuster ab. Ob der Algorithmus das Wasser einer Zelle auf eine oder mehrere Nachbarzellen verteilt, ist bereits eine Modellentscheidung.
+
+Der *Topographic Wetness Index* verbindet beitragende Fläche und Gefälle:
+
+$$
+\mathrm{TWI}=\ln\!\left(\frac{a}{\tan\beta}\right)
+$$
+
+Das ist ein **physikalisch motivierter Geländeindikator**, keine berechnete Wasserbilanz und keine Starkregenüberflutung. Für eine tatsächliche Vernässung fehlen etwa Regen, Bodenhydraulik und zeitliche Entwicklung. Besonders wichtig: *topografische Fließakkumulation* und *physikalisch berechneter Wasserabfluss* sind nicht dasselbe.
+
+Eine andere, explizite Näherung ist die Rationalformel für den Spitzenabfluss kleiner Einzugsgebiete:
+
+$$
+Q_{\mathrm{max}}\approx C\,i\,A
+$$
+
+Dabei sind $A$ die Einzugsgebietsfläche, $i$ eine für die Abflusskonzentration maßgebende Regenintensität und $C$ ein empirischer Abflussbeiwert. Sie benötigt **mehr als eine Karte**, liefert aber weder Wassertiefen noch einen räumlich-zeitlichen Fließverlauf. Ihre Anwendbarkeit hängt von Gebiet, Regenannahmen und Konventionen für den Abflussbeiwert ab.
+
+**Werkzeuge:** SAGA (Hydrology, Wetness Index), GRASS `r.watershed`, QGIS zur Datenaufbereitung; Formeln zusätzlich im GIS, in R oder Python. Die Wahl des Werkzeugs macht eine Rechnung nicht von selbst physikalisch.
+
+## 3. Prozessmodell: ein Ereignis entwickelt sich
+
+Ein dynamisches 2D-Abflussmodell berechnet, wie sich Wasserstände und Geschwindigkeiten während eines Regens verändern. Eine vereinfachte Massenerhaltung lautet:
+
+$$
+\frac{\partial h}{\partial t}+\nabla\!\cdot(h\boldsymbol{u})=r-f
+$$
+
+$h$ bezeichnet die Wassertiefe, $\boldsymbol{u}$ die Fließgeschwindigkeit, $r$ den Regenzufluss und $f$ die Infiltration. Für eine hydraulische Simulation kommen die Bewegungsgleichungen hinzu. Benötigt werden nun auch **zeitlich aufgelöster Niederschlag, Rauheit, geeignete Geländedaten, Anfangs- und Randbedingungen**, gegebenenfalls Kanalnetz und Bauwerke sowie eine numerische Diskretisierung.
+
+**Werkzeuge:** etwa HEC-RAS 2D für Hydrodynamik; QGIS/SAGA/GRASS für Vorverarbeitung, Geometrie, Parameterkarten und Auswertung. Ein Prozessmodell ist trotzdem nicht „physikalisch exakt“: Gleichungen, räumliche Auflösung und Parameter bleiben Vereinfachungen.
+
+## Was entscheidet über die Aussagekraft?
+
+| Frage vor der Interpretation | Heuristik | Geländeindex / Näherung | Prozessmodell |
+|---|---|---|---|
+| Was ist bewusst festgelegt? | Gewichte, Klassen, Regeln | Routing oder Gültigkeit der Formel | Gleichungen, Parameter, Numerik |
+| Was fehlt im Modell? | konkrete Dynamik und Mengen | oft Zeitverlauf, Speicher und Transport | nicht aufgelöste Prozesse und ungenaue Randdaten |
+| Wie prüfen wir? | Sensitivität, Vergleich mit unabhängigen Orten | DGM-/Methodenvergleich, Messgrößen wenn vorhanden | unabhängige Wasserstände, Ausdehnungen oder Abflussganglinien |
+
+**Explizit** bedeutet lediglich, dass Annahmen oder Gleichungen benannt sind. Auch eine Heuristik kann explizit sein. **Empirisch** beschreibt die Herkunft einer Regel oder eines Parameters; ein physikalisch begründetes Modell kann empirisch kalibrierte Größen enthalten. **Dynamisch** beschreibt Zeitabhängigkeit. Diese Eigenschaften sind keine zusätzlichen Stufen zwischen Heuristik und Prozessmodell.
+
+**Praktische Entscheidungsregel:** Brauche ich nur eine *begründete Suchkarte*, reichen oft räumliche Regeln. Brauche ich eine *geschätzte Abflussgröße*, benötige ich passende physikalische Annahmen und zusätzliche Messgrößen. Will ich wissen, *wie sich Wasser bei einem konkreten Ereignis im Raum bewegt*, brauche ich ein dynamisches Modell und die Daten zu seinem Antrieb. Je mehr Prozesse wir abbilden, desto mehr müssen wir spezifizieren **und überprüfen**.
+
+## Dokumentation der Werkzeuge
+
+- [SAGA GIS: Hydrologie-Werkzeuge](https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html) – Fließakkumulation, SAGA Wetness Index und TWI.
+- [GRASS GIS: `r.watershed`](https://grass.osgeo.org/grass85/manuals/r.watershed.html) – Akkumulation, Fließrichtungen, Einzugsgebiete und topografischer Index.
+- [QGIS: externe Processing-Anwendungen](https://documentation.qgis.org/3.44/de/docs/user_manual/processing/3rdParty.html) – je nach Installation müssen zusätzliche Anbieter eingerichtet werden.
+- [HEC-RAS: Dokumentation und hydraulische Modellgrundlagen](https://www.hec.usace.army.mil/confluence/rasdocs) – 1D-/2D-Strömungsmodellierung und ihre Datenanforderungen.

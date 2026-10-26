@@ -1,0 +1,235 @@
+---
+title: "Ähnliche Muster – unterschiedliche Modelle"
+subtitle: "Drei NetLogo-Modelle zwischen Heuristik und physikalischer Prozessbeschreibung"
+date: "2026-10-26"
+format:
+  revealjs:
+    theme: [default, metropolis.scss]
+    toc: false
+    chalkboard: true
+    menu: false
+    slide-number: true
+    transition: fade
+    incremental: false
+    smaller: false
+    navigation-mode: vertical
+    controls: true
+    hash: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Drei Modelle, eine Leitfrage
+
+**River Meanders (2021)** · **Erosion (2004)** · **Grand Canyon (2006)**
+
+Alle drei erzeugen räumliche Muster durch wiederholte **lokale Regeln**.
+
+Aber sie berechnen nicht dasselbe:
+
+- Mäanderbildung und Veränderung des Flusslaufs
+- Wasserverlagerung und Abtragung auf einem Raster
+- Abflusswege und Wasseransammlung auf realem Relief
+
+::: {.takeaway}
+**Leitfrage:** Was ist eine plausible Regel – und was eine physikalisch begründete Berechnung?
+:::
+
+## Drei Ebenen der Begründung
+
+::: {.columns}
+::: {.column width="33%"}
+### Physikalisches Prinzip
+
+Wasser bewegt sich aufgrund eines hydraulischen Gefälles.
+
+**Erklärt die Richtung**, noch nicht die Menge.
+:::
+::: {.column width="33%"}
+### Modellgleichung
+
+Die Wassermenge folgt aus Gefälle, Fließtiefe und Widerstand.
+
+**Berechnet einen Prozess** unter Annahmen.
+:::
+::: {.column width="33%"}
+### Heuristische Regel
+
+Ein Agent springt zum niedrigsten Nachbarn.
+
+**Erzeugt plausibles Verhalten**, ohne die Strömung zu berechnen.
+:::
+:::
+
+::: {.takeaway}
+Auch physikalische Modelle sind regelbasiert. Entscheidend ist, **wie die Regeln begründet werden**.
+:::
+
+## Wer bildet welchen Prozess ab?
+
+::: {.compact-table}
+| | River Meanders | Erosion | Grand Canyon |
+|:--|:--|:--|:--|
+| **Gelände** | idealisierter Flusskorridor | synthetisches Höhenraster | reales, skaliertes Relief |
+| **Wasser** | bewegte Agenten, Gewässerzellen | Wasserhöhe je Rasterzelle | einzelne Wasseragenten |
+| **Abfluss** | Kräfteanalogie, Potenzialfeld | Wasserspiegel-Ausgleich | Sprung zum niedrigsten Wasserspiegel |
+| **Geländewandel** | Land ↔ Wasser, Sedimentregel | Höhenabtrag | keiner |
+| **Ergebnis** | Mäander | Erosionsmuster | Abflusswege, Ansammlungen |
+:::
+
+**Wichtig:** Realistischere Eingangsdaten bedeuten nicht automatisch realistischere Prozessgleichungen.
+
+## 1 · River Meanders: Bewegung als Analogie
+
+$$
+\vec v_{t+1}=\vec v_t+\sum_k\vec a_k
+$$
+
+Die Bewegungsrichtung entsteht aus **künstlichem Potenzialfeld, Flussmitte, Talneigung, Rückstellkraft und Zufall**.
+
+**Erosion:** Trifft ein Strömungsagent auf Land, wird die Zelle zu Wasser.
+
+**Sedimentation:** Ein Akkumulationswert überschreitet eine Schwelle; durchströmende Agenten senken ihn.
+
+::: {.takeaway}
+**Heuristische Morphogenese:** Die Mäanderform entsteht, aber Wasserbilanz, Impulsübertragung und Sedimenttransport werden nicht physikalisch berechnet.
+:::
+
+## 2 · Erosion: Wasserstand und Austausch
+
+$$
+H_i=z_i+h_i
+$$
+
+$$
+q_{ij}=\max\left(0,\min\left[h_i,\frac{H_i-H_j}{2}\right]\right)
+$$
+
+Wasser wandert zum Nachbarn mit dem niedrigsten Wasserspiegel. Der lokale Austausch gleicht bei gleich großen Zellen Wasserstände an.
+
+**Geländeabtrag:** $E_i=q_{ij}(1-s)$ mit Bodenhärte $s$.
+
+::: {.takeaway}
+**Physikalisch motivierte Näherung:** Lokale Wassererhaltung – aber keine hydraulische Abflussgleichung. Die Erosionsformel bleibt heuristisch.
+:::
+
+## 3 · Grand Canyon: Tropfen auf Relief
+
+$$
+H_i=z_i+N_i\,h_0 \qquad (h_0=10\text{ im Modell})
+$$
+
+$$
+H_j<H_i\quad\Rightarrow\quad \text{Agent springt nach }j
+$$
+
+- Reales, für die Simulation **skaliertes Höhenmodell**
+- Ein beweglicher Tropfen: **höchstens eine Zelle pro Schritt**
+- Ein liegen gebliebener Tropfen wird **dauerhaft stationär**
+- **Keine Erosion**, keine Abflussmenge aus dem Gefälle
+
+::: {.takeaway}
+**Topografische Heuristik:** Räumlich konkretes Relief, aber stark vereinfachte Fließdynamik ohne belastbare physikalische Zeitskala.
+:::
+
+## Gleiches Gefälle, andere Rechnung
+
+::: {.columns}
+::: {.column width="50%"}
+### Erosion
+
+$$q_{ij}\sim H_i-H_j$$
+
+Die **Wassermenge** hängt vom Unterschied zweier Wasserspiegel ab.
+
+Lokaler Austausch zwischen Rasterzellen; der Boden kann abgesenkt werden.
+:::
+::: {.column width="50%"}
+### Grand Canyon
+
+$$H_j<H_i$$
+
+Das Gefälle entscheidet nur über das **Ob und Wohin** der Bewegung.
+
+Ein Wasseragent springt genau eine Zelle; das Gelände bleibt unverändert.
+:::
+:::
+
+::: {.takeaway}
+**River Meanders** folgt nochmals einer anderen Logik: künstliche Kraftbeiträge statt lokaler Wasserstandsausgleich.
+:::
+
+## Räumliche Muster durch Rückkopplung
+
+::: {.compact-table}
+| Modell | Lokale Regel | Rückwirkung |
+|:--|:--|:--|
+| **River Meanders** | Agenten verändern Gewässerzellen | neuer Flusslauf lenkt weitere Agenten |
+| **Erosion** | Wasserverlagerung trägt Gelände ab | neue Höhe verändert den nächsten Abfluss |
+| **Grand Canyon** | Agenten sammeln sich in Senken | steigender Wasserspiegel beeinflusst spätere Wege |
+:::
+
+Keines der resultierenden Muster ist als fertige Form vorgegeben. **Die Struktur entsteht aus der wiederholten Anwendung der Regeln.**
+
+Das beweist noch nicht, dass der zugrunde liegende reale Prozess richtig beschrieben ist.
+
+## Was ein physikalisches Prozessmodell braucht
+
+**Wasserbilanz** (Beispiel für flächenhaften Abfluss):
+
+$$
+\frac{\partial h}{\partial t}+\nabla\cdot(h\vec u)=R-I
+$$
+
+::: {.small-font}
+$h$: Fließtiefe · $\vec u$: Geschwindigkeit · $R$: Niederschlag · $I$: Infiltration
+:::
+
+Hinzu kämen eine **Impulsbilanz oder geeignete hydraulische Näherung**, bei Erosion außerdem eine **Sedimentbilanz**.
+
+Keines der drei Modelle löst die hydrodynamischen Grundgleichungen. **Modell 2** erhält lokal Wassermenge, bestimmt aber keine physikalische Fließgeschwindigkeit.
+
+## Was darf man vergleichen?
+
+::: {.columns}
+::: {.column width="50%"}
+### Sinnvoll
+
+- Entstehen Muster aus lokalen Regeln?
+- Wo wird Wasser konzentriert?
+- Verändert Rückkopplung die Struktur?
+- Welche Annahme führt zu welchem Muster?
+:::
+::: {.column width="50%"}
+### Nicht unmittelbar
+
+- Fließgeschwindigkeiten
+- Erosionsraten
+- Simulationszeiten
+- Wassermengen in physikalischen Einheiten
+:::
+:::
+
+::: {.takeaway}
+Ähnliche Karten können das Ergebnis **verschiedener Mechanismen** sein. Eine plausible Form ist keine Prozessvalidierung.
+:::
+
+## Woran erkennt man physikalischen Gehalt?
+
+Prüfe nicht zuerst, **wie realistisch das Muster aussieht**, sondern:
+
+1. **Bewegungsregel:** Richtung – oder auch Menge und Geschwindigkeit?
+2. **Erhaltung:** Was wird bilanziert: Wasser, Impuls, Sediment?
+3. **Parameter:** Messbare Größen oder frei gesetzte Schwellen?
+4. **Maßstab:** Haben Raum, Zeit und Ergebnis belastbare Einheiten?
+5. **Prüfbarkeit:** Welche Beobachtung könnte das Modell widerlegen?
+
+::: {.takeaway}
+**Kern:** Physikalisches Prinzip ≠ Prozessgleichung ≠ heuristische Regel. Komplexität und visuelle Plausibilität ersetzen keine physikalische Begründung.
+:::
+
+::: {.small-font}
+Modelle: *NetLogo Models Library*, Northwestern University – River Meanders (2021), Erosion (2004), Grand Canyon (2006).
+:::

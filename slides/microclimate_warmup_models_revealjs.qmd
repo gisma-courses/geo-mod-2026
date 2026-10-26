@@ -1,0 +1,509 @@
+---
+title: "Mikroklima-Warmup"
+subtitle: "Messpunkte, Raumfüllung und Modellkritik"
+order: 20
+format:
+  revealjs:
+    theme:
+      - default
+      - metropolis.scss
+    slide-number: true
+    transition: fade
+    incremental: false
+    navigation-mode: vertical
+    controls: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+# Live-Ziel
+
+Ein kurzes R-Skript wird im Vortrag gemeinsam gelesen und ausgeführt.
+
+Dabei soll sichtbar werden:
+
+```text
+Punktmessung -> räumlicher Ergebnisdatensatz
+```
+
+Nicht die Darstellung ist der Kern, sondern die Modellannahme dahinter.
+
+## Technischer Einstieg
+
+Projekt-ZIP herunterladen:
+
+[**Projekt herunterladen**](../assets/Archiv.zip){download="Archiv.zip"}
+
+Dann:
+
+```text
+ZIP entpacken
+.Rproj-Datei im entpackten Projektordner öffnen
+Skript im Ordner scripts/ öffnen
+```
+
+Das Skript liegt im Projekt unter:
+
+```text
+scripts/microclimate_warmup_minimal_kommentiert.R
+```
+
+Skript separat:
+
+[**R-Skript herunterladen**](../scripts/microclimate_warmup_minimal_kommentiert.R){download="microclimate_warmup_minimal_kommentiert.R"}
+
+# Warum Skripte?
+
+Skripte machen räumliche Analysen reproduzierbar.
+
+Sie halten fest:
+
+```text
+Daten
+Parameter
+Aussagefläche
+Modellannahme
+Ergebnis
+```
+
+Das ist bei Massendaten, Wiederholungen und späteren Korrekturen entscheidend.
+
+# Ausgangsproblem
+
+Messstationen liefern Punktwerte.
+
+Die Fragestellung richtet sich aber auf einen Raum.
+
+Dazwischen steht eine raumfüllende Operation:
+
+```text
+Was wird zwischen den Messpunkten angenommen?
+```
+
+## Fachlicher Kontext
+
+Mikroklima variiert kleinräumig.
+
+Mögliche Einflussgrößen:
+
+```text
+Höhe
+Geländeform
+Vegetation
+Verschattung
+Bodenbedeckung
+Kaltluft
+```
+
+Diese Übung reduziert den Fall bewusst auf Temperatur und Höhe.
+
+# Benötigte Daten
+
+Die Dateien liegen bereits im entpackten Projektordner.
+
+Im Projekt liegen:
+
+```text
+data/climdata.rds
+data/DEM1.tif
+```
+
+`climdata.rds` enthält Stationen und Temperaturspalten.
+
+`DEM1.tif` enthält die Höhe als Raster.
+
+## Code: Daten laden
+
+```r
+library(sf)
+library(terra)
+library(gstat)
+library(randomForest)
+
+m   <- readRDS("data/climdata.rds")
+dem <- rast("data/DEM1.tif")
+names(dem) <- "altitude"
+```
+
+# Ein Zeitpunkt
+
+Für den Warmup wird nur ein Messzeitpunkt betrachtet:
+
+```text
+A20230830
+```
+
+Damit beziehen sich alle Ergebnisraster auf dieselbe Messsituation.
+
+## Code: Zielvariable setzen
+
+```r
+m$temp <- m[["A20230830"]]
+```
+
+# Raumbezug
+
+Punkte und Raster müssen im selben CRS liegen.
+
+Sonst sind Höhe, Abstand und Überlagerung nicht sauber interpretierbar.
+
+## Code: CRS und Stationshöhe
+
+```r
+m <- st_transform(m, crs(dem))
+m$altitude <- terra::extract(dem, terra::vect(m))$altitude
+
+pts <- m[!is.na(m$temp) & !is.na(m$altitude),
+         c("temp", "altitude")]
+```
+
+# Aussagefläche
+
+Die Ergebnisse werden nicht über das ganze DEM ausgegeben.
+
+Die gültige Fläche ist:
+
+```text
+Convex Hull der Stationen + 20 m Puffer
+```
+
+Das begrenzt die Interpretation auf den Messraum.
+
+## Code: Aussagefläche
+
+```r
+area <- st_sf(
+  geometry = st_buffer(
+    st_convex_hull(st_union(st_geometry(pts))),
+    20
+  )
+)
+
+dem <- crop(dem, vect(area))
+dem <- mask(dem, vect(area))
+names(dem) <- "altitude"
+```
+
+# Vorhersagegrid
+
+Die Modelle rechnen für Rasterzellen.
+
+Dazu wird das DEM in eine Tabelle übersetzt:
+
+```text
+cell
+x
+y
+altitude
+```
+
+## Code: Rasterzellen als Zielorte
+
+```r
+grid <- as.data.frame(dem, xy = TRUE, cells = TRUE, na.rm = FALSE)
+names(grid)[4] <- "altitude"
+grid <- grid[!is.na(grid$altitude), ]
+
+grid_sf <- st_as_sf(
+  grid,
+  coords = c("x", "y"),
+  crs = st_crs(pts),
+  remove = FALSE
+)
+```
+
+# Vier Modellideen
+
+Aus denselben Messpunkten entstehen vier Ergebnisraster.
+
+```text
+Voronoi      nächste Station
+IDW          lokale Nähe
+LM altitude  Höhenbezug
+RF warning   datengetriebene Raum-/Höhenpartition
+```
+
+# Voronoi
+
+Voronoi bedeutet hier:
+
+```text
+nächste Station gewinnt
+```
+
+Jede Rasterzelle erhält den Wert der nächstgelegenen Station.
+
+Das ist transparent, aber grob.
+
+## Code: Voronoi / nearest station
+
+```r
+vor_df <- gstat::idw(
+  temp ~ 1,
+  locations = pts,
+  newdata = grid_sf,
+  nmax = 1
+)
+
+map_vor <- make_map(vor_df$var1.pred, "Voronoi")
+```
+
+# IDW
+
+IDW nutzt räumliche Nähe.
+
+```text
+nahe Stationen zählen stärker als entfernte
+```
+
+Mit `nmax = 4` bleibt die Schätzung lokal.
+
+## Code: IDW
+
+```r
+idw_df <- gstat::idw(
+  temp ~ 1,
+  locations = pts,
+  newdata = grid_sf,
+  nmax = 4
+)
+
+map_idw <- make_map(idw_df$var1.pred, "IDW")
+```
+
+# LM altitude
+
+LM altitude nutzt Höhe als Prädiktor.
+
+```text
+Temperatur wird über Höhe auf Rasterzellen übertragen
+```
+
+Das ist kein Nachbarschaftsmodell.
+
+## Code: LM altitude
+
+```r
+fit_lm <- lm(temp ~ altitude, data = st_drop_geometry(pts))
+
+map_lm <- predict(dem, fit_lm)
+names(map_lm) <- "LM_altitude"
+```
+
+# RF warning
+
+RF sagt weiterhin Temperatur vorher.
+
+Eingangsvariablen sind:
+
+```text
+x
+y
+altitude
+```
+
+Das Modell kann dadurch räumliche Lage und Höhe flexibel aufteilen.
+
+## Code: RF warning
+
+```r
+xy <- st_coordinates(pts)
+pts$x <- xy[, 1]
+pts$y <- xy[, 2]
+
+fit_rf <- randomForest(
+  temp ~ x + y + altitude,
+  data = st_drop_geometry(pts),
+  ntree = 200
+)
+
+rf_pred <- predict(fit_rf, newdata = grid)
+map_rf <- make_map(rf_pred, "RF_warning")
+```
+
+# Warum RF warning?
+
+RF kann bei wenigen Stationen einen niedrigen Fehler zeigen.
+
+Das heißt aber nicht automatisch:
+
+```text
+robuste mikroklimatische Erklärung
+```
+
+Es kann bedeuten:
+
+```text
+gute Anpassung an diese konkrete Punktlage
+```
+
+# Validierung
+
+Leave-One-Out-Cross-Validation:
+
+```text
+eine Station raus
+Modell mit den übrigen Stationen
+ausgelassene Station zurückschätzen
+Fehler speichern
+```
+
+## RMSE
+
+$$
+RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_i - y_i)^2}
+$$
+
+RMSE misst Rückschätzfehler an Stationsorten.
+
+RMSE beweist nicht die fachliche Gültigkeit der ganzen Ergebnisfläche.
+
+# LM und RF validieren
+
+LM und RF werden mit einer sichtbaren Schleife geprüft.
+
+Das ist absichtlich einfach lesbar.
+
+## Code: LOOCV für LM und RF
+
+```r
+rmse_fun <- function(e) sqrt(mean(e * e, na.rm = TRUE))
+
+lm_cv <- rep(NA, nrow(pts))
+rf_cv <- rep(NA, nrow(pts))
+
+for (i in 1:nrow(pts)) {
+  train <- pts[-i, ]
+  test  <- pts[i, ]
+
+  fit_lm_i <- lm(temp ~ altitude, data = st_drop_geometry(train))
+  lm_cv[i] <- predict(fit_lm_i, newdata = st_drop_geometry(test))
+
+  fit_rf_i <- randomForest(
+    temp ~ x + y + altitude,
+    data = st_drop_geometry(train),
+    ntree = 200
+  )
+  rf_cv[i] <- predict(fit_rf_i, newdata = st_drop_geometry(test))
+}
+```
+
+# Voronoi und IDW validieren
+
+Für die `gstat`-Modelle übernimmt `gstat.cv()` die LOOCV.
+
+Wichtig:
+
+```text
+Validierung und Ergebnisberechnung nutzen dieselbe Nachbarschaft
+```
+
+## Code: gstat.cv
+
+```r
+vor_model <- gstat(
+  temp ~ 1,
+  locations = pts,
+  nmax = 1,
+  set = list(idp = 2)
+)
+
+idw_model <- gstat(
+  temp ~ 1,
+  locations = pts,
+  nmax = 4,
+  set = list(idp = 2)
+)
+
+vor_cv <- gstat.cv(vor_model, nfold = nrow(pts))
+idw_cv <- gstat.cv(idw_model, nfold = nrow(pts))
+```
+
+# RMSE-Tabelle
+
+Die Tabelle ist kein automatisches Methodenranking.
+
+Sie ist ein Startpunkt für Modellkritik.
+
+## Code: RMSE berechnen
+
+```r
+rmse <- data.frame(
+  model = c("LM altitude", "Voronoi", "IDW", "RF warning"),
+  RMSE = c(
+    rmse_fun(pts$temp - lm_cv),
+    rmse_fun(vor_cv$residual),
+    rmse_fun(idw_cv$residual),
+    rmse_fun(pts$temp - rf_cv)
+  )
+)
+
+print(rmse)
+```
+
+# Ergebnisdarstellung
+
+Alle Ergebnisraster werden mit gleicher Farbskala dargestellt.
+
+Die Messpunkte werden überlagert.
+
+So sind Muster und Messstützung gleichzeitig sichtbar.
+
+## Code: Darstellung
+
+```r
+maps <- c(map_vor, map_idw, map_lm, map_rf)
+z <- range(c(pts$temp - 1, pts$temp + 1), na.rm = TRUE)
+
+par(mfrow = c(2, 2))
+
+for (i in 1:nlyr(maps)) {
+  plot(maps[[i]], range = z, main = names(maps)[i])
+  points(pts, pch = 19, cex = 0.8)
+}
+
+par(mfrow = c(1, 1))
+```
+
+# Ergebnislogik
+
+```text
+Voronoi      harte Stationsbereiche
+IDW          lokale Nachbarschaft
+LM altitude  Höhenbezug
+RF warning   datengetriebene Partition
+```
+
+Die Darstellung ist nur die Oberfläche.
+
+Die Aussage steckt in der Modellannahme.
+
+# Diskussion
+
+Leitfragen:
+
+```text
+Welches Ergebnis zeigt harte Zuständigkeit?
+Welches Ergebnis zeigt lokale Nähe?
+Welches Ergebnis folgt der Höhe?
+Welches Ergebnis wirkt gut, bleibt aber riskant?
+Warum reicht RMSE allein nicht?
+```
+
+# Schluss
+
+Aus Punktmessungen entsteht kein neutraler Raum.
+
+Dazwischen stehen immer:
+
+```text
+Aussagefläche
+Modellannahme
+Prädiktoren
+Validierung
+fachliche Plausibilität
+```
+
+Das Skript macht diese Kette minimal sichtbar.

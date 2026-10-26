@@ -1,0 +1,85 @@
+---
+title: "Advanced GI & Fernerkundung"
+subtitle: "Räumliche Muster, Regionalisierung und belastbare Auswertungen"
+order: 10
+title-block-banner: ../images/placeholder.png
+title-block-banner-color: black
+#page-layout: full
+format-links: [html]
+format:
+  html:
+    toc: false
+    code-fold: false
+    number-sections: false
+
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Zielsetzung
+
+Wie beschreiben wir räumliche Muster? Wie bilden wir aus Klimadaten sinnvolle Teilräume? Wo sind räumliche Vorhersagen belastbar, und wann zeigt ein Satellitenbild tatsächlich eine Veränderung?
+
+In diesem Kurs lernen Sie ausgewählte fortgeschrittene Grundlagen der Geoinformationswissenschaft und Fernerkundung anzuwenden. Sie arbeiten mit realen Daten aus Hessen und Nordrhein-Westfalen, beschaffen diese selbst und bearbeiten überschaubare anwendungsbezogene Fragen. Dabei verbinden Sie die räumliche Kontrolle in QGIS mit reproduzierbaren Auswertungen in R und ausgewählten externen Werkzeugen.
+
+Sie lernen, vorhandene Skripte gezielt anzupassen, methodische Entscheidungen zu vergleichen und Ergebnisse fachlich zu prüfen. Räumliche Auflösung, Untersuchungsgebiet, zeitlicher Bezug und Übertragbarkeit begleiten alle Themen. Ziel ist, dass Sie einen Analyseweg selbstständig ausführen und seine Aussagekraft begründen können.
+
+## Arbeitsweise
+
+Die zwölf Sitzungen verbinden kurze fachliche Einführungen mit einem hohen Übungsanteil. Die Arbeitsaufträge finden Sie in den jeweils verlinkten Worksheets.
+
+Sie nutzen Code aus den Kursmaterialien, Dokumentation und KI-Unterstützung. Dazu gehört, Eingaben und Parameter zu verstehen, Änderungen festzuhalten und Ausgaben zu kontrollieren. Sie müssen keine Algorithmen selbst entwickeln. Sie sollen jedoch erklären können, was Ihr Skript verarbeitet und woran Sie ein plausibles Ergebnis erkennen.
+
+Im Verlauf des Kurses entsteht ein Projektordner mit Datenquellen, Skripten, Parametern und ausgewählten Ergebnissen. Ihre Interpretationen unterscheiden zwischen Beobachtung, möglicher Erklärung und verbleibender Unsicherheit.
+
+## Block 1 · Daten beschaffen und Skripte nutzen
+
+Sie richten einen reproduzierbaren Arbeitsablauf ein und beschaffen Sentinel-2-Daten für den Burgwald. Sie lernen, eine automatisierte Bildauswahl zu kontrollieren und Vegetationsindizes anhand konkreter Flächen zu interpretieren. Der Vergleich unterschiedlicher Aufnahmetermine zeigt, wie stark Datenqualität und zeitlicher Bezug die Aussage beeinflussen.
+
+| Sitzung | Inhalt und Lernziel | Arbeitsauftrag |
+|---|---|---|
+| 1 · Skripte handhaben | Ein vorhandenes Skript übernehmen, Pfade und Parameter anpassen, Fehler mit Dokumentation oder KI bearbeiten und den Ablauf erneut ausführen. | [Worksheet 01](worksheets/ws-01.qmd) |
+| 2 · Satellitendaten beschaffen | Sentinel-2-Aufnahmen über den CDSE-Workflow abrufen; Abdeckung, Wolken, Schatten und Aufnahmedaten prüfen. | [Worksheet 02](worksheets/ws-02.qmd) |
+| 3 · Vegetationssignale interpretieren | NDVI und kNDVI an Wald-, Offenland- und auffälligen Vergleichsflächen untersuchen; Unterschiede zwischen Vegetationssignal und Aufnahmebedingungen erkennen. | [Worksheet 03](worksheets/ws-03.qmd) |
+
+## Block 2 · Räumliche Muster und Klimaregionalisierung
+
+Sie vergleichen klassische Landschaftsmaße mit informationstheoretischen Ansätzen. Dabei untersuchen Sie, welche Informationen über Zusammensetzung und räumliche Anordnung tatsächlich erfasst werden. Anschließend wechseln Sie von kategorischer Landbedeckung zu kontinuierlichen Klimadaten: Sie segmentieren Temperaturjahresgänge und bewerten, wie Parameter und Rasterauflösung die entstehenden Regionen beeinflussen.
+
+| Sitzung | Inhalt und Lernziel | Arbeitsauftrag |
+|---|---|---|
+| 4 · Muster quantitativ beschreiben | SHDI und Aggregation Index mit Entropie und relativer gegenseitiger Information vergleichen; den Einfluss räumlicher Anordnung und Fenstergröße untersuchen. | [Worksheet 04](worksheets/ws-04.qmd) |
+| 5 · Klimadaten segmentieren | Monatliche Klimadaten selbst beschaffen und mit `supercells` regionalisieren; Segmentzahl und Kompaktheit kontrolliert variieren. | [Worksheet 05](worksheets/ws-05.qmd) |
+| 6 · Regionalisierungen beurteilen | Homogenität innerhalb der Segmente, Unterschiede benachbarter Jahresgänge und Empfindlichkeit gegenüber gröberer Rasterauflösung bewerten. | [Worksheet 06](worksheets/ws-06.qmd) |
+
+## Block 3 · Räumliche Vorhersagen und Modellgültigkeit
+
+Am LAI-Beispiel aus den EON-Materialien verfolgen Sie den Weg von punktuellen Referenzwerten zur flächenhaften Schätzung. Sie prüfen den räumlichen und zeitlichen Bezug der Daten und vergleichen unterschiedliche Validierungsansätze. Mit der Area of Applicability untersuchen Sie anschließend, wo die Prädiktorbedingungen durch die Trainingsdaten abgedeckt sind.
+
+| Sitzung | Inhalt und Lernziel | Arbeitsauftrag |
+|---|---|---|
+| 7 · Referenzdaten und Schätzung | LAI-Referenzen und Satellitendaten zusammenführen; ein einfaches Modell anwenden und dessen Datengrundlage, Residuen und Voraussetzungen beurteilen. | [Worksheet 07](worksheets/ws-07.qmd) |
+| 8 · Räumlich validieren | Einen Random Forest mit zufälligen und räumlichen Prüffaltungen vergleichen; bei gleichen Prädiktoren und Modelleinstellungen die Bedeutung der Prüfsituation erkennen. | [Worksheet 08](worksheets/ws-08.qmd) |
+| 9 · Anwendungsbereich prüfen | Vorhersage und AOA gemeinsam interpretieren; untersuchen, wie eine Änderung der Prädiktorauswahl Modellgüte und Anwendungsbereich beeinflusst. | [Worksheet 09](worksheets/ws-09.qmd) |
+
+## Block 4 · Veränderungen, Werkzeugverknüpfung und Transfer
+
+Sie greifen die Sentinel-Daten erneut auf und untersuchen zeitliche Veränderungen. Zusätzliche Beobachtungen helfen, auffällige Signale zu überprüfen. An einem begrenzten R–OTB-Beispiel lernen Sie, einen Verarbeitungsschritt über Werkzeuggrenzen hinweg nachzuvollziehen. Abschließend übertragen Sie einen erprobten Ansatz auf eine eigene räumliche Frage.
+
+| Sitzung | Inhalt und Lernziel | Arbeitsauftrag |
+|---|---|---|
+| 10 · Veränderungen untersuchen | Sommeraufnahmen mehrerer Jahre vergleichen; Veränderungskandidaten anhand der Originalbilder und einer zusätzlichen Aufnahme prüfen. | [Worksheet 10](worksheets/ws-10.qmd) |
+| 11 · Werkzeuge verbinden | Eine bandweise Standardisierung über R, `link2GI` und OTB ausführen; Werte, Georeferenzierung und Übergabe zwischen den Werkzeugen kontrollieren. | [Worksheet 11](worksheets/ws-11.qmd) |
+| 12 · Eigenständig übertragen | Eine begrenzte Frage zu Landschaftsmustern, Klimaregionalisierung oder zeitlicher Veränderung für einen eigenen Ausschnitt bearbeiten und den Ablauf durch eine andere Gruppe nachvollziehen lassen. | [Worksheet 12](worksheets/ws-12.qmd) |
+
+## Was Sie am Ende können sollen
+
+Sie können zu einer räumlichen Frage geeignete Daten beschaffen, einen vorhandenen Analyseweg anpassen und dessen Ergebnisse kritisch beurteilen. Sie begründen die Wahl von Parametern und Maßstäben, erkennen Grenzen von Validierung und Übertragbarkeit und dokumentieren Ihren Ablauf so, dass andere ihn erneut ausführen können.
+
+## Materialgrundlage
+
+- [Advanced GIS and Remote Sensing 2024 – Methoden, Reader und Worksheets](https://gisma-courses.github.io/LV-19-d19-006-24/)
+- [Aktuelle R-Workflows – LV-19-d19-006-25-R](https://github.com/gisma/LV-19-d19-006-25-R)
+- [EON2026 – Machine Learning, räumliche Validierung und AOA](https://github.com/earth-observation-network/EON2026)

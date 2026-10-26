@@ -1,0 +1,351 @@
+---
+title: "Mikroklima-Interpolation verstehen"
+subtitle: "2-Stunden-Übung mit RStudio"
+author: "EON / Lehrveranstaltung"
+format:
+  revealjs:
+    theme: [metropolis.scss]
+    toc: false
+    slide-number: true
+    transition: fade
+    incremental: false
+    navigation-mode: vertical
+    controls: true
+    controls-layout: bottom-right
+    smaller: false
+lightbox: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+# Ziel der Übung
+
+Am Ende ist klar:
+
+- was das Skript fachlich macht
+- wie ein RStudio-Projekt geöffnet wird
+- wie ein R-Skript blockweise läuft
+- wo die Ergebnisse gespeichert werden
+
+## Technik: Start
+
+1. ZIP entpacken  
+2. `microclimate_beginner.Rproj` öffnen  
+3. `01_run_microclimate_beginner.R` öffnen  
+4. Blöcke mit `Strg + Enter` ausführen  
+5. Ergebnisse in `outputs/` prüfen
+
+# Was wird modelliert?
+
+Punktmessungen werden zu einer Fläche.
+
+$$
+\text{Sensorwerte} + \text{Gelände} \rightarrow \text{Temperaturkarte}
+$$
+
+## Technik: Daten im Projekt
+
+Ordnerstruktur:
+
+```text
+microclimate_beginner/
+  data/
+    stations.csv
+    temperature_3h.csv
+  outputs/
+  01_run_microclimate_beginner.R
+```
+
+# Die zentrale Pipeline
+
+```text
+Daten laden
+→ Stationen räumlich setzen
+→ DEM erzeugen
+→ Zeitpunkt wählen
+→ interpolieren
+→ Fehler vergleichen
+→ Karten exportieren
+```
+
+## Technik: Skriptabschnitte
+
+Im Skript sind die Abschnitte nummeriert.
+
+Relevant für die Sitzung:
+
+```text
+0 Pakete
+1 Pfade
+2 Daten
+3 DEM
+4 Zeitformat
+7 Interpolation
+8 R*
+9 Benchmark
+10 Figuren
+```
+
+# Stationen und Messwerte
+
+Die Stationstabelle enthält Orte.
+
+Die Temperaturtabelle enthält Zeitpunkte.
+
+Beide werden über `stationid` verbunden.
+
+## Technik: Tabellen ansehen
+
+In RStudio:
+
+```r
+stations <- read.csv("data/stations.csv")
+temp_raw <- read.csv("data/temperature_3h.csv")
+View(stations)
+View(temp_raw)
+```
+
+Wichtig:
+
+```text
+stations.csv: stationid, x, y
+temperature_3h.csv: Time, S01, S02, ...
+```
+
+# Warum ein DEM?
+
+Temperatur ist räumlich nicht zufällig.
+
+Gelände kann Temperaturunterschiede erklären.
+
+Das DEM ist ein einfacher räumlicher Prädiktor.
+
+## Technik: DEM im Skript
+
+Das DEM wird synthetisch erzeugt.
+
+```r
+DEM_render <- terra::rast(...)
+DEM_scale  <- terra::aggregate(DEM_render, fact = 4)
+```
+
+Zwei Raster:
+
+```text
+DEM_render: Karte darstellen
+DEM_scale: Modellskala testen
+```
+
+# DEM_scale und DEM_render
+
+Die Trennung verhindert eine Scheingenauigkeit.
+
+Feine Pixel machen Karten hübsch.
+
+Modellskalen müssen fachlich gröber gedacht werden.
+
+## Technik: Dateien
+
+Das Skript schreibt:
+
+```text
+outputs/maps/DEM_render_5m.tif
+outputs/maps/DEM_scale_20m.tif
+```
+
+In RStudio prüfen:
+
+```r
+terra::res(DEM_render)
+terra::res(DEM_scale)
+```
+
+# Ein Zeitpunkt statt alle Zeitpunkte
+
+Die Pflichtaufgabe nutzt nur den dichtesten Zeitpunkt.
+
+So bleibt die Logik sichtbar.
+
+Alle Zeitpunkte wären derselbe Ablauf wiederholt.
+
+## Technik: Zeitpunkt wählen
+
+Im Skript:
+
+```r
+data_density <- sapply(vars, function(v) sum(is.finite(m[[v]])))
+pick_ts <- vars[which.max(data_density)]
+```
+
+Bedeutung:
+
+```text
+Nimm den Zeitpunkt mit den meisten gültigen Messwerten.
+```
+
+# Interpolation
+
+Interpolation füllt die Räume zwischen Sensoren.
+
+Drei Varianten werden verglichen:
+
+- IDW
+- Trend über Höhe
+- KED-ähnlich
+
+## Technik: Methoden
+
+Im Skript:
+
+```r
+idw_predict()
+trend_predict()
+ked_like_predict()
+```
+
+Die Karten entstehen hier:
+
+```r
+r_idw
+r_trend
+r_ked_like
+```
+
+# Was bedeutet KED-ähnlich?
+
+Erst wird ein Trend erklärt.
+
+Dann werden Restfehler räumlich verteilt.
+
+$$
+\text{Temperatur} = \text{Höhentrend} + \text{räumlicher Rest}
+$$
+
+## Technik: Funktion
+
+Im Skript:
+
+```r
+ked_like_predict <- function(train, newdata) {
+  fit <- lm(value ~ altitude, data = train)
+  train$resid <- residuals(fit)
+  drift <- predict(fit, newdata = newdata)
+  resid_pred <- idw_predict(...)
+  drift + resid_pred
+}
+```
+
+# Was ist R*?
+
+R beschreibt eine räumliche Skala.
+
+Kleines R: lokaler Geländeeffekt.
+
+Großes R: breiter Geländekontext.
+
+R* ist der Radius mit dem kleinsten Fehler.
+
+## Technik: R testen
+
+Im Skript:
+
+```r
+R_candidates <- c(20, 40, 80, 120)
+```
+
+Für jeden Radius:
+
+```text
+DEM glätten
+→ Stationshöhe neu auslesen
+→ Fehler berechnen
+→ besten Radius wählen
+```
+
+# Fehlervergleich
+
+Nicht die schönste Karte gewinnt.
+
+Die Methode mit kleinerem Fehler ist im Test besser.
+
+Gemessen wird mit RMSE.
+
+## Technik: Benchmark
+
+Im Skript:
+
+```r
+bench <- data.frame(
+  method = c("mean", "trend", "idw", "ked_like"),
+  RMSE = c(...)
+)
+```
+
+Ausgabe:
+
+```text
+outputs/summary/benchmark_methods.csv
+```
+
+# Ergebnisse
+
+Das Skript erzeugt Karten, Tabellen und Diagramme.
+
+Wichtig ist die Interpretation, nicht nur der Output.
+
+## Technik: Output prüfen
+
+Nach dem Lauf öffnen:
+
+```text
+outputs/fig/temperature_interpolation_panel.png
+outputs/fig/R_tuning_curve.png
+outputs/fig/benchmark_methods.png
+outputs/summary/R_tuning_results.csv
+outputs/summary/benchmark_methods.csv
+outputs/maps/*.tif
+```
+
+# Mini-Aufgabe
+
+Beantworten Sie drei Fragen:
+
+1. Welche Methode hat den kleinsten Fehler?
+2. Welcher Radius wird als R* gewählt?
+3. Wo wäre die Karte fachlich unsicher?
+
+## Technik: Konsole lesen
+
+Am Ende steht in der Konsole:
+
+```text
+Timestamp
+Stations used
+R*
+Best method
+Outputs written to
+```
+
+Diese vier Zeilen reichen für die Ergebnisdiskussion.
+
+# Aussagegrenze
+
+Die Karte ist kein gemessenes Temperaturfeld.
+
+Sie ist eine modellierte Schätzung aus wenigen Sensoren.
+
+Gute Interpretation nennt immer die Annahmen.
+
+## Technik: Was wurde vereinfacht?
+
+Bewusst reduziert:
+
+```text
+kleine CSV statt Excel-Logger
+synthetisches DEM statt externer Rasterdaten
+ein Zeitpunkt statt kompletter Zeitreihe
+KED-ähnlich statt voller Geostatistik
+PNG/GeoTIFF statt Shiny-Pflicht
+```

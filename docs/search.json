@@ -1,0 +1,630 @@
+[
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#technischer-einstieg",
+    "href": "slides/microclimate_warmup_models_revealjs.html#technischer-einstieg",
+    "title": "Mikroklima-Warmup",
+    "section": "Technischer Einstieg",
+    "text": "Technischer Einstieg\nProjekt-ZIP herunterladen:\nProjekt herunterladen\nDann:\nZIP entpacken\n.Rproj-Datei im entpackten Projektordner öffnen\nSkript im Ordner scripts/ öffnen\nDas Skript liegt im Projekt unter:\nscripts/microclimate_warmup_minimal_kommentiert.R\nSkript separat:\nR-Skript herunterladen",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#fachlicher-kontext",
+    "href": "slides/microclimate_warmup_models_revealjs.html#fachlicher-kontext",
+    "title": "Mikroklima-Warmup",
+    "section": "Fachlicher Kontext",
+    "text": "Fachlicher Kontext\nMikroklima variiert kleinräumig.\nMögliche Einflussgrößen:\nHöhe\nGeländeform\nVegetation\nVerschattung\nBodenbedeckung\nKaltluft\nDiese Übung reduziert den Fall bewusst auf Temperatur und Höhe.",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-daten-laden",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-daten-laden",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: Daten laden",
+    "text": "Code: Daten laden\nlibrary(sf)\nlibrary(terra)\nlibrary(gstat)\nlibrary(randomForest)\n\nm   &lt;- readRDS(\"data/climdata.rds\")\ndem &lt;- rast(\"data/DEM1.tif\")\nnames(dem) &lt;- \"altitude\"",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-zielvariable-setzen",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-zielvariable-setzen",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: Zielvariable setzen",
+    "text": "Code: Zielvariable setzen\nm$temp &lt;- m[[\"A20230830\"]]",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-crs-und-stationshöhe",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-crs-und-stationshöhe",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: CRS und Stationshöhe",
+    "text": "Code: CRS und Stationshöhe\nm &lt;- st_transform(m, crs(dem))\nm$altitude &lt;- terra::extract(dem, terra::vect(m))$altitude\n\npts &lt;- m[!is.na(m$temp) & !is.na(m$altitude),\n         c(\"temp\", \"altitude\")]",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-aussagefläche",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-aussagefläche",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: Aussagefläche",
+    "text": "Code: Aussagefläche\narea &lt;- st_sf(\n  geometry = st_buffer(\n    st_convex_hull(st_union(st_geometry(pts))),\n    20\n  )\n)\n\ndem &lt;- crop(dem, vect(area))\ndem &lt;- mask(dem, vect(area))\nnames(dem) &lt;- \"altitude\"",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-rasterzellen-als-zielorte",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-rasterzellen-als-zielorte",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: Rasterzellen als Zielorte",
+    "text": "Code: Rasterzellen als Zielorte\ngrid &lt;- as.data.frame(dem, xy = TRUE, cells = TRUE, na.rm = FALSE)\nnames(grid)[4] &lt;- \"altitude\"\ngrid &lt;- grid[!is.na(grid$altitude), ]\n\ngrid_sf &lt;- st_as_sf(\n  grid,\n  coords = c(\"x\", \"y\"),\n  crs = st_crs(pts),\n  remove = FALSE\n)",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-voronoi-nearest-station",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-voronoi-nearest-station",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: Voronoi / nearest station",
+    "text": "Code: Voronoi / nearest station\nvor_df &lt;- gstat::idw(\n  temp ~ 1,\n  locations = pts,\n  newdata = grid_sf,\n  nmax = 1\n)\n\nmap_vor &lt;- make_map(vor_df$var1.pred, \"Voronoi\")",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-idw",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-idw",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: IDW",
+    "text": "Code: IDW\nidw_df &lt;- gstat::idw(\n  temp ~ 1,\n  locations = pts,\n  newdata = grid_sf,\n  nmax = 4\n)\n\nmap_idw &lt;- make_map(idw_df$var1.pred, \"IDW\")",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-lm-altitude",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-lm-altitude",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: LM altitude",
+    "text": "Code: LM altitude\nfit_lm &lt;- lm(temp ~ altitude, data = st_drop_geometry(pts))\n\nmap_lm &lt;- predict(dem, fit_lm)\nnames(map_lm) &lt;- \"LM_altitude\"",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-rf-warning",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-rf-warning",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: RF warning",
+    "text": "Code: RF warning\nxy &lt;- st_coordinates(pts)\npts$x &lt;- xy[, 1]\npts$y &lt;- xy[, 2]\n\nfit_rf &lt;- randomForest(\n  temp ~ x + y + altitude,\n  data = st_drop_geometry(pts),\n  ntree = 200\n)\n\nrf_pred &lt;- predict(fit_rf, newdata = grid)\nmap_rf &lt;- make_map(rf_pred, \"RF_warning\")",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#rmse",
+    "href": "slides/microclimate_warmup_models_revealjs.html#rmse",
+    "title": "Mikroklima-Warmup",
+    "section": "RMSE",
+    "text": "RMSE\n\\[\nRMSE = \\sqrt{\\frac{1}{n}\\sum_{i=1}^{n}(\\hat{y}_i - y_i)^2}\n\\]\nRMSE misst Rückschätzfehler an Stationsorten.\nRMSE beweist nicht die fachliche Gültigkeit der ganzen Ergebnisfläche.",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-loocv-für-lm-und-rf",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-loocv-für-lm-und-rf",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: LOOCV für LM und RF",
+    "text": "Code: LOOCV für LM und RF\nrmse_fun &lt;- function(e) sqrt(mean(e * e, na.rm = TRUE))\n\nlm_cv &lt;- rep(NA, nrow(pts))\nrf_cv &lt;- rep(NA, nrow(pts))\n\nfor (i in 1:nrow(pts)) {\n  train &lt;- pts[-i, ]\n  test  &lt;- pts[i, ]\n\n  fit_lm_i &lt;- lm(temp ~ altitude, data = st_drop_geometry(train))\n  lm_cv[i] &lt;- predict(fit_lm_i, newdata = st_drop_geometry(test))\n\n  fit_rf_i &lt;- randomForest(\n    temp ~ x + y + altitude,\n    data = st_drop_geometry(train),\n    ntree = 200\n  )\n  rf_cv[i] &lt;- predict(fit_rf_i, newdata = st_drop_geometry(test))\n}",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-gstat.cv",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-gstat.cv",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: gstat.cv",
+    "text": "Code: gstat.cv\nvor_model &lt;- gstat(\n  temp ~ 1,\n  locations = pts,\n  nmax = 1,\n  set = list(idp = 2)\n)\n\nidw_model &lt;- gstat(\n  temp ~ 1,\n  locations = pts,\n  nmax = 4,\n  set = list(idp = 2)\n)\n\nvor_cv &lt;- gstat.cv(vor_model, nfold = nrow(pts))\nidw_cv &lt;- gstat.cv(idw_model, nfold = nrow(pts))",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-rmse-berechnen",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-rmse-berechnen",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: RMSE berechnen",
+    "text": "Code: RMSE berechnen\nrmse &lt;- data.frame(\n  model = c(\"LM altitude\", \"Voronoi\", \"IDW\", \"RF warning\"),\n  RMSE = c(\n    rmse_fun(pts$temp - lm_cv),\n    rmse_fun(vor_cv$residual),\n    rmse_fun(idw_cv$residual),\n    rmse_fun(pts$temp - rf_cv)\n  )\n)\n\nprint(rmse)",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "slides/microclimate_warmup_models_revealjs.html#code-darstellung",
+    "href": "slides/microclimate_warmup_models_revealjs.html#code-darstellung",
+    "title": "Mikroklima-Warmup",
+    "section": "Code: Darstellung",
+    "text": "Code: Darstellung\nmaps &lt;- c(map_vor, map_idw, map_lm, map_rf)\nz &lt;- range(c(pts$temp - 1, pts$temp + 1), na.rm = TRUE)\n\npar(mfrow = c(2, 2))\n\nfor (i in 1:nlyr(maps)) {\n  plot(maps[[i]], range = z, main = names(maps)[i])\n  points(pts, pch = 19, cex = 0.8)\n}\n\npar(mfrow = c(1, 1))",
+    "crumbs": [
+      "Materials",
+      "Mikroklima-Warmup Foliensatz"
+    ]
+  },
+  {
+    "objectID": "pages/ws/ws-01.html",
+    "href": "pages/ws/ws-01.html",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "",
+    "text": "Sie richten ein kleines R-Projekt ein, trennen Eingangsdaten, Skripte und Ergebnisse und führen einen überschaubaren Analyseablauf aus. Anschließend verändern Sie einen Parameter und prüfen die Wirkung. Sie nutzen dabei relative Pfade, einen aussagekräftigen Skriptkopf und kurze Kommentare.\nBeispiel: Sie laden die Gebietsgrenze des Burgwalds, erzeugen einen Puffer und speichern eine Karte sowie die berechnete Geometrie. Die Daten stammen aus dem Kursrepository LV-19-d19-006-25-R. Die Pufferberechnung dient hier als einfache Übung zur Skriptnutzung.",
+    "crumbs": [
+      "Worksheets",
+      "Worksheet 01"
+    ]
+  },
+  {
+    "objectID": "pages/ws/ws-01.html#ziel",
+    "href": "pages/ws/ws-01.html#ziel",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "",
+    "text": "Sie richten ein kleines R-Projekt ein, trennen Eingangsdaten, Skripte und Ergebnisse und führen einen überschaubaren Analyseablauf aus. Anschließend verändern Sie einen Parameter und prüfen die Wirkung. Sie nutzen dabei relative Pfade, einen aussagekräftigen Skriptkopf und kurze Kommentare.\nBeispiel: Sie laden die Gebietsgrenze des Burgwalds, erzeugen einen Puffer und speichern eine Karte sowie die berechnete Geometrie. Die Daten stammen aus dem Kursrepository LV-19-d19-006-25-R. Die Pufferberechnung dient hier als einfache Übung zur Skriptnutzung.",
+    "crumbs": [
+      "Worksheets",
+      "Worksheet 01"
+    ]
+  },
+  {
+    "objectID": "pages/ws/ws-01.html#das-projekt-anlegen",
+    "href": "pages/ws/ws-01.html#das-projekt-anlegen",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "1 · Das Projekt anlegen",
+    "text": "1 · Das Projekt anlegen\nÖffnen Sie in RStudio File → New Project → New Directory → New Project. Nennen Sie das Projekt burgwald-mini und wählen Sie einen Speicherort. Öffnen Sie es künftig über burgwald-mini.Rproj.\nLegen Sie über den Reiter Files → New Folder drei Unterordner an:\n\n\n\n\n\n\n\nOrt im Projekt\nInhalt\n\n\n\n\nburgwald-mini.Rproj\nÖffnet das Projekt mit dem Projektordner als Arbeitsverzeichnis.\n\n\ndata/\nHeruntergeladene Eingangsdaten; diese werden nicht überschrieben.\n\n\nscripts/\nIhre R-Skripte.\n\n\noutput/\nBerechnete Daten und Abbildungen; diese lassen sich erneut erzeugen.\n\n\n\nPrüfen Sie in der Konsole:\n\ngetwd()\nlist.files()\n\nDas Arbeitsverzeichnis muss Ihr Ordner burgwald-mini sein. Die drei Unterordner und die Projektdatei sollten angezeigt werden. Alle folgenden Pfade beziehen sich auf diesen Projektordner, auch wenn das Skript in scripts/ liegt. Ein zusätzliches setwd() ist nicht erforderlich.\nInstallieren Sie das benötigte Paket einmalig in der Konsole, falls es noch fehlt:\n\ninstall.packages(\"sf\")",
+    "crumbs": [
+      "Worksheets",
+      "Worksheet 01"
+    ]
+  },
+  {
+    "objectID": "pages/ws/ws-01.html#ein-übersichtliches-skript-anlegen",
+    "href": "pages/ws/ws-01.html#ein-übersichtliches-skript-anlegen",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "2 · Ein übersichtliches Skript anlegen",
+    "text": "2 · Ein übersichtliches Skript anlegen\nErstellen Sie über File → New File → R Script ein Skript und speichern Sie es als scripts/01_burgwald_puffer.R. Übernehmen Sie den folgenden Code und ergänzen Sie Name und Datum im Kopf.\nDer Aufbau bleibt einfach: Header → Paket → Einstellungen → Daten → Verarbeitung → Ausgabe → Kontrolle. Änderungen an Pfaden oder Parametern erfolgen gesammelt im Abschnitt „Einstellungen“.\n\n# ------------------------------------------------------------\n# Titel:   Burgwald – Gebietsgrenze puffern\n# Autor:   Ihr Name\n# Datum:   JJJJ-MM-TT\n# Zweck:   Gebietsgrenze laden, puffern und Ergebnisse speichern\n# Quelle:  https://github.com/gisma/LV-19-d19-006-25-R\n# Eingabe: data/burgwald_hull.GPKG\n# Ausgabe: Puffer als GeoPackage und Karte unter output/\n# Start:   RStudio-Projekt burgwald-mini.Rproj öffnen\n# ------------------------------------------------------------\n\n# 1. Paket ---------------------------------------------------\nlibrary(sf)\n\n# 2. Einstellungen -------------------------------------------\npuffer_m &lt;- 100\n\ndaten_url &lt;- paste0(\n  \"https://raw.githubusercontent.com/\",\n  \"gisma/LV-19-d19-006-25-R/main/burgwald_hull.GPKG\"\n)\neingabe &lt;- file.path(\"data\", \"burgwald_hull.GPKG\")\nausgabe &lt;- file.path(\"output\", paste0(\"puffer_\", puffer_m, \"m\"))\n\n# 3. Daten laden ---------------------------------------------\n# Der Download erfolgt nur, wenn die Eingabedatei noch fehlt.\nif (!file.exists(eingabe)) {\n  download.file(daten_url, destfile = eingabe, mode = \"wb\")\n}\ngebiet &lt;- st_read(eingabe, quiet = TRUE)\n\n# 4. Verarbeiten ---------------------------------------------\n# UTM 32N verwendet Meter: Der Pufferabstand ist damit eindeutig.\ngebiet &lt;- st_transform(gebiet, 25832)\npuffer &lt;- st_buffer(gebiet, dist = puffer_m)\n\n# 5. Ergebnisse speichern ------------------------------------\n# Nur die gleichnamige Ergebnisdatei wird beim Wiederholen ersetzt.\nst_write(puffer, paste0(ausgabe, \".gpkg\"),\n         delete_dsn = TRUE, quiet = TRUE)\n\npng(paste0(ausgabe, \".png\"), width = 1000, height = 800)\nplot(st_geometry(puffer), col = \"lightblue\",\n     main = paste(\"Burgwald – Puffer\", puffer_m, \"m\"))\nplot(st_geometry(gebiet), col = \"darkgreen\", add = TRUE)\nlegend(\"topright\", legend = c(\"Gebiet\", \"Puffer\"),\n       fill = c(\"darkgreen\", \"lightblue\"), bty = \"n\")\ndev.off()\n\n# 6. Kontrollieren -------------------------------------------\nprint(st_crs(gebiet)$epsg)\nprint(data.frame(\n  gebiet_km2 = as.numeric(st_area(gebiet)) / 1e6,\n  puffer_km2 = as.numeric(st_area(puffer)) / 1e6\n))\nprint(list.files(\"output\"))\n\nFühren Sie das Skript zunächst abschnittsweise mit Ctrl+Enter aus. Prüfen Sie anschließend die PNG-Datei im Ordner output. Öffnen Sie das erzeugte GeoPackage in QGIS und vergleichen Sie es mit der Eingabedatei.\nKontrolle: Liegt das Gebiet innerhalb seines Puffers? Ist die Pufferfläche größer als die Ausgangsfläche? Welche Dateien wurden erzeugt und wo liegen sie?",
+    "crumbs": [
+      "Worksheets",
+      "Worksheet 01"
+    ]
+  },
+  {
+    "objectID": "pages/ws/ws-01.html#einen-parameter-gezielt-ändern",
+    "href": "pages/ws/ws-01.html#einen-parameter-gezielt-ändern",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "3 · Einen Parameter gezielt ändern",
+    "text": "3 · Einen Parameter gezielt ändern\nÄndern Sie ausschließlich puffer_m &lt;- 100 zu puffer_m &lt;- 500. Schreiben Sie davor einen kurzen Kommentar, warum Sie den Parameter verändern. Führen Sie das gesamte Skript mit Source erneut aus.\nVergleichen Sie die beiden Karten und die ausgegebenen Flächen. Prüfen Sie außerdem, ob beide Ergebnisvarianten unter output/ liegen und die Eingabedatei unter data/ unverändert geblieben ist.\nNotieren Sie: Was steuert der Parameter? In welcher Einheit? Warum entsteht durch seine Änderung auch ein anderer Ausgabename?",
+    "crumbs": [
+      "Worksheets",
+      "Worksheet 01"
+    ]
+  },
+  {
+    "objectID": "pages/ws/ws-01.html#einen-pfadfehler-verstehen",
+    "href": "pages/ws/ws-01.html#einen-pfadfehler-verstehen",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "4 · Einen Pfadfehler verstehen",
+    "text": "4 · Einen Pfadfehler verstehen\nÄndern Sie vorübergehend die Definition von eingabe zu:\n\neingabe &lt;- file.path(\"daten\", \"burgwald_hull.GPKG\")\n\nFühren Sie das Skript erneut aus. Lesen Sie die Fehlermeldung und prüfen Sie mit getwd() und dir.exists(\"daten\"), worauf der Pfad verweist. Stellen Sie anschließend den richtigen Pfad wieder her.\nNutzen Sie bei Bedarf die Dokumentation oder KI. Ein passender Auftrag lautet:\n\nMein RStudio-Projekt enthält die Ordner data, scripts und output. Erkläre diese Fehlermeldung und nenne die kleinste notwendige Korrektur. Ändere keine weiteren Teile des Skripts: [Fehlermeldung und betroffene Codezeilen einfügen].\n\nHalten Sie in einem Kommentar fest, was falsch war und wie Sie die Korrektur geprüft haben. Kommentare sollen den Zweck oder eine Entscheidung erklären, beispielsweise die Wahl eines metrischen Koordinatensystems.",
+    "crumbs": [
+      "Worksheets",
+      "Worksheet 01"
+    ]
+  },
+  {
+    "objectID": "pages/ws/ws-01.html#ohne-gespeicherte-objekte-erneut-ausführen",
+    "href": "pages/ws/ws-01.html#ohne-gespeicherte-objekte-erneut-ausführen",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "5 · Ohne gespeicherte Objekte erneut ausführen",
+    "text": "5 · Ohne gespeicherte Objekte erneut ausführen\nStarten Sie R über Session → Restart R neu. Führen Sie das Skript anschließend vollständig mit Source aus. Es muss seine Daten selbst einlesen und alle benötigten Objekte erneut erzeugen können.",
+    "crumbs": [
+      "Worksheets",
+      "Worksheet 01"
+    ]
+  },
+  {
+    "objectID": "pages/ws/ws-01.html#ergebnis",
+    "href": "pages/ws/ws-01.html#ergebnis",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "Ergebnis",
+    "text": "Ergebnis\nGeben Sie Ihren Projektordner mit dem kommentierten Skript und den beiden Ergebnisvarianten weiter. Ergänzen Sie eine kurze Datei README.md im Projektordner mit vier Angaben:\n\nProjektdatei öffnen und anschließend scripts/01_burgwald_puffer.R ausführen.\nBenötigtes Paket: sf; Internetzugang für den ersten Datenabruf.\nDatenquelle und eigenes Abrufdatum.\nIhre Änderung, deren beobachtete Wirkung und gegebenenfalls verwendete KI-Hilfe.\n\nErfolgskriterium: Eine andere Person erkennt, welche Dateien Eingangsdaten, Skripte und Ergebnisse sind, und kann den Ablauf aus einer frischen R-Sitzung erneut ausführen.",
+    "crumbs": [
+      "Worksheets",
+      "Worksheet 01"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Advanced GI & Fernerkundung",
+    "section": "",
+    "text": "Wie beschreiben wir räumliche Muster? Wie bilden wir aus Klimadaten sinnvolle Teilräume? Wo sind räumliche Vorhersagen belastbar, und wann zeigt ein Satellitenbild tatsächlich eine Veränderung?\nIn diesem Kurs lernen Sie ausgewählte fortgeschrittene Grundlagen der Geoinformationswissenschaft und Fernerkundung anzuwenden. Sie arbeiten mit realen Daten aus Hessen und Nordrhein-Westfalen, beschaffen diese selbst und bearbeiten überschaubare anwendungsbezogene Fragen. Dabei verbinden Sie die räumliche Kontrolle in QGIS mit reproduzierbaren Auswertungen in R und ausgewählten externen Werkzeugen.\nSie lernen, vorhandene Skripte gezielt anzupassen, methodische Entscheidungen zu vergleichen und Ergebnisse fachlich zu prüfen. Räumliche Auflösung, Untersuchungsgebiet, zeitlicher Bezug und Übertragbarkeit begleiten alle Themen. Ziel ist, dass Sie einen Analyseweg selbstständig ausführen und seine Aussagekraft begründen können.",
+    "crumbs": [
+      "Start"
+    ]
+  },
+  {
+    "objectID": "index.html#zielsetzung",
+    "href": "index.html#zielsetzung",
+    "title": "Advanced GI & Fernerkundung",
+    "section": "",
+    "text": "Wie beschreiben wir räumliche Muster? Wie bilden wir aus Klimadaten sinnvolle Teilräume? Wo sind räumliche Vorhersagen belastbar, und wann zeigt ein Satellitenbild tatsächlich eine Veränderung?\nIn diesem Kurs lernen Sie ausgewählte fortgeschrittene Grundlagen der Geoinformationswissenschaft und Fernerkundung anzuwenden. Sie arbeiten mit realen Daten aus Hessen und Nordrhein-Westfalen, beschaffen diese selbst und bearbeiten überschaubare anwendungsbezogene Fragen. Dabei verbinden Sie die räumliche Kontrolle in QGIS mit reproduzierbaren Auswertungen in R und ausgewählten externen Werkzeugen.\nSie lernen, vorhandene Skripte gezielt anzupassen, methodische Entscheidungen zu vergleichen und Ergebnisse fachlich zu prüfen. Räumliche Auflösung, Untersuchungsgebiet, zeitlicher Bezug und Übertragbarkeit begleiten alle Themen. Ziel ist, dass Sie einen Analyseweg selbstständig ausführen und seine Aussagekraft begründen können.",
+    "crumbs": [
+      "Start"
+    ]
+  },
+  {
+    "objectID": "index.html#arbeitsweise",
+    "href": "index.html#arbeitsweise",
+    "title": "Advanced GI & Fernerkundung",
+    "section": "Arbeitsweise",
+    "text": "Arbeitsweise\nDie zwölf Sitzungen verbinden kurze fachliche Einführungen mit einem hohen Übungsanteil. Die Arbeitsaufträge finden Sie in den jeweils verlinkten Worksheets.\nSie nutzen Code aus den Kursmaterialien, Dokumentation und KI-Unterstützung. Dazu gehört, Eingaben und Parameter zu verstehen, Änderungen festzuhalten und Ausgaben zu kontrollieren. Sie müssen keine Algorithmen selbst entwickeln. Sie sollen jedoch erklären können, was Ihr Skript verarbeitet und woran Sie ein plausibles Ergebnis erkennen.\nIm Verlauf des Kurses entsteht ein Projektordner mit Datenquellen, Skripten, Parametern und ausgewählten Ergebnissen. Ihre Interpretationen unterscheiden zwischen Beobachtung, möglicher Erklärung und verbleibender Unsicherheit.",
+    "crumbs": [
+      "Start"
+    ]
+  },
+  {
+    "objectID": "index.html#block-1-daten-beschaffen-und-skripte-nutzen",
+    "href": "index.html#block-1-daten-beschaffen-und-skripte-nutzen",
+    "title": "Advanced GI & Fernerkundung",
+    "section": "Block 1 · Daten beschaffen und Skripte nutzen",
+    "text": "Block 1 · Daten beschaffen und Skripte nutzen\nSie richten einen reproduzierbaren Arbeitsablauf ein und beschaffen Sentinel-2-Daten für den Burgwald. Sie lernen, eine automatisierte Bildauswahl zu kontrollieren und Vegetationsindizes anhand konkreter Flächen zu interpretieren. Der Vergleich unterschiedlicher Aufnahmetermine zeigt, wie stark Datenqualität und zeitlicher Bezug die Aussage beeinflussen.\n\n\n\nSitzung\nInhalt und Lernziel\nArbeitsauftrag\n\n\n\n\n1 · Skripte handhaben\nEin vorhandenes Skript übernehmen, Pfade und Parameter anpassen, Fehler mit Dokumentation oder KI bearbeiten und den Ablauf erneut ausführen.\nWorksheet 01\n\n\n2 · Satellitendaten beschaffen\nSentinel-2-Aufnahmen über den CDSE-Workflow abrufen; Abdeckung, Wolken, Schatten und Aufnahmedaten prüfen.\nWorksheet 02\n\n\n3 · Vegetationssignale interpretieren\nNDVI und kNDVI an Wald-, Offenland- und auffälligen Vergleichsflächen untersuchen; Unterschiede zwischen Vegetationssignal und Aufnahmebedingungen erkennen.\nWorksheet 03",
+    "crumbs": [
+      "Start"
+    ]
+  },
+  {
+    "objectID": "index.html#block-2-räumliche-muster-und-klimaregionalisierung",
+    "href": "index.html#block-2-räumliche-muster-und-klimaregionalisierung",
+    "title": "Advanced GI & Fernerkundung",
+    "section": "Block 2 · Räumliche Muster und Klimaregionalisierung",
+    "text": "Block 2 · Räumliche Muster und Klimaregionalisierung\nSie vergleichen klassische Landschaftsmaße mit informationstheoretischen Ansätzen. Dabei untersuchen Sie, welche Informationen über Zusammensetzung und räumliche Anordnung tatsächlich erfasst werden. Anschließend wechseln Sie von kategorischer Landbedeckung zu kontinuierlichen Klimadaten: Sie segmentieren Temperaturjahresgänge und bewerten, wie Parameter und Rasterauflösung die entstehenden Regionen beeinflussen.\n\n\n\nSitzung\nInhalt und Lernziel\nArbeitsauftrag\n\n\n\n\n4 · Muster quantitativ beschreiben\nSHDI und Aggregation Index mit Entropie und relativer gegenseitiger Information vergleichen; den Einfluss räumlicher Anordnung und Fenstergröße untersuchen.\nWorksheet 04\n\n\n5 · Klimadaten segmentieren\nMonatliche Klimadaten selbst beschaffen und mit supercells regionalisieren; Segmentzahl und Kompaktheit kontrolliert variieren.\nWorksheet 05\n\n\n6 · Regionalisierungen beurteilen\nHomogenität innerhalb der Segmente, Unterschiede benachbarter Jahresgänge und Empfindlichkeit gegenüber gröberer Rasterauflösung bewerten.\nWorksheet 06",
+    "crumbs": [
+      "Start"
+    ]
+  },
+  {
+    "objectID": "index.html#block-3-räumliche-vorhersagen-und-modellgültigkeit",
+    "href": "index.html#block-3-räumliche-vorhersagen-und-modellgültigkeit",
+    "title": "Advanced GI & Fernerkundung",
+    "section": "Block 3 · Räumliche Vorhersagen und Modellgültigkeit",
+    "text": "Block 3 · Räumliche Vorhersagen und Modellgültigkeit\nAm LAI-Beispiel aus den EON-Materialien verfolgen Sie den Weg von punktuellen Referenzwerten zur flächenhaften Schätzung. Sie prüfen den räumlichen und zeitlichen Bezug der Daten und vergleichen unterschiedliche Validierungsansätze. Mit der Area of Applicability untersuchen Sie anschließend, wo die Prädiktorbedingungen durch die Trainingsdaten abgedeckt sind.\n\n\n\nSitzung\nInhalt und Lernziel\nArbeitsauftrag\n\n\n\n\n7 · Referenzdaten und Schätzung\nLAI-Referenzen und Satellitendaten zusammenführen; ein einfaches Modell anwenden und dessen Datengrundlage, Residuen und Voraussetzungen beurteilen.\nWorksheet 07\n\n\n8 · Räumlich validieren\nEinen Random Forest mit zufälligen und räumlichen Prüffaltungen vergleichen; bei gleichen Prädiktoren und Modelleinstellungen die Bedeutung der Prüfsituation erkennen.\nWorksheet 08\n\n\n9 · Anwendungsbereich prüfen\nVorhersage und AOA gemeinsam interpretieren; untersuchen, wie eine Änderung der Prädiktorauswahl Modellgüte und Anwendungsbereich beeinflusst.\nWorksheet 09",
+    "crumbs": [
+      "Start"
+    ]
+  },
+  {
+    "objectID": "index.html#block-4-veränderungen-werkzeugverknüpfung-und-transfer",
+    "href": "index.html#block-4-veränderungen-werkzeugverknüpfung-und-transfer",
+    "title": "Advanced GI & Fernerkundung",
+    "section": "Block 4 · Veränderungen, Werkzeugverknüpfung und Transfer",
+    "text": "Block 4 · Veränderungen, Werkzeugverknüpfung und Transfer\nSie greifen die Sentinel-Daten erneut auf und untersuchen zeitliche Veränderungen. Zusätzliche Beobachtungen helfen, auffällige Signale zu überprüfen. An einem begrenzten R–OTB-Beispiel lernen Sie, einen Verarbeitungsschritt über Werkzeuggrenzen hinweg nachzuvollziehen. Abschließend übertragen Sie einen erprobten Ansatz auf eine eigene räumliche Frage.\n\n\n\nSitzung\nInhalt und Lernziel\nArbeitsauftrag\n\n\n\n\n10 · Veränderungen untersuchen\nSommeraufnahmen mehrerer Jahre vergleichen; Veränderungskandidaten anhand der Originalbilder und einer zusätzlichen Aufnahme prüfen.\nWorksheet 10\n\n\n11 · Werkzeuge verbinden\nEine bandweise Standardisierung über R, link2GI und OTB ausführen; Werte, Georeferenzierung und Übergabe zwischen den Werkzeugen kontrollieren.\nWorksheet 11\n\n\n12 · Eigenständig übertragen\nEine begrenzte Frage zu Landschaftsmustern, Klimaregionalisierung oder zeitlicher Veränderung für einen eigenen Ausschnitt bearbeiten und den Ablauf durch eine andere Gruppe nachvollziehen lassen.\nWorksheet 12",
+    "crumbs": [
+      "Start"
+    ]
+  },
+  {
+    "objectID": "index.html#was-sie-am-ende-können-sollen",
+    "href": "index.html#was-sie-am-ende-können-sollen",
+    "title": "Advanced GI & Fernerkundung",
+    "section": "Was Sie am Ende können sollen",
+    "text": "Was Sie am Ende können sollen\nSie können zu einer räumlichen Frage geeignete Daten beschaffen, einen vorhandenen Analyseweg anpassen und dessen Ergebnisse kritisch beurteilen. Sie begründen die Wahl von Parametern und Maßstäben, erkennen Grenzen von Validierung und Übertragbarkeit und dokumentieren Ihren Ablauf so, dass andere ihn erneut ausführen können.",
+    "crumbs": [
+      "Start"
+    ]
+  },
+  {
+    "objectID": "index.html#materialgrundlage",
+    "href": "index.html#materialgrundlage",
+    "title": "Advanced GI & Fernerkundung",
+    "section": "Materialgrundlage",
+    "text": "Materialgrundlage\n\nAdvanced GIS and Remote Sensing 2024 – Methoden, Reader und Worksheets\nAktuelle R-Workflows – LV-19-d19-006-25-R\nEON2026 – Machine Learning, räumliche Validierung und AOA",
+    "crumbs": [
+      "Start"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html",
+    "href": "pages/microclimate_warmup_reader.html",
+    "title": "Mikroklima-Warmup",
+    "section": "",
+    "text": "Dieser Reader begleitet einen Hands-on-Einstieg in räumliches Arbeiten mit R und RStudio. Im Mittelpunkt steht ein basales Skript: Es wird geöffnet, blockweise ausgeführt und so gelesen, dass nachvollziehbar wird, welche Daten eingelesen werden, welche räumlichen Operationen stattfinden und welche Ergebnisdatensätze daraus entstehen. Die SuS sollen hier nicht selbst einen vollständigen Forschungsworkflow entwickeln, sondern trainieren, ein vorhandenes Skript kontrolliert zu nutzen, seine Zwischenschritte zu verstehen und die Ergebnisse fachlich zu lesen.\nFachlich geht es um ein typisches Problem der Geoinformatik und physischen Geographie: Messungen liegen punktuell vor, die Fragestellung richtet sich aber auf eine Fläche. Das ist die normale Ausgangslage vieler Messkampagnen. Man hat Stationen, Logger oder einzelne Messpunkte, aber die eigentliche Frage lautet nicht nur: Was wurde genau an diesen Punkten gemessen? Sie lautet: Wie können wir aus diesen Punkten eine begrenzte, nachvollziehbare räumliche Aussage ableiten?\nDie Übung ist deshalb zugleich technisch und inhaltlich angelegt. Technisch geht es darum, mit RStudio ein Skript auszuführen, einfache räumliche Datenobjekte zu verarbeiten, Ergebnisraster zu erzeugen und diese am Ende auch interaktiv in einer Leaflet-Karte zu betrachten. Inhaltlich geht es darum zu verstehen, dass jede flächenhafte Darstellung aus Punktdaten eine Annahme darüber enthält, wie Werte zwischen Messpunkten in den Raum übertragen werden.\nDie zentrale Frage lautet:\n\nWir haben wie üblich nur einzelne Messpunkte. Wie gehen wir vor, wenn wir daraus trotzdem eine räumliche Aussage zur Temperaturverteilung ableiten wollen?\n\nDie Übung fragt also methodisch: Was tun wir, wenn die Beobachtung punktuell ist, die Frage aber flächenhaft gestellt wird?",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#voronoi",
+    "href": "pages/microclimate_warmup_reader.html#voronoi",
+    "title": "Mikroklima-Warmup",
+    "section": "Voronoi",
+    "text": "Voronoi\nVoronoi ordnet jede Rasterzelle der nächstgelegenen Messstation zu. Der Wert dieser Station wird direkt auf die Zelle übertragen.\nKurzlogik:\n\nNächste Station gewinnt.\n\nDamit entsteht ein Ergebnisraster mit harten Grenzen. Jede Station erhält einen Zuständigkeitsbereich. Innerhalb dieses Bereichs ist der Wert überall gleich, an der Grenze zur nächsten Station springt er abrupt.\nVoronoi ist methodisch einfach und gut lesbar. Es glättet nichts und erzeugt keine Zwischenwerte. Gleichzeitig ist die Annahme sehr grob: Temperatur ändert sich in der Realität selten sprunghaft an geometrischen Grenzen zwischen Stationen.\n\n\n\n\n\n\nNoteCode-Snippet: Voronoi / nearest station\n\n\n\n\n\nvor_df &lt;- gstat::idw(\n  temp ~ 1,\n  locations = pts,\n  newdata = grid_sf,\n  nmax = 1\n)\n\nmap_vor &lt;- make_map(vor_df$var1.pred, \"Voronoi\")",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#idw",
+    "href": "pages/microclimate_warmup_reader.html#idw",
+    "title": "Mikroklima-Warmup",
+    "section": "IDW",
+    "text": "IDW\nIDW bedeutet inverse distance weighting. Das Verfahren schätzt den Wert einer Rasterzelle aus nahegelegenen Stationen. Nahe Stationen erhalten ein höheres Gewicht, weiter entfernte Stationen ein geringeres Gewicht.\nKurzlogik:\n\nNähe wirkt, aber nicht hart. Nahe Messpunkte zählen stärker als entfernte.\n\nIm Skript wird nmax = 4 verwendet. Jede Rasterzelle wird also nur aus den vier nächsten Stationen geschätzt. Dadurch bleibt die Schätzung lokal. Das Ergebnis wird glatter als Voronoi, aber weniger global geglättet als eine IDW-Variante, bei der alle Stationen in jede Schätzung eingehen.\nIDW ist eine typische Einstiegsform der Interpolation. Es nutzt räumliche Nähe als zentrales Argument. Fachlich muss man aber prüfen, ob Nähe im konkreten Fall tatsächlich der wichtigste Zusammenhang ist. Bei Mikroklima kann das zutreffen, muss aber nicht ausreichen, weil Gelände, Schatten, Vegetation oder Kaltluft ebenfalls wirksam sein können.\n\n\n\n\n\n\nNoteCode-Snippet: IDW\n\n\n\n\n\nidw_df &lt;- gstat::idw(\n  temp ~ 1,\n  locations = pts,\n  newdata = grid_sf,\n  nmax = 4\n)\n\nmap_idw &lt;- make_map(idw_df$var1.pred, \"IDW\")",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#lm-altitude",
+    "href": "pages/microclimate_warmup_reader.html#lm-altitude",
+    "title": "Mikroklima-Warmup",
+    "section": "LM altitude",
+    "text": "LM altitude\nDas lineare Höhenmodell nutzt nicht primär die räumliche Nähe zwischen Stationen, sondern den Zusammenhang zwischen Temperatur und Höhe.\nKurzlogik:\n\nTemperatur wird über Höhe erklärt und auf das Höhenraster übertragen.\n\nDas Modell schätzt eine lineare Beziehung zwischen Stationshöhe und Temperatur. Anschließend wird diese Beziehung auf jede Rasterzelle des DEM angewendet. Dadurch folgt das Ergebnis stark dem Höhenmuster.\nDieses Modell ist methodisch anders als Voronoi und IDW. Es füllt den Raum nicht über Stationsnachbarschaft, sondern über eine erklärende Variable. Wenn Höhe fachlich relevant ist, kann das sinnvoll sein. Wenn die gemessenen Temperaturunterschiede stärker durch Schatten, Vegetation oder lokale Kaltluft geprägt sind, kann ein reines Höhenmodell zu kurz greifen.\nJa, der Abschnitt verschiebt die Aufmerksamkeit zu stark auf x/y/altitude und sagt zu wenig klar: RF sagt weiterhin Temperatur vorher. Die Koordinaten und die Höhe sind nur die Eingangsvariablen, mit denen RF versucht, die gemessene Temperatur zu rekonstruieren.\nErsetze den Abschnitt durch diese Fassung:\n\n\n\n\n\n\nNoteCode-Snippet: LM altitude\n\n\n\n\n\nfit_lm &lt;- lm(temp ~ altitude, data = st_drop_geometry(pts))\n\nmap_lm &lt;- predict(dem, fit_lm)\nnames(map_lm) &lt;- \"LM_altitude\"",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#rf-warning",
+    "href": "pages/microclimate_warmup_reader.html#rf-warning",
+    "title": "Mikroklima-Warmup",
+    "section": "RF warning",
+    "text": "RF warning\nRandom Forest ist ein flexibles, datengetriebenes Modell. Im Skript ist die Zielvariable weiterhin die gemessene Temperatur:\ntemp\nDas Modell versucht also, Temperaturwerte vorherzusagen. Dafür erhält es drei Prädiktoren:\nx\ny\naltitude\nDamit kann RF Temperaturunterschiede aus räumlicher Position und Höhe ableiten. Das Modell fragt nicht direkt nach einem physikalischen Prozess wie Kaltluft, Verschattung oder Vegetationswirkung. Es sucht in den vorhandenen Trainingsdaten nach Mustern: Welche Kombinationen aus Lage und Höhe treten zusammen mit höheren oder niedrigeren Temperaturen auf?\nKurzlogik:\n\nRF lernt aus wenigen Stationen, welche Bereiche des Raums eher zu höheren oder niedrigeren Temperaturwerten passen.\n\nGenau deshalb wird RF hier als Warnbeispiel geführt. Bei wenigen Messpunkten kann das Modell die vorhandenen Temperaturwerte scheinbar gut rekonstruieren, weil es die Punktlage und die Höhe flexibel aufteilt. Daraus entsteht ein Ergebnisraster, das plausibel aussehen und in der Validierung einen niedrigen Fehler haben kann.\nDas bedeutet aber nicht automatisch, dass RF eine robuste mikroklimatische Erklärung gefunden hat. Das Modell kann Temperaturmuster erzeugen, die stark an die konkrete Lage der wenigen Messstationen gebunden sind. Eine gute Rückschätzung einzelner Stationen bedeutet deshalb nicht, dass die Ergebnisfläche als Prozessdarstellung fachlich überzeugend ist.\nRF zeigt hier eine zentrale methodische Spannung:\n\nDas Modell sagt Temperatur vorher, aber es erklärt nicht automatisch, warum diese Temperatur räumlich so verteilt sein sollte.\n\n\n\n\n\n\n\nNoteCode-Snippet: RF warning\n\n\n\n\n\nxy &lt;- st_coordinates(pts)\npts$x &lt;- xy[, 1]\npts$y &lt;- xy[, 2]\n\nfit_rf &lt;- randomForest(\n  temp ~ x + y + altitude,\n  data = st_drop_geometry(pts),\n  ntree = 200\n)\n\nrf_pred &lt;- predict(fit_rf, newdata = grid)\nmap_rf &lt;- make_map(rf_pred, \"RF_warning\")\n\n\n\n\n\n\nVier einfache Wege von punktuellen Temperaturmessungen zu einer räumlichen Ergebnisfläche. Die Grafik zeigt, dass Voronoi, IDW, ein lineares Höhenmodell und Random Forest dieselben Messpunkte mit unterschiedlichen Modellannahmen in den Raum übertragen. Entscheidend ist daher nicht nur das fertige Kartenbild, sondern die Frage, welche Annahme die räumliche Aussage trägt und wo ihre fachliche Grenze lieg",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#daten-laden",
+    "href": "pages/microclimate_warmup_reader.html#daten-laden",
+    "title": "Mikroklima-Warmup",
+    "section": "1. Daten laden",
+    "text": "1. Daten laden\nBenötigt werden zwei Dateien: data/climdata.rds und data/DEM1.tif. climdata.rds enthält die Messstationen mit Geometrie und Temperaturspalten. DEM1.tif enthält die Höhe als Raster.\n\n\n\n\n\n\nNoteCode-Snippet: Daten laden\n\n\n\n\n\nlibrary(sf)\nlibrary(terra)\nlibrary(gstat)\nlibrary(randomForest)\nlibrary(leaflet)\n\nm   &lt;- readRDS(\"data/climdata.rds\")\ndem &lt;- rast(\"data/DEM1.tif\")\nnames(dem) &lt;- \"altitude\"",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#einen-zeitpunkt-auswählen",
+    "href": "pages/microclimate_warmup_reader.html#einen-zeitpunkt-auswählen",
+    "title": "Mikroklima-Warmup",
+    "section": "2. Einen Zeitpunkt auswählen",
+    "text": "2. Einen Zeitpunkt auswählen\nDie Messdaten enthalten mehrere Temperaturspalten. Für den Warmup wird ein Zeitpunkt herausgegriffen. Damit arbeiten alle Modelle mit derselben Zielvariable.\n\n\n\n\n\n\nNoteCode-Snippet: Temperaturspalte setzen\n\n\n\n\n\nm$temp &lt;- m[[\"A20230830\"]]",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#koordinatensystem-angleichen",
+    "href": "pages/microclimate_warmup_reader.html#koordinatensystem-angleichen",
+    "title": "Mikroklima-Warmup",
+    "section": "3. Koordinatensystem angleichen",
+    "text": "3. Koordinatensystem angleichen\nStationsdaten und DEM müssen im selben Koordinatensystem liegen. Das ist Voraussetzung für korrekte Höhenextraktion, Distanzen und Rasterüberlagerung.\n\n\n\n\n\n\nNoteCode-Snippet: CRS angleichen\n\n\n\n\n\nm &lt;- st_transform(m, crs(dem))",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#höhe-an-den-stationen-extrahieren",
+    "href": "pages/microclimate_warmup_reader.html#höhe-an-den-stationen-extrahieren",
+    "title": "Mikroklima-Warmup",
+    "section": "4. Höhe an den Stationen extrahieren",
+    "text": "4. Höhe an den Stationen extrahieren\nDie Stationshöhen werden direkt aus dem verwendeten DEM gezogen. Dadurch nutzen Stationsmodell und Ergebnisraster dieselbe Höhenbasis.\n\n\n\n\n\n\nNoteCode-Snippet: Höhe extrahieren\n\n\n\n\n\nm$altitude &lt;- terra::extract(dem, terra::vect(m))$altitude",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#gültige-messpunkte-auswählen",
+    "href": "pages/microclimate_warmup_reader.html#gültige-messpunkte-auswählen",
+    "title": "Mikroklima-Warmup",
+    "section": "5. Gültige Messpunkte auswählen",
+    "text": "5. Gültige Messpunkte auswählen\nEs bleiben nur Stationen mit Temperaturwert und Höhenwert. Unvollständige Punkte werden aus der Modellierung entfernt.\n\n\n\n\n\n\nNoteCode-Snippet: vollständige Punkte wählen\n\n\n\n\n\npts &lt;- m[!is.na(m$temp) & !is.na(m$altitude), c(\"temp\", \"altitude\")]",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#aussagefläche-erzeugen",
+    "href": "pages/microclimate_warmup_reader.html#aussagefläche-erzeugen",
+    "title": "Mikroklima-Warmup",
+    "section": "6. Aussagefläche erzeugen",
+    "text": "6. Aussagefläche erzeugen\nDie Stationen definieren den Bereich, in dem die Ergebnisse ausgegeben werden. Das DEM wird auf Convex Hull plus 20 m zugeschnitten und maskiert.\n\n\n\n\n\n\nNoteCode-Snippet: Aussagefläche und DEM-Maske\n\n\n\n\n\narea &lt;- st_sf(\n  geometry = st_buffer(\n    st_convex_hull(st_union(st_geometry(pts))),\n    20\n  )\n)\n\ndem &lt;- crop(dem, vect(area))\ndem &lt;- mask(dem, vect(area))\nnames(dem) &lt;- \"altitude\"",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#vorhersagegrid-erzeugen",
+    "href": "pages/microclimate_warmup_reader.html#vorhersagegrid-erzeugen",
+    "title": "Mikroklima-Warmup",
+    "section": "7. Vorhersagegrid erzeugen",
+    "text": "7. Vorhersagegrid erzeugen\nAus dem DEM wird eine Tabelle mit Rasterzellen, Koordinaten und Höhe gebaut. Diese Tabelle ist die technische Brücke zwischen Raster und Modell.\n\n\n\n\n\n\nNoteCode-Snippet: Vorhersagegrid\n\n\n\n\n\ngrid &lt;- as.data.frame(dem, xy = TRUE, cells = TRUE, na.rm = FALSE)\nnames(grid)[4] &lt;- \"altitude\"\ngrid &lt;- grid[!is.na(grid$altitude), ]\n\ngrid_sf &lt;- st_as_sf(\n  grid,\n  coords = c(\"x\", \"y\"),\n  crs = st_crs(pts),\n  remove = FALSE\n)",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#ergebnisraster-berechnen",
+    "href": "pages/microclimate_warmup_reader.html#ergebnisraster-berechnen",
+    "title": "Mikroklima-Warmup",
+    "section": "8. Ergebnisraster berechnen",
+    "text": "8. Ergebnisraster berechnen\nDas Skript erzeugt vier Ergebnisraster. Alle verwenden dieselbe Aussagefläche. Der Unterschied liegt in der Modellannahme.\n\n\n\n\n\n\nNoteCode-Snippet: Ergebnisraster berechnen\n\n\n\n\n\nmake_map &lt;- function(pred, name) {\n  r &lt;- dem\n  values(r) &lt;- NA\n  values(r)[grid$cell] &lt;- pred\n  names(r) &lt;- name\n  r\n}\n\nxy &lt;- st_coordinates(pts)\npts$x &lt;- xy[, 1]\npts$y &lt;- xy[, 2]\n\nfit_lm &lt;- lm(temp ~ altitude, data = st_drop_geometry(pts))\nmap_lm &lt;- predict(dem, fit_lm)\nnames(map_lm) &lt;- \"LM_altitude\"\n\nvor_df &lt;- gstat::idw(temp ~ 1, locations = pts, newdata = grid_sf, nmax = 1)\nmap_vor &lt;- make_map(vor_df$var1.pred, \"Voronoi\")\n\nidw_df &lt;- gstat::idw(temp ~ 1, locations = pts, newdata = grid_sf, nmax = 4)\nmap_idw &lt;- make_map(idw_df$var1.pred, \"IDW\")\n\nfit_rf &lt;- randomForest(\n  temp ~ x + y + altitude,\n  data = st_drop_geometry(pts),\n  ntree = 200\n)\n\nrf_pred &lt;- predict(fit_rf, newdata = grid)\nmap_rf &lt;- make_map(rf_pred, \"RF_warning\")",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#modelle-validieren",
+    "href": "pages/microclimate_warmup_reader.html#modelle-validieren",
+    "title": "Mikroklima-Warmup",
+    "section": "9. Modelle validieren",
+    "text": "9. Modelle validieren\nDie Modelle werden mit Leave-One-Out-Cross-Validation geprüft. Jede Station wird einmal ausgelassen und aus den übrigen Stationen zurückgeschätzt.\n\n\n\n\n\n\nNoteCode-Snippet: LOOCV und RMSE\n\n\n\n\n\nrmse_fun &lt;- function(e) sqrt(mean(e * e, na.rm = TRUE))\n\nlm_cv &lt;- rep(NA, nrow(pts))\nrf_cv &lt;- rep(NA, nrow(pts))\n\nfor (i in 1:nrow(pts)) {\n  train &lt;- pts[-i, ]\n  test  &lt;- pts[i, ]\n\n  fit_lm_i &lt;- lm(temp ~ altitude, data = st_drop_geometry(train))\n  lm_cv[i] &lt;- predict(fit_lm_i, newdata = st_drop_geometry(test))\n\n  fit_rf_i &lt;- randomForest(\n    temp ~ x + y + altitude,\n    data = st_drop_geometry(train),\n    ntree = 200\n  )\n  rf_cv[i] &lt;- predict(fit_rf_i, newdata = st_drop_geometry(test))\n}\n\nvor_model &lt;- gstat::gstat(\n  formula = temp ~ 1,\n  locations = pts,\n  nmax = 1,\n  set = list(idp = 2)\n)\n\nvor_cv &lt;- gstat::gstat.cv(vor_model, nfold = nrow(pts))\n\nidw_model &lt;- gstat::gstat(\n  formula = temp ~ 1,\n  locations = pts,\n  nmax = 4,\n  set = list(idp = 2)\n)\n\nidw_cv &lt;- gstat::gstat.cv(idw_model, nfold = nrow(pts))\n\nrmse &lt;- data.frame(\n  model = c(\"LM altitude\", \"Voronoi\", \"IDW\", \"RF warning\"),\n  RMSE = c(\n    rmse_fun(pts$temp - lm_cv),\n    rmse_fun(vor_cv$residual),\n    rmse_fun(idw_cv$residual),\n    rmse_fun(pts$temp - rf_cv)\n  )\n)",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#ergebnisraster-als-statische-plots-darstellen",
+    "href": "pages/microclimate_warmup_reader.html#ergebnisraster-als-statische-plots-darstellen",
+    "title": "Mikroklima-Warmup",
+    "section": "10. Ergebnisraster als statische Plots darstellen",
+    "text": "10. Ergebnisraster als statische Plots darstellen\nDie vier Ergebnisraster werden zunächst nebeneinander als statische Plots dargestellt. Alle verwenden dieselbe Farbskala, damit die räumlichen Muster vergleichbar bleiben.\n\n\n\n\n\n\nNoteCode-Snippet: Ergebnisraster darstellen\n\n\n\n\n\nmaps &lt;- c(map_vor, map_idw, map_lm, map_rf)\nz &lt;- range(c(pts$temp - 1, pts$temp + 1), na.rm = TRUE)\n\npar(mfrow = c(2, 2))\n\nfor (i in 1:nlyr(maps)) {\n  plot(maps[[i]], range = z, main = names(maps)[i])\n  points(pts, pch = 19, cex = 0.8)\n}\n\npar(mfrow = c(1, 1))\n\nprint(rmse)",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/microclimate_warmup_reader.html#ergebnisse-als-leaflet-karte-darstellen",
+    "href": "pages/microclimate_warmup_reader.html#ergebnisse-als-leaflet-karte-darstellen",
+    "title": "Mikroklima-Warmup",
+    "section": "11. Ergebnisse als Leaflet-Karte darstellen",
+    "text": "11. Ergebnisse als Leaflet-Karte darstellen\nAm Ende werden die gleichen Ergebnisraster zusätzlich in eine interaktive Leaflet-Karte eingebunden. Die Karte ersetzt die statischen Plots nicht, sondern ergänzt sie: Die SuS können zwischen den Modellannahmen umschalten, die Messpunkte sichtbar lassen und dadurch prüfen, wie stark sich die räumliche Aussage je nach Verfahren verändert.\n\n\n\n\n\n\nNoteCode-Snippet: Leaflet-Karte\n\n\n\n\n\npal &lt;- leaflet::colorNumeric(\n  palette = hcl.colors(100, \"RdYlBu\", rev = TRUE),\n  domain = z,\n  na.color = \"transparent\"\n)\n\npts_leaflet &lt;- st_transform(pts, 4326)\npts_xy &lt;- st_coordinates(pts_leaflet)\n\nleaflet_map &lt;- leaflet::leaflet()\nleaflet_map &lt;- leaflet::addProviderTiles(\n  leaflet_map,\n  leaflet::providers$CartoDB.Positron\n)\n\nfor (i in 1:nlyr(maps)) {\n  leaflet_map &lt;- leaflet::addRasterImage(\n    leaflet_map,\n    x = raster::raster(maps[[i]]),\n    colors = pal,\n    opacity = 0.70,\n    group = names(maps)[i]\n  )\n}\n\nleaflet_map &lt;- leaflet::addCircleMarkers(\n  leaflet_map,\n  lng = pts_xy[, 1],\n  lat = pts_xy[, 2],\n  radius = 4,\n  stroke = FALSE,\n  fillOpacity = 0.9,\n  label = paste0(\"Temperatur: \", round(pts$temp, 2), \" °C\"),\n  group = \"Messpunkte\"\n)\n\nleaflet_map &lt;- leaflet::addLayersControl(\n  leaflet_map,\n  baseGroups = names(maps),\n  overlayGroups = \"Messpunkte\",\n  options = leaflet::layersControlOptions(collapsed = FALSE)\n)\n\nleaflet_map &lt;- leaflet::addLegend(\n  leaflet_map,\n  pal = pal,\n  values = z,\n  title = \"Temperatur\",\n  opacity = 0.70\n)\n\nleaflet_map &lt;- leaflet::hideGroup(leaflet_map, names(maps)[-1])\n\nleaflet_map",
+    "crumbs": [
+      "Reader",
+      "Mikroklima-Warmup Reader"
+    ]
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#leitfrage",
+    "href": "pages/modellierung_luftbild_lst.html#leitfrage",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Leitfrage",
+    "text": "Leitfrage\nWo erwarten wir in Marburg warme Oberflächen – und was zeigt der Satellit?\nWir modellieren keine Lufttemperatur und keine vollständige Wärmebelastung. Wir prüfen eine begründete Erwartung mit einem thermischen Satellitenbild."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#erwartung-aus-oberflächen-ableiten",
+    "href": "pages/modellierung_luftbild_lst.html#erwartung-aus-oberflächen-ableiten",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "1. Erwartung aus Oberflächen ableiten",
+    "text": "1. Erwartung aus Oberflächen ableiten\nVor dem Wärmebild fragen wir: Welche Oberfläche nimmt viel Energie auf, speichert sie oder kann wenig über Verdunstung kühlen?\n\n\n\nSichtbare Oberfläche\nErwartung für einen sonnigen Sommertag\n\n\n\n\nAsphalt, große Dächer, Parkplatz, Platz\neher warm\n\n\nBaumkronen, schattiger Park, feuchte Vegetation\neher kühl\n\n\nLahn oder Teich\nhäufig kühlere Tagesoberfläche, thermisch träge\n\n\ntrockene Wiese, Schotter, Baustelle\noffen: möglicher Grenzfall\n\n\n\n\nDie Oberflächenklassen bündeln sichtbare Stadtflächen zu einem einfachen Arbeitsmodell."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#stadtstruktur-lesen",
+    "href": "pages/modellierung_luftbild_lst.html#stadtstruktur-lesen",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "2. Stadtstruktur lesen",
+    "text": "2. Stadtstruktur lesen\nEs geht nicht nur darum, welche Oberfläche vorliegt. Wir betrachten auch, wie sie im Raum angeordnet ist:\n\nbilden Dächer, Straßen und Parkplätze einen zusammenhängenden warmen Block?\nverlaufen Grünzüge als kühlere Achsen durch die Bebauung?\nliegt ein großer Platz direkt neben Schatten oder Wasser?\nwerden warme Bereiche am Stadtrand durch offene Landschaft unterbrochen?\n\nFür Marburg können Innenstadt und Lahn, Bahnhofsumfeld, größere Parkplätze, Gewerbegebiete, Lahnberge und bewaldete Hänge als unterschiedliche Vergleichsräume dienen."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#tatsächliche-hotspots-abgleichen",
+    "href": "pages/modellierung_luftbild_lst.html#tatsächliche-hotspots-abgleichen",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "3. Tatsächliche Hotspots abgleichen",
+    "text": "3. Tatsächliche Hotspots abgleichen\nErst jetzt kommt die LST-Karte hinzu. Wir prüfen dieselben Flächen erneut:\n\nTreffer: Erwarteter warmer Bereich ist im Satellitenbild warm.\nAbweichung: Eine erwartete warme Fläche erscheint weniger warm oder umgekehrt.\nErklärung: Schatten, Feuchte, Material, Aufnahmezeit, Wolkenrest oder Mischpixel könnten eine Rolle spielen.\n\n\nVom sichtbaren Muster zum thermischen Test."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#modellbeziehung",
+    "href": "pages/modellierung_luftbild_lst.html#modellbeziehung",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Modellbeziehung",
+    "text": "Modellbeziehung\n\\[\n\\text{Oberfläche} + \\text{Schatten / Feuchte} + \\text{räumliche Nachbarschaft}\n\\;\\longrightarrow\\;\n\\text{erwartete Oberflächentemperatur}\n\\;\\longrightarrow\\;\n\\text{Abgleich mit Landsat}\n\\]\nDas ist ein Erklärungsmodell. Es sagt, wo wir genauer hinschauen sollten. Es garantiert nicht, dass jedes Dach oder jeder Parkplatz heiß ist."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#was-heißt-wirklich-heiß",
+    "href": "pages/modellierung_luftbild_lst.html#was-heißt-wirklich-heiß",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Was heißt „wirklich“ heiß?",
+    "text": "Was heißt „wirklich“ heiß?\n„Tatsächlich“ heißt hier: im gewählten Landsat-Aufnahmetermin mit hoher Oberflächentemperatur abgebildet.\nLST = Land Surface Temperature. Sie beschreibt die Temperatur der Oberfläche, nicht die Lufttemperatur in zwei Metern Höhe. Die thermischen Landsat-Pixel sind grob: Bei Landsat 8/9 wird die Thermalaufnahme mit 100 m erfasst und auf ein 30-m-Raster gebracht."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#zwei-daten-ein-projekt",
+    "href": "pages/modellierung_luftbild_lst.html#zwei-daten-ein-projekt",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Zwei Daten, ein Projekt",
+    "text": "Zwei Daten, ein Projekt\nRaster 1 – Luftbild: Hessisches DOP RGB, zur Oberflächeninterpretation.\nRaster 2 – Wärmebild: Landsat Collection 2 Level-2 ST_B10, in QGIS nach °C umgerechnet.\nAlles Weitere – Erwartungsflächen, Notizen und Kartenlayout – wird in QGIS von Hand erstellt."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#schritt-1-luftbild-von-marburg",
+    "href": "pages/modellierung_luftbild_lst.html#schritt-1-luftbild-von-marburg",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Schritt 1 · Luftbild von Marburg",
+    "text": "Schritt 1 · Luftbild von Marburg\n\nHessischen RGB-Orthofoto-WMS in QGIS verbinden.\nAusschnitt wählen: z. B. Innenstadt und Lahn oder ein Schulumfeld.\nSichtbaren Ausschnitt als GeoTIFF speichern.\nQuellenangabe ergänzen: © HVBG – Hessische Verwaltung für Bodenmanagement und Geoinformation.\n\nWMS: https://www.gds-srv.hessen.de/cgi-bin/lika-services/ogc-free-images.ows\nLayer: he_dop20_rgb · Projekt-KBS: EPSG:25832"
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#schritt-2-landsat-szene-auswählen",
+    "href": "pages/modellierung_luftbild_lst.html#schritt-2-landsat-szene-auswählen",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Schritt 2 · Landsat-Szene auswählen",
+    "text": "Schritt 2 · Landsat-Szene auswählen\nAuf USGS EarthExplorer Marburg suchen und einen möglichst wolkenarmen Sommertermin auswählen:\n\nDatensatz: Landsat 8-9 OLI/TIRS C2 L2\nProdukt: Surface Temperature (ST_B10)\nDatum, Szenen-ID und gemeldeten Wolkenanteil notieren\n\nNur das ST-Band ist für die Minimalübung nötig. Es ist ein Einzeltermin, kein Mehrjahres- oder Zehn-Szenen-Komposit."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#schritt-3-in-grad-celsius-umrechnen",
+    "href": "pages/modellierung_luftbild_lst.html#schritt-3-in-grad-celsius-umrechnen",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Schritt 3 · In Grad Celsius umrechnen",
+    "text": "Schritt 3 · In Grad Celsius umrechnen\nIm QGIS-Rasterrechner aus ST_B10 ein Float-Raster erzeugen:\n\\[\nT_{°C} = DN \\times 0{,}00341802 + 149{,}0 - 273{,}15\n\\]\nMit dem tatsächlichen Aufnahmedatum speichern, zum Beispiel marburg_lst_[Datum]_celsius.tif.\nif(\"ST_B10@1\" = 0, 0 / 0,\n   \"ST_B10@1\" * 0.00341802 + 149.0 - 273.15)\nDen vollständigen Bandnamen aus der Rasterrechner-Liste einsetzen. 0 / 0 markiert Fill-Werte (DN = 0) als NoData. Danach mit Einkanal-Pseudofarbe und beschrifteter °C-Legende darstellen."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#schritt-4-erwartungsflächen-digitalisieren",
+    "href": "pages/modellierung_luftbild_lst.html#schritt-4-erwartungsflächen-digitalisieren",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Schritt 4 · Erwartungsflächen digitalisieren",
+    "text": "Schritt 4 · Erwartungsflächen digitalisieren\nAuf dem Luftbild zunächst die Wärmekarte ausblenden. In QGIS einen GeoPackage-Polygonlayer erstellen und diese Felder anlegen:\n\n\n\nFeld\nInhalt\n\n\n\n\nerwartung\nwarm / mittel / kühl\n\n\noberflaeche\nDach, Straße, Grün, Wasser, Mischfläche …\n\n\ngrund\nVersiegelung, Schatten, Verdunstung, Feuchte …\n\n\n\nZeichne etwa fünf größere Vergleichsflächen. Folge den sichtbaren Oberflächen und zeichne keine Grenzen genauer, als das 100-m-Thermalbild es sinnvoll hergibt."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#schritt-5-muster-testen",
+    "href": "pages/modellierung_luftbild_lst.html#schritt-5-muster-testen",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Schritt 5 · Muster testen",
+    "text": "Schritt 5 · Muster testen\nWärmebild wieder einschalten und die digitalisierten Flächen transparent darüberlegen.\nNotiere pro Fläche: Erwartung · Beobachtung · mögliche Erklärung der Abweichung.\nFragen für die Auswertung:\n\nSind erwartete warme Flächen Teil zusammenhängender Hotspot-Zonen?\nUnterbrechen Lahn und Grünräume diese Zonen?\nWelche Abweichung ist überraschend?\nWas lässt sich aus dem einzelnen Aufnahmetermin nicht ableiten?"
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#was-wurde-gegenüber-der-automatik-reduziert",
+    "href": "pages/modellierung_luftbild_lst.html#was-wurde-gegenüber-der-automatik-reduziert",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Was wurde gegenüber der Automatik reduziert?",
+    "text": "Was wurde gegenüber der Automatik reduziert?\n\n\n\n\n\n\n\nAutomatisiertes Lehrkräftepaket\nManueller Einstieg\n\n\n\n\nSuche und Auswahl von zehn heißen Landsat-Szenen\nAuswahl eines einzelnen klaren Sommertermins\n\n\nLST-Berechnung und pixelweises q90-Komposit\neine LST-Szene aus ST_B10 in °C\n\n\nautomatische DOP-CIR-Klassifikation\nsichtbare Interpretation des RGB-Luftbilds\n\n\nautomatisch erzeugtes QGIS-Projekt und Printlayouts\nein Projekt, manuell digitalisierte Erwartungsflächen\n\n\n\nWichtig: Ein einzelner Landsat-Termin bildet nicht dasselbe ab wie das automatisierte Hot-q90-Komposit. Er macht aber den Modellgedanken, die Datenumrechnung und den GIS-Vergleich direkt nachvollziehbar."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#quellen-und-links",
+    "href": "pages/modellierung_luftbild_lst.html#quellen-und-links",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Quellen und Links",
+    "text": "Quellen und Links\n\nDigitale Orthophotos Hessen (HVBG)\nWMS-Dienste und Capabilities Hessen (HVBG)\nLandsat Level-2 Datenzugang (USGS)\nLandsat ST-Skalierung (USGS)\nQA_PIXEL und Wolkeninformation (USGS)\n\nAusführliche Klick-für-Klick-Schritte: Technische QGIS-Anleitung."
+  }
+]

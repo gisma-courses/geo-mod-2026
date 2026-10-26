@@ -1,0 +1,124 @@
+project:
+  type: website
+  output-dir: docs/
+  resources:
+    - "assets/Archive.zip"
+    - "scripts/microclimate_warmup_minimal.R"
+    
+  
+  render:
+    - "index.qmd"
+    - "pages/**/*.qmd"
+    - "slides/*.qmd"
+    - "scripts/*.R"
+
+website:
+  title: "Modellieren in der Geographie"
+  favicon: /images/logo.png
+  bread-crumbs: false
+  open-graph: true
+  page-navigation: true
+  site-url: https://gisma-courses.github.io/geo-mod-2026
+  repo-url: https://github.com/gisma-courses/geo-mod-2026
+  repo-actions: [edit, issue]
+  repo-branch: main
+
+  search:
+    location: navbar
+    type: textbox
+
+  twitter-card:
+    creator: "@gisma"
+
+  comments: false
+
+  # navbar:
+  #   logo: /images/logo.png
+  #   right:
+  #     - text: "AddOns"
+  #       menu:
+  #         - icon: book
+  #           href: pages/microclimate_warmup_reader.qmd
+  #           text: Mikroklima-Warmup Reader
+  #         - icon: easel
+  #           href: slides/microclimate_warmup_models_revealjs.qmd
+  #           text: Mikroklima-Warmup Foliensatz
+
+  sidebar:
+    - title: "R-spatial in a nutshell"
+      style: "docked"
+      collapse-level: 1
+      pinned: true
+      contents:
+        - href: index.qmd
+          text: Start
+        - text: "---"
+        - section: "Inhalte"
+          contents:
+            - href: pages/
+              text: Kursstruktur
+        - text: "---"
+        - section: "Worksheets"
+          contents:
+            - href: pages/ws/ws-01.qmd
+              text: "Worksheet 01"
+            - href: pages/ws/ws-02.qmd
+              text: "Worksheet 02"
+            # - href: pages/ws/ws-03.qmd
+            #   text: "Worksheet 03"
+            # - href: pages/ws/ws-04.qmd
+            #   text: "Worksheet 04"
+            # - href: pages/ws/ws-05.qmd
+            #   text: "Worksheet 05"
+            # - href: pages/ws/ws-06.qmd
+            #   text: "Worksheet 06"
+            # - href: pages/ws/ws-07.qmd
+            #   text: "Worksheet 07"
+            # - href: pages/ws/ws-08.qmd
+            #   text: "Worksheet 08"
+            # - href: pages/ws/ws-09.qmd
+            #   text: "Worksheet 09"
+            # - href: pages/ws/ws-10.qmd
+            #   text: "Worksheet 10"
+            # - href: pages/ws/ws-11.qmd
+            #   text: "Worksheet 11"
+            # - href: pages/ws/ws-12.qmd
+            #   text: "Worksheet 12"
+        - section: "Folien"
+          contents:
+            - href: pages/modellbildung_gis_folien.qmd
+              text: Modellierung was ist das?
+            - href: pages/netlogo_modellvergleich.qmd
+        - section: "Materials"
+          contents:
+            - href: pages/modellbildung_gis_reader.qmd
+              text: Foliensatz
+
+execute:
+  freeze: auto
+  echo: false
+  message: false
+  warning: false
+  cache: false
+
+format:
+  html:
+    code-overflow: wrap
+    toc-title: "Inhalt"
+    number-sections: false
+    highlight-style: github
+    theme:
+      light: cerulean
+      dark: lumen
+    code-copy: true
+    toc: true
+    link-external-icon: false
+    link-external-newwindow: true
+
+  revealjs:
+    theme:
+      - default
+      - metropolis.scss
+    slide-number: true
+    transition: fade
+    incremental: false

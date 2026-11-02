@@ -1,6 +1,6 @@
 ---
-title: "Advanced GI & Fernerkundung"
-subtitle: "Räumliche Muster, Regionalisierung und belastbare Auswertungen"
+title: "Modellieren in der Geographie"
+subtitle: "Wirklichkeit - Abstraktion - Prognose - Evaluation"
 order: 10
 title-block-banner: ../images/placeholder.png
 title-block-banner-color: black

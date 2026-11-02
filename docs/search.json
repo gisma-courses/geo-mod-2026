@@ -300,7 +300,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Advanced GI & Fernerkundung",
+    "title": "Modellieren in der Geographie",
     "section": "",
     "text": "Wie beschreiben wir räumliche Muster? Wie bilden wir aus Klimadaten sinnvolle Teilräume? Wo sind räumliche Vorhersagen belastbar, und wann zeigt ein Satellitenbild tatsächlich eine Veränderung?\nIn diesem Kurs lernen Sie ausgewählte fortgeschrittene Grundlagen der Geoinformationswissenschaft und Fernerkundung anzuwenden. Sie arbeiten mit realen Daten aus Hessen und Nordrhein-Westfalen, beschaffen diese selbst und bearbeiten überschaubare anwendungsbezogene Fragen. Dabei verbinden Sie die räumliche Kontrolle in QGIS mit reproduzierbaren Auswertungen in R und ausgewählten externen Werkzeugen.\nSie lernen, vorhandene Skripte gezielt anzupassen, methodische Entscheidungen zu vergleichen und Ergebnisse fachlich zu prüfen. Räumliche Auflösung, Untersuchungsgebiet, zeitlicher Bezug und Übertragbarkeit begleiten alle Themen. Ziel ist, dass Sie einen Analyseweg selbstständig ausführen und seine Aussagekraft begründen können.",
     "crumbs": [
@@ -310,7 +310,7 @@
   {
     "objectID": "index.html#zielsetzung",
     "href": "index.html#zielsetzung",
-    "title": "Advanced GI & Fernerkundung",
+    "title": "Modellieren in der Geographie",
     "section": "",
     "text": "Wie beschreiben wir räumliche Muster? Wie bilden wir aus Klimadaten sinnvolle Teilräume? Wo sind räumliche Vorhersagen belastbar, und wann zeigt ein Satellitenbild tatsächlich eine Veränderung?\nIn diesem Kurs lernen Sie ausgewählte fortgeschrittene Grundlagen der Geoinformationswissenschaft und Fernerkundung anzuwenden. Sie arbeiten mit realen Daten aus Hessen und Nordrhein-Westfalen, beschaffen diese selbst und bearbeiten überschaubare anwendungsbezogene Fragen. Dabei verbinden Sie die räumliche Kontrolle in QGIS mit reproduzierbaren Auswertungen in R und ausgewählten externen Werkzeugen.\nSie lernen, vorhandene Skripte gezielt anzupassen, methodische Entscheidungen zu vergleichen und Ergebnisse fachlich zu prüfen. Räumliche Auflösung, Untersuchungsgebiet, zeitlicher Bezug und Übertragbarkeit begleiten alle Themen. Ziel ist, dass Sie einen Analyseweg selbstständig ausführen und seine Aussagekraft begründen können.",
     "crumbs": [
@@ -320,7 +320,7 @@
   {
     "objectID": "index.html#arbeitsweise",
     "href": "index.html#arbeitsweise",
-    "title": "Advanced GI & Fernerkundung",
+    "title": "Modellieren in der Geographie",
     "section": "Arbeitsweise",
     "text": "Arbeitsweise\nDie zwölf Sitzungen verbinden kurze fachliche Einführungen mit einem hohen Übungsanteil. Die Arbeitsaufträge finden Sie in den jeweils verlinkten Worksheets.\nSie nutzen Code aus den Kursmaterialien, Dokumentation und KI-Unterstützung. Dazu gehört, Eingaben und Parameter zu verstehen, Änderungen festzuhalten und Ausgaben zu kontrollieren. Sie müssen keine Algorithmen selbst entwickeln. Sie sollen jedoch erklären können, was Ihr Skript verarbeitet und woran Sie ein plausibles Ergebnis erkennen.\nIm Verlauf des Kurses entsteht ein Projektordner mit Datenquellen, Skripten, Parametern und ausgewählten Ergebnissen. Ihre Interpretationen unterscheiden zwischen Beobachtung, möglicher Erklärung und verbleibender Unsicherheit.",
     "crumbs": [
@@ -330,7 +330,7 @@
   {
     "objectID": "index.html#block-1-daten-beschaffen-und-skripte-nutzen",
     "href": "index.html#block-1-daten-beschaffen-und-skripte-nutzen",
-    "title": "Advanced GI & Fernerkundung",
+    "title": "Modellieren in der Geographie",
     "section": "Block 1 · Daten beschaffen und Skripte nutzen",
     "text": "Block 1 · Daten beschaffen und Skripte nutzen\nSie richten einen reproduzierbaren Arbeitsablauf ein und beschaffen Sentinel-2-Daten für den Burgwald. Sie lernen, eine automatisierte Bildauswahl zu kontrollieren und Vegetationsindizes anhand konkreter Flächen zu interpretieren. Der Vergleich unterschiedlicher Aufnahmetermine zeigt, wie stark Datenqualität und zeitlicher Bezug die Aussage beeinflussen.\n\n\n\nSitzung\nInhalt und Lernziel\nArbeitsauftrag\n\n\n\n\n1 · Skripte handhaben\nEin vorhandenes Skript übernehmen, Pfade und Parameter anpassen, Fehler mit Dokumentation oder KI bearbeiten und den Ablauf erneut ausführen.\nWorksheet 01\n\n\n2 · Satellitendaten beschaffen\nSentinel-2-Aufnahmen über den CDSE-Workflow abrufen; Abdeckung, Wolken, Schatten und Aufnahmedaten prüfen.\nWorksheet 02\n\n\n3 · Vegetationssignale interpretieren\nNDVI und kNDVI an Wald-, Offenland- und auffälligen Vergleichsflächen untersuchen; Unterschiede zwischen Vegetationssignal und Aufnahmebedingungen erkennen.\nWorksheet 03",
     "crumbs": [
@@ -340,7 +340,7 @@
   {
     "objectID": "index.html#block-2-räumliche-muster-und-klimaregionalisierung",
     "href": "index.html#block-2-räumliche-muster-und-klimaregionalisierung",
-    "title": "Advanced GI & Fernerkundung",
+    "title": "Modellieren in der Geographie",
     "section": "Block 2 · Räumliche Muster und Klimaregionalisierung",
     "text": "Block 2 · Räumliche Muster und Klimaregionalisierung\nSie vergleichen klassische Landschaftsmaße mit informationstheoretischen Ansätzen. Dabei untersuchen Sie, welche Informationen über Zusammensetzung und räumliche Anordnung tatsächlich erfasst werden. Anschließend wechseln Sie von kategorischer Landbedeckung zu kontinuierlichen Klimadaten: Sie segmentieren Temperaturjahresgänge und bewerten, wie Parameter und Rasterauflösung die entstehenden Regionen beeinflussen.\n\n\n\nSitzung\nInhalt und Lernziel\nArbeitsauftrag\n\n\n\n\n4 · Muster quantitativ beschreiben\nSHDI und Aggregation Index mit Entropie und relativer gegenseitiger Information vergleichen; den Einfluss räumlicher Anordnung und Fenstergröße untersuchen.\nWorksheet 04\n\n\n5 · Klimadaten segmentieren\nMonatliche Klimadaten selbst beschaffen und mit supercells regionalisieren; Segmentzahl und Kompaktheit kontrolliert variieren.\nWorksheet 05\n\n\n6 · Regionalisierungen beurteilen\nHomogenität innerhalb der Segmente, Unterschiede benachbarter Jahresgänge und Empfindlichkeit gegenüber gröberer Rasterauflösung bewerten.\nWorksheet 06",
     "crumbs": [
@@ -350,7 +350,7 @@
   {
     "objectID": "index.html#block-3-räumliche-vorhersagen-und-modellgültigkeit",
     "href": "index.html#block-3-räumliche-vorhersagen-und-modellgültigkeit",
-    "title": "Advanced GI & Fernerkundung",
+    "title": "Modellieren in der Geographie",
     "section": "Block 3 · Räumliche Vorhersagen und Modellgültigkeit",
     "text": "Block 3 · Räumliche Vorhersagen und Modellgültigkeit\nAm LAI-Beispiel aus den EON-Materialien verfolgen Sie den Weg von punktuellen Referenzwerten zur flächenhaften Schätzung. Sie prüfen den räumlichen und zeitlichen Bezug der Daten und vergleichen unterschiedliche Validierungsansätze. Mit der Area of Applicability untersuchen Sie anschließend, wo die Prädiktorbedingungen durch die Trainingsdaten abgedeckt sind.\n\n\n\nSitzung\nInhalt und Lernziel\nArbeitsauftrag\n\n\n\n\n7 · Referenzdaten und Schätzung\nLAI-Referenzen und Satellitendaten zusammenführen; ein einfaches Modell anwenden und dessen Datengrundlage, Residuen und Voraussetzungen beurteilen.\nWorksheet 07\n\n\n8 · Räumlich validieren\nEinen Random Forest mit zufälligen und räumlichen Prüffaltungen vergleichen; bei gleichen Prädiktoren und Modelleinstellungen die Bedeutung der Prüfsituation erkennen.\nWorksheet 08\n\n\n9 · Anwendungsbereich prüfen\nVorhersage und AOA gemeinsam interpretieren; untersuchen, wie eine Änderung der Prädiktorauswahl Modellgüte und Anwendungsbereich beeinflusst.\nWorksheet 09",
     "crumbs": [
@@ -360,7 +360,7 @@
   {
     "objectID": "index.html#block-4-veränderungen-werkzeugverknüpfung-und-transfer",
     "href": "index.html#block-4-veränderungen-werkzeugverknüpfung-und-transfer",
-    "title": "Advanced GI & Fernerkundung",
+    "title": "Modellieren in der Geographie",
     "section": "Block 4 · Veränderungen, Werkzeugverknüpfung und Transfer",
     "text": "Block 4 · Veränderungen, Werkzeugverknüpfung und Transfer\nSie greifen die Sentinel-Daten erneut auf und untersuchen zeitliche Veränderungen. Zusätzliche Beobachtungen helfen, auffällige Signale zu überprüfen. An einem begrenzten R–OTB-Beispiel lernen Sie, einen Verarbeitungsschritt über Werkzeuggrenzen hinweg nachzuvollziehen. Abschließend übertragen Sie einen erprobten Ansatz auf eine eigene räumliche Frage.\n\n\n\nSitzung\nInhalt und Lernziel\nArbeitsauftrag\n\n\n\n\n10 · Veränderungen untersuchen\nSommeraufnahmen mehrerer Jahre vergleichen; Veränderungskandidaten anhand der Originalbilder und einer zusätzlichen Aufnahme prüfen.\nWorksheet 10\n\n\n11 · Werkzeuge verbinden\nEine bandweise Standardisierung über R, link2GI und OTB ausführen; Werte, Georeferenzierung und Übergabe zwischen den Werkzeugen kontrollieren.\nWorksheet 11\n\n\n12 · Eigenständig übertragen\nEine begrenzte Frage zu Landschaftsmustern, Klimaregionalisierung oder zeitlicher Veränderung für einen eigenen Ausschnitt bearbeiten und den Ablauf durch eine andere Gruppe nachvollziehen lassen.\nWorksheet 12",
     "crumbs": [
@@ -370,7 +370,7 @@
   {
     "objectID": "index.html#was-sie-am-ende-können-sollen",
     "href": "index.html#was-sie-am-ende-können-sollen",
-    "title": "Advanced GI & Fernerkundung",
+    "title": "Modellieren in der Geographie",
     "section": "Was Sie am Ende können sollen",
     "text": "Was Sie am Ende können sollen\nSie können zu einer räumlichen Frage geeignete Daten beschaffen, einen vorhandenen Analyseweg anpassen und dessen Ergebnisse kritisch beurteilen. Sie begründen die Wahl von Parametern und Maßstäben, erkennen Grenzen von Validierung und Übertragbarkeit und dokumentieren Ihren Ablauf so, dass andere ihn erneut ausführen können.",
     "crumbs": [
@@ -380,7 +380,7 @@
   {
     "objectID": "index.html#materialgrundlage",
     "href": "index.html#materialgrundlage",
-    "title": "Advanced GI & Fernerkundung",
+    "title": "Modellieren in der Geographie",
     "section": "Materialgrundlage",
     "text": "Materialgrundlage\n\nAdvanced GIS and Remote Sensing 2024 – Methoden, Reader und Worksheets\nAktuelle R-Workflows – LV-19-d19-006-25-R\nEON2026 – Machine Learning, räumliche Validierung und AOA",
     "crumbs": [

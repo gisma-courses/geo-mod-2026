@@ -275,16 +275,6 @@ darstellen. $v_n$ bezeichnet die seitliche Migrationsgeschwindigkeit, $k_m$ eine
 
 **Weiterführende Dokumentation:** [MeanderPy – Code und Einführung](https://github.com/zsylvester/meanderpy) · [CSDMS: Modellbeschreibung MeanderPy](https://csdms.colorado.edu/wiki/Model%3AMeanderpy) · [Howard & Knutson (1984)](https://doi.org/10.1029/WR020i011p01659) · [GRASS `r.sim.sediment`](https://grass.osgeo.org/grass-stable/manuals/r.sim.sediment.html) · [GRASS Add-on `r.sim.terrain`](https://grass.osgeo.org/grass-stable/manuals/addons/r.sim.terrain.html) · [GRASS Add-on `r.landscape.evol`](https://grass.osgeo.org/grass-stable/manuals/addons/r.landscape.evol.html) · [QGIS *RiverBankErosionAccretion_V2*](https://plugins.qgis.org/plugins/riverbank_erosion_accretion_v2/).
 
-## 9 · Optional: Topografischer Vernässungsindex
-
-Mit SAGA kann ergänzend der **Topographic Wetness Index (TWI)** berechnet werden:
-
-$$
-\mathrm{TWI}=\ln\left(\frac{a}{\tan\beta}\right)
-$$
-
-$a$ bezeichnet die **spezifische beitragende Fläche** (Fläche pro Konturlänge), $\beta$ die lokale Hangneigung. Der Index wird typischerweise zur Beschreibung der **topografischen Vernässungsneigung** verwendet. Er ist weder eine Wasserstandsmessung noch eine Simulation eines Starkregenereignisses. In flachem Relief und an Gewässeroberflächen ist seine Interpretation besonders vorsichtig vorzunehmen.
-
 ## Ergebnissicherung
 
 Erstellen Sie **drei Darstellungen**: (a) Hillshade + D8-Akkumulation, (b) Hillshade + MFD-Akkumulation, (c) beide Ergebnisse im Vergleich zur Gewässerreferenz. Fügen Sie eine knappe Tabelle der verwendeten Parameter und einen Modellkommentar hinzu. Halten Sie außerdem **die Datenherkunft (amtliches DGM1, ATKIS), zwei untersuchte Rasterweiten und die vorbereiteten Landnutzungsklassen** fest. Die dynamische Rauigkeits-Simulation ist ein optionaler Aufbau.

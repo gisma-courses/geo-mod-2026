@@ -387,17 +387,6 @@
     ]
   },
   {
-    "objectID": "pages/meander_abfluss_saga_grass.html#optional-topografischer-vernässungsindex",
-    "href": "pages/meander_abfluss_saga_grass.html#optional-topografischer-vernässungsindex",
-    "title": "Abflussmodellierung im Burgwald",
-    "section": "9 · Optional: Topografischer Vernässungsindex",
-    "text": "9 · Optional: Topografischer Vernässungsindex\nMit SAGA kann ergänzend der Topographic Wetness Index (TWI) berechnet werden:\n\\[\n\\mathrm{TWI}=\\ln\\left(\\frac{a}{\\tan\\beta}\\right)\n\\]\n\\(a\\) bezeichnet die spezifische beitragende Fläche (Fläche pro Konturlänge), \\(\\beta\\) die lokale Hangneigung. Der Index wird typischerweise zur Beschreibung der topografischen Vernässungsneigung verwendet. Er ist weder eine Wasserstandsmessung noch eine Simulation eines Starkregenereignisses. In flachem Relief und an Gewässeroberflächen ist seine Interpretation besonders vorsichtig vorzunehmen.",
-    "crumbs": [
-      "Worksheets / Hands-on",
-      "Burgwald – Abfluss mit SAGA / GRASS"
-    ]
-  },
-  {
     "objectID": "pages/meander_abfluss_saga_grass.html#ergebnissicherung",
     "href": "pages/meander_abfluss_saga_grass.html#ergebnissicherung",
     "title": "Abflussmodellierung im Burgwald",

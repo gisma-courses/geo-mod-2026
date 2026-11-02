@@ -112,158 +112,403 @@
     "text": "Code: Darstellung\nmaps &lt;- c(map_vor, map_idw, map_lm, map_rf)\nz &lt;- range(c(pts$temp - 1, pts$temp + 1), na.rm = TRUE)\n\npar(mfrow = c(2, 2))\n\nfor (i in 1:nlyr(maps)) {\n  plot(maps[[i]], range = z, main = names(maps)[i])\n  points(pts, pch = 19, cex = 0.8)\n}\n\npar(mfrow = c(1, 1))"
   },
   {
-    "objectID": "pages/ws/ws-01.html",
-    "href": "pages/ws/ws-01.html",
-    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "objectID": "pages/netlogo_modellvergleich.html#drei-modelle-eine-leitfrage",
+    "href": "pages/netlogo_modellvergleich.html#drei-modelle-eine-leitfrage",
+    "title": "Ähnliche Muster – unterschiedliche Modelle",
+    "section": "Drei Modelle, eine Leitfrage",
+    "text": "Drei Modelle, eine Leitfrage\nRiver Meanders (2021) · Erosion (2004) · Grand Canyon (2006)\nAlle drei erzeugen räumliche Muster durch wiederholte lokale Regeln.\nAber sie berechnen nicht dasselbe:\n\nMäanderbildung und Veränderung des Flusslaufs\nWasserverlagerung und Abtragung auf einem Raster\nAbflusswege und Wasseransammlung auf realem Relief\n\n\nLeitfrage: Was ist eine plausible Regel – und was eine physikalisch begründete Berechnung?",
+    "crumbs": [
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
+    ]
+  },
+  {
+    "objectID": "pages/netlogo_modellvergleich.html#drei-ebenen-der-begründung",
+    "href": "pages/netlogo_modellvergleich.html#drei-ebenen-der-begründung",
+    "title": "Ähnliche Muster – unterschiedliche Modelle",
+    "section": "Drei Ebenen der Begründung",
+    "text": "Drei Ebenen der Begründung\n\n\nPhysikalisches Prinzip\nWasser bewegt sich aufgrund eines hydraulischen Gefälles.\nErklärt die Richtung, noch nicht die Menge.\n\nModellgleichung\nDie Wassermenge folgt aus Gefälle, Fließtiefe und Widerstand.\nBerechnet einen Prozess unter Annahmen.\n\nHeuristische Regel\nEin Agent springt zum niedrigsten Nachbarn.\nErzeugt plausibles Verhalten, ohne die Strömung zu berechnen.\n\n\nAuch physikalische Modelle sind regelbasiert. Entscheidend ist, wie die Regeln begründet werden.",
+    "crumbs": [
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
+    ]
+  },
+  {
+    "objectID": "pages/netlogo_modellvergleich.html#wer-bildet-welchen-prozess-ab",
+    "href": "pages/netlogo_modellvergleich.html#wer-bildet-welchen-prozess-ab",
+    "title": "Ähnliche Muster – unterschiedliche Modelle",
+    "section": "Wer bildet welchen Prozess ab?",
+    "text": "Wer bildet welchen Prozess ab?\n\n\n\n\n\n\n\n\n\n\n\nRiver Meanders\nErosion\nGrand Canyon\n\n\n\n\nGelände\nidealisierter Flusskorridor\nsynthetisches Höhenraster\nreales, skaliertes Relief\n\n\nWasser\nbewegte Agenten, Gewässerzellen\nWasserhöhe je Rasterzelle\neinzelne Wasseragenten\n\n\nAbfluss\nKräfteanalogie, Potenzialfeld\nWasserspiegel-Ausgleich\nSprung zum niedrigsten Wasserspiegel\n\n\nGeländewandel\nLand ↔︎ Wasser, Sedimentregel\nHöhenabtrag\nkeiner\n\n\nErgebnis\nMäander\nErosionsmuster\nAbflusswege, Ansammlungen\n\n\n\n\nWichtig: Realistischere Eingangsdaten bedeuten nicht automatisch realistischere Prozessgleichungen.",
+    "crumbs": [
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
+    ]
+  },
+  {
+    "objectID": "pages/netlogo_modellvergleich.html#river-meanders-bewegung-als-analogie",
+    "href": "pages/netlogo_modellvergleich.html#river-meanders-bewegung-als-analogie",
+    "title": "Ähnliche Muster – unterschiedliche Modelle",
+    "section": "1 · River Meanders: Bewegung als Analogie",
+    "text": "1 · River Meanders: Bewegung als Analogie\n\\[\n\\vec v_{t+1}=\\vec v_t+\\sum_k\\vec a_k\n\\]\nDie Bewegungsrichtung entsteht aus künstlichem Potenzialfeld, Flussmitte, Talneigung, Rückstellkraft und Zufall.\nErosion: Trifft ein Strömungsagent auf Land, wird die Zelle zu Wasser.\nSedimentation: Ein Akkumulationswert überschreitet eine Schwelle; durchströmende Agenten senken ihn.\n\nHeuristische Morphogenese: Die Mäanderform entsteht, aber Wasserbilanz, Impulsübertragung und Sedimenttransport werden nicht physikalisch berechnet.",
+    "crumbs": [
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
+    ]
+  },
+  {
+    "objectID": "pages/netlogo_modellvergleich.html#erosion-wasserstand-und-austausch",
+    "href": "pages/netlogo_modellvergleich.html#erosion-wasserstand-und-austausch",
+    "title": "Ähnliche Muster – unterschiedliche Modelle",
+    "section": "2 · Erosion: Wasserstand und Austausch",
+    "text": "2 · Erosion: Wasserstand und Austausch\n\\[\nH_i=z_i+h_i\n\\]\n\\[\nq_{ij}=\\max\\left(0,\\min\\left[h_i,\\frac{H_i-H_j}{2}\\right]\\right)\n\\]\nWasser wandert zum Nachbarn mit dem niedrigsten Wasserspiegel. Der lokale Austausch gleicht bei gleich großen Zellen Wasserstände an.\nGeländeabtrag: \\(E_i=q_{ij}(1-s)\\) mit Bodenhärte \\(s\\).\n\nPhysikalisch motivierte Näherung: Lokale Wassererhaltung – aber keine hydraulische Abflussgleichung. Die Erosionsformel bleibt heuristisch.",
+    "crumbs": [
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
+    ]
+  },
+  {
+    "objectID": "pages/netlogo_modellvergleich.html#grand-canyon-tropfen-auf-relief",
+    "href": "pages/netlogo_modellvergleich.html#grand-canyon-tropfen-auf-relief",
+    "title": "Ähnliche Muster – unterschiedliche Modelle",
+    "section": "3 · Grand Canyon: Tropfen auf Relief",
+    "text": "3 · Grand Canyon: Tropfen auf Relief\n\\[\nH_i=z_i+N_i\\,h_0 \\qquad (h_0=10\\text{ im Modell})\n\\]\n\\[\nH_j&lt;H_i\\quad\\Rightarrow\\quad \\text{Agent springt nach }j\n\\]\n\nReales, für die Simulation skaliertes Höhenmodell\nEin beweglicher Tropfen: höchstens eine Zelle pro Schritt\nEin liegen gebliebener Tropfen wird dauerhaft stationär\nKeine Erosion, keine Abflussmenge aus dem Gefälle\n\n\nTopografische Heuristik: Räumlich konkretes Relief, aber stark vereinfachte Fließdynamik ohne belastbare physikalische Zeitskala.",
+    "crumbs": [
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
+    ]
+  },
+  {
+    "objectID": "pages/netlogo_modellvergleich.html#gleiches-gefälle-andere-rechnung",
+    "href": "pages/netlogo_modellvergleich.html#gleiches-gefälle-andere-rechnung",
+    "title": "Ähnliche Muster – unterschiedliche Modelle",
+    "section": "Gleiches Gefälle, andere Rechnung",
+    "text": "Gleiches Gefälle, andere Rechnung\n\n\nErosion\n\\[q_{ij}\\sim H_i-H_j\\]\nDie Wassermenge hängt vom Unterschied zweier Wasserspiegel ab.\nLokaler Austausch zwischen Rasterzellen; der Boden kann abgesenkt werden.\n\nGrand Canyon\n\\[H_j&lt;H_i\\]\nDas Gefälle entscheidet nur über das Ob und Wohin der Bewegung.\nEin Wasseragent springt genau eine Zelle; das Gelände bleibt unverändert.\n\n\nRiver Meanders folgt nochmals einer anderen Logik: künstliche Kraftbeiträge statt lokaler Wasserstandsausgleich.",
+    "crumbs": [
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
+    ]
+  },
+  {
+    "objectID": "pages/netlogo_modellvergleich.html#räumliche-muster-durch-rückkopplung",
+    "href": "pages/netlogo_modellvergleich.html#räumliche-muster-durch-rückkopplung",
+    "title": "Ähnliche Muster – unterschiedliche Modelle",
+    "section": "Räumliche Muster durch Rückkopplung",
+    "text": "Räumliche Muster durch Rückkopplung\n\n\n\n\n\n\n\n\n\nModell\nLokale Regel\nRückwirkung\n\n\n\n\nRiver Meanders\nAgenten verändern Gewässerzellen\nneuer Flusslauf lenkt weitere Agenten\n\n\nErosion\nWasserverlagerung trägt Gelände ab\nneue Höhe verändert den nächsten Abfluss\n\n\nGrand Canyon\nAgenten sammeln sich in Senken\nsteigender Wasserspiegel beeinflusst spätere Wege\n\n\n\n\nKeines der resultierenden Muster ist als fertige Form vorgegeben. Die Struktur entsteht aus der wiederholten Anwendung der Regeln.\nDas beweist noch nicht, dass der zugrunde liegende reale Prozess richtig beschrieben ist.",
+    "crumbs": [
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
+    ]
+  },
+  {
+    "objectID": "pages/netlogo_modellvergleich.html#was-ein-physikalisches-prozessmodell-braucht",
+    "href": "pages/netlogo_modellvergleich.html#was-ein-physikalisches-prozessmodell-braucht",
+    "title": "Ähnliche Muster – unterschiedliche Modelle",
+    "section": "Was ein physikalisches Prozessmodell braucht",
+    "text": "Was ein physikalisches Prozessmodell braucht\nWasserbilanz (Beispiel für flächenhaften Abfluss):\n\\[\n\\frac{\\partial h}{\\partial t}+\\nabla\\cdot(h\\vec u)=R-I\n\\]\n\n\\(h\\): Fließtiefe · \\(\\vec u\\): Geschwindigkeit · \\(R\\): Niederschlag · \\(I\\): Infiltration\n\nHinzu kämen eine Impulsbilanz oder geeignete hydraulische Näherung, bei Erosion außerdem eine Sedimentbilanz.\nKeines der drei Modelle löst die hydrodynamischen Grundgleichungen. Modell 2 erhält lokal Wassermenge, bestimmt aber keine physikalische Fließgeschwindigkeit.",
+    "crumbs": [
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
+    ]
+  },
+  {
+    "objectID": "pages/netlogo_modellvergleich.html#was-darf-man-vergleichen",
+    "href": "pages/netlogo_modellvergleich.html#was-darf-man-vergleichen",
+    "title": "Ähnliche Muster – unterschiedliche Modelle",
+    "section": "Was darf man vergleichen?",
+    "text": "Was darf man vergleichen?\n\n\nSinnvoll\n\nEntstehen Muster aus lokalen Regeln?\nWo wird Wasser konzentriert?\nVerändert Rückkopplung die Struktur?\nWelche Annahme führt zu welchem Muster?\n\n\nNicht unmittelbar\n\nFließgeschwindigkeiten\nErosionsraten\nSimulationszeiten\nWassermengen in physikalischen Einheiten\n\n\n\nÄhnliche Karten können das Ergebnis verschiedener Mechanismen sein. Eine plausible Form ist keine Prozessvalidierung.",
+    "crumbs": [
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
+    ]
+  },
+  {
+    "objectID": "pages/netlogo_modellvergleich.html#woran-erkennt-man-physikalischen-gehalt",
+    "href": "pages/netlogo_modellvergleich.html#woran-erkennt-man-physikalischen-gehalt",
+    "title": "Ähnliche Muster – unterschiedliche Modelle",
+    "section": "Woran erkennt man physikalischen Gehalt?",
+    "text": "Woran erkennt man physikalischen Gehalt?\nPrüfe nicht zuerst, wie realistisch das Muster aussieht, sondern:\n\nBewegungsregel: Richtung – oder auch Menge und Geschwindigkeit?\nErhaltung: Was wird bilanziert: Wasser, Impuls, Sediment?\nParameter: Messbare Größen oder frei gesetzte Schwellen?\nMaßstab: Haben Raum, Zeit und Ergebnis belastbare Einheiten?\nPrüfbarkeit: Welche Beobachtung könnte das Modell widerlegen?\n\n\nKern: Physikalisches Prinzip ≠ Prozessgleichung ≠ heuristische Regel. Komplexität und visuelle Plausibilität ersetzen keine physikalische Begründung.\n\n\nModelle: NetLogo Models Library, Northwestern University – River Meanders (2021), Erosion (2004), Grand Canyon (2006).",
+    "crumbs": [
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
+    ]
+  },
+  {
+    "objectID": "pages/modellbildung_gis_reader.html",
+    "href": "pages/modellbildung_gis_reader.html",
+    "title": "Modellbildung im GIS – Kurzreader",
     "section": "",
-    "text": "Sie richten ein kleines R-Projekt ein, trennen Eingangsdaten, Skripte und Ergebnisse und führen einen überschaubaren Analyseablauf aus. Anschließend verändern Sie einen Parameter und prüfen die Wirkung. Sie nutzen dabei relative Pfade, einen aussagekräftigen Skriptkopf und kurze Kommentare.\nBeispiel: Sie laden die Gebietsgrenze des Burgwalds, erzeugen einen Puffer und speichern eine Karte sowie die berechnete Geometrie. Die Daten stammen aus dem Kursrepository LV-19-d19-006-25-R. Die Pufferberechnung dient hier als einfache Übung zur Skriptnutzung."
+    "text": "Ein GIS kann Flächen überlagern, Indizes bilden, Fließwege ableiten und Modelle mit räumlichen Eingaben versorgen. Die Karte allein zeigt aber nicht, was berechnet wurde. Entscheidend sind die Regeln oder Gleichungen zwischen Eingangsdaten und Ergebnis. Als roter Faden dient die Frage: Wo sammelt sich bei Starkregen Wasser?\n\n\n\n\n\n\n\n\n\nModellzugang\nWas wird gerechnet?\nMindestdaten\nAussage – und Grenze\n\n\n\n\nHeuristik\nKlassen, Regeln und gewichtete Indikatoren\nLandbedeckung, ggf. DGM/Böden\nVerdachtsräume; keine Wassertiefe\n\n\nPhysikalisch begründete Näherung\nvereinfachte, prozessbezogene Größenbeziehungen\nje nach Formel DGM, Fläche, Regen oder Materialparameter\nIndex oder überschlägige Größe; nur unter ihren Annahmen gültig\n\n\nProzessmodell\nzeitabhängige Erhaltung und Transport\nGelände, Antrieb, Parameter, Anfangs-/Randbedingungen\nsimulierte Zustände, z. B. Wassertiefe über die Zeit; mit Modell- und Datenunsicherheit\n\n\n\n\n\nWir markieren Flächen, auf denen mehrere plausible Hinweise zusammenkommen: versiegelte Oberflächen, Geländesenken, gering durchlässige Böden. Eine gewichtete Überlagerung könnte lauten:\n\\[\nH=0{,}5V+0{,}3S+0{,}2D\n\\]\nDie Variablen sind Indikatoren, zuvor einheitlich auf 0 bis 1 skaliert. Die Gewichte sind eine Entscheidung der Modellierenden. Andere plausible Gewichte erzeugen möglicherweise andere Ergebnisse. Deshalb dokumentieren wir Klassen, Grenzwerte und Gewichtungen und testen deren Einfluss. \\(H\\) ist ein Such- oder Priorisierungsindex. Ihn als Überflutungswahrscheinlichkeit oder Wassertiefe auszugeben, wäre unbegründet.\nWerkzeuge: QGIS (Rasterrechner, Reclassification, Vektor-/Rasterüberlagerung), SAGA GIS und der QGIS-Modell-Designer für reproduzierbare Abläufe.\n\n\n\nEin digitaler Höhenwert allein enthält noch keinen Abfluss. GIS-Werkzeuge wie SAGA Flow Accumulation oder GRASS r.watershed leiten aus Höhenunterschieden und einer gewählten Routingregel Fließrichtungen, Einzugsflächen oder Akkumulationsmuster ab. Ob der Algorithmus das Wasser einer Zelle auf eine oder mehrere Nachbarzellen verteilt, ist bereits eine Modellentscheidung.\nDer Topographic Wetness Index verbindet beitragende Fläche und Gefälle:\n\\[\n\\mathrm{TWI}=\\ln\\!\\left(\\frac{a}{\\tan\\beta}\\right)\n\\]\nDas ist ein physikalisch motivierter Geländeindikator, keine berechnete Wasserbilanz und keine Starkregenüberflutung. Für eine tatsächliche Vernässung fehlen etwa Regen, Bodenhydraulik und zeitliche Entwicklung. Besonders wichtig: topografische Fließakkumulation und physikalisch berechneter Wasserabfluss sind nicht dasselbe.\nEine andere, explizite Näherung ist die Rationalformel für den Spitzenabfluss kleiner Einzugsgebiete:\n\\[\nQ_{\\mathrm{max}}\\approx C\\,i\\,A\n\\]\nDabei sind \\(A\\) die Einzugsgebietsfläche, \\(i\\) eine für die Abflusskonzentration maßgebende Regenintensität und \\(C\\) ein empirischer Abflussbeiwert. Sie benötigt mehr als eine Karte, liefert aber weder Wassertiefen noch einen räumlich-zeitlichen Fließverlauf. Ihre Anwendbarkeit hängt von Gebiet, Regenannahmen und Konventionen für den Abflussbeiwert ab.\nWerkzeuge: SAGA (Hydrology, Wetness Index), GRASS r.watershed, QGIS zur Datenaufbereitung; Formeln zusätzlich im GIS, in R oder Python. Die Wahl des Werkzeugs macht eine Rechnung nicht von selbst physikalisch.\n\n\n\nEin dynamisches 2D-Abflussmodell berechnet, wie sich Wasserstände und Geschwindigkeiten während eines Regens verändern. Eine vereinfachte Massenerhaltung lautet:\n\\[\n\\frac{\\partial h}{\\partial t}+\\nabla\\!\\cdot(h\\boldsymbol{u})=r-f\n\\]\n\\(h\\) bezeichnet die Wassertiefe, \\(\\boldsymbol{u}\\) die Fließgeschwindigkeit, \\(r\\) den Regenzufluss und \\(f\\) die Infiltration. Für eine hydraulische Simulation kommen die Bewegungsgleichungen hinzu. Benötigt werden nun auch zeitlich aufgelöster Niederschlag, Rauheit, geeignete Geländedaten, Anfangs- und Randbedingungen, gegebenenfalls Kanalnetz und Bauwerke sowie eine numerische Diskretisierung.\nWerkzeuge: etwa HEC-RAS 2D für Hydrodynamik; QGIS/SAGA/GRASS für Vorverarbeitung, Geometrie, Parameterkarten und Auswertung. Ein Prozessmodell ist trotzdem nicht „physikalisch exakt“: Gleichungen, räumliche Auflösung und Parameter bleiben Vereinfachungen.\n\n\n\n\n\n\n\n\n\n\n\n\nFrage vor der Interpretation\nHeuristik\nGeländeindex / Näherung\nProzessmodell\n\n\n\n\nWas ist bewusst festgelegt?\nGewichte, Klassen, Regeln\nRouting oder Gültigkeit der Formel\nGleichungen, Parameter, Numerik\n\n\nWas fehlt im Modell?\nkonkrete Dynamik und Mengen\noft Zeitverlauf, Speicher und Transport\nnicht aufgelöste Prozesse und ungenaue Randdaten\n\n\nWie prüfen wir?\nSensitivität, Vergleich mit unabhängigen Orten\nDGM-/Methodenvergleich, Messgrößen wenn vorhanden\nunabhängige Wasserstände, Ausdehnungen oder Abflussganglinien\n\n\n\nExplizit bedeutet lediglich, dass Annahmen oder Gleichungen benannt sind. Auch eine Heuristik kann explizit sein. Empirisch beschreibt die Herkunft einer Regel oder eines Parameters; ein physikalisch begründetes Modell kann empirisch kalibrierte Größen enthalten. Dynamisch beschreibt Zeitabhängigkeit. Diese Eigenschaften sind keine zusätzlichen Stufen zwischen Heuristik und Prozessmodell.\nPraktische Entscheidungsregel: Brauche ich nur eine begründete Suchkarte, reichen oft räumliche Regeln. Brauche ich eine geschätzte Abflussgröße, benötige ich passende physikalische Annahmen und zusätzliche Messgrößen. Will ich wissen, wie sich Wasser bei einem konkreten Ereignis im Raum bewegt, brauche ich ein dynamisches Modell und die Daten zu seinem Antrieb. Je mehr Prozesse wir abbilden, desto mehr müssen wir spezifizieren und überprüfen.\n\n\n\n\nSAGA GIS: Hydrologie-Werkzeuge – Fließakkumulation, SAGA Wetness Index und TWI.\nGRASS GIS: r.watershed – Akkumulation, Fließrichtungen, Einzugsgebiete und topografischer Index.\nQGIS: externe Processing-Anwendungen – je nach Installation müssen zusätzliche Anbieter eingerichtet werden.\nHEC-RAS: Dokumentation und hydraulische Modellgrundlagen – 1D-/2D-Strömungsmodellierung und ihre Datenanforderungen.",
+    "crumbs": [
+      "Reader",
+      "Grundlagen der Modellbildung"
+    ]
   },
   {
-    "objectID": "pages/ws/ws-01.html#ziel",
-    "href": "pages/ws/ws-01.html#ziel",
-    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "objectID": "pages/modellbildung_gis_reader.html#heuristische-regeln-begründet-aber-gesetzt",
+    "href": "pages/modellbildung_gis_reader.html#heuristische-regeln-begründet-aber-gesetzt",
+    "title": "Modellbildung im GIS – Kurzreader",
     "section": "",
-    "text": "Sie richten ein kleines R-Projekt ein, trennen Eingangsdaten, Skripte und Ergebnisse und führen einen überschaubaren Analyseablauf aus. Anschließend verändern Sie einen Parameter und prüfen die Wirkung. Sie nutzen dabei relative Pfade, einen aussagekräftigen Skriptkopf und kurze Kommentare.\nBeispiel: Sie laden die Gebietsgrenze des Burgwalds, erzeugen einen Puffer und speichern eine Karte sowie die berechnete Geometrie. Die Daten stammen aus dem Kursrepository LV-19-d19-006-25-R. Die Pufferberechnung dient hier als einfache Übung zur Skriptnutzung."
+    "text": "Wir markieren Flächen, auf denen mehrere plausible Hinweise zusammenkommen: versiegelte Oberflächen, Geländesenken, gering durchlässige Böden. Eine gewichtete Überlagerung könnte lauten:\n\\[\nH=0{,}5V+0{,}3S+0{,}2D\n\\]\nDie Variablen sind Indikatoren, zuvor einheitlich auf 0 bis 1 skaliert. Die Gewichte sind eine Entscheidung der Modellierenden. Andere plausible Gewichte erzeugen möglicherweise andere Ergebnisse. Deshalb dokumentieren wir Klassen, Grenzwerte und Gewichtungen und testen deren Einfluss. \\(H\\) ist ein Such- oder Priorisierungsindex. Ihn als Überflutungswahrscheinlichkeit oder Wassertiefe auszugeben, wäre unbegründet.\nWerkzeuge: QGIS (Rasterrechner, Reclassification, Vektor-/Rasterüberlagerung), SAGA GIS und der QGIS-Modell-Designer für reproduzierbare Abläufe.",
+    "crumbs": [
+      "Reader",
+      "Grundlagen der Modellbildung"
+    ]
   },
   {
-    "objectID": "pages/ws/ws-01.html#das-projekt-anlegen",
-    "href": "pages/ws/ws-01.html#das-projekt-anlegen",
-    "title": "Worksheet 01 · Ein kleines R-Projekt",
-    "section": "1 · Das Projekt anlegen",
-    "text": "1 · Das Projekt anlegen\nÖffnen Sie in RStudio File → New Project → New Directory → New Project. Nennen Sie das Projekt burgwald-mini und wählen Sie einen Speicherort. Öffnen Sie es künftig über burgwald-mini.Rproj.\nLegen Sie über den Reiter Files → New Folder drei Unterordner an:\n\n\n\n\n\n\n\nOrt im Projekt\nInhalt\n\n\n\n\nburgwald-mini.Rproj\nÖffnet das Projekt mit dem Projektordner als Arbeitsverzeichnis.\n\n\ndata/\nHeruntergeladene Eingangsdaten; diese werden nicht überschrieben.\n\n\nscripts/\nIhre R-Skripte.\n\n\noutput/\nBerechnete Daten und Abbildungen; diese lassen sich erneut erzeugen.\n\n\n\nPrüfen Sie in der Konsole:\n\ngetwd()\nlist.files()\n\nDas Arbeitsverzeichnis muss Ihr Ordner burgwald-mini sein. Die drei Unterordner und die Projektdatei sollten angezeigt werden. Alle folgenden Pfade beziehen sich auf diesen Projektordner, auch wenn das Skript in scripts/ liegt. Ein zusätzliches setwd() ist nicht erforderlich.\nInstallieren Sie das benötigte Paket einmalig in der Konsole, falls es noch fehlt:\n\ninstall.packages(\"sf\")"
+    "objectID": "pages/modellbildung_gis_reader.html#geländealgorithmus-oder-physikalische-näherung",
+    "href": "pages/modellbildung_gis_reader.html#geländealgorithmus-oder-physikalische-näherung",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "",
+    "text": "Ein digitaler Höhenwert allein enthält noch keinen Abfluss. GIS-Werkzeuge wie SAGA Flow Accumulation oder GRASS r.watershed leiten aus Höhenunterschieden und einer gewählten Routingregel Fließrichtungen, Einzugsflächen oder Akkumulationsmuster ab. Ob der Algorithmus das Wasser einer Zelle auf eine oder mehrere Nachbarzellen verteilt, ist bereits eine Modellentscheidung.\nDer Topographic Wetness Index verbindet beitragende Fläche und Gefälle:\n\\[\n\\mathrm{TWI}=\\ln\\!\\left(\\frac{a}{\\tan\\beta}\\right)\n\\]\nDas ist ein physikalisch motivierter Geländeindikator, keine berechnete Wasserbilanz und keine Starkregenüberflutung. Für eine tatsächliche Vernässung fehlen etwa Regen, Bodenhydraulik und zeitliche Entwicklung. Besonders wichtig: topografische Fließakkumulation und physikalisch berechneter Wasserabfluss sind nicht dasselbe.\nEine andere, explizite Näherung ist die Rationalformel für den Spitzenabfluss kleiner Einzugsgebiete:\n\\[\nQ_{\\mathrm{max}}\\approx C\\,i\\,A\n\\]\nDabei sind \\(A\\) die Einzugsgebietsfläche, \\(i\\) eine für die Abflusskonzentration maßgebende Regenintensität und \\(C\\) ein empirischer Abflussbeiwert. Sie benötigt mehr als eine Karte, liefert aber weder Wassertiefen noch einen räumlich-zeitlichen Fließverlauf. Ihre Anwendbarkeit hängt von Gebiet, Regenannahmen und Konventionen für den Abflussbeiwert ab.\nWerkzeuge: SAGA (Hydrology, Wetness Index), GRASS r.watershed, QGIS zur Datenaufbereitung; Formeln zusätzlich im GIS, in R oder Python. Die Wahl des Werkzeugs macht eine Rechnung nicht von selbst physikalisch.",
+    "crumbs": [
+      "Reader",
+      "Grundlagen der Modellbildung"
+    ]
   },
   {
-    "objectID": "pages/ws/ws-01.html#ein-übersichtliches-skript-anlegen",
-    "href": "pages/ws/ws-01.html#ein-übersichtliches-skript-anlegen",
-    "title": "Worksheet 01 · Ein kleines R-Projekt",
-    "section": "2 · Ein übersichtliches Skript anlegen",
-    "text": "2 · Ein übersichtliches Skript anlegen\nErstellen Sie über File → New File → R Script ein Skript und speichern Sie es als scripts/01_burgwald_puffer.R. Übernehmen Sie den folgenden Code und ergänzen Sie Name und Datum im Kopf.\nDer Aufbau bleibt einfach: Header → Paket → Einstellungen → Daten → Verarbeitung → Ausgabe → Kontrolle. Änderungen an Pfaden oder Parametern erfolgen gesammelt im Abschnitt „Einstellungen“.\n\n# ------------------------------------------------------------\n# Titel:   Burgwald – Gebietsgrenze puffern\n# Autor:   Ihr Name\n# Datum:   JJJJ-MM-TT\n# Zweck:   Gebietsgrenze laden, puffern und Ergebnisse speichern\n# Quelle:  https://github.com/gisma/LV-19-d19-006-25-R\n# Eingabe: data/burgwald_hull.GPKG\n# Ausgabe: Puffer als GeoPackage und Karte unter output/\n# Start:   RStudio-Projekt burgwald-mini.Rproj öffnen\n# ------------------------------------------------------------\n\n# 1. Paket ---------------------------------------------------\nlibrary(sf)\n\n# 2. Einstellungen -------------------------------------------\npuffer_m &lt;- 100\n\ndaten_url &lt;- paste0(\n  \"https://raw.githubusercontent.com/\",\n  \"gisma/LV-19-d19-006-25-R/main/burgwald_hull.GPKG\"\n)\neingabe &lt;- file.path(\"data\", \"burgwald_hull.GPKG\")\nausgabe &lt;- file.path(\"output\", paste0(\"puffer_\", puffer_m, \"m\"))\n\n# 3. Daten laden ---------------------------------------------\n# Der Download erfolgt nur, wenn die Eingabedatei noch fehlt.\nif (!file.exists(eingabe)) {\n  download.file(daten_url, destfile = eingabe, mode = \"wb\")\n}\ngebiet &lt;- st_read(eingabe, quiet = TRUE)\n\n# 4. Verarbeiten ---------------------------------------------\n# UTM 32N verwendet Meter: Der Pufferabstand ist damit eindeutig.\ngebiet &lt;- st_transform(gebiet, 25832)\npuffer &lt;- st_buffer(gebiet, dist = puffer_m)\n\n# 5. Ergebnisse speichern ------------------------------------\n# Nur die gleichnamige Ergebnisdatei wird beim Wiederholen ersetzt.\nst_write(puffer, paste0(ausgabe, \".gpkg\"),\n         delete_dsn = TRUE, quiet = TRUE)\n\npng(paste0(ausgabe, \".png\"), width = 1000, height = 800)\nplot(st_geometry(puffer), col = \"lightblue\",\n     main = paste(\"Burgwald – Puffer\", puffer_m, \"m\"))\nplot(st_geometry(gebiet), col = \"darkgreen\", add = TRUE)\nlegend(\"topright\", legend = c(\"Gebiet\", \"Puffer\"),\n       fill = c(\"darkgreen\", \"lightblue\"), bty = \"n\")\ndev.off()\n\n# 6. Kontrollieren -------------------------------------------\nprint(st_crs(gebiet)$epsg)\nprint(data.frame(\n  gebiet_km2 = as.numeric(st_area(gebiet)) / 1e6,\n  puffer_km2 = as.numeric(st_area(puffer)) / 1e6\n))\nprint(list.files(\"output\"))\n\nFühren Sie das Skript zunächst abschnittsweise mit Ctrl+Enter aus. Prüfen Sie anschließend die PNG-Datei im Ordner output. Öffnen Sie das erzeugte GeoPackage in QGIS und vergleichen Sie es mit der Eingabedatei.\nKontrolle: Liegt das Gebiet innerhalb seines Puffers? Ist die Pufferfläche größer als die Ausgangsfläche? Welche Dateien wurden erzeugt und wo liegen sie?"
+    "objectID": "pages/modellbildung_gis_reader.html#prozessmodell-ein-ereignis-entwickelt-sich",
+    "href": "pages/modellbildung_gis_reader.html#prozessmodell-ein-ereignis-entwickelt-sich",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "",
+    "text": "Ein dynamisches 2D-Abflussmodell berechnet, wie sich Wasserstände und Geschwindigkeiten während eines Regens verändern. Eine vereinfachte Massenerhaltung lautet:\n\\[\n\\frac{\\partial h}{\\partial t}+\\nabla\\!\\cdot(h\\boldsymbol{u})=r-f\n\\]\n\\(h\\) bezeichnet die Wassertiefe, \\(\\boldsymbol{u}\\) die Fließgeschwindigkeit, \\(r\\) den Regenzufluss und \\(f\\) die Infiltration. Für eine hydraulische Simulation kommen die Bewegungsgleichungen hinzu. Benötigt werden nun auch zeitlich aufgelöster Niederschlag, Rauheit, geeignete Geländedaten, Anfangs- und Randbedingungen, gegebenenfalls Kanalnetz und Bauwerke sowie eine numerische Diskretisierung.\nWerkzeuge: etwa HEC-RAS 2D für Hydrodynamik; QGIS/SAGA/GRASS für Vorverarbeitung, Geometrie, Parameterkarten und Auswertung. Ein Prozessmodell ist trotzdem nicht „physikalisch exakt“: Gleichungen, räumliche Auflösung und Parameter bleiben Vereinfachungen.",
+    "crumbs": [
+      "Reader",
+      "Grundlagen der Modellbildung"
+    ]
   },
   {
-    "objectID": "pages/ws/ws-01.html#einen-parameter-gezielt-ändern",
-    "href": "pages/ws/ws-01.html#einen-parameter-gezielt-ändern",
-    "title": "Worksheet 01 · Ein kleines R-Projekt",
-    "section": "3 · Einen Parameter gezielt ändern",
-    "text": "3 · Einen Parameter gezielt ändern\nÄndern Sie ausschließlich puffer_m &lt;- 100 zu puffer_m &lt;- 500. Schreiben Sie davor einen kurzen Kommentar, warum Sie den Parameter verändern. Führen Sie das gesamte Skript mit Source erneut aus.\nVergleichen Sie die beiden Karten und die ausgegebenen Flächen. Prüfen Sie außerdem, ob beide Ergebnisvarianten unter output/ liegen und die Eingabedatei unter data/ unverändert geblieben ist.\nNotieren Sie: Was steuert der Parameter? In welcher Einheit? Warum entsteht durch seine Änderung auch ein anderer Ausgabename?"
+    "objectID": "pages/modellbildung_gis_reader.html#was-entscheidet-über-die-aussagekraft",
+    "href": "pages/modellbildung_gis_reader.html#was-entscheidet-über-die-aussagekraft",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "",
+    "text": "Frage vor der Interpretation\nHeuristik\nGeländeindex / Näherung\nProzessmodell\n\n\n\n\nWas ist bewusst festgelegt?\nGewichte, Klassen, Regeln\nRouting oder Gültigkeit der Formel\nGleichungen, Parameter, Numerik\n\n\nWas fehlt im Modell?\nkonkrete Dynamik und Mengen\noft Zeitverlauf, Speicher und Transport\nnicht aufgelöste Prozesse und ungenaue Randdaten\n\n\nWie prüfen wir?\nSensitivität, Vergleich mit unabhängigen Orten\nDGM-/Methodenvergleich, Messgrößen wenn vorhanden\nunabhängige Wasserstände, Ausdehnungen oder Abflussganglinien\n\n\n\nExplizit bedeutet lediglich, dass Annahmen oder Gleichungen benannt sind. Auch eine Heuristik kann explizit sein. Empirisch beschreibt die Herkunft einer Regel oder eines Parameters; ein physikalisch begründetes Modell kann empirisch kalibrierte Größen enthalten. Dynamisch beschreibt Zeitabhängigkeit. Diese Eigenschaften sind keine zusätzlichen Stufen zwischen Heuristik und Prozessmodell.\nPraktische Entscheidungsregel: Brauche ich nur eine begründete Suchkarte, reichen oft räumliche Regeln. Brauche ich eine geschätzte Abflussgröße, benötige ich passende physikalische Annahmen und zusätzliche Messgrößen. Will ich wissen, wie sich Wasser bei einem konkreten Ereignis im Raum bewegt, brauche ich ein dynamisches Modell und die Daten zu seinem Antrieb. Je mehr Prozesse wir abbilden, desto mehr müssen wir spezifizieren und überprüfen.",
+    "crumbs": [
+      "Reader",
+      "Grundlagen der Modellbildung"
+    ]
   },
   {
-    "objectID": "pages/ws/ws-01.html#einen-pfadfehler-verstehen",
-    "href": "pages/ws/ws-01.html#einen-pfadfehler-verstehen",
-    "title": "Worksheet 01 · Ein kleines R-Projekt",
-    "section": "4 · Einen Pfadfehler verstehen",
-    "text": "4 · Einen Pfadfehler verstehen\nÄndern Sie vorübergehend die Definition von eingabe zu:\n\neingabe &lt;- file.path(\"daten\", \"burgwald_hull.GPKG\")\n\nFühren Sie das Skript erneut aus. Lesen Sie die Fehlermeldung und prüfen Sie mit getwd() und dir.exists(\"daten\"), worauf der Pfad verweist. Stellen Sie anschließend den richtigen Pfad wieder her.\nNutzen Sie bei Bedarf die Dokumentation oder KI. Ein passender Auftrag lautet:\n\nMein RStudio-Projekt enthält die Ordner data, scripts und output. Erkläre diese Fehlermeldung und nenne die kleinste notwendige Korrektur. Ändere keine weiteren Teile des Skripts: [Fehlermeldung und betroffene Codezeilen einfügen].\n\nHalten Sie in einem Kommentar fest, was falsch war und wie Sie die Korrektur geprüft haben. Kommentare sollen den Zweck oder eine Entscheidung erklären, beispielsweise die Wahl eines metrischen Koordinatensystems."
+    "objectID": "pages/modellbildung_gis_reader.html#dokumentation-der-werkzeuge",
+    "href": "pages/modellbildung_gis_reader.html#dokumentation-der-werkzeuge",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "",
+    "text": "SAGA GIS: Hydrologie-Werkzeuge – Fließakkumulation, SAGA Wetness Index und TWI.\nGRASS GIS: r.watershed – Akkumulation, Fließrichtungen, Einzugsgebiete und topografischer Index.\nQGIS: externe Processing-Anwendungen – je nach Installation müssen zusätzliche Anbieter eingerichtet werden.\nHEC-RAS: Dokumentation und hydraulische Modellgrundlagen – 1D-/2D-Strömungsmodellierung und ihre Datenanforderungen.",
+    "crumbs": [
+      "Reader",
+      "Grundlagen der Modellbildung"
+    ]
   },
   {
-    "objectID": "pages/ws/ws-01.html#ohne-gespeicherte-objekte-erneut-ausführen",
-    "href": "pages/ws/ws-01.html#ohne-gespeicherte-objekte-erneut-ausführen",
-    "title": "Worksheet 01 · Ein kleines R-Projekt",
-    "section": "5 · Ohne gespeicherte Objekte erneut ausführen",
-    "text": "5 · Ohne gespeicherte Objekte erneut ausführen\nStarten Sie R über Session → Restart R neu. Führen Sie das Skript anschließend vollständig mit Source aus. Es muss seine Daten selbst einlesen und alle benötigten Objekte erneut erzeugen können."
+    "objectID": "pages/microclimate_warmup_reader.html",
+    "href": "pages/microclimate_warmup_reader.html",
+    "title": "Mikroklima-Warmup",
+    "section": "",
+    "text": "Dieser Reader begleitet einen Hands-on-Einstieg in räumliches Arbeiten mit R und RStudio. Im Mittelpunkt steht ein basales Skript: Es wird geöffnet, blockweise ausgeführt und so gelesen, dass nachvollziehbar wird, welche Daten eingelesen werden, welche räumlichen Operationen stattfinden und welche Ergebnisdatensätze daraus entstehen. Die SuS sollen hier nicht selbst einen vollständigen Forschungsworkflow entwickeln, sondern trainieren, ein vorhandenes Skript kontrolliert zu nutzen, seine Zwischenschritte zu verstehen und die Ergebnisse fachlich zu lesen.\nFachlich geht es um ein typisches Problem der Geoinformatik und physischen Geographie: Messungen liegen punktuell vor, die Fragestellung richtet sich aber auf eine Fläche. Das ist die normale Ausgangslage vieler Messkampagnen. Man hat Stationen, Logger oder einzelne Messpunkte, aber die eigentliche Frage lautet nicht nur: Was wurde genau an diesen Punkten gemessen? Sie lautet: Wie können wir aus diesen Punkten eine begrenzte, nachvollziehbare räumliche Aussage ableiten?\nDie Übung ist deshalb zugleich technisch und inhaltlich angelegt. Technisch geht es darum, mit RStudio ein Skript auszuführen, einfache räumliche Datenobjekte zu verarbeiten, Ergebnisraster zu erzeugen und diese am Ende auch interaktiv in einer Leaflet-Karte zu betrachten. Inhaltlich geht es darum zu verstehen, dass jede flächenhafte Darstellung aus Punktdaten eine Annahme darüber enthält, wie Werte zwischen Messpunkten in den Raum übertragen werden.\nDie zentrale Frage lautet:\n\nWir haben wie üblich nur einzelne Messpunkte. Wie gehen wir vor, wenn wir daraus trotzdem eine räumliche Aussage zur Temperaturverteilung ableiten wollen?\n\nDie Übung fragt also methodisch: Was tun wir, wenn die Beobachtung punktuell ist, die Frage aber flächenhaft gestellt wird?"
   },
   {
-    "objectID": "pages/ws/ws-01.html#ergebnis",
-    "href": "pages/ws/ws-01.html#ergebnis",
-    "title": "Worksheet 01 · Ein kleines R-Projekt",
-    "section": "Ergebnis",
-    "text": "Ergebnis\nGeben Sie Ihren Projektordner mit dem kommentierten Skript und den beiden Ergebnisvarianten weiter. Ergänzen Sie eine kurze Datei README.md im Projektordner mit vier Angaben:\n\nProjektdatei öffnen und anschließend scripts/01_burgwald_puffer.R ausführen.\nBenötigtes Paket: sf; Internetzugang für den ersten Datenabruf.\nDatenquelle und eigenes Abrufdatum.\nIhre Änderung, deren beobachtete Wirkung und gegebenenfalls verwendete KI-Hilfe.\n\nErfolgskriterium: Eine andere Person erkennt, welche Dateien Eingangsdaten, Skripte und Ergebnisse sind, und kann den Ablauf aus einer frischen R-Sitzung erneut ausführen."
+    "objectID": "pages/microclimate_warmup_reader.html#voronoi",
+    "href": "pages/microclimate_warmup_reader.html#voronoi",
+    "title": "Mikroklima-Warmup",
+    "section": "Voronoi",
+    "text": "Voronoi\nVoronoi ordnet jede Rasterzelle der nächstgelegenen Messstation zu. Der Wert dieser Station wird direkt auf die Zelle übertragen.\nKurzlogik:\n\nNächste Station gewinnt.\n\nDamit entsteht ein Ergebnisraster mit harten Grenzen. Jede Station erhält einen Zuständigkeitsbereich. Innerhalb dieses Bereichs ist der Wert überall gleich, an der Grenze zur nächsten Station springt er abrupt.\nVoronoi ist methodisch einfach und gut lesbar. Es glättet nichts und erzeugt keine Zwischenwerte. Gleichzeitig ist die Annahme sehr grob: Temperatur ändert sich in der Realität selten sprunghaft an geometrischen Grenzen zwischen Stationen.\n\n\n\n\n\n\nNoteCode-Snippet: Voronoi / nearest station\n\n\n\n\n\nvor_df &lt;- gstat::idw(\n  temp ~ 1,\n  locations = pts,\n  newdata = grid_sf,\n  nmax = 1\n)\n\nmap_vor &lt;- make_map(vor_df$var1.pred, \"Voronoi\")"
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#leitfrage",
-    "href": "pages/modellierung_luftbild_lst.html#leitfrage",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "Leitfrage",
-    "text": "Leitfrage\nWo erwarten wir in Marburg warme Oberflächen – und was zeigt der Satellit?\nWir modellieren keine Lufttemperatur und keine vollständige Wärmebelastung. Wir prüfen eine begründete Erwartung mit einem thermischen Satellitenbild."
+    "objectID": "pages/microclimate_warmup_reader.html#idw",
+    "href": "pages/microclimate_warmup_reader.html#idw",
+    "title": "Mikroklima-Warmup",
+    "section": "IDW",
+    "text": "IDW\nIDW bedeutet inverse distance weighting. Das Verfahren schätzt den Wert einer Rasterzelle aus nahegelegenen Stationen. Nahe Stationen erhalten ein höheres Gewicht, weiter entfernte Stationen ein geringeres Gewicht.\nKurzlogik:\n\nNähe wirkt, aber nicht hart. Nahe Messpunkte zählen stärker als entfernte.\n\nIm Skript wird nmax = 4 verwendet. Jede Rasterzelle wird also nur aus den vier nächsten Stationen geschätzt. Dadurch bleibt die Schätzung lokal. Das Ergebnis wird glatter als Voronoi, aber weniger global geglättet als eine IDW-Variante, bei der alle Stationen in jede Schätzung eingehen.\nIDW ist eine typische Einstiegsform der Interpolation. Es nutzt räumliche Nähe als zentrales Argument. Fachlich muss man aber prüfen, ob Nähe im konkreten Fall tatsächlich der wichtigste Zusammenhang ist. Bei Mikroklima kann das zutreffen, muss aber nicht ausreichen, weil Gelände, Schatten, Vegetation oder Kaltluft ebenfalls wirksam sein können.\n\n\n\n\n\n\nNoteCode-Snippet: IDW\n\n\n\n\n\nidw_df &lt;- gstat::idw(\n  temp ~ 1,\n  locations = pts,\n  newdata = grid_sf,\n  nmax = 4\n)\n\nmap_idw &lt;- make_map(idw_df$var1.pred, \"IDW\")"
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#erwartung-aus-oberflächen-ableiten",
-    "href": "pages/modellierung_luftbild_lst.html#erwartung-aus-oberflächen-ableiten",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "1. Erwartung aus Oberflächen ableiten",
-    "text": "1. Erwartung aus Oberflächen ableiten\nVor dem Wärmebild fragen wir: Welche Oberfläche nimmt viel Energie auf, speichert sie oder kann wenig über Verdunstung kühlen?\n\n\n\nSichtbare Oberfläche\nErwartung für einen sonnigen Sommertag\n\n\n\n\nAsphalt, große Dächer, Parkplatz, Platz\neher warm\n\n\nBaumkronen, schattiger Park, feuchte Vegetation\neher kühl\n\n\nLahn oder Teich\nhäufig kühlere Tagesoberfläche, thermisch träge\n\n\ntrockene Wiese, Schotter, Baustelle\noffen: möglicher Grenzfall\n\n\n\n\nDie Oberflächenklassen bündeln sichtbare Stadtflächen zu einem einfachen Arbeitsmodell."
+    "objectID": "pages/microclimate_warmup_reader.html#lm-altitude",
+    "href": "pages/microclimate_warmup_reader.html#lm-altitude",
+    "title": "Mikroklima-Warmup",
+    "section": "LM altitude",
+    "text": "LM altitude\nDas lineare Höhenmodell nutzt nicht primär die räumliche Nähe zwischen Stationen, sondern den Zusammenhang zwischen Temperatur und Höhe.\nKurzlogik:\n\nTemperatur wird über Höhe erklärt und auf das Höhenraster übertragen.\n\nDas Modell schätzt eine lineare Beziehung zwischen Stationshöhe und Temperatur. Anschließend wird diese Beziehung auf jede Rasterzelle des DEM angewendet. Dadurch folgt das Ergebnis stark dem Höhenmuster.\nDieses Modell ist methodisch anders als Voronoi und IDW. Es füllt den Raum nicht über Stationsnachbarschaft, sondern über eine erklärende Variable. Wenn Höhe fachlich relevant ist, kann das sinnvoll sein. Wenn die gemessenen Temperaturunterschiede stärker durch Schatten, Vegetation oder lokale Kaltluft geprägt sind, kann ein reines Höhenmodell zu kurz greifen.\nJa, der Abschnitt verschiebt die Aufmerksamkeit zu stark auf x/y/altitude und sagt zu wenig klar: RF sagt weiterhin Temperatur vorher. Die Koordinaten und die Höhe sind nur die Eingangsvariablen, mit denen RF versucht, die gemessene Temperatur zu rekonstruieren.\nErsetze den Abschnitt durch diese Fassung:\n\n\n\n\n\n\nNoteCode-Snippet: LM altitude\n\n\n\n\n\nfit_lm &lt;- lm(temp ~ altitude, data = st_drop_geometry(pts))\n\nmap_lm &lt;- predict(dem, fit_lm)\nnames(map_lm) &lt;- \"LM_altitude\""
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#stadtstruktur-lesen",
-    "href": "pages/modellierung_luftbild_lst.html#stadtstruktur-lesen",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "2. Stadtstruktur lesen",
-    "text": "2. Stadtstruktur lesen\nEs geht nicht nur darum, welche Oberfläche vorliegt. Wir betrachten auch, wie sie im Raum angeordnet ist:\n\nbilden Dächer, Straßen und Parkplätze einen zusammenhängenden warmen Block?\nverlaufen Grünzüge als kühlere Achsen durch die Bebauung?\nliegt ein großer Platz direkt neben Schatten oder Wasser?\nwerden warme Bereiche am Stadtrand durch offene Landschaft unterbrochen?\n\nFür Marburg können Innenstadt und Lahn, Bahnhofsumfeld, größere Parkplätze, Gewerbegebiete, Lahnberge und bewaldete Hänge als unterschiedliche Vergleichsräume dienen."
+    "objectID": "pages/microclimate_warmup_reader.html#rf-warning",
+    "href": "pages/microclimate_warmup_reader.html#rf-warning",
+    "title": "Mikroklima-Warmup",
+    "section": "RF warning",
+    "text": "RF warning\nRandom Forest ist ein flexibles, datengetriebenes Modell. Im Skript ist die Zielvariable weiterhin die gemessene Temperatur:\ntemp\nDas Modell versucht also, Temperaturwerte vorherzusagen. Dafür erhält es drei Prädiktoren:\nx\ny\naltitude\nDamit kann RF Temperaturunterschiede aus räumlicher Position und Höhe ableiten. Das Modell fragt nicht direkt nach einem physikalischen Prozess wie Kaltluft, Verschattung oder Vegetationswirkung. Es sucht in den vorhandenen Trainingsdaten nach Mustern: Welche Kombinationen aus Lage und Höhe treten zusammen mit höheren oder niedrigeren Temperaturen auf?\nKurzlogik:\n\nRF lernt aus wenigen Stationen, welche Bereiche des Raums eher zu höheren oder niedrigeren Temperaturwerten passen.\n\nGenau deshalb wird RF hier als Warnbeispiel geführt. Bei wenigen Messpunkten kann das Modell die vorhandenen Temperaturwerte scheinbar gut rekonstruieren, weil es die Punktlage und die Höhe flexibel aufteilt. Daraus entsteht ein Ergebnisraster, das plausibel aussehen und in der Validierung einen niedrigen Fehler haben kann.\nDas bedeutet aber nicht automatisch, dass RF eine robuste mikroklimatische Erklärung gefunden hat. Das Modell kann Temperaturmuster erzeugen, die stark an die konkrete Lage der wenigen Messstationen gebunden sind. Eine gute Rückschätzung einzelner Stationen bedeutet deshalb nicht, dass die Ergebnisfläche als Prozessdarstellung fachlich überzeugend ist.\nRF zeigt hier eine zentrale methodische Spannung:\n\nDas Modell sagt Temperatur vorher, aber es erklärt nicht automatisch, warum diese Temperatur räumlich so verteilt sein sollte.\n\n\n\n\n\n\n\nNoteCode-Snippet: RF warning\n\n\n\n\n\nxy &lt;- st_coordinates(pts)\npts$x &lt;- xy[, 1]\npts$y &lt;- xy[, 2]\n\nfit_rf &lt;- randomForest(\n  temp ~ x + y + altitude,\n  data = st_drop_geometry(pts),\n  ntree = 200\n)\n\nrf_pred &lt;- predict(fit_rf, newdata = grid)\nmap_rf &lt;- make_map(rf_pred, \"RF_warning\")\n\n\n\n\n\n\nVier einfache Wege von punktuellen Temperaturmessungen zu einer räumlichen Ergebnisfläche. Die Grafik zeigt, dass Voronoi, IDW, ein lineares Höhenmodell und Random Forest dieselben Messpunkte mit unterschiedlichen Modellannahmen in den Raum übertragen. Entscheidend ist daher nicht nur das fertige Kartenbild, sondern die Frage, welche Annahme die räumliche Aussage trägt und wo ihre fachliche Grenze lieg"
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#tatsächliche-hotspots-abgleichen",
-    "href": "pages/modellierung_luftbild_lst.html#tatsächliche-hotspots-abgleichen",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "3. Tatsächliche Hotspots abgleichen",
-    "text": "3. Tatsächliche Hotspots abgleichen\nErst jetzt kommt die LST-Karte hinzu. Wir prüfen dieselben Flächen erneut:\n\nTreffer: Erwarteter warmer Bereich ist im Satellitenbild warm.\nAbweichung: Eine erwartete warme Fläche erscheint weniger warm oder umgekehrt.\nErklärung: Schatten, Feuchte, Material, Aufnahmezeit, Wolkenrest oder Mischpixel könnten eine Rolle spielen.\n\n\nVom sichtbaren Muster zum thermischen Test."
+    "objectID": "pages/microclimate_warmup_reader.html#daten-laden",
+    "href": "pages/microclimate_warmup_reader.html#daten-laden",
+    "title": "Mikroklima-Warmup",
+    "section": "1. Daten laden",
+    "text": "1. Daten laden\nBenötigt werden zwei Dateien: data/climdata.rds und data/DEM1.tif. climdata.rds enthält die Messstationen mit Geometrie und Temperaturspalten. DEM1.tif enthält die Höhe als Raster.\n\n\n\n\n\n\nNoteCode-Snippet: Daten laden\n\n\n\n\n\nlibrary(sf)\nlibrary(terra)\nlibrary(gstat)\nlibrary(randomForest)\nlibrary(leaflet)\n\nm   &lt;- readRDS(\"data/climdata.rds\")\ndem &lt;- rast(\"data/DEM1.tif\")\nnames(dem) &lt;- \"altitude\""
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#modellbeziehung",
-    "href": "pages/modellierung_luftbild_lst.html#modellbeziehung",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "Modellbeziehung",
-    "text": "Modellbeziehung\n\\[\n\\text{Oberfläche} + \\text{Schatten / Feuchte} + \\text{räumliche Nachbarschaft}\n\\;\\longrightarrow\\;\n\\text{erwartete Oberflächentemperatur}\n\\;\\longrightarrow\\;\n\\text{Abgleich mit Landsat}\n\\]\nDas ist ein Erklärungsmodell. Es sagt, wo wir genauer hinschauen sollten. Es garantiert nicht, dass jedes Dach oder jeder Parkplatz heiß ist."
+    "objectID": "pages/microclimate_warmup_reader.html#einen-zeitpunkt-auswählen",
+    "href": "pages/microclimate_warmup_reader.html#einen-zeitpunkt-auswählen",
+    "title": "Mikroklima-Warmup",
+    "section": "2. Einen Zeitpunkt auswählen",
+    "text": "2. Einen Zeitpunkt auswählen\nDie Messdaten enthalten mehrere Temperaturspalten. Für den Warmup wird ein Zeitpunkt herausgegriffen. Damit arbeiten alle Modelle mit derselben Zielvariable.\n\n\n\n\n\n\nNoteCode-Snippet: Temperaturspalte setzen\n\n\n\n\n\nm$temp &lt;- m[[\"A20230830\"]]"
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#was-heißt-wirklich-heiß",
-    "href": "pages/modellierung_luftbild_lst.html#was-heißt-wirklich-heiß",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "Was heißt „wirklich“ heiß?",
-    "text": "Was heißt „wirklich“ heiß?\n„Tatsächlich“ heißt hier: im gewählten Landsat-Aufnahmetermin mit hoher Oberflächentemperatur abgebildet.\nLST = Land Surface Temperature. Sie beschreibt die Temperatur der Oberfläche, nicht die Lufttemperatur in zwei Metern Höhe. Die thermischen Landsat-Pixel sind grob: Bei Landsat 8/9 wird die Thermalaufnahme mit 100 m erfasst und auf ein 30-m-Raster gebracht."
+    "objectID": "pages/microclimate_warmup_reader.html#koordinatensystem-angleichen",
+    "href": "pages/microclimate_warmup_reader.html#koordinatensystem-angleichen",
+    "title": "Mikroklima-Warmup",
+    "section": "3. Koordinatensystem angleichen",
+    "text": "3. Koordinatensystem angleichen\nStationsdaten und DEM müssen im selben Koordinatensystem liegen. Das ist Voraussetzung für korrekte Höhenextraktion, Distanzen und Rasterüberlagerung.\n\n\n\n\n\n\nNoteCode-Snippet: CRS angleichen\n\n\n\n\n\nm &lt;- st_transform(m, crs(dem))"
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#zwei-daten-ein-projekt",
-    "href": "pages/modellierung_luftbild_lst.html#zwei-daten-ein-projekt",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "Zwei Daten, ein Projekt",
-    "text": "Zwei Daten, ein Projekt\nRaster 1 – Luftbild: Hessisches DOP RGB, zur Oberflächeninterpretation.\nRaster 2 – Wärmebild: Landsat Collection 2 Level-2 ST_B10, in QGIS nach °C umgerechnet.\nAlles Weitere – Erwartungsflächen, Notizen und Kartenlayout – wird in QGIS von Hand erstellt."
+    "objectID": "pages/microclimate_warmup_reader.html#höhe-an-den-stationen-extrahieren",
+    "href": "pages/microclimate_warmup_reader.html#höhe-an-den-stationen-extrahieren",
+    "title": "Mikroklima-Warmup",
+    "section": "4. Höhe an den Stationen extrahieren",
+    "text": "4. Höhe an den Stationen extrahieren\nDie Stationshöhen werden direkt aus dem verwendeten DEM gezogen. Dadurch nutzen Stationsmodell und Ergebnisraster dieselbe Höhenbasis.\n\n\n\n\n\n\nNoteCode-Snippet: Höhe extrahieren\n\n\n\n\n\nm$altitude &lt;- terra::extract(dem, terra::vect(m))$altitude"
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#schritt-1-luftbild-von-marburg",
-    "href": "pages/modellierung_luftbild_lst.html#schritt-1-luftbild-von-marburg",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "Schritt 1 · Luftbild von Marburg",
-    "text": "Schritt 1 · Luftbild von Marburg\n\nHessischen RGB-Orthofoto-WMS in QGIS verbinden.\nAusschnitt wählen: z. B. Innenstadt und Lahn oder ein Schulumfeld.\nSichtbaren Ausschnitt als GeoTIFF speichern.\nQuellenangabe ergänzen: © HVBG – Hessische Verwaltung für Bodenmanagement und Geoinformation.\n\nWMS: https://www.gds-srv.hessen.de/cgi-bin/lika-services/ogc-free-images.ows\nLayer: he_dop20_rgb · Projekt-KBS: EPSG:25832"
+    "objectID": "pages/microclimate_warmup_reader.html#gültige-messpunkte-auswählen",
+    "href": "pages/microclimate_warmup_reader.html#gültige-messpunkte-auswählen",
+    "title": "Mikroklima-Warmup",
+    "section": "5. Gültige Messpunkte auswählen",
+    "text": "5. Gültige Messpunkte auswählen\nEs bleiben nur Stationen mit Temperaturwert und Höhenwert. Unvollständige Punkte werden aus der Modellierung entfernt.\n\n\n\n\n\n\nNoteCode-Snippet: vollständige Punkte wählen\n\n\n\n\n\npts &lt;- m[!is.na(m$temp) & !is.na(m$altitude), c(\"temp\", \"altitude\")]"
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#schritt-2-landsat-szene-auswählen",
-    "href": "pages/modellierung_luftbild_lst.html#schritt-2-landsat-szene-auswählen",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "Schritt 2 · Landsat-Szene auswählen",
-    "text": "Schritt 2 · Landsat-Szene auswählen\nAuf USGS EarthExplorer Marburg suchen und einen möglichst wolkenarmen Sommertermin auswählen:\n\nDatensatz: Landsat 8-9 OLI/TIRS C2 L2\nProdukt: Surface Temperature (ST_B10)\nDatum, Szenen-ID und gemeldeten Wolkenanteil notieren\n\nNur das ST-Band ist für die Minimalübung nötig. Es ist ein Einzeltermin, kein Mehrjahres- oder Zehn-Szenen-Komposit."
+    "objectID": "pages/microclimate_warmup_reader.html#aussagefläche-erzeugen",
+    "href": "pages/microclimate_warmup_reader.html#aussagefläche-erzeugen",
+    "title": "Mikroklima-Warmup",
+    "section": "6. Aussagefläche erzeugen",
+    "text": "6. Aussagefläche erzeugen\nDie Stationen definieren den Bereich, in dem die Ergebnisse ausgegeben werden. Das DEM wird auf Convex Hull plus 20 m zugeschnitten und maskiert.\n\n\n\n\n\n\nNoteCode-Snippet: Aussagefläche und DEM-Maske\n\n\n\n\n\narea &lt;- st_sf(\n  geometry = st_buffer(\n    st_convex_hull(st_union(st_geometry(pts))),\n    20\n  )\n)\n\ndem &lt;- crop(dem, vect(area))\ndem &lt;- mask(dem, vect(area))\nnames(dem) &lt;- \"altitude\""
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#schritt-3-in-grad-celsius-umrechnen",
-    "href": "pages/modellierung_luftbild_lst.html#schritt-3-in-grad-celsius-umrechnen",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "Schritt 3 · In Grad Celsius umrechnen",
-    "text": "Schritt 3 · In Grad Celsius umrechnen\nIm QGIS-Rasterrechner aus ST_B10 ein Float-Raster erzeugen:\n\\[\nT_{°C} = DN \\times 0{,}00341802 + 149{,}0 - 273{,}15\n\\]\nMit dem tatsächlichen Aufnahmedatum speichern, zum Beispiel marburg_lst_[Datum]_celsius.tif.\nif(\"ST_B10@1\" = 0, 0 / 0,\n   \"ST_B10@1\" * 0.00341802 + 149.0 - 273.15)\nDen vollständigen Bandnamen aus der Rasterrechner-Liste einsetzen. 0 / 0 markiert Fill-Werte (DN = 0) als NoData. Danach mit Einkanal-Pseudofarbe und beschrifteter °C-Legende darstellen."
+    "objectID": "pages/microclimate_warmup_reader.html#vorhersagegrid-erzeugen",
+    "href": "pages/microclimate_warmup_reader.html#vorhersagegrid-erzeugen",
+    "title": "Mikroklima-Warmup",
+    "section": "7. Vorhersagegrid erzeugen",
+    "text": "7. Vorhersagegrid erzeugen\nAus dem DEM wird eine Tabelle mit Rasterzellen, Koordinaten und Höhe gebaut. Diese Tabelle ist die technische Brücke zwischen Raster und Modell.\n\n\n\n\n\n\nNoteCode-Snippet: Vorhersagegrid\n\n\n\n\n\ngrid &lt;- as.data.frame(dem, xy = TRUE, cells = TRUE, na.rm = FALSE)\nnames(grid)[4] &lt;- \"altitude\"\ngrid &lt;- grid[!is.na(grid$altitude), ]\n\ngrid_sf &lt;- st_as_sf(\n  grid,\n  coords = c(\"x\", \"y\"),\n  crs = st_crs(pts),\n  remove = FALSE\n)"
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#schritt-4-erwartungsflächen-digitalisieren",
-    "href": "pages/modellierung_luftbild_lst.html#schritt-4-erwartungsflächen-digitalisieren",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "Schritt 4 · Erwartungsflächen digitalisieren",
-    "text": "Schritt 4 · Erwartungsflächen digitalisieren\nAuf dem Luftbild zunächst die Wärmekarte ausblenden. In QGIS einen GeoPackage-Polygonlayer erstellen und diese Felder anlegen:\n\n\n\nFeld\nInhalt\n\n\n\n\nerwartung\nwarm / mittel / kühl\n\n\noberflaeche\nDach, Straße, Grün, Wasser, Mischfläche …\n\n\ngrund\nVersiegelung, Schatten, Verdunstung, Feuchte …\n\n\n\nZeichne etwa fünf größere Vergleichsflächen. Folge den sichtbaren Oberflächen und zeichne keine Grenzen genauer, als das 100-m-Thermalbild es sinnvoll hergibt."
+    "objectID": "pages/microclimate_warmup_reader.html#ergebnisraster-berechnen",
+    "href": "pages/microclimate_warmup_reader.html#ergebnisraster-berechnen",
+    "title": "Mikroklima-Warmup",
+    "section": "8. Ergebnisraster berechnen",
+    "text": "8. Ergebnisraster berechnen\nDas Skript erzeugt vier Ergebnisraster. Alle verwenden dieselbe Aussagefläche. Der Unterschied liegt in der Modellannahme.\n\n\n\n\n\n\nNoteCode-Snippet: Ergebnisraster berechnen\n\n\n\n\n\nmake_map &lt;- function(pred, name) {\n  r &lt;- dem\n  values(r) &lt;- NA\n  values(r)[grid$cell] &lt;- pred\n  names(r) &lt;- name\n  r\n}\n\nxy &lt;- st_coordinates(pts)\npts$x &lt;- xy[, 1]\npts$y &lt;- xy[, 2]\n\nfit_lm &lt;- lm(temp ~ altitude, data = st_drop_geometry(pts))\nmap_lm &lt;- predict(dem, fit_lm)\nnames(map_lm) &lt;- \"LM_altitude\"\n\nvor_df &lt;- gstat::idw(temp ~ 1, locations = pts, newdata = grid_sf, nmax = 1)\nmap_vor &lt;- make_map(vor_df$var1.pred, \"Voronoi\")\n\nidw_df &lt;- gstat::idw(temp ~ 1, locations = pts, newdata = grid_sf, nmax = 4)\nmap_idw &lt;- make_map(idw_df$var1.pred, \"IDW\")\n\nfit_rf &lt;- randomForest(\n  temp ~ x + y + altitude,\n  data = st_drop_geometry(pts),\n  ntree = 200\n)\n\nrf_pred &lt;- predict(fit_rf, newdata = grid)\nmap_rf &lt;- make_map(rf_pred, \"RF_warning\")"
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#schritt-5-muster-testen",
-    "href": "pages/modellierung_luftbild_lst.html#schritt-5-muster-testen",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "Schritt 5 · Muster testen",
-    "text": "Schritt 5 · Muster testen\nWärmebild wieder einschalten und die digitalisierten Flächen transparent darüberlegen.\nNotiere pro Fläche: Erwartung · Beobachtung · mögliche Erklärung der Abweichung.\nFragen für die Auswertung:\n\nSind erwartete warme Flächen Teil zusammenhängender Hotspot-Zonen?\nUnterbrechen Lahn und Grünräume diese Zonen?\nWelche Abweichung ist überraschend?\nWas lässt sich aus dem einzelnen Aufnahmetermin nicht ableiten?"
+    "objectID": "pages/microclimate_warmup_reader.html#modelle-validieren",
+    "href": "pages/microclimate_warmup_reader.html#modelle-validieren",
+    "title": "Mikroklima-Warmup",
+    "section": "9. Modelle validieren",
+    "text": "9. Modelle validieren\nDie Modelle werden mit Leave-One-Out-Cross-Validation geprüft. Jede Station wird einmal ausgelassen und aus den übrigen Stationen zurückgeschätzt.\n\n\n\n\n\n\nNoteCode-Snippet: LOOCV und RMSE\n\n\n\n\n\nrmse_fun &lt;- function(e) sqrt(mean(e * e, na.rm = TRUE))\n\nlm_cv &lt;- rep(NA, nrow(pts))\nrf_cv &lt;- rep(NA, nrow(pts))\n\nfor (i in 1:nrow(pts)) {\n  train &lt;- pts[-i, ]\n  test  &lt;- pts[i, ]\n\n  fit_lm_i &lt;- lm(temp ~ altitude, data = st_drop_geometry(train))\n  lm_cv[i] &lt;- predict(fit_lm_i, newdata = st_drop_geometry(test))\n\n  fit_rf_i &lt;- randomForest(\n    temp ~ x + y + altitude,\n    data = st_drop_geometry(train),\n    ntree = 200\n  )\n  rf_cv[i] &lt;- predict(fit_rf_i, newdata = st_drop_geometry(test))\n}\n\nvor_model &lt;- gstat::gstat(\n  formula = temp ~ 1,\n  locations = pts,\n  nmax = 1,\n  set = list(idp = 2)\n)\n\nvor_cv &lt;- gstat::gstat.cv(vor_model, nfold = nrow(pts))\n\nidw_model &lt;- gstat::gstat(\n  formula = temp ~ 1,\n  locations = pts,\n  nmax = 4,\n  set = list(idp = 2)\n)\n\nidw_cv &lt;- gstat::gstat.cv(idw_model, nfold = nrow(pts))\n\nrmse &lt;- data.frame(\n  model = c(\"LM altitude\", \"Voronoi\", \"IDW\", \"RF warning\"),\n  RMSE = c(\n    rmse_fun(pts$temp - lm_cv),\n    rmse_fun(vor_cv$residual),\n    rmse_fun(idw_cv$residual),\n    rmse_fun(pts$temp - rf_cv)\n  )\n)"
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#was-wurde-gegenüber-der-automatik-reduziert",
-    "href": "pages/modellierung_luftbild_lst.html#was-wurde-gegenüber-der-automatik-reduziert",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "Was wurde gegenüber der Automatik reduziert?",
-    "text": "Was wurde gegenüber der Automatik reduziert?\n\n\n\n\n\n\n\nAutomatisiertes Lehrkräftepaket\nManueller Einstieg\n\n\n\n\nSuche und Auswahl von zehn heißen Landsat-Szenen\nAuswahl eines einzelnen klaren Sommertermins\n\n\nLST-Berechnung und pixelweises q90-Komposit\neine LST-Szene aus ST_B10 in °C\n\n\nautomatische DOP-CIR-Klassifikation\nsichtbare Interpretation des RGB-Luftbilds\n\n\nautomatisch erzeugtes QGIS-Projekt und Printlayouts\nein Projekt, manuell digitalisierte Erwartungsflächen\n\n\n\nWichtig: Ein einzelner Landsat-Termin bildet nicht dasselbe ab wie das automatisierte Hot-q90-Komposit. Er macht aber den Modellgedanken, die Datenumrechnung und den GIS-Vergleich direkt nachvollziehbar."
+    "objectID": "pages/microclimate_warmup_reader.html#ergebnisraster-als-statische-plots-darstellen",
+    "href": "pages/microclimate_warmup_reader.html#ergebnisraster-als-statische-plots-darstellen",
+    "title": "Mikroklima-Warmup",
+    "section": "10. Ergebnisraster als statische Plots darstellen",
+    "text": "10. Ergebnisraster als statische Plots darstellen\nDie vier Ergebnisraster werden zunächst nebeneinander als statische Plots dargestellt. Alle verwenden dieselbe Farbskala, damit die räumlichen Muster vergleichbar bleiben.\n\n\n\n\n\n\nNoteCode-Snippet: Ergebnisraster darstellen\n\n\n\n\n\nmaps &lt;- c(map_vor, map_idw, map_lm, map_rf)\nz &lt;- range(c(pts$temp - 1, pts$temp + 1), na.rm = TRUE)\n\npar(mfrow = c(2, 2))\n\nfor (i in 1:nlyr(maps)) {\n  plot(maps[[i]], range = z, main = names(maps)[i])\n  points(pts, pch = 19, cex = 0.8)\n}\n\npar(mfrow = c(1, 1))\n\nprint(rmse)"
   },
   {
-    "objectID": "pages/modellierung_luftbild_lst.html#quellen-und-links",
-    "href": "pages/modellierung_luftbild_lst.html#quellen-und-links",
-    "title": "Stadtwärme in Marburg modellieren",
-    "section": "Quellen und Links",
-    "text": "Quellen und Links\n\nDigitale Orthophotos Hessen (HVBG)\nWMS-Dienste und Capabilities Hessen (HVBG)\nLandsat Level-2 Datenzugang (USGS)\nLandsat ST-Skalierung (USGS)\nQA_PIXEL und Wolkeninformation (USGS)\n\nAusführliche Klick-für-Klick-Schritte: Technische QGIS-Anleitung."
+    "objectID": "pages/microclimate_warmup_reader.html#ergebnisse-als-leaflet-karte-darstellen",
+    "href": "pages/microclimate_warmup_reader.html#ergebnisse-als-leaflet-karte-darstellen",
+    "title": "Mikroklima-Warmup",
+    "section": "11. Ergebnisse als Leaflet-Karte darstellen",
+    "text": "11. Ergebnisse als Leaflet-Karte darstellen\nAm Ende werden die gleichen Ergebnisraster zusätzlich in eine interaktive Leaflet-Karte eingebunden. Die Karte ersetzt die statischen Plots nicht, sondern ergänzt sie: Die SuS können zwischen den Modellannahmen umschalten, die Messpunkte sichtbar lassen und dadurch prüfen, wie stark sich die räumliche Aussage je nach Verfahren verändert.\n\n\n\n\n\n\nNoteCode-Snippet: Leaflet-Karte\n\n\n\n\n\npal &lt;- leaflet::colorNumeric(\n  palette = hcl.colors(100, \"RdYlBu\", rev = TRUE),\n  domain = z,\n  na.color = \"transparent\"\n)\n\npts_leaflet &lt;- st_transform(pts, 4326)\npts_xy &lt;- st_coordinates(pts_leaflet)\n\nleaflet_map &lt;- leaflet::leaflet()\nleaflet_map &lt;- leaflet::addProviderTiles(\n  leaflet_map,\n  leaflet::providers$CartoDB.Positron\n)\n\nfor (i in 1:nlyr(maps)) {\n  leaflet_map &lt;- leaflet::addRasterImage(\n    leaflet_map,\n    x = raster::raster(maps[[i]]),\n    colors = pal,\n    opacity = 0.70,\n    group = names(maps)[i]\n  )\n}\n\nleaflet_map &lt;- leaflet::addCircleMarkers(\n  leaflet_map,\n  lng = pts_xy[, 1],\n  lat = pts_xy[, 2],\n  radius = 4,\n  stroke = FALSE,\n  fillOpacity = 0.9,\n  label = paste0(\"Temperatur: \", round(pts$temp, 2), \" °C\"),\n  group = \"Messpunkte\"\n)\n\nleaflet_map &lt;- leaflet::addLayersControl(\n  leaflet_map,\n  baseGroups = names(maps),\n  overlayGroups = \"Messpunkte\",\n  options = leaflet::layersControlOptions(collapsed = FALSE)\n)\n\nleaflet_map &lt;- leaflet::addLegend(\n  leaflet_map,\n  pal = pal,\n  values = z,\n  title = \"Temperatur\",\n  opacity = 0.70\n)\n\nleaflet_map &lt;- leaflet::hideGroup(leaflet_map, names(maps)[-1])\n\nleaflet_map"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Modellieren in der Geographie",
+    "section": "",
+    "text": "Wie entstehen räumliche Muster, und was können wir aus ihnen über die zugrunde liegenden Prozesse lernen? Der Kurs Modellieren in der Geographie untersucht den Weg von einer räumlichen Beobachtung über eine Modellannahme zu einer berechneten Darstellung – und zur kritischen Prüfung der Aussagekraft.\nIm Mittelpunkt stehen heuristische Regeln, physikalisch begründete Näherungen und Prozessmodelle. An Beispielen zur Oberflächenentwässerung und Flussentwicklung werden die in einem Modell implementierten Mechanismen explizit gemacht und mit seinen Resultaten verglichen.",
+    "crumbs": [
+      "Kursübersicht"
+    ]
+  },
+  {
+    "objectID": "index.html#zielsetzung",
+    "href": "index.html#zielsetzung",
+    "title": "Modellieren in der Geographie",
+    "section": "",
+    "text": "Wie entstehen räumliche Muster, und was können wir aus ihnen über die zugrunde liegenden Prozesse lernen? Der Kurs Modellieren in der Geographie untersucht den Weg von einer räumlichen Beobachtung über eine Modellannahme zu einer berechneten Darstellung – und zur kritischen Prüfung der Aussagekraft.\nIm Mittelpunkt stehen heuristische Regeln, physikalisch begründete Näherungen und Prozessmodelle. An Beispielen zur Oberflächenentwässerung und Flussentwicklung werden die in einem Modell implementierten Mechanismen explizit gemacht und mit seinen Resultaten verglichen.",
+    "crumbs": [
+      "Kursübersicht"
+    ]
+  },
+  {
+    "objectID": "index.html#kursmaterialien-nach-format",
+    "href": "index.html#kursmaterialien-nach-format",
+    "title": "Modellieren in der Geographie",
+    "section": "Kursmaterialien nach Format",
+    "text": "Kursmaterialien nach Format\nReader erläutern Begriffe und Modellannahmen; Slides / Folien unterstützen die Einführung und den Modellvergleich; Worksheets / Hands-on enthalten die praktischen Arbeitsaufträge. Neue Beispiele werden in diesen Bereichen ergänzt.",
+    "crumbs": [
+      "Kursübersicht"
+    ]
+  },
+  {
+    "objectID": "index.html#bisherige-kursinhalte",
+    "href": "index.html#bisherige-kursinhalte",
+    "title": "Modellieren in der Geographie",
+    "section": "Bisherige Kursinhalte",
+    "text": "Bisherige Kursinhalte\n\n\n\nThema\nLeitfrage\nMaterialien\n\n\n\n\n1 · Grundlagen der Modellbildung im GIS\nWelche Beziehungen zwischen Eingaben und Ergebnissen sind rein heuristisch, welche physikalisch begründbar?\nFolien · Kurzreader\n\n\n2 · Regelbasierte Modelle in NetLogo\nWie können ähnliche Fluss- und Entwässerungsmuster aus unterschiedlichen lokalen Regeln entstehen?\nFolien: Vergleich von River Meanders, Erosion und Grand Canyon\n\n\n3 · Geländeabfluss im Burgwald (SAGA / GRASS)\nWelche Fließwege lassen sich aus einem DGM ableiten, und wo liegen die Grenzen gegenüber einer Simulation von Mäanderentwicklung?\nWorksheet / Hands-on: Abfluss im Burgwald",
+    "crumbs": [
+      "Kursübersicht"
+    ]
+  },
+  {
+    "objectID": "index.html#modellbildung-von-der-regel-zur-prozessbeschreibung",
+    "href": "index.html#modellbildung-von-der-regel-zur-prozessbeschreibung",
+    "title": "Modellieren in der Geographie",
+    "section": "1 · Modellbildung: Von der Regel zur Prozessbeschreibung",
+    "text": "1 · Modellbildung: Von der Regel zur Prozessbeschreibung\nIm ersten Teil unterscheiden wir geographische Such- und Klassifikationsregeln, physikalisch motivierte Näherungen und zeitabhängige Prozessmodelle. Nicht jede aus Geodaten berechnete Karte beschreibt eine reale Dynamik. Es kommt darauf an, welche Variablen und Beziehungen tatsächlich implementiert sind.\nMaterialien: Einführung – Folien · Kurzreader zur Modellbildung",
+    "crumbs": [
+      "Kursübersicht"
+    ]
+  },
+  {
+    "objectID": "index.html#netlogo-ähnliche-muster-verschiedene-mechanismen",
+    "href": "index.html#netlogo-ähnliche-muster-verschiedene-mechanismen",
+    "title": "Modellieren in der Geographie",
+    "section": "2 · NetLogo: Ähnliche Muster, verschiedene Mechanismen",
+    "text": "2 · NetLogo: Ähnliche Muster, verschiedene Mechanismen\nAnhand der Bibliotheksmodelle River Meanders, Erosion und Grand Canyon vergleichen wir, wie sich Strömungsagenten, lokale Wasserspiegel und diskrete Wasseragenten unterscheiden. Untersucht werden Fließregeln, Wassermengen, Erosion, Sedimentation und die Rückkopplung zwischen Gelände und Abfluss.\nMaterial: NetLogo-Modellvergleich – Folien\nLeitfrage: Ist ein plausibel aussehender Flusslauf bereits ein Beleg für eine physikalisch zutreffende Prozessbeschreibung?",
+    "crumbs": [
+      "Kursübersicht"
+    ]
+  },
+  {
+    "objectID": "index.html#aktuelle-übung-abflusswege-mit-saga-gis-und-grass-gis",
+    "href": "index.html#aktuelle-übung-abflusswege-mit-saga-gis-und-grass-gis",
+    "title": "Modellieren in der Geographie",
+    "section": "3 · Aktuelle Übung: Abflusswege mit SAGA GIS und GRASS GIS",
+    "text": "3 · Aktuelle Übung: Abflusswege mit SAGA GIS und GRASS GIS\n2. November 2026: Wir untersuchen am Burgwald (Rotes Wasser) auf Grundlage eines amtlichen digitalen Geländemodells (DGM1), wie Fließrichtungen und beitragende Flächen durch lokale Routingregeln berechnet werden. Im Mittelpunkt steht der Vergleich von D8 (Abfluss an einen Nachbarn) und MFD (Verteilung auf mehrere Nachbarn). SAGA GIS dient als Hauptwerkzeug, GRASS GIS – bei Bedarf über QGIS – als Alternativ- und Kontrollweg.\nDie berechneten Linien werden mit dem bestehenden Gewässernetz verglichen. Ergänzend untersuchen wir, wie Rasterweite und Untersuchungsmaßstab die Resultate verändern, und bereiten ATKIS-Landnutzung für eine anschließende Abflusssimulation mit räumlich variabler Rauigkeit auf. Die Fließakkumulation liefert keine Prognose der zeitlichen Mäanderentwicklung, weil dafür unter anderem Strömungsdynamik, Ufererosion und Sedimenttransport fehlen.\nWorksheet / Hands-on öffnen: Burgwald – DGM, SAGA, GRASS und Landnutzung\nDas Worksheet enthält außerdem eine Matrix der implementierten Modellkonzepte in SAGA GIS, GRASS GIS und QGIS – von D8/MFD über Oberflächenabfluss und Sedimenttransport bis zur Abgrenzung gegenüber echter Seitenerosion und Mäanderentwicklung (Beispiel MeanderPy).",
+    "crumbs": [
+      "Kursübersicht"
+    ]
+  },
+  {
+    "objectID": "index.html#reader-slides-und-hands-on-im-überblick",
+    "href": "index.html#reader-slides-und-hands-on-im-überblick",
+    "title": "Modellieren in der Geographie",
+    "section": "Reader, Slides und Hands-on im Überblick",
+    "text": "Reader, Slides und Hands-on im Überblick\n\n\n\nReader\nSlides / Folien\nWorksheets / Hands-on\n\n\n\n\nGrundlagen der Modellbildung\nModellbildung im GIS · NetLogo-Modellvergleich\nBurgwald: Abfluss, Skalen und Rauigkeit",
+    "crumbs": [
+      "Kursübersicht"
+    ]
+  },
+  {
+    "objectID": "index.html#gemeinsame-vergleichsfragen",
+    "href": "index.html#gemeinsame-vergleichsfragen",
+    "title": "Modellieren in der Geographie",
+    "section": "Gemeinsame Vergleichsfragen",
+    "text": "Gemeinsame Vergleichsfragen\n\n\n\n\n\n\n\nPrüffrage\nWorauf ist zu achten?\n\n\n\n\nWelche Eingangsdaten?\nDigitales Geländemodell, Landnutzung, Wasserstände, Agentenpositionen, Modellparameter\n\n\nWelche Regeln?\nKraftanalogie, Wahl des niedrigsten Nachbarn, D8- oder MFD-Routing\n\n\nWelche Größen werden berechnet?\nAgentenbewegung, Wasserverlagerung, Fließakkumulation, Geländeänderung\n\n\nWelche Bilanz wird erfüllt?\nLokale Wassererhaltung, Impuls- oder Sedimentbilanz – oder keine davon?\n\n\nWas kann geprüft werden?\nLage des beobachteten Flusslaufs, Entwässerungsmuster, Sensitivität gegenüber Parametern\n\n\nWelche Aussage ist nicht zulässig?\nAus einer Fließakkumulationskarte direkt Fließgeschwindigkeiten, Erosionsraten oder zukünftige Mäanderlagen abzuleiten",
+    "crumbs": [
+      "Kursübersicht"
+    ]
+  },
+  {
+    "objectID": "index.html#erwartete-kompetenzen",
+    "href": "index.html#erwartete-kompetenzen",
+    "title": "Modellieren in der Geographie",
+    "section": "Erwartete Kompetenzen",
+    "text": "Erwartete Kompetenzen\nSie können die Regeln und Annahmen eines räumlichen Modells rekonstruieren, vergleichbare Ergebnisse verschiedener Modellansätze untersuchen und begründen, welche Aussagen durch die Berechnung tatsächlich gestützt werden. Musterähnlichkeit, physikalische Plausibilität und quantitative Validität sind dabei unterschiedliche Qualitätskriterien.",
+    "crumbs": [
+      "Kursübersicht"
+    ]
   },
   {
     "objectID": "pages/meander_abfluss_saga_grass.html",
@@ -409,402 +654,157 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Modellieren in der Geographie",
+    "objectID": "pages/modellierung_luftbild_lst.html#leitfrage",
+    "href": "pages/modellierung_luftbild_lst.html#leitfrage",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Leitfrage",
+    "text": "Leitfrage\nWo erwarten wir in Marburg warme Oberflächen – und was zeigt der Satellit?\nWir modellieren keine Lufttemperatur und keine vollständige Wärmebelastung. Wir prüfen eine begründete Erwartung mit einem thermischen Satellitenbild."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#erwartung-aus-oberflächen-ableiten",
+    "href": "pages/modellierung_luftbild_lst.html#erwartung-aus-oberflächen-ableiten",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "1. Erwartung aus Oberflächen ableiten",
+    "text": "1. Erwartung aus Oberflächen ableiten\nVor dem Wärmebild fragen wir: Welche Oberfläche nimmt viel Energie auf, speichert sie oder kann wenig über Verdunstung kühlen?\n\n\n\nSichtbare Oberfläche\nErwartung für einen sonnigen Sommertag\n\n\n\n\nAsphalt, große Dächer, Parkplatz, Platz\neher warm\n\n\nBaumkronen, schattiger Park, feuchte Vegetation\neher kühl\n\n\nLahn oder Teich\nhäufig kühlere Tagesoberfläche, thermisch träge\n\n\ntrockene Wiese, Schotter, Baustelle\noffen: möglicher Grenzfall\n\n\n\n\nDie Oberflächenklassen bündeln sichtbare Stadtflächen zu einem einfachen Arbeitsmodell."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#stadtstruktur-lesen",
+    "href": "pages/modellierung_luftbild_lst.html#stadtstruktur-lesen",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "2. Stadtstruktur lesen",
+    "text": "2. Stadtstruktur lesen\nEs geht nicht nur darum, welche Oberfläche vorliegt. Wir betrachten auch, wie sie im Raum angeordnet ist:\n\nbilden Dächer, Straßen und Parkplätze einen zusammenhängenden warmen Block?\nverlaufen Grünzüge als kühlere Achsen durch die Bebauung?\nliegt ein großer Platz direkt neben Schatten oder Wasser?\nwerden warme Bereiche am Stadtrand durch offene Landschaft unterbrochen?\n\nFür Marburg können Innenstadt und Lahn, Bahnhofsumfeld, größere Parkplätze, Gewerbegebiete, Lahnberge und bewaldete Hänge als unterschiedliche Vergleichsräume dienen."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#tatsächliche-hotspots-abgleichen",
+    "href": "pages/modellierung_luftbild_lst.html#tatsächliche-hotspots-abgleichen",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "3. Tatsächliche Hotspots abgleichen",
+    "text": "3. Tatsächliche Hotspots abgleichen\nErst jetzt kommt die LST-Karte hinzu. Wir prüfen dieselben Flächen erneut:\n\nTreffer: Erwarteter warmer Bereich ist im Satellitenbild warm.\nAbweichung: Eine erwartete warme Fläche erscheint weniger warm oder umgekehrt.\nErklärung: Schatten, Feuchte, Material, Aufnahmezeit, Wolkenrest oder Mischpixel könnten eine Rolle spielen.\n\n\nVom sichtbaren Muster zum thermischen Test."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#modellbeziehung",
+    "href": "pages/modellierung_luftbild_lst.html#modellbeziehung",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Modellbeziehung",
+    "text": "Modellbeziehung\n\\[\n\\text{Oberfläche} + \\text{Schatten / Feuchte} + \\text{räumliche Nachbarschaft}\n\\;\\longrightarrow\\;\n\\text{erwartete Oberflächentemperatur}\n\\;\\longrightarrow\\;\n\\text{Abgleich mit Landsat}\n\\]\nDas ist ein Erklärungsmodell. Es sagt, wo wir genauer hinschauen sollten. Es garantiert nicht, dass jedes Dach oder jeder Parkplatz heiß ist."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#was-heißt-wirklich-heiß",
+    "href": "pages/modellierung_luftbild_lst.html#was-heißt-wirklich-heiß",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Was heißt „wirklich“ heiß?",
+    "text": "Was heißt „wirklich“ heiß?\n„Tatsächlich“ heißt hier: im gewählten Landsat-Aufnahmetermin mit hoher Oberflächentemperatur abgebildet.\nLST = Land Surface Temperature. Sie beschreibt die Temperatur der Oberfläche, nicht die Lufttemperatur in zwei Metern Höhe. Die thermischen Landsat-Pixel sind grob: Bei Landsat 8/9 wird die Thermalaufnahme mit 100 m erfasst und auf ein 30-m-Raster gebracht."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#zwei-daten-ein-projekt",
+    "href": "pages/modellierung_luftbild_lst.html#zwei-daten-ein-projekt",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Zwei Daten, ein Projekt",
+    "text": "Zwei Daten, ein Projekt\nRaster 1 – Luftbild: Hessisches DOP RGB, zur Oberflächeninterpretation.\nRaster 2 – Wärmebild: Landsat Collection 2 Level-2 ST_B10, in QGIS nach °C umgerechnet.\nAlles Weitere – Erwartungsflächen, Notizen und Kartenlayout – wird in QGIS von Hand erstellt."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#schritt-1-luftbild-von-marburg",
+    "href": "pages/modellierung_luftbild_lst.html#schritt-1-luftbild-von-marburg",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Schritt 1 · Luftbild von Marburg",
+    "text": "Schritt 1 · Luftbild von Marburg\n\nHessischen RGB-Orthofoto-WMS in QGIS verbinden.\nAusschnitt wählen: z. B. Innenstadt und Lahn oder ein Schulumfeld.\nSichtbaren Ausschnitt als GeoTIFF speichern.\nQuellenangabe ergänzen: © HVBG – Hessische Verwaltung für Bodenmanagement und Geoinformation.\n\nWMS: https://www.gds-srv.hessen.de/cgi-bin/lika-services/ogc-free-images.ows\nLayer: he_dop20_rgb · Projekt-KBS: EPSG:25832"
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#schritt-2-landsat-szene-auswählen",
+    "href": "pages/modellierung_luftbild_lst.html#schritt-2-landsat-szene-auswählen",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Schritt 2 · Landsat-Szene auswählen",
+    "text": "Schritt 2 · Landsat-Szene auswählen\nAuf USGS EarthExplorer Marburg suchen und einen möglichst wolkenarmen Sommertermin auswählen:\n\nDatensatz: Landsat 8-9 OLI/TIRS C2 L2\nProdukt: Surface Temperature (ST_B10)\nDatum, Szenen-ID und gemeldeten Wolkenanteil notieren\n\nNur das ST-Band ist für die Minimalübung nötig. Es ist ein Einzeltermin, kein Mehrjahres- oder Zehn-Szenen-Komposit."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#schritt-3-in-grad-celsius-umrechnen",
+    "href": "pages/modellierung_luftbild_lst.html#schritt-3-in-grad-celsius-umrechnen",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Schritt 3 · In Grad Celsius umrechnen",
+    "text": "Schritt 3 · In Grad Celsius umrechnen\nIm QGIS-Rasterrechner aus ST_B10 ein Float-Raster erzeugen:\n\\[\nT_{°C} = DN \\times 0{,}00341802 + 149{,}0 - 273{,}15\n\\]\nMit dem tatsächlichen Aufnahmedatum speichern, zum Beispiel marburg_lst_[Datum]_celsius.tif.\nif(\"ST_B10@1\" = 0, 0 / 0,\n   \"ST_B10@1\" * 0.00341802 + 149.0 - 273.15)\nDen vollständigen Bandnamen aus der Rasterrechner-Liste einsetzen. 0 / 0 markiert Fill-Werte (DN = 0) als NoData. Danach mit Einkanal-Pseudofarbe und beschrifteter °C-Legende darstellen."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#schritt-4-erwartungsflächen-digitalisieren",
+    "href": "pages/modellierung_luftbild_lst.html#schritt-4-erwartungsflächen-digitalisieren",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Schritt 4 · Erwartungsflächen digitalisieren",
+    "text": "Schritt 4 · Erwartungsflächen digitalisieren\nAuf dem Luftbild zunächst die Wärmekarte ausblenden. In QGIS einen GeoPackage-Polygonlayer erstellen und diese Felder anlegen:\n\n\n\nFeld\nInhalt\n\n\n\n\nerwartung\nwarm / mittel / kühl\n\n\noberflaeche\nDach, Straße, Grün, Wasser, Mischfläche …\n\n\ngrund\nVersiegelung, Schatten, Verdunstung, Feuchte …\n\n\n\nZeichne etwa fünf größere Vergleichsflächen. Folge den sichtbaren Oberflächen und zeichne keine Grenzen genauer, als das 100-m-Thermalbild es sinnvoll hergibt."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#schritt-5-muster-testen",
+    "href": "pages/modellierung_luftbild_lst.html#schritt-5-muster-testen",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Schritt 5 · Muster testen",
+    "text": "Schritt 5 · Muster testen\nWärmebild wieder einschalten und die digitalisierten Flächen transparent darüberlegen.\nNotiere pro Fläche: Erwartung · Beobachtung · mögliche Erklärung der Abweichung.\nFragen für die Auswertung:\n\nSind erwartete warme Flächen Teil zusammenhängender Hotspot-Zonen?\nUnterbrechen Lahn und Grünräume diese Zonen?\nWelche Abweichung ist überraschend?\nWas lässt sich aus dem einzelnen Aufnahmetermin nicht ableiten?"
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#was-wurde-gegenüber-der-automatik-reduziert",
+    "href": "pages/modellierung_luftbild_lst.html#was-wurde-gegenüber-der-automatik-reduziert",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Was wurde gegenüber der Automatik reduziert?",
+    "text": "Was wurde gegenüber der Automatik reduziert?\n\n\n\n\n\n\n\nAutomatisiertes Lehrkräftepaket\nManueller Einstieg\n\n\n\n\nSuche und Auswahl von zehn heißen Landsat-Szenen\nAuswahl eines einzelnen klaren Sommertermins\n\n\nLST-Berechnung und pixelweises q90-Komposit\neine LST-Szene aus ST_B10 in °C\n\n\nautomatische DOP-CIR-Klassifikation\nsichtbare Interpretation des RGB-Luftbilds\n\n\nautomatisch erzeugtes QGIS-Projekt und Printlayouts\nein Projekt, manuell digitalisierte Erwartungsflächen\n\n\n\nWichtig: Ein einzelner Landsat-Termin bildet nicht dasselbe ab wie das automatisierte Hot-q90-Komposit. Er macht aber den Modellgedanken, die Datenumrechnung und den GIS-Vergleich direkt nachvollziehbar."
+  },
+  {
+    "objectID": "pages/modellierung_luftbild_lst.html#quellen-und-links",
+    "href": "pages/modellierung_luftbild_lst.html#quellen-und-links",
+    "title": "Stadtwärme in Marburg modellieren",
+    "section": "Quellen und Links",
+    "text": "Quellen und Links\n\nDigitale Orthophotos Hessen (HVBG)\nWMS-Dienste und Capabilities Hessen (HVBG)\nLandsat Level-2 Datenzugang (USGS)\nLandsat ST-Skalierung (USGS)\nQA_PIXEL und Wolkeninformation (USGS)\n\nAusführliche Klick-für-Klick-Schritte: Technische QGIS-Anleitung."
+  },
+  {
+    "objectID": "pages/ws/ws-01.html",
+    "href": "pages/ws/ws-01.html",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
     "section": "",
-    "text": "Wie entstehen räumliche Muster, und was können wir aus ihnen über die zugrunde liegenden Prozesse lernen? Der Kurs Modellieren in der Geographie untersucht den Weg von einer räumlichen Beobachtung über eine Modellannahme zu einer berechneten Darstellung – und zur kritischen Prüfung der Aussagekraft.\nIm Mittelpunkt stehen heuristische Regeln, physikalisch begründete Näherungen und Prozessmodelle. An Beispielen zur Oberflächenentwässerung und Flussentwicklung werden die in einem Modell implementierten Mechanismen explizit gemacht und mit seinen Resultaten verglichen.",
-    "crumbs": [
-      "Kursübersicht"
-    ]
+    "text": "Sie richten ein kleines R-Projekt ein, trennen Eingangsdaten, Skripte und Ergebnisse und führen einen überschaubaren Analyseablauf aus. Anschließend verändern Sie einen Parameter und prüfen die Wirkung. Sie nutzen dabei relative Pfade, einen aussagekräftigen Skriptkopf und kurze Kommentare.\nBeispiel: Sie laden die Gebietsgrenze des Burgwalds, erzeugen einen Puffer und speichern eine Karte sowie die berechnete Geometrie. Die Daten stammen aus dem Kursrepository LV-19-d19-006-25-R. Die Pufferberechnung dient hier als einfache Übung zur Skriptnutzung."
   },
   {
-    "objectID": "index.html#zielsetzung",
-    "href": "index.html#zielsetzung",
-    "title": "Modellieren in der Geographie",
+    "objectID": "pages/ws/ws-01.html#ziel",
+    "href": "pages/ws/ws-01.html#ziel",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
     "section": "",
-    "text": "Wie entstehen räumliche Muster, und was können wir aus ihnen über die zugrunde liegenden Prozesse lernen? Der Kurs Modellieren in der Geographie untersucht den Weg von einer räumlichen Beobachtung über eine Modellannahme zu einer berechneten Darstellung – und zur kritischen Prüfung der Aussagekraft.\nIm Mittelpunkt stehen heuristische Regeln, physikalisch begründete Näherungen und Prozessmodelle. An Beispielen zur Oberflächenentwässerung und Flussentwicklung werden die in einem Modell implementierten Mechanismen explizit gemacht und mit seinen Resultaten verglichen.",
-    "crumbs": [
-      "Kursübersicht"
-    ]
+    "text": "Sie richten ein kleines R-Projekt ein, trennen Eingangsdaten, Skripte und Ergebnisse und führen einen überschaubaren Analyseablauf aus. Anschließend verändern Sie einen Parameter und prüfen die Wirkung. Sie nutzen dabei relative Pfade, einen aussagekräftigen Skriptkopf und kurze Kommentare.\nBeispiel: Sie laden die Gebietsgrenze des Burgwalds, erzeugen einen Puffer und speichern eine Karte sowie die berechnete Geometrie. Die Daten stammen aus dem Kursrepository LV-19-d19-006-25-R. Die Pufferberechnung dient hier als einfache Übung zur Skriptnutzung."
   },
   {
-    "objectID": "index.html#kursmaterialien-nach-format",
-    "href": "index.html#kursmaterialien-nach-format",
-    "title": "Modellieren in der Geographie",
-    "section": "Kursmaterialien nach Format",
-    "text": "Kursmaterialien nach Format\nReader erläutern Begriffe und Modellannahmen; Slides / Folien unterstützen die Einführung und den Modellvergleich; Worksheets / Hands-on enthalten die praktischen Arbeitsaufträge. Neue Beispiele werden in diesen Bereichen ergänzt.",
-    "crumbs": [
-      "Kursübersicht"
-    ]
+    "objectID": "pages/ws/ws-01.html#das-projekt-anlegen",
+    "href": "pages/ws/ws-01.html#das-projekt-anlegen",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "1 · Das Projekt anlegen",
+    "text": "1 · Das Projekt anlegen\nÖffnen Sie in RStudio File → New Project → New Directory → New Project. Nennen Sie das Projekt burgwald-mini und wählen Sie einen Speicherort. Öffnen Sie es künftig über burgwald-mini.Rproj.\nLegen Sie über den Reiter Files → New Folder drei Unterordner an:\n\n\n\n\n\n\n\nOrt im Projekt\nInhalt\n\n\n\n\nburgwald-mini.Rproj\nÖffnet das Projekt mit dem Projektordner als Arbeitsverzeichnis.\n\n\ndata/\nHeruntergeladene Eingangsdaten; diese werden nicht überschrieben.\n\n\nscripts/\nIhre R-Skripte.\n\n\noutput/\nBerechnete Daten und Abbildungen; diese lassen sich erneut erzeugen.\n\n\n\nPrüfen Sie in der Konsole:\n\ngetwd()\nlist.files()\n\nDas Arbeitsverzeichnis muss Ihr Ordner burgwald-mini sein. Die drei Unterordner und die Projektdatei sollten angezeigt werden. Alle folgenden Pfade beziehen sich auf diesen Projektordner, auch wenn das Skript in scripts/ liegt. Ein zusätzliches setwd() ist nicht erforderlich.\nInstallieren Sie das benötigte Paket einmalig in der Konsole, falls es noch fehlt:\n\ninstall.packages(\"sf\")"
   },
   {
-    "objectID": "index.html#bisherige-kursinhalte",
-    "href": "index.html#bisherige-kursinhalte",
-    "title": "Modellieren in der Geographie",
-    "section": "Bisherige Kursinhalte",
-    "text": "Bisherige Kursinhalte\n\n\n\nThema\nLeitfrage\nMaterialien\n\n\n\n\n1 · Grundlagen der Modellbildung im GIS\nWelche Beziehungen zwischen Eingaben und Ergebnissen sind rein heuristisch, welche physikalisch begründbar?\nFolien · Kurzreader\n\n\n2 · Regelbasierte Modelle in NetLogo\nWie können ähnliche Fluss- und Entwässerungsmuster aus unterschiedlichen lokalen Regeln entstehen?\nFolien: Vergleich von River Meanders, Erosion und Grand Canyon\n\n\n3 · Geländeabfluss im Burgwald (SAGA / GRASS)\nWelche Fließwege lassen sich aus einem DGM ableiten, und wo liegen die Grenzen gegenüber einer Simulation von Mäanderentwicklung?\nWorksheet / Hands-on: Abfluss im Burgwald",
-    "crumbs": [
-      "Kursübersicht"
-    ]
+    "objectID": "pages/ws/ws-01.html#ein-übersichtliches-skript-anlegen",
+    "href": "pages/ws/ws-01.html#ein-übersichtliches-skript-anlegen",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "2 · Ein übersichtliches Skript anlegen",
+    "text": "2 · Ein übersichtliches Skript anlegen\nErstellen Sie über File → New File → R Script ein Skript und speichern Sie es als scripts/01_burgwald_puffer.R. Übernehmen Sie den folgenden Code und ergänzen Sie Name und Datum im Kopf.\nDer Aufbau bleibt einfach: Header → Paket → Einstellungen → Daten → Verarbeitung → Ausgabe → Kontrolle. Änderungen an Pfaden oder Parametern erfolgen gesammelt im Abschnitt „Einstellungen“.\n\n# ------------------------------------------------------------\n# Titel:   Burgwald – Gebietsgrenze puffern\n# Autor:   Ihr Name\n# Datum:   JJJJ-MM-TT\n# Zweck:   Gebietsgrenze laden, puffern und Ergebnisse speichern\n# Quelle:  https://github.com/gisma/LV-19-d19-006-25-R\n# Eingabe: data/burgwald_hull.GPKG\n# Ausgabe: Puffer als GeoPackage und Karte unter output/\n# Start:   RStudio-Projekt burgwald-mini.Rproj öffnen\n# ------------------------------------------------------------\n\n# 1. Paket ---------------------------------------------------\nlibrary(sf)\n\n# 2. Einstellungen -------------------------------------------\npuffer_m &lt;- 100\n\ndaten_url &lt;- paste0(\n  \"https://raw.githubusercontent.com/\",\n  \"gisma/LV-19-d19-006-25-R/main/burgwald_hull.GPKG\"\n)\neingabe &lt;- file.path(\"data\", \"burgwald_hull.GPKG\")\nausgabe &lt;- file.path(\"output\", paste0(\"puffer_\", puffer_m, \"m\"))\n\n# 3. Daten laden ---------------------------------------------\n# Der Download erfolgt nur, wenn die Eingabedatei noch fehlt.\nif (!file.exists(eingabe)) {\n  download.file(daten_url, destfile = eingabe, mode = \"wb\")\n}\ngebiet &lt;- st_read(eingabe, quiet = TRUE)\n\n# 4. Verarbeiten ---------------------------------------------\n# UTM 32N verwendet Meter: Der Pufferabstand ist damit eindeutig.\ngebiet &lt;- st_transform(gebiet, 25832)\npuffer &lt;- st_buffer(gebiet, dist = puffer_m)\n\n# 5. Ergebnisse speichern ------------------------------------\n# Nur die gleichnamige Ergebnisdatei wird beim Wiederholen ersetzt.\nst_write(puffer, paste0(ausgabe, \".gpkg\"),\n         delete_dsn = TRUE, quiet = TRUE)\n\npng(paste0(ausgabe, \".png\"), width = 1000, height = 800)\nplot(st_geometry(puffer), col = \"lightblue\",\n     main = paste(\"Burgwald – Puffer\", puffer_m, \"m\"))\nplot(st_geometry(gebiet), col = \"darkgreen\", add = TRUE)\nlegend(\"topright\", legend = c(\"Gebiet\", \"Puffer\"),\n       fill = c(\"darkgreen\", \"lightblue\"), bty = \"n\")\ndev.off()\n\n# 6. Kontrollieren -------------------------------------------\nprint(st_crs(gebiet)$epsg)\nprint(data.frame(\n  gebiet_km2 = as.numeric(st_area(gebiet)) / 1e6,\n  puffer_km2 = as.numeric(st_area(puffer)) / 1e6\n))\nprint(list.files(\"output\"))\n\nFühren Sie das Skript zunächst abschnittsweise mit Ctrl+Enter aus. Prüfen Sie anschließend die PNG-Datei im Ordner output. Öffnen Sie das erzeugte GeoPackage in QGIS und vergleichen Sie es mit der Eingabedatei.\nKontrolle: Liegt das Gebiet innerhalb seines Puffers? Ist die Pufferfläche größer als die Ausgangsfläche? Welche Dateien wurden erzeugt und wo liegen sie?"
   },
   {
-    "objectID": "index.html#modellbildung-von-der-regel-zur-prozessbeschreibung",
-    "href": "index.html#modellbildung-von-der-regel-zur-prozessbeschreibung",
-    "title": "Modellieren in der Geographie",
-    "section": "1 · Modellbildung: Von der Regel zur Prozessbeschreibung",
-    "text": "1 · Modellbildung: Von der Regel zur Prozessbeschreibung\nIm ersten Teil unterscheiden wir geographische Such- und Klassifikationsregeln, physikalisch motivierte Näherungen und zeitabhängige Prozessmodelle. Nicht jede aus Geodaten berechnete Karte beschreibt eine reale Dynamik. Es kommt darauf an, welche Variablen und Beziehungen tatsächlich implementiert sind.\nMaterialien: Einführung – Folien · Kurzreader zur Modellbildung",
-    "crumbs": [
-      "Kursübersicht"
-    ]
+    "objectID": "pages/ws/ws-01.html#einen-parameter-gezielt-ändern",
+    "href": "pages/ws/ws-01.html#einen-parameter-gezielt-ändern",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "3 · Einen Parameter gezielt ändern",
+    "text": "3 · Einen Parameter gezielt ändern\nÄndern Sie ausschließlich puffer_m &lt;- 100 zu puffer_m &lt;- 500. Schreiben Sie davor einen kurzen Kommentar, warum Sie den Parameter verändern. Führen Sie das gesamte Skript mit Source erneut aus.\nVergleichen Sie die beiden Karten und die ausgegebenen Flächen. Prüfen Sie außerdem, ob beide Ergebnisvarianten unter output/ liegen und die Eingabedatei unter data/ unverändert geblieben ist.\nNotieren Sie: Was steuert der Parameter? In welcher Einheit? Warum entsteht durch seine Änderung auch ein anderer Ausgabename?"
   },
   {
-    "objectID": "index.html#netlogo-ähnliche-muster-verschiedene-mechanismen",
-    "href": "index.html#netlogo-ähnliche-muster-verschiedene-mechanismen",
-    "title": "Modellieren in der Geographie",
-    "section": "2 · NetLogo: Ähnliche Muster, verschiedene Mechanismen",
-    "text": "2 · NetLogo: Ähnliche Muster, verschiedene Mechanismen\nAnhand der Bibliotheksmodelle River Meanders, Erosion und Grand Canyon vergleichen wir, wie sich Strömungsagenten, lokale Wasserspiegel und diskrete Wasseragenten unterscheiden. Untersucht werden Fließregeln, Wassermengen, Erosion, Sedimentation und die Rückkopplung zwischen Gelände und Abfluss.\nMaterial: NetLogo-Modellvergleich – Folien\nLeitfrage: Ist ein plausibel aussehender Flusslauf bereits ein Beleg für eine physikalisch zutreffende Prozessbeschreibung?",
-    "crumbs": [
-      "Kursübersicht"
-    ]
+    "objectID": "pages/ws/ws-01.html#einen-pfadfehler-verstehen",
+    "href": "pages/ws/ws-01.html#einen-pfadfehler-verstehen",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "4 · Einen Pfadfehler verstehen",
+    "text": "4 · Einen Pfadfehler verstehen\nÄndern Sie vorübergehend die Definition von eingabe zu:\n\neingabe &lt;- file.path(\"daten\", \"burgwald_hull.GPKG\")\n\nFühren Sie das Skript erneut aus. Lesen Sie die Fehlermeldung und prüfen Sie mit getwd() und dir.exists(\"daten\"), worauf der Pfad verweist. Stellen Sie anschließend den richtigen Pfad wieder her.\nNutzen Sie bei Bedarf die Dokumentation oder KI. Ein passender Auftrag lautet:\n\nMein RStudio-Projekt enthält die Ordner data, scripts und output. Erkläre diese Fehlermeldung und nenne die kleinste notwendige Korrektur. Ändere keine weiteren Teile des Skripts: [Fehlermeldung und betroffene Codezeilen einfügen].\n\nHalten Sie in einem Kommentar fest, was falsch war und wie Sie die Korrektur geprüft haben. Kommentare sollen den Zweck oder eine Entscheidung erklären, beispielsweise die Wahl eines metrischen Koordinatensystems."
   },
   {
-    "objectID": "index.html#aktuelle-übung-abflusswege-mit-saga-gis-und-grass-gis",
-    "href": "index.html#aktuelle-übung-abflusswege-mit-saga-gis-und-grass-gis",
-    "title": "Modellieren in der Geographie",
-    "section": "3 · Aktuelle Übung: Abflusswege mit SAGA GIS und GRASS GIS",
-    "text": "3 · Aktuelle Übung: Abflusswege mit SAGA GIS und GRASS GIS\n2. November 2026: Wir untersuchen am Burgwald (Rotes Wasser) auf Grundlage eines amtlichen digitalen Geländemodells (DGM1), wie Fließrichtungen und beitragende Flächen durch lokale Routingregeln berechnet werden. Im Mittelpunkt steht der Vergleich von D8 (Abfluss an einen Nachbarn) und MFD (Verteilung auf mehrere Nachbarn). SAGA GIS dient als Hauptwerkzeug, GRASS GIS – bei Bedarf über QGIS – als Alternativ- und Kontrollweg.\nDie berechneten Linien werden mit dem bestehenden Gewässernetz verglichen. Ergänzend untersuchen wir, wie Rasterweite und Untersuchungsmaßstab die Resultate verändern, und bereiten ATKIS-Landnutzung für eine anschließende Abflusssimulation mit räumlich variabler Rauigkeit auf. Die Fließakkumulation liefert keine Prognose der zeitlichen Mäanderentwicklung, weil dafür unter anderem Strömungsdynamik, Ufererosion und Sedimenttransport fehlen.\nWorksheet / Hands-on öffnen: Burgwald – DGM, SAGA, GRASS und Landnutzung\nDas Worksheet enthält außerdem eine Matrix der implementierten Modellkonzepte in SAGA GIS, GRASS GIS und QGIS – von D8/MFD über Oberflächenabfluss und Sedimenttransport bis zur Abgrenzung gegenüber echter Seitenerosion und Mäanderentwicklung (Beispiel MeanderPy).",
-    "crumbs": [
-      "Kursübersicht"
-    ]
+    "objectID": "pages/ws/ws-01.html#ohne-gespeicherte-objekte-erneut-ausführen",
+    "href": "pages/ws/ws-01.html#ohne-gespeicherte-objekte-erneut-ausführen",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "5 · Ohne gespeicherte Objekte erneut ausführen",
+    "text": "5 · Ohne gespeicherte Objekte erneut ausführen\nStarten Sie R über Session → Restart R neu. Führen Sie das Skript anschließend vollständig mit Source aus. Es muss seine Daten selbst einlesen und alle benötigten Objekte erneut erzeugen können."
   },
   {
-    "objectID": "index.html#reader-slides-und-hands-on-im-überblick",
-    "href": "index.html#reader-slides-und-hands-on-im-überblick",
-    "title": "Modellieren in der Geographie",
-    "section": "Reader, Slides und Hands-on im Überblick",
-    "text": "Reader, Slides und Hands-on im Überblick\n\n\n\nReader\nSlides / Folien\nWorksheets / Hands-on\n\n\n\n\nGrundlagen der Modellbildung\nModellbildung im GIS · NetLogo-Modellvergleich\nBurgwald: Abfluss, Skalen und Rauigkeit",
-    "crumbs": [
-      "Kursübersicht"
-    ]
-  },
-  {
-    "objectID": "index.html#gemeinsame-vergleichsfragen",
-    "href": "index.html#gemeinsame-vergleichsfragen",
-    "title": "Modellieren in der Geographie",
-    "section": "Gemeinsame Vergleichsfragen",
-    "text": "Gemeinsame Vergleichsfragen\n\n\n\n\n\n\n\nPrüffrage\nWorauf ist zu achten?\n\n\n\n\nWelche Eingangsdaten?\nDigitales Geländemodell, Landnutzung, Wasserstände, Agentenpositionen, Modellparameter\n\n\nWelche Regeln?\nKraftanalogie, Wahl des niedrigsten Nachbarn, D8- oder MFD-Routing\n\n\nWelche Größen werden berechnet?\nAgentenbewegung, Wasserverlagerung, Fließakkumulation, Geländeänderung\n\n\nWelche Bilanz wird erfüllt?\nLokale Wassererhaltung, Impuls- oder Sedimentbilanz – oder keine davon?\n\n\nWas kann geprüft werden?\nLage des beobachteten Flusslaufs, Entwässerungsmuster, Sensitivität gegenüber Parametern\n\n\nWelche Aussage ist nicht zulässig?\nAus einer Fließakkumulationskarte direkt Fließgeschwindigkeiten, Erosionsraten oder zukünftige Mäanderlagen abzuleiten",
-    "crumbs": [
-      "Kursübersicht"
-    ]
-  },
-  {
-    "objectID": "index.html#erwartete-kompetenzen",
-    "href": "index.html#erwartete-kompetenzen",
-    "title": "Modellieren in der Geographie",
-    "section": "Erwartete Kompetenzen",
-    "text": "Erwartete Kompetenzen\nSie können die Regeln und Annahmen eines räumlichen Modells rekonstruieren, vergleichbare Ergebnisse verschiedener Modellansätze untersuchen und begründen, welche Aussagen durch die Berechnung tatsächlich gestützt werden. Musterähnlichkeit, physikalische Plausibilität und quantitative Validität sind dabei unterschiedliche Qualitätskriterien.",
-    "crumbs": [
-      "Kursübersicht"
-    ]
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html",
-    "href": "pages/microclimate_warmup_reader.html",
-    "title": "Mikroklima-Warmup",
-    "section": "",
-    "text": "Dieser Reader begleitet einen Hands-on-Einstieg in räumliches Arbeiten mit R und RStudio. Im Mittelpunkt steht ein basales Skript: Es wird geöffnet, blockweise ausgeführt und so gelesen, dass nachvollziehbar wird, welche Daten eingelesen werden, welche räumlichen Operationen stattfinden und welche Ergebnisdatensätze daraus entstehen. Die SuS sollen hier nicht selbst einen vollständigen Forschungsworkflow entwickeln, sondern trainieren, ein vorhandenes Skript kontrolliert zu nutzen, seine Zwischenschritte zu verstehen und die Ergebnisse fachlich zu lesen.\nFachlich geht es um ein typisches Problem der Geoinformatik und physischen Geographie: Messungen liegen punktuell vor, die Fragestellung richtet sich aber auf eine Fläche. Das ist die normale Ausgangslage vieler Messkampagnen. Man hat Stationen, Logger oder einzelne Messpunkte, aber die eigentliche Frage lautet nicht nur: Was wurde genau an diesen Punkten gemessen? Sie lautet: Wie können wir aus diesen Punkten eine begrenzte, nachvollziehbare räumliche Aussage ableiten?\nDie Übung ist deshalb zugleich technisch und inhaltlich angelegt. Technisch geht es darum, mit RStudio ein Skript auszuführen, einfache räumliche Datenobjekte zu verarbeiten, Ergebnisraster zu erzeugen und diese am Ende auch interaktiv in einer Leaflet-Karte zu betrachten. Inhaltlich geht es darum zu verstehen, dass jede flächenhafte Darstellung aus Punktdaten eine Annahme darüber enthält, wie Werte zwischen Messpunkten in den Raum übertragen werden.\nDie zentrale Frage lautet:\n\nWir haben wie üblich nur einzelne Messpunkte. Wie gehen wir vor, wenn wir daraus trotzdem eine räumliche Aussage zur Temperaturverteilung ableiten wollen?\n\nDie Übung fragt also methodisch: Was tun wir, wenn die Beobachtung punktuell ist, die Frage aber flächenhaft gestellt wird?"
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#voronoi",
-    "href": "pages/microclimate_warmup_reader.html#voronoi",
-    "title": "Mikroklima-Warmup",
-    "section": "Voronoi",
-    "text": "Voronoi\nVoronoi ordnet jede Rasterzelle der nächstgelegenen Messstation zu. Der Wert dieser Station wird direkt auf die Zelle übertragen.\nKurzlogik:\n\nNächste Station gewinnt.\n\nDamit entsteht ein Ergebnisraster mit harten Grenzen. Jede Station erhält einen Zuständigkeitsbereich. Innerhalb dieses Bereichs ist der Wert überall gleich, an der Grenze zur nächsten Station springt er abrupt.\nVoronoi ist methodisch einfach und gut lesbar. Es glättet nichts und erzeugt keine Zwischenwerte. Gleichzeitig ist die Annahme sehr grob: Temperatur ändert sich in der Realität selten sprunghaft an geometrischen Grenzen zwischen Stationen.\n\n\n\n\n\n\nNoteCode-Snippet: Voronoi / nearest station\n\n\n\n\n\nvor_df &lt;- gstat::idw(\n  temp ~ 1,\n  locations = pts,\n  newdata = grid_sf,\n  nmax = 1\n)\n\nmap_vor &lt;- make_map(vor_df$var1.pred, \"Voronoi\")"
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#idw",
-    "href": "pages/microclimate_warmup_reader.html#idw",
-    "title": "Mikroklima-Warmup",
-    "section": "IDW",
-    "text": "IDW\nIDW bedeutet inverse distance weighting. Das Verfahren schätzt den Wert einer Rasterzelle aus nahegelegenen Stationen. Nahe Stationen erhalten ein höheres Gewicht, weiter entfernte Stationen ein geringeres Gewicht.\nKurzlogik:\n\nNähe wirkt, aber nicht hart. Nahe Messpunkte zählen stärker als entfernte.\n\nIm Skript wird nmax = 4 verwendet. Jede Rasterzelle wird also nur aus den vier nächsten Stationen geschätzt. Dadurch bleibt die Schätzung lokal. Das Ergebnis wird glatter als Voronoi, aber weniger global geglättet als eine IDW-Variante, bei der alle Stationen in jede Schätzung eingehen.\nIDW ist eine typische Einstiegsform der Interpolation. Es nutzt räumliche Nähe als zentrales Argument. Fachlich muss man aber prüfen, ob Nähe im konkreten Fall tatsächlich der wichtigste Zusammenhang ist. Bei Mikroklima kann das zutreffen, muss aber nicht ausreichen, weil Gelände, Schatten, Vegetation oder Kaltluft ebenfalls wirksam sein können.\n\n\n\n\n\n\nNoteCode-Snippet: IDW\n\n\n\n\n\nidw_df &lt;- gstat::idw(\n  temp ~ 1,\n  locations = pts,\n  newdata = grid_sf,\n  nmax = 4\n)\n\nmap_idw &lt;- make_map(idw_df$var1.pred, \"IDW\")"
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#lm-altitude",
-    "href": "pages/microclimate_warmup_reader.html#lm-altitude",
-    "title": "Mikroklima-Warmup",
-    "section": "LM altitude",
-    "text": "LM altitude\nDas lineare Höhenmodell nutzt nicht primär die räumliche Nähe zwischen Stationen, sondern den Zusammenhang zwischen Temperatur und Höhe.\nKurzlogik:\n\nTemperatur wird über Höhe erklärt und auf das Höhenraster übertragen.\n\nDas Modell schätzt eine lineare Beziehung zwischen Stationshöhe und Temperatur. Anschließend wird diese Beziehung auf jede Rasterzelle des DEM angewendet. Dadurch folgt das Ergebnis stark dem Höhenmuster.\nDieses Modell ist methodisch anders als Voronoi und IDW. Es füllt den Raum nicht über Stationsnachbarschaft, sondern über eine erklärende Variable. Wenn Höhe fachlich relevant ist, kann das sinnvoll sein. Wenn die gemessenen Temperaturunterschiede stärker durch Schatten, Vegetation oder lokale Kaltluft geprägt sind, kann ein reines Höhenmodell zu kurz greifen.\nJa, der Abschnitt verschiebt die Aufmerksamkeit zu stark auf x/y/altitude und sagt zu wenig klar: RF sagt weiterhin Temperatur vorher. Die Koordinaten und die Höhe sind nur die Eingangsvariablen, mit denen RF versucht, die gemessene Temperatur zu rekonstruieren.\nErsetze den Abschnitt durch diese Fassung:\n\n\n\n\n\n\nNoteCode-Snippet: LM altitude\n\n\n\n\n\nfit_lm &lt;- lm(temp ~ altitude, data = st_drop_geometry(pts))\n\nmap_lm &lt;- predict(dem, fit_lm)\nnames(map_lm) &lt;- \"LM_altitude\""
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#rf-warning",
-    "href": "pages/microclimate_warmup_reader.html#rf-warning",
-    "title": "Mikroklima-Warmup",
-    "section": "RF warning",
-    "text": "RF warning\nRandom Forest ist ein flexibles, datengetriebenes Modell. Im Skript ist die Zielvariable weiterhin die gemessene Temperatur:\ntemp\nDas Modell versucht also, Temperaturwerte vorherzusagen. Dafür erhält es drei Prädiktoren:\nx\ny\naltitude\nDamit kann RF Temperaturunterschiede aus räumlicher Position und Höhe ableiten. Das Modell fragt nicht direkt nach einem physikalischen Prozess wie Kaltluft, Verschattung oder Vegetationswirkung. Es sucht in den vorhandenen Trainingsdaten nach Mustern: Welche Kombinationen aus Lage und Höhe treten zusammen mit höheren oder niedrigeren Temperaturen auf?\nKurzlogik:\n\nRF lernt aus wenigen Stationen, welche Bereiche des Raums eher zu höheren oder niedrigeren Temperaturwerten passen.\n\nGenau deshalb wird RF hier als Warnbeispiel geführt. Bei wenigen Messpunkten kann das Modell die vorhandenen Temperaturwerte scheinbar gut rekonstruieren, weil es die Punktlage und die Höhe flexibel aufteilt. Daraus entsteht ein Ergebnisraster, das plausibel aussehen und in der Validierung einen niedrigen Fehler haben kann.\nDas bedeutet aber nicht automatisch, dass RF eine robuste mikroklimatische Erklärung gefunden hat. Das Modell kann Temperaturmuster erzeugen, die stark an die konkrete Lage der wenigen Messstationen gebunden sind. Eine gute Rückschätzung einzelner Stationen bedeutet deshalb nicht, dass die Ergebnisfläche als Prozessdarstellung fachlich überzeugend ist.\nRF zeigt hier eine zentrale methodische Spannung:\n\nDas Modell sagt Temperatur vorher, aber es erklärt nicht automatisch, warum diese Temperatur räumlich so verteilt sein sollte.\n\n\n\n\n\n\n\nNoteCode-Snippet: RF warning\n\n\n\n\n\nxy &lt;- st_coordinates(pts)\npts$x &lt;- xy[, 1]\npts$y &lt;- xy[, 2]\n\nfit_rf &lt;- randomForest(\n  temp ~ x + y + altitude,\n  data = st_drop_geometry(pts),\n  ntree = 200\n)\n\nrf_pred &lt;- predict(fit_rf, newdata = grid)\nmap_rf &lt;- make_map(rf_pred, \"RF_warning\")\n\n\n\n\n\n\nVier einfache Wege von punktuellen Temperaturmessungen zu einer räumlichen Ergebnisfläche. Die Grafik zeigt, dass Voronoi, IDW, ein lineares Höhenmodell und Random Forest dieselben Messpunkte mit unterschiedlichen Modellannahmen in den Raum übertragen. Entscheidend ist daher nicht nur das fertige Kartenbild, sondern die Frage, welche Annahme die räumliche Aussage trägt und wo ihre fachliche Grenze lieg"
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#daten-laden",
-    "href": "pages/microclimate_warmup_reader.html#daten-laden",
-    "title": "Mikroklima-Warmup",
-    "section": "1. Daten laden",
-    "text": "1. Daten laden\nBenötigt werden zwei Dateien: data/climdata.rds und data/DEM1.tif. climdata.rds enthält die Messstationen mit Geometrie und Temperaturspalten. DEM1.tif enthält die Höhe als Raster.\n\n\n\n\n\n\nNoteCode-Snippet: Daten laden\n\n\n\n\n\nlibrary(sf)\nlibrary(terra)\nlibrary(gstat)\nlibrary(randomForest)\nlibrary(leaflet)\n\nm   &lt;- readRDS(\"data/climdata.rds\")\ndem &lt;- rast(\"data/DEM1.tif\")\nnames(dem) &lt;- \"altitude\""
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#einen-zeitpunkt-auswählen",
-    "href": "pages/microclimate_warmup_reader.html#einen-zeitpunkt-auswählen",
-    "title": "Mikroklima-Warmup",
-    "section": "2. Einen Zeitpunkt auswählen",
-    "text": "2. Einen Zeitpunkt auswählen\nDie Messdaten enthalten mehrere Temperaturspalten. Für den Warmup wird ein Zeitpunkt herausgegriffen. Damit arbeiten alle Modelle mit derselben Zielvariable.\n\n\n\n\n\n\nNoteCode-Snippet: Temperaturspalte setzen\n\n\n\n\n\nm$temp &lt;- m[[\"A20230830\"]]"
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#koordinatensystem-angleichen",
-    "href": "pages/microclimate_warmup_reader.html#koordinatensystem-angleichen",
-    "title": "Mikroklima-Warmup",
-    "section": "3. Koordinatensystem angleichen",
-    "text": "3. Koordinatensystem angleichen\nStationsdaten und DEM müssen im selben Koordinatensystem liegen. Das ist Voraussetzung für korrekte Höhenextraktion, Distanzen und Rasterüberlagerung.\n\n\n\n\n\n\nNoteCode-Snippet: CRS angleichen\n\n\n\n\n\nm &lt;- st_transform(m, crs(dem))"
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#höhe-an-den-stationen-extrahieren",
-    "href": "pages/microclimate_warmup_reader.html#höhe-an-den-stationen-extrahieren",
-    "title": "Mikroklima-Warmup",
-    "section": "4. Höhe an den Stationen extrahieren",
-    "text": "4. Höhe an den Stationen extrahieren\nDie Stationshöhen werden direkt aus dem verwendeten DEM gezogen. Dadurch nutzen Stationsmodell und Ergebnisraster dieselbe Höhenbasis.\n\n\n\n\n\n\nNoteCode-Snippet: Höhe extrahieren\n\n\n\n\n\nm$altitude &lt;- terra::extract(dem, terra::vect(m))$altitude"
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#gültige-messpunkte-auswählen",
-    "href": "pages/microclimate_warmup_reader.html#gültige-messpunkte-auswählen",
-    "title": "Mikroklima-Warmup",
-    "section": "5. Gültige Messpunkte auswählen",
-    "text": "5. Gültige Messpunkte auswählen\nEs bleiben nur Stationen mit Temperaturwert und Höhenwert. Unvollständige Punkte werden aus der Modellierung entfernt.\n\n\n\n\n\n\nNoteCode-Snippet: vollständige Punkte wählen\n\n\n\n\n\npts &lt;- m[!is.na(m$temp) & !is.na(m$altitude), c(\"temp\", \"altitude\")]"
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#aussagefläche-erzeugen",
-    "href": "pages/microclimate_warmup_reader.html#aussagefläche-erzeugen",
-    "title": "Mikroklima-Warmup",
-    "section": "6. Aussagefläche erzeugen",
-    "text": "6. Aussagefläche erzeugen\nDie Stationen definieren den Bereich, in dem die Ergebnisse ausgegeben werden. Das DEM wird auf Convex Hull plus 20 m zugeschnitten und maskiert.\n\n\n\n\n\n\nNoteCode-Snippet: Aussagefläche und DEM-Maske\n\n\n\n\n\narea &lt;- st_sf(\n  geometry = st_buffer(\n    st_convex_hull(st_union(st_geometry(pts))),\n    20\n  )\n)\n\ndem &lt;- crop(dem, vect(area))\ndem &lt;- mask(dem, vect(area))\nnames(dem) &lt;- \"altitude\""
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#vorhersagegrid-erzeugen",
-    "href": "pages/microclimate_warmup_reader.html#vorhersagegrid-erzeugen",
-    "title": "Mikroklima-Warmup",
-    "section": "7. Vorhersagegrid erzeugen",
-    "text": "7. Vorhersagegrid erzeugen\nAus dem DEM wird eine Tabelle mit Rasterzellen, Koordinaten und Höhe gebaut. Diese Tabelle ist die technische Brücke zwischen Raster und Modell.\n\n\n\n\n\n\nNoteCode-Snippet: Vorhersagegrid\n\n\n\n\n\ngrid &lt;- as.data.frame(dem, xy = TRUE, cells = TRUE, na.rm = FALSE)\nnames(grid)[4] &lt;- \"altitude\"\ngrid &lt;- grid[!is.na(grid$altitude), ]\n\ngrid_sf &lt;- st_as_sf(\n  grid,\n  coords = c(\"x\", \"y\"),\n  crs = st_crs(pts),\n  remove = FALSE\n)"
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#ergebnisraster-berechnen",
-    "href": "pages/microclimate_warmup_reader.html#ergebnisraster-berechnen",
-    "title": "Mikroklima-Warmup",
-    "section": "8. Ergebnisraster berechnen",
-    "text": "8. Ergebnisraster berechnen\nDas Skript erzeugt vier Ergebnisraster. Alle verwenden dieselbe Aussagefläche. Der Unterschied liegt in der Modellannahme.\n\n\n\n\n\n\nNoteCode-Snippet: Ergebnisraster berechnen\n\n\n\n\n\nmake_map &lt;- function(pred, name) {\n  r &lt;- dem\n  values(r) &lt;- NA\n  values(r)[grid$cell] &lt;- pred\n  names(r) &lt;- name\n  r\n}\n\nxy &lt;- st_coordinates(pts)\npts$x &lt;- xy[, 1]\npts$y &lt;- xy[, 2]\n\nfit_lm &lt;- lm(temp ~ altitude, data = st_drop_geometry(pts))\nmap_lm &lt;- predict(dem, fit_lm)\nnames(map_lm) &lt;- \"LM_altitude\"\n\nvor_df &lt;- gstat::idw(temp ~ 1, locations = pts, newdata = grid_sf, nmax = 1)\nmap_vor &lt;- make_map(vor_df$var1.pred, \"Voronoi\")\n\nidw_df &lt;- gstat::idw(temp ~ 1, locations = pts, newdata = grid_sf, nmax = 4)\nmap_idw &lt;- make_map(idw_df$var1.pred, \"IDW\")\n\nfit_rf &lt;- randomForest(\n  temp ~ x + y + altitude,\n  data = st_drop_geometry(pts),\n  ntree = 200\n)\n\nrf_pred &lt;- predict(fit_rf, newdata = grid)\nmap_rf &lt;- make_map(rf_pred, \"RF_warning\")"
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#modelle-validieren",
-    "href": "pages/microclimate_warmup_reader.html#modelle-validieren",
-    "title": "Mikroklima-Warmup",
-    "section": "9. Modelle validieren",
-    "text": "9. Modelle validieren\nDie Modelle werden mit Leave-One-Out-Cross-Validation geprüft. Jede Station wird einmal ausgelassen und aus den übrigen Stationen zurückgeschätzt.\n\n\n\n\n\n\nNoteCode-Snippet: LOOCV und RMSE\n\n\n\n\n\nrmse_fun &lt;- function(e) sqrt(mean(e * e, na.rm = TRUE))\n\nlm_cv &lt;- rep(NA, nrow(pts))\nrf_cv &lt;- rep(NA, nrow(pts))\n\nfor (i in 1:nrow(pts)) {\n  train &lt;- pts[-i, ]\n  test  &lt;- pts[i, ]\n\n  fit_lm_i &lt;- lm(temp ~ altitude, data = st_drop_geometry(train))\n  lm_cv[i] &lt;- predict(fit_lm_i, newdata = st_drop_geometry(test))\n\n  fit_rf_i &lt;- randomForest(\n    temp ~ x + y + altitude,\n    data = st_drop_geometry(train),\n    ntree = 200\n  )\n  rf_cv[i] &lt;- predict(fit_rf_i, newdata = st_drop_geometry(test))\n}\n\nvor_model &lt;- gstat::gstat(\n  formula = temp ~ 1,\n  locations = pts,\n  nmax = 1,\n  set = list(idp = 2)\n)\n\nvor_cv &lt;- gstat::gstat.cv(vor_model, nfold = nrow(pts))\n\nidw_model &lt;- gstat::gstat(\n  formula = temp ~ 1,\n  locations = pts,\n  nmax = 4,\n  set = list(idp = 2)\n)\n\nidw_cv &lt;- gstat::gstat.cv(idw_model, nfold = nrow(pts))\n\nrmse &lt;- data.frame(\n  model = c(\"LM altitude\", \"Voronoi\", \"IDW\", \"RF warning\"),\n  RMSE = c(\n    rmse_fun(pts$temp - lm_cv),\n    rmse_fun(vor_cv$residual),\n    rmse_fun(idw_cv$residual),\n    rmse_fun(pts$temp - rf_cv)\n  )\n)"
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#ergebnisraster-als-statische-plots-darstellen",
-    "href": "pages/microclimate_warmup_reader.html#ergebnisraster-als-statische-plots-darstellen",
-    "title": "Mikroklima-Warmup",
-    "section": "10. Ergebnisraster als statische Plots darstellen",
-    "text": "10. Ergebnisraster als statische Plots darstellen\nDie vier Ergebnisraster werden zunächst nebeneinander als statische Plots dargestellt. Alle verwenden dieselbe Farbskala, damit die räumlichen Muster vergleichbar bleiben.\n\n\n\n\n\n\nNoteCode-Snippet: Ergebnisraster darstellen\n\n\n\n\n\nmaps &lt;- c(map_vor, map_idw, map_lm, map_rf)\nz &lt;- range(c(pts$temp - 1, pts$temp + 1), na.rm = TRUE)\n\npar(mfrow = c(2, 2))\n\nfor (i in 1:nlyr(maps)) {\n  plot(maps[[i]], range = z, main = names(maps)[i])\n  points(pts, pch = 19, cex = 0.8)\n}\n\npar(mfrow = c(1, 1))\n\nprint(rmse)"
-  },
-  {
-    "objectID": "pages/microclimate_warmup_reader.html#ergebnisse-als-leaflet-karte-darstellen",
-    "href": "pages/microclimate_warmup_reader.html#ergebnisse-als-leaflet-karte-darstellen",
-    "title": "Mikroklima-Warmup",
-    "section": "11. Ergebnisse als Leaflet-Karte darstellen",
-    "text": "11. Ergebnisse als Leaflet-Karte darstellen\nAm Ende werden die gleichen Ergebnisraster zusätzlich in eine interaktive Leaflet-Karte eingebunden. Die Karte ersetzt die statischen Plots nicht, sondern ergänzt sie: Die SuS können zwischen den Modellannahmen umschalten, die Messpunkte sichtbar lassen und dadurch prüfen, wie stark sich die räumliche Aussage je nach Verfahren verändert.\n\n\n\n\n\n\nNoteCode-Snippet: Leaflet-Karte\n\n\n\n\n\npal &lt;- leaflet::colorNumeric(\n  palette = hcl.colors(100, \"RdYlBu\", rev = TRUE),\n  domain = z,\n  na.color = \"transparent\"\n)\n\npts_leaflet &lt;- st_transform(pts, 4326)\npts_xy &lt;- st_coordinates(pts_leaflet)\n\nleaflet_map &lt;- leaflet::leaflet()\nleaflet_map &lt;- leaflet::addProviderTiles(\n  leaflet_map,\n  leaflet::providers$CartoDB.Positron\n)\n\nfor (i in 1:nlyr(maps)) {\n  leaflet_map &lt;- leaflet::addRasterImage(\n    leaflet_map,\n    x = raster::raster(maps[[i]]),\n    colors = pal,\n    opacity = 0.70,\n    group = names(maps)[i]\n  )\n}\n\nleaflet_map &lt;- leaflet::addCircleMarkers(\n  leaflet_map,\n  lng = pts_xy[, 1],\n  lat = pts_xy[, 2],\n  radius = 4,\n  stroke = FALSE,\n  fillOpacity = 0.9,\n  label = paste0(\"Temperatur: \", round(pts$temp, 2), \" °C\"),\n  group = \"Messpunkte\"\n)\n\nleaflet_map &lt;- leaflet::addLayersControl(\n  leaflet_map,\n  baseGroups = names(maps),\n  overlayGroups = \"Messpunkte\",\n  options = leaflet::layersControlOptions(collapsed = FALSE)\n)\n\nleaflet_map &lt;- leaflet::addLegend(\n  leaflet_map,\n  pal = pal,\n  values = z,\n  title = \"Temperatur\",\n  opacity = 0.70\n)\n\nleaflet_map &lt;- leaflet::hideGroup(leaflet_map, names(maps)[-1])\n\nleaflet_map"
-  },
-  {
-    "objectID": "pages/modellbildung_gis_reader.html",
-    "href": "pages/modellbildung_gis_reader.html",
-    "title": "Modellbildung im GIS – Kurzreader",
-    "section": "",
-    "text": "Ein GIS kann Flächen überlagern, Indizes bilden, Fließwege ableiten und Modelle mit räumlichen Eingaben versorgen. Die Karte allein zeigt aber nicht, was berechnet wurde. Entscheidend sind die Regeln oder Gleichungen zwischen Eingangsdaten und Ergebnis. Als roter Faden dient die Frage: Wo sammelt sich bei Starkregen Wasser?\n\n\n\n\n\n\n\n\n\nModellzugang\nWas wird gerechnet?\nMindestdaten\nAussage – und Grenze\n\n\n\n\nHeuristik\nKlassen, Regeln und gewichtete Indikatoren\nLandbedeckung, ggf. DGM/Böden\nVerdachtsräume; keine Wassertiefe\n\n\nPhysikalisch begründete Näherung\nvereinfachte, prozessbezogene Größenbeziehungen\nje nach Formel DGM, Fläche, Regen oder Materialparameter\nIndex oder überschlägige Größe; nur unter ihren Annahmen gültig\n\n\nProzessmodell\nzeitabhängige Erhaltung und Transport\nGelände, Antrieb, Parameter, Anfangs-/Randbedingungen\nsimulierte Zustände, z. B. Wassertiefe über die Zeit; mit Modell- und Datenunsicherheit\n\n\n\n\n\nWir markieren Flächen, auf denen mehrere plausible Hinweise zusammenkommen: versiegelte Oberflächen, Geländesenken, gering durchlässige Böden. Eine gewichtete Überlagerung könnte lauten:\n\\[\nH=0{,}5V+0{,}3S+0{,}2D\n\\]\nDie Variablen sind Indikatoren, zuvor einheitlich auf 0 bis 1 skaliert. Die Gewichte sind eine Entscheidung der Modellierenden. Andere plausible Gewichte erzeugen möglicherweise andere Ergebnisse. Deshalb dokumentieren wir Klassen, Grenzwerte und Gewichtungen und testen deren Einfluss. \\(H\\) ist ein Such- oder Priorisierungsindex. Ihn als Überflutungswahrscheinlichkeit oder Wassertiefe auszugeben, wäre unbegründet.\nWerkzeuge: QGIS (Rasterrechner, Reclassification, Vektor-/Rasterüberlagerung), SAGA GIS und der QGIS-Modell-Designer für reproduzierbare Abläufe.\n\n\n\nEin digitaler Höhenwert allein enthält noch keinen Abfluss. GIS-Werkzeuge wie SAGA Flow Accumulation oder GRASS r.watershed leiten aus Höhenunterschieden und einer gewählten Routingregel Fließrichtungen, Einzugsflächen oder Akkumulationsmuster ab. Ob der Algorithmus das Wasser einer Zelle auf eine oder mehrere Nachbarzellen verteilt, ist bereits eine Modellentscheidung.\nDer Topographic Wetness Index verbindet beitragende Fläche und Gefälle:\n\\[\n\\mathrm{TWI}=\\ln\\!\\left(\\frac{a}{\\tan\\beta}\\right)\n\\]\nDas ist ein physikalisch motivierter Geländeindikator, keine berechnete Wasserbilanz und keine Starkregenüberflutung. Für eine tatsächliche Vernässung fehlen etwa Regen, Bodenhydraulik und zeitliche Entwicklung. Besonders wichtig: topografische Fließakkumulation und physikalisch berechneter Wasserabfluss sind nicht dasselbe.\nEine andere, explizite Näherung ist die Rationalformel für den Spitzenabfluss kleiner Einzugsgebiete:\n\\[\nQ_{\\mathrm{max}}\\approx C\\,i\\,A\n\\]\nDabei sind \\(A\\) die Einzugsgebietsfläche, \\(i\\) eine für die Abflusskonzentration maßgebende Regenintensität und \\(C\\) ein empirischer Abflussbeiwert. Sie benötigt mehr als eine Karte, liefert aber weder Wassertiefen noch einen räumlich-zeitlichen Fließverlauf. Ihre Anwendbarkeit hängt von Gebiet, Regenannahmen und Konventionen für den Abflussbeiwert ab.\nWerkzeuge: SAGA (Hydrology, Wetness Index), GRASS r.watershed, QGIS zur Datenaufbereitung; Formeln zusätzlich im GIS, in R oder Python. Die Wahl des Werkzeugs macht eine Rechnung nicht von selbst physikalisch.\n\n\n\nEin dynamisches 2D-Abflussmodell berechnet, wie sich Wasserstände und Geschwindigkeiten während eines Regens verändern. Eine vereinfachte Massenerhaltung lautet:\n\\[\n\\frac{\\partial h}{\\partial t}+\\nabla\\!\\cdot(h\\boldsymbol{u})=r-f\n\\]\n\\(h\\) bezeichnet die Wassertiefe, \\(\\boldsymbol{u}\\) die Fließgeschwindigkeit, \\(r\\) den Regenzufluss und \\(f\\) die Infiltration. Für eine hydraulische Simulation kommen die Bewegungsgleichungen hinzu. Benötigt werden nun auch zeitlich aufgelöster Niederschlag, Rauheit, geeignete Geländedaten, Anfangs- und Randbedingungen, gegebenenfalls Kanalnetz und Bauwerke sowie eine numerische Diskretisierung.\nWerkzeuge: etwa HEC-RAS 2D für Hydrodynamik; QGIS/SAGA/GRASS für Vorverarbeitung, Geometrie, Parameterkarten und Auswertung. Ein Prozessmodell ist trotzdem nicht „physikalisch exakt“: Gleichungen, räumliche Auflösung und Parameter bleiben Vereinfachungen.\n\n\n\n\n\n\n\n\n\n\n\n\nFrage vor der Interpretation\nHeuristik\nGeländeindex / Näherung\nProzessmodell\n\n\n\n\nWas ist bewusst festgelegt?\nGewichte, Klassen, Regeln\nRouting oder Gültigkeit der Formel\nGleichungen, Parameter, Numerik\n\n\nWas fehlt im Modell?\nkonkrete Dynamik und Mengen\noft Zeitverlauf, Speicher und Transport\nnicht aufgelöste Prozesse und ungenaue Randdaten\n\n\nWie prüfen wir?\nSensitivität, Vergleich mit unabhängigen Orten\nDGM-/Methodenvergleich, Messgrößen wenn vorhanden\nunabhängige Wasserstände, Ausdehnungen oder Abflussganglinien\n\n\n\nExplizit bedeutet lediglich, dass Annahmen oder Gleichungen benannt sind. Auch eine Heuristik kann explizit sein. Empirisch beschreibt die Herkunft einer Regel oder eines Parameters; ein physikalisch begründetes Modell kann empirisch kalibrierte Größen enthalten. Dynamisch beschreibt Zeitabhängigkeit. Diese Eigenschaften sind keine zusätzlichen Stufen zwischen Heuristik und Prozessmodell.\nPraktische Entscheidungsregel: Brauche ich nur eine begründete Suchkarte, reichen oft räumliche Regeln. Brauche ich eine geschätzte Abflussgröße, benötige ich passende physikalische Annahmen und zusätzliche Messgrößen. Will ich wissen, wie sich Wasser bei einem konkreten Ereignis im Raum bewegt, brauche ich ein dynamisches Modell und die Daten zu seinem Antrieb. Je mehr Prozesse wir abbilden, desto mehr müssen wir spezifizieren und überprüfen.\n\n\n\n\nSAGA GIS: Hydrologie-Werkzeuge – Fließakkumulation, SAGA Wetness Index und TWI.\nGRASS GIS: r.watershed – Akkumulation, Fließrichtungen, Einzugsgebiete und topografischer Index.\nQGIS: externe Processing-Anwendungen – je nach Installation müssen zusätzliche Anbieter eingerichtet werden.\nHEC-RAS: Dokumentation und hydraulische Modellgrundlagen – 1D-/2D-Strömungsmodellierung und ihre Datenanforderungen.",
-    "crumbs": [
-      "Reader",
-      "Grundlagen der Modellbildung"
-    ]
-  },
-  {
-    "objectID": "pages/modellbildung_gis_reader.html#heuristische-regeln-begründet-aber-gesetzt",
-    "href": "pages/modellbildung_gis_reader.html#heuristische-regeln-begründet-aber-gesetzt",
-    "title": "Modellbildung im GIS – Kurzreader",
-    "section": "",
-    "text": "Wir markieren Flächen, auf denen mehrere plausible Hinweise zusammenkommen: versiegelte Oberflächen, Geländesenken, gering durchlässige Böden. Eine gewichtete Überlagerung könnte lauten:\n\\[\nH=0{,}5V+0{,}3S+0{,}2D\n\\]\nDie Variablen sind Indikatoren, zuvor einheitlich auf 0 bis 1 skaliert. Die Gewichte sind eine Entscheidung der Modellierenden. Andere plausible Gewichte erzeugen möglicherweise andere Ergebnisse. Deshalb dokumentieren wir Klassen, Grenzwerte und Gewichtungen und testen deren Einfluss. \\(H\\) ist ein Such- oder Priorisierungsindex. Ihn als Überflutungswahrscheinlichkeit oder Wassertiefe auszugeben, wäre unbegründet.\nWerkzeuge: QGIS (Rasterrechner, Reclassification, Vektor-/Rasterüberlagerung), SAGA GIS und der QGIS-Modell-Designer für reproduzierbare Abläufe.",
-    "crumbs": [
-      "Reader",
-      "Grundlagen der Modellbildung"
-    ]
-  },
-  {
-    "objectID": "pages/modellbildung_gis_reader.html#geländealgorithmus-oder-physikalische-näherung",
-    "href": "pages/modellbildung_gis_reader.html#geländealgorithmus-oder-physikalische-näherung",
-    "title": "Modellbildung im GIS – Kurzreader",
-    "section": "",
-    "text": "Ein digitaler Höhenwert allein enthält noch keinen Abfluss. GIS-Werkzeuge wie SAGA Flow Accumulation oder GRASS r.watershed leiten aus Höhenunterschieden und einer gewählten Routingregel Fließrichtungen, Einzugsflächen oder Akkumulationsmuster ab. Ob der Algorithmus das Wasser einer Zelle auf eine oder mehrere Nachbarzellen verteilt, ist bereits eine Modellentscheidung.\nDer Topographic Wetness Index verbindet beitragende Fläche und Gefälle:\n\\[\n\\mathrm{TWI}=\\ln\\!\\left(\\frac{a}{\\tan\\beta}\\right)\n\\]\nDas ist ein physikalisch motivierter Geländeindikator, keine berechnete Wasserbilanz und keine Starkregenüberflutung. Für eine tatsächliche Vernässung fehlen etwa Regen, Bodenhydraulik und zeitliche Entwicklung. Besonders wichtig: topografische Fließakkumulation und physikalisch berechneter Wasserabfluss sind nicht dasselbe.\nEine andere, explizite Näherung ist die Rationalformel für den Spitzenabfluss kleiner Einzugsgebiete:\n\\[\nQ_{\\mathrm{max}}\\approx C\\,i\\,A\n\\]\nDabei sind \\(A\\) die Einzugsgebietsfläche, \\(i\\) eine für die Abflusskonzentration maßgebende Regenintensität und \\(C\\) ein empirischer Abflussbeiwert. Sie benötigt mehr als eine Karte, liefert aber weder Wassertiefen noch einen räumlich-zeitlichen Fließverlauf. Ihre Anwendbarkeit hängt von Gebiet, Regenannahmen und Konventionen für den Abflussbeiwert ab.\nWerkzeuge: SAGA (Hydrology, Wetness Index), GRASS r.watershed, QGIS zur Datenaufbereitung; Formeln zusätzlich im GIS, in R oder Python. Die Wahl des Werkzeugs macht eine Rechnung nicht von selbst physikalisch.",
-    "crumbs": [
-      "Reader",
-      "Grundlagen der Modellbildung"
-    ]
-  },
-  {
-    "objectID": "pages/modellbildung_gis_reader.html#prozessmodell-ein-ereignis-entwickelt-sich",
-    "href": "pages/modellbildung_gis_reader.html#prozessmodell-ein-ereignis-entwickelt-sich",
-    "title": "Modellbildung im GIS – Kurzreader",
-    "section": "",
-    "text": "Ein dynamisches 2D-Abflussmodell berechnet, wie sich Wasserstände und Geschwindigkeiten während eines Regens verändern. Eine vereinfachte Massenerhaltung lautet:\n\\[\n\\frac{\\partial h}{\\partial t}+\\nabla\\!\\cdot(h\\boldsymbol{u})=r-f\n\\]\n\\(h\\) bezeichnet die Wassertiefe, \\(\\boldsymbol{u}\\) die Fließgeschwindigkeit, \\(r\\) den Regenzufluss und \\(f\\) die Infiltration. Für eine hydraulische Simulation kommen die Bewegungsgleichungen hinzu. Benötigt werden nun auch zeitlich aufgelöster Niederschlag, Rauheit, geeignete Geländedaten, Anfangs- und Randbedingungen, gegebenenfalls Kanalnetz und Bauwerke sowie eine numerische Diskretisierung.\nWerkzeuge: etwa HEC-RAS 2D für Hydrodynamik; QGIS/SAGA/GRASS für Vorverarbeitung, Geometrie, Parameterkarten und Auswertung. Ein Prozessmodell ist trotzdem nicht „physikalisch exakt“: Gleichungen, räumliche Auflösung und Parameter bleiben Vereinfachungen.",
-    "crumbs": [
-      "Reader",
-      "Grundlagen der Modellbildung"
-    ]
-  },
-  {
-    "objectID": "pages/modellbildung_gis_reader.html#was-entscheidet-über-die-aussagekraft",
-    "href": "pages/modellbildung_gis_reader.html#was-entscheidet-über-die-aussagekraft",
-    "title": "Modellbildung im GIS – Kurzreader",
-    "section": "",
-    "text": "Frage vor der Interpretation\nHeuristik\nGeländeindex / Näherung\nProzessmodell\n\n\n\n\nWas ist bewusst festgelegt?\nGewichte, Klassen, Regeln\nRouting oder Gültigkeit der Formel\nGleichungen, Parameter, Numerik\n\n\nWas fehlt im Modell?\nkonkrete Dynamik und Mengen\noft Zeitverlauf, Speicher und Transport\nnicht aufgelöste Prozesse und ungenaue Randdaten\n\n\nWie prüfen wir?\nSensitivität, Vergleich mit unabhängigen Orten\nDGM-/Methodenvergleich, Messgrößen wenn vorhanden\nunabhängige Wasserstände, Ausdehnungen oder Abflussganglinien\n\n\n\nExplizit bedeutet lediglich, dass Annahmen oder Gleichungen benannt sind. Auch eine Heuristik kann explizit sein. Empirisch beschreibt die Herkunft einer Regel oder eines Parameters; ein physikalisch begründetes Modell kann empirisch kalibrierte Größen enthalten. Dynamisch beschreibt Zeitabhängigkeit. Diese Eigenschaften sind keine zusätzlichen Stufen zwischen Heuristik und Prozessmodell.\nPraktische Entscheidungsregel: Brauche ich nur eine begründete Suchkarte, reichen oft räumliche Regeln. Brauche ich eine geschätzte Abflussgröße, benötige ich passende physikalische Annahmen und zusätzliche Messgrößen. Will ich wissen, wie sich Wasser bei einem konkreten Ereignis im Raum bewegt, brauche ich ein dynamisches Modell und die Daten zu seinem Antrieb. Je mehr Prozesse wir abbilden, desto mehr müssen wir spezifizieren und überprüfen.",
-    "crumbs": [
-      "Reader",
-      "Grundlagen der Modellbildung"
-    ]
-  },
-  {
-    "objectID": "pages/modellbildung_gis_reader.html#dokumentation-der-werkzeuge",
-    "href": "pages/modellbildung_gis_reader.html#dokumentation-der-werkzeuge",
-    "title": "Modellbildung im GIS – Kurzreader",
-    "section": "",
-    "text": "SAGA GIS: Hydrologie-Werkzeuge – Fließakkumulation, SAGA Wetness Index und TWI.\nGRASS GIS: r.watershed – Akkumulation, Fließrichtungen, Einzugsgebiete und topografischer Index.\nQGIS: externe Processing-Anwendungen – je nach Installation müssen zusätzliche Anbieter eingerichtet werden.\nHEC-RAS: Dokumentation und hydraulische Modellgrundlagen – 1D-/2D-Strömungsmodellierung und ihre Datenanforderungen.",
-    "crumbs": [
-      "Reader",
-      "Grundlagen der Modellbildung"
-    ]
-  },
-  {
-    "objectID": "pages/netlogo_modellvergleich.html#drei-modelle-eine-leitfrage",
-    "href": "pages/netlogo_modellvergleich.html#drei-modelle-eine-leitfrage",
-    "title": "Ähnliche Muster – unterschiedliche Modelle",
-    "section": "Drei Modelle, eine Leitfrage",
-    "text": "Drei Modelle, eine Leitfrage\nRiver Meanders (2021) · Erosion (2004) · Grand Canyon (2006)\nAlle drei erzeugen räumliche Muster durch wiederholte lokale Regeln.\nAber sie berechnen nicht dasselbe:\n\nMäanderbildung und Veränderung des Flusslaufs\nWasserverlagerung und Abtragung auf einem Raster\nAbflusswege und Wasseransammlung auf realem Relief\n\n\nLeitfrage: Was ist eine plausible Regel – und was eine physikalisch begründete Berechnung?",
-    "crumbs": [
-      "Slides / Folien",
-      "NetLogo – Modellvergleich"
-    ]
-  },
-  {
-    "objectID": "pages/netlogo_modellvergleich.html#drei-ebenen-der-begründung",
-    "href": "pages/netlogo_modellvergleich.html#drei-ebenen-der-begründung",
-    "title": "Ähnliche Muster – unterschiedliche Modelle",
-    "section": "Drei Ebenen der Begründung",
-    "text": "Drei Ebenen der Begründung\n\n\nPhysikalisches Prinzip\nWasser bewegt sich aufgrund eines hydraulischen Gefälles.\nErklärt die Richtung, noch nicht die Menge.\n\nModellgleichung\nDie Wassermenge folgt aus Gefälle, Fließtiefe und Widerstand.\nBerechnet einen Prozess unter Annahmen.\n\nHeuristische Regel\nEin Agent springt zum niedrigsten Nachbarn.\nErzeugt plausibles Verhalten, ohne die Strömung zu berechnen.\n\n\nAuch physikalische Modelle sind regelbasiert. Entscheidend ist, wie die Regeln begründet werden.",
-    "crumbs": [
-      "Slides / Folien",
-      "NetLogo – Modellvergleich"
-    ]
-  },
-  {
-    "objectID": "pages/netlogo_modellvergleich.html#wer-bildet-welchen-prozess-ab",
-    "href": "pages/netlogo_modellvergleich.html#wer-bildet-welchen-prozess-ab",
-    "title": "Ähnliche Muster – unterschiedliche Modelle",
-    "section": "Wer bildet welchen Prozess ab?",
-    "text": "Wer bildet welchen Prozess ab?\n\n\n\n\n\n\n\n\n\n\n\nRiver Meanders\nErosion\nGrand Canyon\n\n\n\n\nGelände\nidealisierter Flusskorridor\nsynthetisches Höhenraster\nreales, skaliertes Relief\n\n\nWasser\nbewegte Agenten, Gewässerzellen\nWasserhöhe je Rasterzelle\neinzelne Wasseragenten\n\n\nAbfluss\nKräfteanalogie, Potenzialfeld\nWasserspiegel-Ausgleich\nSprung zum niedrigsten Wasserspiegel\n\n\nGeländewandel\nLand ↔︎ Wasser, Sedimentregel\nHöhenabtrag\nkeiner\n\n\nErgebnis\nMäander\nErosionsmuster\nAbflusswege, Ansammlungen\n\n\n\n\nWichtig: Realistischere Eingangsdaten bedeuten nicht automatisch realistischere Prozessgleichungen.",
-    "crumbs": [
-      "Slides / Folien",
-      "NetLogo – Modellvergleich"
-    ]
-  },
-  {
-    "objectID": "pages/netlogo_modellvergleich.html#river-meanders-bewegung-als-analogie",
-    "href": "pages/netlogo_modellvergleich.html#river-meanders-bewegung-als-analogie",
-    "title": "Ähnliche Muster – unterschiedliche Modelle",
-    "section": "1 · River Meanders: Bewegung als Analogie",
-    "text": "1 · River Meanders: Bewegung als Analogie\n\\[\n\\vec v_{t+1}=\\vec v_t+\\sum_k\\vec a_k\n\\]\nDie Bewegungsrichtung entsteht aus künstlichem Potenzialfeld, Flussmitte, Talneigung, Rückstellkraft und Zufall.\nErosion: Trifft ein Strömungsagent auf Land, wird die Zelle zu Wasser.\nSedimentation: Ein Akkumulationswert überschreitet eine Schwelle; durchströmende Agenten senken ihn.\n\nHeuristische Morphogenese: Die Mäanderform entsteht, aber Wasserbilanz, Impulsübertragung und Sedimenttransport werden nicht physikalisch berechnet.",
-    "crumbs": [
-      "Slides / Folien",
-      "NetLogo – Modellvergleich"
-    ]
-  },
-  {
-    "objectID": "pages/netlogo_modellvergleich.html#erosion-wasserstand-und-austausch",
-    "href": "pages/netlogo_modellvergleich.html#erosion-wasserstand-und-austausch",
-    "title": "Ähnliche Muster – unterschiedliche Modelle",
-    "section": "2 · Erosion: Wasserstand und Austausch",
-    "text": "2 · Erosion: Wasserstand und Austausch\n\\[\nH_i=z_i+h_i\n\\]\n\\[\nq_{ij}=\\max\\left(0,\\min\\left[h_i,\\frac{H_i-H_j}{2}\\right]\\right)\n\\]\nWasser wandert zum Nachbarn mit dem niedrigsten Wasserspiegel. Der lokale Austausch gleicht bei gleich großen Zellen Wasserstände an.\nGeländeabtrag: \\(E_i=q_{ij}(1-s)\\) mit Bodenhärte \\(s\\).\n\nPhysikalisch motivierte Näherung: Lokale Wassererhaltung – aber keine hydraulische Abflussgleichung. Die Erosionsformel bleibt heuristisch.",
-    "crumbs": [
-      "Slides / Folien",
-      "NetLogo – Modellvergleich"
-    ]
-  },
-  {
-    "objectID": "pages/netlogo_modellvergleich.html#grand-canyon-tropfen-auf-relief",
-    "href": "pages/netlogo_modellvergleich.html#grand-canyon-tropfen-auf-relief",
-    "title": "Ähnliche Muster – unterschiedliche Modelle",
-    "section": "3 · Grand Canyon: Tropfen auf Relief",
-    "text": "3 · Grand Canyon: Tropfen auf Relief\n\\[\nH_i=z_i+N_i\\,h_0 \\qquad (h_0=10\\text{ im Modell})\n\\]\n\\[\nH_j&lt;H_i\\quad\\Rightarrow\\quad \\text{Agent springt nach }j\n\\]\n\nReales, für die Simulation skaliertes Höhenmodell\nEin beweglicher Tropfen: höchstens eine Zelle pro Schritt\nEin liegen gebliebener Tropfen wird dauerhaft stationär\nKeine Erosion, keine Abflussmenge aus dem Gefälle\n\n\nTopografische Heuristik: Räumlich konkretes Relief, aber stark vereinfachte Fließdynamik ohne belastbare physikalische Zeitskala.",
-    "crumbs": [
-      "Slides / Folien",
-      "NetLogo – Modellvergleich"
-    ]
-  },
-  {
-    "objectID": "pages/netlogo_modellvergleich.html#gleiches-gefälle-andere-rechnung",
-    "href": "pages/netlogo_modellvergleich.html#gleiches-gefälle-andere-rechnung",
-    "title": "Ähnliche Muster – unterschiedliche Modelle",
-    "section": "Gleiches Gefälle, andere Rechnung",
-    "text": "Gleiches Gefälle, andere Rechnung\n\n\nErosion\n\\[q_{ij}\\sim H_i-H_j\\]\nDie Wassermenge hängt vom Unterschied zweier Wasserspiegel ab.\nLokaler Austausch zwischen Rasterzellen; der Boden kann abgesenkt werden.\n\nGrand Canyon\n\\[H_j&lt;H_i\\]\nDas Gefälle entscheidet nur über das Ob und Wohin der Bewegung.\nEin Wasseragent springt genau eine Zelle; das Gelände bleibt unverändert.\n\n\nRiver Meanders folgt nochmals einer anderen Logik: künstliche Kraftbeiträge statt lokaler Wasserstandsausgleich.",
-    "crumbs": [
-      "Slides / Folien",
-      "NetLogo – Modellvergleich"
-    ]
-  },
-  {
-    "objectID": "pages/netlogo_modellvergleich.html#räumliche-muster-durch-rückkopplung",
-    "href": "pages/netlogo_modellvergleich.html#räumliche-muster-durch-rückkopplung",
-    "title": "Ähnliche Muster – unterschiedliche Modelle",
-    "section": "Räumliche Muster durch Rückkopplung",
-    "text": "Räumliche Muster durch Rückkopplung\n\n\n\n\n\n\n\n\n\nModell\nLokale Regel\nRückwirkung\n\n\n\n\nRiver Meanders\nAgenten verändern Gewässerzellen\nneuer Flusslauf lenkt weitere Agenten\n\n\nErosion\nWasserverlagerung trägt Gelände ab\nneue Höhe verändert den nächsten Abfluss\n\n\nGrand Canyon\nAgenten sammeln sich in Senken\nsteigender Wasserspiegel beeinflusst spätere Wege\n\n\n\n\nKeines der resultierenden Muster ist als fertige Form vorgegeben. Die Struktur entsteht aus der wiederholten Anwendung der Regeln.\nDas beweist noch nicht, dass der zugrunde liegende reale Prozess richtig beschrieben ist.",
-    "crumbs": [
-      "Slides / Folien",
-      "NetLogo – Modellvergleich"
-    ]
-  },
-  {
-    "objectID": "pages/netlogo_modellvergleich.html#was-ein-physikalisches-prozessmodell-braucht",
-    "href": "pages/netlogo_modellvergleich.html#was-ein-physikalisches-prozessmodell-braucht",
-    "title": "Ähnliche Muster – unterschiedliche Modelle",
-    "section": "Was ein physikalisches Prozessmodell braucht",
-    "text": "Was ein physikalisches Prozessmodell braucht\nWasserbilanz (Beispiel für flächenhaften Abfluss):\n\\[\n\\frac{\\partial h}{\\partial t}+\\nabla\\cdot(h\\vec u)=R-I\n\\]\n\n\\(h\\): Fließtiefe · \\(\\vec u\\): Geschwindigkeit · \\(R\\): Niederschlag · \\(I\\): Infiltration\n\nHinzu kämen eine Impulsbilanz oder geeignete hydraulische Näherung, bei Erosion außerdem eine Sedimentbilanz.\nKeines der drei Modelle löst die hydrodynamischen Grundgleichungen. Modell 2 erhält lokal Wassermenge, bestimmt aber keine physikalische Fließgeschwindigkeit.",
-    "crumbs": [
-      "Slides / Folien",
-      "NetLogo – Modellvergleich"
-    ]
-  },
-  {
-    "objectID": "pages/netlogo_modellvergleich.html#was-darf-man-vergleichen",
-    "href": "pages/netlogo_modellvergleich.html#was-darf-man-vergleichen",
-    "title": "Ähnliche Muster – unterschiedliche Modelle",
-    "section": "Was darf man vergleichen?",
-    "text": "Was darf man vergleichen?\n\n\nSinnvoll\n\nEntstehen Muster aus lokalen Regeln?\nWo wird Wasser konzentriert?\nVerändert Rückkopplung die Struktur?\nWelche Annahme führt zu welchem Muster?\n\n\nNicht unmittelbar\n\nFließgeschwindigkeiten\nErosionsraten\nSimulationszeiten\nWassermengen in physikalischen Einheiten\n\n\n\nÄhnliche Karten können das Ergebnis verschiedener Mechanismen sein. Eine plausible Form ist keine Prozessvalidierung.",
-    "crumbs": [
-      "Slides / Folien",
-      "NetLogo – Modellvergleich"
-    ]
-  },
-  {
-    "objectID": "pages/netlogo_modellvergleich.html#woran-erkennt-man-physikalischen-gehalt",
-    "href": "pages/netlogo_modellvergleich.html#woran-erkennt-man-physikalischen-gehalt",
-    "title": "Ähnliche Muster – unterschiedliche Modelle",
-    "section": "Woran erkennt man physikalischen Gehalt?",
-    "text": "Woran erkennt man physikalischen Gehalt?\nPrüfe nicht zuerst, wie realistisch das Muster aussieht, sondern:\n\nBewegungsregel: Richtung – oder auch Menge und Geschwindigkeit?\nErhaltung: Was wird bilanziert: Wasser, Impuls, Sediment?\nParameter: Messbare Größen oder frei gesetzte Schwellen?\nMaßstab: Haben Raum, Zeit und Ergebnis belastbare Einheiten?\nPrüfbarkeit: Welche Beobachtung könnte das Modell widerlegen?\n\n\nKern: Physikalisches Prinzip ≠ Prozessgleichung ≠ heuristische Regel. Komplexität und visuelle Plausibilität ersetzen keine physikalische Begründung.\n\n\nModelle: NetLogo Models Library, Northwestern University – River Meanders (2021), Erosion (2004), Grand Canyon (2006).",
-    "crumbs": [
-      "Slides / Folien",
-      "NetLogo – Modellvergleich"
-    ]
+    "objectID": "pages/ws/ws-01.html#ergebnis",
+    "href": "pages/ws/ws-01.html#ergebnis",
+    "title": "Worksheet 01 · Ein kleines R-Projekt",
+    "section": "Ergebnis",
+    "text": "Ergebnis\nGeben Sie Ihren Projektordner mit dem kommentierten Skript und den beiden Ergebnisvarianten weiter. Ergänzen Sie eine kurze Datei README.md im Projektordner mit vier Angaben:\n\nProjektdatei öffnen und anschließend scripts/01_burgwald_puffer.R ausführen.\nBenötigtes Paket: sf; Internetzugang für den ersten Datenabruf.\nDatenquelle und eigenes Abrufdatum.\nIhre Änderung, deren beobachtete Wirkung und gegebenenfalls verwendete KI-Hilfe.\n\nErfolgskriterium: Eine andere Person erkennt, welche Dateien Eingangsdaten, Skripte und Ergebnisse sind, und kann den Ablauf aus einer frischen R-Sitzung erneut ausführen."
   }
 ]

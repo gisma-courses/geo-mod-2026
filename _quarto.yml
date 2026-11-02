@@ -63,6 +63,8 @@ website:
               text: Modellbildung im GIS
             - href: pages/netlogo_modellvergleich.qmd
               text: NetLogo – Modellvergleich
+            - href: slides/burgwald_abfluss_uebergang.qmd
+              text: Burgwald – Übergang zur Abflussübung
         - section: "Worksheets / Hands-on"
           contents:
             - href: pages/meander_abfluss_saga_grass.qmd

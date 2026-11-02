@@ -1,0 +1,85 @@
+---
+# Absichtlich ohne Titel-Metadatum: genau drei Inhaltsfolien,
+# keine automatisch erzeugte vierte Titelfolie.
+description: "Sitzung vom 2. November 2026: Von NetLogo zur DGM-basierten Abflussanalyse im Burgwald"
+format:
+  revealjs:
+    theme: [default, metropolis.scss]
+    slide-level: 1
+    toc: false
+    slide-number: true
+    transition: fade
+    incremental: false
+    navigation-mode: linear
+    controls: true
+    hash: true
+    width: 1280
+    height: 720
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+# Von NetLogo zum realen Gelände
+
+::: {.columns}
+::: {.column width="49%"}
+**Bisher: NetLogo**
+
+- *River Meanders*: lokale Bewegungs- und Erosionsregeln erzeugen eine Flussform.
+- *Erosion / Grand Canyon*: Wasser folgt einem lokalen Wasserspiegelgefälle.
+- **Das Muster entsteht aus den implementierten Regeln.**
+:::
+::: {.column width="49%"}
+**Heute: Burgwald (Rotes Wasser)**
+
+- **DGM1:** tatsächliche Geländehöhen statt synthetischer Modellwelt.
+- **SAGA/GRASS:** Rasteralgorithmen berechnen Fließrichtungen und beitragende Flächen.
+- **Vergleich:** berechnete Abflussbahnen ↔ kartiertes Gewässernetz.
+:::
+:::
+
+**Leitfrage:** Was erklärt die Lage eines Flusslaufs – und was erklärt seine **seitliche Verlagerung**?
+
+# Drei Modellkonzepte – drei Aussagegrenzen
+
+| Modellkonzept | Verfahren | Ergebnis / fehlende Prozesse |
+|---|---|---|
+| **Topografisches Routing** | SAGA *Flow Accumulation* (D8/MFD); GRASS `r.watershed` | **Beitragende Fläche und Fließwege**; keine Ereigniszeit oder hydraulische Reibung |
+| **Zeitabhängiger Oberflächenabfluss** | SAGA *Overland Flow*; GRASS `r.sim.water` | **Wassertiefe/Abfluss in der Zeit**; zusätzlich Regen, Infiltration und Rauigkeit nötig |
+| **Gerinnemigration** | z. B. *MeanderPy*; weiterführende morphodynamische Modelle | **Seitliche Verlagerung**; nicht aus D8/MFD allein ableitbar |
+
+**Skalenfrage:** 1 m, 5 m oder 10 m Rasterweite können andere Rinnen und Fließakkumulationen ergeben.
+
+**Landnutzung (ATKIS)** liefert erst bei einem geeigneten *dynamischen* Modell Anhaltspunkte für die Parametrisierung der Rauigkeit (z. B. Manning-`n`) – **nicht** für das reine D8-/MFD-Routing.
+
+# Heute: Abflusswege im Burgwald untersuchen
+
+::: {.columns}
+::: {.column width="32%"}
+**1 · Daten**
+
+- [DGM1 Hessen](https://gds.hessen.de/INTERSHOP/web/WFS/HLBG-Geodaten-Site/de_DE/-/EUR/ViewDownloadcenter-Start) und **ATKIS-Basis-DLM** laden.
+- Gebiet: **Rotes Wasser / Burgwald**.
+- Das Einzugsgebiet **oberhalb** des Kartenausschnitts berücksichtigen.
+:::
+::: {.column width="32%"}
+**2 · Rechnen**
+
+- DGM prüfen und Senkenbehandlung dokumentieren.
+- In **SAGA: D8 vs. MFD**; optional GRASS `r.watershed`.
+- Rasterweite **5 m / 10 m** vergleichen.
+:::
+::: {.column width="32%"}
+**3 · Bewerten**
+
+- Akkumulationskarten mit dem **ATKIS-Gewässerlauf** überlagern.
+- Unterschiede aus Regeln, Rasterweite und Randbedingungen erklären.
+- **Keine** Mäanderwanderung aus der Karte behaupten.
+:::
+:::
+
+**Abgabe:** Zwei Karten (D8/MFD), eine Überlagerung mit dem Gewässernetz und **150–250 Wörter Modellkritik**.
+
+**[→ Worksheet / Hands-on: Burgwald – SAGA, GRASS und Landnutzung](../pages/meander_abfluss_saga_grass.qmd)**

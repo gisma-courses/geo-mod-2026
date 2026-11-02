@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Abflussmodellierung im Burgwald – Modellieren in der Geographie</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../pages/netlogo_modellvergleich.html" rel="prev">
+<link href="..//images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-c8e893c45ba768c613f97d88ef0faa80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: black;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: black;
+background: ../images/placeholder.png;
+      }
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Abflussmodellierung im Burgwald – Modellieren in der Geographie">
+<meta property="og:description" content="DGM, D8/MFD, Modellskalen und Landnutzung als Rauigkeit">
+<meta property="og:site_name" content="Modellieren in der Geographie">
+<meta name="twitter:title" content="Abflussmodellierung im Burgwald – Modellieren in der Geographie">
+<meta name="twitter:description" content="DGM, D8/MFD, Modellskalen und Landnutzung als Rauigkeit">
+<meta name="twitter:creator" content="@gisma">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Abflussmodellierung im Burgwald</h1>
+        </a>     
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Abflussmodellierung im Burgwald</h1>
+            <p class="subtitle lead">DGM, D8/MFD, Modellskalen und Landnutzung als Rauigkeit</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Modellieren in der Geographie</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kursübersicht</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Reader</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/modellbildung_gis_reader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grundlagen der Modellbildung</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Slides / Folien</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/modellbildung_gis_folien.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modellbildung im GIS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/netlogo_modellvergleich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NetLogo – Modellvergleich</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Worksheets / Hands-on</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/meander_abfluss_saga_grass.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Burgwald – Abfluss mit SAGA / GRASS</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhalt</h2>
+   
+  <ul class="collapse">
+  <li><a href="#leitfrage" id="toc-leitfrage" class="nav-link active" data-scroll-target="#leitfrage">Leitfrage</a></li>
+  <li><a href="#lernziele-und-ergebnis" id="toc-lernziele-und-ergebnis" class="nav-link" data-scroll-target="#lernziele-und-ergebnis">Lernziele und Ergebnis</a></li>
+  <li><a href="#daten-und-arbeitsumgebung" id="toc-daten-und-arbeitsumgebung" class="nav-link" data-scroll-target="#daten-und-arbeitsumgebung">1 · Daten und Arbeitsumgebung</a></li>
+  <li><a href="#dgm-prüfen-und-vorbereiten" id="toc-dgm-prüfen-und-vorbereiten" class="nav-link" data-scroll-target="#dgm-prüfen-und-vorbereiten">2 · DGM prüfen und vorbereiten</a></li>
+  <li><a href="#hauptweg-fließakkumulation-mit-saga-gis" id="toc-hauptweg-fließakkumulation-mit-saga-gis" class="nav-link" data-scroll-target="#hauptweg-fließakkumulation-mit-saga-gis">3 · Hauptweg: Fließakkumulation mit SAGA GIS</a></li>
+  <li><a href="#alternativ--und-kontrollweg-grass-gis" id="toc-alternativ--und-kontrollweg-grass-gis" class="nav-link" data-scroll-target="#alternativ--und-kontrollweg-grass-gis">4 · Alternativ- und Kontrollweg: GRASS GIS</a></li>
+  <li><a href="#vom-errechneten-abflussweg-zum-mäander" id="toc-vom-errechneten-abflussweg-zum-mäander" class="nav-link" data-scroll-target="#vom-errechneten-abflussweg-zum-mäander">5 · Vom errechneten Abflussweg zum Mäander</a></li>
+  <li><a href="#landnutzung-für-rauigkeit-infiltration-und-eine-prozesssimulation" id="toc-landnutzung-für-rauigkeit-infiltration-und-eine-prozesssimulation" class="nav-link" data-scroll-target="#landnutzung-für-rauigkeit-infiltration-und-eine-prozesssimulation">6 · Landnutzung für Rauigkeit, Infiltration und eine Prozesssimulation</a></li>
+  <li><a href="#matrix-welche-modellkonzepte-implementieren-saga-grass-und-qgis" id="toc-matrix-welche-modellkonzepte-implementieren-saga-grass-und-qgis" class="nav-link" data-scroll-target="#matrix-welche-modellkonzepte-implementieren-saga-grass-und-qgis">7 · Matrix: Welche Modellkonzepte implementieren SAGA, GRASS und QGIS?</a></li>
+  <li><a href="#gibt-es-gis-basierte-modelle-für-seitenerosion-und-mäanderentwicklung" id="toc-gibt-es-gis-basierte-modelle-für-seitenerosion-und-mäanderentwicklung" class="nav-link" data-scroll-target="#gibt-es-gis-basierte-modelle-für-seitenerosion-und-mäanderentwicklung">8 · Gibt es GIS-basierte Modelle für Seitenerosion und Mäanderentwicklung?</a></li>
+  <li><a href="#optional-topografischer-vernässungsindex" id="toc-optional-topografischer-vernässungsindex" class="nav-link" data-scroll-target="#optional-topografischer-vernässungsindex">9 · Optional: Topografischer Vernässungsindex</a></li>
+  <li><a href="#ergebnissicherung" id="toc-ergebnissicherung" class="nav-link" data-scroll-target="#ergebnissicherung">Ergebnissicherung</a></li>
+  <li><a href="#technische-dokumentation-und-daten" id="toc-technische-dokumentation-und-daten" class="nav-link" data-scroll-target="#technische-dokumentation-und-daten">Technische Dokumentation und Daten</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/meander_abfluss_saga_grass.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<p><a href="../index.html">← Zur Kursübersicht</a> · <a href="../pages/netlogo_modellvergleich.html">Theoretischer Vergleich: NetLogo</a> · <a href="../pages/modellbildung_gis_reader.html">Kurzreader: Modellbildung im GIS</a></p>
+<section id="leitfrage" class="level2">
+<h2 class="anchored" data-anchor-id="leitfrage">Leitfrage</h2>
+<p><strong>Wie lässt sich aus dem Relief ableiten, wohin Wasser unter einer topografischen Routingannahme fließen würde – und weshalb ist das noch keine Simulation der Entstehung eines Mäanders?</strong></p>
+<p>In den NetLogo-Modellen wurden Fließbewegungen über lokale Regeln erzeugt. Heute ersetzen wir diese durch Rasteralgorithmen auf einem digitalen Geländemodell (DGM). Dafür vergleichen wir zwei verbreitete Routingannahmen: <strong>D8</strong>, bei der der Abfluss einer Zelle einem Nachbarn zugeordnet wird, und <strong>MFD (Multiple Flow Direction)</strong>, bei der er auf mehrere tieferliegende Nachbarn verteilt werden kann.</p>
+<p>Ein GIS kann auf dieser Basis potenzielle Fließwege und beitragende Flächen ermitteln. Es berechnet dabei <strong>weder die Wasserbewegung während eines konkreten Regenereignisses noch Ufererosion oder Sedimenttransport</strong>. Die Mäanderform dient uns als Beobachtungs- und Vergleichsgegenstand, nicht als Ergebnis einer simulierten Flussentwicklung.</p>
+</section>
+<section id="lernziele-und-ergebnis" class="level2">
+<h2 class="anchored" data-anchor-id="lernziele-und-ergebnis">Lernziele und Ergebnis</h2>
+<p>Nach der Übung können Sie:</p>
+<ol type="1">
+<li>aus einem DGM Fließakkumulation und ein potenzielles Gerinnenetz ableiten;</li>
+<li>den Einfluss von <strong>D8/MFD</strong>, Rasterweite und Senkenbehandlung auf die Abflusswege diskutieren;</li>
+<li>eine aus dem Relief berechnete Entwässerungslinie mit einem <strong>beobachteten Flusslauf</strong> vergleichen;</li>
+<li>erklären, weshalb ein Geländealgorithmus kein hydrodynamisches oder morphodynamisches Prozessmodell ist.</li>
+</ol>
+<p><strong>Abgabe:</strong> Zwei vergleichbare Karten (D8 und MFD), eine überlagerte Vergleichskarte mit realem Gewässerlauf und ein kurzer Modellkommentar (ca. 150–250 Wörter). Notieren Sie die verwendeten Daten, Rasterweite, Senkenbehandlung, Routingmethode und gegebenenfalls die Gerinneschwelle.</p>
+</section>
+<section id="daten-und-arbeitsumgebung" class="level2">
+<h2 class="anchored" data-anchor-id="daten-und-arbeitsumgebung">1 · Daten und Arbeitsumgebung</h2>
+<p><strong>Untersuchungsraum:</strong> der <strong>Burgwald in Hessen</strong>, vorzugsweise das Einzugsgebiet des <strong>Roten Wassers</strong> einschließlich seines Oberlaufs im Bereich Franzosenwiesen und eines anschließenden Talabschnitts. Das Rote Wasser entspringt im Burgwald; wir prüfen seine Lage im vorhandenen Gewässernetz, ohne einen besonders ausgeprägten Mäander vorauszusetzen. Der Ausschnitt sollte das <strong>oberhalb gelegene Einzugsgebiet</strong> möglichst ausreichend umfassen; eine knapp um den Fluss ausgeschnittene Kachel führt zu starken Randeffekten.</p>
+<p><strong>Benötigt werden:</strong></p>
+<ul>
+<li>ein DGM1 als GeoTIFF mit dokumentierter Rasterweite und Höhenreferenz;</li>
+<li>ATKIS-Basis-DLM (Gewässerlinien <strong>und</strong> Landnutzungsflächen) und bei Bedarf ein Orthofoto als Referenz;</li>
+<li>QGIS zur Sichtkontrolle und Kartendarstellung; <strong>SAGA GIS</strong> für die Hauptanalyse; <strong>GRASS GIS</strong> als gut integrierter und methodisch vergleichbarer Alternativweg.</li>
+</ul>
+<section id="direkte-datenzugänge-für-den-burgwald" class="level3">
+<h3 class="anchored" data-anchor-id="direkte-datenzugänge-für-den-burgwald">Direkte Datenzugänge für den Burgwald</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Datensatz</th>
+<th>Direkter Einstieg</th>
+<th>Wofür?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Hessen DGM1 (1 m)</strong></td>
+<td><strong><a href="https://gds.hessen.de/INTERSHOP/web/WFS/HLBG-Geodaten-Site/de_DE/-/EUR/ViewDownloadcenter-Start">Geodaten online – Downloadcenter</a></strong> → <strong>3D-Daten</strong> → DGM1; <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle">Produktinformation DGM</a></td>
+<td>Geländehöhe, Gefälle, Fließwege</td>
+</tr>
+<tr class="even">
+<td><strong>ATKIS Basis-DLM</strong></td>
+<td><strong><a href="https://gds.hessen.de/INTERSHOP/web/WFS/HLBG-Geodaten-Site/de_DE/-/EUR/ViewDownloadcenter-Start">Dasselbe Downloadcenter</a></strong> → <strong>Digitales Landschaftsmodell</strong>; <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell">Produktinformation Basis-DLM</a></td>
+<td>Vegetation, Siedlung, Verkehr, Gewässerlinien für Rauigkeitsklassen und Vergleich</td>
+</tr>
+<tr class="odd">
+<td><strong>Alternativer Datenkatalog</strong></td>
+<td><a href="https://opendata.hessen.de/dataset/atkis-dgm-1">Open Data Hessen – DGM1</a> · <a href="https://opendata.hessen.de/de/dataset/atkis-basis-dlm">Basis-DLM</a></td>
+<td>Metadaten und Diensteinträge; nicht zwingend unmittelbare Raster-/Vektordatei</td>
+</tr>
+</tbody>
+</table>
+<p><strong>So gehen Sie vor:</strong></p>
+<ol type="1">
+<li>Öffnen Sie das <strong>direkt verlinkte Downloadcenter</strong> und wählen Sie für das Gelände <strong>3D-Daten / DGM1</strong>. Laden Sie Kacheln, die den gewählten Teil des Burgwalds und ausreichend oberhalb gelegene Zuflussflächen erfassen. Das DGM1 steht kostenfrei zur Selbstentnahme bereit.</li>
+<li>Beschaffen Sie unter <strong>Digitales Landschaftsmodell</strong> die <strong>ATKIS-Basis-DLM</strong>-Daten. Falls nur ein großer Datensatz verfügbar ist, laden Sie ihn herunter und begrenzen ihn später in QGIS auf das Untersuchungsgebiet. Der Datenbestand wird auch über einen WFS bereitgestellt.</li>
+<li>Legen Sie in QGIS ein Untersuchungsgebiet um <strong>Rotes Wasser / Franzosenwiesen / Burgwald</strong> fest. Lassen Sie für die Fließakkumulation genügend Einzugsgebiet oberstromig im DGM. Schneiden Sie Ergebnisse erst <strong>nach</strong> der großräumigeren Fließwegberechnung auf den engeren Betrachtungsraum zu.</li>
+<li>Speichern Sie <strong>DGM1, ATKIS-Landnutzung, Gewässernetz</strong> als Originale. Das amtliche DGM1 wird in Hessen als GeoTIFF (32-bit Float) bereitgestellt; das Basis-DLM u. a. als Shape oder NAS/XML. Arbeiten Sie konsistent in <strong>ETRS89 / UTM 32N (EPSG:25832)</strong>.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Warum nicht einfach nur den Flussausschnitt ausschneiden?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ein DGM-Ausschnitt, der nur den sichtbaren Gewässerkorridor umfasst, enthält die oberhalb gelegenen Zuflüsse nicht mehr. Das führt zu künstlich kleinen beitragenden Flächen und starken Randartefakten. <strong>Analysegebiet und Darstellungsgebiet dürfen unterschiedlich groß sein.</strong></p>
+</div>
+</div>
+</section>
+<section id="maßstab-und-räumliche-auflösung-sind-modellentscheidungen" class="level3">
+<h3 class="anchored" data-anchor-id="maßstab-und-räumliche-auflösung-sind-modellentscheidungen">Maßstab und räumliche Auflösung sind Modellentscheidungen</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modellansatz</th>
+<th>Geeignete Fragestellung</th>
+<th>Räumlich-zeitlicher Bezug</th>
+<th>Was fehlt?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>NetLogo River Meanders</strong></td>
+<td>Wie können aus lokalen Regeln Flusskrümmungen entstehen?</td>
+<td>Abstraktes Raster und Modellschritte; <strong>keine reale DGM-Meterskala</strong></td>
+<td>Quantitative Hydraulik und zeitliche Kalibrierung</td>
+</tr>
+<tr class="even">
+<td><strong>DGM + D8/MFD (SAGA/GRASS)</strong></td>
+<td>Wo verlaufen potenzielle Abflussbahnen, wo konzentriert sich Fläche?</td>
+<td>Rasterweite in Metern, <strong>statisches Gelände</strong>, keine reale Ereigniszeit</td>
+<td>Strömungstiefe, Fließgeschwindigkeit, Reibung als hydraulischer Prozess</td>
+</tr>
+<tr class="odd">
+<td><strong>SAGA Overland Flow / GRASS <code>r.sim.water</code></strong></td>
+<td>Wie beeinflussen Niederschlag, Infiltration und Rauigkeit den Oberflächenabfluss?</td>
+<td>Raum- und <strong>Simulationszeit</strong> müssen mit Eingangsdaten und Modellannahmen zusammenpassen</td>
+<td>Ohne weitere Komponenten keine Ufererosion/Mäanderdynamik</td>
+</tr>
+<tr class="even">
+<td><strong>Morphodynamische Modelle</strong></td>
+<td>Wie verändern sich Gerinne, Ufer und Sediment über die Zeit?</td>
+<td>Gewässergeometrie und prozessgerechte Zeitauflösung erforderlich</td>
+<td>Nicht mit dem einfachen DGM-Routing gleichzusetzen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Skalenexperiment (gleicher Untersuchungsraum und gleiche Vorverarbeitung):</strong> Leiten Sie aus dem amtlichen <strong>DGM1 (1 m)</strong> alternativ <strong>5-m- und 10-m-Arbeitsraster</strong> ab. Für einen nur illustrativen Ausschnitt von <strong>2 × 2 km</strong> bedeutet dies ungefähr <strong>4.000.000</strong>, <strong>160.000</strong> bzw. <strong>40.000</strong> Rasterzellen. Ein gröberes Gitter glättet schmale Rinnen und ändert Fließrichtungen. Die Rasterweite eines Modells ist dabei nicht gleich seiner tatsächlichen Lage- oder Höhengenauigkeit.</p>
+<p><strong>Wichtig beim Vergleich:</strong> Wenn eine Fließakkumulation in <em>Zellen</em> ausgegeben wird, muss sie für verschiedene Rasterweiten erst in <strong>beitragende Fläche (m²)</strong> umgerechnet werden (<code>Zellenzahl × Zellfläche</code>). Alternativ direkt die flächenbezogene Ausgabe des Algorithmus wählen. Für echte Senken, Dämme, Durchlässe und Flachbereiche bleibt eine separate Plausibilitätsprüfung erforderlich.</p>
+<p><strong>Projektstruktur (Vorschlag):</strong></p>
+<pre class="text"><code>abfluss_gis/
+├── data/        # Original-DGM1, ATKIS-Basis-DLM, Gewässerreferenz
+├── processing/  # DGM 1/5/10 m, Landnutzungsklassen, Rauigkeitsraster
+├── results/     # Akkumulation D8/MFD, Gerinnenetz, optional dynamischer Abfluss
+└── maps/        # Karten und Modellkommentar</code></pre>
+</section>
+<section id="installation-und-auswahl-der-werkzeuge" class="level3">
+<h3 class="anchored" data-anchor-id="installation-und-auswahl-der-werkzeuge">Installation und Auswahl der Werkzeuge</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Weg</th>
+<th>Praktische Verwendung</th>
+<th>Bemerkung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAGA GIS direkt</strong></td>
+<td><code>Terrain Analysis → Hydrology → Flow Accumulation</code></td>
+<td>Empfohlener Hauptweg, sofern SAGA installiert ist.</td>
+</tr>
+<tr class="even">
+<td><strong>GRASS in QGIS</strong></td>
+<td>Verarbeitungswerkzeuge nach <code>r.watershed</code> und <code>r.stream.extract</code> durchsuchen</td>
+<td>Vergleichsweg; auf Linux kann das zusätzliche Paket <code>qgis-plugin-grass</code> erforderlich sein.</td>
+</tr>
+<tr class="odd">
+<td><strong>SAGA über QGIS</strong></td>
+<td>Zusatzanbieter <em>Processing Saga NextGen Provider</em></td>
+<td>Nur verwenden, wenn für die konkrete QGIS-/SAGA-Version verfügbar und funktionsfähig; der Anbieter ist seit QGIS 3.30 nicht mehr eingebaut.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ubuntu-/Debian-basierte Systeme (wenn die Pakete aus Ihren Repositories bereitstehen):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install saga grass qgis-plugin-grass</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Kontrollieren Sie anschließend, ob <code>saga_cmd</code> und <code>grass</code> vorhanden sind und ob die GRASS-Werkzeuge im QGIS-Processing-Werkzeugkasten erscheinen. Die QGIS-SAGA-Kopplung ist optional; die SAGA-Standalone-Anwendung genügt. Ob und welche Version des NextGen-Plugins im Plugin-Manager angezeigt wird, ist installationsabhängig.</p>
+</section>
+</section>
+<section id="dgm-prüfen-und-vorbereiten" class="level2">
+<h2 class="anchored" data-anchor-id="dgm-prüfen-und-vorbereiten">2 · DGM prüfen und vorbereiten</h2>
+<ol type="1">
+<li>DGM1 für den Burgwald in QGIS laden und die <strong>Höhenwerte</strong> sowie das <strong>Koordinatenreferenzsystem</strong> kontrollieren. Für Hessen eignet sich z. B. ETRS89 / UTM 32N (<code>EPSG:25832</code>).</li>
+<li>Eine Schummerung (Hillshade) erzeugen. Liegt die erkannte Gewässerrinne ungefähr dort, wo auch auf Orthofoto oder Karte der Fluss verläuft?</li>
+<li>Den Geländeausschnitt groß genug wählen, damit die Zuflusswege nicht unmittelbar am Kartenrand abgeschnitten werden. Analysen nur für den kleinen Anzeigeausschnitt zu rechnen, ist nicht immer sinnvoll.</li>
+<li>Aus dem unveränderten DGM1 ein 5-m-Arbeitsraster und für den Skalenvergleich ein 10-m-Raster erzeugen. Original behalten; Resamplingverfahren und Pixelursprung festhalten.</li>
+<li>Festlegen, wie <strong>geschlossene Senken</strong> behandelt werden sollen. Kleine Datenartefakte können Fließwege abbrechen lassen; wirkliche Senken sollen nicht unbemerkt „wegkorrigiert“ werden.</li>
+</ol>
+<p><strong>Diskussionspunkt:</strong> Ein DGM beschreibt in Wasserflächen oft <strong>nicht die reale Gewässersohle</strong>. Eine glatte bzw. interpolierte Wasseroberfläche kann zu unplausiblen Fließrichtungen im Gewässer führen. Auch Brücken, Dämme und Durchlässe können den algorithmischen Weg vom tatsächlichen Abflussweg trennen.</p>
+</section>
+<section id="hauptweg-fließakkumulation-mit-saga-gis" class="level2">
+<h2 class="anchored" data-anchor-id="hauptweg-fließakkumulation-mit-saga-gis">3 · Hauptweg: Fließakkumulation mit SAGA GIS</h2>
+<p>Der SAGA-Algorithmus <strong><code>Flow Accumulation</code></strong> kombiniert eine DGM-Vorverarbeitung mit der Berechnung beitragender Flächen. Die dokumentierte aktuelle Werkzeugkette bietet insbesondere <code>Fill Sinks (Wang &amp; Liu)</code> oder <code>Sink Removal</code> als Vorverarbeitung und mehrere Routingverfahren. <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.0/tc_ta_hydrology_flow_accumulation.html">Werkzeugdokumentation</a>.</p>
+<section id="durchlauf-a-d8" class="level3">
+<h3 class="anchored" data-anchor-id="durchlauf-a-d8">Durchlauf A – D8</h3>
+<ol type="1">
+<li>Das Arbeits-DGM in SAGA GIS öffnen.</li>
+<li><strong>Terrain Analysis → Hydrology → Flow Accumulation</strong> starten.</li>
+<li>Als <strong>Elevation</strong> das Arbeits-DGM auswählen.</li>
+<li><strong>Preprocessing:</strong> zunächst <code>Fill Sinks (Wang &amp; Liu)</code>; die Einstellung dokumentieren.</li>
+<li><strong>Flow Routing:</strong> <code>Deterministic 8 (D8)</code>.</li>
+<li><strong>Flow Accumulation / TCA</strong> als <code>accu_d8</code> speichern; optional die <em>Specific Catchment Area</em> mit ausgeben.</li>
+<li>Das Ergebnis in QGIS laden und so darstellen, dass stark akkumulierte Fließlinien erkennbar werden (z. B. kontrastreiche oder logarithmisch abgestufte Werte).</li>
+</ol>
+<p><strong>Gedanke hinter D8:</strong> Jede Rasterzelle gibt ihren Beitrag an <strong>einen</strong> tieferliegenden Nachbarn weiter, der nach der im Algorithmus definierten Abstiegsregel gewählt wird. Daraus ergeben sich stark gebündelte Fließlinien.</p>
+</section>
+<section id="durchlauf-b-mfd" class="level3">
+<h3 class="anchored" data-anchor-id="durchlauf-b-mfd">Durchlauf B – MFD</h3>
+<p>Wiederholen Sie denselben Ablauf mit <strong>unverändertem Arbeits-DGM und gleicher Vorverarbeitung</strong>. Ändern Sie nur <strong>Flow Routing → Multiple Flow Direction</strong> und speichern Sie das Ergebnis als <code>accu_mfd</code>.</p>
+<p><strong>Gedanke hinter MFD:</strong> Der Beitrag einer Zelle kann auf <strong>mehrere</strong> tieferliegende Nachbarn verteilt werden. Akkumulation kann sich dadurch stärker über Hangflächen verteilen.</p>
+</section>
+<section id="vergleich-und-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="vergleich-und-interpretation">Vergleich und Interpretation</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Frage</th>
+<th>D8</th>
+<th>MFD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Wohin geht der Beitrag einer Zelle?</td>
+<td>Ein Empfänger</td>
+<td>Mehrere mögliche Empfänger</td>
+</tr>
+<tr class="even">
+<td>Was fällt kartografisch auf?</td>
+<td>Häufig stärker konzentrierte Linien</td>
+<td>Oft flächigere Verteilung</td>
+</tr>
+<tr class="odd">
+<td>Was bleibt gleich?</td>
+<td>DGM, Abstraktion auf Nachbarschaftszellen, keine Ereignishydraulik</td>
+<td>DGM, Abstraktion auf Nachbarschaftszellen, keine Ereignishydraulik</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Achtung zur Einheit:</strong> Die Fließakkumulation ist je nach Algorithmus und Einstellung in <strong>beitragenden Zellen</strong>, <strong>Fläche</strong> oder einer anderen normierten Größe angegeben. Sie ist ohne passende Regen-/Abflussannahmen <strong>kein Durchfluss in m³/s</strong>. Kontrollieren Sie die Einheit der tatsächlich ausgegebenen SAGA-Raster.</p>
+</section>
+</section>
+<section id="alternativ--und-kontrollweg-grass-gis" class="level2">
+<h2 class="anchored" data-anchor-id="alternativ--und-kontrollweg-grass-gis">4 · Alternativ- und Kontrollweg: GRASS GIS</h2>
+<p>GRASS ergänzt SAGA sinnvoll, weil das Modul <strong><code>r.watershed</code></strong> sowohl eine Standardberechnung mit <strong>MFD</strong> als auch den direkten Vergleich mit <strong>SFD/D8</strong> (Schalter <code>-s</code>) ermöglicht. Es liefert u. a. Akkumulation und Fließrichtung. <a href="https://grass.osgeo.org/grass85/manuals/r.watershed.html">Dokumentation <code>r.watershed</code></a>.</p>
+<p>Öffnen Sie in QGIS <strong>Verarbeitung → Werkzeugkiste</strong> und suchen Sie nach <strong><code>r.watershed</code></strong>. Falls verfügbar:</p>
+<ol type="1">
+<li>Arbeits-DGM als <em>Elevation</em> verwenden; die Region/Zellgröße und Ausdehnung passend einstellen.</li>
+<li><strong>MFD</strong> rechnen (Standardeinstellung, sofern <code>-s</code> nicht aktiviert ist) und Akkumulation als <code>grass_accu_mfd</code> speichern.</li>
+<li>Den Lauf mit <strong>SFD/D8</strong> (<code>-s</code>) wiederholen und als <code>grass_accu_d8</code> speichern.</li>
+<li>Die Resultate in identischem Kartenausschnitt und mit vergleichbarer Farbskala betrachten.</li>
+</ol>
+<p>Für ein abgeleitetes Gewässernetz eignet sich das GRASS-Werkzeug <strong><code>r.stream.extract</code></strong>. Es benötigt ein DGM und einen <strong>Schwellenwert für die minimale Akkumulation</strong>, ab dem ein Gewässer beginnt; der Wert ist <strong>ein Modellparameter</strong>, keine direkt beobachtete Flussursprungsstelle. <a href="https://grass.osgeo.org/grass85/manuals/r.stream.extract.html">Dokumentation <code>r.stream.extract</code></a>.</p>
+<p><strong>Parameterexperiment:</strong> Testen Sie zwei deutlich unterschiedliche Schwellenwerte und vergleichen Sie Gewässerdichte und Gewässeranfänge. Bei einer 5-m-Rasterweite entsprechen beispielsweise <strong>4.000 Rasterzellen 10 ha</strong> und <strong>16.000 Rasterzellen 40 ha</strong> beitragender Fläche; diese Umrechnung gilt, <em>wenn die Akkumulation in Rasterzellen angegeben wird</em>. Sie ist keine Empfehlung für einen hydrologisch „richtigen“ Schwellenwert.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Wenn die SAGA-QGIS-Erweiterung fehlt
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die frühere QGIS-eigene SAGA-Anbindung wurde mit QGIS 3.30 entfernt. Die <a href="https://plugins.qgis.org/plugins/processing_saga_nextgen/">aktuelle QGIS-Plugin-Seite</a> für <em>Processing Saga NextGen Provider</em> weist derzeit <strong>keine öffentliche Version</strong> aus. Der <a href="https://github.com/baswein/qgis-processing-saga-nextgen">Quellcode</a> ist verfügbar, dennoch ist eine problemlose Plugin-Installation nicht gewährleistet. Zudem verlangt der Anbieter eine kompatible SAGA-Installation. Für die Übung ist deshalb <strong>SAGA direkt + QGIS für die Karten</strong> der robustere Hauptweg. Alternativ funktioniert <strong>GRASS <code>r.watershed</code></strong> in einer entsprechend eingerichteten QGIS-Processing-Umgebung.</p>
+</div>
+</div>
+</section>
+<section id="vom-errechneten-abflussweg-zum-mäander" class="level2">
+<h2 class="anchored" data-anchor-id="vom-errechneten-abflussweg-zum-mäander">5 · Vom errechneten Abflussweg zum Mäander</h2>
+<p>Legen Sie ein Orthofoto bzw. die amtliche Gewässerlinie über Hillshade und Akkumulationskarte. Wählen Sie einen Abschnitt mit <strong>einer erkennbaren Gewässerkrümmung</strong> im Burgwald; eine stark entwickelte Mäanderschlinge ist nicht Voraussetzung für die Übung.</p>
+<ol type="1">
+<li><strong>Lage:</strong> Verläuft die Akkumulationslinie ungefähr entlang des heutigen Flussbetts oder daneben?</li>
+<li><strong>Abweichung:</strong> Liegt die Verschiebung möglicherweise an Rasterweite, interpolierter Wasseroberfläche, Senkenbehandlung oder Randbereich des untersuchten DGM?</li>
+<li><strong>Form:</strong> Wird die <strong>Krümmung eines bestehenden Flusslaufs</strong> in der Reliefinformation wiedergegeben, oder entsteht sie erst durch den Routingalgorithmus?</li>
+<li><strong>Interpretation:</strong> Können Sie aus der Akkumulationskarte erkennen, an welchem Ufer Erosion und wo Sedimentation stattfinden wird? <strong>Nein</strong> – dafür fehlen Strömungsdynamik, Sedimenttransport, Ufermaterial und die zeitliche Rückkopplung von Fluss und Gelände.</li>
+</ol>
+<p>Der Vergleich zum NetLogo-Modell <em>River Meanders</em> ist absichtlich zugespitzt:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ansatz</th>
+<th>Was verändert sich im Modell?</th>
+<th>Was ist das Ergebnis?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>NetLogo: River Meanders</strong></td>
+<td>Fluss-/Landzustände ändern sich nach heuristischen Regeln</td>
+<td>Entstehende, sich verändernde Flussform</td>
+</tr>
+<tr class="even">
+<td><strong>SAGA/GRASS: DGM-Flow-Routing</strong></td>
+<td>Bei statischem DGM grundsätzlich <strong>keine Geländeänderung</strong></td>
+<td>Abgeleitete Fließwege und beitragende Fläche</td>
+</tr>
+<tr class="odd">
+<td><strong>Hydro-/Morphodynamisches Modell</strong></td>
+<td>Wasserzustand und ggf. Gerinnegeometrie/Sediment ändern sich durch Prozessgleichungen</td>
+<td>Dynamischer Strömungs- und möglicherweise Formwandel</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Merksatz:</strong> <em>Fließakkumulation erklärt die Lage möglicher Abflussbahnen unter einer Routingregel. Sie erklärt nicht die zeitliche Entstehung eines Mäanders.</em></p>
+</section>
+<section id="landnutzung-für-rauigkeit-infiltration-und-eine-prozesssimulation" class="level2">
+<h2 class="anchored" data-anchor-id="landnutzung-für-rauigkeit-infiltration-und-eine-prozesssimulation">6 · Landnutzung für Rauigkeit, Infiltration und eine Prozesssimulation</h2>
+<p><strong>Warum zusätzliche Geodaten?</strong> Eine D8-/MFD-Akkumulation leitet Topologierichtungen und beitragende Fläche aus dem Relief ab. In diesen beiden <strong>reinen Fließakkumulationsläufen wird ein Manning-Rauigkeitsraster nicht verwendet</strong>. Erst bei einem zusätzlichen zeitabhängigen Abflussmodell kann die Landnutzung als Ausgangspunkt für räumlich variable hydraulische Rauigkeit (und mit weiteren Bodeninformationen für Infiltration) dienen.</p>
+<section id="landnutzung-aus-dem-atkis-basis-dlm-vorbereiten" class="level3">
+<h3 class="anchored" data-anchor-id="landnutzung-aus-dem-atkis-basis-dlm-vorbereiten">Landnutzung aus dem ATKIS-Basis-DLM vorbereiten</h3>
+<ol type="1">
+<li>Laden Sie in QGIS die <strong>ATKIS-Flächen</strong> mit Informationen über <strong>Vegetation (Wald, Offenland usw.), Siedlung und Verkehr</strong>; Gewässerobjekte separat zur Kontrolle. Prüfen Sie die vorhandenen Attributnamen, bevor Sie Klassen zuordnen – diese unterscheiden sich je nach Datenausgabe.</li>
+<li>Begrenzen Sie die Landnutzungsflächen auf den Untersuchungsraum. Fassen Sie sie beispielhaft zu <strong>Wald</strong>, <strong>Offenland/Grünland</strong>, <strong>Acker</strong>, <strong>versiegelte/verdichtete Flächen</strong> und <strong>Gewässer</strong> zusammen. Dokumentieren Sie nicht zuordenbare Objekte; keine stillschweigende Zuweisung.</li>
+<li>Legen Sie ein neues numerisches Feld <code>manning_n</code> an. Ordnen Sie die Klassen begründeten, zunächst nur als <strong>Versuchswerte</strong> verstandenen Rauigkeitskoeffizienten zu. Eine Landnutzungsklasse hat keinen universell gültigen Manning-Wert; Bodenbewuchs, Bewirtschaftung, Fließtiefe und Jahreszeit wirken mit.</li>
+<li>Rasterisieren Sie das Feld <code>manning_n</code> in QGIS (<strong>Raster → Konvertierung → Rasterisieren (Vektor nach Raster)</strong>). Verwenden Sie <strong>dieselben Rastergrenzen, denselben Ursprung, dasselbe CRS und dieselbe Rasterweite</strong> wie für das Arbeits-DGM. Kategorische Landnutzung beim Neuabtasten mit <em>Nearest Neighbour</em> behandeln.</li>
+<li>Kontrollieren Sie Fehlwerte, Überlappungen und Grenzen zwischen Landnutzungsklassen. Speichern Sie das Ergebnis als <code>roughness_n.tif</code>; falls SAGA <strong>Strickler <span class="math inline">\(K_s\)</span></strong> verlangt, berechnen Sie <span class="math inline">\(K_s = 1/n\)</span> und dokumentieren die Umrechnung.</li>
+</ol>
+<p><strong>Rauigkeitsbegriffe auseinanderhalten:</strong> Der <em>Overland Flow</em>-Ansatz verwendet wahlweise <strong>Manning-<code>n</code> oder Strickler-<code>K_s = 1/n</code></strong>. Der SAGA-Ansatz <em>MMF-SAGA</em> erwartet für <code>RFR</code> dagegen eine <strong>Oberflächenrauigkeit in cm/m</strong>; ein Manning-Raster darf dort <strong>nicht</strong> ohne Weiteres eingesetzt werden. Für <em>Overland Flow Distance to Channel Network</em> kann ein Strickler-Raster zusammen mit einer angenommenen Fließtiefe zur Berechnung von Reisezeiten verwendet werden.</p>
+<p><strong>Keine Gleichsetzung:</strong> Landnutzung ≠ Infiltrationsrate. Für eine quantitative Infiltrationskarte benötigt man zusätzlich z. B. Informationen über Bodenart, hydraulische Leitfähigkeit und Anfangsfeuchte. Ohne diese Daten ist ein konstantes, transparent angegebenes Infiltrationsszenario ehrlicher als ein scheinbar präziser Rasterwert.</p>
+</section>
+<section id="welches-werkzeug-verwendet-welche-parameter" class="level3">
+<h3 class="anchored" data-anchor-id="welches-werkzeug-verwendet-welche-parameter">Welches Werkzeug verwendet welche Parameter?</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Werkzeug</th>
+<th>DGM</th>
+<th>Landnutzung / Rauigkeit</th>
+<th>Niederschlag und Infiltration</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SAGA Flow Accumulation (D8/MFD)</strong></td>
+<td>Ja</td>
+<td><strong>Nein</strong></td>
+<td>Nicht als Ereignishydraulik</td>
+<td>Statische beitragende Fläche</td>
+</tr>
+<tr class="even">
+<td><strong>GRASS <code>r.watershed</code></strong></td>
+<td>Ja</td>
+<td>Kein hydraulisches Manning-<code>n</code>; optional zellweiser <strong>Abflussbeitrag</strong> (<code>flow=</code>) und <strong>Retention</strong> (<code>retention=</code>)</td>
+<td>Kein zeitabhängiges Niederschlags-Abfluss-Modell</td>
+<td>Gewichtete Akkumulation, nicht Fließgeschwindigkeit</td>
+</tr>
+<tr class="odd">
+<td><strong>SAGA <code>Simulation → Hydrology → Overland Flow</code></strong></td>
+<td>Ja</td>
+<td><strong>Ja</strong>, Raster <code>ROUGHNESS</code> – wahlweise <strong>Strickler <span class="math inline">\(K_s\)</span> oder Manning <span class="math inline">\(n\)</span></strong></td>
+<td><strong>Ja</strong>, u. a. Niederschlag, Infiltrationskapazität, Interzeption</td>
+<td>Vereinfachte zeitabhängige Oberflächenabflusssimulation</td>
+</tr>
+<tr class="even">
+<td><strong>GRASS <code>r.sim.water</code></strong></td>
+<td>Ja</td>
+<td><strong>Ja</strong>, Raster <code>man</code> mit Manning-<code>n</code></td>
+<td><strong>Ja</strong>, u. a. <code>rain</code>, <code>infil</code></td>
+<td>Räumliche Simulation von Wassertiefe und Durchfluss</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="kleines-anschluss-experiment-optional" class="level3">
+<h3 class="anchored" data-anchor-id="kleines-anschluss-experiment-optional">Kleines Anschluss-Experiment (optional)</h3>
+<p>Rechnen Sie <strong>denselben kleineren Teilraum des Burgwalds</strong> mit einem der beiden zeitabhängigen Modelle zweimal: <strong>A</strong> mit konstanter Rauigkeit, <strong>B</strong> mit einem aus ATKIS-Landnutzung abgeleiteten Rauigkeitsraster. Halten Sie DGM, Niederschlag, Infiltrationsannahme, Simulationszeit und Ausgabezeitpunkt gleich. Vergleichen Sie Lage von Abflusskonzentrationen sowie – je nach Modell – <strong>Wassertiefe, Geschwindigkeit oder Abfluss</strong>. Ist der Einfluss der Rauigkeit größer als der des Wechsels von 5 m auf 10 m Rasterweite?</p>
+<p>Verwenden Sie für die erste Demonstration bewusst einen <strong>kleinen Ausschnitt</strong>, damit die Simulation handhabbar bleibt; prüfen Sie dennoch die Randbedingungen. Interpretieren Sie Unterschiede zunächst als <strong>Modellsensitivität</strong>, nicht als validierte Hochwasserprognose.</p>
+<p><strong>Werkzeugdokumentation:</strong> <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.14.1/sim_hydrology_9.html">SAGA Overland Flow</a> · <a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html">GRASS <code>r.sim.water</code></a> · <a href="https://grass.osgeo.org/grass85/manuals/r.watershed.html">GRASS <code>r.watershed</code></a>.</p>
+</section>
+</section>
+<section id="matrix-welche-modellkonzepte-implementieren-saga-grass-und-qgis" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-welche-modellkonzepte-implementieren-saga-grass-und-qgis">7 · Matrix: Welche Modellkonzepte implementieren SAGA, GRASS und QGIS?</h2>
+<p>Die drei Programme sind <strong>keine drei gleichartigen Simulationsmodelle</strong>. SAGA und GRASS stellen Werkzeuge für verschiedene Prozess- und Abstraktionsebenen bereit; QGIS ist zusätzlich ein GIS mit <strong>eigenen Algorithmen und Schnittstellen zu externen Rechenkernen</strong>. Insbesondere bedeutet die Anzeige eines GRASS-Werkzeugs in der QGIS-Werkzeugkiste nicht, dass QGIS dessen Gleichungen selbst implementiert.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modellkonzept / Zielgröße</th>
+<th><strong>SAGA GIS</strong> (Beispiel)</th>
+<th><strong>GRASS GIS</strong> (Beispiel)</th>
+<th><strong>QGIS nativ oder über Provider</strong></th>
+<th>Physikalische Aussage und Grenze</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>DGM-Vorverarbeitung</strong> (Senken, Fließfähigkeit)</td>
+<td><em>Fill Sinks (Wang &amp; Liu)</em></td>
+<td><code>r.fill.dir</code></td>
+<td>Seit QGIS <strong>3.44</strong> auch <em>Fill sinks (Wang &amp; Liu)</em> als nativer Algorithmus; sonst externe Werkzeuge</td>
+<td>Korrigiert/erzwingt eine Abfluss-Topologie; <strong>keine Wassersimulation</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Fließrichtung und beitragende Fläche</strong></td>
+<td><em>Flow Accumulation</em> mit <strong>D8, MFD</strong> u. a.</td>
+<td><code>r.watershed</code> (<strong>MFD</strong>, mit <code>-s</code> <strong>SFD</strong>)</td>
+<td>Im Wesentlichen über <strong>GRASS/SAGA</strong> als Processing-Anbieter</td>
+<td>Statisches Reliefrouting; keine Wasserstandsdynamik, kein hydraulisches Manning-<code>n</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Gerinnenetz und Einzugsgebiete</strong></td>
+<td><em>Channel Network</em>, <em>Watershed Basins</em></td>
+<td><code>r.stream.extract</code>, <code>r.water.outlet</code></td>
+<td>Kartierung/Verarbeitung, häufig über GRASS/SAGA</td>
+<td>Abgeleitete Gerinneanfänge hängen von Schwellenwerten und Relief ab</td>
+</tr>
+<tr class="even">
+<td><strong>Abflussweg und Fließzeit</strong></td>
+<td><em>Overland Flow Distance to Channel Network</em> (optional Strickler-Rauigkeit und angenommene Wassertiefe)</td>
+<td><code>r.watershed</code> + abgeleitete Weglängen; kein direkt äquivalentes Ereignismodell</td>
+<td>Über SAGA/GRASS oder Rasterrechner</td>
+<td>Berechnete Weglänge und <strong>parametrisierte Reisezeit</strong>, keine vollständige zeitabhängige Wassermengenbilanz</td>
+</tr>
+<tr class="odd">
+<td><strong>Dynamischer Oberflächenabfluss</strong></td>
+<td><em>Overland Flow</em></td>
+<td><code>r.sim.water</code> (SIMWE)</td>
+<td>Über GRASS-/SAGA-Anbindung; <strong>kein gleichwertiges natives vollständiges Simulationsmodell</strong></td>
+<td>Ereignis- oder zeitabhängiger Wasserabfluss unter Modellannahmen; Rauigkeit, Niederschlag, Infiltration relevant</td>
+</tr>
+<tr class="even">
+<td><strong>Hang-/Flächenerosion</strong></td>
+<td><em>MMF-SAGA Soil Erosion Model</em></td>
+<td><code>r.watershed</code>-RUSLE-Faktoren bzw. Erosions-/Sedimentwerkzeuge</td>
+<td>Rasterrechner für eigene Erosionsindizes; GRASS-/SAGA-Modelle über Provider</td>
+<td>Erosionspotenzial oder modellierte flächenhafte Bodenerosion; <strong>keine seitliche Ufermigration</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Sedimenttransport und Deposition</strong></td>
+<td>MMF-SAGA (modellbezogene Erosions-/Transportgrößen)</td>
+<td><code>r.sim.sediment</code> (SIMWE)</td>
+<td>Üblicherweise über GRASS-Processing</td>
+<td>Modellierung von Sedimentfluss und Erosion/Deposition im Gelände; nicht automatisch wandernde Flussufer</td>
+</tr>
+<tr class="even">
+<td><strong>Zeitliche Geländeentwicklung</strong></td>
+<td>In SAGA verschiedene geomorphologische/erosive Ansätze; <strong>kein integriertes allgemeines Mäandermigrationswerkzeug</strong></td>
+<td>Add-ons <code>r.sim.terrain</code>, <code>r.landscape.evol</code> mit wiederholter Höhenänderung</td>
+<td>Externe GRASS-Module oder eigene Prozessketten</td>
+<td>Rasterhöhen können zeitlich verändert werden; nicht gleichzusetzen mit lateraler Gerinnedynamik</td>
+</tr>
+<tr class="odd">
+<td><strong>Historische Ufererosion messen</strong></td>
+<td>Überlagerung bzw. Differenzanalyse historischer Linien/Polygone</td>
+<td>GIS-Vergleiche mit Vektor-/Rasteroperationen</td>
+<td>QGIS-Plugin <em>RiverBankErosionAccretion_V2</em> oder manuelle Uferlinien-Vergleiche</td>
+<td><strong>Retrospektive Beobachtungsanalyse</strong>, keine Prognose zukünftiger Mäander</td>
+</tr>
+<tr class="even">
+<td><strong>Seitenerosion / Mäandermigration vorwärts simulieren</strong></td>
+<td><strong>Kein entsprechendes Standardwerkzeug</strong></td>
+<td><strong>Kein entsprechendes Standardmodul</strong> für kinematische Mittellinienmigration</td>
+<td><strong>Kein natives Standardmodell</strong>; externe Python-Modelle wie <em>MeanderPy</em> lassen sich mit GIS-Daten kombinieren</td>
+<td>Veränderung einer Flussmittellinie nach Krümmungs-/Erodierbarkeitsregeln; nicht mit D8 zu verwechseln</td>
+</tr>
+</tbody>
+</table>
+<p>Die Aussagen beziehen sich auf die dokumentierten Werkzeugfamilien (Stand: November 2026), nicht auf jedes Drittanbieter-Plugin oder selbst entwickelte Skript. Details und Verfügbarkeit unterscheiden sich nach Version, Betriebssystem und Installation. <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html">SAGA-Hydrologie</a> · <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.14.1/sim_hydrology_9.html">SAGA <em>Overland Flow</em></a> · <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.14.1/sim_erosion_0.html">SAGA <em>MMF</em></a> · <a href="https://grass.osgeo.org/grass-stable/manuals/topic_hydrology.html">GRASS-Hydrologie</a> · <a href="https://docs.qgis.org/3.44/de/docs/user_manual/processing_algs/qgis/rasterterrainanalysis.html">QGIS-natives <em>Fill sinks</em></a>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Rastererosion ist nicht automatisch Ufererosion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ein Raster kann an einer Stelle Gelände verlieren und an einer anderen Sediment ablagern, ohne dass der Algorithmus <strong>die seitliche Verlagerung eines Gerinnes oder die Erosion eines Ufers</strong> abbildet. Für eine explizite Mäanderentwicklung braucht es mindestens eine Regel für die laterale Migrationsrichtung und -rate sowie eine zeitliche Aktualisierung der Gerinnegeometrie. Anspruchsvollere Ansätze koppeln Hydrodynamik, Sedimenttransport und Uferstabilität.</p>
+</div>
+</div>
+</section>
+<section id="gibt-es-gis-basierte-modelle-für-seitenerosion-und-mäanderentwicklung" class="level2">
+<h2 class="anchored" data-anchor-id="gibt-es-gis-basierte-modelle-für-seitenerosion-und-mäanderentwicklung">8 · Gibt es GIS-basierte Modelle für Seitenerosion und Mäanderentwicklung?</h2>
+<p><strong>Ja – aber üblicherweise als spezialisierte Modelle oder Python-Bibliotheken, nicht als einfache D8-/MFD-Funktion.</strong> Für den Vergleich mit NetLogo eignet sich insbesondere <a href="https://github.com/zsylvester/meanderpy"><strong>MeanderPy</strong></a>. Das Modell ist eine Python-Implementierung eines <strong>kinematischen Mäandermigrationsmodells</strong> nach Howard und Knutson (1984). Es verwendet die Krümmung der Flussmittellinie und eine gewichtete Information über oberstromige Krümmungen, um eine laterale Migrationsrate abzuleiten. <strong>Eine vollständige Strömungs- und Impulsbilanz wird nicht gelöst.</strong></p>
+<p>Schematisch kann man diese Modellklasse als</p>
+<p><span class="math display">\[
+v_{n}(s) = k_{m} \, C_{\mathrm{eff}}(s)
+\]</span></p>
+<p>darstellen. <span class="math inline">\(v_n\)</span> bezeichnet die seitliche Migrationsgeschwindigkeit, <span class="math inline">\(k_m\)</span> einen Migrations-/Erodierbarkeitsparameter und <span class="math inline">\(C_{\mathrm{eff}}\)</span> eine aus der Flusskrümmung und oberstromigen Einflüssen bestimmte Größe. <strong>Diese Darstellung ist eine Konzeptskizze, nicht die exakte Implementationsgleichung von MeanderPy.</strong> Damit entsteht tatsächlich eine zeitlich veränderliche Flusslinie – anders als bei einer Fließakkumulationskarte.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ansatz</th>
+<th>Raum-/Zeitrepräsentation</th>
+<th>Berechnet?</th>
+<th>Seitliche Mäanderverlagerung?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>NetLogo <em>River Meanders</em></strong></td>
+<td>Abstrakte Gewässerzellen; Iterationen</td>
+<td>Regelbasierte agentengetriebene Flussformänderung</td>
+<td><strong>Ja, heuristisch</strong></td>
+</tr>
+<tr class="even">
+<td><strong>SAGA/GRASS D8/MFD</strong></td>
+<td>Statisches Gelände; Rasterzellen</td>
+<td>Fließwege / beitragende Fläche</td>
+<td><strong>Nein</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>GRASS <code>r.sim.terrain</code></strong></td>
+<td>DGM-Raster; Zeitschritte / Ereignisreihen</td>
+<td>Wiederholte Änderungen der Geländehöhe durch Erosions-/Depositionsansätze</td>
+<td><strong>Nicht als explizites Ufermigrationsmodell</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Python <em>MeanderPy</em></strong></td>
+<td>Flussmittellinie; Modellzeitschritte</td>
+<td>Krümmungsabhängige laterale Mittellinienmigration und Abschneidungen</td>
+<td><strong>Ja, kinematisch</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>QGIS: <em>RiverBankErosionAccretion_V2</em></strong></td>
+<td>Gewässerpolygone aus unterschiedlichen Beobachtungsjahren</td>
+<td>Rückblickende Flächenänderung / Uferverlagerungsraten</td>
+<td><strong>Messung, keine Simulation</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Skaligkeit:</strong> Ein DGM1 kann für Einzugsgebiets-Routing sehr detailliert, für die Modellierung einer schmalen Uferkante jedoch trotz 1-m-Gitter <strong>zu grob oder geometrisch unvollständig</strong> sein. Zudem ist die räumliche Auflösung einer Simulation <strong>nicht</strong> automatisch ihre physikalische Genauigkeit. Ein krümmungsbasiertes Mittellinienmodell arbeitet entlang eines Gewässerabschnitts und besitzt eine andere räumliche Repräsentation als ein flächenhaftes DGM. Die jeweilige Modellzeit muss gesondert definiert bzw. anhand beobachteter Migrationsraten kalibriert werden.</p>
+<p><strong>Diskussionsaufgabe (ohne zusätzliche Software):</strong> Ordnen Sie die drei NetLogo-Modelle, D8/MFD, <code>r.sim.water</code>, <code>r.sim.terrain</code> und MeanderPy in eine Reihe zunehmender Prozessdifferenzierung ein. Bei welchen Übergängen werden neue <strong>Zustandsgrößen oder Erhaltungsgleichungen</strong> eingeführt – und wo nur neue heuristische bzw. empirische Beziehungen? Begründen Sie, weshalb <em>mehr Prozessmodule</em> nicht automatisch <em>größere physikalische Validität</em> bedeutet.</p>
+<p><strong>Weiterführende Dokumentation:</strong> <a href="https://github.com/zsylvester/meanderpy">MeanderPy – Code und Einführung</a> · <a href="https://csdms.colorado.edu/wiki/Model%3AMeanderpy">CSDMS: Modellbeschreibung MeanderPy</a> · <a href="https://doi.org/10.1029/WR020i011p01659">Howard &amp; Knutson (1984)</a> · <a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.sediment.html">GRASS <code>r.sim.sediment</code></a> · <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.sim.terrain.html">GRASS Add-on <code>r.sim.terrain</code></a> · <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.landscape.evol.html">GRASS Add-on <code>r.landscape.evol</code></a> · <a href="https://plugins.qgis.org/plugins/riverbank_erosion_accretion_v2/">QGIS <em>RiverBankErosionAccretion_V2</em></a>.</p>
+</section>
+<section id="optional-topografischer-vernässungsindex" class="level2">
+<h2 class="anchored" data-anchor-id="optional-topografischer-vernässungsindex">9 · Optional: Topografischer Vernässungsindex</h2>
+<p>Mit SAGA kann ergänzend der <strong>Topographic Wetness Index (TWI)</strong> berechnet werden:</p>
+<p><span class="math display">\[
+\mathrm{TWI}=\ln\left(\frac{a}{\tan\beta}\right)
+\]</span></p>
+<p><span class="math inline">\(a\)</span> bezeichnet die <strong>spezifische beitragende Fläche</strong> (Fläche pro Konturlänge), <span class="math inline">\(\beta\)</span> die lokale Hangneigung. Der Index wird typischerweise zur Beschreibung der <strong>topografischen Vernässungsneigung</strong> verwendet. Er ist weder eine Wasserstandsmessung noch eine Simulation eines Starkregenereignisses. In flachem Relief und an Gewässeroberflächen ist seine Interpretation besonders vorsichtig vorzunehmen.</p>
+</section>
+<section id="ergebnissicherung" class="level2">
+<h2 class="anchored" data-anchor-id="ergebnissicherung">Ergebnissicherung</h2>
+<p>Erstellen Sie <strong>drei Darstellungen</strong>: (a) Hillshade + D8-Akkumulation, (b) Hillshade + MFD-Akkumulation, (c) beide Ergebnisse im Vergleich zur Gewässerreferenz. Fügen Sie eine knappe Tabelle der verwendeten Parameter und einen Modellkommentar hinzu. Halten Sie außerdem <strong>die Datenherkunft (amtliches DGM1, ATKIS), zwei untersuchte Rasterweiten und die vorbereiteten Landnutzungsklassen</strong> fest. Die dynamische Rauigkeits-Simulation ist ein optionaler Aufbau.</p>
+<p>Beantworten Sie darin:</p>
+<ul>
+<li><strong>Welche Modellentscheidung</strong> hat die sichtbar größte Änderung bewirkt?</li>
+<li><strong>Wo ist das Ergebnis plausibel – und wo weicht es</strong> von der beobachteten Flusslage ab?</li>
+<li><strong>Welche zusätzliche Modellkomponente</strong> wäre erforderlich, um nicht nur den heutigen Flussverlauf abzuleiten, sondern dessen Veränderung über die Zeit zu simulieren?</li>
+<li><strong>Wo gehen Landnutzung und Reibung wirklich in die Rechnung ein</strong> – und wo wären sie nur eine zusätzliche Karte ohne Einfluss auf das Ergebnis?</li>
+</ul>
+</section>
+<section id="technische-dokumentation-und-daten" class="level2">
+<h2 class="anchored" data-anchor-id="technische-dokumentation-und-daten">Technische Dokumentation und Daten</h2>
+<ul>
+<li><p><a href="https://gds.hessen.de/INTERSHOP/web/WFS/HLBG-Geodaten-Site/de_DE/-/EUR/ViewDownloadcenter-Start">HVBG: DGM1/Burgwald – Downloadcenter</a></p></li>
+<li><p><a href="https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell">HVBG: ATKIS Basis-DLM – Landnutzung und Gewässer</a></p></li>
+<li><p><a href="https://rp-giessen.hessen.de/sites/rp-giessen.hessen.de/files/2026-03/projekt_burgwaldforelle_2023_vorstudie_burgwaldforellenprojekt_bericht_bfs.pdf">Land Hessen: Projektbericht Rotes Wasser / Burgwald</a></p></li>
+<li><p><a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.14.1/sim_hydrology_9.html">SAGA: Overland Flow – Rauigkeit und Niederschlag</a></p></li>
+<li><p><a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html">GRASS: <code>r.sim.water</code> – Manning-Rauigkeit</a></p></li>
+<li><p><a href="https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle">HVBG: Digitale Geländemodelle in Hessen</a></p></li>
+<li><p><a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html">SAGA GIS: Hydrology-Toolbibliothek</a></p></li>
+<li><p><a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.14.1/ta_channels_4.html">SAGA GIS: Overland Flow Distance to Channel Network</a></p></li>
+<li><p><a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.0/tc_ta_hydrology_flow_accumulation.html">SAGA GIS: Flow Accumulation (Werkzeugkette)</a></p></li>
+<li><p><a href="https://grass.osgeo.org/grass85/manuals/r.watershed.html">GRASS GIS: <code>r.watershed</code></a></p></li>
+<li><p><a href="https://grass.osgeo.org/grass85/manuals/r.stream.extract.html">GRASS GIS: <code>r.stream.extract</code></a></p></li>
+<li><p><a href="https://documentation.qgis.org/3.44/de/docs/training_manual/processing/hydro.html">QGIS: Hydrologische Analyse</a></p></li>
+<li><p><a href="https://plugins.qgis.org/plugins/processing_saga_nextgen/">QGIS: Processing Saga NextGen Provider – Plugin-Seite</a></p></li>
+<li><p><a href="https://qgis.github.io/QGIS-Website/resources/installation-guide/">QGIS: Installationsanleitung einschließlich GRASS-Unterstützung</a></p></li>
+<li><p><a href="https://github.com/zsylvester/meanderpy">MeanderPy – kinematische Mäanderentwicklung</a></p></li>
+<li><p><a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.sim.terrain.html">GRASS: r.sim.terrain – dynamische Geländeänderung</a></p></li>
+<li><p><a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.sediment.html">GRASS: r.sim.sediment – Erosion und Sedimenttransport</a></p></li>
+<li><p><a href="https://plugins.qgis.org/plugins/riverbank_erosion_accretion_v2/">QGIS: RiverBankErosionAccretion_V2 – beobachtete Uferveränderung</a></p></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/gisma-courses\.github\.io\/geo-mod-2026");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../pages/netlogo_modellvergleich.html" class="pagination-link" aria-label="NetLogo – Modellvergleich">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">NetLogo – Modellvergleich</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/meander_abfluss_saga_grass.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

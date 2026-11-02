@@ -116,88 +116,56 @@
     "href": "pages/ws/ws-01.html",
     "title": "Worksheet 01 · Ein kleines R-Projekt",
     "section": "",
-    "text": "Sie richten ein kleines R-Projekt ein, trennen Eingangsdaten, Skripte und Ergebnisse und führen einen überschaubaren Analyseablauf aus. Anschließend verändern Sie einen Parameter und prüfen die Wirkung. Sie nutzen dabei relative Pfade, einen aussagekräftigen Skriptkopf und kurze Kommentare.\nBeispiel: Sie laden die Gebietsgrenze des Burgwalds, erzeugen einen Puffer und speichern eine Karte sowie die berechnete Geometrie. Die Daten stammen aus dem Kursrepository LV-19-d19-006-25-R. Die Pufferberechnung dient hier als einfache Übung zur Skriptnutzung.",
-    "crumbs": [
-      "Worksheets",
-      "Worksheet 01"
-    ]
+    "text": "Sie richten ein kleines R-Projekt ein, trennen Eingangsdaten, Skripte und Ergebnisse und führen einen überschaubaren Analyseablauf aus. Anschließend verändern Sie einen Parameter und prüfen die Wirkung. Sie nutzen dabei relative Pfade, einen aussagekräftigen Skriptkopf und kurze Kommentare.\nBeispiel: Sie laden die Gebietsgrenze des Burgwalds, erzeugen einen Puffer und speichern eine Karte sowie die berechnete Geometrie. Die Daten stammen aus dem Kursrepository LV-19-d19-006-25-R. Die Pufferberechnung dient hier als einfache Übung zur Skriptnutzung."
   },
   {
     "objectID": "pages/ws/ws-01.html#ziel",
     "href": "pages/ws/ws-01.html#ziel",
     "title": "Worksheet 01 · Ein kleines R-Projekt",
     "section": "",
-    "text": "Sie richten ein kleines R-Projekt ein, trennen Eingangsdaten, Skripte und Ergebnisse und führen einen überschaubaren Analyseablauf aus. Anschließend verändern Sie einen Parameter und prüfen die Wirkung. Sie nutzen dabei relative Pfade, einen aussagekräftigen Skriptkopf und kurze Kommentare.\nBeispiel: Sie laden die Gebietsgrenze des Burgwalds, erzeugen einen Puffer und speichern eine Karte sowie die berechnete Geometrie. Die Daten stammen aus dem Kursrepository LV-19-d19-006-25-R. Die Pufferberechnung dient hier als einfache Übung zur Skriptnutzung.",
-    "crumbs": [
-      "Worksheets",
-      "Worksheet 01"
-    ]
+    "text": "Sie richten ein kleines R-Projekt ein, trennen Eingangsdaten, Skripte und Ergebnisse und führen einen überschaubaren Analyseablauf aus. Anschließend verändern Sie einen Parameter und prüfen die Wirkung. Sie nutzen dabei relative Pfade, einen aussagekräftigen Skriptkopf und kurze Kommentare.\nBeispiel: Sie laden die Gebietsgrenze des Burgwalds, erzeugen einen Puffer und speichern eine Karte sowie die berechnete Geometrie. Die Daten stammen aus dem Kursrepository LV-19-d19-006-25-R. Die Pufferberechnung dient hier als einfache Übung zur Skriptnutzung."
   },
   {
     "objectID": "pages/ws/ws-01.html#das-projekt-anlegen",
     "href": "pages/ws/ws-01.html#das-projekt-anlegen",
     "title": "Worksheet 01 · Ein kleines R-Projekt",
     "section": "1 · Das Projekt anlegen",
-    "text": "1 · Das Projekt anlegen\nÖffnen Sie in RStudio File → New Project → New Directory → New Project. Nennen Sie das Projekt burgwald-mini und wählen Sie einen Speicherort. Öffnen Sie es künftig über burgwald-mini.Rproj.\nLegen Sie über den Reiter Files → New Folder drei Unterordner an:\n\n\n\n\n\n\n\nOrt im Projekt\nInhalt\n\n\n\n\nburgwald-mini.Rproj\nÖffnet das Projekt mit dem Projektordner als Arbeitsverzeichnis.\n\n\ndata/\nHeruntergeladene Eingangsdaten; diese werden nicht überschrieben.\n\n\nscripts/\nIhre R-Skripte.\n\n\noutput/\nBerechnete Daten und Abbildungen; diese lassen sich erneut erzeugen.\n\n\n\nPrüfen Sie in der Konsole:\n\ngetwd()\nlist.files()\n\nDas Arbeitsverzeichnis muss Ihr Ordner burgwald-mini sein. Die drei Unterordner und die Projektdatei sollten angezeigt werden. Alle folgenden Pfade beziehen sich auf diesen Projektordner, auch wenn das Skript in scripts/ liegt. Ein zusätzliches setwd() ist nicht erforderlich.\nInstallieren Sie das benötigte Paket einmalig in der Konsole, falls es noch fehlt:\n\ninstall.packages(\"sf\")",
-    "crumbs": [
-      "Worksheets",
-      "Worksheet 01"
-    ]
+    "text": "1 · Das Projekt anlegen\nÖffnen Sie in RStudio File → New Project → New Directory → New Project. Nennen Sie das Projekt burgwald-mini und wählen Sie einen Speicherort. Öffnen Sie es künftig über burgwald-mini.Rproj.\nLegen Sie über den Reiter Files → New Folder drei Unterordner an:\n\n\n\n\n\n\n\nOrt im Projekt\nInhalt\n\n\n\n\nburgwald-mini.Rproj\nÖffnet das Projekt mit dem Projektordner als Arbeitsverzeichnis.\n\n\ndata/\nHeruntergeladene Eingangsdaten; diese werden nicht überschrieben.\n\n\nscripts/\nIhre R-Skripte.\n\n\noutput/\nBerechnete Daten und Abbildungen; diese lassen sich erneut erzeugen.\n\n\n\nPrüfen Sie in der Konsole:\n\ngetwd()\nlist.files()\n\nDas Arbeitsverzeichnis muss Ihr Ordner burgwald-mini sein. Die drei Unterordner und die Projektdatei sollten angezeigt werden. Alle folgenden Pfade beziehen sich auf diesen Projektordner, auch wenn das Skript in scripts/ liegt. Ein zusätzliches setwd() ist nicht erforderlich.\nInstallieren Sie das benötigte Paket einmalig in der Konsole, falls es noch fehlt:\n\ninstall.packages(\"sf\")"
   },
   {
     "objectID": "pages/ws/ws-01.html#ein-übersichtliches-skript-anlegen",
     "href": "pages/ws/ws-01.html#ein-übersichtliches-skript-anlegen",
     "title": "Worksheet 01 · Ein kleines R-Projekt",
     "section": "2 · Ein übersichtliches Skript anlegen",
-    "text": "2 · Ein übersichtliches Skript anlegen\nErstellen Sie über File → New File → R Script ein Skript und speichern Sie es als scripts/01_burgwald_puffer.R. Übernehmen Sie den folgenden Code und ergänzen Sie Name und Datum im Kopf.\nDer Aufbau bleibt einfach: Header → Paket → Einstellungen → Daten → Verarbeitung → Ausgabe → Kontrolle. Änderungen an Pfaden oder Parametern erfolgen gesammelt im Abschnitt „Einstellungen“.\n\n# ------------------------------------------------------------\n# Titel:   Burgwald – Gebietsgrenze puffern\n# Autor:   Ihr Name\n# Datum:   JJJJ-MM-TT\n# Zweck:   Gebietsgrenze laden, puffern und Ergebnisse speichern\n# Quelle:  https://github.com/gisma/LV-19-d19-006-25-R\n# Eingabe: data/burgwald_hull.GPKG\n# Ausgabe: Puffer als GeoPackage und Karte unter output/\n# Start:   RStudio-Projekt burgwald-mini.Rproj öffnen\n# ------------------------------------------------------------\n\n# 1. Paket ---------------------------------------------------\nlibrary(sf)\n\n# 2. Einstellungen -------------------------------------------\npuffer_m &lt;- 100\n\ndaten_url &lt;- paste0(\n  \"https://raw.githubusercontent.com/\",\n  \"gisma/LV-19-d19-006-25-R/main/burgwald_hull.GPKG\"\n)\neingabe &lt;- file.path(\"data\", \"burgwald_hull.GPKG\")\nausgabe &lt;- file.path(\"output\", paste0(\"puffer_\", puffer_m, \"m\"))\n\n# 3. Daten laden ---------------------------------------------\n# Der Download erfolgt nur, wenn die Eingabedatei noch fehlt.\nif (!file.exists(eingabe)) {\n  download.file(daten_url, destfile = eingabe, mode = \"wb\")\n}\ngebiet &lt;- st_read(eingabe, quiet = TRUE)\n\n# 4. Verarbeiten ---------------------------------------------\n# UTM 32N verwendet Meter: Der Pufferabstand ist damit eindeutig.\ngebiet &lt;- st_transform(gebiet, 25832)\npuffer &lt;- st_buffer(gebiet, dist = puffer_m)\n\n# 5. Ergebnisse speichern ------------------------------------\n# Nur die gleichnamige Ergebnisdatei wird beim Wiederholen ersetzt.\nst_write(puffer, paste0(ausgabe, \".gpkg\"),\n         delete_dsn = TRUE, quiet = TRUE)\n\npng(paste0(ausgabe, \".png\"), width = 1000, height = 800)\nplot(st_geometry(puffer), col = \"lightblue\",\n     main = paste(\"Burgwald – Puffer\", puffer_m, \"m\"))\nplot(st_geometry(gebiet), col = \"darkgreen\", add = TRUE)\nlegend(\"topright\", legend = c(\"Gebiet\", \"Puffer\"),\n       fill = c(\"darkgreen\", \"lightblue\"), bty = \"n\")\ndev.off()\n\n# 6. Kontrollieren -------------------------------------------\nprint(st_crs(gebiet)$epsg)\nprint(data.frame(\n  gebiet_km2 = as.numeric(st_area(gebiet)) / 1e6,\n  puffer_km2 = as.numeric(st_area(puffer)) / 1e6\n))\nprint(list.files(\"output\"))\n\nFühren Sie das Skript zunächst abschnittsweise mit Ctrl+Enter aus. Prüfen Sie anschließend die PNG-Datei im Ordner output. Öffnen Sie das erzeugte GeoPackage in QGIS und vergleichen Sie es mit der Eingabedatei.\nKontrolle: Liegt das Gebiet innerhalb seines Puffers? Ist die Pufferfläche größer als die Ausgangsfläche? Welche Dateien wurden erzeugt und wo liegen sie?",
-    "crumbs": [
-      "Worksheets",
-      "Worksheet 01"
-    ]
+    "text": "2 · Ein übersichtliches Skript anlegen\nErstellen Sie über File → New File → R Script ein Skript und speichern Sie es als scripts/01_burgwald_puffer.R. Übernehmen Sie den folgenden Code und ergänzen Sie Name und Datum im Kopf.\nDer Aufbau bleibt einfach: Header → Paket → Einstellungen → Daten → Verarbeitung → Ausgabe → Kontrolle. Änderungen an Pfaden oder Parametern erfolgen gesammelt im Abschnitt „Einstellungen“.\n\n# ------------------------------------------------------------\n# Titel:   Burgwald – Gebietsgrenze puffern\n# Autor:   Ihr Name\n# Datum:   JJJJ-MM-TT\n# Zweck:   Gebietsgrenze laden, puffern und Ergebnisse speichern\n# Quelle:  https://github.com/gisma/LV-19-d19-006-25-R\n# Eingabe: data/burgwald_hull.GPKG\n# Ausgabe: Puffer als GeoPackage und Karte unter output/\n# Start:   RStudio-Projekt burgwald-mini.Rproj öffnen\n# ------------------------------------------------------------\n\n# 1. Paket ---------------------------------------------------\nlibrary(sf)\n\n# 2. Einstellungen -------------------------------------------\npuffer_m &lt;- 100\n\ndaten_url &lt;- paste0(\n  \"https://raw.githubusercontent.com/\",\n  \"gisma/LV-19-d19-006-25-R/main/burgwald_hull.GPKG\"\n)\neingabe &lt;- file.path(\"data\", \"burgwald_hull.GPKG\")\nausgabe &lt;- file.path(\"output\", paste0(\"puffer_\", puffer_m, \"m\"))\n\n# 3. Daten laden ---------------------------------------------\n# Der Download erfolgt nur, wenn die Eingabedatei noch fehlt.\nif (!file.exists(eingabe)) {\n  download.file(daten_url, destfile = eingabe, mode = \"wb\")\n}\ngebiet &lt;- st_read(eingabe, quiet = TRUE)\n\n# 4. Verarbeiten ---------------------------------------------\n# UTM 32N verwendet Meter: Der Pufferabstand ist damit eindeutig.\ngebiet &lt;- st_transform(gebiet, 25832)\npuffer &lt;- st_buffer(gebiet, dist = puffer_m)\n\n# 5. Ergebnisse speichern ------------------------------------\n# Nur die gleichnamige Ergebnisdatei wird beim Wiederholen ersetzt.\nst_write(puffer, paste0(ausgabe, \".gpkg\"),\n         delete_dsn = TRUE, quiet = TRUE)\n\npng(paste0(ausgabe, \".png\"), width = 1000, height = 800)\nplot(st_geometry(puffer), col = \"lightblue\",\n     main = paste(\"Burgwald – Puffer\", puffer_m, \"m\"))\nplot(st_geometry(gebiet), col = \"darkgreen\", add = TRUE)\nlegend(\"topright\", legend = c(\"Gebiet\", \"Puffer\"),\n       fill = c(\"darkgreen\", \"lightblue\"), bty = \"n\")\ndev.off()\n\n# 6. Kontrollieren -------------------------------------------\nprint(st_crs(gebiet)$epsg)\nprint(data.frame(\n  gebiet_km2 = as.numeric(st_area(gebiet)) / 1e6,\n  puffer_km2 = as.numeric(st_area(puffer)) / 1e6\n))\nprint(list.files(\"output\"))\n\nFühren Sie das Skript zunächst abschnittsweise mit Ctrl+Enter aus. Prüfen Sie anschließend die PNG-Datei im Ordner output. Öffnen Sie das erzeugte GeoPackage in QGIS und vergleichen Sie es mit der Eingabedatei.\nKontrolle: Liegt das Gebiet innerhalb seines Puffers? Ist die Pufferfläche größer als die Ausgangsfläche? Welche Dateien wurden erzeugt und wo liegen sie?"
   },
   {
     "objectID": "pages/ws/ws-01.html#einen-parameter-gezielt-ändern",
     "href": "pages/ws/ws-01.html#einen-parameter-gezielt-ändern",
     "title": "Worksheet 01 · Ein kleines R-Projekt",
     "section": "3 · Einen Parameter gezielt ändern",
-    "text": "3 · Einen Parameter gezielt ändern\nÄndern Sie ausschließlich puffer_m &lt;- 100 zu puffer_m &lt;- 500. Schreiben Sie davor einen kurzen Kommentar, warum Sie den Parameter verändern. Führen Sie das gesamte Skript mit Source erneut aus.\nVergleichen Sie die beiden Karten und die ausgegebenen Flächen. Prüfen Sie außerdem, ob beide Ergebnisvarianten unter output/ liegen und die Eingabedatei unter data/ unverändert geblieben ist.\nNotieren Sie: Was steuert der Parameter? In welcher Einheit? Warum entsteht durch seine Änderung auch ein anderer Ausgabename?",
-    "crumbs": [
-      "Worksheets",
-      "Worksheet 01"
-    ]
+    "text": "3 · Einen Parameter gezielt ändern\nÄndern Sie ausschließlich puffer_m &lt;- 100 zu puffer_m &lt;- 500. Schreiben Sie davor einen kurzen Kommentar, warum Sie den Parameter verändern. Führen Sie das gesamte Skript mit Source erneut aus.\nVergleichen Sie die beiden Karten und die ausgegebenen Flächen. Prüfen Sie außerdem, ob beide Ergebnisvarianten unter output/ liegen und die Eingabedatei unter data/ unverändert geblieben ist.\nNotieren Sie: Was steuert der Parameter? In welcher Einheit? Warum entsteht durch seine Änderung auch ein anderer Ausgabename?"
   },
   {
     "objectID": "pages/ws/ws-01.html#einen-pfadfehler-verstehen",
     "href": "pages/ws/ws-01.html#einen-pfadfehler-verstehen",
     "title": "Worksheet 01 · Ein kleines R-Projekt",
     "section": "4 · Einen Pfadfehler verstehen",
-    "text": "4 · Einen Pfadfehler verstehen\nÄndern Sie vorübergehend die Definition von eingabe zu:\n\neingabe &lt;- file.path(\"daten\", \"burgwald_hull.GPKG\")\n\nFühren Sie das Skript erneut aus. Lesen Sie die Fehlermeldung und prüfen Sie mit getwd() und dir.exists(\"daten\"), worauf der Pfad verweist. Stellen Sie anschließend den richtigen Pfad wieder her.\nNutzen Sie bei Bedarf die Dokumentation oder KI. Ein passender Auftrag lautet:\n\nMein RStudio-Projekt enthält die Ordner data, scripts und output. Erkläre diese Fehlermeldung und nenne die kleinste notwendige Korrektur. Ändere keine weiteren Teile des Skripts: [Fehlermeldung und betroffene Codezeilen einfügen].\n\nHalten Sie in einem Kommentar fest, was falsch war und wie Sie die Korrektur geprüft haben. Kommentare sollen den Zweck oder eine Entscheidung erklären, beispielsweise die Wahl eines metrischen Koordinatensystems.",
-    "crumbs": [
-      "Worksheets",
-      "Worksheet 01"
-    ]
+    "text": "4 · Einen Pfadfehler verstehen\nÄndern Sie vorübergehend die Definition von eingabe zu:\n\neingabe &lt;- file.path(\"daten\", \"burgwald_hull.GPKG\")\n\nFühren Sie das Skript erneut aus. Lesen Sie die Fehlermeldung und prüfen Sie mit getwd() und dir.exists(\"daten\"), worauf der Pfad verweist. Stellen Sie anschließend den richtigen Pfad wieder her.\nNutzen Sie bei Bedarf die Dokumentation oder KI. Ein passender Auftrag lautet:\n\nMein RStudio-Projekt enthält die Ordner data, scripts und output. Erkläre diese Fehlermeldung und nenne die kleinste notwendige Korrektur. Ändere keine weiteren Teile des Skripts: [Fehlermeldung und betroffene Codezeilen einfügen].\n\nHalten Sie in einem Kommentar fest, was falsch war und wie Sie die Korrektur geprüft haben. Kommentare sollen den Zweck oder eine Entscheidung erklären, beispielsweise die Wahl eines metrischen Koordinatensystems."
   },
   {
     "objectID": "pages/ws/ws-01.html#ohne-gespeicherte-objekte-erneut-ausführen",
     "href": "pages/ws/ws-01.html#ohne-gespeicherte-objekte-erneut-ausführen",
     "title": "Worksheet 01 · Ein kleines R-Projekt",
     "section": "5 · Ohne gespeicherte Objekte erneut ausführen",
-    "text": "5 · Ohne gespeicherte Objekte erneut ausführen\nStarten Sie R über Session → Restart R neu. Führen Sie das Skript anschließend vollständig mit Source aus. Es muss seine Daten selbst einlesen und alle benötigten Objekte erneut erzeugen können.",
-    "crumbs": [
-      "Worksheets",
-      "Worksheet 01"
-    ]
+    "text": "5 · Ohne gespeicherte Objekte erneut ausführen\nStarten Sie R über Session → Restart R neu. Führen Sie das Skript anschließend vollständig mit Source aus. Es muss seine Daten selbst einlesen und alle benötigten Objekte erneut erzeugen können."
   },
   {
     "objectID": "pages/ws/ws-01.html#ergebnis",
     "href": "pages/ws/ws-01.html#ergebnis",
     "title": "Worksheet 01 · Ein kleines R-Projekt",
     "section": "Ergebnis",
-    "text": "Ergebnis\nGeben Sie Ihren Projektordner mit dem kommentierten Skript und den beiden Ergebnisvarianten weiter. Ergänzen Sie eine kurze Datei README.md im Projektordner mit vier Angaben:\n\nProjektdatei öffnen und anschließend scripts/01_burgwald_puffer.R ausführen.\nBenötigtes Paket: sf; Internetzugang für den ersten Datenabruf.\nDatenquelle und eigenes Abrufdatum.\nIhre Änderung, deren beobachtete Wirkung und gegebenenfalls verwendete KI-Hilfe.\n\nErfolgskriterium: Eine andere Person erkennt, welche Dateien Eingangsdaten, Skripte und Ergebnisse sind, und kann den Ablauf aus einer frischen R-Sitzung erneut ausführen.",
-    "crumbs": [
-      "Worksheets",
-      "Worksheet 01"
-    ]
+    "text": "Ergebnis\nGeben Sie Ihren Projektordner mit dem kommentierten Skript und den beiden Ergebnisvarianten weiter. Ergänzen Sie eine kurze Datei README.md im Projektordner mit vier Angaben:\n\nProjektdatei öffnen und anschließend scripts/01_burgwald_puffer.R ausführen.\nBenötigtes Paket: sf; Internetzugang für den ersten Datenabruf.\nDatenquelle und eigenes Abrufdatum.\nIhre Änderung, deren beobachtete Wirkung und gegebenenfalls verwendete KI-Hilfe.\n\nErfolgskriterium: Eine andere Person erkennt, welche Dateien Eingangsdaten, Skripte und Ergebnisse sind, und kann den Ablauf aus einer frischen R-Sitzung erneut ausführen."
   },
   {
     "objectID": "pages/modellierung_luftbild_lst.html#leitfrage",
@@ -298,13 +266,167 @@
     "text": "Quellen und Links\n\nDigitale Orthophotos Hessen (HVBG)\nWMS-Dienste und Capabilities Hessen (HVBG)\nLandsat Level-2 Datenzugang (USGS)\nLandsat ST-Skalierung (USGS)\nQA_PIXEL und Wolkeninformation (USGS)\n\nAusführliche Klick-für-Klick-Schritte: Technische QGIS-Anleitung."
   },
   {
+    "objectID": "pages/meander_abfluss_saga_grass.html",
+    "href": "pages/meander_abfluss_saga_grass.html",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "",
+    "text": "← Zur Kursübersicht · Theoretischer Vergleich: NetLogo · Kurzreader: Modellbildung im GIS",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#leitfrage",
+    "href": "pages/meander_abfluss_saga_grass.html#leitfrage",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "Leitfrage",
+    "text": "Leitfrage\nWie lässt sich aus dem Relief ableiten, wohin Wasser unter einer topografischen Routingannahme fließen würde – und weshalb ist das noch keine Simulation der Entstehung eines Mäanders?\nIn den NetLogo-Modellen wurden Fließbewegungen über lokale Regeln erzeugt. Heute ersetzen wir diese durch Rasteralgorithmen auf einem digitalen Geländemodell (DGM). Dafür vergleichen wir zwei verbreitete Routingannahmen: D8, bei der der Abfluss einer Zelle einem Nachbarn zugeordnet wird, und MFD (Multiple Flow Direction), bei der er auf mehrere tieferliegende Nachbarn verteilt werden kann.\nEin GIS kann auf dieser Basis potenzielle Fließwege und beitragende Flächen ermitteln. Es berechnet dabei weder die Wasserbewegung während eines konkreten Regenereignisses noch Ufererosion oder Sedimenttransport. Die Mäanderform dient uns als Beobachtungs- und Vergleichsgegenstand, nicht als Ergebnis einer simulierten Flussentwicklung.",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#lernziele-und-ergebnis",
+    "href": "pages/meander_abfluss_saga_grass.html#lernziele-und-ergebnis",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "Lernziele und Ergebnis",
+    "text": "Lernziele und Ergebnis\nNach der Übung können Sie:\n\naus einem DGM Fließakkumulation und ein potenzielles Gerinnenetz ableiten;\nden Einfluss von D8/MFD, Rasterweite und Senkenbehandlung auf die Abflusswege diskutieren;\neine aus dem Relief berechnete Entwässerungslinie mit einem beobachteten Flusslauf vergleichen;\nerklären, weshalb ein Geländealgorithmus kein hydrodynamisches oder morphodynamisches Prozessmodell ist.\n\nAbgabe: Zwei vergleichbare Karten (D8 und MFD), eine überlagerte Vergleichskarte mit realem Gewässerlauf und ein kurzer Modellkommentar (ca. 150–250 Wörter). Notieren Sie die verwendeten Daten, Rasterweite, Senkenbehandlung, Routingmethode und gegebenenfalls die Gerinneschwelle.",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#daten-und-arbeitsumgebung",
+    "href": "pages/meander_abfluss_saga_grass.html#daten-und-arbeitsumgebung",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "1 · Daten und Arbeitsumgebung",
+    "text": "1 · Daten und Arbeitsumgebung\nUntersuchungsraum: der Burgwald in Hessen, vorzugsweise das Einzugsgebiet des Roten Wassers einschließlich seines Oberlaufs im Bereich Franzosenwiesen und eines anschließenden Talabschnitts. Das Rote Wasser entspringt im Burgwald; wir prüfen seine Lage im vorhandenen Gewässernetz, ohne einen besonders ausgeprägten Mäander vorauszusetzen. Der Ausschnitt sollte das oberhalb gelegene Einzugsgebiet möglichst ausreichend umfassen; eine knapp um den Fluss ausgeschnittene Kachel führt zu starken Randeffekten.\nBenötigt werden:\n\nein DGM1 als GeoTIFF mit dokumentierter Rasterweite und Höhenreferenz;\nATKIS-Basis-DLM (Gewässerlinien und Landnutzungsflächen) und bei Bedarf ein Orthofoto als Referenz;\nQGIS zur Sichtkontrolle und Kartendarstellung; SAGA GIS für die Hauptanalyse; GRASS GIS als gut integrierter und methodisch vergleichbarer Alternativweg.\n\n\nDirekte Datenzugänge für den Burgwald\n\n\n\nDatensatz\nDirekter Einstieg\nWofür?\n\n\n\n\nHessen DGM1 (1 m)\nGeodaten online – Downloadcenter → 3D-Daten → DGM1; Produktinformation DGM\nGeländehöhe, Gefälle, Fließwege\n\n\nATKIS Basis-DLM\nDasselbe Downloadcenter → Digitales Landschaftsmodell; Produktinformation Basis-DLM\nVegetation, Siedlung, Verkehr, Gewässerlinien für Rauigkeitsklassen und Vergleich\n\n\nAlternativer Datenkatalog\nOpen Data Hessen – DGM1 · Basis-DLM\nMetadaten und Diensteinträge; nicht zwingend unmittelbare Raster-/Vektordatei\n\n\n\nSo gehen Sie vor:\n\nÖffnen Sie das direkt verlinkte Downloadcenter und wählen Sie für das Gelände 3D-Daten / DGM1. Laden Sie Kacheln, die den gewählten Teil des Burgwalds und ausreichend oberhalb gelegene Zuflussflächen erfassen. Das DGM1 steht kostenfrei zur Selbstentnahme bereit.\nBeschaffen Sie unter Digitales Landschaftsmodell die ATKIS-Basis-DLM-Daten. Falls nur ein großer Datensatz verfügbar ist, laden Sie ihn herunter und begrenzen ihn später in QGIS auf das Untersuchungsgebiet. Der Datenbestand wird auch über einen WFS bereitgestellt.\nLegen Sie in QGIS ein Untersuchungsgebiet um Rotes Wasser / Franzosenwiesen / Burgwald fest. Lassen Sie für die Fließakkumulation genügend Einzugsgebiet oberstromig im DGM. Schneiden Sie Ergebnisse erst nach der großräumigeren Fließwegberechnung auf den engeren Betrachtungsraum zu.\nSpeichern Sie DGM1, ATKIS-Landnutzung, Gewässernetz als Originale. Das amtliche DGM1 wird in Hessen als GeoTIFF (32-bit Float) bereitgestellt; das Basis-DLM u. a. als Shape oder NAS/XML. Arbeiten Sie konsistent in ETRS89 / UTM 32N (EPSG:25832).\n\n\n\n\n\n\n\nNoteWarum nicht einfach nur den Flussausschnitt ausschneiden?\n\n\n\nEin DGM-Ausschnitt, der nur den sichtbaren Gewässerkorridor umfasst, enthält die oberhalb gelegenen Zuflüsse nicht mehr. Das führt zu künstlich kleinen beitragenden Flächen und starken Randartefakten. Analysegebiet und Darstellungsgebiet dürfen unterschiedlich groß sein.\n\n\n\n\nMaßstab und räumliche Auflösung sind Modellentscheidungen\n\n\n\n\n\n\n\n\n\nModellansatz\nGeeignete Fragestellung\nRäumlich-zeitlicher Bezug\nWas fehlt?\n\n\n\n\nNetLogo River Meanders\nWie können aus lokalen Regeln Flusskrümmungen entstehen?\nAbstraktes Raster und Modellschritte; keine reale DGM-Meterskala\nQuantitative Hydraulik und zeitliche Kalibrierung\n\n\nDGM + D8/MFD (SAGA/GRASS)\nWo verlaufen potenzielle Abflussbahnen, wo konzentriert sich Fläche?\nRasterweite in Metern, statisches Gelände, keine reale Ereigniszeit\nStrömungstiefe, Fließgeschwindigkeit, Reibung als hydraulischer Prozess\n\n\nSAGA Overland Flow / GRASS r.sim.water\nWie beeinflussen Niederschlag, Infiltration und Rauigkeit den Oberflächenabfluss?\nRaum- und Simulationszeit müssen mit Eingangsdaten und Modellannahmen zusammenpassen\nOhne weitere Komponenten keine Ufererosion/Mäanderdynamik\n\n\nMorphodynamische Modelle\nWie verändern sich Gerinne, Ufer und Sediment über die Zeit?\nGewässergeometrie und prozessgerechte Zeitauflösung erforderlich\nNicht mit dem einfachen DGM-Routing gleichzusetzen\n\n\n\nSkalenexperiment (gleicher Untersuchungsraum und gleiche Vorverarbeitung): Leiten Sie aus dem amtlichen DGM1 (1 m) alternativ 5-m- und 10-m-Arbeitsraster ab. Für einen nur illustrativen Ausschnitt von 2 × 2 km bedeutet dies ungefähr 4.000.000, 160.000 bzw. 40.000 Rasterzellen. Ein gröberes Gitter glättet schmale Rinnen und ändert Fließrichtungen. Die Rasterweite eines Modells ist dabei nicht gleich seiner tatsächlichen Lage- oder Höhengenauigkeit.\nWichtig beim Vergleich: Wenn eine Fließakkumulation in Zellen ausgegeben wird, muss sie für verschiedene Rasterweiten erst in beitragende Fläche (m²) umgerechnet werden (Zellenzahl × Zellfläche). Alternativ direkt die flächenbezogene Ausgabe des Algorithmus wählen. Für echte Senken, Dämme, Durchlässe und Flachbereiche bleibt eine separate Plausibilitätsprüfung erforderlich.\nProjektstruktur (Vorschlag):\nabfluss_gis/\n├── data/        # Original-DGM1, ATKIS-Basis-DLM, Gewässerreferenz\n├── processing/  # DGM 1/5/10 m, Landnutzungsklassen, Rauigkeitsraster\n├── results/     # Akkumulation D8/MFD, Gerinnenetz, optional dynamischer Abfluss\n└── maps/        # Karten und Modellkommentar\n\n\nInstallation und Auswahl der Werkzeuge\n\n\n\n\n\n\n\n\nWeg\nPraktische Verwendung\nBemerkung\n\n\n\n\nSAGA GIS direkt\nTerrain Analysis → Hydrology → Flow Accumulation\nEmpfohlener Hauptweg, sofern SAGA installiert ist.\n\n\nGRASS in QGIS\nVerarbeitungswerkzeuge nach r.watershed und r.stream.extract durchsuchen\nVergleichsweg; auf Linux kann das zusätzliche Paket qgis-plugin-grass erforderlich sein.\n\n\nSAGA über QGIS\nZusatzanbieter Processing Saga NextGen Provider\nNur verwenden, wenn für die konkrete QGIS-/SAGA-Version verfügbar und funktionsfähig; der Anbieter ist seit QGIS 3.30 nicht mehr eingebaut.\n\n\n\nUbuntu-/Debian-basierte Systeme (wenn die Pakete aus Ihren Repositories bereitstehen):\nsudo apt update\nsudo apt install saga grass qgis-plugin-grass\nKontrollieren Sie anschließend, ob saga_cmd und grass vorhanden sind und ob die GRASS-Werkzeuge im QGIS-Processing-Werkzeugkasten erscheinen. Die QGIS-SAGA-Kopplung ist optional; die SAGA-Standalone-Anwendung genügt. Ob und welche Version des NextGen-Plugins im Plugin-Manager angezeigt wird, ist installationsabhängig.",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#dgm-prüfen-und-vorbereiten",
+    "href": "pages/meander_abfluss_saga_grass.html#dgm-prüfen-und-vorbereiten",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "2 · DGM prüfen und vorbereiten",
+    "text": "2 · DGM prüfen und vorbereiten\n\nDGM1 für den Burgwald in QGIS laden und die Höhenwerte sowie das Koordinatenreferenzsystem kontrollieren. Für Hessen eignet sich z. B. ETRS89 / UTM 32N (EPSG:25832).\nEine Schummerung (Hillshade) erzeugen. Liegt die erkannte Gewässerrinne ungefähr dort, wo auch auf Orthofoto oder Karte der Fluss verläuft?\nDen Geländeausschnitt groß genug wählen, damit die Zuflusswege nicht unmittelbar am Kartenrand abgeschnitten werden. Analysen nur für den kleinen Anzeigeausschnitt zu rechnen, ist nicht immer sinnvoll.\nAus dem unveränderten DGM1 ein 5-m-Arbeitsraster und für den Skalenvergleich ein 10-m-Raster erzeugen. Original behalten; Resamplingverfahren und Pixelursprung festhalten.\nFestlegen, wie geschlossene Senken behandelt werden sollen. Kleine Datenartefakte können Fließwege abbrechen lassen; wirkliche Senken sollen nicht unbemerkt „wegkorrigiert“ werden.\n\nDiskussionspunkt: Ein DGM beschreibt in Wasserflächen oft nicht die reale Gewässersohle. Eine glatte bzw. interpolierte Wasseroberfläche kann zu unplausiblen Fließrichtungen im Gewässer führen. Auch Brücken, Dämme und Durchlässe können den algorithmischen Weg vom tatsächlichen Abflussweg trennen.",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#hauptweg-fließakkumulation-mit-saga-gis",
+    "href": "pages/meander_abfluss_saga_grass.html#hauptweg-fließakkumulation-mit-saga-gis",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "3 · Hauptweg: Fließakkumulation mit SAGA GIS",
+    "text": "3 · Hauptweg: Fließakkumulation mit SAGA GIS\nDer SAGA-Algorithmus Flow Accumulation kombiniert eine DGM-Vorverarbeitung mit der Berechnung beitragender Flächen. Die dokumentierte aktuelle Werkzeugkette bietet insbesondere Fill Sinks (Wang & Liu) oder Sink Removal als Vorverarbeitung und mehrere Routingverfahren. Werkzeugdokumentation.\n\nDurchlauf A – D8\n\nDas Arbeits-DGM in SAGA GIS öffnen.\nTerrain Analysis → Hydrology → Flow Accumulation starten.\nAls Elevation das Arbeits-DGM auswählen.\nPreprocessing: zunächst Fill Sinks (Wang & Liu); die Einstellung dokumentieren.\nFlow Routing: Deterministic 8 (D8).\nFlow Accumulation / TCA als accu_d8 speichern; optional die Specific Catchment Area mit ausgeben.\nDas Ergebnis in QGIS laden und so darstellen, dass stark akkumulierte Fließlinien erkennbar werden (z. B. kontrastreiche oder logarithmisch abgestufte Werte).\n\nGedanke hinter D8: Jede Rasterzelle gibt ihren Beitrag an einen tieferliegenden Nachbarn weiter, der nach der im Algorithmus definierten Abstiegsregel gewählt wird. Daraus ergeben sich stark gebündelte Fließlinien.\n\n\nDurchlauf B – MFD\nWiederholen Sie denselben Ablauf mit unverändertem Arbeits-DGM und gleicher Vorverarbeitung. Ändern Sie nur Flow Routing → Multiple Flow Direction und speichern Sie das Ergebnis als accu_mfd.\nGedanke hinter MFD: Der Beitrag einer Zelle kann auf mehrere tieferliegende Nachbarn verteilt werden. Akkumulation kann sich dadurch stärker über Hangflächen verteilen.\n\n\nVergleich und Interpretation\n\n\n\n\n\n\n\n\nFrage\nD8\nMFD\n\n\n\n\nWohin geht der Beitrag einer Zelle?\nEin Empfänger\nMehrere mögliche Empfänger\n\n\nWas fällt kartografisch auf?\nHäufig stärker konzentrierte Linien\nOft flächigere Verteilung\n\n\nWas bleibt gleich?\nDGM, Abstraktion auf Nachbarschaftszellen, keine Ereignishydraulik\nDGM, Abstraktion auf Nachbarschaftszellen, keine Ereignishydraulik\n\n\n\nAchtung zur Einheit: Die Fließakkumulation ist je nach Algorithmus und Einstellung in beitragenden Zellen, Fläche oder einer anderen normierten Größe angegeben. Sie ist ohne passende Regen-/Abflussannahmen kein Durchfluss in m³/s. Kontrollieren Sie die Einheit der tatsächlich ausgegebenen SAGA-Raster.",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#alternativ--und-kontrollweg-grass-gis",
+    "href": "pages/meander_abfluss_saga_grass.html#alternativ--und-kontrollweg-grass-gis",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "4 · Alternativ- und Kontrollweg: GRASS GIS",
+    "text": "4 · Alternativ- und Kontrollweg: GRASS GIS\nGRASS ergänzt SAGA sinnvoll, weil das Modul r.watershed sowohl eine Standardberechnung mit MFD als auch den direkten Vergleich mit SFD/D8 (Schalter -s) ermöglicht. Es liefert u. a. Akkumulation und Fließrichtung. Dokumentation r.watershed.\nÖffnen Sie in QGIS Verarbeitung → Werkzeugkiste und suchen Sie nach r.watershed. Falls verfügbar:\n\nArbeits-DGM als Elevation verwenden; die Region/Zellgröße und Ausdehnung passend einstellen.\nMFD rechnen (Standardeinstellung, sofern -s nicht aktiviert ist) und Akkumulation als grass_accu_mfd speichern.\nDen Lauf mit SFD/D8 (-s) wiederholen und als grass_accu_d8 speichern.\nDie Resultate in identischem Kartenausschnitt und mit vergleichbarer Farbskala betrachten.\n\nFür ein abgeleitetes Gewässernetz eignet sich das GRASS-Werkzeug r.stream.extract. Es benötigt ein DGM und einen Schwellenwert für die minimale Akkumulation, ab dem ein Gewässer beginnt; der Wert ist ein Modellparameter, keine direkt beobachtete Flussursprungsstelle. Dokumentation r.stream.extract.\nParameterexperiment: Testen Sie zwei deutlich unterschiedliche Schwellenwerte und vergleichen Sie Gewässerdichte und Gewässeranfänge. Bei einer 5-m-Rasterweite entsprechen beispielsweise 4.000 Rasterzellen 10 ha und 16.000 Rasterzellen 40 ha beitragender Fläche; diese Umrechnung gilt, wenn die Akkumulation in Rasterzellen angegeben wird. Sie ist keine Empfehlung für einen hydrologisch „richtigen“ Schwellenwert.\n\n\n\n\n\n\nNoteWenn die SAGA-QGIS-Erweiterung fehlt\n\n\n\nDie frühere QGIS-eigene SAGA-Anbindung wurde mit QGIS 3.30 entfernt. Die aktuelle QGIS-Plugin-Seite für Processing Saga NextGen Provider weist derzeit keine öffentliche Version aus. Der Quellcode ist verfügbar, dennoch ist eine problemlose Plugin-Installation nicht gewährleistet. Zudem verlangt der Anbieter eine kompatible SAGA-Installation. Für die Übung ist deshalb SAGA direkt + QGIS für die Karten der robustere Hauptweg. Alternativ funktioniert GRASS r.watershed in einer entsprechend eingerichteten QGIS-Processing-Umgebung.",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#vom-errechneten-abflussweg-zum-mäander",
+    "href": "pages/meander_abfluss_saga_grass.html#vom-errechneten-abflussweg-zum-mäander",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "5 · Vom errechneten Abflussweg zum Mäander",
+    "text": "5 · Vom errechneten Abflussweg zum Mäander\nLegen Sie ein Orthofoto bzw. die amtliche Gewässerlinie über Hillshade und Akkumulationskarte. Wählen Sie einen Abschnitt mit einer erkennbaren Gewässerkrümmung im Burgwald; eine stark entwickelte Mäanderschlinge ist nicht Voraussetzung für die Übung.\n\nLage: Verläuft die Akkumulationslinie ungefähr entlang des heutigen Flussbetts oder daneben?\nAbweichung: Liegt die Verschiebung möglicherweise an Rasterweite, interpolierter Wasseroberfläche, Senkenbehandlung oder Randbereich des untersuchten DGM?\nForm: Wird die Krümmung eines bestehenden Flusslaufs in der Reliefinformation wiedergegeben, oder entsteht sie erst durch den Routingalgorithmus?\nInterpretation: Können Sie aus der Akkumulationskarte erkennen, an welchem Ufer Erosion und wo Sedimentation stattfinden wird? Nein – dafür fehlen Strömungsdynamik, Sedimenttransport, Ufermaterial und die zeitliche Rückkopplung von Fluss und Gelände.\n\nDer Vergleich zum NetLogo-Modell River Meanders ist absichtlich zugespitzt:\n\n\n\n\n\n\n\n\nAnsatz\nWas verändert sich im Modell?\nWas ist das Ergebnis?\n\n\n\n\nNetLogo: River Meanders\nFluss-/Landzustände ändern sich nach heuristischen Regeln\nEntstehende, sich verändernde Flussform\n\n\nSAGA/GRASS: DGM-Flow-Routing\nBei statischem DGM grundsätzlich keine Geländeänderung\nAbgeleitete Fließwege und beitragende Fläche\n\n\nHydro-/Morphodynamisches Modell\nWasserzustand und ggf. Gerinnegeometrie/Sediment ändern sich durch Prozessgleichungen\nDynamischer Strömungs- und möglicherweise Formwandel\n\n\n\nMerksatz: Fließakkumulation erklärt die Lage möglicher Abflussbahnen unter einer Routingregel. Sie erklärt nicht die zeitliche Entstehung eines Mäanders.",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#landnutzung-für-rauigkeit-infiltration-und-eine-prozesssimulation",
+    "href": "pages/meander_abfluss_saga_grass.html#landnutzung-für-rauigkeit-infiltration-und-eine-prozesssimulation",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "6 · Landnutzung für Rauigkeit, Infiltration und eine Prozesssimulation",
+    "text": "6 · Landnutzung für Rauigkeit, Infiltration und eine Prozesssimulation\nWarum zusätzliche Geodaten? Eine D8-/MFD-Akkumulation leitet Topologierichtungen und beitragende Fläche aus dem Relief ab. In diesen beiden reinen Fließakkumulationsläufen wird ein Manning-Rauigkeitsraster nicht verwendet. Erst bei einem zusätzlichen zeitabhängigen Abflussmodell kann die Landnutzung als Ausgangspunkt für räumlich variable hydraulische Rauigkeit (und mit weiteren Bodeninformationen für Infiltration) dienen.\n\nLandnutzung aus dem ATKIS-Basis-DLM vorbereiten\n\nLaden Sie in QGIS die ATKIS-Flächen mit Informationen über Vegetation (Wald, Offenland usw.), Siedlung und Verkehr; Gewässerobjekte separat zur Kontrolle. Prüfen Sie die vorhandenen Attributnamen, bevor Sie Klassen zuordnen – diese unterscheiden sich je nach Datenausgabe.\nBegrenzen Sie die Landnutzungsflächen auf den Untersuchungsraum. Fassen Sie sie beispielhaft zu Wald, Offenland/Grünland, Acker, versiegelte/verdichtete Flächen und Gewässer zusammen. Dokumentieren Sie nicht zuordenbare Objekte; keine stillschweigende Zuweisung.\nLegen Sie ein neues numerisches Feld manning_n an. Ordnen Sie die Klassen begründeten, zunächst nur als Versuchswerte verstandenen Rauigkeitskoeffizienten zu. Eine Landnutzungsklasse hat keinen universell gültigen Manning-Wert; Bodenbewuchs, Bewirtschaftung, Fließtiefe und Jahreszeit wirken mit.\nRasterisieren Sie das Feld manning_n in QGIS (Raster → Konvertierung → Rasterisieren (Vektor nach Raster)). Verwenden Sie dieselben Rastergrenzen, denselben Ursprung, dasselbe CRS und dieselbe Rasterweite wie für das Arbeits-DGM. Kategorische Landnutzung beim Neuabtasten mit Nearest Neighbour behandeln.\nKontrollieren Sie Fehlwerte, Überlappungen und Grenzen zwischen Landnutzungsklassen. Speichern Sie das Ergebnis als roughness_n.tif; falls SAGA Strickler \\(K_s\\) verlangt, berechnen Sie \\(K_s = 1/n\\) und dokumentieren die Umrechnung.\n\nRauigkeitsbegriffe auseinanderhalten: Der Overland Flow-Ansatz verwendet wahlweise Manning-n oder Strickler-K_s = 1/n. Der SAGA-Ansatz MMF-SAGA erwartet für RFR dagegen eine Oberflächenrauigkeit in cm/m; ein Manning-Raster darf dort nicht ohne Weiteres eingesetzt werden. Für Overland Flow Distance to Channel Network kann ein Strickler-Raster zusammen mit einer angenommenen Fließtiefe zur Berechnung von Reisezeiten verwendet werden.\nKeine Gleichsetzung: Landnutzung ≠ Infiltrationsrate. Für eine quantitative Infiltrationskarte benötigt man zusätzlich z. B. Informationen über Bodenart, hydraulische Leitfähigkeit und Anfangsfeuchte. Ohne diese Daten ist ein konstantes, transparent angegebenes Infiltrationsszenario ehrlicher als ein scheinbar präziser Rasterwert.\n\n\nWelches Werkzeug verwendet welche Parameter?\n\n\n\n\n\n\n\n\n\n\nWerkzeug\nDGM\nLandnutzung / Rauigkeit\nNiederschlag und Infiltration\nInterpretation\n\n\n\n\nSAGA Flow Accumulation (D8/MFD)\nJa\nNein\nNicht als Ereignishydraulik\nStatische beitragende Fläche\n\n\nGRASS r.watershed\nJa\nKein hydraulisches Manning-n; optional zellweiser Abflussbeitrag (flow=) und Retention (retention=)\nKein zeitabhängiges Niederschlags-Abfluss-Modell\nGewichtete Akkumulation, nicht Fließgeschwindigkeit\n\n\nSAGA Simulation → Hydrology → Overland Flow\nJa\nJa, Raster ROUGHNESS – wahlweise Strickler \\(K_s\\) oder Manning \\(n\\)\nJa, u. a. Niederschlag, Infiltrationskapazität, Interzeption\nVereinfachte zeitabhängige Oberflächenabflusssimulation\n\n\nGRASS r.sim.water\nJa\nJa, Raster man mit Manning-n\nJa, u. a. rain, infil\nRäumliche Simulation von Wassertiefe und Durchfluss\n\n\n\n\n\nKleines Anschluss-Experiment (optional)\nRechnen Sie denselben kleineren Teilraum des Burgwalds mit einem der beiden zeitabhängigen Modelle zweimal: A mit konstanter Rauigkeit, B mit einem aus ATKIS-Landnutzung abgeleiteten Rauigkeitsraster. Halten Sie DGM, Niederschlag, Infiltrationsannahme, Simulationszeit und Ausgabezeitpunkt gleich. Vergleichen Sie Lage von Abflusskonzentrationen sowie – je nach Modell – Wassertiefe, Geschwindigkeit oder Abfluss. Ist der Einfluss der Rauigkeit größer als der des Wechsels von 5 m auf 10 m Rasterweite?\nVerwenden Sie für die erste Demonstration bewusst einen kleinen Ausschnitt, damit die Simulation handhabbar bleibt; prüfen Sie dennoch die Randbedingungen. Interpretieren Sie Unterschiede zunächst als Modellsensitivität, nicht als validierte Hochwasserprognose.\nWerkzeugdokumentation: SAGA Overland Flow · GRASS r.sim.water · GRASS r.watershed.",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#matrix-welche-modellkonzepte-implementieren-saga-grass-und-qgis",
+    "href": "pages/meander_abfluss_saga_grass.html#matrix-welche-modellkonzepte-implementieren-saga-grass-und-qgis",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "7 · Matrix: Welche Modellkonzepte implementieren SAGA, GRASS und QGIS?",
+    "text": "7 · Matrix: Welche Modellkonzepte implementieren SAGA, GRASS und QGIS?\nDie drei Programme sind keine drei gleichartigen Simulationsmodelle. SAGA und GRASS stellen Werkzeuge für verschiedene Prozess- und Abstraktionsebenen bereit; QGIS ist zusätzlich ein GIS mit eigenen Algorithmen und Schnittstellen zu externen Rechenkernen. Insbesondere bedeutet die Anzeige eines GRASS-Werkzeugs in der QGIS-Werkzeugkiste nicht, dass QGIS dessen Gleichungen selbst implementiert.\n\n\n\n\n\n\n\n\n\n\nModellkonzept / Zielgröße\nSAGA GIS (Beispiel)\nGRASS GIS (Beispiel)\nQGIS nativ oder über Provider\nPhysikalische Aussage und Grenze\n\n\n\n\nDGM-Vorverarbeitung (Senken, Fließfähigkeit)\nFill Sinks (Wang & Liu)\nr.fill.dir\nSeit QGIS 3.44 auch Fill sinks (Wang & Liu) als nativer Algorithmus; sonst externe Werkzeuge\nKorrigiert/erzwingt eine Abfluss-Topologie; keine Wassersimulation\n\n\nFließrichtung und beitragende Fläche\nFlow Accumulation mit D8, MFD u. a.\nr.watershed (MFD, mit -s SFD)\nIm Wesentlichen über GRASS/SAGA als Processing-Anbieter\nStatisches Reliefrouting; keine Wasserstandsdynamik, kein hydraulisches Manning-n\n\n\nGerinnenetz und Einzugsgebiete\nChannel Network, Watershed Basins\nr.stream.extract, r.water.outlet\nKartierung/Verarbeitung, häufig über GRASS/SAGA\nAbgeleitete Gerinneanfänge hängen von Schwellenwerten und Relief ab\n\n\nAbflussweg und Fließzeit\nOverland Flow Distance to Channel Network (optional Strickler-Rauigkeit und angenommene Wassertiefe)\nr.watershed + abgeleitete Weglängen; kein direkt äquivalentes Ereignismodell\nÜber SAGA/GRASS oder Rasterrechner\nBerechnete Weglänge und parametrisierte Reisezeit, keine vollständige zeitabhängige Wassermengenbilanz\n\n\nDynamischer Oberflächenabfluss\nOverland Flow\nr.sim.water (SIMWE)\nÜber GRASS-/SAGA-Anbindung; kein gleichwertiges natives vollständiges Simulationsmodell\nEreignis- oder zeitabhängiger Wasserabfluss unter Modellannahmen; Rauigkeit, Niederschlag, Infiltration relevant\n\n\nHang-/Flächenerosion\nMMF-SAGA Soil Erosion Model\nr.watershed-RUSLE-Faktoren bzw. Erosions-/Sedimentwerkzeuge\nRasterrechner für eigene Erosionsindizes; GRASS-/SAGA-Modelle über Provider\nErosionspotenzial oder modellierte flächenhafte Bodenerosion; keine seitliche Ufermigration\n\n\nSedimenttransport und Deposition\nMMF-SAGA (modellbezogene Erosions-/Transportgrößen)\nr.sim.sediment (SIMWE)\nÜblicherweise über GRASS-Processing\nModellierung von Sedimentfluss und Erosion/Deposition im Gelände; nicht automatisch wandernde Flussufer\n\n\nZeitliche Geländeentwicklung\nIn SAGA verschiedene geomorphologische/erosive Ansätze; kein integriertes allgemeines Mäandermigrationswerkzeug\nAdd-ons r.sim.terrain, r.landscape.evol mit wiederholter Höhenänderung\nExterne GRASS-Module oder eigene Prozessketten\nRasterhöhen können zeitlich verändert werden; nicht gleichzusetzen mit lateraler Gerinnedynamik\n\n\nHistorische Ufererosion messen\nÜberlagerung bzw. Differenzanalyse historischer Linien/Polygone\nGIS-Vergleiche mit Vektor-/Rasteroperationen\nQGIS-Plugin RiverBankErosionAccretion_V2 oder manuelle Uferlinien-Vergleiche\nRetrospektive Beobachtungsanalyse, keine Prognose zukünftiger Mäander\n\n\nSeitenerosion / Mäandermigration vorwärts simulieren\nKein entsprechendes Standardwerkzeug\nKein entsprechendes Standardmodul für kinematische Mittellinienmigration\nKein natives Standardmodell; externe Python-Modelle wie MeanderPy lassen sich mit GIS-Daten kombinieren\nVeränderung einer Flussmittellinie nach Krümmungs-/Erodierbarkeitsregeln; nicht mit D8 zu verwechseln\n\n\n\nDie Aussagen beziehen sich auf die dokumentierten Werkzeugfamilien (Stand: November 2026), nicht auf jedes Drittanbieter-Plugin oder selbst entwickelte Skript. Details und Verfügbarkeit unterscheiden sich nach Version, Betriebssystem und Installation. SAGA-Hydrologie · SAGA Overland Flow · SAGA MMF · GRASS-Hydrologie · QGIS-natives Fill sinks.\n\n\n\n\n\n\nImportantRastererosion ist nicht automatisch Ufererosion\n\n\n\nEin Raster kann an einer Stelle Gelände verlieren und an einer anderen Sediment ablagern, ohne dass der Algorithmus die seitliche Verlagerung eines Gerinnes oder die Erosion eines Ufers abbildet. Für eine explizite Mäanderentwicklung braucht es mindestens eine Regel für die laterale Migrationsrichtung und -rate sowie eine zeitliche Aktualisierung der Gerinnegeometrie. Anspruchsvollere Ansätze koppeln Hydrodynamik, Sedimenttransport und Uferstabilität.",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#gibt-es-gis-basierte-modelle-für-seitenerosion-und-mäanderentwicklung",
+    "href": "pages/meander_abfluss_saga_grass.html#gibt-es-gis-basierte-modelle-für-seitenerosion-und-mäanderentwicklung",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "8 · Gibt es GIS-basierte Modelle für Seitenerosion und Mäanderentwicklung?",
+    "text": "8 · Gibt es GIS-basierte Modelle für Seitenerosion und Mäanderentwicklung?\nJa – aber üblicherweise als spezialisierte Modelle oder Python-Bibliotheken, nicht als einfache D8-/MFD-Funktion. Für den Vergleich mit NetLogo eignet sich insbesondere MeanderPy. Das Modell ist eine Python-Implementierung eines kinematischen Mäandermigrationsmodells nach Howard und Knutson (1984). Es verwendet die Krümmung der Flussmittellinie und eine gewichtete Information über oberstromige Krümmungen, um eine laterale Migrationsrate abzuleiten. Eine vollständige Strömungs- und Impulsbilanz wird nicht gelöst.\nSchematisch kann man diese Modellklasse als\n\\[\nv_{n}(s) = k_{m} \\, C_{\\mathrm{eff}}(s)\n\\]\ndarstellen. \\(v_n\\) bezeichnet die seitliche Migrationsgeschwindigkeit, \\(k_m\\) einen Migrations-/Erodierbarkeitsparameter und \\(C_{\\mathrm{eff}}\\) eine aus der Flusskrümmung und oberstromigen Einflüssen bestimmte Größe. Diese Darstellung ist eine Konzeptskizze, nicht die exakte Implementationsgleichung von MeanderPy. Damit entsteht tatsächlich eine zeitlich veränderliche Flusslinie – anders als bei einer Fließakkumulationskarte.\n\n\n\n\n\n\n\n\n\nAnsatz\nRaum-/Zeitrepräsentation\nBerechnet?\nSeitliche Mäanderverlagerung?\n\n\n\n\nNetLogo River Meanders\nAbstrakte Gewässerzellen; Iterationen\nRegelbasierte agentengetriebene Flussformänderung\nJa, heuristisch\n\n\nSAGA/GRASS D8/MFD\nStatisches Gelände; Rasterzellen\nFließwege / beitragende Fläche\nNein\n\n\nGRASS r.sim.terrain\nDGM-Raster; Zeitschritte / Ereignisreihen\nWiederholte Änderungen der Geländehöhe durch Erosions-/Depositionsansätze\nNicht als explizites Ufermigrationsmodell\n\n\nPython MeanderPy\nFlussmittellinie; Modellzeitschritte\nKrümmungsabhängige laterale Mittellinienmigration und Abschneidungen\nJa, kinematisch\n\n\nQGIS: RiverBankErosionAccretion_V2\nGewässerpolygone aus unterschiedlichen Beobachtungsjahren\nRückblickende Flächenänderung / Uferverlagerungsraten\nMessung, keine Simulation\n\n\n\nSkaligkeit: Ein DGM1 kann für Einzugsgebiets-Routing sehr detailliert, für die Modellierung einer schmalen Uferkante jedoch trotz 1-m-Gitter zu grob oder geometrisch unvollständig sein. Zudem ist die räumliche Auflösung einer Simulation nicht automatisch ihre physikalische Genauigkeit. Ein krümmungsbasiertes Mittellinienmodell arbeitet entlang eines Gewässerabschnitts und besitzt eine andere räumliche Repräsentation als ein flächenhaftes DGM. Die jeweilige Modellzeit muss gesondert definiert bzw. anhand beobachteter Migrationsraten kalibriert werden.\nDiskussionsaufgabe (ohne zusätzliche Software): Ordnen Sie die drei NetLogo-Modelle, D8/MFD, r.sim.water, r.sim.terrain und MeanderPy in eine Reihe zunehmender Prozessdifferenzierung ein. Bei welchen Übergängen werden neue Zustandsgrößen oder Erhaltungsgleichungen eingeführt – und wo nur neue heuristische bzw. empirische Beziehungen? Begründen Sie, weshalb mehr Prozessmodule nicht automatisch größere physikalische Validität bedeutet.\nWeiterführende Dokumentation: MeanderPy – Code und Einführung · CSDMS: Modellbeschreibung MeanderPy · Howard & Knutson (1984) · GRASS r.sim.sediment · GRASS Add-on r.sim.terrain · GRASS Add-on r.landscape.evol · QGIS RiverBankErosionAccretion_V2.",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#optional-topografischer-vernässungsindex",
+    "href": "pages/meander_abfluss_saga_grass.html#optional-topografischer-vernässungsindex",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "9 · Optional: Topografischer Vernässungsindex",
+    "text": "9 · Optional: Topografischer Vernässungsindex\nMit SAGA kann ergänzend der Topographic Wetness Index (TWI) berechnet werden:\n\\[\n\\mathrm{TWI}=\\ln\\left(\\frac{a}{\\tan\\beta}\\right)\n\\]\n\\(a\\) bezeichnet die spezifische beitragende Fläche (Fläche pro Konturlänge), \\(\\beta\\) die lokale Hangneigung. Der Index wird typischerweise zur Beschreibung der topografischen Vernässungsneigung verwendet. Er ist weder eine Wasserstandsmessung noch eine Simulation eines Starkregenereignisses. In flachem Relief und an Gewässeroberflächen ist seine Interpretation besonders vorsichtig vorzunehmen.",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#ergebnissicherung",
+    "href": "pages/meander_abfluss_saga_grass.html#ergebnissicherung",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "Ergebnissicherung",
+    "text": "Ergebnissicherung\nErstellen Sie drei Darstellungen: (a) Hillshade + D8-Akkumulation, (b) Hillshade + MFD-Akkumulation, (c) beide Ergebnisse im Vergleich zur Gewässerreferenz. Fügen Sie eine knappe Tabelle der verwendeten Parameter und einen Modellkommentar hinzu. Halten Sie außerdem die Datenherkunft (amtliches DGM1, ATKIS), zwei untersuchte Rasterweiten und die vorbereiteten Landnutzungsklassen fest. Die dynamische Rauigkeits-Simulation ist ein optionaler Aufbau.\nBeantworten Sie darin:\n\nWelche Modellentscheidung hat die sichtbar größte Änderung bewirkt?\nWo ist das Ergebnis plausibel – und wo weicht es von der beobachteten Flusslage ab?\nWelche zusätzliche Modellkomponente wäre erforderlich, um nicht nur den heutigen Flussverlauf abzuleiten, sondern dessen Veränderung über die Zeit zu simulieren?\nWo gehen Landnutzung und Reibung wirklich in die Rechnung ein – und wo wären sie nur eine zusätzliche Karte ohne Einfluss auf das Ergebnis?",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
+    "objectID": "pages/meander_abfluss_saga_grass.html#technische-dokumentation-und-daten",
+    "href": "pages/meander_abfluss_saga_grass.html#technische-dokumentation-und-daten",
+    "title": "Abflussmodellierung im Burgwald",
+    "section": "Technische Dokumentation und Daten",
+    "text": "Technische Dokumentation und Daten\n\nHVBG: DGM1/Burgwald – Downloadcenter\nHVBG: ATKIS Basis-DLM – Landnutzung und Gewässer\nLand Hessen: Projektbericht Rotes Wasser / Burgwald\nSAGA: Overland Flow – Rauigkeit und Niederschlag\nGRASS: r.sim.water – Manning-Rauigkeit\nHVBG: Digitale Geländemodelle in Hessen\nSAGA GIS: Hydrology-Toolbibliothek\nSAGA GIS: Overland Flow Distance to Channel Network\nSAGA GIS: Flow Accumulation (Werkzeugkette)\nGRASS GIS: r.watershed\nGRASS GIS: r.stream.extract\nQGIS: Hydrologische Analyse\nQGIS: Processing Saga NextGen Provider – Plugin-Seite\nQGIS: Installationsanleitung einschließlich GRASS-Unterstützung\nMeanderPy – kinematische Mäanderentwicklung\nGRASS: r.sim.terrain – dynamische Geländeänderung\nGRASS: r.sim.sediment – Erosion und Sedimenttransport\nQGIS: RiverBankErosionAccretion_V2 – beobachtete Uferveränderung",
+    "crumbs": [
+      "Worksheets / Hands-on",
+      "Burgwald – Abfluss mit SAGA / GRASS"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Modellieren in der Geographie",
     "section": "",
-    "text": "Wie beschreiben wir räumliche Muster? Wie bilden wir aus Klimadaten sinnvolle Teilräume? Wo sind räumliche Vorhersagen belastbar, und wann zeigt ein Satellitenbild tatsächlich eine Veränderung?\nIn diesem Kurs lernen Sie ausgewählte fortgeschrittene Grundlagen der Geoinformationswissenschaft und Fernerkundung anzuwenden. Sie arbeiten mit realen Daten aus Hessen und Nordrhein-Westfalen, beschaffen diese selbst und bearbeiten überschaubare anwendungsbezogene Fragen. Dabei verbinden Sie die räumliche Kontrolle in QGIS mit reproduzierbaren Auswertungen in R und ausgewählten externen Werkzeugen.\nSie lernen, vorhandene Skripte gezielt anzupassen, methodische Entscheidungen zu vergleichen und Ergebnisse fachlich zu prüfen. Räumliche Auflösung, Untersuchungsgebiet, zeitlicher Bezug und Übertragbarkeit begleiten alle Themen. Ziel ist, dass Sie einen Analyseweg selbstständig ausführen und seine Aussagekraft begründen können.",
+    "text": "Wie entstehen räumliche Muster, und was können wir aus ihnen über die zugrunde liegenden Prozesse lernen? Der Kurs Modellieren in der Geographie untersucht den Weg von einer räumlichen Beobachtung über eine Modellannahme zu einer berechneten Darstellung – und zur kritischen Prüfung der Aussagekraft.\nIm Mittelpunkt stehen heuristische Regeln, physikalisch begründete Näherungen und Prozessmodelle. An Beispielen zur Oberflächenentwässerung und Flussentwicklung werden die in einem Modell implementierten Mechanismen explizit gemacht und mit seinen Resultaten verglichen.",
     "crumbs": [
-      "Start"
+      "Kursübersicht"
     ]
   },
   {
@@ -312,79 +434,89 @@
     "href": "index.html#zielsetzung",
     "title": "Modellieren in der Geographie",
     "section": "",
-    "text": "Wie beschreiben wir räumliche Muster? Wie bilden wir aus Klimadaten sinnvolle Teilräume? Wo sind räumliche Vorhersagen belastbar, und wann zeigt ein Satellitenbild tatsächlich eine Veränderung?\nIn diesem Kurs lernen Sie ausgewählte fortgeschrittene Grundlagen der Geoinformationswissenschaft und Fernerkundung anzuwenden. Sie arbeiten mit realen Daten aus Hessen und Nordrhein-Westfalen, beschaffen diese selbst und bearbeiten überschaubare anwendungsbezogene Fragen. Dabei verbinden Sie die räumliche Kontrolle in QGIS mit reproduzierbaren Auswertungen in R und ausgewählten externen Werkzeugen.\nSie lernen, vorhandene Skripte gezielt anzupassen, methodische Entscheidungen zu vergleichen und Ergebnisse fachlich zu prüfen. Räumliche Auflösung, Untersuchungsgebiet, zeitlicher Bezug und Übertragbarkeit begleiten alle Themen. Ziel ist, dass Sie einen Analyseweg selbstständig ausführen und seine Aussagekraft begründen können.",
+    "text": "Wie entstehen räumliche Muster, und was können wir aus ihnen über die zugrunde liegenden Prozesse lernen? Der Kurs Modellieren in der Geographie untersucht den Weg von einer räumlichen Beobachtung über eine Modellannahme zu einer berechneten Darstellung – und zur kritischen Prüfung der Aussagekraft.\nIm Mittelpunkt stehen heuristische Regeln, physikalisch begründete Näherungen und Prozessmodelle. An Beispielen zur Oberflächenentwässerung und Flussentwicklung werden die in einem Modell implementierten Mechanismen explizit gemacht und mit seinen Resultaten verglichen.",
     "crumbs": [
-      "Start"
+      "Kursübersicht"
     ]
   },
   {
-    "objectID": "index.html#arbeitsweise",
-    "href": "index.html#arbeitsweise",
+    "objectID": "index.html#kursmaterialien-nach-format",
+    "href": "index.html#kursmaterialien-nach-format",
     "title": "Modellieren in der Geographie",
-    "section": "Arbeitsweise",
-    "text": "Arbeitsweise\nDie zwölf Sitzungen verbinden kurze fachliche Einführungen mit einem hohen Übungsanteil. Die Arbeitsaufträge finden Sie in den jeweils verlinkten Worksheets.\nSie nutzen Code aus den Kursmaterialien, Dokumentation und KI-Unterstützung. Dazu gehört, Eingaben und Parameter zu verstehen, Änderungen festzuhalten und Ausgaben zu kontrollieren. Sie müssen keine Algorithmen selbst entwickeln. Sie sollen jedoch erklären können, was Ihr Skript verarbeitet und woran Sie ein plausibles Ergebnis erkennen.\nIm Verlauf des Kurses entsteht ein Projektordner mit Datenquellen, Skripten, Parametern und ausgewählten Ergebnissen. Ihre Interpretationen unterscheiden zwischen Beobachtung, möglicher Erklärung und verbleibender Unsicherheit.",
+    "section": "Kursmaterialien nach Format",
+    "text": "Kursmaterialien nach Format\nReader erläutern Begriffe und Modellannahmen; Slides / Folien unterstützen die Einführung und den Modellvergleich; Worksheets / Hands-on enthalten die praktischen Arbeitsaufträge. Neue Beispiele werden in diesen Bereichen ergänzt.",
     "crumbs": [
-      "Start"
+      "Kursübersicht"
     ]
   },
   {
-    "objectID": "index.html#block-1-daten-beschaffen-und-skripte-nutzen",
-    "href": "index.html#block-1-daten-beschaffen-und-skripte-nutzen",
+    "objectID": "index.html#bisherige-kursinhalte",
+    "href": "index.html#bisherige-kursinhalte",
     "title": "Modellieren in der Geographie",
-    "section": "Block 1 · Daten beschaffen und Skripte nutzen",
-    "text": "Block 1 · Daten beschaffen und Skripte nutzen\nSie richten einen reproduzierbaren Arbeitsablauf ein und beschaffen Sentinel-2-Daten für den Burgwald. Sie lernen, eine automatisierte Bildauswahl zu kontrollieren und Vegetationsindizes anhand konkreter Flächen zu interpretieren. Der Vergleich unterschiedlicher Aufnahmetermine zeigt, wie stark Datenqualität und zeitlicher Bezug die Aussage beeinflussen.\n\n\n\nSitzung\nInhalt und Lernziel\nArbeitsauftrag\n\n\n\n\n1 · Skripte handhaben\nEin vorhandenes Skript übernehmen, Pfade und Parameter anpassen, Fehler mit Dokumentation oder KI bearbeiten und den Ablauf erneut ausführen.\nWorksheet 01\n\n\n2 · Satellitendaten beschaffen\nSentinel-2-Aufnahmen über den CDSE-Workflow abrufen; Abdeckung, Wolken, Schatten und Aufnahmedaten prüfen.\nWorksheet 02\n\n\n3 · Vegetationssignale interpretieren\nNDVI und kNDVI an Wald-, Offenland- und auffälligen Vergleichsflächen untersuchen; Unterschiede zwischen Vegetationssignal und Aufnahmebedingungen erkennen.\nWorksheet 03",
+    "section": "Bisherige Kursinhalte",
+    "text": "Bisherige Kursinhalte\n\n\n\nThema\nLeitfrage\nMaterialien\n\n\n\n\n1 · Grundlagen der Modellbildung im GIS\nWelche Beziehungen zwischen Eingaben und Ergebnissen sind rein heuristisch, welche physikalisch begründbar?\nFolien · Kurzreader\n\n\n2 · Regelbasierte Modelle in NetLogo\nWie können ähnliche Fluss- und Entwässerungsmuster aus unterschiedlichen lokalen Regeln entstehen?\nFolien: Vergleich von River Meanders, Erosion und Grand Canyon\n\n\n3 · Geländeabfluss im Burgwald (SAGA / GRASS)\nWelche Fließwege lassen sich aus einem DGM ableiten, und wo liegen die Grenzen gegenüber einer Simulation von Mäanderentwicklung?\nWorksheet / Hands-on: Abfluss im Burgwald",
     "crumbs": [
-      "Start"
+      "Kursübersicht"
     ]
   },
   {
-    "objectID": "index.html#block-2-räumliche-muster-und-klimaregionalisierung",
-    "href": "index.html#block-2-räumliche-muster-und-klimaregionalisierung",
+    "objectID": "index.html#modellbildung-von-der-regel-zur-prozessbeschreibung",
+    "href": "index.html#modellbildung-von-der-regel-zur-prozessbeschreibung",
     "title": "Modellieren in der Geographie",
-    "section": "Block 2 · Räumliche Muster und Klimaregionalisierung",
-    "text": "Block 2 · Räumliche Muster und Klimaregionalisierung\nSie vergleichen klassische Landschaftsmaße mit informationstheoretischen Ansätzen. Dabei untersuchen Sie, welche Informationen über Zusammensetzung und räumliche Anordnung tatsächlich erfasst werden. Anschließend wechseln Sie von kategorischer Landbedeckung zu kontinuierlichen Klimadaten: Sie segmentieren Temperaturjahresgänge und bewerten, wie Parameter und Rasterauflösung die entstehenden Regionen beeinflussen.\n\n\n\nSitzung\nInhalt und Lernziel\nArbeitsauftrag\n\n\n\n\n4 · Muster quantitativ beschreiben\nSHDI und Aggregation Index mit Entropie und relativer gegenseitiger Information vergleichen; den Einfluss räumlicher Anordnung und Fenstergröße untersuchen.\nWorksheet 04\n\n\n5 · Klimadaten segmentieren\nMonatliche Klimadaten selbst beschaffen und mit supercells regionalisieren; Segmentzahl und Kompaktheit kontrolliert variieren.\nWorksheet 05\n\n\n6 · Regionalisierungen beurteilen\nHomogenität innerhalb der Segmente, Unterschiede benachbarter Jahresgänge und Empfindlichkeit gegenüber gröberer Rasterauflösung bewerten.\nWorksheet 06",
+    "section": "1 · Modellbildung: Von der Regel zur Prozessbeschreibung",
+    "text": "1 · Modellbildung: Von der Regel zur Prozessbeschreibung\nIm ersten Teil unterscheiden wir geographische Such- und Klassifikationsregeln, physikalisch motivierte Näherungen und zeitabhängige Prozessmodelle. Nicht jede aus Geodaten berechnete Karte beschreibt eine reale Dynamik. Es kommt darauf an, welche Variablen und Beziehungen tatsächlich implementiert sind.\nMaterialien: Einführung – Folien · Kurzreader zur Modellbildung",
     "crumbs": [
-      "Start"
+      "Kursübersicht"
     ]
   },
   {
-    "objectID": "index.html#block-3-räumliche-vorhersagen-und-modellgültigkeit",
-    "href": "index.html#block-3-räumliche-vorhersagen-und-modellgültigkeit",
+    "objectID": "index.html#netlogo-ähnliche-muster-verschiedene-mechanismen",
+    "href": "index.html#netlogo-ähnliche-muster-verschiedene-mechanismen",
     "title": "Modellieren in der Geographie",
-    "section": "Block 3 · Räumliche Vorhersagen und Modellgültigkeit",
-    "text": "Block 3 · Räumliche Vorhersagen und Modellgültigkeit\nAm LAI-Beispiel aus den EON-Materialien verfolgen Sie den Weg von punktuellen Referenzwerten zur flächenhaften Schätzung. Sie prüfen den räumlichen und zeitlichen Bezug der Daten und vergleichen unterschiedliche Validierungsansätze. Mit der Area of Applicability untersuchen Sie anschließend, wo die Prädiktorbedingungen durch die Trainingsdaten abgedeckt sind.\n\n\n\nSitzung\nInhalt und Lernziel\nArbeitsauftrag\n\n\n\n\n7 · Referenzdaten und Schätzung\nLAI-Referenzen und Satellitendaten zusammenführen; ein einfaches Modell anwenden und dessen Datengrundlage, Residuen und Voraussetzungen beurteilen.\nWorksheet 07\n\n\n8 · Räumlich validieren\nEinen Random Forest mit zufälligen und räumlichen Prüffaltungen vergleichen; bei gleichen Prädiktoren und Modelleinstellungen die Bedeutung der Prüfsituation erkennen.\nWorksheet 08\n\n\n9 · Anwendungsbereich prüfen\nVorhersage und AOA gemeinsam interpretieren; untersuchen, wie eine Änderung der Prädiktorauswahl Modellgüte und Anwendungsbereich beeinflusst.\nWorksheet 09",
+    "section": "2 · NetLogo: Ähnliche Muster, verschiedene Mechanismen",
+    "text": "2 · NetLogo: Ähnliche Muster, verschiedene Mechanismen\nAnhand der Bibliotheksmodelle River Meanders, Erosion und Grand Canyon vergleichen wir, wie sich Strömungsagenten, lokale Wasserspiegel und diskrete Wasseragenten unterscheiden. Untersucht werden Fließregeln, Wassermengen, Erosion, Sedimentation und die Rückkopplung zwischen Gelände und Abfluss.\nMaterial: NetLogo-Modellvergleich – Folien\nLeitfrage: Ist ein plausibel aussehender Flusslauf bereits ein Beleg für eine physikalisch zutreffende Prozessbeschreibung?",
     "crumbs": [
-      "Start"
+      "Kursübersicht"
     ]
   },
   {
-    "objectID": "index.html#block-4-veränderungen-werkzeugverknüpfung-und-transfer",
-    "href": "index.html#block-4-veränderungen-werkzeugverknüpfung-und-transfer",
+    "objectID": "index.html#aktuelle-übung-abflusswege-mit-saga-gis-und-grass-gis",
+    "href": "index.html#aktuelle-übung-abflusswege-mit-saga-gis-und-grass-gis",
     "title": "Modellieren in der Geographie",
-    "section": "Block 4 · Veränderungen, Werkzeugverknüpfung und Transfer",
-    "text": "Block 4 · Veränderungen, Werkzeugverknüpfung und Transfer\nSie greifen die Sentinel-Daten erneut auf und untersuchen zeitliche Veränderungen. Zusätzliche Beobachtungen helfen, auffällige Signale zu überprüfen. An einem begrenzten R–OTB-Beispiel lernen Sie, einen Verarbeitungsschritt über Werkzeuggrenzen hinweg nachzuvollziehen. Abschließend übertragen Sie einen erprobten Ansatz auf eine eigene räumliche Frage.\n\n\n\nSitzung\nInhalt und Lernziel\nArbeitsauftrag\n\n\n\n\n10 · Veränderungen untersuchen\nSommeraufnahmen mehrerer Jahre vergleichen; Veränderungskandidaten anhand der Originalbilder und einer zusätzlichen Aufnahme prüfen.\nWorksheet 10\n\n\n11 · Werkzeuge verbinden\nEine bandweise Standardisierung über R, link2GI und OTB ausführen; Werte, Georeferenzierung und Übergabe zwischen den Werkzeugen kontrollieren.\nWorksheet 11\n\n\n12 · Eigenständig übertragen\nEine begrenzte Frage zu Landschaftsmustern, Klimaregionalisierung oder zeitlicher Veränderung für einen eigenen Ausschnitt bearbeiten und den Ablauf durch eine andere Gruppe nachvollziehen lassen.\nWorksheet 12",
+    "section": "3 · Aktuelle Übung: Abflusswege mit SAGA GIS und GRASS GIS",
+    "text": "3 · Aktuelle Übung: Abflusswege mit SAGA GIS und GRASS GIS\n2. November 2026: Wir untersuchen am Burgwald (Rotes Wasser) auf Grundlage eines amtlichen digitalen Geländemodells (DGM1), wie Fließrichtungen und beitragende Flächen durch lokale Routingregeln berechnet werden. Im Mittelpunkt steht der Vergleich von D8 (Abfluss an einen Nachbarn) und MFD (Verteilung auf mehrere Nachbarn). SAGA GIS dient als Hauptwerkzeug, GRASS GIS – bei Bedarf über QGIS – als Alternativ- und Kontrollweg.\nDie berechneten Linien werden mit dem bestehenden Gewässernetz verglichen. Ergänzend untersuchen wir, wie Rasterweite und Untersuchungsmaßstab die Resultate verändern, und bereiten ATKIS-Landnutzung für eine anschließende Abflusssimulation mit räumlich variabler Rauigkeit auf. Die Fließakkumulation liefert keine Prognose der zeitlichen Mäanderentwicklung, weil dafür unter anderem Strömungsdynamik, Ufererosion und Sedimenttransport fehlen.\nWorksheet / Hands-on öffnen: Burgwald – DGM, SAGA, GRASS und Landnutzung\nDas Worksheet enthält außerdem eine Matrix der implementierten Modellkonzepte in SAGA GIS, GRASS GIS und QGIS – von D8/MFD über Oberflächenabfluss und Sedimenttransport bis zur Abgrenzung gegenüber echter Seitenerosion und Mäanderentwicklung (Beispiel MeanderPy).",
     "crumbs": [
-      "Start"
+      "Kursübersicht"
     ]
   },
   {
-    "objectID": "index.html#was-sie-am-ende-können-sollen",
-    "href": "index.html#was-sie-am-ende-können-sollen",
+    "objectID": "index.html#reader-slides-und-hands-on-im-überblick",
+    "href": "index.html#reader-slides-und-hands-on-im-überblick",
     "title": "Modellieren in der Geographie",
-    "section": "Was Sie am Ende können sollen",
-    "text": "Was Sie am Ende können sollen\nSie können zu einer räumlichen Frage geeignete Daten beschaffen, einen vorhandenen Analyseweg anpassen und dessen Ergebnisse kritisch beurteilen. Sie begründen die Wahl von Parametern und Maßstäben, erkennen Grenzen von Validierung und Übertragbarkeit und dokumentieren Ihren Ablauf so, dass andere ihn erneut ausführen können.",
+    "section": "Reader, Slides und Hands-on im Überblick",
+    "text": "Reader, Slides und Hands-on im Überblick\n\n\n\nReader\nSlides / Folien\nWorksheets / Hands-on\n\n\n\n\nGrundlagen der Modellbildung\nModellbildung im GIS · NetLogo-Modellvergleich\nBurgwald: Abfluss, Skalen und Rauigkeit",
     "crumbs": [
-      "Start"
+      "Kursübersicht"
     ]
   },
   {
-    "objectID": "index.html#materialgrundlage",
-    "href": "index.html#materialgrundlage",
+    "objectID": "index.html#gemeinsame-vergleichsfragen",
+    "href": "index.html#gemeinsame-vergleichsfragen",
     "title": "Modellieren in der Geographie",
-    "section": "Materialgrundlage",
-    "text": "Materialgrundlage\n\nAdvanced GIS and Remote Sensing 2024 – Methoden, Reader und Worksheets\nAktuelle R-Workflows – LV-19-d19-006-25-R\nEON2026 – Machine Learning, räumliche Validierung und AOA",
+    "section": "Gemeinsame Vergleichsfragen",
+    "text": "Gemeinsame Vergleichsfragen\n\n\n\n\n\n\n\nPrüffrage\nWorauf ist zu achten?\n\n\n\n\nWelche Eingangsdaten?\nDigitales Geländemodell, Landnutzung, Wasserstände, Agentenpositionen, Modellparameter\n\n\nWelche Regeln?\nKraftanalogie, Wahl des niedrigsten Nachbarn, D8- oder MFD-Routing\n\n\nWelche Größen werden berechnet?\nAgentenbewegung, Wasserverlagerung, Fließakkumulation, Geländeänderung\n\n\nWelche Bilanz wird erfüllt?\nLokale Wassererhaltung, Impuls- oder Sedimentbilanz – oder keine davon?\n\n\nWas kann geprüft werden?\nLage des beobachteten Flusslaufs, Entwässerungsmuster, Sensitivität gegenüber Parametern\n\n\nWelche Aussage ist nicht zulässig?\nAus einer Fließakkumulationskarte direkt Fließgeschwindigkeiten, Erosionsraten oder zukünftige Mäanderlagen abzuleiten",
     "crumbs": [
-      "Start"
+      "Kursübersicht"
+    ]
+  },
+  {
+    "objectID": "index.html#erwartete-kompetenzen",
+    "href": "index.html#erwartete-kompetenzen",
+    "title": "Modellieren in der Geographie",
+    "section": "Erwartete Kompetenzen",
+    "text": "Erwartete Kompetenzen\nSie können die Regeln und Annahmen eines räumlichen Modells rekonstruieren, vergleichbare Ergebnisse verschiedener Modellansätze untersuchen und begründen, welche Aussagen durch die Berechnung tatsächlich gestützt werden. Musterähnlichkeit, physikalische Plausibilität und quantitative Validität sind dabei unterschiedliche Qualitätskriterien.",
+    "crumbs": [
+      "Kursübersicht"
     ]
   },
   {
@@ -506,8 +638,8 @@
     "section": "",
     "text": "Ein GIS kann Flächen überlagern, Indizes bilden, Fließwege ableiten und Modelle mit räumlichen Eingaben versorgen. Die Karte allein zeigt aber nicht, was berechnet wurde. Entscheidend sind die Regeln oder Gleichungen zwischen Eingangsdaten und Ergebnis. Als roter Faden dient die Frage: Wo sammelt sich bei Starkregen Wasser?\n\n\n\n\n\n\n\n\n\nModellzugang\nWas wird gerechnet?\nMindestdaten\nAussage – und Grenze\n\n\n\n\nHeuristik\nKlassen, Regeln und gewichtete Indikatoren\nLandbedeckung, ggf. DGM/Böden\nVerdachtsräume; keine Wassertiefe\n\n\nPhysikalisch begründete Näherung\nvereinfachte, prozessbezogene Größenbeziehungen\nje nach Formel DGM, Fläche, Regen oder Materialparameter\nIndex oder überschlägige Größe; nur unter ihren Annahmen gültig\n\n\nProzessmodell\nzeitabhängige Erhaltung und Transport\nGelände, Antrieb, Parameter, Anfangs-/Randbedingungen\nsimulierte Zustände, z. B. Wassertiefe über die Zeit; mit Modell- und Datenunsicherheit\n\n\n\n\n\nWir markieren Flächen, auf denen mehrere plausible Hinweise zusammenkommen: versiegelte Oberflächen, Geländesenken, gering durchlässige Böden. Eine gewichtete Überlagerung könnte lauten:\n\\[\nH=0{,}5V+0{,}3S+0{,}2D\n\\]\nDie Variablen sind Indikatoren, zuvor einheitlich auf 0 bis 1 skaliert. Die Gewichte sind eine Entscheidung der Modellierenden. Andere plausible Gewichte erzeugen möglicherweise andere Ergebnisse. Deshalb dokumentieren wir Klassen, Grenzwerte und Gewichtungen und testen deren Einfluss. \\(H\\) ist ein Such- oder Priorisierungsindex. Ihn als Überflutungswahrscheinlichkeit oder Wassertiefe auszugeben, wäre unbegründet.\nWerkzeuge: QGIS (Rasterrechner, Reclassification, Vektor-/Rasterüberlagerung), SAGA GIS und der QGIS-Modell-Designer für reproduzierbare Abläufe.\n\n\n\nEin digitaler Höhenwert allein enthält noch keinen Abfluss. GIS-Werkzeuge wie SAGA Flow Accumulation oder GRASS r.watershed leiten aus Höhenunterschieden und einer gewählten Routingregel Fließrichtungen, Einzugsflächen oder Akkumulationsmuster ab. Ob der Algorithmus das Wasser einer Zelle auf eine oder mehrere Nachbarzellen verteilt, ist bereits eine Modellentscheidung.\nDer Topographic Wetness Index verbindet beitragende Fläche und Gefälle:\n\\[\n\\mathrm{TWI}=\\ln\\!\\left(\\frac{a}{\\tan\\beta}\\right)\n\\]\nDas ist ein physikalisch motivierter Geländeindikator, keine berechnete Wasserbilanz und keine Starkregenüberflutung. Für eine tatsächliche Vernässung fehlen etwa Regen, Bodenhydraulik und zeitliche Entwicklung. Besonders wichtig: topografische Fließakkumulation und physikalisch berechneter Wasserabfluss sind nicht dasselbe.\nEine andere, explizite Näherung ist die Rationalformel für den Spitzenabfluss kleiner Einzugsgebiete:\n\\[\nQ_{\\mathrm{max}}\\approx C\\,i\\,A\n\\]\nDabei sind \\(A\\) die Einzugsgebietsfläche, \\(i\\) eine für die Abflusskonzentration maßgebende Regenintensität und \\(C\\) ein empirischer Abflussbeiwert. Sie benötigt mehr als eine Karte, liefert aber weder Wassertiefen noch einen räumlich-zeitlichen Fließverlauf. Ihre Anwendbarkeit hängt von Gebiet, Regenannahmen und Konventionen für den Abflussbeiwert ab.\nWerkzeuge: SAGA (Hydrology, Wetness Index), GRASS r.watershed, QGIS zur Datenaufbereitung; Formeln zusätzlich im GIS, in R oder Python. Die Wahl des Werkzeugs macht eine Rechnung nicht von selbst physikalisch.\n\n\n\nEin dynamisches 2D-Abflussmodell berechnet, wie sich Wasserstände und Geschwindigkeiten während eines Regens verändern. Eine vereinfachte Massenerhaltung lautet:\n\\[\n\\frac{\\partial h}{\\partial t}+\\nabla\\!\\cdot(h\\boldsymbol{u})=r-f\n\\]\n\\(h\\) bezeichnet die Wassertiefe, \\(\\boldsymbol{u}\\) die Fließgeschwindigkeit, \\(r\\) den Regenzufluss und \\(f\\) die Infiltration. Für eine hydraulische Simulation kommen die Bewegungsgleichungen hinzu. Benötigt werden nun auch zeitlich aufgelöster Niederschlag, Rauheit, geeignete Geländedaten, Anfangs- und Randbedingungen, gegebenenfalls Kanalnetz und Bauwerke sowie eine numerische Diskretisierung.\nWerkzeuge: etwa HEC-RAS 2D für Hydrodynamik; QGIS/SAGA/GRASS für Vorverarbeitung, Geometrie, Parameterkarten und Auswertung. Ein Prozessmodell ist trotzdem nicht „physikalisch exakt“: Gleichungen, räumliche Auflösung und Parameter bleiben Vereinfachungen.\n\n\n\n\n\n\n\n\n\n\n\n\nFrage vor der Interpretation\nHeuristik\nGeländeindex / Näherung\nProzessmodell\n\n\n\n\nWas ist bewusst festgelegt?\nGewichte, Klassen, Regeln\nRouting oder Gültigkeit der Formel\nGleichungen, Parameter, Numerik\n\n\nWas fehlt im Modell?\nkonkrete Dynamik und Mengen\noft Zeitverlauf, Speicher und Transport\nnicht aufgelöste Prozesse und ungenaue Randdaten\n\n\nWie prüfen wir?\nSensitivität, Vergleich mit unabhängigen Orten\nDGM-/Methodenvergleich, Messgrößen wenn vorhanden\nunabhängige Wasserstände, Ausdehnungen oder Abflussganglinien\n\n\n\nExplizit bedeutet lediglich, dass Annahmen oder Gleichungen benannt sind. Auch eine Heuristik kann explizit sein. Empirisch beschreibt die Herkunft einer Regel oder eines Parameters; ein physikalisch begründetes Modell kann empirisch kalibrierte Größen enthalten. Dynamisch beschreibt Zeitabhängigkeit. Diese Eigenschaften sind keine zusätzlichen Stufen zwischen Heuristik und Prozessmodell.\nPraktische Entscheidungsregel: Brauche ich nur eine begründete Suchkarte, reichen oft räumliche Regeln. Brauche ich eine geschätzte Abflussgröße, benötige ich passende physikalische Annahmen und zusätzliche Messgrößen. Will ich wissen, wie sich Wasser bei einem konkreten Ereignis im Raum bewegt, brauche ich ein dynamisches Modell und die Daten zu seinem Antrieb. Je mehr Prozesse wir abbilden, desto mehr müssen wir spezifizieren und überprüfen.\n\n\n\n\nSAGA GIS: Hydrologie-Werkzeuge – Fließakkumulation, SAGA Wetness Index und TWI.\nGRASS GIS: r.watershed – Akkumulation, Fließrichtungen, Einzugsgebiete und topografischer Index.\nQGIS: externe Processing-Anwendungen – je nach Installation müssen zusätzliche Anbieter eingerichtet werden.\nHEC-RAS: Dokumentation und hydraulische Modellgrundlagen – 1D-/2D-Strömungsmodellierung und ihre Datenanforderungen.",
     "crumbs": [
-      "Materials",
-      "Foliensatz"
+      "Reader",
+      "Grundlagen der Modellbildung"
     ]
   },
   {
@@ -517,8 +649,8 @@
     "section": "",
     "text": "Wir markieren Flächen, auf denen mehrere plausible Hinweise zusammenkommen: versiegelte Oberflächen, Geländesenken, gering durchlässige Böden. Eine gewichtete Überlagerung könnte lauten:\n\\[\nH=0{,}5V+0{,}3S+0{,}2D\n\\]\nDie Variablen sind Indikatoren, zuvor einheitlich auf 0 bis 1 skaliert. Die Gewichte sind eine Entscheidung der Modellierenden. Andere plausible Gewichte erzeugen möglicherweise andere Ergebnisse. Deshalb dokumentieren wir Klassen, Grenzwerte und Gewichtungen und testen deren Einfluss. \\(H\\) ist ein Such- oder Priorisierungsindex. Ihn als Überflutungswahrscheinlichkeit oder Wassertiefe auszugeben, wäre unbegründet.\nWerkzeuge: QGIS (Rasterrechner, Reclassification, Vektor-/Rasterüberlagerung), SAGA GIS und der QGIS-Modell-Designer für reproduzierbare Abläufe.",
     "crumbs": [
-      "Materials",
-      "Foliensatz"
+      "Reader",
+      "Grundlagen der Modellbildung"
     ]
   },
   {
@@ -528,8 +660,8 @@
     "section": "",
     "text": "Ein digitaler Höhenwert allein enthält noch keinen Abfluss. GIS-Werkzeuge wie SAGA Flow Accumulation oder GRASS r.watershed leiten aus Höhenunterschieden und einer gewählten Routingregel Fließrichtungen, Einzugsflächen oder Akkumulationsmuster ab. Ob der Algorithmus das Wasser einer Zelle auf eine oder mehrere Nachbarzellen verteilt, ist bereits eine Modellentscheidung.\nDer Topographic Wetness Index verbindet beitragende Fläche und Gefälle:\n\\[\n\\mathrm{TWI}=\\ln\\!\\left(\\frac{a}{\\tan\\beta}\\right)\n\\]\nDas ist ein physikalisch motivierter Geländeindikator, keine berechnete Wasserbilanz und keine Starkregenüberflutung. Für eine tatsächliche Vernässung fehlen etwa Regen, Bodenhydraulik und zeitliche Entwicklung. Besonders wichtig: topografische Fließakkumulation und physikalisch berechneter Wasserabfluss sind nicht dasselbe.\nEine andere, explizite Näherung ist die Rationalformel für den Spitzenabfluss kleiner Einzugsgebiete:\n\\[\nQ_{\\mathrm{max}}\\approx C\\,i\\,A\n\\]\nDabei sind \\(A\\) die Einzugsgebietsfläche, \\(i\\) eine für die Abflusskonzentration maßgebende Regenintensität und \\(C\\) ein empirischer Abflussbeiwert. Sie benötigt mehr als eine Karte, liefert aber weder Wassertiefen noch einen räumlich-zeitlichen Fließverlauf. Ihre Anwendbarkeit hängt von Gebiet, Regenannahmen und Konventionen für den Abflussbeiwert ab.\nWerkzeuge: SAGA (Hydrology, Wetness Index), GRASS r.watershed, QGIS zur Datenaufbereitung; Formeln zusätzlich im GIS, in R oder Python. Die Wahl des Werkzeugs macht eine Rechnung nicht von selbst physikalisch.",
     "crumbs": [
-      "Materials",
-      "Foliensatz"
+      "Reader",
+      "Grundlagen der Modellbildung"
     ]
   },
   {
@@ -539,8 +671,8 @@
     "section": "",
     "text": "Ein dynamisches 2D-Abflussmodell berechnet, wie sich Wasserstände und Geschwindigkeiten während eines Regens verändern. Eine vereinfachte Massenerhaltung lautet:\n\\[\n\\frac{\\partial h}{\\partial t}+\\nabla\\!\\cdot(h\\boldsymbol{u})=r-f\n\\]\n\\(h\\) bezeichnet die Wassertiefe, \\(\\boldsymbol{u}\\) die Fließgeschwindigkeit, \\(r\\) den Regenzufluss und \\(f\\) die Infiltration. Für eine hydraulische Simulation kommen die Bewegungsgleichungen hinzu. Benötigt werden nun auch zeitlich aufgelöster Niederschlag, Rauheit, geeignete Geländedaten, Anfangs- und Randbedingungen, gegebenenfalls Kanalnetz und Bauwerke sowie eine numerische Diskretisierung.\nWerkzeuge: etwa HEC-RAS 2D für Hydrodynamik; QGIS/SAGA/GRASS für Vorverarbeitung, Geometrie, Parameterkarten und Auswertung. Ein Prozessmodell ist trotzdem nicht „physikalisch exakt“: Gleichungen, räumliche Auflösung und Parameter bleiben Vereinfachungen.",
     "crumbs": [
-      "Materials",
-      "Foliensatz"
+      "Reader",
+      "Grundlagen der Modellbildung"
     ]
   },
   {
@@ -550,8 +682,8 @@
     "section": "",
     "text": "Frage vor der Interpretation\nHeuristik\nGeländeindex / Näherung\nProzessmodell\n\n\n\n\nWas ist bewusst festgelegt?\nGewichte, Klassen, Regeln\nRouting oder Gültigkeit der Formel\nGleichungen, Parameter, Numerik\n\n\nWas fehlt im Modell?\nkonkrete Dynamik und Mengen\noft Zeitverlauf, Speicher und Transport\nnicht aufgelöste Prozesse und ungenaue Randdaten\n\n\nWie prüfen wir?\nSensitivität, Vergleich mit unabhängigen Orten\nDGM-/Methodenvergleich, Messgrößen wenn vorhanden\nunabhängige Wasserstände, Ausdehnungen oder Abflussganglinien\n\n\n\nExplizit bedeutet lediglich, dass Annahmen oder Gleichungen benannt sind. Auch eine Heuristik kann explizit sein. Empirisch beschreibt die Herkunft einer Regel oder eines Parameters; ein physikalisch begründetes Modell kann empirisch kalibrierte Größen enthalten. Dynamisch beschreibt Zeitabhängigkeit. Diese Eigenschaften sind keine zusätzlichen Stufen zwischen Heuristik und Prozessmodell.\nPraktische Entscheidungsregel: Brauche ich nur eine begründete Suchkarte, reichen oft räumliche Regeln. Brauche ich eine geschätzte Abflussgröße, benötige ich passende physikalische Annahmen und zusätzliche Messgrößen. Will ich wissen, wie sich Wasser bei einem konkreten Ereignis im Raum bewegt, brauche ich ein dynamisches Modell und die Daten zu seinem Antrieb. Je mehr Prozesse wir abbilden, desto mehr müssen wir spezifizieren und überprüfen.",
     "crumbs": [
-      "Materials",
-      "Foliensatz"
+      "Reader",
+      "Grundlagen der Modellbildung"
     ]
   },
   {
@@ -561,8 +693,8 @@
     "section": "",
     "text": "SAGA GIS: Hydrologie-Werkzeuge – Fließakkumulation, SAGA Wetness Index und TWI.\nGRASS GIS: r.watershed – Akkumulation, Fließrichtungen, Einzugsgebiete und topografischer Index.\nQGIS: externe Processing-Anwendungen – je nach Installation müssen zusätzliche Anbieter eingerichtet werden.\nHEC-RAS: Dokumentation und hydraulische Modellgrundlagen – 1D-/2D-Strömungsmodellierung und ihre Datenanforderungen.",
     "crumbs": [
-      "Materials",
-      "Foliensatz"
+      "Reader",
+      "Grundlagen der Modellbildung"
     ]
   },
   {
@@ -572,8 +704,8 @@
     "section": "Drei Modelle, eine Leitfrage",
     "text": "Drei Modelle, eine Leitfrage\nRiver Meanders (2021) · Erosion (2004) · Grand Canyon (2006)\nAlle drei erzeugen räumliche Muster durch wiederholte lokale Regeln.\nAber sie berechnen nicht dasselbe:\n\nMäanderbildung und Veränderung des Flusslaufs\nWasserverlagerung und Abtragung auf einem Raster\nAbflusswege und Wasseransammlung auf realem Relief\n\n\nLeitfrage: Was ist eine plausible Regel – und was eine physikalisch begründete Berechnung?",
     "crumbs": [
-      "Folien",
-      "Ähnliche Muster – unterschiedliche Modelle"
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
     ]
   },
   {
@@ -583,8 +715,8 @@
     "section": "Drei Ebenen der Begründung",
     "text": "Drei Ebenen der Begründung\n\n\nPhysikalisches Prinzip\nWasser bewegt sich aufgrund eines hydraulischen Gefälles.\nErklärt die Richtung, noch nicht die Menge.\n\nModellgleichung\nDie Wassermenge folgt aus Gefälle, Fließtiefe und Widerstand.\nBerechnet einen Prozess unter Annahmen.\n\nHeuristische Regel\nEin Agent springt zum niedrigsten Nachbarn.\nErzeugt plausibles Verhalten, ohne die Strömung zu berechnen.\n\n\nAuch physikalische Modelle sind regelbasiert. Entscheidend ist, wie die Regeln begründet werden.",
     "crumbs": [
-      "Folien",
-      "Ähnliche Muster – unterschiedliche Modelle"
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
     ]
   },
   {
@@ -594,8 +726,8 @@
     "section": "Wer bildet welchen Prozess ab?",
     "text": "Wer bildet welchen Prozess ab?\n\n\n\n\n\n\n\n\n\n\n\nRiver Meanders\nErosion\nGrand Canyon\n\n\n\n\nGelände\nidealisierter Flusskorridor\nsynthetisches Höhenraster\nreales, skaliertes Relief\n\n\nWasser\nbewegte Agenten, Gewässerzellen\nWasserhöhe je Rasterzelle\neinzelne Wasseragenten\n\n\nAbfluss\nKräfteanalogie, Potenzialfeld\nWasserspiegel-Ausgleich\nSprung zum niedrigsten Wasserspiegel\n\n\nGeländewandel\nLand ↔︎ Wasser, Sedimentregel\nHöhenabtrag\nkeiner\n\n\nErgebnis\nMäander\nErosionsmuster\nAbflusswege, Ansammlungen\n\n\n\n\nWichtig: Realistischere Eingangsdaten bedeuten nicht automatisch realistischere Prozessgleichungen.",
     "crumbs": [
-      "Folien",
-      "Ähnliche Muster – unterschiedliche Modelle"
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
     ]
   },
   {
@@ -605,8 +737,8 @@
     "section": "1 · River Meanders: Bewegung als Analogie",
     "text": "1 · River Meanders: Bewegung als Analogie\n\\[\n\\vec v_{t+1}=\\vec v_t+\\sum_k\\vec a_k\n\\]\nDie Bewegungsrichtung entsteht aus künstlichem Potenzialfeld, Flussmitte, Talneigung, Rückstellkraft und Zufall.\nErosion: Trifft ein Strömungsagent auf Land, wird die Zelle zu Wasser.\nSedimentation: Ein Akkumulationswert überschreitet eine Schwelle; durchströmende Agenten senken ihn.\n\nHeuristische Morphogenese: Die Mäanderform entsteht, aber Wasserbilanz, Impulsübertragung und Sedimenttransport werden nicht physikalisch berechnet.",
     "crumbs": [
-      "Folien",
-      "Ähnliche Muster – unterschiedliche Modelle"
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
     ]
   },
   {
@@ -616,8 +748,8 @@
     "section": "2 · Erosion: Wasserstand und Austausch",
     "text": "2 · Erosion: Wasserstand und Austausch\n\\[\nH_i=z_i+h_i\n\\]\n\\[\nq_{ij}=\\max\\left(0,\\min\\left[h_i,\\frac{H_i-H_j}{2}\\right]\\right)\n\\]\nWasser wandert zum Nachbarn mit dem niedrigsten Wasserspiegel. Der lokale Austausch gleicht bei gleich großen Zellen Wasserstände an.\nGeländeabtrag: \\(E_i=q_{ij}(1-s)\\) mit Bodenhärte \\(s\\).\n\nPhysikalisch motivierte Näherung: Lokale Wassererhaltung – aber keine hydraulische Abflussgleichung. Die Erosionsformel bleibt heuristisch.",
     "crumbs": [
-      "Folien",
-      "Ähnliche Muster – unterschiedliche Modelle"
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
     ]
   },
   {
@@ -627,8 +759,8 @@
     "section": "3 · Grand Canyon: Tropfen auf Relief",
     "text": "3 · Grand Canyon: Tropfen auf Relief\n\\[\nH_i=z_i+N_i\\,h_0 \\qquad (h_0=10\\text{ im Modell})\n\\]\n\\[\nH_j&lt;H_i\\quad\\Rightarrow\\quad \\text{Agent springt nach }j\n\\]\n\nReales, für die Simulation skaliertes Höhenmodell\nEin beweglicher Tropfen: höchstens eine Zelle pro Schritt\nEin liegen gebliebener Tropfen wird dauerhaft stationär\nKeine Erosion, keine Abflussmenge aus dem Gefälle\n\n\nTopografische Heuristik: Räumlich konkretes Relief, aber stark vereinfachte Fließdynamik ohne belastbare physikalische Zeitskala.",
     "crumbs": [
-      "Folien",
-      "Ähnliche Muster – unterschiedliche Modelle"
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
     ]
   },
   {
@@ -638,8 +770,8 @@
     "section": "Gleiches Gefälle, andere Rechnung",
     "text": "Gleiches Gefälle, andere Rechnung\n\n\nErosion\n\\[q_{ij}\\sim H_i-H_j\\]\nDie Wassermenge hängt vom Unterschied zweier Wasserspiegel ab.\nLokaler Austausch zwischen Rasterzellen; der Boden kann abgesenkt werden.\n\nGrand Canyon\n\\[H_j&lt;H_i\\]\nDas Gefälle entscheidet nur über das Ob und Wohin der Bewegung.\nEin Wasseragent springt genau eine Zelle; das Gelände bleibt unverändert.\n\n\nRiver Meanders folgt nochmals einer anderen Logik: künstliche Kraftbeiträge statt lokaler Wasserstandsausgleich.",
     "crumbs": [
-      "Folien",
-      "Ähnliche Muster – unterschiedliche Modelle"
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
     ]
   },
   {
@@ -649,8 +781,8 @@
     "section": "Räumliche Muster durch Rückkopplung",
     "text": "Räumliche Muster durch Rückkopplung\n\n\n\n\n\n\n\n\n\nModell\nLokale Regel\nRückwirkung\n\n\n\n\nRiver Meanders\nAgenten verändern Gewässerzellen\nneuer Flusslauf lenkt weitere Agenten\n\n\nErosion\nWasserverlagerung trägt Gelände ab\nneue Höhe verändert den nächsten Abfluss\n\n\nGrand Canyon\nAgenten sammeln sich in Senken\nsteigender Wasserspiegel beeinflusst spätere Wege\n\n\n\n\nKeines der resultierenden Muster ist als fertige Form vorgegeben. Die Struktur entsteht aus der wiederholten Anwendung der Regeln.\nDas beweist noch nicht, dass der zugrunde liegende reale Prozess richtig beschrieben ist.",
     "crumbs": [
-      "Folien",
-      "Ähnliche Muster – unterschiedliche Modelle"
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
     ]
   },
   {
@@ -660,8 +792,8 @@
     "section": "Was ein physikalisches Prozessmodell braucht",
     "text": "Was ein physikalisches Prozessmodell braucht\nWasserbilanz (Beispiel für flächenhaften Abfluss):\n\\[\n\\frac{\\partial h}{\\partial t}+\\nabla\\cdot(h\\vec u)=R-I\n\\]\n\n\\(h\\): Fließtiefe · \\(\\vec u\\): Geschwindigkeit · \\(R\\): Niederschlag · \\(I\\): Infiltration\n\nHinzu kämen eine Impulsbilanz oder geeignete hydraulische Näherung, bei Erosion außerdem eine Sedimentbilanz.\nKeines der drei Modelle löst die hydrodynamischen Grundgleichungen. Modell 2 erhält lokal Wassermenge, bestimmt aber keine physikalische Fließgeschwindigkeit.",
     "crumbs": [
-      "Folien",
-      "Ähnliche Muster – unterschiedliche Modelle"
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
     ]
   },
   {
@@ -671,8 +803,8 @@
     "section": "Was darf man vergleichen?",
     "text": "Was darf man vergleichen?\n\n\nSinnvoll\n\nEntstehen Muster aus lokalen Regeln?\nWo wird Wasser konzentriert?\nVerändert Rückkopplung die Struktur?\nWelche Annahme führt zu welchem Muster?\n\n\nNicht unmittelbar\n\nFließgeschwindigkeiten\nErosionsraten\nSimulationszeiten\nWassermengen in physikalischen Einheiten\n\n\n\nÄhnliche Karten können das Ergebnis verschiedener Mechanismen sein. Eine plausible Form ist keine Prozessvalidierung.",
     "crumbs": [
-      "Folien",
-      "Ähnliche Muster – unterschiedliche Modelle"
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
     ]
   },
   {
@@ -682,8 +814,8 @@
     "section": "Woran erkennt man physikalischen Gehalt?",
     "text": "Woran erkennt man physikalischen Gehalt?\nPrüfe nicht zuerst, wie realistisch das Muster aussieht, sondern:\n\nBewegungsregel: Richtung – oder auch Menge und Geschwindigkeit?\nErhaltung: Was wird bilanziert: Wasser, Impuls, Sediment?\nParameter: Messbare Größen oder frei gesetzte Schwellen?\nMaßstab: Haben Raum, Zeit und Ergebnis belastbare Einheiten?\nPrüfbarkeit: Welche Beobachtung könnte das Modell widerlegen?\n\n\nKern: Physikalisches Prinzip ≠ Prozessgleichung ≠ heuristische Regel. Komplexität und visuelle Plausibilität ersetzen keine physikalische Begründung.\n\n\nModelle: NetLogo Models Library, Northwestern University – River Meanders (2021), Erosion (2004), Grand Canyon (2006).",
     "crumbs": [
-      "Folien",
-      "Ähnliche Muster – unterschiedliche Modelle"
+      "Slides / Folien",
+      "NetLogo – Modellvergleich"
     ]
   }
 ]

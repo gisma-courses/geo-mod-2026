@@ -45,54 +45,28 @@ website:
   #           text: Mikroklima-Warmup Foliensatz
 
   sidebar:
-    - title: "R-spatial in a nutshell"
+    - title: "Modellieren in der Geographie"
       style: "docked"
       collapse-level: 1
       pinned: true
       contents:
         - href: index.qmd
-          text: Start
+          text: Kursübersicht
         - text: "---"
-        - section: "Inhalte"
-          contents:
-            - href: pages/
-              text: Kursstruktur
-        - text: "---"
-        - section: "Worksheets"
-          contents:
-            - href: pages/ws/ws-01.qmd
-              text: "Worksheet 01"
-            - href: pages/ws/ws-02.qmd
-              text: "Worksheet 02"
-            # - href: pages/ws/ws-03.qmd
-            #   text: "Worksheet 03"
-            # - href: pages/ws/ws-04.qmd
-            #   text: "Worksheet 04"
-            # - href: pages/ws/ws-05.qmd
-            #   text: "Worksheet 05"
-            # - href: pages/ws/ws-06.qmd
-            #   text: "Worksheet 06"
-            # - href: pages/ws/ws-07.qmd
-            #   text: "Worksheet 07"
-            # - href: pages/ws/ws-08.qmd
-            #   text: "Worksheet 08"
-            # - href: pages/ws/ws-09.qmd
-            #   text: "Worksheet 09"
-            # - href: pages/ws/ws-10.qmd
-            #   text: "Worksheet 10"
-            # - href: pages/ws/ws-11.qmd
-            #   text: "Worksheet 11"
-            # - href: pages/ws/ws-12.qmd
-            #   text: "Worksheet 12"
-        - section: "Folien"
-          contents:
-            - href: pages/modellbildung_gis_folien.qmd
-              text: Modellierung was ist das?
-            - href: pages/netlogo_modellvergleich.qmd
-        - section: "Materials"
+        - section: "Reader"
           contents:
             - href: pages/modellbildung_gis_reader.qmd
-              text: Foliensatz
+              text: Grundlagen der Modellbildung
+        - section: "Slides / Folien"
+          contents:
+            - href: pages/modellbildung_gis_folien.qmd
+              text: Modellbildung im GIS
+            - href: pages/netlogo_modellvergleich.qmd
+              text: NetLogo – Modellvergleich
+        - section: "Worksheets / Hands-on"
+          contents:
+            - href: pages/meander_abfluss_saga_grass.qmd
+              text: Burgwald – Abfluss mit SAGA / GRASS
 
 execute:
   freeze: auto

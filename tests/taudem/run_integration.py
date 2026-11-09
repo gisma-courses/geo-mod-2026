@@ -126,7 +126,7 @@ def worker(args):
                 parent_gdal = loaded_gdal(psutil.Process())
                 assert parent_gdal, 'No actual QGIS/Python GDAL DLL observed'
                 qgis_root = Path(os.environ.get('OSGEO4W_ROOT', sys.prefix)).resolve()
-                assert all(Path(p).is_relative_to(qgis_root) for p in parent_gdal), parent_gdal
+                assert all(Path(p).resolve().is_relative_to(qgis_root) for p in parent_gdal), parent_gdal
                 report['qgis_runtime_root'] = str(qgis_root)
 
                 def observe_installed_dlls():
@@ -252,7 +252,7 @@ def worker(args):
                 assert dll_evidence['qgis_after'] == parent_gdal, dll_evidence
                 assert {entry['mode'] for entry in observations} >= {1, 2, 3, 4}, \
                     'Incomplete DLL observations; no DLL-compatibility conclusion possible'
-                assert all(Path(path).is_relative_to(args.taudem_install_root)
+                assert all(Path(path).resolve().is_relative_to(args.taudem_install_root)
                            for entry in observations for path in entry['gdal']), dll_evidence
                 passed('actual GDAL DLL separation: QGIS and installed TauDEM', dll_evidence)
 

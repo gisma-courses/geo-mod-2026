@@ -1,0 +1,54 @@
+---
+title: "Abflussmodellierung im Burgwald"
+subtitle: "Reliefrouting, Sensitivität und Grenzen der Prozessabbildung"
+order: 40
+title-block-banner: ../images/placeholder.png
+title-block-banner-color: black
+#page-layout: full
+format-links: [html]
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    number-sections: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Von didaktischen Modellen zur konkreten Prozessbeschreibung
+
+Die NetLogo-Modelle greifen bekannte Eigenschaften von Flüssen auf: Wasser bewegt sich entlang eines Gefälles, Abtrag verändert das Relief, Erosion und Ablagerung verändern die Gerinneform. Wir erkennen diese Vorgänge aus alltäglichen Beobachtungen wieder: Wasser fließt bergab, spült Boden fort und lagert mitgeführtes Material an anderer Stelle ab. Die NetLogo-Modelle greifen diese Erfahrungen auf und machen ausgewählte Zusammenhänge durch vereinfachte Regeln untersuchbar. Ihr didaktischer Zweck besteht darin, einzelne Mechanismen und Rückkopplungen nachvollziehbar zu machen. Ob und wieviel Physik dabei verwendet wird, hängt vom jeweiligen Modell ab.
+
+**Im weiteren Kurs konkretisieren wir diese Abstraktionen:** Welcher Ausschnitt eines Vorgangs wird beschrieben? Durch welche Größen und Beziehungen? Für welches Gelände, welchen Zeitraum und welche Bedingungen soll die Beschreibung gelten? Dabei nehmen wir schrittweise diejenigen Daten und Prozesse auf, die wir für unsere jeweilige Frage benötigen.
+
+Die GIS-Übung beginnt mit der **räumlichen Abstraktion eines konkreten Einzugsgebiets**. Das Gelände wird als Höhenraster dargestellt; D8 und MFD beschreiben seine Entwässerungsverbindungen. Daraus berechnen wir Einzugsflächen und Abflusskonzentrationen und prüfen sie am vorhandenen Gewässernetz. Rasterweite, Senkenbehandlung und Routingregel legen fest, welche Geländeeigenschaften in dieser Beschreibung erhalten bleiben und welche verändert oder ausgelassen werden.
+
+Nach der GIS-Übung setzen wir **[Itzï](https://www.itzi.org/about/)** ein. Die Ereignissimulation ist der nächste Schritt der Kursfolge, gehört aber **nicht zum GIS-Arbeitsblatt**. Sie erweitert die Beschreibung um Niederschlag beziehungsweise Zufluss, Wasserstände, hydraulische Reibung und zeitabhängige Wasserflüsse. **[CAESAR-Lisflood](https://sourceforge.net/projects/caesar-lisflood/)** bezieht zusätzlich Sedimenttransport, Abtrag und Ablagerung ein; das veränderte Gelände wirkt auf die weitere Strömung zurück. So werden die aus den NetLogo-Modellen bekannten Zusammenhänge für bestimmte Berechnungsfragen genauer spezifiziert. Jeder Schritt verlangt begründete Vereinfachungen, zusätzliche Parameter und eine Prüfung daran, ob die berechneten Größen den untersuchten Vorgang angemessen beschreiben.
+
+## Untersuchungsraum und Vergleichsansatz
+
+Geeignet ist ein **selbstgewähltes kleines Gewässer mit Oberlauf und angrenzenden Hängen**, beispielsweise im Burgwald. Ein Betrachtungsausschnitt von etwa **2 × 2 km** dient als Orientierung. Das Berechnungsgebiet muss die oberhalb zufließenden Flächen enthalten; andernfalls werden die beitragenden Flächen am Rand abgeschnitten. Das Rote Wasser bei den Franzosenwiesen ist ein mögliches Beispiel.
+
+Die GIS-Analyse beantwortet dabei eine eigenständige Frage: **Welche Flächen entwässern zu welchem Gewässerabschnitt oder Auslass?** Damit lassen sich Einzugsgebiete abgrenzen und potenzielle Zuflusswege zu einem Durchlass oder einer Straße untersuchen. Ob oberhalb eines Durchlasses 2 oder 200 Hektar beitragen, ist eine konkrete Information über die räumliche Herkunft möglicher Zuflüsse. Die anschließende Berechnung eines Durchflusses benötigt zusätzlich ein vorgegebenes Ereignis und eine Beschreibung der Abflussprozesse.
+
+Ausgangspunkt ist ein digitales Geländemodell. Für den ersten Vergleich bleiben Arbeits-DGM, Rasterweite und Senkenbehandlung gleich; verändert wird die **Routingregel**. D8 weist den Beitrag einer Zelle einem ihrer acht Nachbarn zu, MFD verteilt ihn auf mehrere tieferliegende Nachbarn. Bei flächenbezogener Akkumulation ist der Beitrag die Zellfläche: Aus ihrer Weitergabe und Aufsummierung ergibt sich die Fläche, die zu einer Stelle beiträgt.
+
+Auf dieser Grundlage lassen sich weitere Entscheidungen getrennt untersuchen: Wie verändern 5 statt 10 m Rasterweite die erfassten Rinnen? Welche Verbindungen entstehen oder verschwinden durch die Senkenbehandlung? Ab welcher beitragenden Fläche wird eine Bahn als potenzielles Gerinne ausgewiesen? Eine veränderte Gerinneschwelle verändert das extrahierte Netz, ohne dass dafür das Gelände oder die Akkumulation neu berechnet werden muss.
+
+## Modellvergleich: Berechnung, Verwendung und Aussagegrenze
+
+Die Tabelle zeigt, wie Gelände, Wasser und Material in den **bereits untersuchten NetLogo-Modellen**, der **aktuellen GIS-Rechnung** und den **anschließenden Prozessmodellen** jeweils beschrieben werden. Verglichen werden die berechneten Größen und die dafür verwendeten Regeln beziehungsweise Gleichungen. Itzï kommt nach der GIS-Übung als eigene Ereignissimulation zum Einsatz; es gehört nicht zum GIS-Arbeitsblatt. CAESAR-Lisflood dient hier als Ausblick auf gekoppelte Gelände- und Gerinneentwicklung.
+
+| Modell | Wie wird gerechnet? | Was liefert die Rechnung? | Grenze und Einordnung im Kurs |
+|---|---|---|---|
+| **GIS: D8/MFD – aktuelle Übung** | Höhenunterschiede bestimmen die Weitergabe von Zellbeiträgen. D8 verwendet einen Empfänger, MFD verteilt auf mehrere. Die Beiträge werden über das Routingnetz aufsummiert. | **Fließrichtungen, beitragende Flächen und Einzugsgebiete**; mit einer gewählten Flächenschwelle ein potenzielles Gerinnenetz. | Ordnet Flächen ihren potenziellen Abflusswegen und Auslässen zu. Abflussmengen und Fließzeiten benötigen zusätzlich ein Ereignis- und Prozessmodell. |
+| **NetLogo: Grand Canyon – Referenz** | Wasseragenten bewegen sich zu einem Nachbarn mit niedrigerem **Wasserspiegel aus Gelände- und Wasserhöhe**. Liegen gebliebene Agenten erhöhen den örtlichen Wasserstand und beeinflussen spätere Wege. | **Tropfenwege und Wasseransammlungen** auf einem realen, für das Modell skalierten Höhenraster. | Physikalische Fließgeschwindigkeiten und Abflussganglinien. Das Grundmodell trägt kein Gelände ab. |
+| **NetLogo: Erosion – Referenz** | Wasser wird zum Nachbarn mit dem niedrigsten Wasserspiegel umverteilt. Die Austauschmenge hängt vom **Wasserspiegelunterschied** und der verfügbaren Wassermenge ab; Austauschmenge und Bodenhärte bestimmen den Geländeabtrag. | **Veränderte Wasserstände und Geländehöhen**; der Abtrag verändert die nachfolgenden Abflusswege. | Gemessene Erosionsraten oder eine vollständige Sedimentbilanz: Abgetragenes Material wird nicht als transportierte und wieder abgelagerte Masse bilanziert. |
+| **NetLogo: River Meanders – Referenz** | Strömungsagenten bewegen sich nach vorgegebenen Beschleunigungsregeln. Beim Auftreffen auf Land entsteht eine Gewässerzelle; Ablagerungsregeln können Gewässerzellen wieder in Land umwandeln. | **Veränderung der Gerinneform**, Mäanderschlingen und Durchbrüche; Entwicklung der Sinuosität. | Reale Uferverlagerungsraten. Agentenbewegung und Zellumwandlung ersetzen keine hydraulische Strömungsberechnung und keinen bilanzierten Sedimenttransport. |
+| **Itzï – anschließende Abflusssimulation** | Wasserbilanz und eine **lokal-inertiale Näherung der Flachwassergleichungen** bestimmen Wasserstände und Flüsse. Niederschlag, Infiltration und hydraulische Rauigkeit gehen in die Berechnung ein; die konvektive Beschleunigung wird vernachlässigt. | **Zeitabhängige Wassertiefen, Wasserflüsse und Überflutungsflächen** für ein vorgegebenes Ereignis. | Erweitert die GIS-Analyse um Wassermengen und Ereigniszeit. Das Gelände bleibt fest; Sedimenttransport und Mäanderwanderung werden nicht simuliert. |
+| **CAESAR-Lisflood – anschließende Gelände- und Gerinneentwicklung** | Die LISFLOOD-FP-Hydraulik wird mit **Sedimenttransport, Erosion und Ablagerung** gekoppelt. Aktualisierte Geländehöhen wirken auf die weitere Strömung zurück; seitliche Ufererosion wird parametrisiert. | **Zeitabhängige Wasserverteilung, Sedimentbewegung und Höhenänderung**; bei geeigneter Geometrie und Parametrisierung auch seitliche Gerinneverlagerung. | Greift die Rückkopplungen aus *Erosion* und *River Meanders* auf. Zusätzlich zum DGM werden Wasser- und Sedimentzufuhr, Korngrößen und Prozessparameter benötigt. Ein lauffähiges Lehrszenario ist noch keine belastbare Prognose der realen Gewässerentwicklung. |
+
+Die Konkretisierung setzt sich bei den Eingangsdaten fort: Für die anschließenden Simulationen wird die Geländegrundlage der GIS-Übung auf ihre Eignung für die jeweilige Prozessrechnung geprüft. Die jeweils modellierte Frage bestimmt die weiteren Eingaben: ein Niederschlags- oder Zuflussverlauf für die Wasserbewegung, zusätzlich Sedimentvorgaben und Materialparameter für die Geländeentwicklung. Ein DGM, das zur Abgrenzung von Einzugsgebieten genügt, muss die Sohle und Ufer eines kleinen Gewässers noch nicht ausreichend auflösen. Rasterweite und Geländeaufbereitung werden deshalb für die hydraulische und morphodynamische Rechnung erneut geprüft. Neben dem räumlichen Referenzvergleich treten nun Wasser- und Sedimentbilanzen, numerische Stabilität und der Abgleich mit beobachteten Zuständen oder Änderungsraten.

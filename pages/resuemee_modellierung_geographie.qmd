@@ -1,0 +1,250 @@
+---
+title: "Rückblick: Was haben wir eigentlich modelliert?"
+subtitle: "Vom Regelmodell über die Geländeanalyse zur Prozessbeschreibung – und was sich daraus für eigene Projekte ableiten lässt"
+order: 70
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+[← Kursübersicht](../index.qmd) · [Die drei NetLogo-Modelle](netlogo_modellvergleich.qmd) · [GIS-Worksheet: Abfluss und Sediment](meander_abfluss_saga_grass.qmd) · [Einstieg Abflussmodellierung](einstieg_abflussmodellierung.qmd) · [Daten und Algorithmen](abfluss_algorithmen_quellen.qmd)
+
+## Wozu dieser Umweg?
+
+Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beobachtet, ein amtliches Höhenmodell beschafft, daraus Einzugsgebiete berechnet und schließlich Wasser- und Sedimentmengen unter zusätzlichen Annahmen bilanziert. Anschließend kam Itzï als Ereignismodell zum Einsatz; es gehörte nicht zur GIS-Übung. Der Weg war weitgehend vorgegeben: Modell öffnen, Daten verwenden, Werkzeug ausführen, Ergebnis betrachten.
+
+**Was hätten wir selbst entscheiden müssen, wenn uns nur die Frage gestellt worden wäre: „Welche Flächen tragen zum Abfluss an diesem Durchlass bei – und wo könnte Material zurückbleiben?“** Die Antwort liegt weder in einem bestimmten Programm noch in einer möglichst langen Liste von Algorithmen. Sie liegt in den Unterscheidungen, die wir während dieser Kette tatsächlich getroffen haben.
+
+## 1 · Rückwärts durch die Modellkette
+
+| Station | Was war im Modell vorhanden? | Welche Aussage wurde möglich – und welche nicht? |
+|:--|:--|:--|
+| **Grand Canyon** | Ein skaliertes reales Relief, Wasseragenten und lokale Bewegungsregeln. | Wege und Ansammlungen werden sichtbar. Ein Simulationsschritt ist noch keine physikalische Fließzeit. |
+| **Erosion** | Wasserhöhen, lokaler Austausch und eine Abtragsregel. Das Gelände kann sich ändern. | Abtrag und geänderte weitere Wege sind darstellbar. Die Abtragsregel liefert keine gemessene Erosionsrate. |
+| **River Meanders** | Ein idealisierter Gerinnekorridor mit Bewegungs-, Erosions- und Ablagerungsregeln. | Mäanderformen können aus wiederholten Regeln entstehen. Die entstehende Form bestätigt keine hydraulische oder sedimentologische Prozessgleichung. |
+| **DGM → D8/D∞ → Einzugsgebiet** | Gemessene bzw. abgeleitete Geländehöhen in einem georeferenzierten Raster, dazu explizite Nachbarschafts- und Routingregeln. | An einem gewählten Auslass werden potenzielle Entwässerungsverbindungen und beitragende Flächen berechenbar – zunächst ohne Ereigniszeit. |
+| **Abflussannahme und Sedimentbilanz** | Ein angenommenes Abflussvolumen je Zelle beziehungsweise Materialangebot und Transportkapazität auf den vorhandenen Verbindungen. | Volumen oder Materialweitergabe lassen sich bilanzieren. Weder eine Abflussganglinie noch eine Geländeentwicklung folgen automatisch daraus. |
+| **Itzï nach der GIS-Übung** | Ereignisbezogene, zeitabhängige Abflusssimulation mit Wasserständen und Flüssen. Itzï wurde in der Kursfolge eingesetzt, gehörte aber nicht zum GIS-Arbeitsblatt. | Wasserstände und Flüsse im Verlauf eines vorgegebenen Ereignisses werden berechnet; die Geländeoberfläche bleibt fest. |
+| **Weiterführende gekoppelte Modellierung** | Zeitabhängige Zustände und Beziehungen, die diese Zustände fortschreiben; gegebenenfalls ändert sich auch das für den nächsten Schritt verwendete Gelände. | Ereignisverläufe und Rückwirkungen werden berechenbar, sofern die zusätzlichen Prozessgleichungen, Parameter und Anfangs-/Randbedingungen festgelegt werden. |
+
+Die ersten drei Modelle enthielten **bereits Dynamik und teilweise Rückkopplungen**. Die GIS-Analyse war also kein „Fortschritt von einem einfachen zu einem dynamischen Modell“. Sie führte vor allem einen **konkret lokalisierbaren Untersuchungsraum, definierte Rastergrößen und eine überprüfbare räumliche Fragestellung** ein. Wir haben mehrmals **die Art der Frage** gewechselt, nicht nur mehr Funktionen zugeschaltet.
+
+[Zur ursprünglichen NetLogo-Gegenüberstellung](netlogo_modellvergleich.qmd) · [Zum Ablauf im GIS-Worksheet](meander_abfluss_saga_grass.qmd). Eine systematische Beschreibung agentenbasierter Regeln und Modellstrukturen bietet das [ODD-Protokoll (Grimm et al., 2020)](https://doi.org/10.18564/jasss.4259).
+
+::: {.callout-tip collapse="true"}
+## Fachlicher Exkurs: Regelbasiert, räumlich, dynamisch – das sind keine exklusiven Modellklassen
+
+Ein **agentenbasiertes Modell** beschreibt Einheiten, Zustände, Regeln und Interaktionen. Ein **rasterbasiertes Modell** definiert räumliche Träger der Größen und Operationen zwischen Zellen. Ein **Bilanzmodell** setzt Zu- und Abgänge zueinander in Beziehung. Ein **dynamisches Modell** aktualisiert Zustände über die Zeit. Diese Begriffe liegen auf unterschiedlichen Ebenen und können kombiniert werden: Ein agentenbasiertes Modell kann rasterbasiert, zeitabhängig und bilanzierend sein.
+
+**System Dynamics** rückt Bestände, Zu- und Abflüsse sowie Rückkopplungen in den Vordergrund. Ein Sedimentspeicher ließe sich schreiben als
+
+$$
+S(t+\Delta t)=S(t)+\bigl(I(t)-O(t)\bigr)\,\Delta t.
+$$
+
+$S$ ist ein Bestand, $I$ und $O$ sind Raten pro Zeit. Erst wenn $S$ auf $I$ oder $O$ zurückwirkt, liegt auch eine entsprechende Rückkopplung vor. Das ist **nicht** dasselbe wie die einmalige Transportbegrenzung aus dem Worksheet: Dort sind die synthetischen Materialeinheiten gerade **keine** zeitaufgelösten Frachten. Für diesen Modellierungsgedanken siehe [Sterman (2000), *Business Dynamics*, besonders Kapitel 6–8](https://www.mheducation.com/highered/product/Business-Dynamics-Sterman.html).
+
+Dass ein Raster zugleich Träger dynamischer Zustände sein kann, illustriert [PCRaster mit seinem Python-Modellierungsframework](https://pcraster.geo.uu.nl/pcraster/4.4.3/documentation/index.html); zur Konzeption siehe [Karssenberg, de Jong & van der Kwast (2007)](https://doi.org/10.1080/13658810601063936). Daraus entsteht **keine weitere Pflichtsoftware** für diesen Block.
+:::
+
+## 2 · Der entscheidende Wechsel: Was bezeichnet ein berechneter Wert?
+
+Betrachten wir vier **Lesebeispiele** aus dem Worksheet. Die Zahlen illustrieren verschiedene Ausgaben; sie behaupten keine gemeinsam gemessenen Werte an einer bestimmten Zelle:
+
+| Wert | Was bedeutet er? | Was müsste für eine weitergehende Aussage hinzukommen? |
+|:--|:--|:--|
+| `ad8 = 800` bei 5 m Rasterweite | 800 D8-verbundene Rasterzellen; **20 000 m² = 2 ha** beitragende Fläche. | Für eine Wassermenge: ein Abflussbeitrag je Flächeneinheit. |
+| `800 × 25 m² × 0,010 m = 200 m³` | **200 m³** bei **gesetzten** 10 mm effektivem Abfluss auf allen 800 Zellen. | Für m³/s: ein zeitlicher Verlauf, Fließzeiten und die Weiterleitung der Wassermenge. |
+| `sca = 30 m` | Spezifische beitragende Fläche: **30 m² je Meter Bezugsbreite**, berechnet mit D∞. | Für einen Feuchte- oder Abflussprozess: weitere Zustandsgrößen und eine begründete Beziehung. |
+| `tdep = 0,4 ME` | **0,4 synthetische Materialeinheiten** werden im gewählten Bilanzfall nicht weitertransportiert. | Für eine Höhenänderung: physikalisch definierte Masse/Volumen, Dichte, Zellfläche und ein Verfahren zur Aktualisierung des DGM. |
+
+Der Unterschied ist nicht semantische Pedanterie. Wer 200 m³ als Abflussspitze bezeichnet oder aus synthetischen Materialeinheiten eine Auflandungshöhe ableitet, behauptet ein Ergebnis, das **gar nicht berechnet** wurde. Ebenso ist der **Topographic Wetness Index** kein Sensorwert der Bodenfeuchte. Er führt Geländeneigung und spezifische beitragende Fläche unter einer bestimmten Modellidee zusammen; der hydrologische Hintergrund reicht bis zu [Beven & Kirkby (1979)](https://doi.org/10.1080/02626667909491834).
+
+**Die erste übertragbare Unterscheidung:** Eine Modellgröße braucht eine **Definition, Einheit, räumliche und gegebenenfalls zeitliche Bezugsgröße**. Ein Algorithmusname ersetzt keine dieser Angaben.
+
+## 3 · Schon die Datenbeschaffung ist eine Modellentscheidung
+
+Für das Rote Wasser benötigten wir nicht einfach „irgendein DEM“. Die Frage nach einem konkreten Auslass erforderte ein räumlich verortetes Relief und eine unabhängig kartierte Gewässerreferenz. Im Worksheet wurden dafür unterschiedliche amtliche Datenprodukte eingesetzt:
+
+- **DGM1 Hessen** beschreibt Geländeoberflächenhöhen im Raster. Das Landesamt weist ausdrücklich auf erfassungsbedingte Unsicherheiten und unterschiedliche Erfassungszeitpunkte hin. [HVBG: Digitale Geländemodelle](https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle).
+- **ATKIS Basis-DLM** enthält kartierte Gewässer- und Landschaftsobjekte als Vektordaten mit Objektklassen und Attributen. Die Gewässerlinie ist damit eine **Referenz**, aber keine Messung der momentanen Fließrichtung in einer Rasterzelle. [HVBG: Basis-DLM](https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell).
+- **Landnutzung** kann später eine Begründung für räumlich variierende Parameter liefern. Aus der Klasse „Wald“ folgt aber weder ein konkreter Infiltrationswert noch ein Sedimentangebot. Dafür braucht es zusätzliche Daten oder eine kenntlich gemachte Parametrisierung.
+
+Die Datenwahl bestimmte unmittelbar die Analyse: Wir haben das DGM1 für den gemeinsamen Arbeitsweg auf **5 m** aggregiert, ein metrisches Bezugssystem verwendet und ein **größeres Rechengebiet als den 2 × 2-km-Kartenausschnitt** benötigt. Würden oberhalb liegende Flächen fehlen, wäre die Akkumulation am Auslass unvollständig. Würde die Rastergrenze verschoben, könnten andere Zellen zum Auslass gehören. Ein im DGM nicht abgebildeter Durchlass kann eine falsche Entwässerungsverbindung erzeugen.
+
+::: {.callout-note collapse="true"}
+## Technischer Exkurs: Was müsste im Datenverzeichnis tatsächlich stehen?
+
+Ein verwendbares Datenprotokoll nennt **nicht nur den Anbieter**. Für das konkrete Projekt wären festzuhalten:
+
+| Eintrag | Konkret zu dokumentieren |
+|:--|:--|
+| DGM1 | Produkt, heruntergeladene **Kacheln/Dateinamen**, Bezugs- bzw. Erfassungsstand soweit angegeben, Downloadzeitpunkt, Bezugs-URL und Nutzungsbedingungen |
+| ATKIS | verwendete **Version / Datenstand**, Gewässer- und Landnutzungs-Layer sowie ihre Attributbedeutung |
+| Raumbezug | EPSG-Code, horizontale und vertikale Maßeinheiten, gegebenenfalls Höhenreferenz |
+| Vorverarbeitung | Quellraster, Resampling (`Average`), Zielweite **5 m**, Zielausdehnung, Ursprung, NoData-Maske und Ausgabeformat |
+| Kontrollgeometrie | Lage/ID des gewählten Auslasses, gegebenenfalls Verschiebung auf eine Gerinnezelle, betrachtete Gewässerreferenz |
+
+Die genaue Kachelkennung und der tatsächliche Datenstand dürfen **nicht** aus einer Beispielanleitung übernommen werden; sie müssen aus den wirklich verwendeten Dateien stammen. Die unveränderten Eingabedaten bleiben getrennt von abgeleiteten Dateien. Ist eine Weitergabe der Rohdaten lizenzrechtlich nicht zulässig, sollte zumindest ein nachvollziehbarer Bezugsweg dokumentiert werden.
+:::
+
+Daten sind deshalb kein bloßer Vorbereitungsschritt. **Welche Landschaftseigenschaft wir mit welcher Auflösung, zu welchem Zeitpunkt und aus welcher Quelle überhaupt kennen**, bestimmt, welche Modellfragen sich anschließend sinnvoll stellen lassen.
+
+## 4 · Wir haben verschiedene Beziehungen formalisiert
+
+Auch am selben DGM haben wir nicht „denselben Abfluss“ auf vier Arten berechnet. Die Operationen formulieren verschiedene Beziehungen:
+
+1. **Nachbarschaft und Richtung:** D8 ordnet jeder gültigen Zelle einen Empfänger zu; D∞ beschreibt einen kontinuierlichen Richtungswinkel mit anteiliger Weitergabe an höchstens zwei Nachbarn. [O’Callaghan & Mark (1984)](https://doi.org/10.1016/S0734-189X(84)80011-0); [Tarboton (1997)](https://doi.org/10.1029/96WR03137).
+2. **Aggregation entlang dieser Verbindungen:** Aus Einzelzellen werden beitragende Flächen. Das ist eine **räumliche Summation**, nicht die Simulation eines Regens.
+3. **Eine gesetzte Beziehung zu einer weiteren Größe:** `10 mm × Fläche` erzeugt ein hypothetisches Volumen. Die Fließverbindungen ändern sich dadurch nicht.
+4. **Ein begrenzter Stofftransport:** Vorhandenes und neu angebotenes Material wird mit einer gesetzten Transportkapazität verglichen. Die resultierende Ablagerung verändert im Worksheet **nicht** das Höhenraster.
+5. **Ein anderer Modelltyp würde Zustände fortschreiben:** Wasserhöhe, Geschwindigkeit und gegebenenfalls Geländeentwicklung würden zu veränderlichen Größen mit eigenen Anfangsbedingungen, Randbedingungen und Zeitschritten. Erst eine implementierte Kopplung lässt eine berechnete Geländeveränderung auf den folgenden Abfluss zurückwirken.
+
+Diese Unterschiede erklären auch, weshalb die **gleiche Karte** keine eindeutige Aussage über den zugrunde liegenden Prozess liefert. Eine plausible Bachlinie kann aus einem einfachen Routingverfahren entstehen, ohne dass Fließgeschwindigkeit, Infiltration oder Sedimenttransport modelliert wurden. Vergleichbare Erscheinungsbilder beweisen keine vergleichbaren Mechanismen.
+
+::: {.callout-tip collapse="true"}
+## Fachlicher Exkurs: Woran erkennt man eine zusätzliche Prozessannahme?
+
+Man kann die Modellkette als Folge von Informationsanforderungen lesen:
+
+**Topografie bekannt** → potenzielles Routing bestimmbar.
+**Effektiver Abfluss je Zelle angenommen** → aufsummiertes Volumen bestimmbar.
+**Niederschlag und Verluste räumlich und zeitlich beschrieben** → Abflussbildung kann modelliert werden.
+**Speicher, Fließwiderstände und hydraulische Beziehungen beschrieben** → zeitlicher Abflussverlauf kann berechnet werden.
+**Materialverfügbarkeit und Transportbeziehungen ergänzt** → Sedimentbewegung modellierbar.
+**Abtrag/Ablagerung in Geländeänderung umgesetzt und zurückgekoppelt** → morphodynamische Entwicklung modellierbar.
+
+Jeder Pfeil steht für **neue Größen, Annahmen und Prüfanforderungen**, nicht zwangsläufig für ein neues Programm. Die wissenschaftliche Modellpraxis ist entsprechend **iterativ**, keine Einbahnstraße. Dazu [Jakeman, Letcher & Norton (2006)](https://doi.org/10.1016/j.envsoft.2006.01.004).
+:::
+
+## 5 · Wann kommt die Software ins Spiel?
+
+Für die GIS-Strecke war TauDEM ein durchgehender Rechenweg. Das bedeutet nicht, dass TauDEM grundsätzlich „hydrologischer“ wäre als GRASS, WhiteboxTools, SAGA oder PCRaster. Wir benötigen eine bestimmte Operation – etwa Routing, Akkumulation, zeitliche Fortschreibung oder räumliche Optimierung – und suchen eine Implementierung, die **unsere gewählte Modellbeschreibung** ausführen kann.
+
+Für eine Einzugsgebietsabgrenzung kann eine vorhandene GRASS-Lösung vollständig genügen. Für die hier verwendete Kombination aus D∞-Routing und transportbegrenzter Akkumulation war TauDEM als zusammenhängender Werkzeugweg praktisch. PCRaster wiederum ist eine Umgebung zum **Aufbau eigener räumlicher und dynamischer Modelle**; es ist nicht einfach ein weiterer Button für dasselbe Einzugsgebiet. Die Frage „Welches Paket ist wissenschaftlicher?“ führt deshalb nicht weiter.
+
+**Im Alltag darf Vertrautheit ein guter Grund sein, ein Programm weiterzuverwenden** – sofern damit die benötigte Berechnung und Dokumentation möglich sind. Nicht begründbar wäre dagegen, eine ganz andere Modellfrage auf die vorhandenen Menüeinträge zu reduzieren. Die [Werkzeugwahl-Seite](werkzeugwahl_gelaendehydrologie.qmd) diskutiert die konkreten hydrologischen Verfahren; das [Algorithmenkompendium](abfluss_algorithmen_quellen.qmd) liefert die Nachweise dazu.
+
+## 6 · Ein nachvollziehbares Ergebnis ist mehr als eine Karte
+
+Stellen wir uns vor, eine andere Person erhält nur die fertige Karte mit unserem Einzugsgebiet. Kann sie entscheiden, ob der rote Bachabschnitt ein amtlich kartiertes Gewässer oder eine aus `ad8` mit 2 ha Schwelle abgeleitete Gerinnelinie ist? Weiß sie, ob ein Durchlass korrigiert wurde? Kann sie erklären, warum die Ablagerungswerte in Materialeinheiten und nicht in Tonnen angegeben sind?
+
+**Transparenz** bedeutet, dass die Entscheidungen verständlich offengelegt werden. **Reproduzierbarkeit** bedeutet zusätzlich, dass sich der Rechenweg mit denselben Eingaben, Versionen und Parametern erneut ausführen beziehungsweise nachvollziehen lässt. **Empirische Tragfähigkeit** ist eine dritte Frage: Ob die Modellannahmen und Ergebnisse im Gelände durch Beobachtungen gestützt werden. Diese drei Eigenschaften sind nicht austauschbar. Siehe [Peng (2011)](https://doi.org/10.1126/science.1213847), [Wilson et al. (2017)](https://doi.org/10.1371/journal.pcbi.1005510) und [Oreskes, Shrader-Frechette & Belitz (1994)](https://doi.org/10.1126/science.263.5147.641).
+
+Für unseren GIS-Fall müsste eine andere Person **mindestens** die folgende Kette wiederfinden können:
+
+| Entscheidung im Projekt | Was muss erhalten bleiben? |
+|:--|:--|
+| **Ausgangsfrage:** Einzugsgebiet am gewählten Auslass | Lage/ID des Auslasses, räumlicher Betrachtungsbereich und eindeutige Zielgröße |
+| **Daten:** DGM1 und Basis-DLM | Bezugsquelle, Produktversion/Stand, tatsächlich verwendete Kacheln, Rechte und unveränderte Originaldateien beziehungsweise eindeutige Datenreferenzen |
+| **Transformation:** DGM1 → 5-m-Raster | KBS, Auflösung, Resampling, Rasterursprung, Ausdehnung, NoData-Behandlung |
+| **Operation:** Senkenbehandlung → D8/D∞ → Akkumulation | Algorithmus, Softwareversion, Parameter, Eingabe- und Ausgabepfade sowie ausgeführte Reihenfolge |
+| **Gesetzte Annahmen:** 2-ha-Schwelle; 10 mm; Materialangebot und -kapazität | Werte, Einheiten, Geltungsbereich, Begründung und Kennzeichnung als gesetzt, aus Literatur übernommen oder gemessen |
+| **Prüfung:** Vergleich mit ATKIS; Auslass; Bilanzkontrolle | Vorgehen, Abweichungen, nicht erklärte Befunde und Grenzen der Aussage |
+| **Ergebnis:** Karten und Raster | Welche Datei welchen Wert enthält, mit Einheit und Bedeutung; möglichst automatisch erneut erzeugbar |
+
+Das wirkt umfangreich. Tatsächlich entstehen die meisten Angaben **bereits beim Rechnen**. Das Problem entsteht erst, wenn sie als ungeordnete Klickfolge, überschriebene Zwischendatei oder nicht gespeicherte Entscheidung verloren gehen.
+
+::: {.callout-note collapse="true"}
+## Technischer Exkurs: Ein kleines, tatsächliches Modellprotokoll statt eines Screenshots des Werkzeugdialogs
+
+Der folgende Ausschnitt zeigt die **Struktur** einer maschinenlesbaren Projektbeschreibung. Er ist **kein Bericht eines durchgeführten Rechenlaufs**. Fragezeichen sind nach der eigenen Ausführung durch tatsächlich überprüfte Werte zu ersetzen.
+
+```yaml
+frage: "Welche Fläche entwässert zum gewählten Auslass?"
+gebiet: "Oberlauf Rotes Wasser / Burgwald"
+bezugssystem: "EPSG:25832"
+eingaben:
+  dgm:
+    produkt: "DGM1 Hessen"
+    kacheln: "<tatsaechliche_Dateinamen>"
+    datenstand: "<angegebener_Datenstand>"
+    bezug: "<Download-URL und Datum>"
+  gewaesserreferenz:
+    produkt: "ATKIS Basis-DLM"
+    datenstand: "<tatsaechlicher_Stand>"
+verarbeitung:
+  zielraster_m: 5
+  resampling: average
+  rechengebiet: "<Rasterausdehnung>"
+  auslass: "<Punkt-ID und Koordinaten>"
+  routing: "D8"
+  senkenbehandlung: "TauDEM PitRemove"
+  akkumulation: "TauDEM AreaD8"
+  gerinneschwelle_ha: 2
+  softwareversionen:
+    qgis: "<Version>"
+    taudem: "<Version>"
+pruefung:
+  referenz: "ATKIS-Gewaesserlinie"
+  auffaelligkeiten: "<tatsaechlicher_Befund>"
+```
+
+Die **Dateien und die Befehls- oder Processing-Historie** gehören neben diese Beschreibung. QGIS dokumentiert ausgeführte Processing-Aufrufe samt Parametern in seiner [Processing-History](https://documentation.qgis.org/3.44/en/docs/user_manual/processing/history.html); das ersetzt aber weder das Datenprotokoll noch die Beschreibung fachlicher Annahmen. Für einfache, praktikable Regeln zu Projektordnern, Versionsverwaltung und Skripten: [Sandve et al. (2013)](https://doi.org/10.1371/journal.pcbi.1003285) und [Wilson et al. (2017)](https://doi.org/10.1371/journal.pcbi.1005510).
+
+Die [FAIR-Prinzipien](https://doi.org/10.1038/sdata.2016.18) (auffindbar, zugänglich, interoperabel, nachnutzbar) sind dabei ein weitergehender Bezugsrahmen für Daten, Code und Workflows. **FAIR allein garantiert weder gleiche Rechenergebnisse noch ein sachlich richtiges Modell.**
+:::
+
+## 7 · Reproduzierbar ist nicht automatisch richtig
+
+Ein reproduzierbarer Fehler bleibt ein Fehler. Wir könnten den gleichen D8-Algorithmus hundertmal auf demselben, an einem Durchlass unzutreffenden DGM ausführen: Das Ergebnis wäre sehr gut reproduzierbar und könnte gerade dort falsch sein, wo uns der Abflussweg interessiert.
+
+Drei Prüfungen sind deshalb auseinanderzuhalten:
+
+- **Rechenprüfung:** Entspricht die Ausgabe den dokumentierten Eingaben und Rechenregeln? Beispielsweise: Bei 5-m-Zellen entsprechen 800 Zellen genau 2 ha. Stimmt die Volumenbilanz bei 10 mm mit 200 m³ überein?
+- **Plausibilitäts- und Datenprüfung:** Stimmen berechnete Gerinne und Einzugsgebietsgrenzen mit unabhängigen Hinweisen aus ATKIS, Orthofoto und Relief überein? Wo sind Abweichungen durch Durchlässe, Senken oder Rastergrenzen erklärbar?
+- **Empirische Prozessprüfung:** Stützen Messungen die behauptete Abflussmenge, Feuchte oder Sedimentfracht? Für die synthetischen Materialeinheiten des Worksheets ist eine solche Aussage **nicht möglich**, solange keine entsprechende Beobachtungs- und Parametrisierungsgrundlage vorliegt.
+
+Oreskes, Shrader-Frechette & Belitz (1994) machen deutlich, weshalb Übereinstimmungen mit Beobachtungen ein Modell stützen, aber die Eindeutigkeit seiner Erklärung nicht beweisen. Jakeman, Letcher & Norton (2006) behandeln die Dokumentation von Annahmen, die Prüfung der Modellleistung und die iterative Überarbeitung als Teile derselben Modellierungsarbeit.
+
+## 8 · Was bleibt, wenn die Kursleitung den nächsten Weg nicht mehr vorgibt?
+
+Die einzelnen Arbeitsschritte lassen sich nun zu einem **wiederverwendbaren Vorgehen** verdichten. Für eine neue geographische Modellierungsfrage müsste zuerst geklärt werden:
+
+1. **Aussage:** Welche Größe oder Beziehung soll am Ende für welchen Ort, Zeitraum und Maßstab bestimmt werden?
+2. **Abstraktion:** Welche Teile der Wirklichkeit werden berücksichtigt, welche ausdrücklich ausgelassen?
+3. **Repräsentation:** In welchen räumlichen oder zeitlichen Einheiten wird gerechnet – Rasterzellen, Objekte, Agenten, Bestände, Netzwerke?
+4. **Beziehungen:** Welche Regeln, Bilanzen, statistischen Modelle oder Prozessgleichungen erzeugen das Ergebnis? Welche Variablen ändern sich selbst im Modell?
+5. **Daten und Parameter:** Woher stammen sie, auf welcher Skala gelten sie, und welche Angaben müssen wir selbst setzen oder schätzen?
+6. **Berechnung:** Welche vorhandene Implementierung kann genau diese Modellbeschreibung umsetzen? Wo reichen vertraute Werkzeuge, wo nicht?
+7. **Prüfbarkeit:** Woran würde ein unplausibles Ergebnis auffallen, und was müsste jemand anderes erhalten, um die Rechnung nachzuvollziehen?
+
+Das ist **keine starre Reihenfolge**: Stellt sich etwa erst bei der Datenbeschaffung heraus, dass das Gerinne nicht aufgelöst ist, muss die Modellfrage oder die räumliche Repräsentation erneut betrachtet werden. Diese Rücksprünge gehören zur Modellierung.
+
+Dasselbe Vorgehen lässt sich auf andere Gegenstände übertragen: Aus Sentinel-Daten kann ein Vegetationsindex berechnet werden; dessen zeitliche Abfolge ist aber noch kein Vegetationsprozessmodell. Eine gewichtete Standort-Eignungskarte ist keine Optimierung unter Kapazitätsbedingungen. In beiden Fällen beginnt die Werkzeugwahl erst sinnvoll, nachdem die **gewünschte Aussage** und die dazu notwendigen **Beziehungen** geklärt wurden.
+
+**Das Ergebnis dieser Folge ist die Fähigkeit, ein Modell als begründete, dokumentierte Folge von Entscheidungen zu lesen.** Diese Herangehensweise nehmen wir zu späteren geographischen Fragen mit. Der zweite Kursblock ist noch nicht ausgearbeitet.
+
+## Quellen zum Weiterdenken – nach Funktion geordnet
+
+Die folgenden Texte und Dokumentationen beziehen sich jeweils auf eine **konkrete Erkenntnis aus unserer Modellkette**. Sie sind nicht als zusätzliche Softwareübungen zu verstehen.
+
+### Modellstrukturen, Abstraktion und Dynamik
+
+- **Grimm, V. et al. (2020).** [*The ODD protocol for describing agent-based and other simulation models: A second update*](https://doi.org/10.18564/jasss.4259). *JASSS*. **Wofür?** Wie sich Agenten, Zustände, Interaktionen, Regeln und Ablauf so beschreiben lassen, dass das Modell verstanden und nachgebaut werden kann.
+- **Sterman, J. D. (2000).** [*Business Dynamics: Systems Thinking and Modeling for a Complex World*](https://www.mheducation.com/highered/product/Business-Dynamics-Sterman.html), Kapitel 6–8. **Wofür?** Bestände, Raten, Zeitfortschreibung und Rückkopplungen als andere – mit räumlichen Modellen kombinierbare – Beschreibungsperspektive.
+- **Karssenberg, D., de Jong, K. & van der Kwast, J. (2007).** [*Modelling landscape dynamics with Python*](https://doi.org/10.1080/13658810601063936). *International Journal of Geographical Information Science*, 21, 483–495. **Wofür?** Verbindung von räumlichen Kartenoperationen und selbst formulierter zeitlicher Landschaftsdynamik.
+- **Jakeman, A. J., Letcher, R. A. & Norton, J. P. (2006).** [*Ten iterative steps in development and evaluation of environmental models*](https://doi.org/10.1016/j.envsoft.2006.01.004). *Environmental Modelling & Software*, 21, 602–614. **Wofür?** Modellierung als begründeter, dokumentierter und revidierbarer Forschungsprozess – besonders geeignet als Vertiefung nach diesem Block.
+
+### Die konkrete hydrologische Kette
+
+- **O’Callaghan, J. F. & Mark, D. M. (1984).** [*The extraction of drainage networks from digital elevation data*](https://doi.org/10.1016/S0734-189X(84)80011-0). **Wofür?** Abflussverbindungen aus einem diskreten Höhenmodell.
+- **Tarboton, D. G. (1997).** [*A new method for the determination of flow directions and upslope areas in grid digital elevation models*](https://doi.org/10.1029/96WR03137). *Water Resources Research*, 33, 309–319. **Wofür?** Unterschied zwischen diskreten D8-Richtungen und kontinuierlichem D∞-Winkel mit anteiliger Weitergabe.
+- **Beven, K. J. & Kirkby, M. J. (1979).** [*A physically based, variable contributing area model of basin hydrology*](https://doi.org/10.1080/02626667909491834). **Wofür?** Hintergrund der Beziehung zwischen Topografie, beitragenden Flächen und hydrologischen Modellannahmen; nicht mit einer direkten Feuchtemessung verwechseln.
+- **Hessische Verwaltung für Bodenmanagement und Geoinformation.** [DGM-Produktbeschreibung](https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle) und [ATKIS Basis-DLM](https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell). **Wofür?** Unterschied zwischen einem abgeleiteten Geländehöhenprodukt und kartierten Landschaftsobjekten samt Datenqualität und Produktmetadaten.
+- **TauDEM.** [Werkzeugdokumentation zu D∞-Flächenakkumulation](https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityContributingArea.html) und [transportbegrenzter Akkumulation](https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityTransportLimitedAccumulation.html). **Wofür?** Exakte Eingabegrößen, Ausgabeeinheiten und Annahmen unserer Rechenoperationen. Weitere Einzelwerkzeuge stehen im [Kurskompendium](abfluss_algorithmen_quellen.qmd).
+
+### Dokumentation, Daten und Modellprüfung
+
+- **Peng, R. D. (2011).** [*Reproducible research in computational science*](https://doi.org/10.1126/science.1213847). *Science*, 334, 1226–1227. **Wofür?** Warum nachvollziehbare Rechenschritte eine wissenschaftliche Mindestanforderung sind.
+- **Sandve, G. K. et al. (2013).** [*Ten simple rules for reproducible computational research*](https://doi.org/10.1371/journal.pcbi.1003285). *PLoS Computational Biology*, 9, e1003285. **Wofür?** Rechenläufe, Eingaben und Zwischenschritte so behandeln, dass sie später wieder auffindbar bleiben.
+- **Wilson, G. et al. (2017).** [*Good enough practices in scientific computing*](https://doi.org/10.1371/journal.pcbi.1005510). *PLoS Computational Biology*, 13, e1005510. **Wofür?** Praktische Projektorganisation, Versionskontrolle, Dateien, Skripte und Zusammenarbeit.
+- **Wilkinson, M. D. et al. (2016).** [*The FAIR Guiding Principles for scientific data management and stewardship*](https://doi.org/10.1038/sdata.2016.18). *Scientific Data*, 3, 160018. **Wofür?** Daten und Workflows über den eigenen Rechner hinaus auffindbar, zugänglich und nachnutzbar machen.
+- **Oreskes, N., Shrader-Frechette, K. & Belitz, K. (1994).** [*Verification, validation, and confirmation of numerical models in the Earth sciences*](https://doi.org/10.1126/science.263.5147.641). *Science*, 263, 641–646. **Wofür?** Die Grenzen von Modellprüfung und die Unterscheidung zwischen erfolgreichem Rechenlauf und empirisch gestützter Erklärung.
+- **QGIS-Dokumentation.** [*Processing history manager*](https://documentation.qgis.org/3.44/en/docs/user_manual/processing/history.html). **Wofür?** Ausgeführte Operationen und Parameter protokollieren und erneut aufrufen – als Teil, nicht als Ersatz einer Projektdokumentation.

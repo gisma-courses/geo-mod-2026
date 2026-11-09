@@ -22,47 +22,22 @@ Wie entstehen räumliche Muster, und was können wir aus ihnen über die zugrund
 
 Im Mittelpunkt stehen **heuristische Regeln**, **physikalisch begründete Näherungen** und **Prozessmodelle**. An Beispielen zur Oberflächenentwässerung und Flussentwicklung werden die in einem Modell implementierten Mechanismen explizit gemacht und mit seinen Resultaten verglichen.
 
-## Kursmaterialien nach Format
+## Angeleitete Modellierungsfolge
 
-**Reader** erläutern Begriffe und Modellannahmen; **Slides / Folien** unterstützen die Einführung und den Modellvergleich; **Worksheets / Hands-on** enthalten die praktischen Arbeitsaufträge. Neue Beispiele werden in diesen Bereichen ergänzt.
+Der Kurs folgt einer hydrologisch-geomorphologischen Modellkette. Wir **beobachten** Muster in den NetLogo-Modellen, **analysieren** Regeln und Rückkopplungen, wechseln zu realen Geländedaten und **begreifen** daran, welche Aussagen verschiedene GIS- und Prozessmodellierungen tragen. Das Resümee zieht daraus eine Herangehensweise für weitere geographische Fragen.
 
-## Bisherige Kursinhalte
-
-| Thema | Leitfrage | Materialien |
+| Station | Modellierungsfrage | Material |
 |---|---|---|
-| **1 · Grundlagen der Modellbildung im GIS** | Welche Beziehungen zwischen Eingaben und Ergebnissen sind rein heuristisch, welche physikalisch begründbar? | [Folien](pages/modellbildung_gis_folien.qmd) · [Kurzreader](pages/modellbildung_gis_reader.qmd) |
-| **2 · Regelbasierte Modelle in NetLogo** | Wie können ähnliche Fluss- und Entwässerungsmuster aus unterschiedlichen lokalen Regeln entstehen? | [Folien: Vergleich von River Meanders, Erosion und Grand Canyon](pages/netlogo_modellvergleich.qmd) |
-| **3 · Geländeabfluss im Burgwald (SAGA / GRASS)** | Welche Fließwege lassen sich aus einem DGM ableiten, und wo liegen die Grenzen gegenüber einer Simulation von Mäanderentwicklung? | **[Worksheet / Hands-on: Abfluss im Burgwald](pages/meander_abfluss_saga_grass.qmd)** |
+| **Auftakt: Modellbildung** | Wie werden Beobachtungen zu berechenbaren Beziehungen? | [Folien](pages/modellbildung_gis_folien.qmd) · [Kurzreader](pages/modellbildung_gis_reader.qmd) |
+| **NetLogo: Grand Canyon, Erosion, River Meanders** | Wie entstehen Muster aus Regeln, Zuständen und Rückkopplungen? | [NetLogo-Vergleich](pages/netlogo_modellvergleich.qmd) |
+| **Einstieg Abflussmodellierung** | Was ändert sich beim Wechsel vom Modellraum zum realen Relief? | [Einstieg](pages/einstieg_abflussmodellierung.qmd) |
+| **GIS: Relief, Routing, Abfluss und Sediment** | Welche Flächen tragen zum Abfluss bei und welche Zusatzannahmen verändern die berechneten Größen? | [GIS-Übung](pages/meander_abfluss_saga_grass.qmd) · [Kompendium](pages/abfluss_algorithmen_quellen.qmd) |
+| **Itzï** | Wie wird aus der räumlichen Reliefanalyse eine zeitabhängige Abflusssimulation? Itzï kommt nach der GIS-Übung zum Einsatz; es ist kein Teil des GIS-Arbeitsblatts. | [Einordnung im Einstieg](pages/einstieg_abflussmodellierung.qmd) |
+| **Resümee** | Welche Entscheidungen haben wir getroffen, und was lässt sich daraus für andere Modellfragen ableiten? | [Rückblick](pages/resuemee_modellierung_geographie.qmd) |
 
-## 1 · Modellbildung: Von der Regel zur Prozessbeschreibung
+## Materialien zur Modellierungsfolge
 
-Im ersten Teil unterscheiden wir **geographische Such- und Klassifikationsregeln**, **physikalisch motivierte Näherungen** und **zeitabhängige Prozessmodelle**. Nicht jede aus Geodaten berechnete Karte beschreibt eine reale Dynamik. Es kommt darauf an, welche Variablen und Beziehungen tatsächlich implementiert sind.
-
-**Materialien:** [Einführung – Folien](pages/modellbildung_gis_folien.qmd) · [Kurzreader zur Modellbildung](pages/modellbildung_gis_reader.qmd)
-
-## 2 · NetLogo: Ähnliche Muster, verschiedene Mechanismen
-
-Anhand der Bibliotheksmodelle *River Meanders*, *Erosion* und *Grand Canyon* vergleichen wir, wie sich Strömungsagenten, lokale Wasserspiegel und diskrete Wasseragenten unterscheiden. Untersucht werden Fließregeln, Wassermengen, Erosion, Sedimentation und die Rückkopplung zwischen Gelände und Abfluss.
-
-**Material:** [NetLogo-Modellvergleich – Folien](pages/netlogo_modellvergleich.qmd)
-
-**Leitfrage:** Ist ein plausibel aussehender Flusslauf bereits ein Beleg für eine physikalisch zutreffende Prozessbeschreibung?
-
-## 3 · Aktuelle Übung: Abflusswege mit SAGA GIS und GRASS GIS
-
-**2. November 2026:** Wir untersuchen am **Burgwald (Rotes Wasser)** auf Grundlage eines amtlichen **digitalen Geländemodells (DGM1)**, wie Fließrichtungen und beitragende Flächen durch lokale Routingregeln berechnet werden. Im Mittelpunkt steht der Vergleich von **D8** (Abfluss an einen Nachbarn) und **MFD** (Verteilung auf mehrere Nachbarn). SAGA GIS dient als Hauptwerkzeug, GRASS GIS – bei Bedarf über QGIS – als Alternativ- und Kontrollweg.
-
-Die berechneten Linien werden mit dem bestehenden Gewässernetz verglichen. Ergänzend untersuchen wir, wie **Rasterweite und Untersuchungsmaßstab** die Resultate verändern, und bereiten **ATKIS-Landnutzung** für eine anschließende Abflusssimulation mit räumlich variabler Rauigkeit auf. **Die Fließakkumulation liefert keine Prognose der zeitlichen Mäanderentwicklung**, weil dafür unter anderem Strömungsdynamik, Ufererosion und Sedimenttransport fehlen.
-
-**[Worksheet / Hands-on öffnen: Burgwald – DGM, SAGA, GRASS und Landnutzung](pages/meander_abfluss_saga_grass.qmd)**
-
-Das Worksheet enthält außerdem eine **Matrix der implementierten Modellkonzepte in SAGA GIS, GRASS GIS und QGIS** – von D8/MFD über Oberflächenabfluss und Sedimenttransport bis zur Abgrenzung gegenüber echter **Seitenerosion und Mäanderentwicklung** (Beispiel *MeanderPy*).
-
-## Reader, Slides und Hands-on im Überblick
-
-| Reader | Slides / Folien | Worksheets / Hands-on |
-|---|---|---|
-| [Grundlagen der Modellbildung](pages/modellbildung_gis_reader.qmd) | [Modellbildung im GIS](pages/modellbildung_gis_folien.qmd) · [NetLogo-Modellvergleich](pages/netlogo_modellvergleich.qmd) | [Burgwald: Abfluss, Skalen und Rauigkeit](pages/meander_abfluss_saga_grass.qmd) |
+Die Seiten sind entlang des Arbeitsgangs verlinkt: [Kurseinstieg](pages/modellbildung_gis_folien.qmd), [NetLogo-Vergleich](pages/netlogo_modellvergleich.qmd), [Einstieg Abflussmodellierung](pages/einstieg_abflussmodellierung.qmd), [GIS-Arbeitsblatt](pages/meander_abfluss_saga_grass.qmd), [Daten- und Werkzeugkompendium](pages/abfluss_algorithmen_quellen.qmd) und [Resümee](pages/resuemee_modellierung_geographie.qmd).
 
 ## Gemeinsame Vergleichsfragen
 

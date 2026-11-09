@@ -53,22 +53,26 @@ website:
         - href: index.qmd
           text: Kursübersicht
         - text: "---"
-        - section: "Reader"
-          contents:
-            - href: pages/modellbildung_gis_reader.qmd
-              text: Grundlagen der Modellbildung
-        - section: "Slides / Folien"
+        - section: "Angeleitete Modellierungsfolge"
           contents:
             - href: pages/modellbildung_gis_folien.qmd
-              text: Modellbildung im GIS
+              text: Auftakt: Modellbildung
             - href: pages/netlogo_modellvergleich.qmd
-              text: NetLogo – Modellvergleich
-            - href: slides/burgwald_abfluss_uebergang.qmd
-              text: Burgwald – Übergang zur Abflussübung
-        - section: "Worksheets / Hands-on"
-          contents:
+              text: NetLogo-Modelle
+            - href: pages/einstieg_abflussmodellierung.qmd
+              text: Einstieg Abflussmodellierung
             - href: pages/meander_abfluss_saga_grass.qmd
-              text: Burgwald – Abfluss mit SAGA / GRASS
+              text: "GIS-Übung: Relief, Abfluss und Sediment"
+            - href: pages/abfluss_algorithmen_quellen.qmd
+              text: Daten- und Werkzeugkompendium
+            - href: pages/resuemee_modellierung_geographie.qmd
+              text: Resümee
+        - section: "Ergänzende Materialien"
+          contents:
+            - href: pages/modellbildung_gis_reader.qmd
+              text: Kurzreader Modellbildung
+            - href: slides/burgwald_abfluss_uebergang.qmd
+              text: Übergangsfolien zum GIS
 
 execute:
   freeze: auto

@@ -56,7 +56,7 @@ jobs:
       - name: Register QGIS script provider and execute all four modes
         id: integration
         run: |
-          micromamba run --no-capture-output -n qgis-ci python -X faulthandler tests/taudem/run_integration.py `
+          micromamba run -n qgis-ci python -X faulthandler tests/taudem/run_integration.py `
             --taudem-bin "$env:TAUDEM_TEST_BIN" --mpi "$env:TAUDEM_TEST_MPI" `
             --taudem-install-root "$env:TAUDEM_INSTALL_ROOT" `
             --work-dir (Join-Path $env:TAUDEM_CI_EVIDENCE 'run with spaces')

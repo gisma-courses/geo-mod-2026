@@ -60,7 +60,7 @@ das produktive QGIS-Skript erhält dadurch keine neue Python-Abhängigkeit.
 
 ## Installation und Nachweise
 
-Windows: QGIS 3.44.15/Python 3.12 aus conda-forge, Microsoft MPI und der
+Windows: QGIS 3.44/Python 3.12 aus conda-forge, Microsoft MPI und der
 offizielle TauDEM-5.5.0-Installer. Keine SDK-Installation und kein Compiler.
 Aufgelöste Conda-Pakete, Download-/Binärprüfsummen und Installerlogs werden
 aufbewahrt. Quellen: [QGIS-Paket](https://github.com/conda-forge/qgis-feedstock),

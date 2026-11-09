@@ -41,7 +41,7 @@ jobs:
         with:
           environment-name: qgis-ci
           create-args: >-
-            -c conda-forge qgis=3.44.15 python=3.12 psutil
+            -c conda-forge qgis=3.44 python=3.12 psutil
           init-shell: none
           generate-run-shell: false
           cache-environment: true

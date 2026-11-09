@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>GIS-Übung: Vom Hang zur Bachschlinge – Modellieren in der Geographie</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="..//images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-c8e893c45ba768c613f97d88ef0faa80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: black;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: black;
+background: ../images/placeholder.png;
+      }
+</style>
+
+
+<meta property="og:title" content="GIS-Übung: Vom Hang zur Bachschlinge – Modellieren in der Geographie">
+<meta property="og:description" content="Reliefrouting, Gewässerabgleich und Sedimenttransport am Beispiel eines Oberlaufs">
+<meta property="og:site_name" content="Modellieren in der Geographie">
+<meta name="twitter:title" content="GIS-Übung: Vom Hang zur Bachschlinge – Modellieren in der Geographie">
+<meta name="twitter:description" content="Reliefrouting, Gewässerabgleich und Sedimenttransport am Beispiel eines Oberlaufs">
+<meta name="twitter:creator" content="@gisma">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">GIS-Übung: Vom Hang zur Bachschlinge</h1>
+            <p class="subtitle lead">Reliefrouting, Gewässerabgleich und Sedimenttransport am Beispiel eines Oberlaufs</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhalt</h2>
+   
+  <ul class="collapse">
+  <li><a href="#der-untersuchungsfall" id="toc-der-untersuchungsfall" class="nav-link active" data-scroll-target="#der-untersuchungsfall">Der Untersuchungsfall</a></li>
+  <li><a href="#zwei-gebiete-ins-projekt-holen-rechengebiet-und-kartenfenster" id="toc-zwei-gebiete-ins-projekt-holen-rechengebiet-und-kartenfenster" class="nav-link" data-scroll-target="#zwei-gebiete-ins-projekt-holen-rechengebiet-und-kartenfenster">1 · Zwei Gebiete ins Projekt holen: Rechengebiet und Kartenfenster</a></li>
+  <li><a href="#wo-verändert-die-senkenfüllung-das-ergebnis" id="toc-wo-verändert-die-senkenfüllung-das-ergebnis" class="nav-link" data-scroll-target="#wo-verändert-die-senkenfüllung-das-ergebnis">2 · Wo verändert die Senkenfüllung das Ergebnis?</a></li>
+  <li><a href="#zwei-routingregeln-auf-demselben-gelände-rechnen" id="toc-zwei-routingregeln-auf-demselben-gelände-rechnen" class="nav-link" data-scroll-target="#zwei-routingregeln-auf-demselben-gelände-rechnen">3 · Zwei Routingregeln auf demselben Gelände rechnen</a></li>
+  <li><a href="#trifft-das-berechnete-netz-den-bach" id="toc-trifft-das-berechnete-netz-den-bach" class="nav-link" data-scroll-target="#trifft-das-berechnete-netz-den-bach">4 · Trifft das berechnete Netz den Bach?</a></li>
+  <li><a href="#gibt-das-relief-die-krümmung-vor" id="toc-gibt-das-relief-die-krümmung-vor" class="nav-link" data-scroll-target="#gibt-das-relief-die-krümmung-vor">5 · Gibt das Relief die Krümmung vor?</a></li>
+  <li><a href="#welcher-hang-liefert-wasser-welcher-sediment" id="toc-welcher-hang-liefert-wasser-welcher-sediment" class="nav-link" data-scroll-target="#welcher-hang-liefert-wasser-welcher-sediment">6 · Welcher Hang liefert Wasser, welcher Sediment?</a></li>
+  <li><a href="#den-anschluss-an-die-ereignissimulation-vorbereiten" id="toc-den-anschluss-an-die-ereignissimulation-vorbereiten" class="nav-link" data-scroll-target="#den-anschluss-an-die-ereignissimulation-vorbereiten">7 · Den Anschluss an die Ereignissimulation vorbereiten</a></li>
+  <li><a href="#methodenkompendium-und-quellen" id="toc-methodenkompendium-und-quellen" class="nav-link" data-scroll-target="#methodenkompendium-und-quellen">Methodenkompendium und Quellen</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/meander_abfluss_saga_grass_neu.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="der-untersuchungsfall" class="level2">
+<h2 class="anchored" data-anchor-id="der-untersuchungsfall">Der Untersuchungsfall</h2>
+<p>Wählen Sie einen kleinen Bach mit einer erkennbaren Krümmung. Markieren Sie den Punkt, an dem er den Abschnitt verlässt. <strong>Welche Hänge tragen zu diesem Punkt bei? Folgt die im Gelände berechnete Bahn der kartierten Bachschlinge oder kürzt sie die Biegung ab?</strong> In <em>Grand Canyon</em> könnten Sie Tropfen an vielen Ausgangsorten starten und beobachten, welche denselben Talzug erreichen. Hier rechnen Sie vom gesamten Höhenraster aus und lesen die Beiträge am Bach ab. Später geben Sie auf <strong>einem dieser Hänge</strong> Sediment vor und prüfen, ob es den Bach erreicht. Behalten Sie Bachabschnitt, Hang und Auslass für alle Vergleiche bei.</p>
+<p>Im QGIS-Projekt entstehen drei aufeinander bezogene Karten: <strong>D8</strong>, <strong>verteiltes Routing</strong> und <strong>beide Ergebnisse an der kartierten Bachlinie</strong>. Die GitHub-Aufgabe vergleicht D8 mit klassischem MFD. Der gemeinsame Rechenweg verwendet TauDEMs <strong>D∞</strong> als verteilte Variante: Ein Zellbeitrag geht an höchstens zwei Nachbarn; bei einem klassischen MFD können es alle tiefer gelegenen Nachbarn sein. Dieser Unterschied gehört in die Kartenlegende. Sie benötigen keinen zweiten Provider. Prüfen Sie in der Verarbeitungswerkzeugkiste, ob <em>D8 Flow Directions</em>, <em>D-Infinity Contributing Area</em> und <em>D-Infinity Transport Limited Accumulation</em> vorhanden sind.</p>
+</section>
+<section id="zwei-gebiete-ins-projekt-holen-rechengebiet-und-kartenfenster" class="level2">
+<h2 class="anchored" data-anchor-id="zwei-gebiete-ins-projekt-holen-rechengebiet-und-kartenfenster">1 · Zwei Gebiete ins Projekt holen: Rechengebiet und Kartenfenster</h2>
+<ol type="1">
+<li>Öffnen Sie ein QGIS-Projekt in <strong>EPSG:25832</strong> (Hessen). Ein mögliches Gebiet ist das <strong>Rote Wasser bei den Franzosenwiesen</strong> im Burgwald; ein anderer Oberlauf ähnlicher Größe ist ebenso geeignet. Zeichnen Sie ein etwa <strong>2 × 2 km</strong> großes Kartenfenster um Hang, Bach und eine Biegung. Eine ausgeprägte Mäanderschlinge ist nicht erforderlich.</li>
+<li>Laden Sie aus dem <a href="https://gds.hessen.de/INTERSHOP/web/WFS/HLBG-Geodaten-Site/de_DE/-/EUR/ViewDownloadcenter-Start">hessischen Downloadcenter</a> <strong>DGM1</strong> (3D-Daten) sowie Gewässerlinien und Landnutzungsflächen des <strong>ATKIS-Basis-DLM</strong>. Laden Sie mehr DGM-Kacheln als für das Kartenfenster nötig: Sie brauchen die Hänge bis über die oberhalb gelegenen Wasserscheiden hinaus. Bewahren Sie die Originale getrennt von den Rechenergebnissen auf.</li>
+<li>Erzeugen Sie aus den Höhenkacheln mit <strong>Virtuelles Raster erstellen</strong> ein Mosaik. Prüfen Sie CRS, Höhenbezug, NoData und Kachelgrenzen. Legen Sie Gewässerlinien und, soweit vorhanden, ein Orthofoto darüber. Markieren Sie vor der Rechnung eine Bachbiegung, einen Hang und eine kritische Stelle, etwa einen Wegedamm. Speichern Sie die Punkte mit kurzer Ortsbeschreibung in einem GeoPackage.</li>
+<li>Erzeugen Sie mit <strong>GDAL → Warp (Reprojizieren)</strong> im metrischen Projekt-CRS ein Float32-Raster, Zielauflösung <strong>5 m</strong>, Resampling <strong>Mittelwert</strong>. Wählen Sie Grenzen des Rechengebiets auf vollen 10-m-Koordinaten und verwenden Sie dieselben Grenzen später bei 10 m. Speichern Sie als <code>dem5.tif</code>. Erstellen Sie eine Schummerung. Arbeiten Sie bis zur Kartenauswertung im <strong>Rechengebiet</strong>; ein früher Zuschnitt auf das Kartenfenster unterbricht die Zuflüsse.</li>
+</ol>
+<p><strong>Kontrollblick:</strong> Ist die Biegung bereits in der Schummerung erkennbar? Verläuft die Gewässerlinie an der Talsohle oder seitlich davon? Blenden Sie die Linie anschließend aus. Sie dient später als Vergleich; sie wird nicht ins DGM eingebrannt.</p>
+</section>
+<section id="wo-verändert-die-senkenfüllung-das-ergebnis" class="level2">
+<h2 class="anchored" data-anchor-id="wo-verändert-die-senkenfüllung-das-ergebnis">2 · Wo verändert die Senkenfüllung das Ergebnis?</h2>
+<p>Starten Sie <strong>TauDEM → Pit Remove</strong> mit <code>dem5.tif</code>; speichern Sie <code>fel.tif</code>. Berechnen Sie im QGIS-Rasterrechner <code>"fel@1" - "dem5@1"</code>. Stellen Sie 0 transparent und positive Werte in Metern dar. Lesen Sie am Wegedamm oder an einer gefüllten Mulde Originalhöhe, gefüllte Höhe und Differenz ab. Verfolgen Sie in der Schummerung, wo die gefüllte Fläche einen Abflussweg bekommt. Ein Durchlass im Luftbild und eine natürliche geschlossene Mulde sprechen für unterschiedliche Deutungen derselben Höhenkorrektur.</p>
+<p>In <em>Grand Canyon</em> steigt der Wasserstand in einer Senke mit jedem weiteren Tropfen. Hier wird <strong>vor</strong> dem Routing die Geländeoberfläche angehoben. Das Differenzraster misst den Eingriff in das DGM. Es misst keine beobachtete Wassertiefe und enthält keine Zeit bis zum Überlauf.</p>
+</section>
+<section id="zwei-routingregeln-auf-demselben-gelände-rechnen" class="level2">
+<h2 class="anchored" data-anchor-id="zwei-routingregeln-auf-demselben-gelände-rechnen">3 · Zwei Routingregeln auf demselben Gelände rechnen</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>TauDEM-Werkzeug</th>
+<th>Eingabe</th>
+<th>Ausgabe und Verwendung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>D8 Flow Directions</strong></td>
+<td><code>fel</code></td>
+<td><code>p</code>: Richtung zu einem von acht Nachbarn; <code>sd8</code>: Gefälle</td>
+</tr>
+<tr class="even">
+<td><strong>D8 Contributing Area</strong></td>
+<td><code>p</code>, ohne Gewichte</td>
+<td><code>ad8</code>: Anzahl beitragender Zellen einschließlich der betrachteten Zelle</td>
+</tr>
+<tr class="odd">
+<td><strong>D-Infinity Flow Directions</strong></td>
+<td>dasselbe <code>fel</code></td>
+<td><code>ang</code>: Fließwinkel in Radiant; <code>slp</code>: Gefälle als Höhenänderung je horizontaler Strecke</td>
+</tr>
+<tr class="even">
+<td><strong>D-Infinity Contributing Area</strong></td>
+<td><code>ang</code>, ohne Gewichte</td>
+<td><code>sca</code>: spezifische beitragende Fläche, bei metrischem Raster in Metern</td>
+</tr>
+</tbody>
+</table>
+<p>D8 führt den gesamten Beitrag in eine Richtung. D∞ bestimmt die Richtung des stärksten Gefälles auf dreieckigen Teilflächen um die Rasterzelle. Liegt der Winkel zwischen zwei Nachbarrichtungen, erhalten diese beiden Nachbarn Anteile. D∞ ist damit eine konkrete Alternative zu D8; es ist nicht identisch mit den MFD-Varianten, die auf alle tieferliegenden Nachbarn verteilen können.</p>
+<p><strong>Vergleich in Hektar:</strong> TauDEM startet bei der ungewichteten D8-Akkumulation mit einer Zelle, bei der ungewichteten D∞-Akkumulation mit einer Zellbreite. Deshalb ergeben sich für das quadratische 5-m-Raster zwei verschiedene Umrechnungen im QGIS-Rasterrechner:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ergebnis</th>
+<th>Ausdruck für beitragende Fläche in ha</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>D8</td>
+<td><code>"ad8@1" * 25 / 10000</code></td>
+</tr>
+<tr class="even">
+<td>D∞</td>
+<td><code>"sca@1" * 5 / 10000</code></td>
+</tr>
+</tbody>
+</table>
+<p>Legen Sie beide Flächenraster mit denselben Klassengrenzen über die Schummerung. Vergleichen Sie eine konvergente Talrinne mit einem Hang, an dem sich die Gefällerichtungen auffächern. Markieren Sie einen Auslass <strong>auf der berechneten Abflussbahn</strong> und lesen Sie die Fläche an diesem Punkt ab. Um seinen D8-Zufluss räumlich abzugrenzen, führen Sie <em>D8 Contributing Area</em> nochmals mit diesem einzelnen Auslasspunkt aus: Das Ergebnis ist auf die stromaufwärts angeschlossenen Zellen beschränkt. Bei unvollständigen Zuflüssen am Gebietsrand die Analysefläche erweitern; von TauDEM markierte NoData-Bereiche nicht als Nullfläche werten.</p>
+<p>Speichern Sie die beiden umgerechneten Raster als <code>d8_ha.tif</code> und <code>dinf_ha.tif</code>. Nutzen Sie beim Ablesen <strong>dieselbe Zellmitte</strong> für beide Raster. Liegt das Maximum der zweiten Variante eine Zelle daneben, ist dieser Versatz ein Befund; verschieben Sie den Vergleichspunkt nicht heimlich auf die jeweils größte Zahl.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 28%">
+<col style="width: 28%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Messort</th>
+<th style="text-align: right;">D8 (ha)</th>
+<th style="text-align: right;">D∞ (ha)</th>
+<th>Welche Nachbarzellen erhalten ebenfalls Beiträge?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hang oberhalb der Biegung</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Talrinne</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Auslass unterhalb der Biegung</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trifft-das-berechnete-netz-den-bach" class="level2">
+<h2 class="anchored" data-anchor-id="trifft-das-berechnete-netz-den-bach">4 · Trifft das berechnete Netz den Bach?</h2>
+<ol type="1">
+<li>Rechnen Sie im Rasterrechner <code>"d8_ha@1" &gt;= 10</code> und <code>"dinf_ha@1" &gt;= 10</code>. Speichern Sie beide Masken; symbolisieren Sie 0 transparent. Die <strong>10 ha</strong> sind eine Versuchsschwelle. Wiederholen Sie nur die beiden Vergleiche mit <strong>40 ha</strong>. Eine verschwundene Linie kann also weiterhin eine Abflussbahn sein: Ihr fehlt lediglich die geforderte Mindestfläche.</li>
+<li>Erstellen Sie die zwei Akkumulationskarten im identischen Ausschnitt, mit derselben Legende in ha und derselben Schummerung. Für die dritte Karte überlagern Sie beide 10-ha-Masken in unterscheidbaren Farben mit den ATKIS-Linien. Vergrößern Sie die markierte Biegung: Folgen beide Bahnen dem Talboden? Schneidet eine die Biegung? Markieren Sie außerdem einen fehlenden Seitenast oder einen zusätzlichen Modellast, sofern vorhanden.</li>
+<li><strong>Nähe in Metern prüfen:</strong> Für einen kleinen Oberlauf lässt sich die Linienableitung in QGIS nachvollziehbar halten. Legen Sie zwei Linienlayer im GeoPackage an. Digitalisieren Sie <strong>bei ausgeblendeter Referenz</strong> für jede 10-ha-Maske die sichtbaren Äste als Mittellinien durch die Zellmitten, mit demselben Maßstab und denselben Endregeln: Beginn an der ersten zusammenhängenden Schwellenzelle, Ende an der Mündung bzw. am Rand des Kartenfensters; gemeinsame Unterläufe nur einmal erfassen. Bei breiten Bändern der höchsten Akkumulation folgen, getrennte Äste getrennt führen. Unentscheidbare Stellen markieren. Dies ist eine manuell interpretierte Achse; die Originalmasken bleiben sichtbar überprüfbar. Die Umrisse von Schwellenpolygonen wären doppelte Uferlinien und für den Längenvergleich ungeeignet.</li>
+<li>Schneiden Sie Referenz und Modelllinien auf dasselbe innere Kartenfenster zu; schließen Sie in beiden dieselben ungültigen Randbereiche aus. Erzeugen Sie um die Referenz <strong>drei separate Puffer</strong>, 5, 10 und 25 m, jeweils mit <em>Auflösen</em>. Schneiden Sie mit <strong>Zuschneiden (Clip)</strong> jedes Modellnetz an jedem Puffer. Berechnen Sie die Länge der Teilstücke im metrischen Layer mit <code>length($geometry)</code> und summieren Sie sie. Teilen Sie die Summe durch die Gesamtlänge des jeweiligen Modellnetzes und multiplizieren Sie mit 100. Für die Gegenprobe puffern Sie das Modellnetz mit 10 m und bestimmen den Anteil der <strong>Referenzlänge</strong>, der darin liegt.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>10-ha-Netz</th>
+<th style="text-align: right;">Gesamtlänge (m)</th>
+<th style="text-align: right;">Modelllinie im 5-m-Puffer (%)</th>
+<th style="text-align: right;">im 10-m-Puffer (%)</th>
+<th style="text-align: right;">im 25-m-Puffer (%)</th>
+<th style="text-align: right;">Referenzlinie im 10-m-Modellpuffer (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>D8</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td>D∞</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<p>Die ersten drei Anteile dürfen mit zunehmender Toleranz nicht sinken. Bei leerem Netz ist ein Anteil mit Nenner null <strong>nicht definiert</strong>. Ein kurzer Hauptlauf kann die Referenz gut treffen und trotzdem alle Seitenäste verfehlen. Genau das erkennt man erst in der letzten Spalte. Prüfen Sie Lageabweichungen am Orthofoto und an der Füllkarte; eine generalisierte Gewässerlinie ist keine vermessene Uferkante.</p>
+<section id="welcher-eingriff-macht-an-der-biegung-einen-unterschied" class="level3">
+<h3 class="anchored" data-anchor-id="welcher-eingriff-macht-an-der-biegung-einen-unterschied">Welcher Eingriff macht an der Biegung einen Unterschied?</h3>
+<p><strong>Rasterweite und Schwellenwert lassen sich ohne weitere Software getrennt prüfen.</strong> Rechnen Sie aus dem Originalmosaik ein <strong>10-m-DGM</strong> mit derselben Ausdehnung und Mittelwertbildung. Wiederholen Sie <em>Pit Remove</em>, D8-Richtung und D8-Akkumulation; die Umrechnung lautet jetzt <code>ad8 × 100 / 10000</code> ha. Vergleichen Sie <strong>5 m / 10 ha gegen 10 m / 10 ha</strong>. Für den Schwellenversuch vergleichen Sie <strong>5 m / 10 ha gegen 5 m / 40 ha</strong>. Prüfen Sie an derselben Biegung und am selben Seitenast, ob sich die Bahn verlagert, ganz entfällt oder nur später einsetzt. Ein Wechsel der Rasterweite kann auch die anschließend nötige Senkenfüllung verändern. Bei unverändertem Raster dagegen bleibt die Akkumulation im Schwellenversuch exakt gleich.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vergleich</th>
+<th>Konstant</th>
+<th>Befund an der markierten Stelle</th>
+<th>Mögliche Erklärung anhand der Karten</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>D8 ↔︎ D∞</td>
+<td>5 m, Füllung, 10 ha</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>5 ↔︎ 10 m</td>
+<td>D8, Füllverfahren, 10 ha</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>10 ↔︎ 40 ha</td>
+<td>dasselbe D8-Flächenraster</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="gibt-das-relief-die-krümmung-vor" class="level2">
+<h2 class="anchored" data-anchor-id="gibt-das-relief-die-krümmung-vor">5 · Gibt das Relief die Krümmung vor?</h2>
+<p>Zeichnen Sie in der Vergleichskarte eine kurze Querlinie durch den Scheitel der Bachbiegung. Nutzen Sie das <strong>Höhenprofil</strong> in QGIS, um die Lage der tiefsten Geländestelle, der modellierten Bahn und der kartierten Linie auf diesem Querschnitt zu vergleichen. Bei einem breiten flachen Talboden: Ist die Lage auf eine einzelne 5-m-Zelle festgelegt? Bei einer Abkürzung: Quer über eine gefüllte Mulde oder schon im Original-DGM entlang einer tieferen Rinne? Formulieren Sie für diesen Ort einen Befund und eine anhand Ihrer Daten noch offene Erklärung.</p>
+<p>In <em>River Meanders</em> können zwei aufeinanderfolgende Modellzustände zeigen, wie eine Kurve seitlich wandert. Hier liegen zwei <strong>Rechenvarianten desselben Geländezustands</strong> übereinander. Der Abstand ihrer Linien ist eine räumliche Abweichung in Metern. Ihn als Wanderungsrate zu lesen, würde zwei Beobachtungszeitpunkte voraussetzen, die unsere Karten nicht enthalten.</p>
+</section>
+<section id="welcher-hang-liefert-wasser-welcher-sediment" class="level2">
+<h2 class="anchored" data-anchor-id="welcher-hang-liefert-wasser-welcher-sediment">6 · Welcher Hang liefert Wasser, welcher Sediment?</h2>
+<p>Zwei Zellen mit gleicher beitragender Fläche können an einem steilen Hang oder in einem flachen Talboden liegen. Der <strong>Topographic Wetness Index</strong> unterscheidet diese Situationen: In der üblichen Rasterkonvention gilt TWI = ln(a / tan β), mit spezifischer beitragender Fläche a und Hangneigung β. Für die TauDEM-Raster entspricht das im QGIS-Rasterrechner <strong><code>ln("sca@1" / "slp@1")</code></strong>. Hier das ursprüngliche <code>sca</code> verwenden, nicht das Hektarraster. <code>slp</code> enthält bereits den Tangens der Neigung. Nur gültige Zellen mit positivem Gefälle auswerten; ebene Zellen separat kennzeichnen.</p>
+<p>Vergleichen Sie Talboden und Hang auf Akkumulations- und Indexkarte. Hohe Indexwerte zeigen, wo das Relief unter den Indexannahmen Vernässung begünstigt. In <em>Grand Canyon</em> erhöht angesammeltes Wasser den Wasserstand. Der Index verwendet dagegen für jeden Ort nur zwei Geländekenngrößen: Er bleibt bei trockenem Wetter und nach Regen unverändert.</p>
+<section id="eine-einfache-abflussschätzung-auf-demselben-netz" class="level3">
+<h3 class="anchored" data-anchor-id="eine-einfache-abflussschätzung-auf-demselben-netz">Eine einfache Abflussschätzung auf demselben Netz</h3>
+<p>Mit einer einzigen zusätzlichen Annahme erhält die Flächenkarte eine andere Einheit: Angenommen, jede beitragende Zelle liefert gleichmäßig <strong>1 mm effektiven Abfluss pro Stunde</strong>. An einer Stelle mit 10 ha beitragender Fläche ergibt das 100 000 m² × 0,001 m/h = <strong>100 m³/h</strong>. Im Rasterrechner entspricht das der Hektarkarte multipliziert mit 10. Der effektive Abfluss ist hier bereits <strong>nach Verlusten</strong> angesetzt. Das ist eine stationäre Szenariorechnung: Sie setzt voraus, dass der angesetzte Beitrag den betrachteten Punkt erreicht. Speicherung und unterschiedliche Laufzeiten fehlen; ein Hochwasserscheitel lässt sich daraus nicht bestimmen.</p>
+<p>Im folgenden Materialversuch kommt eine andere Regel hinzu. Während hier jeder zugerechnete Beitrag vollständig weitergegeben wird, kann eine Zelle beim Sedimenttransport einen Teil des verfügbaren Materials zurückhalten.</p>
+</section>
+<section id="eine-sedimentquelle-bis-zum-bach-verfolgen" class="level3">
+<h3 class="anchored" data-anchor-id="eine-sedimentquelle-bis-zum-bach-verfolgen">Eine Sedimentquelle bis zum Bach verfolgen</h3>
+<p>In <em>Erosion</em> bestimmt eine Regel, wie viel Boden beim Wasseraustausch abgetragen wird. Jetzt trennen wir <strong>Materialbereitstellung, Weitertransport und Ablagerung</strong>. Für die erste Rechnung setzen wir ausdrücklich voraus, wo Material verfügbar wird. Wir untersuchen, welchen Weg es dann nimmt und welcher Anteil bei begrenzter Transportkapazität liegen bleibt.</p>
+<p><strong>Ein reproduzierbares Szenario:</strong> Zeichnen Sie ein kleines Polygon auf einem Hang oberhalb des gewählten Bachabschnitts. Rasterisieren Sie es auf das Gitter von <code>fel</code>: innen 1, außerhalb des Polygons <strong>0</strong> für alle gültigen Geländezellen, außerhalb des DGM NoData. Kontrollieren Sie die Überlagerung mit <code>ang</code>: Eine Quelle auf der anderen Seite der Wasserscheide beliefert einen anderen Auslass.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Eingabe</th>
+<th>Versuch A</th>
+<th>Versuch B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>D∞-Fließrichtung <code>ang</code></td>
+<td>unverändert aus der Reliefanalyse</td>
+<td>identisch</td>
+</tr>
+<tr class="even">
+<td>Materialangebot <code>tsup</code></td>
+<td>Quellmaske × 1 kg/h je aktiver Zelle</td>
+<td>identisch</td>
+</tr>
+<tr class="odd">
+<td>Transportkapazität <code>tc</code></td>
+<td>1000 kg/h je gültiger Zelle</td>
+<td>1000 kg/h, in einem quer zur berechneten Bahn gelegten Streifen unterhalb der Quelle 2 kg/h</td>
+</tr>
+</tbody>
+</table>
+<p>Beide Werte sind <strong>Szenarioannahmen</strong>, keine Messungen oder aus dem DGM geschätzten Erosionsraten. Wählen Sie für A eine Quelle mit weniger als 1000 aktiven Zellen: Dann ist selbst das gesamte Angebot kleiner als die vorgegebene Kapazität einer Zelle. Das Kapazitätsraster für A lässt sich aus einem gültigen Höhenraster als <code>0 * "fel@1" + 1000</code> anlegen. Für B eine zweite, gleich ausgerichtete 0/1-Maske für den Streifen rasterisieren und im Rasterrechner <strong><code>1000 - 998 * "streifen@1"</code></strong> auf den gültigen Modellbereich begrenzen.</p>
+<p><strong>TauDEM → D-Infinity Transport Limited Accumulation</strong> für beide Varianten starten. Als Richtungsraster <code>ang</code> einsetzen, als Angebot <code>tsup</code>, als Kapazität das jeweilige <code>tc</code>. Die optionale Stoffkonzentration bleibt leer. Speichern Sie den aus jeder Zelle austretenden Materialfluss (<code>tla</code>) und die lokale Ablagerung (<code>tdep</code>) für A und B getrennt. Randkontrolle für beide Läufe gleich einstellen; nur Zellen mit vollständigen Zuflussinformationen interpretieren.</p>
+<p>Die Zelle erhält Material von oberhalb und aus ihrer eigenen Quelle. Weitergegeben wird höchstens ihre Transportkapazität. Treffen 8 kg/h ein und kommen lokal 2 kg/h hinzu, verlassen bei einer Kapazität von 6 kg/h genau 6 kg/h die Zelle; 4 kg/h werden dort abgelagert. <strong>Die Einheit folgt den Eingaben:</strong> Bei kg/h ist auch die Ablagerung eine Rate, keine Schichtdicke.</p>
+<p>In A sollte im vollständig erfassten Gebiet keine kapazitätsbedingte Ablagerung auftreten. In B zeigt <code>tdep</code>, <strong>welche Zellen des Streifens tatsächlich mehr als 2 kg/h erhalten</strong>. Bleibt der Streifen ohne Ablagerung, prüfen Sie seine Lage zum Fließweg und die Aufteilung auf D∞-Äste. Vergleichen Sie <code>tla</code> am selben Bachpunkt in beiden Läufen. Summieren Sie nicht alle <code>tla</code>-Zellen als Gebietsexport: Dasselbe Material passiert mehrere Zellen. Für eine Gebietsbilanz zählen Quellen, lokale Ablagerung und die über die Gebietsgrenze austretenden Flüsse.</p>
+<p><strong>Am eigenen Abschnitt ablesen:</strong> Markieren Sie die Quellzellen, die erste Zelle mit Ablagerung und einen Bachpunkt unterhalb des Streifens. Lesen Sie dort für beide Läufe den austretenden Fluss in kg/h ab. Wo im selben Raster tritt Ablagerung auf, ohne dass sich die Fließrichtung ändert? In <em>Erosion</em> verändert der Abtrag das Relief für den nächsten Schritt. Hier können Sie das Kapazitätsraster austauschen und erhalten eine andere Ablagerungskarte, während die Bachschlinge an exakt derselben Stelle bleibt.</p>
+</section>
+</section>
+<section id="den-anschluss-an-die-ereignissimulation-vorbereiten" class="level2">
+<h2 class="anchored" data-anchor-id="den-anschluss-an-die-ereignissimulation-vorbereiten">7 · Den Anschluss an die Ereignissimulation vorbereiten</h2>
+<p>Öffnen Sie die <strong>ATKIS-Landnutzungsflächen</strong>. Schneiden Sie sie auf das Rechengebiet zu und fassen Sie die vorhandenen Objekte in einem ganzzahligen Feld zu Wald, Grünland, Acker, versiegelter Fläche und Wasser zusammen. Führen Sie nicht zuordenbare Objekte als <em>unbekannt</em>. Rasterisieren Sie das Klassenfeld mit <strong>GDAL → Rasterisieren</strong> auf Ursprung, Ausdehnung und Zellweite des 5-m-DGM. Prüfen Sie am Weg und am Bach, welche schmalen Objekte im Raster noch vorhanden sind. Erstellen Sie eine Zuordnungstabelle mit <em>Klasse, angesetztem Manning-n, Quelle bzw. Szenarioannahme</em>; ohne begründeten Wert bleibt das Feld offen. Eine Bedeckungsklasse liefert weder eine gemessene Rauigkeit noch eine Infiltrationsrate. Keiner dieser Parameter ging in die Karten 1–3 ein.</p>
+<p>Öffnen Sie abschließend Ihre drei Karten nebeneinander. Wählen Sie <strong>eine</strong> Stelle, an der eine Modellentscheidung die Interpretation ändert. Benennen Sie den Ort, die verglichenen Läufe und die beobachtete Differenz mit Einheit. Trennen Sie davon die Erklärung, die noch im Gelände zu prüfen wäre. Für denselben Ort ergeben sich zwei verschiedene nächste Versuche:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Neue Frage am gewählten Bach</th>
+<th>Was aus dieser Übung bleibt?</th>
+<th>Was muss das nächste Modell zusätzlich berechnen?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Itzï:</strong> Wann wird beim vorgegebenen Starkregen der Weg an der Biegung überströmt, wie tief und wie lange?</td>
+<td>DGM, Weglage, Landnutzung als Grundlage für Reibung</td>
+<td>Niederschlags- oder Zuflussverlauf, Anfangs- und Randbedingungen sowie Annahmen zu Verlusten und Rauigkeit. Wasserstände und Flüsse ändern sich über die Zeit; die Sohle bleibt fest.</td>
+</tr>
+<tr class="even">
+<td><strong>CAESAR-Lisflood:</strong> Verändert der Abfluss die Sohle oder das Ufer so, dass der nächste Abfluss einen anderen Weg nimmt?</td>
+<td>Gelände und Lage der Biegung; der 5-m-Datensatz muss das Gerinne für diese Frage ausreichend auflösen</td>
+<td>Hydraulik, Sedimentangebot und Korngrößen, Abtrag, Transport und Aktualisierung der Geländegeometrie. Eine belastbare Aussage zur seitlichen Verlagerung braucht zusätzlich geeignete Uferparameter und beobachtete Gerinnepositionen zum Vergleich.</td>
+</tr>
+</tbody>
+</table>
+<p>Die Karten aus dieser Übung sind der Ausgangszustand für diese Fragen. <strong>Die Ereignis- und Geländeentwicklung werden in einer eigenen Übung gerechnet.</strong></p>
+</section>
+<section id="methodenkompendium-und-quellen" class="level2">
+<h2 class="anchored" data-anchor-id="methodenkompendium-und-quellen">Methodenkompendium und Quellen</h2>
+<p>Die Zuordnung dient zum Nachschlagen. Ähnliche Ausgaben können auf unterschiedlichen Fließregeln, Eingabegrößen oder Zeitbezügen beruhen.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Werkzeugumgebung</th>
+<th>Anschluss an die Übung</th>
+<th>Technischer Unterschied und Dokumentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>TauDEM in QGIS – Rechenweg dieser Übung</strong></td>
+<td>Gelände aufbereiten, D8/D∞, beitragende Fläche, Gewässernetz, kapazitätsbegrenzter Stofftransport</td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/documentation.html">Werkzeugverzeichnis und Tutorials</a> · <a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityContributingArea.html">Einheiten von D∞ Contributing Area</a> · <a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityTransportLimitedAccumulation.html">Transportregel, Ein- und Ausgaben</a> · <a href="https://bruy.me/plugins/taudem-for-processing/">QGIS-Provider und Backend-Konfiguration</a></td>
+</tr>
+<tr class="even">
+<td><strong>SAGA GIS</strong></td>
+<td><a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.0/tc_ta_hydrology_flow_accumulation.html">D8/MFD und Akkumulation</a>; <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.14.1/sim_hydrology_9.html">Overland Flow</a>; <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.14.1/sim_erosion_0.html">MMF-SAGA</a> für Bodenerosion</td>
+<td>Overland Flow benötigt hydraulische Parameter; MMF verwendet eigene Ansätze für Abtrag und Transport. Beides geht über ungewichtete Flächenakkumulation hinaus. Keine SAGA-Installation im Übungsweg erforderlich.</td>
+</tr>
+<tr class="odd">
+<td><strong>GRASS GIS</strong></td>
+<td><a href="https://grass.osgeo.org/grass-stable/manuals/r.watershed.html">r.watershed</a> für SFD/MFD, <a href="https://grass.osgeo.org/grass-stable/manuals/r.topidx.html">r.topidx</a> für den Feuchteindex, <a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html">r.sim.water</a> und <a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.sediment.html">r.sim.sediment</a> für Wasser- und Sedimentbewegung</td>
+<td>SIMWE verwendet unter anderem hydraulische Größen, Ablösungs- und Transportparameter. Eine Karte der Erosion und Deposition enthält noch keine Regel für wandernde Ufer.</td>
+</tr>
+<tr class="even">
+<td><strong>Whitebox Workflows</strong></td>
+<td>Weitere Implementierungen für Geländeaufbereitung, Fließrichtung und Akkumulation in der QGIS-Werkzeugkiste</td>
+<td><a href="https://plugins.qgis.org/plugins/whitebox_workflows_for_qgis/">Processing-Provider</a>. Für Methodenvergleiche insbesondere Routingvariante, Rastereinheit und Senkenbehandlung prüfen.</td>
+</tr>
+<tr class="odd">
+<td><strong>PCRaster</strong></td>
+<td>Gerichtetes Fließnetz und Rasteralgebra; kapazitätsbegrenzte Weitergabe und verbleibendes Material</td>
+<td><a href="https://jvdkwast.github.io/qgis-processing-pcraster/">PCRaster-Operationen in QGIS</a> · <a href="https://pcraster.geo.uu.nl/pcraster/latest/documentation/">PCRaster-Dokumentation</a>. Die Operatoren <code>accucapacityflux</code> und <code>accucapacitystate</code> unterscheiden weitergegebenes und zurückbleibendes Material. Ein einfach gerichtetes LDD-Netz verteilt den Beitrag anders als das anteilige D∞-Routing.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Referenzmodelle aus dem Kurs:</strong> <a href="https://ccl.northwestern.edu/netlogo/models/GrandCanyon">Grand Canyon</a> · <a href="https://ccl.northwestern.edu/netlogo/models/Erosion">Erosion</a> · <a href="https://ccl.northwestern.edu/netlogo/models/RiverMeanders">River Meanders</a>. Für den morphodynamischen Anschluss: <a href="https://doi.org/10.1002/esp.3478">Coulthard et al.: Kopplung von CAESAR und LISFLOOD-FP</a>.</p>
+<p><strong>Daten und Anschlussmodelle:</strong> <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle">DGM Hessen</a> · <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell">ATKIS-Basis-DLM Hessen</a> · <a href="https://www.itzi.org/about/">Itzï</a> · <a href="https://sourceforge.net/projects/caesar-lisflood/">CAESAR-Lisflood</a> · <a href="https://github.com/zsylvester/meanderpy">MeanderPy</a> als kinematische Alternative: laterale Verlagerung einer Mittellinie aus ihrer Krümmung, ohne flächige hydraulische Rechnung.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/gisma-courses\.github\.io\/geo-mod-2026");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/meander_abfluss_saga_grass_neu.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

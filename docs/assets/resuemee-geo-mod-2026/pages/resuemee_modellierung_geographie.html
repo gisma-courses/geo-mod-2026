@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Rückblick: Was haben wir eigentlich modelliert? – Modellieren in der Geographie</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../..//images/logo.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-c8e893c45ba768c613f97d88ef0faa80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Rückblick: Was haben wir eigentlich modelliert? – Modellieren in der Geographie">
+<meta property="og:description" content="Vom Regelmodell über die Geländeanalyse zur Prozessbeschreibung – und was sich daraus für eigene Projekte ableiten lässt">
+<meta property="og:site_name" content="Modellieren in der Geographie">
+<meta name="twitter:title" content="Rückblick: Was haben wir eigentlich modelliert? – Modellieren in der Geographie">
+<meta name="twitter:description" content="Vom Regelmodell über die Geländeanalyse zur Prozessbeschreibung – und was sich daraus für eigene Projekte ableiten lässt">
+<meta name="twitter:creator" content="@gisma">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhalt</h2>
+   
+  <ul class="collapse">
+  <li><a href="#wozu-dieser-umweg" id="toc-wozu-dieser-umweg" class="nav-link active" data-scroll-target="#wozu-dieser-umweg">Wozu dieser Umweg?</a></li>
+  <li><a href="#rückwärts-durch-die-modellkette" id="toc-rückwärts-durch-die-modellkette" class="nav-link" data-scroll-target="#rückwärts-durch-die-modellkette">1 · Rückwärts durch die Modellkette</a></li>
+  <li><a href="#der-entscheidende-wechsel-was-bezeichnet-ein-berechneter-wert" id="toc-der-entscheidende-wechsel-was-bezeichnet-ein-berechneter-wert" class="nav-link" data-scroll-target="#der-entscheidende-wechsel-was-bezeichnet-ein-berechneter-wert">2 · Der entscheidende Wechsel: Was bezeichnet ein berechneter Wert?</a></li>
+  <li><a href="#schon-die-datenbeschaffung-ist-eine-modellentscheidung" id="toc-schon-die-datenbeschaffung-ist-eine-modellentscheidung" class="nav-link" data-scroll-target="#schon-die-datenbeschaffung-ist-eine-modellentscheidung">3 · Schon die Datenbeschaffung ist eine Modellentscheidung</a></li>
+  <li><a href="#wir-haben-verschiedene-beziehungen-formalisiert" id="toc-wir-haben-verschiedene-beziehungen-formalisiert" class="nav-link" data-scroll-target="#wir-haben-verschiedene-beziehungen-formalisiert">4 · Wir haben verschiedene Beziehungen formalisiert</a></li>
+  <li><a href="#wann-kommt-die-software-ins-spiel" id="toc-wann-kommt-die-software-ins-spiel" class="nav-link" data-scroll-target="#wann-kommt-die-software-ins-spiel">5 · Wann kommt die Software ins Spiel?</a></li>
+  <li><a href="#ein-nachvollziehbares-ergebnis-ist-mehr-als-eine-karte" id="toc-ein-nachvollziehbares-ergebnis-ist-mehr-als-eine-karte" class="nav-link" data-scroll-target="#ein-nachvollziehbares-ergebnis-ist-mehr-als-eine-karte">6 · Ein nachvollziehbares Ergebnis ist mehr als eine Karte</a></li>
+  <li><a href="#reproduzierbar-ist-nicht-automatisch-richtig" id="toc-reproduzierbar-ist-nicht-automatisch-richtig" class="nav-link" data-scroll-target="#reproduzierbar-ist-nicht-automatisch-richtig">7 · Reproduzierbar ist nicht automatisch richtig</a></li>
+  <li><a href="#was-bleibt-wenn-die-kursleitung-den-nächsten-weg-nicht-mehr-vorgibt" id="toc-was-bleibt-wenn-die-kursleitung-den-nächsten-weg-nicht-mehr-vorgibt" class="nav-link" data-scroll-target="#was-bleibt-wenn-die-kursleitung-den-nächsten-weg-nicht-mehr-vorgibt">8 · Was bleibt, wenn die Kursleitung den nächsten Weg nicht mehr vorgibt?</a></li>
+  <li><a href="#quellen-zum-weiterdenken-nach-funktion-geordnet" id="toc-quellen-zum-weiterdenken-nach-funktion-geordnet" class="nav-link" data-scroll-target="#quellen-zum-weiterdenken-nach-funktion-geordnet">Quellen zum Weiterdenken – nach Funktion geordnet</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/assets/resuemee-geo-mod-2026/pages/resuemee_modellierung_geographie.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Rückblick: Was haben wir eigentlich modelliert?</h1>
+<p class="subtitle lead">Vom Regelmodell über die Geländeanalyse zur Prozessbeschreibung – und was sich daraus für eigene Projekte ableiten lässt</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="../index.qmd">← Kursübersicht</a> · <a href="netlogo_modellvergleich.qmd">Die drei NetLogo-Modelle</a> · <a href="meander_abfluss_saga_grass.qmd">GIS-Worksheet: Abfluss und Sediment</a> · <a href="abfluss_algorithmen_quellen.qmd">Daten und Algorithmen</a></p>
+<section id="wozu-dieser-umweg" class="level2">
+<h2 class="anchored" data-anchor-id="wozu-dieser-umweg">Wozu dieser Umweg?</h2>
+<p>Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beobachtet, ein amtliches Höhenmodell beschafft, daraus Einzugsgebiete berechnet und schließlich Wasser- und Sedimentmengen unter zusätzlichen Annahmen bilanziert. Der Weg war weitgehend vorgegeben: Modell öffnen, Daten verwenden, Werkzeug ausführen, Ergebnis betrachten.</p>
+<p><strong>Was hätten wir selbst entscheiden müssen, wenn uns nur die Frage gestellt worden wäre: „Welche Flächen tragen zum Abfluss an diesem Durchlass bei – und wo könnte Material zurückbleiben?“</strong> Die Antwort liegt weder in einem bestimmten Programm noch in einer möglichst langen Liste von Algorithmen. Sie liegt in den Unterscheidungen, die wir während dieser Kette tatsächlich getroffen haben.</p>
+</section>
+<section id="rückwärts-durch-die-modellkette" class="level2">
+<h2 class="anchored" data-anchor-id="rückwärts-durch-die-modellkette">1 · Rückwärts durch die Modellkette</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Station</th>
+<th style="text-align: left;">Was war im Modell vorhanden?</th>
+<th style="text-align: left;">Welche Aussage wurde möglich – und welche nicht?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Grand Canyon</strong></td>
+<td style="text-align: left;">Ein skaliertes reales Relief, Wasseragenten und lokale Bewegungsregeln.</td>
+<td style="text-align: left;">Wege und Ansammlungen werden sichtbar. Ein Simulationsschritt ist noch keine physikalische Fließzeit.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Erosion</strong></td>
+<td style="text-align: left;">Wasserhöhen, lokaler Austausch und eine Abtragsregel. Das Gelände kann sich ändern.</td>
+<td style="text-align: left;">Abtrag und geänderte weitere Wege sind darstellbar. Die Abtragsregel liefert keine gemessene Erosionsrate.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>River Meanders</strong></td>
+<td style="text-align: left;">Ein idealisierter Gerinnekorridor mit Bewegungs-, Erosions- und Ablagerungsregeln.</td>
+<td style="text-align: left;">Mäanderformen können aus wiederholten Regeln entstehen. Die entstehende Form bestätigt keine hydraulische oder sedimentologische Prozessgleichung.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>DGM → D8/D∞ → Einzugsgebiet</strong></td>
+<td style="text-align: left;">Gemessene bzw. abgeleitete Geländehöhen in einem georeferenzierten Raster, dazu explizite Nachbarschafts- und Routingregeln.</td>
+<td style="text-align: left;">An einem gewählten Auslass werden potenzielle Entwässerungsverbindungen und beitragende Flächen berechenbar – zunächst ohne Ereigniszeit.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Abflussannahme und Sedimentbilanz</strong></td>
+<td style="text-align: left;">Ein angenommenes Abflussvolumen je Zelle beziehungsweise Materialangebot und Transportkapazität auf den vorhandenen Verbindungen.</td>
+<td style="text-align: left;">Volumen oder Materialweitergabe lassen sich bilanzieren. Weder eine Abflussganglinie noch eine Geländeentwicklung folgen automatisch daraus.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Weiterführende gekoppelte Modellierung</strong></td>
+<td style="text-align: left;">Zeitabhängige Zustände und Beziehungen, die diese Zustände fortschreiben; gegebenenfalls ändert sich auch das für den nächsten Schritt verwendete Gelände.</td>
+<td style="text-align: left;">Ereignisverläufe und Rückwirkungen werden berechenbar, sofern die zusätzlichen Prozessgleichungen, Parameter und Anfangs-/Randbedingungen festgelegt werden.</td>
+</tr>
+</tbody>
+</table>
+<p>Die ersten drei Modelle enthielten <strong>bereits Dynamik und teilweise Rückkopplungen</strong>. Die GIS-Analyse war also kein „Fortschritt von einem einfachen zu einem dynamischen Modell“. Sie führte vor allem einen <strong>konkret lokalisierbaren Untersuchungsraum, definierte Rastergrößen und eine überprüfbare räumliche Fragestellung</strong> ein. Wir haben mehrmals <strong>die Art der Frage</strong> gewechselt, nicht nur mehr Funktionen zugeschaltet.</p>
+<p><a href="netlogo_modellvergleich.qmd">Zur ursprünglichen NetLogo-Gegenüberstellung</a> · <a href="meander_abfluss_saga_grass.qmd">Zum Ablauf im GIS-Worksheet</a>. Eine systematische Beschreibung agentenbasierter Regeln und Modellstrukturen bietet das <a href="https://doi.org/10.18564/jasss.4259">ODD-Protokoll (Grimm et al., 2020)</a>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachlicher Exkurs: Regelbasiert, räumlich, dynamisch – das sind keine exklusiven Modellklassen
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Ein <strong>agentenbasiertes Modell</strong> beschreibt Einheiten, Zustände, Regeln und Interaktionen. Ein <strong>rasterbasiertes Modell</strong> definiert räumliche Träger der Größen und Operationen zwischen Zellen. Ein <strong>Bilanzmodell</strong> setzt Zu- und Abgänge zueinander in Beziehung. Ein <strong>dynamisches Modell</strong> aktualisiert Zustände über die Zeit. Diese Begriffe liegen auf unterschiedlichen Ebenen und können kombiniert werden: Ein agentenbasiertes Modell kann rasterbasiert, zeitabhängig und bilanzierend sein.</p>
+<p><strong>System Dynamics</strong> rückt Bestände, Zu- und Abflüsse sowie Rückkopplungen in den Vordergrund. Ein Sedimentspeicher ließe sich schreiben als</p>
+<p><span class="math display">\[
+S(t+\Delta t)=S(t)+\bigl(I(t)-O(t)\bigr)\,\Delta t.
+\]</span></p>
+<p><span class="math inline">\(S\)</span> ist ein Bestand, <span class="math inline">\(I\)</span> und <span class="math inline">\(O\)</span> sind Raten pro Zeit. Erst wenn <span class="math inline">\(S\)</span> auf <span class="math inline">\(I\)</span> oder <span class="math inline">\(O\)</span> zurückwirkt, liegt auch eine entsprechende Rückkopplung vor. Das ist <strong>nicht</strong> dasselbe wie die einmalige Transportbegrenzung aus dem Worksheet: Dort sind die synthetischen Materialeinheiten gerade <strong>keine</strong> zeitaufgelösten Frachten. Für diesen Modellierungsgedanken siehe <a href="https://www.mheducation.com/highered/product/Business-Dynamics-Sterman.html">Sterman (2000), <em>Business Dynamics</em>, besonders Kapitel 6–8</a>.</p>
+<p>Dass ein Raster zugleich Träger dynamischer Zustände sein kann, illustriert <a href="https://pcraster.geo.uu.nl/pcraster/4.4.3/documentation/index.html">PCRaster mit seinem Python-Modellierungsframework</a>; zur Konzeption siehe <a href="https://doi.org/10.1080/13658810601063936">Karssenberg, de Jong &amp; van der Kwast (2007)</a>. Daraus entsteht <strong>keine weitere Pflichtsoftware</strong> für diesen Block.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="der-entscheidende-wechsel-was-bezeichnet-ein-berechneter-wert" class="level2">
+<h2 class="anchored" data-anchor-id="der-entscheidende-wechsel-was-bezeichnet-ein-berechneter-wert">2 · Der entscheidende Wechsel: Was bezeichnet ein berechneter Wert?</h2>
+<p>Betrachten wir vier <strong>Lesebeispiele</strong> aus dem Worksheet. Die Zahlen illustrieren verschiedene Ausgaben; sie behaupten keine gemeinsam gemessenen Werte an einer bestimmten Zelle:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Wert</th>
+<th style="text-align: left;">Was bedeutet er?</th>
+<th style="text-align: left;">Was müsste für eine weitergehende Aussage hinzukommen?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>ad8 = 800</code> bei 5 m Rasterweite</td>
+<td style="text-align: left;">800 D8-verbundene Rasterzellen; <strong>20 000 m² = 2 ha</strong> beitragende Fläche.</td>
+<td style="text-align: left;">Für eine Wassermenge: ein Abflussbeitrag je Flächeneinheit.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>800 × 25 m² × 0,010 m = 200 m³</code></td>
+<td style="text-align: left;"><strong>200 m³</strong> bei <strong>gesetzten</strong> 10 mm effektivem Abfluss auf allen 800 Zellen.</td>
+<td style="text-align: left;">Für m³/s: ein zeitlicher Verlauf, Fließzeiten und die Weiterleitung der Wassermenge.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>sca = 30 m</code></td>
+<td style="text-align: left;">Spezifische beitragende Fläche: <strong>30 m² je Meter Bezugsbreite</strong>, berechnet mit D∞.</td>
+<td style="text-align: left;">Für einen Feuchte- oder Abflussprozess: weitere Zustandsgrößen und eine begründete Beziehung.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>tdep = 0,4 ME</code></td>
+<td style="text-align: left;"><strong>0,4 synthetische Materialeinheiten</strong> werden im gewählten Bilanzfall nicht weitertransportiert.</td>
+<td style="text-align: left;">Für eine Höhenänderung: physikalisch definierte Masse/Volumen, Dichte, Zellfläche und ein Verfahren zur Aktualisierung des DGM.</td>
+</tr>
+</tbody>
+</table>
+<p>Der Unterschied ist nicht semantische Pedanterie. Wer 200 m³ als Abflussspitze bezeichnet oder aus synthetischen Materialeinheiten eine Auflandungshöhe ableitet, behauptet ein Ergebnis, das <strong>gar nicht berechnet</strong> wurde. Ebenso ist der <strong>Topographic Wetness Index</strong> kein Sensorwert der Bodenfeuchte. Er führt Geländeneigung und spezifische beitragende Fläche unter einer bestimmten Modellidee zusammen; der hydrologische Hintergrund reicht bis zu <a href="https://doi.org/10.1080/02626667909491834">Beven &amp; Kirkby (1979)</a>.</p>
+<p><strong>Die erste übertragbare Unterscheidung:</strong> Eine Modellgröße braucht eine <strong>Definition, Einheit, räumliche und gegebenenfalls zeitliche Bezugsgröße</strong>. Ein Algorithmusname ersetzt keine dieser Angaben.</p>
+</section>
+<section id="schon-die-datenbeschaffung-ist-eine-modellentscheidung" class="level2">
+<h2 class="anchored" data-anchor-id="schon-die-datenbeschaffung-ist-eine-modellentscheidung">3 · Schon die Datenbeschaffung ist eine Modellentscheidung</h2>
+<p>Für das Rote Wasser benötigten wir nicht einfach „irgendein DEM“. Die Frage nach einem konkreten Auslass erforderte ein räumlich verortetes Relief und eine unabhängig kartierte Gewässerreferenz. Im Worksheet wurden dafür unterschiedliche amtliche Datenprodukte eingesetzt:</p>
+<ul>
+<li><strong>DGM1 Hessen</strong> beschreibt Geländeoberflächenhöhen im Raster. Das Landesamt weist ausdrücklich auf erfassungsbedingte Unsicherheiten und unterschiedliche Erfassungszeitpunkte hin. <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle">HVBG: Digitale Geländemodelle</a>.</li>
+<li><strong>ATKIS Basis-DLM</strong> enthält kartierte Gewässer- und Landschaftsobjekte als Vektordaten mit Objektklassen und Attributen. Die Gewässerlinie ist damit eine <strong>Referenz</strong>, aber keine Messung der momentanen Fließrichtung in einer Rasterzelle. <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell">HVBG: Basis-DLM</a>.</li>
+<li><strong>Landnutzung</strong> kann später eine Begründung für räumlich variierende Parameter liefern. Aus der Klasse „Wald“ folgt aber weder ein konkreter Infiltrationswert noch ein Sedimentangebot. Dafür braucht es zusätzliche Daten oder eine kenntlich gemachte Parametrisierung.</li>
+</ul>
+<p>Die Datenwahl bestimmte unmittelbar die Analyse: Wir haben das DGM1 für den gemeinsamen Arbeitsweg auf <strong>5 m</strong> aggregiert, ein metrisches Bezugssystem verwendet und ein <strong>größeres Rechengebiet als den 2 × 2-km-Kartenausschnitt</strong> benötigt. Würden oberhalb liegende Flächen fehlen, wäre die Akkumulation am Auslass unvollständig. Würde die Rastergrenze verschoben, könnten andere Zellen zum Auslass gehören. Ein im DGM nicht abgebildeter Durchlass kann eine falsche Entwässerungsverbindung erzeugen.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technischer Exkurs: Was müsste im Datenverzeichnis tatsächlich stehen?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Ein verwendbares Datenprotokoll nennt <strong>nicht nur den Anbieter</strong>. Für das konkrete Projekt wären festzuhalten:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Eintrag</th>
+<th style="text-align: left;">Konkret zu dokumentieren</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DGM1</td>
+<td style="text-align: left;">Produkt, heruntergeladene <strong>Kacheln/Dateinamen</strong>, Bezugs- bzw. Erfassungsstand soweit angegeben, Downloadzeitpunkt, Bezugs-URL und Nutzungsbedingungen</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATKIS</td>
+<td style="text-align: left;">verwendete <strong>Version / Datenstand</strong>, Gewässer- und Landnutzungs-Layer sowie ihre Attributbedeutung</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Raumbezug</td>
+<td style="text-align: left;">EPSG-Code, horizontale und vertikale Maßeinheiten, gegebenenfalls Höhenreferenz</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vorverarbeitung</td>
+<td style="text-align: left;">Quellraster, Resampling (<code>Average</code>), Zielweite <strong>5 m</strong>, Zielausdehnung, Ursprung, NoData-Maske und Ausgabeformat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kontrollgeometrie</td>
+<td style="text-align: left;">Lage/ID des gewählten Auslasses, gegebenenfalls Verschiebung auf eine Gerinnezelle, betrachtete Gewässerreferenz</td>
+</tr>
+</tbody>
+</table>
+<p>Die genaue Kachelkennung und der tatsächliche Datenstand dürfen <strong>nicht</strong> aus einer Beispielanleitung übernommen werden; sie müssen aus den wirklich verwendeten Dateien stammen. Die unveränderten Eingabedaten bleiben getrennt von abgeleiteten Dateien. Ist eine Weitergabe der Rohdaten lizenzrechtlich nicht zulässig, sollte zumindest ein nachvollziehbarer Bezugsweg dokumentiert werden.</p>
+</div>
+</div>
+</div>
+<p>Daten sind deshalb kein bloßer Vorbereitungsschritt. <strong>Welche Landschaftseigenschaft wir mit welcher Auflösung, zu welchem Zeitpunkt und aus welcher Quelle überhaupt kennen</strong>, bestimmt, welche Modellfragen sich anschließend sinnvoll stellen lassen.</p>
+</section>
+<section id="wir-haben-verschiedene-beziehungen-formalisiert" class="level2">
+<h2 class="anchored" data-anchor-id="wir-haben-verschiedene-beziehungen-formalisiert">4 · Wir haben verschiedene Beziehungen formalisiert</h2>
+<p>Auch am selben DGM haben wir nicht „denselben Abfluss“ auf vier Arten berechnet. Die Operationen formulieren verschiedene Beziehungen:</p>
+<ol type="1">
+<li><strong>Nachbarschaft und Richtung:</strong> D8 ordnet jeder gültigen Zelle einen Empfänger zu; D∞ beschreibt einen kontinuierlichen Richtungswinkel mit anteiliger Weitergabe an höchstens zwei Nachbarn. <a href="https://doi.org/10.1016/S0734-189X(84)80011-0">O’Callaghan &amp; Mark (1984)</a>; <a href="https://doi.org/10.1029/96WR03137">Tarboton (1997)</a>.</li>
+<li><strong>Aggregation entlang dieser Verbindungen:</strong> Aus Einzelzellen werden beitragende Flächen. Das ist eine <strong>räumliche Summation</strong>, nicht die Simulation eines Regens.</li>
+<li><strong>Eine gesetzte Beziehung zu einer weiteren Größe:</strong> <code>10 mm × Fläche</code> erzeugt ein hypothetisches Volumen. Die Fließverbindungen ändern sich dadurch nicht.</li>
+<li><strong>Ein begrenzter Stofftransport:</strong> Vorhandenes und neu angebotenes Material wird mit einer gesetzten Transportkapazität verglichen. Die resultierende Ablagerung verändert im Worksheet <strong>nicht</strong> das Höhenraster.</li>
+<li><strong>Ein anderer Modelltyp würde Zustände fortschreiben:</strong> Wasserhöhe, Geschwindigkeit und gegebenenfalls Geländeentwicklung würden zu veränderlichen Größen mit eigenen Anfangsbedingungen, Randbedingungen und Zeitschritten. Erst eine implementierte Kopplung lässt eine berechnete Geländeveränderung auf den folgenden Abfluss zurückwirken.</li>
+</ol>
+<p>Diese Unterschiede erklären auch, weshalb die <strong>gleiche Karte</strong> keine eindeutige Aussage über den zugrunde liegenden Prozess liefert. Eine plausible Bachlinie kann aus einem einfachen Routingverfahren entstehen, ohne dass Fließgeschwindigkeit, Infiltration oder Sedimenttransport modelliert wurden. Vergleichbare Erscheinungsbilder beweisen keine vergleichbaren Mechanismen.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachlicher Exkurs: Woran erkennt man eine zusätzliche Prozessannahme?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Man kann die Modellkette als Folge von Informationsanforderungen lesen:</p>
+<p><strong>Topografie bekannt</strong> → potenzielles Routing bestimmbar.<br>
+<strong>Effektiver Abfluss je Zelle angenommen</strong> → aufsummiertes Volumen bestimmbar.<br>
+<strong>Niederschlag und Verluste räumlich und zeitlich beschrieben</strong> → Abflussbildung kann modelliert werden.<br>
+<strong>Speicher, Fließwiderstände und hydraulische Beziehungen beschrieben</strong> → zeitlicher Abflussverlauf kann berechnet werden.<br>
+<strong>Materialverfügbarkeit und Transportbeziehungen ergänzt</strong> → Sedimentbewegung modellierbar.<br>
+<strong>Abtrag/Ablagerung in Geländeänderung umgesetzt und zurückgekoppelt</strong> → morphodynamische Entwicklung modellierbar.</p>
+<p>Jeder Pfeil steht für <strong>neue Größen, Annahmen und Prüfanforderungen</strong>, nicht zwangsläufig für ein neues Programm. Die wissenschaftliche Modellpraxis ist entsprechend <strong>iterativ</strong>, keine Einbahnstraße. Dazu <a href="https://doi.org/10.1016/j.envsoft.2006.01.004">Jakeman, Letcher &amp; Norton (2006)</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="wann-kommt-die-software-ins-spiel" class="level2">
+<h2 class="anchored" data-anchor-id="wann-kommt-die-software-ins-spiel">5 · Wann kommt die Software ins Spiel?</h2>
+<p>Für die GIS-Strecke war TauDEM ein durchgehender Rechenweg. Das bedeutet nicht, dass TauDEM grundsätzlich „hydrologischer“ wäre als GRASS, WhiteboxTools, SAGA oder PCRaster. Wir benötigen eine bestimmte Operation – etwa Routing, Akkumulation, zeitliche Fortschreibung oder räumliche Optimierung – und suchen eine Implementierung, die <strong>unsere gewählte Modellbeschreibung</strong> ausführen kann.</p>
+<p>Für eine Einzugsgebietsabgrenzung kann eine vorhandene GRASS-Lösung vollständig genügen. Für die hier verwendete Kombination aus D∞-Routing und transportbegrenzter Akkumulation war TauDEM als zusammenhängender Werkzeugweg praktisch. PCRaster wiederum ist eine Umgebung zum <strong>Aufbau eigener räumlicher und dynamischer Modelle</strong>; es ist nicht einfach ein weiterer Button für dasselbe Einzugsgebiet. Die Frage „Welches Paket ist wissenschaftlicher?“ führt deshalb nicht weiter.</p>
+<p><strong>Im Alltag darf Vertrautheit ein guter Grund sein, ein Programm weiterzuverwenden</strong> – sofern damit die benötigte Berechnung und Dokumentation möglich sind. Nicht begründbar wäre dagegen, eine ganz andere Modellfrage auf die vorhandenen Menüeinträge zu reduzieren. Die <a href="werkzeugwahl_gelaendehydrologie.qmd">Werkzeugwahl-Seite</a> diskutiert die konkreten hydrologischen Verfahren; das <a href="abfluss_algorithmen_quellen.qmd">Algorithmenkompendium</a> liefert die Nachweise dazu.</p>
+</section>
+<section id="ein-nachvollziehbares-ergebnis-ist-mehr-als-eine-karte" class="level2">
+<h2 class="anchored" data-anchor-id="ein-nachvollziehbares-ergebnis-ist-mehr-als-eine-karte">6 · Ein nachvollziehbares Ergebnis ist mehr als eine Karte</h2>
+<p>Stellen wir uns vor, eine andere Person erhält nur die fertige Karte mit unserem Einzugsgebiet. Kann sie entscheiden, ob der rote Bachabschnitt ein amtlich kartiertes Gewässer oder eine aus <code>ad8</code> mit 2 ha Schwelle abgeleitete Gerinnelinie ist? Weiß sie, ob ein Durchlass korrigiert wurde? Kann sie erklären, warum die Ablagerungswerte in Materialeinheiten und nicht in Tonnen angegeben sind?</p>
+<p><strong>Transparenz</strong> bedeutet, dass die Entscheidungen verständlich offengelegt werden. <strong>Reproduzierbarkeit</strong> bedeutet zusätzlich, dass sich der Rechenweg mit denselben Eingaben, Versionen und Parametern erneut ausführen beziehungsweise nachvollziehen lässt. <strong>Empirische Tragfähigkeit</strong> ist eine dritte Frage: Ob die Modellannahmen und Ergebnisse im Gelände durch Beobachtungen gestützt werden. Diese drei Eigenschaften sind nicht austauschbar. Siehe <a href="https://doi.org/10.1126/science.1213847">Peng (2011)</a>, <a href="https://doi.org/10.1371/journal.pcbi.1005510">Wilson et al.&nbsp;(2017)</a> und <a href="https://doi.org/10.1126/science.263.5147.641">Oreskes, Shrader-Frechette &amp; Belitz (1994)</a>.</p>
+<p>Für unseren GIS-Fall müsste eine andere Person <strong>mindestens</strong> die folgende Kette wiederfinden können:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Entscheidung im Projekt</th>
+<th style="text-align: left;">Was muss erhalten bleiben?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Ausgangsfrage:</strong> Einzugsgebiet am gewählten Auslass</td>
+<td style="text-align: left;">Lage/ID des Auslasses, räumlicher Betrachtungsbereich und eindeutige Zielgröße</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Daten:</strong> DGM1 und Basis-DLM</td>
+<td style="text-align: left;">Bezugsquelle, Produktversion/Stand, tatsächlich verwendete Kacheln, Rechte und unveränderte Originaldateien beziehungsweise eindeutige Datenreferenzen</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Transformation:</strong> DGM1 → 5-m-Raster</td>
+<td style="text-align: left;">KBS, Auflösung, Resampling, Rasterursprung, Ausdehnung, NoData-Behandlung</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Operation:</strong> Senkenbehandlung → D8/D∞ → Akkumulation</td>
+<td style="text-align: left;">Algorithmus, Softwareversion, Parameter, Eingabe- und Ausgabepfade sowie ausgeführte Reihenfolge</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Gesetzte Annahmen:</strong> 2-ha-Schwelle; 10 mm; Materialangebot und -kapazität</td>
+<td style="text-align: left;">Werte, Einheiten, Geltungsbereich, Begründung und Kennzeichnung als gesetzt, aus Literatur übernommen oder gemessen</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Prüfung:</strong> Vergleich mit ATKIS; Auslass; Bilanzkontrolle</td>
+<td style="text-align: left;">Vorgehen, Abweichungen, nicht erklärte Befunde und Grenzen der Aussage</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Ergebnis:</strong> Karten und Raster</td>
+<td style="text-align: left;">Welche Datei welchen Wert enthält, mit Einheit und Bedeutung; möglichst automatisch erneut erzeugbar</td>
+</tr>
+</tbody>
+</table>
+<p>Das wirkt umfangreich. Tatsächlich entstehen die meisten Angaben <strong>bereits beim Rechnen</strong>. Das Problem entsteht erst, wenn sie als ungeordnete Klickfolge, überschriebene Zwischendatei oder nicht gespeicherte Entscheidung verloren gehen.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technischer Exkurs: Ein kleines, tatsächliches Modellprotokoll statt eines Screenshots des Werkzeugdialogs
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Der folgende Ausschnitt zeigt die <strong>Struktur</strong> einer maschinenlesbaren Projektbeschreibung. Er ist <strong>kein Bericht eines durchgeführten Rechenlaufs</strong>. Fragezeichen sind nach der eigenen Ausführung durch tatsächlich überprüfte Werte zu ersetzen.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frage</span><span class="kw">:</span><span class="at"> </span><span class="st">"Welche Fläche entwässert zum gewählten Auslass?"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gebiet</span><span class="kw">:</span><span class="at"> </span><span class="st">"Oberlauf Rotes Wasser / Burgwald"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bezugssystem</span><span class="kw">:</span><span class="at"> </span><span class="st">"EPSG:25832"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">eingaben</span><span class="kw">:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dgm</span><span class="kw">:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">produkt</span><span class="kw">:</span><span class="at"> </span><span class="st">"DGM1 Hessen"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">kacheln</span><span class="kw">:</span><span class="at"> </span><span class="st">"&lt;tatsaechliche_Dateinamen&gt;"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">datenstand</span><span class="kw">:</span><span class="at"> </span><span class="st">"&lt;angegebener_Datenstand&gt;"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">bezug</span><span class="kw">:</span><span class="at"> </span><span class="st">"&lt;Download-URL und Datum&gt;"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">gewaesserreferenz</span><span class="kw">:</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">produkt</span><span class="kw">:</span><span class="at"> </span><span class="st">"ATKIS Basis-DLM"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">datenstand</span><span class="kw">:</span><span class="at"> </span><span class="st">"&lt;tatsaechlicher_Stand&gt;"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">verarbeitung</span><span class="kw">:</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">zielraster_m</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">resampling</span><span class="kw">:</span><span class="at"> average</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rechengebiet</span><span class="kw">:</span><span class="at"> </span><span class="st">"&lt;Rasterausdehnung&gt;"</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">auslass</span><span class="kw">:</span><span class="at"> </span><span class="st">"&lt;Punkt-ID und Koordinaten&gt;"</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">routing</span><span class="kw">:</span><span class="at"> </span><span class="st">"D8"</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">senkenbehandlung</span><span class="kw">:</span><span class="at"> </span><span class="st">"TauDEM PitRemove"</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">akkumulation</span><span class="kw">:</span><span class="at"> </span><span class="st">"TauDEM AreaD8"</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">gerinneschwelle_ha</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">softwareversionen</span><span class="kw">:</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">qgis</span><span class="kw">:</span><span class="at"> </span><span class="st">"&lt;Version&gt;"</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">taudem</span><span class="kw">:</span><span class="at"> </span><span class="st">"&lt;Version&gt;"</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">pruefung</span><span class="kw">:</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">referenz</span><span class="kw">:</span><span class="at"> </span><span class="st">"ATKIS-Gewaesserlinie"</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">auffaelligkeiten</span><span class="kw">:</span><span class="at"> </span><span class="st">"&lt;tatsaechlicher_Befund&gt;"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Die <strong>Dateien und die Befehls- oder Processing-Historie</strong> gehören neben diese Beschreibung. QGIS dokumentiert ausgeführte Processing-Aufrufe samt Parametern in seiner <a href="https://documentation.qgis.org/3.44/en/docs/user_manual/processing/history.html">Processing-History</a>; das ersetzt aber weder das Datenprotokoll noch die Beschreibung fachlicher Annahmen. Für einfache, praktikable Regeln zu Projektordnern, Versionsverwaltung und Skripten: <a href="https://doi.org/10.1371/journal.pcbi.1003285">Sandve et al.&nbsp;(2013)</a> und <a href="https://doi.org/10.1371/journal.pcbi.1005510">Wilson et al.&nbsp;(2017)</a>.</p>
+<p>Die <a href="https://doi.org/10.1038/sdata.2016.18">FAIR-Prinzipien</a> (auffindbar, zugänglich, interoperabel, nachnutzbar) sind dabei ein weitergehender Bezugsrahmen für Daten, Code und Workflows. <strong>FAIR allein garantiert weder gleiche Rechenergebnisse noch ein sachlich richtiges Modell.</strong></p>
+</div>
+</div>
+</div>
+</section>
+<section id="reproduzierbar-ist-nicht-automatisch-richtig" class="level2">
+<h2 class="anchored" data-anchor-id="reproduzierbar-ist-nicht-automatisch-richtig">7 · Reproduzierbar ist nicht automatisch richtig</h2>
+<p>Ein reproduzierbarer Fehler bleibt ein Fehler. Wir könnten den gleichen D8-Algorithmus hundertmal auf demselben, an einem Durchlass unzutreffenden DGM ausführen: Das Ergebnis wäre sehr gut reproduzierbar und könnte gerade dort falsch sein, wo uns der Abflussweg interessiert.</p>
+<p>Drei Prüfungen sind deshalb auseinanderzuhalten:</p>
+<ul>
+<li><strong>Rechenprüfung:</strong> Entspricht die Ausgabe den dokumentierten Eingaben und Rechenregeln? Beispielsweise: Bei 5-m-Zellen entsprechen 800 Zellen genau 2 ha. Stimmt die Volumenbilanz bei 10 mm mit 200 m³ überein?</li>
+<li><strong>Plausibilitäts- und Datenprüfung:</strong> Stimmen berechnete Gerinne und Einzugsgebietsgrenzen mit unabhängigen Hinweisen aus ATKIS, Orthofoto und Relief überein? Wo sind Abweichungen durch Durchlässe, Senken oder Rastergrenzen erklärbar?</li>
+<li><strong>Empirische Prozessprüfung:</strong> Stützen Messungen die behauptete Abflussmenge, Feuchte oder Sedimentfracht? Für die synthetischen Materialeinheiten des Worksheets ist eine solche Aussage <strong>nicht möglich</strong>, solange keine entsprechende Beobachtungs- und Parametrisierungsgrundlage vorliegt.</li>
+</ul>
+<p>Oreskes, Shrader-Frechette &amp; Belitz (1994) machen deutlich, weshalb Übereinstimmungen mit Beobachtungen ein Modell stützen, aber die Eindeutigkeit seiner Erklärung nicht beweisen. Jakeman, Letcher &amp; Norton (2006) behandeln die Dokumentation von Annahmen, die Prüfung der Modellleistung und die iterative Überarbeitung als Teile derselben Modellierungsarbeit.</p>
+</section>
+<section id="was-bleibt-wenn-die-kursleitung-den-nächsten-weg-nicht-mehr-vorgibt" class="level2">
+<h2 class="anchored" data-anchor-id="was-bleibt-wenn-die-kursleitung-den-nächsten-weg-nicht-mehr-vorgibt">8 · Was bleibt, wenn die Kursleitung den nächsten Weg nicht mehr vorgibt?</h2>
+<p>Die einzelnen Arbeitsschritte lassen sich nun zu einem <strong>wiederverwendbaren Vorgehen</strong> verdichten. Für eine neue geographische Modellierungsfrage müsste zuerst geklärt werden:</p>
+<ol type="1">
+<li><strong>Aussage:</strong> Welche Größe oder Beziehung soll am Ende für welchen Ort, Zeitraum und Maßstab bestimmt werden?</li>
+<li><strong>Abstraktion:</strong> Welche Teile der Wirklichkeit werden berücksichtigt, welche ausdrücklich ausgelassen?</li>
+<li><strong>Repräsentation:</strong> In welchen räumlichen oder zeitlichen Einheiten wird gerechnet – Rasterzellen, Objekte, Agenten, Bestände, Netzwerke?</li>
+<li><strong>Beziehungen:</strong> Welche Regeln, Bilanzen, statistischen Modelle oder Prozessgleichungen erzeugen das Ergebnis? Welche Variablen ändern sich selbst im Modell?</li>
+<li><strong>Daten und Parameter:</strong> Woher stammen sie, auf welcher Skala gelten sie, und welche Angaben müssen wir selbst setzen oder schätzen?</li>
+<li><strong>Berechnung:</strong> Welche vorhandene Implementierung kann genau diese Modellbeschreibung umsetzen? Wo reichen vertraute Werkzeuge, wo nicht?</li>
+<li><strong>Prüfbarkeit:</strong> Woran würde ein unplausibles Ergebnis auffallen, und was müsste jemand anderes erhalten, um die Rechnung nachzuvollziehen?</li>
+</ol>
+<p>Das ist <strong>keine starre Reihenfolge</strong>: Stellt sich etwa erst bei der Datenbeschaffung heraus, dass das Gerinne nicht aufgelöst ist, muss die Modellfrage oder die räumliche Repräsentation erneut betrachtet werden. Diese Rücksprünge gehören zur Modellierung.</p>
+<p>Dasselbe Vorgehen lässt sich auf andere Gegenstände übertragen: Aus Sentinel-Daten kann ein Vegetationsindex berechnet werden; dessen zeitliche Abfolge ist aber noch kein Vegetationsprozessmodell. Eine gewichtete Standort-Eignungskarte ist keine Optimierung unter Kapazitätsbedingungen. In beiden Fällen beginnt die Werkzeugwahl erst sinnvoll, nachdem die <strong>gewünschte Aussage</strong> und die dazu notwendigen <strong>Beziehungen</strong> geklärt wurden.</p>
+<p><strong>Das Ergebnis dieses Blocks ist daher nicht die Empfehlung für TauDEM oder NetLogo.</strong> Es ist die Fähigkeit, ein Modell als <strong>begründete, dokumentierte Folge von Entscheidungen</strong> zu lesen – und im nächsten Block diese Entscheidungen selbst zu treffen, statt einen bereits vorgezeichneten Werkzeugweg abzuarbeiten.</p>
+</section>
+<section id="quellen-zum-weiterdenken-nach-funktion-geordnet" class="level2">
+<h2 class="anchored" data-anchor-id="quellen-zum-weiterdenken-nach-funktion-geordnet">Quellen zum Weiterdenken – nach Funktion geordnet</h2>
+<p>Die folgenden Texte und Dokumentationen beziehen sich jeweils auf eine <strong>konkrete Erkenntnis aus unserer Modellkette</strong>. Sie sind nicht als zusätzliche Softwareübungen zu verstehen.</p>
+<section id="modellstrukturen-abstraktion-und-dynamik" class="level3">
+<h3 class="anchored" data-anchor-id="modellstrukturen-abstraktion-und-dynamik">Modellstrukturen, Abstraktion und Dynamik</h3>
+<ul>
+<li><strong>Grimm, V. et al.&nbsp;(2020).</strong> <a href="https://doi.org/10.18564/jasss.4259"><em>The ODD protocol for describing agent-based and other simulation models: A second update</em></a>. <em>JASSS</em>. <strong>Wofür?</strong> Wie sich Agenten, Zustände, Interaktionen, Regeln und Ablauf so beschreiben lassen, dass das Modell verstanden und nachgebaut werden kann.</li>
+<li><strong>Sterman, J. D. (2000).</strong> <a href="https://www.mheducation.com/highered/product/Business-Dynamics-Sterman.html"><em>Business Dynamics: Systems Thinking and Modeling for a Complex World</em></a>, Kapitel 6–8. <strong>Wofür?</strong> Bestände, Raten, Zeitfortschreibung und Rückkopplungen als andere – mit räumlichen Modellen kombinierbare – Beschreibungsperspektive.</li>
+<li><strong>Karssenberg, D., de Jong, K. &amp; van der Kwast, J. (2007).</strong> <a href="https://doi.org/10.1080/13658810601063936"><em>Modelling landscape dynamics with Python</em></a>. <em>International Journal of Geographical Information Science</em>, 21, 483–495. <strong>Wofür?</strong> Verbindung von räumlichen Kartenoperationen und selbst formulierter zeitlicher Landschaftsdynamik.</li>
+<li><strong>Jakeman, A. J., Letcher, R. A. &amp; Norton, J. P. (2006).</strong> <a href="https://doi.org/10.1016/j.envsoft.2006.01.004"><em>Ten iterative steps in development and evaluation of environmental models</em></a>. <em>Environmental Modelling &amp; Software</em>, 21, 602–614. <strong>Wofür?</strong> Modellierung als begründeter, dokumentierter und revidierbarer Forschungsprozess – besonders geeignet als Vertiefung nach diesem Block.</li>
+</ul>
+</section>
+<section id="die-konkrete-hydrologische-kette" class="level3">
+<h3 class="anchored" data-anchor-id="die-konkrete-hydrologische-kette">Die konkrete hydrologische Kette</h3>
+<ul>
+<li><strong>O’Callaghan, J. F. &amp; Mark, D. M. (1984).</strong> <a href="https://doi.org/10.1016/S0734-189X(84)80011-0"><em>The extraction of drainage networks from digital elevation data</em></a>. <strong>Wofür?</strong> Abflussverbindungen aus einem diskreten Höhenmodell.</li>
+<li><strong>Tarboton, D. G. (1997).</strong> <a href="https://doi.org/10.1029/96WR03137"><em>A new method for the determination of flow directions and upslope areas in grid digital elevation models</em></a>. <em>Water Resources Research</em>, 33, 309–319. <strong>Wofür?</strong> Unterschied zwischen diskreten D8-Richtungen und kontinuierlichem D∞-Winkel mit anteiliger Weitergabe.</li>
+<li><strong>Beven, K. J. &amp; Kirkby, M. J. (1979).</strong> <a href="https://doi.org/10.1080/02626667909491834"><em>A physically based, variable contributing area model of basin hydrology</em></a>. <strong>Wofür?</strong> Hintergrund der Beziehung zwischen Topografie, beitragenden Flächen und hydrologischen Modellannahmen; nicht mit einer direkten Feuchtemessung verwechseln.</li>
+<li><strong>Hessische Verwaltung für Bodenmanagement und Geoinformation.</strong> <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle">DGM-Produktbeschreibung</a> und <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell">ATKIS Basis-DLM</a>. <strong>Wofür?</strong> Unterschied zwischen einem abgeleiteten Geländehöhenprodukt und kartierten Landschaftsobjekten samt Datenqualität und Produktmetadaten.</li>
+<li><strong>TauDEM.</strong> <a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityContributingArea.html">Werkzeugdokumentation zu D∞-Flächenakkumulation</a> und <a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityTransportLimitedAccumulation.html">transportbegrenzter Akkumulation</a>. <strong>Wofür?</strong> Exakte Eingabegrößen, Ausgabeeinheiten und Annahmen unserer Rechenoperationen. Weitere Einzelwerkzeuge stehen im <a href="abfluss_algorithmen_quellen.qmd">Kurskompendium</a>.</li>
+</ul>
+</section>
+<section id="dokumentation-daten-und-modellprüfung" class="level3">
+<h3 class="anchored" data-anchor-id="dokumentation-daten-und-modellprüfung">Dokumentation, Daten und Modellprüfung</h3>
+<ul>
+<li><strong>Peng, R. D. (2011).</strong> <a href="https://doi.org/10.1126/science.1213847"><em>Reproducible research in computational science</em></a>. <em>Science</em>, 334, 1226–1227. <strong>Wofür?</strong> Warum nachvollziehbare Rechenschritte eine wissenschaftliche Mindestanforderung sind.</li>
+<li><strong>Sandve, G. K. et al.&nbsp;(2013).</strong> <a href="https://doi.org/10.1371/journal.pcbi.1003285"><em>Ten simple rules for reproducible computational research</em></a>. <em>PLoS Computational Biology</em>, 9, e1003285. <strong>Wofür?</strong> Rechenläufe, Eingaben und Zwischenschritte so behandeln, dass sie später wieder auffindbar bleiben.</li>
+<li><strong>Wilson, G. et al.&nbsp;(2017).</strong> <a href="https://doi.org/10.1371/journal.pcbi.1005510"><em>Good enough practices in scientific computing</em></a>. <em>PLoS Computational Biology</em>, 13, e1005510. <strong>Wofür?</strong> Praktische Projektorganisation, Versionskontrolle, Dateien, Skripte und Zusammenarbeit.</li>
+<li><strong>Wilkinson, M. D. et al.&nbsp;(2016).</strong> <a href="https://doi.org/10.1038/sdata.2016.18"><em>The FAIR Guiding Principles for scientific data management and stewardship</em></a>. <em>Scientific Data</em>, 3, 160018. <strong>Wofür?</strong> Daten und Workflows über den eigenen Rechner hinaus auffindbar, zugänglich und nachnutzbar machen.</li>
+<li><strong>Oreskes, N., Shrader-Frechette, K. &amp; Belitz, K. (1994).</strong> <a href="https://doi.org/10.1126/science.263.5147.641"><em>Verification, validation, and confirmation of numerical models in the Earth sciences</em></a>. <em>Science</em>, 263, 641–646. <strong>Wofür?</strong> Die Grenzen von Modellprüfung und die Unterscheidung zwischen erfolgreichem Rechenlauf und empirisch gestützter Erklärung.</li>
+<li><strong>QGIS-Dokumentation.</strong> <a href="https://documentation.qgis.org/3.44/en/docs/user_manual/processing/history.html"><em>Processing history manager</em></a>. <strong>Wofür?</strong> Ausgeführte Operationen und Parameter protokollieren und erneut aufrufen – als Teil, nicht als Ersatz einer Projektdokumentation.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/gisma-courses\.github\.io\/geo-mod-2026");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/assets/resuemee-geo-mod-2026/pages/resuemee_modellierung_geographie.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

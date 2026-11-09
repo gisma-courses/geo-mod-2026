@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Abflussmodellierung im Burgwald – Modellieren in der Geographie</title>
+<title>Abflusswege und Sediment im kleinen Einzugsgebiet – Modellieren in der Geographie</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,7 +29,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../slides/burgwald_abfluss_uebergang.html" rel="prev">
+<link href="../pages/abfluss_algorithmen_quellen.html" rel="next">
+<link href="../pages/einstieg_abflussmodellierung.html" rel="prev">
 <link href="..//images/logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -125,43 +91,18 @@ background: ../images/placeholder.png;
       }
 </style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Abflussmodellierung im Burgwald – Modellieren in der Geographie">
-<meta property="og:description" content="DGM, D8/MFD, Modellskalen und Landnutzung als Rauigkeit">
+<meta property="og:title" content="Abflusswege und Sediment im kleinen Einzugsgebiet – Modellieren in der Geographie">
+<meta property="og:description" content="DGM · TauDEM · QGIS – vom Gelände zur begrenzten Transportkapazität">
+<meta property="og:image" content="https://gisma-courses.github.io/geo-mod-2026/images/abfluss_workflow.svg">
 <meta property="og:site_name" content="Modellieren in der Geographie">
-<meta name="twitter:title" content="Abflussmodellierung im Burgwald – Modellieren in der Geographie">
-<meta name="twitter:description" content="DGM, D8/MFD, Modellskalen und Landnutzung als Rauigkeit">
+<meta property="og:image:alt" content="DGM1 wird zum 5-m-Arbeitsraster und nach der Senkenbehandlung in D8 und D∞ verzweigt: D8 liefert Flächenakkumulation, Gerinneschwellen, Einzugsgebiet und ein hypothetisches Abflussvolumen; D∞ liefert SCA, TWI und eine Materialbilanz. ATKIS ist nur Vergleich.">
+<meta name="twitter:title" content="Abflusswege und Sediment im kleinen Einzugsgebiet – Modellieren in der Geographie">
+<meta name="twitter:description" content="DGM · TauDEM · QGIS – vom Gelände zur begrenzten Transportkapazität">
+<meta name="twitter:image" content="https://gisma-courses.github.io/geo-mod-2026/images/abfluss_workflow.svg">
 <meta name="twitter:creator" content="@gisma">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image:alt" content="DGM1 wird zum 5-m-Arbeitsraster und nach der Senkenbehandlung in D8 und D∞ verzweigt: D8 liefert Flächenakkumulation, Gerinneschwellen, Einzugsgebiet und ein hypothetisches Abflussvolumen; D∞ liefert SCA, TWI und eine Materialbilanz. ATKIS ist nur Vergleich.">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -336,7 +277,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Abflussmodellierung im Burgwald</h1>
+          <h1 class="quarto-secondary-nav-title">Abflusswege und Sediment im kleinen Einzugsgebiet</h1>
         </a>     
     </div>
   </nav>
@@ -345,8 +286,8 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Abflussmodellierung im Burgwald</h1>
-            <p class="subtitle lead">DGM, D8/MFD, Modellskalen und Landnutzung als Rauigkeit</p>
+      <h1 class="title d-none d-lg-block">Abflusswege und Sediment im kleinen Einzugsgebiet</h1>
+            <p class="subtitle lead">DGM · TauDEM · QGIS – vom Gelände zur begrenzten Transportkapazität</p>
                       </div>
   </div>
     
@@ -381,17 +322,47 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Reader</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Angeleitete Modellierungsfolge</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/modellbildung_gis_reader.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Grundlagen der Modellbildung</span></a>
+  <a href="../pages/modellbildung_gis_folien.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Auftakt: Modellbildung</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/netlogo_modellvergleich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NetLogo-Modelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/einstieg_abflussmodellierung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einstieg Abflussmodellierung</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/meander_abfluss_saga_grass.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">GIS-Übung: Relief, Abfluss und Sediment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/abfluss_algorithmen_quellen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Daten- und Werkzeugkompendium</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/resuemee_modellierung_geographie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resümee</span></a>
   </div>
 </li>
       </ul>
@@ -399,7 +370,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Slides / Folien</span></a>
+ <span class="menu-text">Ergänzende Materialien</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -407,37 +378,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/modellbildung_gis_folien.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Modellbildung im GIS</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/netlogo_modellvergleich.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NetLogo – Modellvergleich</span></a>
+  <a href="../pages/modellbildung_gis_reader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kurzreader Modellbildung</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/burgwald_abfluss_uebergang.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Burgwald – Übergang zur Abflussübung</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Worksheets / Hands-on</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/meander_abfluss_saga_grass.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Burgwald – Abfluss mit SAGA / GRASS</span></a>
+ <span class="menu-text">Übergangsfolien zum GIS</span></a>
   </div>
 </li>
       </ul>
@@ -452,18 +400,14 @@ window.Quarto = {
     <h2 id="toc-title">Inhalt</h2>
    
   <ul class="collapse">
-  <li><a href="#leitfrage" id="toc-leitfrage" class="nav-link active" data-scroll-target="#leitfrage">Leitfrage</a></li>
-  <li><a href="#lernziele-und-ergebnis" id="toc-lernziele-und-ergebnis" class="nav-link" data-scroll-target="#lernziele-und-ergebnis">Lernziele und Ergebnis</a></li>
-  <li><a href="#daten-und-arbeitsumgebung" id="toc-daten-und-arbeitsumgebung" class="nav-link" data-scroll-target="#daten-und-arbeitsumgebung">1 · Daten und Arbeitsumgebung</a></li>
-  <li><a href="#dgm-prüfen-und-vorbereiten" id="toc-dgm-prüfen-und-vorbereiten" class="nav-link" data-scroll-target="#dgm-prüfen-und-vorbereiten">2 · DGM prüfen und vorbereiten</a></li>
-  <li><a href="#hauptweg-fließakkumulation-mit-saga-gis" id="toc-hauptweg-fließakkumulation-mit-saga-gis" class="nav-link" data-scroll-target="#hauptweg-fließakkumulation-mit-saga-gis">3 · Hauptweg: Fließakkumulation mit SAGA GIS</a></li>
-  <li><a href="#alternativ--und-kontrollweg-grass-gis" id="toc-alternativ--und-kontrollweg-grass-gis" class="nav-link" data-scroll-target="#alternativ--und-kontrollweg-grass-gis">4 · Alternativ- und Kontrollweg: GRASS GIS</a></li>
-  <li><a href="#vom-errechneten-abflussweg-zum-mäander" id="toc-vom-errechneten-abflussweg-zum-mäander" class="nav-link" data-scroll-target="#vom-errechneten-abflussweg-zum-mäander">5 · Vom errechneten Abflussweg zum Mäander</a></li>
-  <li><a href="#landnutzung-für-rauigkeit-infiltration-und-eine-prozesssimulation" id="toc-landnutzung-für-rauigkeit-infiltration-und-eine-prozesssimulation" class="nav-link" data-scroll-target="#landnutzung-für-rauigkeit-infiltration-und-eine-prozesssimulation">6 · Landnutzung für Rauigkeit, Infiltration und eine Prozesssimulation</a></li>
-  <li><a href="#matrix-welche-modellkonzepte-implementieren-saga-grass-und-qgis" id="toc-matrix-welche-modellkonzepte-implementieren-saga-grass-und-qgis" class="nav-link" data-scroll-target="#matrix-welche-modellkonzepte-implementieren-saga-grass-und-qgis">7 · Matrix: Welche Modellkonzepte implementieren SAGA, GRASS und QGIS?</a></li>
-  <li><a href="#gibt-es-gis-basierte-modelle-für-seitenerosion-und-mäanderentwicklung" id="toc-gibt-es-gis-basierte-modelle-für-seitenerosion-und-mäanderentwicklung" class="nav-link" data-scroll-target="#gibt-es-gis-basierte-modelle-für-seitenerosion-und-mäanderentwicklung">8 · Gibt es GIS-basierte Modelle für Seitenerosion und Mäanderentwicklung?</a></li>
-  <li><a href="#ergebnissicherung" id="toc-ergebnissicherung" class="nav-link" data-scroll-target="#ergebnissicherung">Ergebnissicherung</a></li>
-  <li><a href="#technische-dokumentation-und-daten" id="toc-technische-dokumentation-und-daten" class="nav-link" data-scroll-target="#technische-dokumentation-und-daten">Technische Dokumentation und Daten</a></li>
+  <li><a href="#ein-oberlauf-drei-fragen" id="toc-ein-oberlauf-drei-fragen" class="nav-link active" data-scroll-target="#ein-oberlauf-drei-fragen">Ein Oberlauf, drei Fragen</a></li>
+  <li><a href="#gelände-und-referenz-öffnen-ca.-10-minuten" id="toc-gelände-und-referenz-öffnen-ca.-10-minuten" class="nav-link" data-scroll-target="#gelände-und-referenz-öffnen-ca.-10-minuten">1 · Gelände und Referenz öffnen (ca. 10 Minuten)</a></li>
+  <li><a href="#aus-höhenwerten-werden-entwässerungsverbindungen-ca.-15-minuten" id="toc-aus-höhenwerten-werden-entwässerungsverbindungen-ca.-15-minuten" class="nav-link" data-scroll-target="#aus-höhenwerten-werden-entwässerungsverbindungen-ca.-15-minuten">2 · Aus Höhenwerten werden Entwässerungsverbindungen (ca. 15 Minuten)</a></li>
+  <li><a href="#aus-zuflüssen-wird-ein-einzugsgebiet-ca.-15-minuten" id="toc-aus-zuflüssen-wird-ein-einzugsgebiet-ca.-15-minuten" class="nav-link" data-scroll-target="#aus-zuflüssen-wird-ein-einzugsgebiet-ca.-15-minuten">3 · Aus Zuflüssen wird ein Einzugsgebiet (ca. 15 Minuten)</a></li>
+  <li><a href="#verzweigung-am-hang-d-statt-d8-ca.-10-minuten" id="toc-verzweigung-am-hang-d-statt-d8-ca.-10-minuten" class="nav-link" data-scroll-target="#verzweigung-am-hang-d-statt-d8-ca.-10-minuten">4 · Verzweigung am Hang: D∞ statt D8 (ca. 10 Minuten)</a></li>
+  <li><a href="#eine-abflussannahme-ergänzt-die-fläche-ca.-5-minuten" id="toc-eine-abflussannahme-ergänzt-die-fläche-ca.-5-minuten" class="nav-link" data-scroll-target="#eine-abflussannahme-ergänzt-die-fläche-ca.-5-minuten">5 · Eine Abflussannahme ergänzt die Fläche (ca. 5 Minuten)</a></li>
+  <li><a href="#materialangebot-transportgrenze-ablagerung-ca.-15-minuten" id="toc-materialangebot-transportgrenze-ablagerung-ca.-15-minuten" class="nav-link" data-scroll-target="#materialangebot-transportgrenze-ablagerung-ca.-15-minuten">6 · Materialangebot, Transportgrenze, Ablagerung (ca. 15 Minuten)</a></li>
+  <li><a href="#befund-am-untersuchten-bach-festhalten" id="toc-befund-am-untersuchten-bach-festhalten" class="nav-link" data-scroll-target="#befund-am-untersuchten-bach-festhalten">Befund am untersuchten Bach festhalten</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/meander_abfluss_saga_grass.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -475,137 +419,69 @@ window.Quarto = {
 
 
 
-<p><a href="../index.html">← Zur Kursübersicht</a> · <a href="../pages/netlogo_modellvergleich.html">Theoretischer Vergleich: NetLogo</a> · <a href="../pages/modellbildung_gis_reader.html">Kurzreader: Modellbildung im GIS</a></p>
-<section id="leitfrage" class="level2">
-<h2 class="anchored" data-anchor-id="leitfrage">Leitfrage</h2>
-<p><strong>Wie lässt sich aus dem Relief ableiten, wohin Wasser unter einer topografischen Routingannahme fließen würde – und weshalb ist das noch keine Simulation der Entstehung eines Mäanders?</strong></p>
-<p>In den NetLogo-Modellen wurden Fließbewegungen über lokale Regeln erzeugt. Heute ersetzen wir diese durch Rasteralgorithmen auf einem digitalen Geländemodell (DGM). Dafür vergleichen wir zwei verbreitete Routingannahmen: <strong>D8</strong>, bei der der Abfluss einer Zelle einem Nachbarn zugeordnet wird, und <strong>MFD (Multiple Flow Direction)</strong>, bei der er auf mehrere tieferliegende Nachbarn verteilt werden kann.</p>
-<p>Ein GIS kann auf dieser Basis potenzielle Fließwege und beitragende Flächen ermitteln. Es berechnet dabei <strong>weder die Wasserbewegung während eines konkreten Regenereignisses noch Ufererosion oder Sedimenttransport</strong>. Die Mäanderform dient uns als Beobachtungs- und Vergleichsgegenstand, nicht als Ergebnis einer simulierten Flussentwicklung.</p>
+<p><a href="../index.html">← Kursübersicht</a> · <a href="../pages/netlogo_modellvergleich.html">NetLogo-Vergleich</a> · <a href="../pages/modellbildung_gis_reader.html">Modellbildung im GIS</a> · <a href="../pages/abfluss_algorithmen_quellen.html">Daten, Algorithmen und Literatur</a></p>
+<section id="ein-oberlauf-drei-fragen" class="level2">
+<h2 class="anchored" data-anchor-id="ein-oberlauf-drei-fragen">Ein Oberlauf, drei Fragen</h2>
+<p>Im NetLogo-Modell <em>Grand Canyon</em> ließen sich Tropfen auf einem Relief verfolgen: Wo treffen ihre Wege zusammen? Im Modell <em>Erosion</em> wurde außerdem Gelände abgetragen; die nächste Wasserbewegung fand bereits auf verändertem Relief statt. <em>River Meanders</em> veränderte die Gerinneform durch Erosions- und Ablagerungsregeln.</p>
+<p>Hier betrachten wir <strong>einen vorhandenen Oberlauf im realen Gelände</strong>. Zuerst bestimmen wir, welche Rasterzellen zu einem Punkt am Bach entwässern. Dann fragen wir, welchen zusätzlichen Informationsgehalt eine Regenannahme und schließlich eine begrenzte Sedimenttransportkapazität liefern. <strong>Das DGM bleibt in allen Rechnungen unverändert.</strong></p>
+<p><strong>Untersuchungsfall:</strong> ein kleiner Oberlauf des <em>Roten Wassers</em> im Burgwald oder ein vergleichbarer selbstgewählter Bach. Der Kartenausschnitt kann etwa <strong>2 × 2 km</strong> umfassen; <strong>gerechnet wird auf einem größeren DGM</strong>, das sämtliche Zuflüsse oberhalb der untersuchten Stelle enthält.</p>
+<p><strong>Arbeitszeit:</strong> Mit beschafften Daten, vorbereitetem 5-m-Raster und funktionierendem TauDEM ca. <strong>75–90 Minuten</strong>. Datenbeschaffung und Softwareinstallation kommen hinzu; sie sind nicht Teil dieses Zeitansatzes. Der durchgehende Weg verwendet <strong>QGIS für Datenkontrolle, Rasterrechner und Darstellung; TauDEM für die Geländeverbindungen und den Stofftransport</strong>. Die Bedienung des gemeinsamen QGIS-Processing-Skripts steht in den blauen Klappboxen.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/abfluss_workflow.svg" class="img-fluid figure-img" style="width:100.0%" alt="DGM1 wird zum 5-m-Arbeitsraster und nach der Senkenbehandlung in D8 und D∞ verzweigt: D8 liefert Flächenakkumulation, Gerinneschwellen, Einzugsgebiet und ein hypothetisches Abflussvolumen; D∞ liefert SCA, TWI und eine Materialbilanz. ATKIS ist nur Vergleich."></p>
+<figcaption>Berechnungskette mit getrennten D8- und D∞-Zweigen. ATKIS ist eine unabhängige Referenz.</figcaption>
+</figure>
+</div>
+<p><a href="../diagrams/abfluss_workflow.drawio">Flussdiagramm in draw.io bearbeiten</a>. <strong>Blau:</strong> technischer Ablauf; <strong>grün:</strong> fachliche Erklärung;</p>
 </section>
-<section id="lernziele-und-ergebnis" class="level2">
-<h2 class="anchored" data-anchor-id="lernziele-und-ergebnis">Lernziele und Ergebnis</h2>
-<p>Nach der Übung können Sie:</p>
-<ol type="1">
-<li>aus einem DGM Fließakkumulation und ein potenzielles Gerinnenetz ableiten;</li>
-<li>den Einfluss von <strong>D8/MFD</strong>, Rasterweite und Senkenbehandlung auf die Abflusswege diskutieren;</li>
-<li>eine aus dem Relief berechnete Entwässerungslinie mit einem <strong>beobachteten Flusslauf</strong> vergleichen;</li>
-<li>erklären, weshalb ein Geländealgorithmus kein hydrodynamisches oder morphodynamisches Prozessmodell ist.</li>
-</ol>
-<p><strong>Abgabe:</strong> Zwei vergleichbare Karten (D8 und MFD), eine überlagerte Vergleichskarte mit realem Gewässerlauf und ein kurzer Modellkommentar (ca. 150–250 Wörter). Notieren Sie die verwendeten Daten, Rasterweite, Senkenbehandlung, Routingmethode und gegebenenfalls die Gerinneschwelle.</p>
-</section>
-<section id="daten-und-arbeitsumgebung" class="level2">
-<h2 class="anchored" data-anchor-id="daten-und-arbeitsumgebung">1 · Daten und Arbeitsumgebung</h2>
-<p><strong>Untersuchungsraum:</strong> der <strong>Burgwald in Hessen</strong>, vorzugsweise das Einzugsgebiet des <strong>Roten Wassers</strong> einschließlich seines Oberlaufs im Bereich Franzosenwiesen und eines anschließenden Talabschnitts. Das Rote Wasser entspringt im Burgwald; wir prüfen seine Lage im vorhandenen Gewässernetz, ohne einen besonders ausgeprägten Mäander vorauszusetzen. Der Ausschnitt sollte das <strong>oberhalb gelegene Einzugsgebiet</strong> möglichst ausreichend umfassen; eine knapp um den Fluss ausgeschnittene Kachel führt zu starken Randeffekten.</p>
-<p><strong>Benötigt werden:</strong></p>
+<section id="gelände-und-referenz-öffnen-ca.-10-minuten" class="level2">
+<h2 class="anchored" data-anchor-id="gelände-und-referenz-öffnen-ca.-10-minuten">1 · Gelände und Referenz öffnen (ca. 10 Minuten)</h2>
+<p>Öffnen Sie in QGIS:</p>
 <ul>
-<li>ein DGM1 als GeoTIFF mit dokumentierter Rasterweite und Höhenreferenz;</li>
-<li>ATKIS-Basis-DLM (Gewässerlinien <strong>und</strong> Landnutzungsflächen) und bei Bedarf ein Orthofoto als Referenz;</li>
-<li>QGIS zur Sichtkontrolle und Kartendarstellung; <strong>SAGA GIS</strong> für die Hauptanalyse; <strong>GRASS GIS</strong> als gut integrierter und methodisch vergleichbarer Alternativweg.</li>
+<li>das <strong>DGM1 Hessen</strong> für den gewählten Oberlauf; bei mehreren Kacheln zuerst ein virtuelles Raster (<em>Raster → Sonstiges → Virtuelles Raster erzeugen</em>) erstellen;</li>
+<li>die <strong>Gewässerlinien des ATKIS-Basis-DLM</strong> als unabhängige Lage-Referenz, nicht als Eingabe für das Relief-Routing;</li>
+<li>die <strong>Landnutzungsflächen aus dem ATKIS-Basis-DLM</strong>: prüfen Sie, ob Wald, Offenland, Siedlung und Verkehrsflächen über die Attribute unterscheidbar sind. Sie werden noch <strong>nicht</strong> in die Routingrechnung einbezogen;</li>
+<li>optional ein amtliches Orthofoto zur Kontrolle von Wegedämmen, Durchlässen und Wasserflächen.</li>
 </ul>
-<section id="direkte-datenzugänge-für-den-burgwald" class="level3">
-<h3 class="anchored" data-anchor-id="direkte-datenzugänge-für-den-burgwald">Direkte Datenzugänge für den Burgwald</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Datensatz</th>
-<th>Direkter Einstieg</th>
-<th>Wofür?</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Hessen DGM1 (1 m)</strong></td>
-<td><strong><a href="https://gds.hessen.de/INTERSHOP/web/WFS/HLBG-Geodaten-Site/de_DE/-/EUR/ViewDownloadcenter-Start">Geodaten online – Downloadcenter</a></strong> → <strong>3D-Daten</strong> → DGM1; <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle">Produktinformation DGM</a></td>
-<td>Geländehöhe, Gefälle, Fließwege</td>
-</tr>
-<tr class="even">
-<td><strong>ATKIS Basis-DLM</strong></td>
-<td><strong><a href="https://gds.hessen.de/INTERSHOP/web/WFS/HLBG-Geodaten-Site/de_DE/-/EUR/ViewDownloadcenter-Start">Dasselbe Downloadcenter</a></strong> → <strong>Digitales Landschaftsmodell</strong>; <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell">Produktinformation Basis-DLM</a></td>
-<td>Vegetation, Siedlung, Verkehr, Gewässerlinien für Rauigkeitsklassen und Vergleich</td>
-</tr>
-<tr class="odd">
-<td><strong>Alternativer Datenkatalog</strong></td>
-<td><a href="https://opendata.hessen.de/dataset/atkis-dgm-1">Open Data Hessen – DGM1</a> · <a href="https://opendata.hessen.de/de/dataset/atkis-basis-dlm">Basis-DLM</a></td>
-<td>Metadaten und Diensteinträge; nicht zwingend unmittelbare Raster-/Vektordatei</td>
-</tr>
-</tbody>
-</table>
-<p><strong>So gehen Sie vor:</strong></p>
-<ol type="1">
-<li>Öffnen Sie das <strong>direkt verlinkte Downloadcenter</strong> und wählen Sie für das Gelände <strong>3D-Daten / DGM1</strong>. Laden Sie Kacheln, die den gewählten Teil des Burgwalds und ausreichend oberhalb gelegene Zuflussflächen erfassen. Das DGM1 steht kostenfrei zur Selbstentnahme bereit.</li>
-<li>Beschaffen Sie unter <strong>Digitales Landschaftsmodell</strong> die <strong>ATKIS-Basis-DLM</strong>-Daten. Falls nur ein großer Datensatz verfügbar ist, laden Sie ihn herunter und begrenzen ihn später in QGIS auf das Untersuchungsgebiet. Der Datenbestand wird auch über einen WFS bereitgestellt.</li>
-<li>Legen Sie in QGIS ein Untersuchungsgebiet um <strong>Rotes Wasser / Franzosenwiesen / Burgwald</strong> fest. Lassen Sie für die Fließakkumulation genügend Einzugsgebiet oberstromig im DGM. Schneiden Sie Ergebnisse erst <strong>nach</strong> der großräumigeren Fließwegberechnung auf den engeren Betrachtungsraum zu.</li>
-<li>Speichern Sie <strong>DGM1, ATKIS-Landnutzung, Gewässernetz</strong> als Originale. Das amtliche DGM1 wird in Hessen als GeoTIFF (32-bit Float) bereitgestellt; das Basis-DLM u. a. als Shape oder NAS/XML. Arbeiten Sie konsistent in <strong>ETRS89 / UTM 32N (EPSG:25832)</strong>.</li>
-</ol>
+<p>Bezug: Unter <a href="https://gds.hessen.de/">Geodaten online</a> im Downloadcenter <strong>3D-Daten → DGM1</strong> und <strong>Digitales Landschaftsmodell → Basis-DLM</strong> wählen. Für QGIS ist bei Basis-DLM ein <strong>Shape-Download</strong> einfacher zu öffnen als NAS/XML. Laden Sie beim DGM auch die oberhalb der Bachstelle liegenden Kacheln; bei ATKIS reichen die für den Vergleich benötigten Gewässer- und Nutzungsobjekte. Produktinformationen: <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle">HVBG – DGM</a>, <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell">HVBG – Basis-DLM</a>. Im Burgwald verwenden Sie <strong>EPSG:25832</strong> (ETRS89 / UTM 32N, Meter). Das DGM1 enthält Geländehöhen in Metern; es ist keine Karte der Flusstiefe.</p>
+<p>Erstellen Sie eine <strong>Schummerung</strong> (Werkzeugsuche: <em>Hillshade/Schummerung</em>). Wählen Sie im sichtbaren Bachabschnitt eine <strong>Krümmung oder einen Durchlass</strong> als Vergleichsstelle. Prüfen Sie an der Schummerung: Ist die Talrinne im DGM erkennbar? Liegt der kartierte Bach dort oder leicht versetzt?</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Warum nicht einfach nur den Flussausschnitt ausschneiden?
+<span class="screen-reader-only">Note</span>Technisch: Aus dem DGM1 ein gemeinsames 5-m-Arbeitsraster herstellen
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Ein DGM-Ausschnitt, der nur den sichtbaren Gewässerkorridor umfasst, enthält die oberhalb gelegenen Zuflüsse nicht mehr. Das führt zu künstlich kleinen beitragenden Flächen und starken Randartefakten. <strong>Analysegebiet und Darstellungsgebiet dürfen unterschiedlich groß sein.</strong></p>
+<p>In QGIS <em>Raster → Projektionen → Warp (Reprojektieren)</em>: Ziel-KBS <code>EPSG:25832</code>, Zielauflösung <strong>5 × 5 m</strong>, Resampling <strong>Average/Mittelwert</strong>, GeoTIFF-Ausgabe <code>processing/dgm5.tif</code>. Bei mehreren Quellkacheln zunächst das virtuelle Raster als Eingabe wählen. Nicht das DGM auf 2 × 2 km beschneiden: Der Kartenausschnitt ist <strong>nicht</strong> das Rechengebiet. Alle späteren Raster verwenden Ausdehnung, Ursprung und Zellweite von <code>dgm5.tif</code>. Original-DGM1 unverändert aufheben.</p>
+<p>Wenn ein 5-m-Arbeitsraster bereits bereitgestellt wird, entfällt dieser Schritt. Eine höhere Pixelzahl ist nicht automatisch eine genauere Darstellung einer Gewässersohle.</p>
 </div>
 </div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachlich: Warum die DGM-Grenze die Einzugsfläche verändern kann
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die Akkumulation einer Zelle berücksichtigt nur Zuflüsse, die <strong>im berechneten Raster</strong> existieren. Schneidet die obere DGM-Grenze einen Hang ab, fehlt dessen Beitrag. TauDEM kennzeichnet entsprechende Resultate bei aktivierter <em>Edge-Contamination-Prüfung</em> als NoData. Das ist keine Fehlfunktion, sondern ein Hinweis auf eine unvollständige Bilanz. Erst das ausreichend große Berechnungsgebiet macht die Aussage an der ausgewählten Bachstelle sinnvoll.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="maßstab-und-räumliche-auflösung-sind-modellentscheidungen" class="level3">
-<h3 class="anchored" data-anchor-id="maßstab-und-räumliche-auflösung-sind-modellentscheidungen">Maßstab und räumliche Auflösung sind Modellentscheidungen</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Modellansatz</th>
-<th>Geeignete Fragestellung</th>
-<th>Räumlich-zeitlicher Bezug</th>
-<th>Was fehlt?</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>NetLogo River Meanders</strong></td>
-<td>Wie können aus lokalen Regeln Flusskrümmungen entstehen?</td>
-<td>Abstraktes Raster und Modellschritte; <strong>keine reale DGM-Meterskala</strong></td>
-<td>Quantitative Hydraulik und zeitliche Kalibrierung</td>
-</tr>
-<tr class="even">
-<td><strong>DGM + D8/MFD (SAGA/GRASS)</strong></td>
-<td>Wo verlaufen potenzielle Abflussbahnen, wo konzentriert sich Fläche?</td>
-<td>Rasterweite in Metern, <strong>statisches Gelände</strong>, keine reale Ereigniszeit</td>
-<td>Strömungstiefe, Fließgeschwindigkeit, Reibung als hydraulischer Prozess</td>
-</tr>
-<tr class="odd">
-<td><strong>SAGA Overland Flow / GRASS <code>r.sim.water</code></strong></td>
-<td>Wie beeinflussen Niederschlag, Infiltration und Rauigkeit den Oberflächenabfluss?</td>
-<td>Raum- und <strong>Simulationszeit</strong> müssen mit Eingangsdaten und Modellannahmen zusammenpassen</td>
-<td>Ohne weitere Komponenten keine Ufererosion/Mäanderdynamik</td>
-</tr>
-<tr class="even">
-<td><strong>Morphodynamische Modelle</strong></td>
-<td>Wie verändern sich Gerinne, Ufer und Sediment über die Zeit?</td>
-<td>Gewässergeometrie und prozessgerechte Zeitauflösung erforderlich</td>
-<td>Nicht mit dem einfachen DGM-Routing gleichzusetzen</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Skalenexperiment (gleicher Untersuchungsraum und gleiche Vorverarbeitung):</strong> Leiten Sie aus dem amtlichen <strong>DGM1 (1 m)</strong> alternativ <strong>5-m- und 10-m-Arbeitsraster</strong> ab. Für einen nur illustrativen Ausschnitt von <strong>2 × 2 km</strong> bedeutet dies ungefähr <strong>4.000.000</strong>, <strong>160.000</strong> bzw. <strong>40.000</strong> Rasterzellen. Ein gröberes Gitter glättet schmale Rinnen und ändert Fließrichtungen. Die Rasterweite eines Modells ist dabei nicht gleich seiner tatsächlichen Lage- oder Höhengenauigkeit.</p>
-<p><strong>Wichtig beim Vergleich:</strong> Wenn eine Fließakkumulation in <em>Zellen</em> ausgegeben wird, muss sie für verschiedene Rasterweiten erst in <strong>beitragende Fläche (m²)</strong> umgerechnet werden (<code>Zellenzahl × Zellfläche</code>). Alternativ direkt die flächenbezogene Ausgabe des Algorithmus wählen. Für echte Senken, Dämme, Durchlässe und Flachbereiche bleibt eine separate Plausibilitätsprüfung erforderlich.</p>
-<p><strong>Projektstruktur (Vorschlag):</strong></p>
-<pre class="text"><code>abfluss_gis/
-├── data/        # Original-DGM1, ATKIS-Basis-DLM, Gewässerreferenz
-├── processing/  # DGM 1/5/10 m, Landnutzungsklassen, Rauigkeitsraster
-├── results/     # Akkumulation D8/MFD, Gerinnenetz, optional dynamischer Abfluss
-└── maps/        # Karten und Modellkommentar</code></pre>
-</section>
-<section id="installation-und-auswahl-der-werkzeuge" class="level3">
-<h3 class="anchored" data-anchor-id="installation-und-auswahl-der-werkzeuge">Installation und Auswahl der Werkzeuge</h3>
+<section id="aus-höhenwerten-werden-entwässerungsverbindungen-ca.-15-minuten" class="level2">
+<h2 class="anchored" data-anchor-id="aus-höhenwerten-werden-entwässerungsverbindungen-ca.-15-minuten">2 · Aus Höhenwerten werden Entwässerungsverbindungen (ca. 15 Minuten)</h2>
+<p>Öffnen Sie <strong>Verarbeitung → Werkzeugkiste → Skripte → Modellieren in der Geographie → TauDEM: Abflusswege, Einzugsgebiet, Wasser, Sediment</strong>. Wählen Sie <strong>Berechnung 1 – Grundlage</strong>, das Raster <code>processing/dgm5.tif</code> und den Ergebnisordner <code>results</code>. Das Skript führt die folgende TauDEM-Folge auf <strong>demselben <code>dgm5.tif</code></strong> aus:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -614,446 +490,406 @@ window.Quarto = {
 </colgroup>
 <thead>
 <tr class="header">
-<th>Weg</th>
-<th>Praktische Verwendung</th>
-<th>Bemerkung</th>
+<th>TauDEM-Werkzeug</th>
+<th>Eingabe → Ausgabe</th>
+<th>Bedeutung des Ergebnisses</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>SAGA GIS direkt</strong></td>
-<td><code>Terrain Analysis → Hydrology → Flow Accumulation</code></td>
-<td>Empfohlener Hauptweg, sofern SAGA installiert ist.</td>
+<td><strong>Pit Remove</strong></td>
+<td><code>dgm5.tif</code> → <code>fel.tif</code></td>
+<td>Für den Abfluss aufbereitete Höhenwerte, weiterhin <strong>m</strong></td>
 </tr>
 <tr class="even">
-<td><strong>GRASS in QGIS</strong></td>
-<td>Verarbeitungswerkzeuge nach <code>r.watershed</code> und <code>r.stream.extract</code> durchsuchen</td>
-<td>Vergleichsweg; auf Linux kann das zusätzliche Paket <code>qgis-plugin-grass</code> erforderlich sein.</td>
+<td><strong>D8 Flow Directions</strong></td>
+<td><code>fel.tif</code> → <code>p.tif</code>, <code>sd8.tif</code></td>
+<td><code>p</code>: kodierte Richtung zu <strong>einem</strong> Nachbarn; <code>sd8</code>: Gefälle <strong>m/m</strong></td>
 </tr>
 <tr class="odd">
-<td><strong>SAGA über QGIS</strong></td>
-<td>Zusatzanbieter <em>Processing Saga NextGen Provider</em></td>
-<td>Nur verwenden, wenn für die konkrete QGIS-/SAGA-Version verfügbar und funktionsfähig; der Anbieter ist seit QGIS 3.30 nicht mehr eingebaut.</td>
+<td><strong>D8 Contributing Area</strong></td>
+<td><code>p.tif</code> → <code>ad8.tif</code></td>
+<td>Anzahl der zu einer Zelle entwässernden Zellen einschließlich der Zelle selbst</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Ubuntu-/Debian-basierte Systeme (wenn die Pakete aus Ihren Repositories bereitstehen):</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install saga grass qgis-plugin-grass</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Kontrollieren Sie anschließend, ob <code>saga_cmd</code> und <code>grass</code> vorhanden sind und ob die GRASS-Werkzeuge im QGIS-Processing-Werkzeugkasten erscheinen. Die QGIS-SAGA-Kopplung ist optional; die SAGA-Standalone-Anwendung genügt. Ob und welche Version des NextGen-Plugins im Plugin-Manager angezeigt wird, ist installationsabhängig.</p>
-</section>
-</section>
-<section id="dgm-prüfen-und-vorbereiten" class="level2">
-<h2 class="anchored" data-anchor-id="dgm-prüfen-und-vorbereiten">2 · DGM prüfen und vorbereiten</h2>
-<ol type="1">
-<li>DGM1 für den Burgwald in QGIS laden und die <strong>Höhenwerte</strong> sowie das <strong>Koordinatenreferenzsystem</strong> kontrollieren. Für Hessen eignet sich z. B. ETRS89 / UTM 32N (<code>EPSG:25832</code>).</li>
-<li>Eine Schummerung (Hillshade) erzeugen. Liegt die erkannte Gewässerrinne ungefähr dort, wo auch auf Orthofoto oder Karte der Fluss verläuft?</li>
-<li>Den Geländeausschnitt groß genug wählen, damit die Zuflusswege nicht unmittelbar am Kartenrand abgeschnitten werden. Analysen nur für den kleinen Anzeigeausschnitt zu rechnen, ist nicht immer sinnvoll.</li>
-<li>Aus dem unveränderten DGM1 ein 5-m-Arbeitsraster und für den Skalenvergleich ein 10-m-Raster erzeugen. Original behalten; Resamplingverfahren und Pixelursprung festhalten.</li>
-<li>Festlegen, wie <strong>geschlossene Senken</strong> behandelt werden sollen. Kleine Datenartefakte können Fließwege abbrechen lassen; wirkliche Senken sollen nicht unbemerkt „wegkorrigiert“ werden.</li>
-</ol>
-<p><strong>Diskussionspunkt:</strong> Ein DGM beschreibt in Wasserflächen oft <strong>nicht die reale Gewässersohle</strong>. Eine glatte bzw. interpolierte Wasseroberfläche kann zu unplausiblen Fließrichtungen im Gewässer führen. Auch Brücken, Dämme und Durchlässe können den algorithmischen Weg vom tatsächlichen Abflussweg trennen.</p>
-</section>
-<section id="hauptweg-fließakkumulation-mit-saga-gis" class="level2">
-<h2 class="anchored" data-anchor-id="hauptweg-fließakkumulation-mit-saga-gis">3 · Hauptweg: Fließakkumulation mit SAGA GIS</h2>
-<p>Der SAGA-Algorithmus <strong><code>Flow Accumulation</code></strong> kombiniert eine DGM-Vorverarbeitung mit der Berechnung beitragender Flächen. Die dokumentierte aktuelle Werkzeugkette bietet insbesondere <code>Fill Sinks (Wang &amp; Liu)</code> oder <code>Sink Removal</code> als Vorverarbeitung und mehrere Routingverfahren. <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.0/tc_ta_hydrology_flow_accumulation.html">Werkzeugdokumentation</a>.</p>
-<section id="durchlauf-a-d8" class="level3">
-<h3 class="anchored" data-anchor-id="durchlauf-a-d8">Durchlauf A – D8</h3>
-<ol type="1">
-<li>Das Arbeits-DGM in SAGA GIS öffnen.</li>
-<li><strong>Terrain Analysis → Hydrology → Flow Accumulation</strong> starten.</li>
-<li>Als <strong>Elevation</strong> das Arbeits-DGM auswählen.</li>
-<li><strong>Preprocessing:</strong> zunächst <code>Fill Sinks (Wang &amp; Liu)</code>; die Einstellung dokumentieren.</li>
-<li><strong>Flow Routing:</strong> <code>Deterministic 8 (D8)</code>.</li>
-<li><strong>Flow Accumulation / TCA</strong> als <code>accu_d8</code> speichern; optional die <em>Specific Catchment Area</em> mit ausgeben.</li>
-<li>Das Ergebnis in QGIS laden und so darstellen, dass stark akkumulierte Fließlinien erkennbar werden (z. B. kontrastreiche oder logarithmisch abgestufte Werte).</li>
-</ol>
-<p><strong>Gedanke hinter D8:</strong> Jede Rasterzelle gibt ihren Beitrag an <strong>einen</strong> tieferliegenden Nachbarn weiter, der nach der im Algorithmus definierten Abstiegsregel gewählt wird. Daraus ergeben sich stark gebündelte Fließlinien.</p>
-</section>
-<section id="durchlauf-b-mfd" class="level3">
-<h3 class="anchored" data-anchor-id="durchlauf-b-mfd">Durchlauf B – MFD</h3>
-<p>Wiederholen Sie denselben Ablauf mit <strong>unverändertem Arbeits-DGM und gleicher Vorverarbeitung</strong>. Ändern Sie nur <strong>Flow Routing → Multiple Flow Direction</strong> und speichern Sie das Ergebnis als <code>accu_mfd</code>.</p>
-<p><strong>Gedanke hinter MFD:</strong> Der Beitrag einer Zelle kann auf <strong>mehrere</strong> tieferliegende Nachbarn verteilt werden. Akkumulation kann sich dadurch stärker über Hangflächen verteilen.</p>
-</section>
-<section id="vergleich-und-interpretation" class="level3">
-<h3 class="anchored" data-anchor-id="vergleich-und-interpretation">Vergleich und Interpretation</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Frage</th>
-<th>D8</th>
-<th>MFD</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Wohin geht der Beitrag einer Zelle?</td>
-<td>Ein Empfänger</td>
-<td>Mehrere mögliche Empfänger</td>
-</tr>
-<tr class="even">
-<td>Was fällt kartografisch auf?</td>
-<td>Häufig stärker konzentrierte Linien</td>
-<td>Oft flächigere Verteilung</td>
-</tr>
-<tr class="odd">
-<td>Was bleibt gleich?</td>
-<td>DGM, Abstraktion auf Nachbarschaftszellen, keine Ereignishydraulik</td>
-<td>DGM, Abstraktion auf Nachbarschaftszellen, keine Ereignishydraulik</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Achtung zur Einheit:</strong> Die Fließakkumulation ist je nach Algorithmus und Einstellung in <strong>beitragenden Zellen</strong>, <strong>Fläche</strong> oder einer anderen normierten Größe angegeben. Sie ist ohne passende Regen-/Abflussannahmen <strong>kein Durchfluss in m³/s</strong>. Kontrollieren Sie die Einheit der tatsächlich ausgegebenen SAGA-Raster.</p>
-</section>
-</section>
-<section id="alternativ--und-kontrollweg-grass-gis" class="level2">
-<h2 class="anchored" data-anchor-id="alternativ--und-kontrollweg-grass-gis">4 · Alternativ- und Kontrollweg: GRASS GIS</h2>
-<p>GRASS ergänzt SAGA sinnvoll, weil das Modul <strong><code>r.watershed</code></strong> sowohl eine Standardberechnung mit <strong>MFD</strong> als auch den direkten Vergleich mit <strong>SFD/D8</strong> (Schalter <code>-s</code>) ermöglicht. Es liefert u. a. Akkumulation und Fließrichtung. <a href="https://grass.osgeo.org/grass85/manuals/r.watershed.html">Dokumentation <code>r.watershed</code></a>.</p>
-<p>Öffnen Sie in QGIS <strong>Verarbeitung → Werkzeugkiste</strong> und suchen Sie nach <strong><code>r.watershed</code></strong>. Falls verfügbar:</p>
-<ol type="1">
-<li>Arbeits-DGM als <em>Elevation</em> verwenden; die Region/Zellgröße und Ausdehnung passend einstellen.</li>
-<li><strong>MFD</strong> rechnen (Standardeinstellung, sofern <code>-s</code> nicht aktiviert ist) und Akkumulation als <code>grass_accu_mfd</code> speichern.</li>
-<li>Den Lauf mit <strong>SFD/D8</strong> (<code>-s</code>) wiederholen und als <code>grass_accu_d8</code> speichern.</li>
-<li>Die Resultate in identischem Kartenausschnitt und mit vergleichbarer Farbskala betrachten.</li>
-</ol>
-<p>Für ein abgeleitetes Gewässernetz eignet sich das GRASS-Werkzeug <strong><code>r.stream.extract</code></strong>. Es benötigt ein DGM und einen <strong>Schwellenwert für die minimale Akkumulation</strong>, ab dem ein Gewässer beginnt; der Wert ist <strong>ein Modellparameter</strong>, keine direkt beobachtete Flussursprungsstelle. <a href="https://grass.osgeo.org/grass85/manuals/r.stream.extract.html">Dokumentation <code>r.stream.extract</code></a>.</p>
-<p><strong>Parameterexperiment:</strong> Testen Sie zwei deutlich unterschiedliche Schwellenwerte und vergleichen Sie Gewässerdichte und Gewässeranfänge. Bei einer 5-m-Rasterweite entsprechen beispielsweise <strong>4.000 Rasterzellen 10 ha</strong> und <strong>16.000 Rasterzellen 40 ha</strong> beitragender Fläche; diese Umrechnung gilt, <em>wenn die Akkumulation in Rasterzellen angegeben wird</em>. Sie ist keine Empfehlung für einen hydrologisch „richtigen“ Schwellenwert.</p>
+<p>Das Skript ruft dafür <code>PitRemove</code>, <code>D8FlowDir</code> und <code>AreaD8</code> auf. Lassen Sie die <strong>Prüfung auf Randeinflüsse aktiviert</strong> und setzen Sie keine Auslasspunkte als Einschränkung. Stellen Sie <code>ad8.tif</code> mit logarithmischer Farbskala oder mehreren abgestuften Klassen dar: Die großen Werte markieren die <strong>potenziellen Konzentrationslinien</strong> im Relief. Prüfen Sie außerdem mit dem Rasterrechner <code>"fel@1" - "dgm5@1"</code> an mindestens einer Vertiefung, <strong>wo das Senkenfüllen Höhen verändert hat</strong>. Ein Wert von <code>0</code> bedeutet: unverändert.</p>
+<p><strong>Lesen Sie den Wert an einer Zelle der Talrinne ab.</strong> Bei 5 m Rasterweite gilt:</p>
+<p>[ A_{}=N_{}&nbsp;^2. ]</p>
+<p>Beispiel: <code>ad8 = 4 000</code> bedeutet <strong>100 000 m² = 10 ha</strong> beitragende Fläche – <strong>nicht</strong> 4 000 Liter, 4 000 m³/s oder 4 000 tatsächlich dort eintreffende Regentropfen.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Routing und Akkumulation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Routing</strong> legt für jede Zelle fest, <strong>wohin</strong> ein Beitrag weitergegeben wird. <strong>Akkumulation</strong> zählt bzw. summiert anschließend, <strong>was von oberhalb ankommt</strong>. Bei D8 stehen im Raster <code>p.tif</code> nur Richtungs<strong>codes</strong> (acht mögliche Nachbarn), in <code>ad8.tif</code> dagegen <strong>Zellanzahlen</strong>. Die Zahl <code>4000</code> ist nicht die vierte Fließrichtung, sondern 4000 vollständig verbundene Zellen einschließlich der Zielzelle. Erst die Multiplikation mit der Zellfläche erzeugt eine Fläche in m².</p>
+<p>An einer Wasserscheide sind Zuflüsse von der jeweils anderen Seite <strong>nicht</strong> angeschlossen. Umgekehrt können am Auslass viele Hangzellen zusammenkommen. Beides ergibt sich aus denselben Richtungsverbindungen; die Akkumulation stellt deshalb keine neue Fließregel dar.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachlich: Was bei der Senkenbehandlung verändert wird
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>Pit Remove</code> hebt geschlossene Vertiefungen bis zum niedrigsten Überlaufniveau an, damit eine zusammenhängende Abflussverbindung entstehen kann. Das ist für das Relief-Routing zweckmäßig, aber <strong>keine Beobachtung eines aufgefüllten Geländes</strong>. Echte Senken, Straßendämme, Brücken und Durchlässe können andere Regeln erfordern. Prüfen Sie eine auffällige Abweichung zwischen kartiertem Bach und berechnetem Weg zunächst im <strong>ursprünglichen</strong> DGM, nicht erst durch weiteres Glätten.</p>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Wenn die SAGA-QGIS-Erweiterung fehlt
+<span class="screen-reader-only">Note</span>Technisch: Processing-Skript installieren und Grundlage rechnen
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Die frühere QGIS-eigene SAGA-Anbindung wurde mit QGIS 3.30 entfernt. Die <a href="https://plugins.qgis.org/plugins/processing_saga_nextgen/">aktuelle QGIS-Plugin-Seite</a> für <em>Processing Saga NextGen Provider</em> weist derzeit <strong>keine öffentliche Version</strong> aus. Der <a href="https://github.com/baswein/qgis-processing-saga-nextgen">Quellcode</a> ist verfügbar, dennoch ist eine problemlose Plugin-Installation nicht gewährleistet. Zudem verlangt der Anbieter eine kompatible SAGA-Installation. Für die Übung ist deshalb <strong>SAGA direkt + QGIS für die Karten</strong> der robustere Hauptweg. Alternativ funktioniert <strong>GRASS <code>r.watershed</code></strong> in einer entsprechend eingerichteten QGIS-Processing-Umgebung.</p>
+<p>Öffnen Sie <a href="../scripts/taudem_burgwald_processing.py"><code>scripts/taudem_burgwald_processing.py</code></a> im QGIS-Processing-Skripteditor und <strong>speichern Sie es dort als <code>.py</code></strong>. Es erscheint anschließend unter <em>Skripte → Modellieren in der Geographie</em>. Wählen Sie <strong>Berechnung 1 – Grundlage</strong>, das DGM und einen dauerhaften Ergebnisordner. Das Skript berechnet <code>fel</code>, <code>p</code>, <code>sd8</code>, <code>ad8</code>, <code>ang</code>, <code>slp</code>, <code>sca</code>, <code>twi</code> und die beiden Gerinneschwellen in einem Lauf. Die Schwellen werden aus <strong>2 ha und 5 ha</strong> in Zellzahlen umgerechnet.</p>
+<p>Linux und Windows verwenden dieselbe <code>.py</code>-Datei. Im Dialog können Sie ein <strong>TauDEM-Binärverzeichnis</strong> und den <strong>MPI-Launcher</strong> (<code>mpiexec</code> oder dessen vollständigen Pfad) angeben. TauDEM und MPI müssen zum jeweiligen Betriebssystem passen. Die Dateien werden bei erneutem Aufruf <strong>nicht überschrieben</strong>; für eine zweite Grundlage einen anderen Ergebnisordner wählen.</p>
 </div>
 </div>
+</div>
 </section>
-<section id="vom-errechneten-abflussweg-zum-mäander" class="level2">
-<h2 class="anchored" data-anchor-id="vom-errechneten-abflussweg-zum-mäander">5 · Vom errechneten Abflussweg zum Mäander</h2>
-<p>Legen Sie ein Orthofoto bzw. die amtliche Gewässerlinie über Hillshade und Akkumulationskarte. Wählen Sie einen Abschnitt mit <strong>einer erkennbaren Gewässerkrümmung</strong> im Burgwald; eine stark entwickelte Mäanderschlinge ist nicht Voraussetzung für die Übung.</p>
+<section id="aus-zuflüssen-wird-ein-einzugsgebiet-ca.-15-minuten" class="level2">
+<h2 class="anchored" data-anchor-id="aus-zuflüssen-wird-ein-einzugsgebiet-ca.-15-minuten">3 · Aus Zuflüssen wird ein Einzugsgebiet (ca. 15 Minuten)</h2>
+<p><strong>Gerinne sind zunächst keine Eingabedaten:</strong> Wir zeichnen eine potenzielle Bachlinie dort, wo ausreichend viele Oberhangzellen zusammenkommen.</p>
 <ol type="1">
-<li><strong>Lage:</strong> Verläuft die Akkumulationslinie ungefähr entlang des heutigen Flussbetts oder daneben?</li>
-<li><strong>Abweichung:</strong> Liegt die Verschiebung möglicherweise an Rasterweite, interpolierter Wasseroberfläche, Senkenbehandlung oder Randbereich des untersuchten DGM?</li>
-<li><strong>Form:</strong> Wird die <strong>Krümmung eines bestehenden Flusslaufs</strong> in der Reliefinformation wiedergegeben, oder entsteht sie erst durch den Routingalgorithmus?</li>
-<li><strong>Interpretation:</strong> Können Sie aus der Akkumulationskarte erkennen, an welchem Ufer Erosion und wo Sedimentation stattfinden wird? <strong>Nein</strong> – dafür fehlen Strömungsdynamik, Sedimenttransport, Ufermaterial und die zeitliche Rückkopplung von Fluss und Gelände.</li>
+<li>In der bereits gerechneten <strong>Grundlage</strong> hat TauDEM <em>Stream Definition By Threshold</em> die Schwelle <strong>2 ha = 800 Zellen</strong> als <code>src_2ha.tif</code> gespeichert (bei 5-m-Zellen).</li>
+<li>Die zweite Schwelle <strong>5 ha = 2 000 Zellen</strong> liegt als <code>src_5ha.tif</code> vor. Schalten Sie die beiden 1/0-Raster abwechselnd über der Schummerung ein und überlagern Sie die amtliche Gewässerlinie.</li>
+<li>Wählen Sie an Ihrem Bach einen Punkt <strong>auf einer berechneten <code>src_2ha</code>-Gerinnezelle</strong> als Auslass. Erstellen Sie einen Punktlayer <code>processing/auslass.shp</code> mit dem ganzzahligen Feld <code>id</code> (für den einen Punkt <code>id = 1</code>). Der Punkt darf nicht lediglich optisch auf der ATKIS-Linie liegen.</li>
+<li>Starten Sie dasselbe Processing-Skript mit <strong>Berechnung 2 – Einzugsgebiet</strong>: Ergebnisordner <code>results</code>, Auslass <code>auslass.shp</code>, <strong>Verschieben = 0</strong>. Intern rechnet TauDEM <em>Gage Watershed</em> mit <code>p.tif</code> und schreibt <code>becken.tif</code>. Die Rasterzellen mit Wert <strong>1</strong> bilden das zum Punkt entwässernde Gebiet. Stellen Sie dessen Grenze zusammen mit <code>ad8.tif</code> dar.</li>
 </ol>
-<p>Der Vergleich zum NetLogo-Modell <em>River Meanders</em> ist absichtlich zugespitzt:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Ansatz</th>
-<th>Was verändert sich im Modell?</th>
-<th>Was ist das Ergebnis?</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>NetLogo: River Meanders</strong></td>
-<td>Fluss-/Landzustände ändern sich nach heuristischen Regeln</td>
-<td>Entstehende, sich verändernde Flussform</td>
-</tr>
-<tr class="even">
-<td><strong>SAGA/GRASS: DGM-Flow-Routing</strong></td>
-<td>Bei statischem DGM grundsätzlich <strong>keine Geländeänderung</strong></td>
-<td>Abgeleitete Fließwege und beitragende Fläche</td>
-</tr>
-<tr class="odd">
-<td><strong>Hydro-/Morphodynamisches Modell</strong></td>
-<td>Wasserzustand und ggf. Gerinnegeometrie/Sediment ändern sich durch Prozessgleichungen</td>
-<td>Dynamischer Strömungs- und möglicherweise Formwandel</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Merksatz:</strong> <em>Fließakkumulation erklärt die Lage möglicher Abflussbahnen unter einer Routingregel. Sie erklärt nicht die zeitliche Entstehung eines Mäanders.</em></p>
-</section>
-<section id="landnutzung-für-rauigkeit-infiltration-und-eine-prozesssimulation" class="level2">
-<h2 class="anchored" data-anchor-id="landnutzung-für-rauigkeit-infiltration-und-eine-prozesssimulation">6 · Landnutzung für Rauigkeit, Infiltration und eine Prozesssimulation</h2>
-<p><strong>Warum zusätzliche Geodaten?</strong> Eine D8-/MFD-Akkumulation leitet Topologierichtungen und beitragende Fläche aus dem Relief ab. In diesen beiden <strong>reinen Fließakkumulationsläufen wird ein Manning-Rauigkeitsraster nicht verwendet</strong>. Erst bei einem zusätzlichen zeitabhängigen Abflussmodell kann die Landnutzung als Ausgangspunkt für räumlich variable hydraulische Rauigkeit (und mit weiteren Bodeninformationen für Infiltration) dienen.</p>
-<section id="landnutzung-aus-dem-atkis-basis-dlm-vorbereiten" class="level3">
-<h3 class="anchored" data-anchor-id="landnutzung-aus-dem-atkis-basis-dlm-vorbereiten">Landnutzung aus dem ATKIS-Basis-DLM vorbereiten</h3>
-<ol type="1">
-<li>Laden Sie in QGIS die <strong>ATKIS-Flächen</strong> mit Informationen über <strong>Vegetation (Wald, Offenland usw.), Siedlung und Verkehr</strong>; Gewässerobjekte separat zur Kontrolle. Prüfen Sie die vorhandenen Attributnamen, bevor Sie Klassen zuordnen – diese unterscheiden sich je nach Datenausgabe.</li>
-<li>Begrenzen Sie die Landnutzungsflächen auf den Untersuchungsraum. Fassen Sie sie beispielhaft zu <strong>Wald</strong>, <strong>Offenland/Grünland</strong>, <strong>Acker</strong>, <strong>versiegelte/verdichtete Flächen</strong> und <strong>Gewässer</strong> zusammen. Dokumentieren Sie nicht zuordenbare Objekte; keine stillschweigende Zuweisung.</li>
-<li>Legen Sie ein neues numerisches Feld <code>manning_n</code> an. Ordnen Sie die Klassen begründeten, zunächst nur als <strong>Versuchswerte</strong> verstandenen Rauigkeitskoeffizienten zu. Eine Landnutzungsklasse hat keinen universell gültigen Manning-Wert; Bodenbewuchs, Bewirtschaftung, Fließtiefe und Jahreszeit wirken mit.</li>
-<li>Rasterisieren Sie das Feld <code>manning_n</code> in QGIS (<strong>Raster → Konvertierung → Rasterisieren (Vektor nach Raster)</strong>). Verwenden Sie <strong>dieselben Rastergrenzen, denselben Ursprung, dasselbe CRS und dieselbe Rasterweite</strong> wie für das Arbeits-DGM. Kategorische Landnutzung beim Neuabtasten mit <em>Nearest Neighbour</em> behandeln.</li>
-<li>Kontrollieren Sie Fehlwerte, Überlappungen und Grenzen zwischen Landnutzungsklassen. Speichern Sie das Ergebnis als <code>roughness_n.tif</code>; falls SAGA <strong>Strickler <span class="math inline">\(K_s\)</span></strong> verlangt, berechnen Sie <span class="math inline">\(K_s = 1/n\)</span> und dokumentieren die Umrechnung.</li>
-</ol>
-<p><strong>Rauigkeitsbegriffe auseinanderhalten:</strong> Der <em>Overland Flow</em>-Ansatz verwendet wahlweise <strong>Manning-<code>n</code> oder Strickler-<code>K_s = 1/n</code></strong>. Der SAGA-Ansatz <em>MMF-SAGA</em> erwartet für <code>RFR</code> dagegen eine <strong>Oberflächenrauigkeit in cm/m</strong>; ein Manning-Raster darf dort <strong>nicht</strong> ohne Weiteres eingesetzt werden. Für <em>Overland Flow Distance to Channel Network</em> kann ein Strickler-Raster zusammen mit einer angenommenen Fließtiefe zur Berechnung von Reisezeiten verwendet werden.</p>
-<p><strong>Keine Gleichsetzung:</strong> Landnutzung ≠ Infiltrationsrate. Für eine quantitative Infiltrationskarte benötigt man zusätzlich z. B. Informationen über Bodenart, hydraulische Leitfähigkeit und Anfangsfeuchte. Ohne diese Daten ist ein konstantes, transparent angegebenes Infiltrationsszenario ehrlicher als ein scheinbar präziser Rasterwert.</p>
-</section>
-<section id="welches-werkzeug-verwendet-welche-parameter" class="level3">
-<h3 class="anchored" data-anchor-id="welches-werkzeug-verwendet-welche-parameter">Welches Werkzeug verwendet welche Parameter?</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Werkzeug</th>
-<th>DGM</th>
-<th>Landnutzung / Rauigkeit</th>
-<th>Niederschlag und Infiltration</th>
-<th>Interpretation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>SAGA Flow Accumulation (D8/MFD)</strong></td>
-<td>Ja</td>
-<td><strong>Nein</strong></td>
-<td>Nicht als Ereignishydraulik</td>
-<td>Statische beitragende Fläche</td>
-</tr>
-<tr class="even">
-<td><strong>GRASS <code>r.watershed</code></strong></td>
-<td>Ja</td>
-<td>Kein hydraulisches Manning-<code>n</code>; optional zellweiser <strong>Abflussbeitrag</strong> (<code>flow=</code>) und <strong>Retention</strong> (<code>retention=</code>)</td>
-<td>Kein zeitabhängiges Niederschlags-Abfluss-Modell</td>
-<td>Gewichtete Akkumulation, nicht Fließgeschwindigkeit</td>
-</tr>
-<tr class="odd">
-<td><strong>SAGA <code>Simulation → Hydrology → Overland Flow</code></strong></td>
-<td>Ja</td>
-<td><strong>Ja</strong>, Raster <code>ROUGHNESS</code> – wahlweise <strong>Strickler <span class="math inline">\(K_s\)</span> oder Manning <span class="math inline">\(n\)</span></strong></td>
-<td><strong>Ja</strong>, u. a. Niederschlag, Infiltrationskapazität, Interzeption</td>
-<td>Vereinfachte zeitabhängige Oberflächenabflusssimulation</td>
-</tr>
-<tr class="even">
-<td><strong>GRASS <code>r.sim.water</code></strong></td>
-<td>Ja</td>
-<td><strong>Ja</strong>, Raster <code>man</code> mit Manning-<code>n</code></td>
-<td><strong>Ja</strong>, u. a. <code>rain</code>, <code>infil</code></td>
-<td>Räumliche Simulation von Wassertiefe und Durchfluss</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="kleines-anschluss-experiment-optional" class="level3">
-<h3 class="anchored" data-anchor-id="kleines-anschluss-experiment-optional">Kleines Anschluss-Experiment (optional)</h3>
-<p>Rechnen Sie <strong>denselben kleineren Teilraum des Burgwalds</strong> mit einem der beiden zeitabhängigen Modelle zweimal: <strong>A</strong> mit konstanter Rauigkeit, <strong>B</strong> mit einem aus ATKIS-Landnutzung abgeleiteten Rauigkeitsraster. Halten Sie DGM, Niederschlag, Infiltrationsannahme, Simulationszeit und Ausgabezeitpunkt gleich. Vergleichen Sie Lage von Abflusskonzentrationen sowie – je nach Modell – <strong>Wassertiefe, Geschwindigkeit oder Abfluss</strong>. Ist der Einfluss der Rauigkeit größer als der des Wechsels von 5 m auf 10 m Rasterweite?</p>
-<p>Verwenden Sie für die erste Demonstration bewusst einen <strong>kleinen Ausschnitt</strong>, damit die Simulation handhabbar bleibt; prüfen Sie dennoch die Randbedingungen. Interpretieren Sie Unterschiede zunächst als <strong>Modellsensitivität</strong>, nicht als validierte Hochwasserprognose.</p>
-<p><strong>Werkzeugdokumentation:</strong> <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.14.1/sim_hydrology_9.html">SAGA Overland Flow</a> · <a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html">GRASS <code>r.sim.water</code></a> · <a href="https://grass.osgeo.org/grass85/manuals/r.watershed.html">GRASS <code>r.watershed</code></a>.</p>
-</section>
-</section>
-<section id="matrix-welche-modellkonzepte-implementieren-saga-grass-und-qgis" class="level2">
-<h2 class="anchored" data-anchor-id="matrix-welche-modellkonzepte-implementieren-saga-grass-und-qgis">7 · Matrix: Welche Modellkonzepte implementieren SAGA, GRASS und QGIS?</h2>
-<p>Die drei Programme sind <strong>keine drei gleichartigen Simulationsmodelle</strong>. SAGA und GRASS stellen Werkzeuge für verschiedene Prozess- und Abstraktionsebenen bereit; QGIS ist zusätzlich ein GIS mit <strong>eigenen Algorithmen und Schnittstellen zu externen Rechenkernen</strong>. Insbesondere bedeutet die Anzeige eines GRASS-Werkzeugs in der QGIS-Werkzeugkiste nicht, dass QGIS dessen Gleichungen selbst implementiert.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Modellkonzept / Zielgröße</th>
-<th><strong>SAGA GIS</strong> (Beispiel)</th>
-<th><strong>GRASS GIS</strong> (Beispiel)</th>
-<th><strong>QGIS nativ oder über Provider</strong></th>
-<th>Physikalische Aussage und Grenze</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>DGM-Vorverarbeitung</strong> (Senken, Fließfähigkeit)</td>
-<td><em>Fill Sinks (Wang &amp; Liu)</em></td>
-<td><code>r.fill.dir</code></td>
-<td>Seit QGIS <strong>3.44</strong> auch <em>Fill sinks (Wang &amp; Liu)</em> als nativer Algorithmus; sonst externe Werkzeuge</td>
-<td>Korrigiert/erzwingt eine Abfluss-Topologie; <strong>keine Wassersimulation</strong></td>
-</tr>
-<tr class="even">
-<td><strong>Fließrichtung und beitragende Fläche</strong></td>
-<td><em>Flow Accumulation</em> mit <strong>D8, MFD</strong> u. a.</td>
-<td><code>r.watershed</code> (<strong>MFD</strong>, mit <code>-s</code> <strong>SFD</strong>)</td>
-<td>Im Wesentlichen über <strong>GRASS/SAGA</strong> als Processing-Anbieter</td>
-<td>Statisches Reliefrouting; keine Wasserstandsdynamik, kein hydraulisches Manning-<code>n</code></td>
-</tr>
-<tr class="odd">
-<td><strong>Gerinnenetz und Einzugsgebiete</strong></td>
-<td><em>Channel Network</em>, <em>Watershed Basins</em></td>
-<td><code>r.stream.extract</code>, <code>r.water.outlet</code></td>
-<td>Kartierung/Verarbeitung, häufig über GRASS/SAGA</td>
-<td>Abgeleitete Gerinneanfänge hängen von Schwellenwerten und Relief ab</td>
-</tr>
-<tr class="even">
-<td><strong>Abflussweg und Fließzeit</strong></td>
-<td><em>Overland Flow Distance to Channel Network</em> (optional Strickler-Rauigkeit und angenommene Wassertiefe)</td>
-<td><code>r.watershed</code> + abgeleitete Weglängen; kein direkt äquivalentes Ereignismodell</td>
-<td>Über SAGA/GRASS oder Rasterrechner</td>
-<td>Berechnete Weglänge und <strong>parametrisierte Reisezeit</strong>, keine vollständige zeitabhängige Wassermengenbilanz</td>
-</tr>
-<tr class="odd">
-<td><strong>Dynamischer Oberflächenabfluss</strong></td>
-<td><em>Overland Flow</em></td>
-<td><code>r.sim.water</code> (SIMWE)</td>
-<td>Über GRASS-/SAGA-Anbindung; <strong>kein gleichwertiges natives vollständiges Simulationsmodell</strong></td>
-<td>Ereignis- oder zeitabhängiger Wasserabfluss unter Modellannahmen; Rauigkeit, Niederschlag, Infiltration relevant</td>
-</tr>
-<tr class="even">
-<td><strong>Hang-/Flächenerosion</strong></td>
-<td><em>MMF-SAGA Soil Erosion Model</em></td>
-<td><code>r.watershed</code>-RUSLE-Faktoren bzw. Erosions-/Sedimentwerkzeuge</td>
-<td>Rasterrechner für eigene Erosionsindizes; GRASS-/SAGA-Modelle über Provider</td>
-<td>Erosionspotenzial oder modellierte flächenhafte Bodenerosion; <strong>keine seitliche Ufermigration</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>Sedimenttransport und Deposition</strong></td>
-<td>MMF-SAGA (modellbezogene Erosions-/Transportgrößen)</td>
-<td><code>r.sim.sediment</code> (SIMWE)</td>
-<td>Üblicherweise über GRASS-Processing</td>
-<td>Modellierung von Sedimentfluss und Erosion/Deposition im Gelände; nicht automatisch wandernde Flussufer</td>
-</tr>
-<tr class="even">
-<td><strong>Zeitliche Geländeentwicklung</strong></td>
-<td>In SAGA verschiedene geomorphologische/erosive Ansätze; <strong>kein integriertes allgemeines Mäandermigrationswerkzeug</strong></td>
-<td>Add-ons <code>r.sim.terrain</code>, <code>r.landscape.evol</code> mit wiederholter Höhenänderung</td>
-<td>Externe GRASS-Module oder eigene Prozessketten</td>
-<td>Rasterhöhen können zeitlich verändert werden; nicht gleichzusetzen mit lateraler Gerinnedynamik</td>
-</tr>
-<tr class="odd">
-<td><strong>Historische Ufererosion messen</strong></td>
-<td>Überlagerung bzw. Differenzanalyse historischer Linien/Polygone</td>
-<td>GIS-Vergleiche mit Vektor-/Rasteroperationen</td>
-<td>QGIS-Plugin <em>RiverBankErosionAccretion_V2</em> oder manuelle Uferlinien-Vergleiche</td>
-<td><strong>Retrospektive Beobachtungsanalyse</strong>, keine Prognose zukünftiger Mäander</td>
-</tr>
-<tr class="even">
-<td><strong>Seitenerosion / Mäandermigration vorwärts simulieren</strong></td>
-<td><strong>Kein entsprechendes Standardwerkzeug</strong></td>
-<td><strong>Kein entsprechendes Standardmodul</strong> für kinematische Mittellinienmigration</td>
-<td><strong>Kein natives Standardmodell</strong>; externe Python-Modelle wie <em>MeanderPy</em> lassen sich mit GIS-Daten kombinieren</td>
-<td>Veränderung einer Flussmittellinie nach Krümmungs-/Erodierbarkeitsregeln; nicht mit D8 zu verwechseln</td>
-</tr>
-</tbody>
-</table>
-<p>Die Aussagen beziehen sich auf die dokumentierten Werkzeugfamilien (Stand: November 2026), nicht auf jedes Drittanbieter-Plugin oder selbst entwickelte Skript. Details und Verfügbarkeit unterscheiden sich nach Version, Betriebssystem und Installation. <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html">SAGA-Hydrologie</a> · <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.14.1/sim_hydrology_9.html">SAGA <em>Overland Flow</em></a> · <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.14.1/sim_erosion_0.html">SAGA <em>MMF</em></a> · <a href="https://grass.osgeo.org/grass-stable/manuals/topic_hydrology.html">GRASS-Hydrologie</a> · <a href="https://docs.qgis.org/3.44/de/docs/user_manual/processing_algs/qgis/rasterterrainanalysis.html">QGIS-natives <em>Fill sinks</em></a>.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
+<p><strong>Prüfung am eigenen Bach:</strong> Wo liegt die Wasserscheide? Welche Seitenhänge sind angeschlossen? Verändert die Gerinneschwelle die <strong>eingezeichneten Bachanfänge</strong>, obwohl <code>p.tif</code> und das Einzugsgebiet am unveränderten Auslass gleich bleiben? Vergleichen Sie den berechneten Talweg gerade an der gewählten Krümmung mit der amtlichen Gewässerlinie. <strong>Die Krümmung kann im Relief bereits enthalten sein; der Algorithmus erzeugt sie nicht durch Ufererosion.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Rastererosion ist nicht automatisch Ufererosion
+<span class="screen-reader-only">Note</span>Technisch: Punkt liegt neben dem berechneten Gerinne
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Ein Raster kann an einer Stelle Gelände verlieren und an einer anderen Sediment ablagern, ohne dass der Algorithmus <strong>die seitliche Verlagerung eines Gerinnes oder die Erosion eines Ufers</strong> abbildet. Für eine explizite Mäanderentwicklung braucht es mindestens eine Regel für die laterale Migrationsrichtung und -rate sowie eine zeitliche Aktualisierung der Gerinnegeometrie. Anspruchsvollere Ansätze koppeln Hydrodynamik, Sedimenttransport und Uferstabilität.</p>
+<p>Im <strong>Processing-Skript, Berechnung 2</strong> können Sie <strong>„Auslass maximal um N Zellen verschieben“ = 2</strong> einstellen. TauDEM <em>Move Outlets To Streams</em> sucht dann entlang der D8-Verbindung eine Gerinnezelle (Standard <code>src_2ha.tif</code>). Das Skript speichert <code>auslass_auf_gerinne.shp</code> und berechnet daraus <code>becken.tif</code>. Kontrollieren Sie <code>dist_moved</code> und die tatsächlich verwendete Lage. Bei 5 m Rasterweite sind dies höchstens zwei D8-Schritte (je nach Richtung bis rund <strong>14,1 m</strong>); wenn kein Gerinne erreicht wird, wählen Sie den Auslass neu. Die Auslassposition bestimmt das Ergebnis; eine automatische Verschiebung darf nicht unbemerkt eine andere Fragestellung erzeugen.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Gerinneschwelle, Auslass und Wasserscheide
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die <strong>Gerinneschwelle</strong> markiert Zellen mit <code>ad8</code> oberhalb eines vorgegebenen Flächenbeitrags als potenziellen Bach. Bei 5-m-Zellen: <code>800 × 25 m² = 2 ha</code>. Eine höhere Schwelle lässt Bachlinien <strong>später</strong> beginnen; sie ändert weder das D8-Richtungsraster <code>p</code> noch die reale Quelle des Bachs. Bei 10-m-Zellen entsprechen <strong>200 Zellen</strong> denselben 2 ha – die Schwelle muss also in <strong>Fläche</strong>, nicht in Zellzahl, verglichen werden.</p>
+<p>Der <strong>Auslass</strong> ist die Rasterzelle, zu der alle ausgewiesenen Oberlieger entwässern. Ihre Menge bildet das <strong>Einzugsgebiet</strong>. Dessen Rand heißt <strong>Wasserscheide</strong>: Nach der verwendeten Routingregel führen die Abflusswege außerhalb nicht zu diesem Auslass. Die Lage des Auslasses ist daher eine fachliche Entscheidung, kein beliebiger Kartenmarker.</p>
+</div>
 </div>
 </div>
 </section>
-<section id="gibt-es-gis-basierte-modelle-für-seitenerosion-und-mäanderentwicklung" class="level2">
-<h2 class="anchored" data-anchor-id="gibt-es-gis-basierte-modelle-für-seitenerosion-und-mäanderentwicklung">8 · Gibt es GIS-basierte Modelle für Seitenerosion und Mäanderentwicklung?</h2>
-<p><strong>Ja – aber üblicherweise als spezialisierte Modelle oder Python-Bibliotheken, nicht als einfache D8-/MFD-Funktion.</strong> Für den Vergleich mit NetLogo eignet sich insbesondere <a href="https://github.com/zsylvester/meanderpy"><strong>MeanderPy</strong></a>. Das Modell ist eine Python-Implementierung eines <strong>kinematischen Mäandermigrationsmodells</strong> nach Howard und Knutson (1984). Es verwendet die Krümmung der Flussmittellinie und eine gewichtete Information über oberstromige Krümmungen, um eine laterale Migrationsrate abzuleiten. <strong>Eine vollständige Strömungs- und Impulsbilanz wird nicht gelöst.</strong></p>
-<p>Schematisch kann man diese Modellklasse als</p>
-<p><span class="math display">\[
-v_{n}(s) = k_{m} \, C_{\mathrm{eff}}(s)
-\]</span></p>
-<p>darstellen. <span class="math inline">\(v_n\)</span> bezeichnet die seitliche Migrationsgeschwindigkeit, <span class="math inline">\(k_m\)</span> einen Migrations-/Erodierbarkeitsparameter und <span class="math inline">\(C_{\mathrm{eff}}\)</span> eine aus der Flusskrümmung und oberstromigen Einflüssen bestimmte Größe. <strong>Diese Darstellung ist eine Konzeptskizze, nicht die exakte Implementationsgleichung von MeanderPy.</strong> Damit entsteht tatsächlich eine zeitlich veränderliche Flusslinie – anders als bei einer Fließakkumulationskarte.</p>
+<section id="verzweigung-am-hang-d-statt-d8-ca.-10-minuten" class="level2">
+<h2 class="anchored" data-anchor-id="verzweigung-am-hang-d-statt-d8-ca.-10-minuten">4 · Verzweigung am Hang: D∞ statt D8 (ca. 10 Minuten)</h2>
+<p>Die <strong>Grundlage (Berechnung 1)</strong> hat auf <strong>demselben <code>fel.tif</code></strong> zwei weitere TauDEM-Schritte bereits ausgeführt:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Ansatz</th>
-<th>Raum-/Zeitrepräsentation</th>
-<th>Berechnet?</th>
-<th>Seitliche Mäanderverlagerung?</th>
+<th>TauDEM-Werkzeug</th>
+<th>Eingabe → Ausgabe</th>
+<th>Werte</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>NetLogo <em>River Meanders</em></strong></td>
-<td>Abstrakte Gewässerzellen; Iterationen</td>
-<td>Regelbasierte agentengetriebene Flussformänderung</td>
-<td><strong>Ja, heuristisch</strong></td>
+<td><strong>D-Infinity Flow Directions</strong></td>
+<td><code>fel.tif</code> → <code>ang.tif</code>, <code>slp.tif</code></td>
+<td>Winkel <strong>rad</strong> und lokale Hangneigung <strong>m/m</strong></td>
 </tr>
 <tr class="even">
-<td><strong>SAGA/GRASS D8/MFD</strong></td>
-<td>Statisches Gelände; Rasterzellen</td>
-<td>Fließwege / beitragende Fläche</td>
-<td><strong>Nein</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>GRASS <code>r.sim.terrain</code></strong></td>
-<td>DGM-Raster; Zeitschritte / Ereignisreihen</td>
-<td>Wiederholte Änderungen der Geländehöhe durch Erosions-/Depositionsansätze</td>
-<td><strong>Nicht als explizites Ufermigrationsmodell</strong></td>
-</tr>
-<tr class="even">
-<td><strong>Python <em>MeanderPy</em></strong></td>
-<td>Flussmittellinie; Modellzeitschritte</td>
-<td>Krümmungsabhängige laterale Mittellinienmigration und Abschneidungen</td>
-<td><strong>Ja, kinematisch</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>QGIS: <em>RiverBankErosionAccretion_V2</em></strong></td>
-<td>Gewässerpolygone aus unterschiedlichen Beobachtungsjahren</td>
-<td>Rückblickende Flächenänderung / Uferverlagerungsraten</td>
-<td><strong>Messung, keine Simulation</strong></td>
+<td><strong>D-Infinity Contributing Area</strong></td>
+<td><code>ang.tif</code> → <code>sca.tif</code></td>
+<td><strong>spezifische</strong> beitragende Fläche <strong>m²/m = m</strong></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Skaligkeit:</strong> Ein DGM1 kann für Einzugsgebiets-Routing sehr detailliert, für die Modellierung einer schmalen Uferkante jedoch trotz 1-m-Gitter <strong>zu grob oder geometrisch unvollständig</strong> sein. Zudem ist die räumliche Auflösung einer Simulation <strong>nicht</strong> automatisch ihre physikalische Genauigkeit. Ein krümmungsbasiertes Mittellinienmodell arbeitet entlang eines Gewässerabschnitts und besitzt eine andere räumliche Repräsentation als ein flächenhaftes DGM. Die jeweilige Modellzeit muss gesondert definiert bzw. anhand beobachteter Migrationsraten kalibriert werden.</p>
-<p><strong>Diskussionsaufgabe (ohne zusätzliche Software):</strong> Ordnen Sie die drei NetLogo-Modelle, D8/MFD, <code>r.sim.water</code>, <code>r.sim.terrain</code> und MeanderPy in eine Reihe zunehmender Prozessdifferenzierung ein. Bei welchen Übergängen werden neue <strong>Zustandsgrößen oder Erhaltungsgleichungen</strong> eingeführt – und wo nur neue heuristische bzw. empirische Beziehungen? Begründen Sie, weshalb <em>mehr Prozessmodule</em> nicht automatisch <em>größere physikalische Validität</em> bedeutet.</p>
-<p><strong>Weiterführende Dokumentation:</strong> <a href="https://github.com/zsylvester/meanderpy">MeanderPy – Code und Einführung</a> · <a href="https://csdms.colorado.edu/wiki/Model%3AMeanderpy">CSDMS: Modellbeschreibung MeanderPy</a> · <a href="https://doi.org/10.1029/WR020i011p01659">Howard &amp; Knutson (1984)</a> · <a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.sediment.html">GRASS <code>r.sim.sediment</code></a> · <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.sim.terrain.html">GRASS Add-on <code>r.sim.terrain</code></a> · <a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.landscape.evol.html">GRASS Add-on <code>r.landscape.evol</code></a> · <a href="https://plugins.qgis.org/plugins/riverbank_erosion_accretion_v2/">QGIS <em>RiverBankErosionAccretion_V2</em></a>.</p>
+<p>D8 leitet den gesamten Zellbeitrag an <strong>einen</strong> Empfänger. D∞ verteilt ihn je nach berechnetem Winkel auf <strong>höchstens zwei</strong> benachbarte Zellen. Vergleichen Sie auf einer breiten Hangfläche und im Tal die <strong>Muster</strong> von <code>ad8</code> und <code>sca</code>. Achten Sie dabei darauf, dass die Raster <strong>nicht dieselbe Einheit</strong> haben. <code>sca</code> lässt sich nicht allein durch eine andere Farbskala in <code>ad8</code> umrechnen.</p>
+<p>Die Grundlage berechnet außerdem den TauDEM <strong>Topographic Wetness Index</strong> aus <code>sca.tif</code> und <code>slp.tif</code> als <code>twi.tif</code>. Zeigen Sie die höchsten TWI-Werte und betrachten Sie, ob es sich eher um flache Talbereiche oder steile Hänge handelt.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: D8, D∞ und MFD – was wird verteilt?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>D8:</strong> Von acht Nachbarn erhält genau <strong>einer</strong> den gesamten Beitrag; das kann am Hang künstlich schmale Fließlinien erzeugen. <strong>D∞ (D-Infinity):</strong> Die Richtung ist ein <strong>kontinuierlicher Winkel</strong> aus dreieckigen Teilflächen des Höhenrasters. Liegt er zwischen zwei Nachbarzellen, wird der Beitrag <strong>anteilig auf diese beiden</strong> verteilt. Das <code>∞</code> bezeichnet also die kontinuierlich möglichen Richtungswinkel, <strong>nicht unendlich viele Empfänger</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/routing_d8_dinf.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Schematische Verteilung: D8 an eine Nachbarzelle, D∞ anteilig an höchstens zwei Zellen.</figcaption>
+</figure>
+</div>
+<p>Im Beispiel rechts sind 60/40 Prozent <strong>nur zur Illustration gewählt</strong>, keine festen TauDEM-Gewichte. Ein klassisches <strong>MFD (Multiple Flow Direction)</strong> kann Beiträge auf <strong>mehr als zwei</strong> tieferliegende Nachbarn verteilen. D∞ ist <strong>nicht</strong> gleichbedeutend mit klassischem MFD. Originalmethode: <a href="https://doi.org/10.1029/96WR03137">Tarboton (1997)</a>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Was bedeutet SCA?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>SCA = Specific Catchment Area</strong>, deutsch <em>spezifische beitragende Einzugsfläche</em>. TauDEM <code>AreaDinf</code> summiert die <strong>anteiligen Flächenbeiträge</strong> von oberhalb und bezieht sie im Standardfall auf die <strong>Rasterbreite</strong>. Für quadratische 5-m-Zellen gilt schematisch:</p>
+<p>[ a=, ==. ]</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/sca_flaeche_pro_breite.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Beispiel: 150 m² effektive beitragende Fläche geteilt durch 5 m Rasterbreite ergibt eine SCA von 30 m.</figcaption>
+</figure>
+</div>
+<p><strong>Lesebeispiel:</strong> <code>sca = 30</code> bedeutet <strong>30 m² Beitrag je Meter Bezugsbreite</strong>, also rechnerisch <code>150 m²</code> bei <code>5 m</code> Zellbreite. Anders als <code>ad8</code> enthält <code>sca</code> <strong>Teilbeiträge</strong> und ist bereits auf die Breite bezogen. <code>ad8 = 30</code> bedeutet dagegen bloß <strong>30 vollständig angeschlossene Zellen</strong>. Die beiden Raster sind deshalb weder in Wert noch in Routingannahme direkt vergleichbar. Grundlage: <a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityContributingArea.html">TauDEM-Dokumentation zu AreaDinf</a>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Was zeigt der TWI?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>TWI = Topographic Wetness Index.</strong> TauDEM verbindet die spezifische Fläche <code>a = sca</code> mit der lokalen Neigung <code>tan(β) = slp</code>:</p>
+<p>[=!().]</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/twi_interpretation.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Vergleich: eine kleine spezifische Fläche auf steilem Hang führt zu geringerem TWI als eine große Fläche auf flachem Hang.</figcaption>
+</figure>
+</div>
+<p>Bei <strong>gleicher Neigung</strong> steigt der Index mit <code>a</code>, bei <strong>gleichem a</strong> steigt er mit geringerem Gefälle. Er beschreibt damit eine <em>topografische Disposition</em> innerhalb eines Modells, keine gemessene Bodenfeuchte. Für die Auswertung ist zusätzlich die Behandlung sehr kleiner oder verschwindender Neigungen wichtig. Hydrologischer Hintergrund: <a href="https://doi.org/10.1080/02626667909491834">Beven &amp; Kirkby (1979)</a>.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="ergebnissicherung" class="level2">
-<h2 class="anchored" data-anchor-id="ergebnissicherung">Ergebnissicherung</h2>
-<p>Erstellen Sie <strong>drei Darstellungen</strong>: (a) Hillshade + D8-Akkumulation, (b) Hillshade + MFD-Akkumulation, (c) beide Ergebnisse im Vergleich zur Gewässerreferenz. Fügen Sie eine knappe Tabelle der verwendeten Parameter und einen Modellkommentar hinzu. Halten Sie außerdem <strong>die Datenherkunft (amtliches DGM1, ATKIS), zwei untersuchte Rasterweiten und die vorbereiteten Landnutzungsklassen</strong> fest. Die dynamische Rauigkeits-Simulation ist ein optionaler Aufbau.</p>
-<p>Beantworten Sie darin:</p>
-<ul>
-<li><strong>Welche Modellentscheidung</strong> hat die sichtbar größte Änderung bewirkt?</li>
-<li><strong>Wo ist das Ergebnis plausibel – und wo weicht es</strong> von der beobachteten Flusslage ab?</li>
-<li><strong>Welche zusätzliche Modellkomponente</strong> wäre erforderlich, um nicht nur den heutigen Flussverlauf abzuleiten, sondern dessen Veränderung über die Zeit zu simulieren?</li>
-<li><strong>Wo gehen Landnutzung und Reibung wirklich in die Rechnung ein</strong> – und wo wären sie nur eine zusätzliche Karte ohne Einfluss auf das Ergebnis?</li>
-</ul>
+<section id="eine-abflussannahme-ergänzt-die-fläche-ca.-5-minuten" class="level2">
+<h2 class="anchored" data-anchor-id="eine-abflussannahme-ergänzt-die-fläche-ca.-5-minuten">5 · Eine Abflussannahme ergänzt die Fläche (ca. 5 Minuten)</h2>
+<p>Im QGIS-Rasterrechner berechnen Sie aus <code>ad8.tif</code> das Raster <code>results/volumen_10mm.tif</code>:</p>
+<pre class="text"><code>"ad8@1" * 25 * 0.010</code></pre>
+<p><strong>Annahme:</strong> Jede Zelle liefert einmalig <strong>10 mm effektiven Abfluss</strong> (also Niederschlagsüberschuss nach allen Verlusten). Weil jede Zelle 25 m² groß ist, entspräche das <strong>0,25 m³ pro beitragender Zelle</strong>. Der Rasterwert am gewählten Auslass ist damit die <em>potenzielle gesamte Abflussmenge in m³</em>, die sich aus dieser angenommenen flächendeckenden Abflussbildung ergibt – <strong>wenn alle Beiträge den Auslass erreichen</strong>.</p>
+<p>Vergleichen Sie den Wert an Ihrem Auslass mit <code>ad8 · 25 · 0,010</code>. <strong>Neu ist die Volumeneinheit; nicht neu ist die Fließrichtung.</strong> Sie kennen weiterhin weder die Fließzeit noch einen Spitzenabfluss in m³/s.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachlich: Was sich durch Regen, Boden und Landnutzung zusätzlich festlegen ließe
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>10 mm</code> bezeichnet hier <strong>effektiven Abfluss</strong>, nicht automatisch <code>10 mm</code> Niederschlag. Bei einem Niederschlag <code>P</code> und einem Abflussanteil <code>C</code> wäre der Zellbeitrag <code>P · C · 25 m²</code>. Ein nach Landnutzung differenziertes <code>C</code> wäre <strong>eine zusätzliche empirische Zuordnung</strong>. ATKIS enthält Nutzungs- und Bedeckungsklassen, aber keinen gemessenen Abflussbeiwert, keine Bodenleitfähigkeit und keinen Sedimentabtrag. Für eine belastbare Differenzierung wären Boden, Versiegelung, Zustand und Ereignisannahme zu begründen.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technisch: Räumlich verschiedene Abflussbeiträge korrekt akkumulieren
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Wenn ein Raster <code>runoff_zelle_m3.tif</code> für <strong>jede Zelle</strong> einen angenommenen Beitrag in m³ enthält, wählen Sie im Processing-Skript <strong>Berechnung 3 – gewichtete Abflussakkumulation</strong>. Eingabe ist dieses Gewichtsraster, Ergebnisordner wieder <code>results</code>. Intern verwendet TauDEM <em>D8 Contributing Area</em> die vorhandenen <code>p.tif</code>-Verbindungen. Das Ergebnis <code>volumen_gewichtet_m3.tif</code> enthält die <strong>Summe der Zellvolumina in m³</strong>, nicht eine Zellzahl.</p>
+<p><code>runoff_zelle_m3.tif</code> muss exakt auf dem <code>dgm5</code>-Raster liegen. Bei konstant 0,25 m³ pro Zelle stimmt das Ergebnis (abgesehen von Rundung und NoData) mit <code>volumen_10mm.tif</code> überein.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="technische-dokumentation-und-daten" class="level2">
-<h2 class="anchored" data-anchor-id="technische-dokumentation-und-daten">Technische Dokumentation und Daten</h2>
-<ul>
-<li><p><a href="https://gds.hessen.de/INTERSHOP/web/WFS/HLBG-Geodaten-Site/de_DE/-/EUR/ViewDownloadcenter-Start">HVBG: DGM1/Burgwald – Downloadcenter</a></p></li>
-<li><p><a href="https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell">HVBG: ATKIS Basis-DLM – Landnutzung und Gewässer</a></p></li>
-<li><p><a href="https://rp-giessen.hessen.de/sites/rp-giessen.hessen.de/files/2026-03/projekt_burgwaldforelle_2023_vorstudie_burgwaldforellenprojekt_bericht_bfs.pdf">Land Hessen: Projektbericht Rotes Wasser / Burgwald</a></p></li>
-<li><p><a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.14.1/sim_hydrology_9.html">SAGA: Overland Flow – Rauigkeit und Niederschlag</a></p></li>
-<li><p><a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html">GRASS: <code>r.sim.water</code> – Manning-Rauigkeit</a></p></li>
-<li><p><a href="https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle">HVBG: Digitale Geländemodelle in Hessen</a></p></li>
-<li><p><a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html">SAGA GIS: Hydrology-Toolbibliothek</a></p></li>
-<li><p><a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.14.1/ta_channels_4.html">SAGA GIS: Overland Flow Distance to Channel Network</a></p></li>
-<li><p><a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.0/tc_ta_hydrology_flow_accumulation.html">SAGA GIS: Flow Accumulation (Werkzeugkette)</a></p></li>
-<li><p><a href="https://grass.osgeo.org/grass85/manuals/r.watershed.html">GRASS GIS: <code>r.watershed</code></a></p></li>
-<li><p><a href="https://grass.osgeo.org/grass85/manuals/r.stream.extract.html">GRASS GIS: <code>r.stream.extract</code></a></p></li>
-<li><p><a href="https://documentation.qgis.org/3.44/de/docs/training_manual/processing/hydro.html">QGIS: Hydrologische Analyse</a></p></li>
-<li><p><a href="https://plugins.qgis.org/plugins/processing_saga_nextgen/">QGIS: Processing Saga NextGen Provider – Plugin-Seite</a></p></li>
-<li><p><a href="https://qgis.github.io/QGIS-Website/resources/installation-guide/">QGIS: Installationsanleitung einschließlich GRASS-Unterstützung</a></p></li>
-<li><p><a href="https://github.com/zsylvester/meanderpy">MeanderPy – kinematische Mäanderentwicklung</a></p></li>
-<li><p><a href="https://grass.osgeo.org/grass-stable/manuals/addons/r.sim.terrain.html">GRASS: r.sim.terrain – dynamische Geländeänderung</a></p></li>
-<li><p><a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.sediment.html">GRASS: r.sim.sediment – Erosion und Sedimenttransport</a></p></li>
-<li><p><a href="https://plugins.qgis.org/plugins/riverbank_erosion_accretion_v2/">QGIS: RiverBankErosionAccretion_V2 – beobachtete Uferveränderung</a></p></li>
-</ul>
+<section id="materialangebot-transportgrenze-ablagerung-ca.-15-minuten" class="level2">
+<h2 class="anchored" data-anchor-id="materialangebot-transportgrenze-ablagerung-ca.-15-minuten">6 · Materialangebot, Transportgrenze, Ablagerung (ca. 15 Minuten)</h2>
+<p>Jetzt erhält dasselbe D∞-Entwässerungsnetz <strong>zwei neue Raster</strong>. Wir verwenden bewusst <strong>synthetische, dimensionslose Materialeinheiten (ME)</strong>, weil weder gemessene Erosionsraten noch Sedimenttransportparameter vorliegen. Jeder Wert bezieht sich auf <strong>denselben gedachten Bilanzfall</strong>; eine reale Zeitdauer wird nicht simuliert.</p>
+<p>Erzeugen Sie im QGIS-Rasterrechner:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Raster</th>
+<th>Ausdruck</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>processing/angebot.tif</code></td>
+<td><code>("dgm5@1" * 0) + 0.02</code></td>
+<td>Jede gültige Zelle bietet <strong>0,02 ME</strong> an</td>
+</tr>
+<tr class="even">
+<td><code>processing/kapazitaet.tif</code></td>
+<td><code>0.2 * sqrt("sca@1" / 5) * (("slp@1" + 0.0001) / 0.05)</code></td>
+<td>Maximal transportierbare <strong>ME</strong> am Zellabgang; nimmt mit spezifischer Fläche und Gefälle zu</td>
+</tr>
+</tbody>
+</table>
+<p>Die Zahlen <strong>0,02 ME</strong>, <strong>0,2 ME</strong>, <strong>5 m</strong>, <strong>0,05 m/m</strong> und der kleine Gefällezusatz <code>0,0001</code> sind gesetzte <strong>Versuchsparameter, keine kalibrierten Naturkonstanten</strong>. <code>sca / 5 m</code> und <code>slp / 0,05</code> sind dimensionslos; daher steht die Kapazität wie das Angebot in ME.</p>
+<p>Starten Sie TauDEM <strong>D-Infinity Transport Limited Accumulation</strong> mit <code>ang.tif</code>, <code>angebot.tif</code> (<em>Supply</em>) und <code>kapazitaet.tif</code> (<em>Transport Capacity</em>). Speichern Sie <code>transport.tif</code> und <code>ablagerung.tif</code>. Das Werkzeug bilanziert in jeder Rasterzelle:</p>
+<p>[ M_{}=M_{}+M_{}, M_{}=(M_{},T_{}), M_{}=M_{}-M_{}. ]</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Angebot, Kapazität und Ablagerung
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Materialangebot</strong> (<code>tsup</code>) ist die hypothetisch <strong>neu bereitgestellte</strong> Menge pro Zelle. <strong>Transportkapazität</strong> (<code>tc</code>) ist die im selben Bilanzfall maximal <strong>weiterleitbare</strong> Menge. Was von oberhalb kommt, wird zum lokalen Angebot addiert. Reicht die Kapazität nicht, bleibt eine <strong>Restmenge als Ablagerung</strong> (<code>tdep</code>) zurück; die tatsächlich weitergegebene Menge steht in <code>tla</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/transport_limit_bilanz.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Bilanzbeispiel: 4 Materialeinheiten kommen von oben, 2 entstehen lokal, höchstens 3 werden transportiert, 3 bleiben zurück.</figcaption>
+</figure>
+</div>
+<p>Die Rasterwerte sind in dieser Übung <strong>ME pro gedachtem Bilanzfall</strong>, keine gemessenen Sedimentmassen oder Frachten pro Sekunde. Die Rechnung enthält <strong>keine Zeitintegration</strong> und aktualisiert <strong>nicht</strong> das Höhenraster. Werkzeugdefinition: <a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityTransportLimitedAccumulation.html">TauDEM DinfTransLimAccum</a>.</p>
+</div>
+</div>
+</div>
+<p>Zeigen Sie <code>ablagerung.tif</code> über <code>slp.tif</code>: <strong>Wo reicht die gesetzte Kapazität nicht für das ankommende Material?</strong> Prüfen Sie dieselbe Stelle mit <code>transport.tif</code>. Ändern Sie anschließend <strong>nur den Vorfaktor 0,2 auf 0,05</strong>, berechnen Sie <code>kapazitaet.tif</code> neu und führen Sie die Transportrechnung erneut aus. Welche Ablagerungsbereiche wachsen?</p>
+<p><strong>Grenze des Ergebnisses:</strong> Die Rechnung transportiert angebotene Modellmengen entlang festgelegter D∞-Verbindungen. Sie berechnet <strong>weder reale Erosion aus Schubspannung noch die Änderung der DGM-Höhen</strong>. Ihre Ablagerungskarte ist kein Nachweis von Sedimentbänken am Bach.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technisch: Transportrechnung direkt mit TauDEM starten
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Speichern Sie beide Eingaberaster mit denselben Grenzen und Pixelzentren wie <code>ang.tif</code> und prüfen Sie die NoData-Maske. Wählen Sie im Processing-Skript <strong>Berechnung 4 – Transport und Ablagerung</strong>, den Ergebnisordner <code>results</code>, <code>angebot.tif</code> und <code>kapazitaet.tif</code>. Intern läuft <code>DinfTransLimAccum</code>; es schreibt <code>transport.tif</code> und <code>ablagerung.tif</code>. Für den zweiten Durchlauf mit <strong>Kapazitätsfaktor 0,05</strong> setzen Sie zusätzlich den <strong>Ausgabesuffix <code>kap05</code></strong>; dadurch entstehen <code>transport_kap05.tif</code> und <code>ablagerung_kap05.tif</code>, ohne den ersten Versuch zu überschreiben.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachlich: Was für einen belastbaren Sedimentansatz noch fehlte
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Eine physikalisch gestützte Erosions- oder Sedimentfracht benötigt mindestens <strong>Materialeigenschaften, Verfügbarkeit/Abtragsbedingungen, einen transportwirksamen Abfluss und eine dazu passende Kapazitätsbeziehung</strong>. Unsere Kapazitätsformel ist nur eine prüfbare Hypothese: mehr beitragende Fläche und stärkeres Gefälle erlauben mehr Transport. Ob und wie stark das tatsächlich gilt, ist damit nicht belegt. Selbst bei realistischen Parametern würde TauDEMs Transportakkumulation das <strong>Gelände nicht aktualisieren</strong>. Die Rückwirkung auf den weiteren Abfluss war im NetLogo-Modell <em>Erosion</em> bereits als Regel enthalten; hier fehlt sie ausdrücklich.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="befund-am-untersuchten-bach-festhalten" class="level2">
+<h2 class="anchored" data-anchor-id="befund-am-untersuchten-bach-festhalten">Befund am untersuchten Bach festhalten</h2>
+<p>Legen Sie im QGIS-Projekt <strong>eine Ansicht</strong> mit Schummerung, ATKIS-Bach, Auslass, D8-Einzugsgebiet und der 2-ha-Gerinnelinie an. Für die zweite Ansicht schalten Sie TWI oder Ablagerung ein. Erläutern Sie an <strong>einer konkreten Abweichung</strong> zwischen amtlichem Gerinne und berechneter Linie: Liegt sie plausibel an DGM, Rasterweite, Senkenbehandlung oder Routingregel? Halten Sie daneben fest, <strong>welche Größe erst durch die 10-mm-Annahme und welche erst durch Materialangebot/Kapazität entstanden ist</strong>.</p>
+<p>Es geht hier <strong>nicht</strong> darum, eine Mäanderbewegung vorzurechnen: Die Form des heutigen Bachs kann im DGM sichtbar sein, ihre <strong>Entstehung</strong> wird mit keiner der verwendeten Rechnungen simuliert.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachliche Erweiterung: Rasterweite gezielt testen
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Leiten Sie aus DGM1 zusätzlich ein <strong>10-m-Raster</strong> desselben Berechnungsgebiets ab und wiederholen Sie <code>Pit Remove</code> → D8 → <code>AreaD8</code>. Vergleichen Sie am <strong>gleichen realen Auslass</strong> Gerinnelage und Einzugsgebietsfläche in <strong>m²</strong>, nicht die Zellzahlen. Verwenden Sie für 2 ha als Gerinneschwelle nun <strong>200 Zellen</strong>. Unterscheiden Sie Änderungen durch <strong>Generalisation des Reliefs</strong> von den rein rechnerischen Folgen einer größeren Zellfläche.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technische Erweiterung: Welche Dateien sind tatsächlich nötig?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre class="text"><code>processing/dgm5.tif
+processing/auslass.shp (+ .shx, .dbf, .prj)
+results/fel.tif     results/p.tif      results/ad8.tif
+results/ang.tif     results/slp.tif    results/sca.tif
+results/src_2ha.tif results/becken.tif results/twi.tif
+results/volumen_10mm.tif
+processing/angebot.tif  processing/kapazitaet.tif
+results/transport.tif   results/ablagerung.tif</code></pre>
+<p>Zwischenschritte <code>sd8</code>, <code>src_5ha</code> und ein verschobener Auslass helfen bei der Kontrolle. Die Erklärung der Werkzeuge, <strong>inklusive SAGA-/GRASS-Varianten und Primärliteratur</strong>, steht im <a href="../pages/abfluss_algorithmen_quellen.html">separaten Kompendium</a>.</p>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -1479,11 +1315,14 @@ v_{n}(s) = k_{m} \, C_{\mathrm{eff}}(s)
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../slides/burgwald_abfluss_uebergang.html" class="pagination-link" aria-label="Burgwald – Übergang zur Abflussübung">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Burgwald – Übergang zur Abflussübung</span>
+      <a href="../pages/einstieg_abflussmodellierung.html" class="pagination-link" aria-label="Einstieg Abflussmodellierung">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Einstieg Abflussmodellierung</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../pages/abfluss_algorithmen_quellen.html" class="pagination-link" aria-label="Daten- und Werkzeugkompendium">
+        <span class="nav-page-text">Daten- und Werkzeugkompendium</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

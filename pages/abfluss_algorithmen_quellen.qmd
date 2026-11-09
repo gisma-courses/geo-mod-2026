@@ -1,0 +1,139 @@
+---
+title: "Kompendium: Daten, Geländealgorithmen und Quellen"
+subtitle: "Zum Arbeitsblatt Abflusswege und Sediment im kleinen Einzugsgebiet"
+order: 41
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: false
+---
+
+[← Arbeitsblatt](meander_abfluss_saga_grass.qmd) · [Kursübersicht](../index.qmd)
+
+Dieses Kompendium ist **kein zweiter Software-Parcours**. Die Pflichtübung verwendet **QGIS + TauDEM**. Die Einträge sind danach sortiert, **welche Daten eine Aussage tragen, welcher Algorithmus welche Größe erzeugt und an welcher Stelle seine Annahmen überprüft werden müssen**. Direkte Werkzeuganleitungen sind vorrangig; die Primärliteratur dient zum Nachlesen der zugrunde liegenden Routing- und Indexkonzepte.
+
+## Begriffe am jeweiligen Arbeitsschritt
+
+| Datei | Kürzel | Gemeinte Größe |
+|---|---|---|
+| `p.tif` | **D8** | **Richtungscode** (acht mögliche Nachbarn, ein Empfänger) |
+| `ad8.tif` | **AreaD8** | **Zellzahl** der vollständigen Oberlieger (mit Zellfläche multiplizieren) |
+| `src_2ha.tif` | **Schwelle** | Binäre **Gerinnemarkierung** ab 2 ha; keine beobachtete Quelle |
+| `ang.tif` | **D∞** | **Kontinuierlicher Richtungswinkel** (rad); Aufteilung auf höchstens zwei Nachbarn |
+| `sca.tif` | **SCA** | **Specific Catchment Area** = teilbeitragende Fläche / Rasterbreite, **m²/m = m** |
+| `twi.tif` | **TWI** | **Topographic Wetness Index** = `ln(a / tanβ)`, relativer Geländeindex |
+| `transport.tif` / `ablagerung.tif` | **TLA / TDEP** | weitergeleitete und verbliebene **Materialeinheiten** im Bilanzfall |
+
+Die anschaulichen **Kurzreader mit vier Skizzen** sind [direkt im Arbeitsblatt](meander_abfluss_saga_grass.qmd) am jeweiligen Rechenschritt eingeklappt. Das [editierbare draw.io-Ablaufdiagramm](../diagrams/abfluss_workflow.drawio) trennt den D8- und D∞-Zweig.
+
+## 1 · Amtliche und ergänzende Daten für einen Burgwald-Oberlauf
+
+| Datenquelle | Direkter Zugang | Im Arbeitsblatt / bei Erweiterungen | Fachliche Grenze |
+|---|---|---|---|
+| **HVBG: DGM1 Hessen** | [Produkt, Genauigkeit, Höhenbezug](https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle) · [Downloadcenter](https://gds.hessen.de/) | Pflicht: Höhen `z` in **m**, hier zu 5 m aggregiert; Geländeverbindungen, Gefälle | Ein DGM beschreibt eine Geländeoberfläche, nicht überall die Gewässersohle; Wasserflächen, Aktualität und Bauwerke prüfen |
+| **HVBG: ATKIS Basis-DLM** | [Produkt und WFS/Download](https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell) · [Open-Data-Katalog](https://opendata.hessen.de/de/dataset/atkis-basis-dlm) | Pflicht: **Gewässerlinien** als externe räumliche Referenz; optional Landbedeckung/-nutzung | Vektorlinie beschreibt die kartierte Lage eines Bachs, nicht die Mindestfläche für dessen Entstehung; Nutzung ist kein Abflusskoeffizient |
+| **HVBG: DOP20 / TrueDOP** | [Orthophotos, WMS und Download](https://hvbg.hessen.de/landesvermessung/geotopographie/luftbilder/digitale-orthophotos-true-orthophoto) | Kontrolle von Wegedämmen, Talform, erkennbaren Gerinnekrümmungen | Zeitpunkt, Abschattung und Sichtbarkeit unter Bewuchs beachten |
+| **HLNUG: BodenViewer Hessen** | [BodenViewer](https://www.hlnug.de/themen/boden/information/internetviewer/bodenviewer-hessen) | Späterer Schritt: Bodenart, Bodenfunktionen und Hinweise zur Bodenverbreitung | Bodenkarte ersetzt keine Messung von Infiltrationskapazität oder Erodierbarkeit |
+| **HLNUG: BFD50** | [Bodenflächendaten 1:50 000](https://www.hlnug.de/themen/boden/information/bodenflaechenkataster-und-kartenwerke/bfd50/einfuehrung) | Regionale Klassifizierung für Hypothesen zu Materialverfügbarkeit | **Maßstabssprung**: keine zellgenauen 5-m-Bodenparameter daraus ableiten |
+| **ATKIS-Objektartenkatalog** | [Basis-DLM-Produktseite mit Objektartenkatalog](https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell) | Nachschlagen, welche Attributfelder Gewässer, Vegetation, Siedlung oder Verkehr abbilden | Feldnamen/Objektarten vor Skripten an der tatsächlich bezogenen Version prüfen |
+| **Eigenbeobachtung an Durchlass oder Bach** | Orthofoto + Geländebegehung, dokumentierte Koordinate | Lageprüfung von Auslass, sichtbarem Gerinne und möglichen Barrieren | Punktbeobachtung ist keine flächendeckende Abfluss- oder Sedimentmessung |
+| **DGM1 → DGM5/DGM10 als eigene Ableitung** | [GDAL Warp-Dokumentation](https://gdal.org/en/stable/programs/gdalwarp.html) | Vergleich verschiedener Rasterweiten: `-tr 5 5` bzw. `-tr 10 10`, `-r average` | **Abgeleitete** Raster, nicht identisch mit amtlichen DGM5/DGM10-Produkten; gemeinsame Ausdehnung und Pixelposition dokumentieren |
+
+**Für selbstgewählte hessische Oberläufe:** dieselben Datenquellen, dasselbe metrische KBS `EPSG:25832`, aber die tatsächlichen Kacheln müssen das **oberhalb liegende Einzugsgebiet** enthalten. Ein 2 × 2 km großer Kartenausschnitt legt weder die hydrologische Gebietsgröße noch einen geeigneten Auslass fest.
+
+## 2 · Der TauDEM-Rechenweg, mit Eingaben und Größen
+
+Die folgenden TauDEM-Namen entsprechen der offiziellen Werkzeugdokumentation. Die Aufrufe erfolgen über das mitgelieferte QGIS-Processing-Skript `scripts/taudem_burgwald_processing.py`; es startet die TauDEM-Programme direkt mit MPI. TauDEM ist **kein QGIS-eigenes Hydrologiemodell**; das Processing-Skript stellt nur die Bedienoberfläche für die externen Algorithmen bereit.
+
+| Schritt / Programm | Eingaben | Ausgabe; Bedeutung / Einheit | Werkzeug und entscheidende Annahme |
+|---|---|---|---|
+| **Pit Remove** (`PitRemove`) | DGM `z` | `fel` Höhen **m** | [Handbuch](https://hydrology.usu.edu/taudem/taudem5/help53/PitRemove.html): geschlossene Senken werden bis zum Überlauf angehoben; reale Senken ggf. maskieren |
+| **D8 Flow Directions** (`D8FlowDir`) | `fel` | `p` Richtungs**code** 1–8; `sd8` Gefälle **m/m** | [Handbuch](https://hydrology.usu.edu/taudem/taudem5/help53/d8flowdirections.html): steilster Abstieg zu einem der acht Nachbarn |
+| **D8 Contributing Area** (`AreaD8`) | `p`, optional Zellgewicht `wg` | `ad8` **Zellen** ohne Gewichte; mit `wg` Summe in der **Einheit des Gewichts** | [Handbuch](https://hydrology.usu.edu/taudem/taudem5/help53/D8ContributingArea.html): Zelle plus alle D8-Oberlieger; Randprüfung standardmäßig aktiv |
+| **Stream Definition By Threshold** (`Threshold`) | z. B. `ad8`; Schwelle | `src` als **0/1**-Raster | [Handbuch](https://hydrology.usu.edu/taudem/taudem5/help53/StreamDefinitionByThreshold.html): Gerinne dort, wo Rasterwert ≥ Schwelle; **kein gemessener Gewässerbeginn** |
+| **Move Outlets To Streams** (`MoveOutletsToStreams`) | `p`, `src`, Auslasspunkte | verschobene Auslasspunkte; `dist_moved` | [Handbuch](https://hydrology.usu.edu/taudem/taudem5/help53/MoveOutletsToStreams.html): Punkt entlang D8 bis zur Gerinnezelle suchen; tatsächliche Verschiebung kontrollieren |
+| **Gage Watershed** (`GageWatershed`) | `p`, Punkte mit Feld `id` | Einzugsgebiet als Raster mit **Punkt-ID** | [Handbuch](https://hydrology.usu.edu/taudem/taudem5/help53/GageWatershed.html): Gebiet ist **vom Auslass abhängig**; nur D8-Verbindungen |
+| **D-Infinity Flow Directions** (`DinfFlowDir`) | `fel` | `ang` Winkel **rad**; `slp` Gefälle **m/m** | [Handbuch](https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityFlowDirections.html): Richtung über Dreiecksfacetten; Teilung auf höchstens zwei Nachbarn |
+| **D-Infinity Contributing Area** (`AreaDinf`) | `ang`, optional Zellgewicht `wg` | `sca` ohne Gewicht **m** = m²/m | [Handbuch](https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityContributingArea.html): spezifische Fläche, nicht unmittelbar identisch zu `ad8`-Zellzahl |
+| **Topographic Wetness Index** (`TWI`) | `sca` und `slp` | `twi` als logarithmischer **Index** | [Handbuch](https://hydrology.usu.edu/taudem/taudem5/help53/TopographicWetnessIndex.html): `ln(a/tanβ)`; kein TWI bei Nullgefälle |
+| **D∞ Transport Limited Accumulation** (`DinfTransLimAccum`) | `ang`, Materialangebot `tsup`, Kapazität `tc` | `tla` transportierte **Materialeinheit**, `tdep` abgelagerte **Materialeinheit** | [Handbuch](https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityTransportLimitedAccumulation.html): `M_out = min(M_in + E, Tcap)`; **keine neue DGM-Höhe** |
+| **D∞ Concentration Limited Accumulation** (`DinfConcLimAccum`) | Strömungsrichtung, Runoff-Gewicht, Quellgebiet und Konzentrationsparameter | Konzentration einer transportierten Substanz | [Handbuch](https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityConcentrationLimitedAccumulation.html): alternative Hypothese über **Konzentrationsbegrenzung**, nicht Teil der Pflichtübung |
+| **D8 Distance To Streams** (`d8hdisttostrm`) | `p`, Gerinneraster, Höhenangabe | horizontale Entfernung **m** entlang des D8-Fließwegs bis zum Gerinne | [Handbuch](https://hydrology.usu.edu/taudem/taudem5/help53/D8DistanceToStreams.html): mögliche Folgefrage nach Distanz, **keine** Fließzeit |
+
+**Einheitenkontrolle für das verwendete 5-m-Raster:**
+
+| Rasterwert | Rechenbeispiel | Zulässige Deutung |
+|---|---|---|
+| `ad8 = 800` | `800 × 25 m² = 20 000 m² = 2 ha` | D8-Einzugsfläche der Rasterzelle |
+| `sca = 30` | **30 m²/m**, nicht 30 m² | spezifische D∞-Einzugsfläche; Bezug auf wirksame Konturlänge |
+| `slp = 0,05` | 5 % Gefälle | Verhältnis Höhenunterschied / horizontale Entfernung |
+| `volumen = 200` | **200 m³** bei 10 mm effektivem Abfluss über 2 ha | angenommene Bilanzmenge, keine Ganglinie oder Spitze |
+| `tdep = 0,4` | **0,4 ME** beim angenommenen Materialfall | rechnerisch nicht abtransportierter Materialanteil, **keine** Aufschüttungshöhe |
+
+::: {.callout-tip collapse="true"}
+## Fachlich: Flächenakkumulation und D∞-SCA sind nicht austauschbar
+
+`AreaD8` zählt im Standardlauf vollständig angeschlossene Zellen. `AreaDinf` summiert **gewichtete Teilbeiträge** und normiert im Standard auf die Rasterbreite (m²/m). Die Umrechnung `ad8 × Zellfläche` liefert eine D8-Fläche in m²; `sca × 5 m` liefert eine *nominale* flächenbezogene Größe zur Visualisierung des D∞-Verteilungsbilds unter dieser Breitenannahme. Beide Rechnungen enthalten **unterschiedliche Routingregeln** – deshalb ist die Umrechnung keine Gleichsetzung der Ergebnisse.
+:::
+
+## 3 · Vergleichsalgorithmen, nicht zusätzliche Pflichtwege
+
+| Frage | Alternative / Zugang | Konzeptioneller Unterschied zum Hauptweg |
+|---|---|---|
+| **MFD statt D∞?** | [GRASS `r.watershed`](https://grass.osgeo.org/grass-stable/manuals/r.watershed.html) | Standard ist klassisches **Multiple Flow Direction** auf mehrere tieferliegende Nachbarn; `-s` erzwingt Single Flow Direction. *Nicht* dieselbe Verteilung wie TauDEM D∞ |
+| **MFD in SAGA?** | [SAGA Flow Accumulation](https://saga-gis.sourceforge.io/saga_tool_doc/9.13.0/tc_ta_hydrology_flow_accumulation.html) | Bibliothek mit mehreren Routingvarianten und Vorverarbeitung; **Methode und Ausgabeformat explizit wählen**, nicht nur Programmnamen vergleichen |
+| **Andere Senkenbehandlung?** | [SAGA – Terrain Analysis/Hydrology](https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html) · [GRASS `r.fill.dir`](https://grass.osgeo.org/grass-stable/manuals/r.fill.dir.html) | Füllen, Abfluss erzwingen oder Durchbrüche anders behandeln verändert die Topologie; Unterschiede können größer sein als zwischen Routingvarianten |
+| **Andere Einzugsgebietsabgrenzung?** | [GRASS `r.water.outlet`](https://grass.osgeo.org/grass-stable/manuals/r.water.outlet.html) | Braucht ein geeignetes Fließrichtungsraster und Auslasskoordinaten; konzeptionell dieselbe Frage wie `GageWatershed` |
+| **Gerinne extrahieren ohne festen Flächenwert?** | [GRASS `r.stream.extract`](https://grass.osgeo.org/grass-stable/manuals/r.stream.extract.html) | Nutzt DGM/Akkumulation und Schwellen; Gerinneanfänge bleiben **Modellentscheidungen** |
+| **Gerinnedichte begründen?** | [TauDEM Stream Definition With Drop Analysis](https://hydrology.usu.edu/taudem/taudem5/help53/StreamDefinitionWithDropAnalysis.html) | Schwellenauswahl auf Basis statistisch verglichener Höhenabfälle; das Ergebnis ist nicht automatisch der tatsächliche hydrographische Gewässerbeginn |
+| **Topografischer Index aus anderer Software?** | [GRASS `r.topidx`](https://grass.osgeo.org/grass-stable/manuals/r.topidx.html) · [GRASS `r.watershed`](https://grass.osgeo.org/grass-stable/manuals/r.watershed.html) | Unterschiede in Akkumulation, Gefälle und Senkenbehandlung beeinflussen den TWI |
+| **Abfluss mit räumlich variablen Beiträgen?** | TauDEM `AreaD8 -wg`, alternativ `AreaDinf -wg` | Das Gewicht ist ein **Zellbeitrag** mit festgelegter Einheit, nicht automatisch ein hydrographischer Abfluss |
+| **Sedimenttransport ohne Geometrieänderung?** | [GRASS `r.sim.sediment`](https://grass.osgeo.org/grass-stable/manuals/r.sim.sediment.html) | Anderer Prozessansatz mit zusätzlichen hydraulischen und erosionsbezogenen Eingaben; keine 1:1-Alternative zu der im Worksheet gesetzten Transportkapazitätsfunktion |
+| **Landnutzung als hydraulische Rauigkeit?** | [GRASS `r.sim.water`](https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html) | Rauigkeit und Niederschlag sind Eingaben eines **anderen, dynamischen** Modells, nicht der D8-Flächenakkumulation |
+| **GIS-Verarbeitung reproduzieren?** | [GDAL Warp](https://gdal.org/en/stable/programs/gdalwarp.html) · [QGIS Processing](https://docs.qgis.org/latest/en/docs/user_manual/processing/index.html) | Trennung von **Datenvorbereitung**, TauDEM-Rechenkern und Karteninterpretation |
+
+::: {.callout-note collapse="true"}
+## Technisch: Typische Fehlinterpretationen beim Wechsel des Werkzeugs
+
+- **D8-Richtungsraster:** Die Zahlen 1–8 sind Kodierungen, **keine** Fließgeschwindigkeit und keine Himmelsrichtung in Grad.
+- **D∞-Winkel:** Winkel in **Radiant**, gegen den Uhrzeigersinn ab Osten; kein D8-Code.
+- **D∞-SCA:** Standardwerte in **m**, während D8 standardmäßig **Zellen** summiert.
+- **`-nc`:** In der TauDEM-Kommandozeile deaktiviert dieser Schalter die Randprüfung; für die Übung **weglassen**. Eine große Fläche wird dadurch nicht „vollständiger“.
+- **Punkt am Bach:** Ein kartierter Gewässerpunkt muss nicht exakt auf dem aus D8 erzeugten Rastergerinne liegen. Der verschobene Auslass ist immer zu kontrollieren.
+- **Rasterverschiebung:** Gleiche Pixelgröße allein reicht nicht aus; **Rasterursprung, Ausdehnung, Projektion und NoData** müssen ebenfalls passen.
+:::
+
+## 4 · Primärliteratur und methodische Schlüsseltexte
+
+Die Tabelle ordnet jede Veröffentlichung **einer konkreten Entscheidung der Übung** zu. Es handelt sich nicht um eine ungeordnete Leseliste.
+
+| Publikation | Wofür lesen? | Bezug zur Übung |
+|---|---|---|
+| **O'Callaghan & Mark (1984).** *The extraction of drainage networks from digital elevation data*. [DOI](https://doi.org/10.1016/S0734-189X(84)80011-0) | Früher kanonischer Rasteransatz zur Extraktion von Abflusswegen | Motivation der D8-Verbindungen und des automatisierten Gewässernetzes |
+| **Jenson & Domingue (1988).** *Extracting topographic structure from digital elevation data for GIS analysis*. [USGS](https://pubs.usgs.gov/publication/70142175) | Verknüpfung Senkenfüllung → Fließrichtung → Akkumulation → Teileinzugsgebiet | Die Struktur der TauDEM-Grundkette |
+| **Tarboton (1997).** *A new method for the determination of flow directions and upslope areas in grid digital elevation models*. [DOI](https://doi.org/10.1029/96WR03137) | D∞: Winkel aus Dreiecksfacetten und proportionale Aufteilung auf zwei Nachbarzellen | **Wichtigster Originaltext** zu `DinfFlowDir` und `AreaDinf` |
+| **Freeman (1991).** *Calculating catchment area with divergent flow based on a regular grid*. [DOI](https://doi.org/10.1016/0098-3004(91)90048-I) | Warum D8 die reale Divergenz von Hangflächen nur begrenzt repräsentiert | Unterschied D8 versus Verzweigung |
+| **Quinn, Beven, Chevallier & Planchon (1991).** *The prediction of hillslope flow paths for distributed hydrological modelling using digital terrain models*. [DOI](https://doi.org/10.1002/hyp.3360050106) | Mehrfachverteilung, Routing- und Rasterweiteneinflüsse | Einordnung klassischen MFD; Sensitivität der Ergebnisse |
+| **Seibert & McGlynn (2007).** *A new triangular multiple flow direction algorithm for computing upslope areas from gridded digital elevation models*. [DOI](https://doi.org/10.1029/2006WR005128) | Zeigt, dass selbst innerhalb der Mehrfachrouting-Familie unterschiedliche Verteilungsmuster entstehen | **D∞ ≠ MFD ≠ MD∞** |
+| **Wang & Liu (2006).** *An efficient method for identifying and filling surface depressions in digital elevation models*. [DOI](https://doi.org/10.1080/13658810500433453) | Ein alternatives Verfahren zum Füllen geschlossener Senken | Vergleich zu TauDEM `PitRemove`; begründete Behandlung echter Vertiefungen |
+| **Tarboton, Bras & Rodríguez-Iturbe (1991).** *On the extraction of channel networks from digital elevation data*. [DOI](https://doi.org/10.1002/hyp.3360050107) | Warum Gerinnenetze eine **Längen-/Dichteskala** benötigen | Wahl und Variation der 2-ha-/5-ha-Schwellen |
+| **Beven & Kirkby (1979).** *A physically based, variable contributing area model of basin hydrology*. [DOI](https://doi.org/10.1080/02626667909491834) | Herkunft des Topografie-/Feuchteindexkonzepts aus TOPMODEL | TWI als **Modellindex**, nicht gemessene Bodenfeuchte |
+| **Moore, Grayson & Ladson (1991).** *Digital terrain modelling: A review of hydrological, geomorphological, and biological applications*. [DOI](https://doi.org/10.1002/hyp.3360050103) | DGM als räumlicher Stellvertreter verschiedener Prozesse; Grenzen abgeleiteter Indizes | Einordnung der Aussagen aus der Geländeoberfläche |
+| **Quinn, Beven & Lamb (1995).** *The ln(a/tanβ) index: How to calculate it and how to use it within the TOPMODEL framework*. [DOI](https://doi.org/10.1002/hyp.3360090204) | Berechnung und hydrologische Verwendung des TWI | Warum die **Formel allein** keinen Wasserstand liefert |
+
+**Leseempfehlung für die konkrete Lehre:** Tarboton (1997) für D∞; Jenson & Domingue (1988) für den durchgehenden GIS-Ablauf; Beven & Kirkby (1979) für die Interpretation des TWI. Tarboton, Bras & Rodríguez-Iturbe (1991) ist der passende Anschluss, wenn die Studierenden die Gerinneschwelle systematisch untersuchen sollen.
+
+## 5 · Was die Ergebnisse belegen – und was nicht
+
+| Kartenprodukt | Damit lässt sich die Frage beantworten ... | Dafür reicht das Ergebnis **nicht** |
+|---|---|---|
+| Hillshade aus DGM | Wo sind Kuppen, Rinnen, Dämme oder flache Bereiche in der Höhenoberfläche? | Was liegt unter einer geglätteten Wasseroberfläche? |
+| D8-Akkumulation / Gage Watershed | Welche Zellen sind topografisch mit einem Auslass verbunden? | Wie viel Regen fällt; wie schnell fließt Wasser? |
+| D∞-SCA | Wo verteilt sich eine durch den Algorithmus definierte beitragende Fläche? | Ob dort tatsächlich Oberflächenabfluss entsteht |
+| Gerinneraster | Welche Zellen überschreiten einen **gewählten** Akkumulationsschwellenwert? | Wo eine Quelle bei Trockenheit oder Starkregen tatsächlich liegt |
+| TWI | Wo treffen innerhalb dieses Reliefmodells große spezifische Einzugsfläche und kleine Neigung zusammen? | Reale Bodenfeuchte bzw. Überflutungstiefe |
+| `10 mm × D8-Fläche` | Wie groß wäre die **Gesamtmenge** eines überall gleichen effektiven Wasserbeitrags? | Ganglinie, Peak, Fließdauer und tatsächliche Abflussbildung |
+| Transport / Ablagerung (TauDEM) | Wo überschreitet **angebotenes Modellmaterial** eine **gesetzte Transportkapazität**? | Tatsächliche Sedimentfracht, Erosionsrate, sich verlagerndes Ufer oder aktualisiertes DGM |
+
+Der Vergleich mit *Grand Canyon*, *Erosion* und *River Meanders* ist damit präzise: **Räumliche Verbindung**, **Materialbilanz** und **Veränderung des Geländes über Modellschritte** sind unterschiedliche Modellentscheidungen. Keine davon ist allein aufgrund einer detaillierteren Karte grundsätzlich „realistischer“.

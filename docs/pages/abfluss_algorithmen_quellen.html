@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Kompendium: Daten, Geländealgorithmen und Quellen – Modellieren in der Geographie</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../pages/resuemee_modellierung_geographie.html" rel="next">
+<link href="../pages/meander_abfluss_saga_grass.html" rel="prev">
+<link href="..//images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-c8e893c45ba768c613f97d88ef0faa80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="Kompendium: Daten, Geländealgorithmen und Quellen – Modellieren in der Geographie">
+<meta property="og:description" content="Zum Arbeitsblatt Abflusswege und Sediment im kleinen Einzugsgebiet">
+<meta property="og:site_name" content="Modellieren in der Geographie">
+<meta name="twitter:title" content="Kompendium: Daten, Geländealgorithmen und Quellen – Modellieren in der Geographie">
+<meta name="twitter:description" content="Zum Arbeitsblatt Abflusswege und Sediment im kleinen Einzugsgebiet">
+<meta name="twitter:creator" content="@gisma">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Kompendium: Daten, Geländealgorithmen und Quellen</h1>
+        </a>     
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Modellieren in der Geographie</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kursübersicht</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Angeleitete Modellierungsfolge</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/modellbildung_gis_folien.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Auftakt: Modellbildung</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/netlogo_modellvergleich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NetLogo-Modelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/einstieg_abflussmodellierung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Einstieg Abflussmodellierung</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/meander_abfluss_saga_grass.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GIS-Übung: Relief, Abfluss und Sediment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/abfluss_algorithmen_quellen.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Daten- und Werkzeugkompendium</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/resuemee_modellierung_geographie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resümee</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Ergänzende Materialien</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/modellbildung_gis_reader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kurzreader Modellbildung</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/burgwald_abfluss_uebergang.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übergangsfolien zum GIS</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhalt</h2>
+   
+  <ul class="collapse">
+  <li><a href="#begriffe-am-jeweiligen-arbeitsschritt" id="toc-begriffe-am-jeweiligen-arbeitsschritt" class="nav-link active" data-scroll-target="#begriffe-am-jeweiligen-arbeitsschritt">Begriffe am jeweiligen Arbeitsschritt</a></li>
+  <li><a href="#amtliche-und-ergänzende-daten-für-einen-burgwald-oberlauf" id="toc-amtliche-und-ergänzende-daten-für-einen-burgwald-oberlauf" class="nav-link" data-scroll-target="#amtliche-und-ergänzende-daten-für-einen-burgwald-oberlauf">1 · Amtliche und ergänzende Daten für einen Burgwald-Oberlauf</a></li>
+  <li><a href="#der-taudem-rechenweg-mit-eingaben-und-größen" id="toc-der-taudem-rechenweg-mit-eingaben-und-größen" class="nav-link" data-scroll-target="#der-taudem-rechenweg-mit-eingaben-und-größen">2 · Der TauDEM-Rechenweg, mit Eingaben und Größen</a></li>
+  <li><a href="#vergleichsalgorithmen-nicht-zusätzliche-pflichtwege" id="toc-vergleichsalgorithmen-nicht-zusätzliche-pflichtwege" class="nav-link" data-scroll-target="#vergleichsalgorithmen-nicht-zusätzliche-pflichtwege">3 · Vergleichsalgorithmen, nicht zusätzliche Pflichtwege</a></li>
+  <li><a href="#primärliteratur-und-methodische-schlüsseltexte" id="toc-primärliteratur-und-methodische-schlüsseltexte" class="nav-link" data-scroll-target="#primärliteratur-und-methodische-schlüsseltexte">4 · Primärliteratur und methodische Schlüsseltexte</a></li>
+  <li><a href="#was-die-ergebnisse-belegen-und-was-nicht" id="toc-was-die-ergebnisse-belegen-und-was-nicht" class="nav-link" data-scroll-target="#was-die-ergebnisse-belegen-und-was-nicht">5 · Was die Ergebnisse belegen – und was nicht</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/abfluss_algorithmen_quellen.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Kompendium: Daten, Geländealgorithmen und Quellen</h1>
+<p class="subtitle lead">Zum Arbeitsblatt Abflusswege und Sediment im kleinen Einzugsgebiet</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="../pages/meander_abfluss_saga_grass.html">← Arbeitsblatt</a> · <a href="../index.html">Kursübersicht</a></p>
+<p>Dieses Kompendium ist <strong>kein zweiter Software-Parcours</strong>. Die Pflichtübung verwendet <strong>QGIS + TauDEM</strong>. Die Einträge sind danach sortiert, <strong>welche Daten eine Aussage tragen, welcher Algorithmus welche Größe erzeugt und an welcher Stelle seine Annahmen überprüft werden müssen</strong>. Direkte Werkzeuganleitungen sind vorrangig; die Primärliteratur dient zum Nachlesen der zugrunde liegenden Routing- und Indexkonzepte.</p>
+<section id="begriffe-am-jeweiligen-arbeitsschritt" class="level2">
+<h2 class="anchored" data-anchor-id="begriffe-am-jeweiligen-arbeitsschritt">Begriffe am jeweiligen Arbeitsschritt</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Datei</th>
+<th>Kürzel</th>
+<th>Gemeinte Größe</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>p.tif</code></td>
+<td><strong>D8</strong></td>
+<td><strong>Richtungscode</strong> (acht mögliche Nachbarn, ein Empfänger)</td>
+</tr>
+<tr class="even">
+<td><code>ad8.tif</code></td>
+<td><strong>AreaD8</strong></td>
+<td><strong>Zellzahl</strong> der vollständigen Oberlieger (mit Zellfläche multiplizieren)</td>
+</tr>
+<tr class="odd">
+<td><code>src_2ha.tif</code></td>
+<td><strong>Schwelle</strong></td>
+<td>Binäre <strong>Gerinnemarkierung</strong> ab 2 ha; keine beobachtete Quelle</td>
+</tr>
+<tr class="even">
+<td><code>ang.tif</code></td>
+<td><strong>D∞</strong></td>
+<td><strong>Kontinuierlicher Richtungswinkel</strong> (rad); Aufteilung auf höchstens zwei Nachbarn</td>
+</tr>
+<tr class="odd">
+<td><code>sca.tif</code></td>
+<td><strong>SCA</strong></td>
+<td><strong>Specific Catchment Area</strong> = teilbeitragende Fläche / Rasterbreite, <strong>m²/m = m</strong></td>
+</tr>
+<tr class="even">
+<td><code>twi.tif</code></td>
+<td><strong>TWI</strong></td>
+<td><strong>Topographic Wetness Index</strong> = <code>ln(a / tanβ)</code>, relativer Geländeindex</td>
+</tr>
+<tr class="odd">
+<td><code>transport.tif</code> / <code>ablagerung.tif</code></td>
+<td><strong>TLA / TDEP</strong></td>
+<td>weitergeleitete und verbliebene <strong>Materialeinheiten</strong> im Bilanzfall</td>
+</tr>
+</tbody>
+</table>
+<p>Die anschaulichen <strong>Kurzreader mit vier Skizzen</strong> sind <a href="../pages/meander_abfluss_saga_grass.html">direkt im Arbeitsblatt</a> am jeweiligen Rechenschritt eingeklappt. Das <a href="../diagrams/abfluss_workflow.drawio">editierbare draw.io-Ablaufdiagramm</a> trennt den D8- und D∞-Zweig.</p>
+</section>
+<section id="amtliche-und-ergänzende-daten-für-einen-burgwald-oberlauf" class="level2">
+<h2 class="anchored" data-anchor-id="amtliche-und-ergänzende-daten-für-einen-burgwald-oberlauf">1 · Amtliche und ergänzende Daten für einen Burgwald-Oberlauf</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Datenquelle</th>
+<th>Direkter Zugang</th>
+<th>Im Arbeitsblatt / bei Erweiterungen</th>
+<th>Fachliche Grenze</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>HVBG: DGM1 Hessen</strong></td>
+<td><a href="https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle">Produkt, Genauigkeit, Höhenbezug</a> · <a href="https://gds.hessen.de/">Downloadcenter</a></td>
+<td>Pflicht: Höhen <code>z</code> in <strong>m</strong>, hier zu 5 m aggregiert; Geländeverbindungen, Gefälle</td>
+<td>Ein DGM beschreibt eine Geländeoberfläche, nicht überall die Gewässersohle; Wasserflächen, Aktualität und Bauwerke prüfen</td>
+</tr>
+<tr class="even">
+<td><strong>HVBG: ATKIS Basis-DLM</strong></td>
+<td><a href="https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell">Produkt und WFS/Download</a> · <a href="https://opendata.hessen.de/de/dataset/atkis-basis-dlm">Open-Data-Katalog</a></td>
+<td>Pflicht: <strong>Gewässerlinien</strong> als externe räumliche Referenz; optional Landbedeckung/-nutzung</td>
+<td>Vektorlinie beschreibt die kartierte Lage eines Bachs, nicht die Mindestfläche für dessen Entstehung; Nutzung ist kein Abflusskoeffizient</td>
+</tr>
+<tr class="odd">
+<td><strong>HVBG: DOP20 / TrueDOP</strong></td>
+<td><a href="https://hvbg.hessen.de/landesvermessung/geotopographie/luftbilder/digitale-orthophotos-true-orthophoto">Orthophotos, WMS und Download</a></td>
+<td>Kontrolle von Wegedämmen, Talform, erkennbaren Gerinnekrümmungen</td>
+<td>Zeitpunkt, Abschattung und Sichtbarkeit unter Bewuchs beachten</td>
+</tr>
+<tr class="even">
+<td><strong>HLNUG: BodenViewer Hessen</strong></td>
+<td><a href="https://www.hlnug.de/themen/boden/information/internetviewer/bodenviewer-hessen">BodenViewer</a></td>
+<td>Späterer Schritt: Bodenart, Bodenfunktionen und Hinweise zur Bodenverbreitung</td>
+<td>Bodenkarte ersetzt keine Messung von Infiltrationskapazität oder Erodierbarkeit</td>
+</tr>
+<tr class="odd">
+<td><strong>HLNUG: BFD50</strong></td>
+<td><a href="https://www.hlnug.de/themen/boden/information/bodenflaechenkataster-und-kartenwerke/bfd50/einfuehrung">Bodenflächendaten 1:50 000</a></td>
+<td>Regionale Klassifizierung für Hypothesen zu Materialverfügbarkeit</td>
+<td><strong>Maßstabssprung</strong>: keine zellgenauen 5-m-Bodenparameter daraus ableiten</td>
+</tr>
+<tr class="even">
+<td><strong>ATKIS-Objektartenkatalog</strong></td>
+<td><a href="https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell">Basis-DLM-Produktseite mit Objektartenkatalog</a></td>
+<td>Nachschlagen, welche Attributfelder Gewässer, Vegetation, Siedlung oder Verkehr abbilden</td>
+<td>Feldnamen/Objektarten vor Skripten an der tatsächlich bezogenen Version prüfen</td>
+</tr>
+<tr class="odd">
+<td><strong>Eigenbeobachtung an Durchlass oder Bach</strong></td>
+<td>Orthofoto + Geländebegehung, dokumentierte Koordinate</td>
+<td>Lageprüfung von Auslass, sichtbarem Gerinne und möglichen Barrieren</td>
+<td>Punktbeobachtung ist keine flächendeckende Abfluss- oder Sedimentmessung</td>
+</tr>
+<tr class="even">
+<td><strong>DGM1 → DGM5/DGM10 als eigene Ableitung</strong></td>
+<td><a href="https://gdal.org/en/stable/programs/gdalwarp.html">GDAL Warp-Dokumentation</a></td>
+<td>Vergleich verschiedener Rasterweiten: <code>-tr 5 5</code> bzw. <code>-tr 10 10</code>, <code>-r average</code></td>
+<td><strong>Abgeleitete</strong> Raster, nicht identisch mit amtlichen DGM5/DGM10-Produkten; gemeinsame Ausdehnung und Pixelposition dokumentieren</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Für selbstgewählte hessische Oberläufe:</strong> dieselben Datenquellen, dasselbe metrische KBS <code>EPSG:25832</code>, aber die tatsächlichen Kacheln müssen das <strong>oberhalb liegende Einzugsgebiet</strong> enthalten. Ein 2 × 2 km großer Kartenausschnitt legt weder die hydrologische Gebietsgröße noch einen geeigneten Auslass fest.</p>
+</section>
+<section id="der-taudem-rechenweg-mit-eingaben-und-größen" class="level2">
+<h2 class="anchored" data-anchor-id="der-taudem-rechenweg-mit-eingaben-und-größen">2 · Der TauDEM-Rechenweg, mit Eingaben und Größen</h2>
+<p>Die folgenden TauDEM-Namen entsprechen der offiziellen Werkzeugdokumentation. Die Aufrufe erfolgen über das mitgelieferte QGIS-Processing-Skript <code>scripts/taudem_burgwald_processing.py</code>; es startet die TauDEM-Programme direkt mit MPI. TauDEM ist <strong>kein QGIS-eigenes Hydrologiemodell</strong>; das Processing-Skript stellt nur die Bedienoberfläche für die externen Algorithmen bereit.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Schritt / Programm</th>
+<th>Eingaben</th>
+<th>Ausgabe; Bedeutung / Einheit</th>
+<th>Werkzeug und entscheidende Annahme</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pit Remove</strong> (<code>PitRemove</code>)</td>
+<td>DGM <code>z</code></td>
+<td><code>fel</code> Höhen <strong>m</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/PitRemove.html">Handbuch</a>: geschlossene Senken werden bis zum Überlauf angehoben; reale Senken ggf. maskieren</td>
+</tr>
+<tr class="even">
+<td><strong>D8 Flow Directions</strong> (<code>D8FlowDir</code>)</td>
+<td><code>fel</code></td>
+<td><code>p</code> Richtungs<strong>code</strong> 1–8; <code>sd8</code> Gefälle <strong>m/m</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/d8flowdirections.html">Handbuch</a>: steilster Abstieg zu einem der acht Nachbarn</td>
+</tr>
+<tr class="odd">
+<td><strong>D8 Contributing Area</strong> (<code>AreaD8</code>)</td>
+<td><code>p</code>, optional Zellgewicht <code>wg</code></td>
+<td><code>ad8</code> <strong>Zellen</strong> ohne Gewichte; mit <code>wg</code> Summe in der <strong>Einheit des Gewichts</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/D8ContributingArea.html">Handbuch</a>: Zelle plus alle D8-Oberlieger; Randprüfung standardmäßig aktiv</td>
+</tr>
+<tr class="even">
+<td><strong>Stream Definition By Threshold</strong> (<code>Threshold</code>)</td>
+<td>z. B. <code>ad8</code>; Schwelle</td>
+<td><code>src</code> als <strong>0/1</strong>-Raster</td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/StreamDefinitionByThreshold.html">Handbuch</a>: Gerinne dort, wo Rasterwert ≥ Schwelle; <strong>kein gemessener Gewässerbeginn</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Move Outlets To Streams</strong> (<code>MoveOutletsToStreams</code>)</td>
+<td><code>p</code>, <code>src</code>, Auslasspunkte</td>
+<td>verschobene Auslasspunkte; <code>dist_moved</code></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/MoveOutletsToStreams.html">Handbuch</a>: Punkt entlang D8 bis zur Gerinnezelle suchen; tatsächliche Verschiebung kontrollieren</td>
+</tr>
+<tr class="even">
+<td><strong>Gage Watershed</strong> (<code>GageWatershed</code>)</td>
+<td><code>p</code>, Punkte mit Feld <code>id</code></td>
+<td>Einzugsgebiet als Raster mit <strong>Punkt-ID</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/GageWatershed.html">Handbuch</a>: Gebiet ist <strong>vom Auslass abhängig</strong>; nur D8-Verbindungen</td>
+</tr>
+<tr class="odd">
+<td><strong>D-Infinity Flow Directions</strong> (<code>DinfFlowDir</code>)</td>
+<td><code>fel</code></td>
+<td><code>ang</code> Winkel <strong>rad</strong>; <code>slp</code> Gefälle <strong>m/m</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityFlowDirections.html">Handbuch</a>: Richtung über Dreiecksfacetten; Teilung auf höchstens zwei Nachbarn</td>
+</tr>
+<tr class="even">
+<td><strong>D-Infinity Contributing Area</strong> (<code>AreaDinf</code>)</td>
+<td><code>ang</code>, optional Zellgewicht <code>wg</code></td>
+<td><code>sca</code> ohne Gewicht <strong>m</strong> = m²/m</td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityContributingArea.html">Handbuch</a>: spezifische Fläche, nicht unmittelbar identisch zu <code>ad8</code>-Zellzahl</td>
+</tr>
+<tr class="odd">
+<td><strong>Topographic Wetness Index</strong> (<code>TWI</code>)</td>
+<td><code>sca</code> und <code>slp</code></td>
+<td><code>twi</code> als logarithmischer <strong>Index</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/TopographicWetnessIndex.html">Handbuch</a>: <code>ln(a/tanβ)</code>; kein TWI bei Nullgefälle</td>
+</tr>
+<tr class="even">
+<td><strong>D∞ Transport Limited Accumulation</strong> (<code>DinfTransLimAccum</code>)</td>
+<td><code>ang</code>, Materialangebot <code>tsup</code>, Kapazität <code>tc</code></td>
+<td><code>tla</code> transportierte <strong>Materialeinheit</strong>, <code>tdep</code> abgelagerte <strong>Materialeinheit</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityTransportLimitedAccumulation.html">Handbuch</a>: <code>M_out = min(M_in + E, Tcap)</code>; <strong>keine neue DGM-Höhe</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>D∞ Concentration Limited Accumulation</strong> (<code>DinfConcLimAccum</code>)</td>
+<td>Strömungsrichtung, Runoff-Gewicht, Quellgebiet und Konzentrationsparameter</td>
+<td>Konzentration einer transportierten Substanz</td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityConcentrationLimitedAccumulation.html">Handbuch</a>: alternative Hypothese über <strong>Konzentrationsbegrenzung</strong>, nicht Teil der Pflichtübung</td>
+</tr>
+<tr class="even">
+<td><strong>D8 Distance To Streams</strong> (<code>d8hdisttostrm</code>)</td>
+<td><code>p</code>, Gerinneraster, Höhenangabe</td>
+<td>horizontale Entfernung <strong>m</strong> entlang des D8-Fließwegs bis zum Gerinne</td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/D8DistanceToStreams.html">Handbuch</a>: mögliche Folgefrage nach Distanz, <strong>keine</strong> Fließzeit</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Einheitenkontrolle für das verwendete 5-m-Raster:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rasterwert</th>
+<th>Rechenbeispiel</th>
+<th>Zulässige Deutung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ad8 = 800</code></td>
+<td><code>800 × 25 m² = 20 000 m² = 2 ha</code></td>
+<td>D8-Einzugsfläche der Rasterzelle</td>
+</tr>
+<tr class="even">
+<td><code>sca = 30</code></td>
+<td><strong>30 m²/m</strong>, nicht 30 m²</td>
+<td>spezifische D∞-Einzugsfläche; Bezug auf wirksame Konturlänge</td>
+</tr>
+<tr class="odd">
+<td><code>slp = 0,05</code></td>
+<td>5 % Gefälle</td>
+<td>Verhältnis Höhenunterschied / horizontale Entfernung</td>
+</tr>
+<tr class="even">
+<td><code>volumen = 200</code></td>
+<td><strong>200 m³</strong> bei 10 mm effektivem Abfluss über 2 ha</td>
+<td>angenommene Bilanzmenge, keine Ganglinie oder Spitze</td>
+</tr>
+<tr class="odd">
+<td><code>tdep = 0,4</code></td>
+<td><strong>0,4 ME</strong> beim angenommenen Materialfall</td>
+<td>rechnerisch nicht abtransportierter Materialanteil, <strong>keine</strong> Aufschüttungshöhe</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachlich: Flächenakkumulation und D∞-SCA sind nicht austauschbar
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>AreaD8</code> zählt im Standardlauf vollständig angeschlossene Zellen. <code>AreaDinf</code> summiert <strong>gewichtete Teilbeiträge</strong> und normiert im Standard auf die Rasterbreite (m²/m). Die Umrechnung <code>ad8 × Zellfläche</code> liefert eine D8-Fläche in m²; <code>sca × 5 m</code> liefert eine <em>nominale</em> flächenbezogene Größe zur Visualisierung des D∞-Verteilungsbilds unter dieser Breitenannahme. Beide Rechnungen enthalten <strong>unterschiedliche Routingregeln</strong> – deshalb ist die Umrechnung keine Gleichsetzung der Ergebnisse.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="vergleichsalgorithmen-nicht-zusätzliche-pflichtwege" class="level2">
+<h2 class="anchored" data-anchor-id="vergleichsalgorithmen-nicht-zusätzliche-pflichtwege">3 · Vergleichsalgorithmen, nicht zusätzliche Pflichtwege</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Frage</th>
+<th>Alternative / Zugang</th>
+<th>Konzeptioneller Unterschied zum Hauptweg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>MFD statt D∞?</strong></td>
+<td><a href="https://grass.osgeo.org/grass-stable/manuals/r.watershed.html">GRASS <code>r.watershed</code></a></td>
+<td>Standard ist klassisches <strong>Multiple Flow Direction</strong> auf mehrere tieferliegende Nachbarn; <code>-s</code> erzwingt Single Flow Direction. <em>Nicht</em> dieselbe Verteilung wie TauDEM D∞</td>
+</tr>
+<tr class="even">
+<td><strong>MFD in SAGA?</strong></td>
+<td><a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.0/tc_ta_hydrology_flow_accumulation.html">SAGA Flow Accumulation</a></td>
+<td>Bibliothek mit mehreren Routingvarianten und Vorverarbeitung; <strong>Methode und Ausgabeformat explizit wählen</strong>, nicht nur Programmnamen vergleichen</td>
+</tr>
+<tr class="odd">
+<td><strong>Andere Senkenbehandlung?</strong></td>
+<td><a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html">SAGA – Terrain Analysis/Hydrology</a> · <a href="https://grass.osgeo.org/grass-stable/manuals/r.fill.dir.html">GRASS <code>r.fill.dir</code></a></td>
+<td>Füllen, Abfluss erzwingen oder Durchbrüche anders behandeln verändert die Topologie; Unterschiede können größer sein als zwischen Routingvarianten</td>
+</tr>
+<tr class="even">
+<td><strong>Andere Einzugsgebietsabgrenzung?</strong></td>
+<td><a href="https://grass.osgeo.org/grass-stable/manuals/r.water.outlet.html">GRASS <code>r.water.outlet</code></a></td>
+<td>Braucht ein geeignetes Fließrichtungsraster und Auslasskoordinaten; konzeptionell dieselbe Frage wie <code>GageWatershed</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Gerinne extrahieren ohne festen Flächenwert?</strong></td>
+<td><a href="https://grass.osgeo.org/grass-stable/manuals/r.stream.extract.html">GRASS <code>r.stream.extract</code></a></td>
+<td>Nutzt DGM/Akkumulation und Schwellen; Gerinneanfänge bleiben <strong>Modellentscheidungen</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Gerinnedichte begründen?</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/StreamDefinitionWithDropAnalysis.html">TauDEM Stream Definition With Drop Analysis</a></td>
+<td>Schwellenauswahl auf Basis statistisch verglichener Höhenabfälle; das Ergebnis ist nicht automatisch der tatsächliche hydrographische Gewässerbeginn</td>
+</tr>
+<tr class="odd">
+<td><strong>Topografischer Index aus anderer Software?</strong></td>
+<td><a href="https://grass.osgeo.org/grass-stable/manuals/r.topidx.html">GRASS <code>r.topidx</code></a> · <a href="https://grass.osgeo.org/grass-stable/manuals/r.watershed.html">GRASS <code>r.watershed</code></a></td>
+<td>Unterschiede in Akkumulation, Gefälle und Senkenbehandlung beeinflussen den TWI</td>
+</tr>
+<tr class="even">
+<td><strong>Abfluss mit räumlich variablen Beiträgen?</strong></td>
+<td>TauDEM <code>AreaD8 -wg</code>, alternativ <code>AreaDinf -wg</code></td>
+<td>Das Gewicht ist ein <strong>Zellbeitrag</strong> mit festgelegter Einheit, nicht automatisch ein hydrographischer Abfluss</td>
+</tr>
+<tr class="odd">
+<td><strong>Sedimenttransport ohne Geometrieänderung?</strong></td>
+<td><a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.sediment.html">GRASS <code>r.sim.sediment</code></a></td>
+<td>Anderer Prozessansatz mit zusätzlichen hydraulischen und erosionsbezogenen Eingaben; keine 1:1-Alternative zu der im Worksheet gesetzten Transportkapazitätsfunktion</td>
+</tr>
+<tr class="even">
+<td><strong>Landnutzung als hydraulische Rauigkeit?</strong></td>
+<td><a href="https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html">GRASS <code>r.sim.water</code></a></td>
+<td>Rauigkeit und Niederschlag sind Eingaben eines <strong>anderen, dynamischen</strong> Modells, nicht der D8-Flächenakkumulation</td>
+</tr>
+<tr class="odd">
+<td><strong>GIS-Verarbeitung reproduzieren?</strong></td>
+<td><a href="https://gdal.org/en/stable/programs/gdalwarp.html">GDAL Warp</a> · <a href="https://docs.qgis.org/latest/en/docs/user_manual/processing/index.html">QGIS Processing</a></td>
+<td>Trennung von <strong>Datenvorbereitung</strong>, TauDEM-Rechenkern und Karteninterpretation</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technisch: Typische Fehlinterpretationen beim Wechsel des Werkzeugs
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>D8-Richtungsraster:</strong> Die Zahlen 1–8 sind Kodierungen, <strong>keine</strong> Fließgeschwindigkeit und keine Himmelsrichtung in Grad.</li>
+<li><strong>D∞-Winkel:</strong> Winkel in <strong>Radiant</strong>, gegen den Uhrzeigersinn ab Osten; kein D8-Code.</li>
+<li><strong>D∞-SCA:</strong> Standardwerte in <strong>m</strong>, während D8 standardmäßig <strong>Zellen</strong> summiert.</li>
+<li><strong><code>-nc</code>:</strong> In der TauDEM-Kommandozeile deaktiviert dieser Schalter die Randprüfung; für die Übung <strong>weglassen</strong>. Eine große Fläche wird dadurch nicht „vollständiger“.</li>
+<li><strong>Punkt am Bach:</strong> Ein kartierter Gewässerpunkt muss nicht exakt auf dem aus D8 erzeugten Rastergerinne liegen. Der verschobene Auslass ist immer zu kontrollieren.</li>
+<li><strong>Rasterverschiebung:</strong> Gleiche Pixelgröße allein reicht nicht aus; <strong>Rasterursprung, Ausdehnung, Projektion und NoData</strong> müssen ebenfalls passen.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="primärliteratur-und-methodische-schlüsseltexte" class="level2">
+<h2 class="anchored" data-anchor-id="primärliteratur-und-methodische-schlüsseltexte">4 · Primärliteratur und methodische Schlüsseltexte</h2>
+<p>Die Tabelle ordnet jede Veröffentlichung <strong>einer konkreten Entscheidung der Übung</strong> zu. Es handelt sich nicht um eine ungeordnete Leseliste.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Publikation</th>
+<th>Wofür lesen?</th>
+<th>Bezug zur Übung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>O’Callaghan &amp; Mark (1984).</strong> <em>The extraction of drainage networks from digital elevation data</em>. <a href="https://doi.org/10.1016/S0734-189X(84)80011-0">DOI</a></td>
+<td>Früher kanonischer Rasteransatz zur Extraktion von Abflusswegen</td>
+<td>Motivation der D8-Verbindungen und des automatisierten Gewässernetzes</td>
+</tr>
+<tr class="even">
+<td><strong>Jenson &amp; Domingue (1988).</strong> <em>Extracting topographic structure from digital elevation data for GIS analysis</em>. <a href="https://pubs.usgs.gov/publication/70142175">USGS</a></td>
+<td>Verknüpfung Senkenfüllung → Fließrichtung → Akkumulation → Teileinzugsgebiet</td>
+<td>Die Struktur der TauDEM-Grundkette</td>
+</tr>
+<tr class="odd">
+<td><strong>Tarboton (1997).</strong> <em>A new method for the determination of flow directions and upslope areas in grid digital elevation models</em>. <a href="https://doi.org/10.1029/96WR03137">DOI</a></td>
+<td>D∞: Winkel aus Dreiecksfacetten und proportionale Aufteilung auf zwei Nachbarzellen</td>
+<td><strong>Wichtigster Originaltext</strong> zu <code>DinfFlowDir</code> und <code>AreaDinf</code></td>
+</tr>
+<tr class="even">
+<td><strong>Freeman (1991).</strong> <em>Calculating catchment area with divergent flow based on a regular grid</em>. <a href="https://doi.org/10.1016/0098-3004(91)90048-I">DOI</a></td>
+<td>Warum D8 die reale Divergenz von Hangflächen nur begrenzt repräsentiert</td>
+<td>Unterschied D8 versus Verzweigung</td>
+</tr>
+<tr class="odd">
+<td><strong>Quinn, Beven, Chevallier &amp; Planchon (1991).</strong> <em>The prediction of hillslope flow paths for distributed hydrological modelling using digital terrain models</em>. <a href="https://doi.org/10.1002/hyp.3360050106">DOI</a></td>
+<td>Mehrfachverteilung, Routing- und Rasterweiteneinflüsse</td>
+<td>Einordnung klassischen MFD; Sensitivität der Ergebnisse</td>
+</tr>
+<tr class="even">
+<td><strong>Seibert &amp; McGlynn (2007).</strong> <em>A new triangular multiple flow direction algorithm for computing upslope areas from gridded digital elevation models</em>. <a href="https://doi.org/10.1029/2006WR005128">DOI</a></td>
+<td>Zeigt, dass selbst innerhalb der Mehrfachrouting-Familie unterschiedliche Verteilungsmuster entstehen</td>
+<td><strong>D∞ ≠ MFD ≠ MD∞</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Wang &amp; Liu (2006).</strong> <em>An efficient method for identifying and filling surface depressions in digital elevation models</em>. <a href="https://doi.org/10.1080/13658810500433453">DOI</a></td>
+<td>Ein alternatives Verfahren zum Füllen geschlossener Senken</td>
+<td>Vergleich zu TauDEM <code>PitRemove</code>; begründete Behandlung echter Vertiefungen</td>
+</tr>
+<tr class="even">
+<td><strong>Tarboton, Bras &amp; Rodríguez-Iturbe (1991).</strong> <em>On the extraction of channel networks from digital elevation data</em>. <a href="https://doi.org/10.1002/hyp.3360050107">DOI</a></td>
+<td>Warum Gerinnenetze eine <strong>Längen-/Dichteskala</strong> benötigen</td>
+<td>Wahl und Variation der 2-ha-/5-ha-Schwellen</td>
+</tr>
+<tr class="odd">
+<td><strong>Beven &amp; Kirkby (1979).</strong> <em>A physically based, variable contributing area model of basin hydrology</em>. <a href="https://doi.org/10.1080/02626667909491834">DOI</a></td>
+<td>Herkunft des Topografie-/Feuchteindexkonzepts aus TOPMODEL</td>
+<td>TWI als <strong>Modellindex</strong>, nicht gemessene Bodenfeuchte</td>
+</tr>
+<tr class="even">
+<td><strong>Moore, Grayson &amp; Ladson (1991).</strong> <em>Digital terrain modelling: A review of hydrological, geomorphological, and biological applications</em>. <a href="https://doi.org/10.1002/hyp.3360050103">DOI</a></td>
+<td>DGM als räumlicher Stellvertreter verschiedener Prozesse; Grenzen abgeleiteter Indizes</td>
+<td>Einordnung der Aussagen aus der Geländeoberfläche</td>
+</tr>
+<tr class="odd">
+<td><strong>Quinn, Beven &amp; Lamb (1995).</strong> <em>The ln(a/tanβ) index: How to calculate it and how to use it within the TOPMODEL framework</em>. <a href="https://doi.org/10.1002/hyp.3360090204">DOI</a></td>
+<td>Berechnung und hydrologische Verwendung des TWI</td>
+<td>Warum die <strong>Formel allein</strong> keinen Wasserstand liefert</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Leseempfehlung für die konkrete Lehre:</strong> Tarboton (1997) für D∞; Jenson &amp; Domingue (1988) für den durchgehenden GIS-Ablauf; Beven &amp; Kirkby (1979) für die Interpretation des TWI. Tarboton, Bras &amp; Rodríguez-Iturbe (1991) ist der passende Anschluss, wenn die Studierenden die Gerinneschwelle systematisch untersuchen sollen.</p>
+</section>
+<section id="was-die-ergebnisse-belegen-und-was-nicht" class="level2">
+<h2 class="anchored" data-anchor-id="was-die-ergebnisse-belegen-und-was-nicht">5 · Was die Ergebnisse belegen – und was nicht</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kartenprodukt</th>
+<th>Damit lässt sich die Frage beantworten …</th>
+<th>Dafür reicht das Ergebnis <strong>nicht</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hillshade aus DGM</td>
+<td>Wo sind Kuppen, Rinnen, Dämme oder flache Bereiche in der Höhenoberfläche?</td>
+<td>Was liegt unter einer geglätteten Wasseroberfläche?</td>
+</tr>
+<tr class="even">
+<td>D8-Akkumulation / Gage Watershed</td>
+<td>Welche Zellen sind topografisch mit einem Auslass verbunden?</td>
+<td>Wie viel Regen fällt; wie schnell fließt Wasser?</td>
+</tr>
+<tr class="odd">
+<td>D∞-SCA</td>
+<td>Wo verteilt sich eine durch den Algorithmus definierte beitragende Fläche?</td>
+<td>Ob dort tatsächlich Oberflächenabfluss entsteht</td>
+</tr>
+<tr class="even">
+<td>Gerinneraster</td>
+<td>Welche Zellen überschreiten einen <strong>gewählten</strong> Akkumulationsschwellenwert?</td>
+<td>Wo eine Quelle bei Trockenheit oder Starkregen tatsächlich liegt</td>
+</tr>
+<tr class="odd">
+<td>TWI</td>
+<td>Wo treffen innerhalb dieses Reliefmodells große spezifische Einzugsfläche und kleine Neigung zusammen?</td>
+<td>Reale Bodenfeuchte bzw. Überflutungstiefe</td>
+</tr>
+<tr class="even">
+<td><code>10 mm × D8-Fläche</code></td>
+<td>Wie groß wäre die <strong>Gesamtmenge</strong> eines überall gleichen effektiven Wasserbeitrags?</td>
+<td>Ganglinie, Peak, Fließdauer und tatsächliche Abflussbildung</td>
+</tr>
+<tr class="odd">
+<td>Transport / Ablagerung (TauDEM)</td>
+<td>Wo überschreitet <strong>angebotenes Modellmaterial</strong> eine <strong>gesetzte Transportkapazität</strong>?</td>
+<td>Tatsächliche Sedimentfracht, Erosionsrate, sich verlagerndes Ufer oder aktualisiertes DGM</td>
+</tr>
+</tbody>
+</table>
+<p>Der Vergleich mit <em>Grand Canyon</em>, <em>Erosion</em> und <em>River Meanders</em> ist damit präzise: <strong>Räumliche Verbindung</strong>, <strong>Materialbilanz</strong> und <strong>Veränderung des Geländes über Modellschritte</strong> sind unterschiedliche Modellentscheidungen. Keine davon ist allein aufgrund einer detaillierteren Karte grundsätzlich „realistischer“.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/gisma-courses\.github\.io\/geo-mod-2026");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../pages/meander_abfluss_saga_grass.html" class="pagination-link" aria-label="GIS-Übung: Relief, Abfluss und Sediment">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">GIS-Übung: Relief, Abfluss und Sediment</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../pages/resuemee_modellierung_geographie.html" class="pagination-link" aria-label="Resümee">
+        <span class="nav-page-text">Resümee</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/abfluss_algorithmen_quellen.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

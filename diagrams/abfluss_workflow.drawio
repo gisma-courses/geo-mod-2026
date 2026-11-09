@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="app.diagrams.net" modified="2026-11-08T00:00:00.000Z" agent="ChatGPT" version="26.0.0" type="device" compressed="false">
+  <diagram id="abfluss-diagramm" name="Abfluss-Workflow">
+    <mxGraphModel dx="1220" dy="625" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1220" pageHeight="625" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="dgm" value="&lt;b&gt;DGM1: Höhe (m)&lt;/b&gt;&lt;br/&gt;amtliches Raster" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;strokeColor=#24445c;fillColor=#f6f8fa;fontColor=#24445c;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="34" y="55" width="218" height="87" as="geometry"/>
+        </mxCell>
+        <mxCell id="res" value="&lt;b&gt;5-m-Arbeitsraster&lt;/b&gt;&lt;br/&gt;identische Zellgeometrie" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;strokeColor=#24445c;fillColor=#f6f8fa;fontColor=#24445c;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="291" y="55" width="218" height="87" as="geometry"/>
+        </mxCell>
+        <mxCell id="pit" value="&lt;b&gt;Pit Remove → fel&lt;/b&gt;&lt;br/&gt;Senkenbehandlung" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;strokeColor=#24445c;fillColor=#f6f8fa;fontColor=#24445c;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="548" y="55" width="243" height="87" as="geometry"/>
+        </mxCell>
+        <mxCell id="atk" value="&lt;b&gt;ATKIS-Gewässer&lt;/b&gt;&lt;br/&gt;nur Lagevergleich" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;strokeColor=#61717d;fillColor=#f6f8fa;fontColor=#61717d;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="945" y="55" width="236" height="87" as="geometry"/>
+        </mxCell>
+        <mxCell id="d8" value="&lt;b&gt;D8-Richtung → p&lt;/b&gt;&lt;br/&gt;1 Empfänger pro Zelle" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;strokeColor=#176a9e;fillColor=#eaf4fb;fontColor=#176a9e;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="34" y="227" width="245" height="98" as="geometry"/>
+        </mxCell>
+        <mxCell id="ad8" value="&lt;b&gt;AreaD8 → ad8&lt;/b&gt;&lt;br/&gt;Anzahl Zellen → m²" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;strokeColor=#176a9e;fillColor=#eaf4fb;fontColor=#176a9e;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="334" y="227" width="245" height="98" as="geometry"/>
+        </mxCell>
+        <mxCell id="out" value="&lt;b&gt;Schwelle + Auslass&lt;/b&gt;&lt;br/&gt;Gerinne · Einzugsgebiet" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;strokeColor=#176a9e;fillColor=#eaf4fb;fontColor=#176a9e;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="634" y="227" width="245" height="98" as="geometry"/>
+        </mxCell>
+        <mxCell id="water" value="&lt;b&gt;10 mm effektiv&lt;/b&gt;&lt;br/&gt;m³, keine Ganglinie" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;strokeColor=#176a9e;fillColor=#eaf4fb;fontColor=#176a9e;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="934" y="227" width="245" height="98" as="geometry"/>
+        </mxCell>
+        <mxCell id="di" value="&lt;b&gt;D∞-Richtung → ang&lt;/b&gt;&lt;br/&gt;bis zu 2 Empfänger" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;strokeColor=#23734d;fillColor=#e9f6ed;fontColor=#23734d;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="34" y="424" width="245" height="98" as="geometry"/>
+        </mxCell>
+        <mxCell id="sca" value="&lt;b&gt;AreaDinf → sca&lt;/b&gt;&lt;br/&gt;m²/m = m" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;strokeColor=#23734d;fillColor=#e9f6ed;fontColor=#23734d;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="334" y="424" width="245" height="98" as="geometry"/>
+        </mxCell>
+        <mxCell id="twi" value="&lt;b&gt;TWI&lt;/b&gt;&lt;br/&gt;ln(a / tan β)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;strokeColor=#23734d;fillColor=#e9f6ed;fontColor=#23734d;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="634" y="424" width="245" height="98" as="geometry"/>
+        </mxCell>
+        <mxCell id="sed" value="&lt;b&gt;Materialbilanz&lt;/b&gt;&lt;br/&gt;Angebot + Kapazität" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;strokeColor=#66548c;fillColor=#f2edf8;fontColor=#66548c;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="934" y="424" width="245" height="98" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#23734d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="dgm" target="res">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#23734d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="res" target="pit">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#61717d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="pit" target="d8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="652" y="174"/>
+              <mxPoint x="145" y="174"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#61717d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="pit" target="di">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="812" y="157"/>
+              <mxPoint x="1204" y="157"/>
+              <mxPoint x="1204" y="385"/>
+              <mxPoint x="145" y="385"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#176a9e;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="d8" target="ad8">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#176a9e;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="ad8" target="out">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#176a9e;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="out" target="water">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#23734d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="di" target="sca">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#23734d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="sca" target="twi">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#23734d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="sca" target="sed">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="617" y="545"/>
+              <mxPoint x="921" y="545"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#61717d;strokeWidth=2;endArrow=block;endFill=1;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="atk" target="out">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1060" y="192"/>
+              <mxPoint x="757" y="192"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lab1" value="D8-Zweig: ein Empfänger" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontColor=#176a9e;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="330" y="176" width="600" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="lab2" value="D∞-Zweig: anteilige Beiträge" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontColor=#23734d;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="330" y="373" width="600" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="foot" value="Gleiches Gelände; keine zeitabhängige Strömung oder Geländeänderung." style="text;html=1;strokeColor=none;fillColor=none;align=left;fontColor=#61717d;fontStyle=1;fontSize=17;" vertex="1" parent="1">
+          <mxGeometry x="34" y="567" width="1120" height="39" as="geometry"/>
+        </mxCell>
+        <mxCell id="foot2" value="ATKIS-Gewässer: unabhängige Referenz (gestrichelte Linie)." style="text;html=1;strokeColor=none;fillColor=none;align=left;fontColor=#61717d;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="34" y="603" width="1120" height="20" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -56,7 +56,7 @@ website:
         - section: "Angeleitete Modellierungsfolge"
           contents:
             - href: pages/modellbildung_gis_folien.qmd
-              text: Auftakt: Modellbildung
+              text: "Auftakt: Modellbildung"
             - href: pages/netlogo_modellvergleich.qmd
               text: NetLogo-Modelle
             - href: pages/einstieg_abflussmodellierung.qmd

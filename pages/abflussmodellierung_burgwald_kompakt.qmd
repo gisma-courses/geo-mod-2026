@@ -1,0 +1,226 @@
+---
+title: "Abflussmodellierung im Burgwald"
+subtitle: "Reliefrouting, Sensitivität und Grenzen der Prozessabbildung"
+order: 40
+title-block-banner: ../images/placeholder.png
+title-block-banner-color: black
+#page-layout: full
+format-links: [html]
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    number-sections: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Von der Modellkritik zur eigenen GIS-Analyse
+
+Im Kurs **„Modellieren in der Geographie“** untersuchen wir, wie räumliche Muster aus Daten, Annahmen und Berechnungsregeln entstehen – und welche Rückschlüsse diese Muster auf reale Prozesse zulassen. Die NetLogo-Modelle haben diese Frage anhand unterschiedlicher Mechanismen zugänglich gemacht: *Grand Canyon* erzeugt Abflusswege auf einem realen Relief, *Erosion* koppelt Wasserverlagerung und Geländeabtrag, *River Meanders* verändert die Gerinneform durch Bewegungs-, Erosions- und Ablagerungsregeln. Die Modelle berechnen unterschiedliche Vorgänge: Grand Canyon verfolgt Wasserwege auf vorgegebenem Relief, Erosion verändert die Geländehöhen durch Abtrag, und River Meanders verändert die Gerinneform durch Erosions- und Ablagerungsregeln.
+
+Die NetLogo-Modelle greifen bekannte Eigenschaften von Flüssen auf: Wasser bewegt sich entlang eines Gefälles, Abtrag verändert das Relief, Erosion und Ablagerung verändern die Gerinneform. Wir erkennen diese Vorgänge wieder, weil die Modelle genau solche Zusammenhänge für die Untersuchung auswählen und hervorheben. Ihr didaktischer Zweck besteht darin, einzelne Mechanismen und Rückkopplungen nachvollziehbar zu machen. Wie viel Physik dabei verwendet wird, hängt vom jeweiligen Modell ab.
+
+**Im weiteren Kurs konkretisieren wir diese Abstraktionen:** Welcher Ausschnitt eines Vorgangs wird beschrieben? Durch welche Größen und Beziehungen? Für welches Gelände, welchen Zeitraum und welche Bedingungen soll die Beschreibung gelten? Dabei nehmen wir schrittweise diejenigen Daten und Prozesse auf, die wir für unsere jeweilige Frage benötigen.
+
+Die GIS-Übung beginnt mit der **räumlichen Abstraktion eines konkreten Einzugsgebiets**. Das Gelände wird als Höhenraster dargestellt; D8 und MFD beschreiben seine Entwässerungsverbindungen. Daraus berechnen wir Einzugsflächen und Abflusskonzentrationen und prüfen sie am vorhandenen Gewässernetz. Rasterweite, Senkenbehandlung und Routingregel legen fest, welche Geländeeigenschaften in dieser Beschreibung erhalten bleiben und welche verändert oder ausgelassen werden.
+
+Für eine Ereignissimulation mit **Itzï** wird die Beschreibung um Niederschlag beziehungsweise Zufluss, Wasserstände, hydraulische Reibung und zeitabhängige Wasserflüsse erweitert. **CAESAR-Lisflood** bezieht zusätzlich Sedimenttransport, Abtrag und Ablagerung ein; das veränderte Gelände wirkt auf die weitere Strömung zurück. So werden die aus den NetLogo-Modellen bekannten Zusammenhänge für bestimmte Berechnungsfragen genauer spezifiziert. Jeder Schritt verlangt begründete Vereinfachungen, zusätzliche Parameter und eine Prüfung daran, ob die berechneten Größen den untersuchten Vorgang angemessen beschreiben.
+
+**In der ersten GIS-Übung wird diese Modellkritik zur eigenen Modellierungspraxis.** Sie wählen Geodaten und Untersuchungsgebiet, bearbeiten das Gelände und legen fest, wie daraus ein Entwässerungsnetz berechnet wird. D8 und MFD machen eine dieser Entscheidungen unmittelbar vergleichbar: Wie verändert sich das Ergebnis, wenn Zellbeiträge einem oder mehreren Nachbarn zugewiesen werden? Rasterweite und Senkenbehandlung verändern zusätzlich die räumlichen Voraussetzungen der Berechnung. Der Vergleich mit dem kartierten Gewässernetz untersucht anschließend, wie plausibel die abgeleiteten Bahnen sind und wodurch Abweichungen entstehen.
+
+Die Gegenüberstellung der Modelle verbindet **die bekannten NetLogo-Regeln mit den jetzt selbst eingesetzten GIS-Verfahren**. Entscheidend ist jeweils, was zwischen Eingabe und Ergebnis tatsächlich geschieht. Eine Übereinstimmung mit dem Gewässernetz kann die räumliche Ableitung stützen; sie bestätigt noch keine Berechnung von Wasserbewegung oder Erosion.
+
+Der anschließende Kursabschnitt greift zwei Fragen aus dem NetLogo-Vergleich auf: **Wie wird aus einer Fließrichtung eine berechnete Wasserbewegung, und wie verändert diese das Gelände?** Dafür werden Itzï und CAESAR-Lisflood herangezogen. Itzï ergänzt die Ereigniszeit, Wasserstände und Wasserflüsse; CAESAR-Lisflood koppelt die Hydraulik mit Sedimenttransport und Geländeänderung. In der vorliegenden Übung steht zunächst die räumliche Ableitung mit D8 und MFD im Mittelpunkt.
+
+## Untersuchungsraum und Vergleichsansatz
+
+Geeignet ist ein **selbstgewähltes kleines Gewässer mit Oberlauf und angrenzenden Hängen**, beispielsweise im Burgwald. Ein Betrachtungsausschnitt von etwa **2 × 2 km** dient als Orientierung. Das Berechnungsgebiet muss die oberhalb zufließenden Flächen enthalten; andernfalls werden die beitragenden Flächen am Rand abgeschnitten. Das Rote Wasser bei den Franzosenwiesen ist ein mögliches Beispiel.
+
+Ausgangspunkt ist ein digitales Geländemodell. Für den ersten Vergleich bleiben Arbeits-DGM, Rasterweite und Senkenbehandlung gleich; verändert wird die **Routingregel**. D8 weist den Beitrag einer Zelle einem ihrer acht Nachbarn zu, MFD verteilt ihn auf mehrere tieferliegende Nachbarn. Bei flächenbezogener Akkumulation ist der Beitrag die Zellfläche: Aus ihrer Weitergabe und Aufsummierung ergibt sich die Fläche, die zu einer Stelle beiträgt.
+
+Auf dieser Grundlage lassen sich weitere Entscheidungen getrennt untersuchen: Wie verändern 5 statt 10 m Rasterweite die erfassten Rinnen? Welche Verbindungen entstehen oder verschwinden durch die Senkenbehandlung? Ab welcher beitragenden Fläche wird eine Bahn als potenzielles Gerinne ausgewiesen? Eine veränderte Gerinneschwelle verändert das extrahierte Netz, ohne dass dafür das Gelände oder die Akkumulation neu berechnet werden muss.
+
+## Berechnung, Ergebnis und Aussagegrenze
+
+Die Tabelle stellt die **aktuelle GIS-Rechnung**, die **bereits untersuchten NetLogo-Modelle** und die **anschließenden Prozessmodelle** gegenüber. Itzï und CAESAR-Lisflood werden in dieser Übung noch nicht eingerichtet oder gerechnet.
+
+| Modell | Wie wird gerechnet? | Was liefert die Rechnung? | Grenze und Einordnung im Kurs |
+|---|---|---|---|
+| **GIS: D8/MFD – aktuelle Übung** | Höhenunterschiede bestimmen die Weitergabe von Zellbeiträgen. D8 verwendet einen Empfänger, MFD verteilt auf mehrere. Die Beiträge werden über das Routingnetz aufsummiert. | **Fließrichtungen und beitragende Fläche**; mit einer gewählten Flächenschwelle ein potenzielles Gerinnenetz. | Wie viel Wasser bei einem Regen tatsächlich abfließt, wie schnell es fließt oder wie sich das Gelände verändert. |
+| **NetLogo: Grand Canyon – Referenz** | Wasseragenten bewegen sich zu einem Nachbarn mit niedrigerem **Wasserspiegel aus Gelände- und Wasserhöhe**. Liegen gebliebene Agenten erhöhen den örtlichen Wasserstand und beeinflussen spätere Wege. | **Tropfenwege und Wasseransammlungen** auf einem realen, für das Modell skalierten Höhenraster. | Physikalische Fließgeschwindigkeiten und Abflussganglinien. Das Grundmodell trägt kein Gelände ab. |
+| **NetLogo: Erosion – Referenz** | Wasser wird zum Nachbarn mit dem niedrigsten Wasserspiegel umverteilt. Die Austauschmenge hängt vom **Wasserspiegelunterschied** und der verfügbaren Wassermenge ab; Austauschmenge und Bodenhärte bestimmen den Geländeabtrag. | **Veränderte Wasserstände und Geländehöhen**; der Abtrag verändert die nachfolgenden Abflusswege. | Gemessene Erosionsraten oder eine vollständige Sedimentbilanz: Abgetragenes Material wird nicht als transportierte und wieder abgelagerte Masse bilanziert. |
+| **NetLogo: River Meanders – Referenz** | Strömungsagenten bewegen sich nach vorgegebenen Beschleunigungsregeln. Beim Auftreffen auf Land entsteht eine Gewässerzelle; Ablagerungsregeln können Gewässerzellen wieder in Land umwandeln. | **Veränderung der Gerinneform**, Mäanderschlingen und Durchbrüche; Entwicklung der Sinuosität. | Reale Uferverlagerungsraten. Agentenbewegung und Zellumwandlung ersetzen keine hydraulische Strömungsberechnung und keinen bilanzierten Sedimenttransport. |
+| **Itzï – anschließende Abflusssimulation** | Wasserbilanz und eine **lokal-inertiale Näherung der Flachwassergleichungen** bestimmen Wasserstände und Flüsse. Niederschlag, Infiltration und hydraulische Rauigkeit gehen in die Berechnung ein; die konvektive Beschleunigung wird vernachlässigt. | **Zeitabhängige Wassertiefen, Wasserflüsse und Überflutungsflächen** für ein vorgegebenes Ereignis. | Erweitert die GIS-Analyse um Wassermengen und Ereigniszeit. Das Gelände bleibt fest; Sedimenttransport und Mäanderwanderung werden nicht simuliert. |
+| **CAESAR-Lisflood – anschließende Gelände- und Gerinneentwicklung** | Die LISFLOOD-FP-Hydraulik wird mit **Sedimenttransport, Erosion und Ablagerung** gekoppelt. Aktualisierte Geländehöhen wirken auf die weitere Strömung zurück; seitliche Ufererosion wird parametrisiert. | **Zeitabhängige Wasserverteilung, Sedimentbewegung und Höhenänderung**; bei geeigneter Geometrie und Parametrisierung auch seitliche Gerinneverlagerung. | Greift die Rückkopplungen aus *Erosion* und *River Meanders* auf. Zusätzlich zum DGM werden Wasser- und Sedimentzufuhr, Korngrößen und Prozessparameter benötigt. Ein lauffähiges Lehrszenario ist noch keine belastbare Prognose der realen Gewässerentwicklung. |
+
+Der Vergleich mit den Prozessmodellen setzt an den Grenzen der aktuellen Rechnung an: **D8/MFD beschreibt, welche Flächen zu einer Stelle beitragen; Itzï berechnet, wann und in welcher Menge sich Wasser unter vorgegebenen Bedingungen verlagert.** CAESAR-Lisflood ergänzt die Rückwirkung von Erosion und Ablagerung auf das Gelände. Für die aus *River Meanders* bekannte Gerinneveränderung müssen dabei insbesondere die Regeln und Parameter der seitlichen Ufererosion betrachtet werden.
+
+Das DGM aus der GIS-Übung dient als gemeinsame Geländegrundlage. Für die anschließenden Simulationen wird zusätzlich ein definierter Niederschlags- oder Zuflussverlauf benötigt; bei CAESAR-Lisflood kommen Sedimentvorgaben hinzu. Ob Rasterweite, Gerinnegeometrie und Geländeaufbereitung dafür ausreichen, wird erneut geprüft. Damit wird auch die zusätzliche Komplexität physikalischer Modellierung konkret: Ergebnisse hängen nun von Ereignisvorgaben, Materialparametern und Randbedingungen sowie von der numerischen Lösung ab. Wasser- und Sedimentbilanzen und der Vergleich mit Beobachtungen werden zu weiteren Prüfkriterien.
+
+
+## Gemeinsame Datengrundlage
+
+| Grundlage | Verwendung und Zugang |
+|---|---|
+| **DGM1, Beispiel Hessen** | Geländehöhe und Reliefanalyse. [Downloadcenter](https://gds.hessen.de/INTERSHOP/web/WFS/HLBG-Geodaten-Site/de_DE/-/EUR/ViewDownloadcenter-Start) → *3D-Daten / DGM1*; [Produktbeschreibung](https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle) |
+| **ATKIS Basis-DLM: Gewässerlinien, Beispiel Hessen** | Kartierte Gewässerreferenz. Dasselbe Downloadcenter → *Digitales Landschaftsmodell*; [Produktbeschreibung](https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell) |
+| **Orthofoto, ergänzend** | Plausibilitätsprüfung von Gewässerlage, Bauwerken und Geländeunterbrechungen |
+
+Die verlinkten Datenzugänge beziehen sich auf Hessen. Für einen Untersuchungsraum außerhalb Hessens werden entsprechende Gelände- und Gewässerdaten der zuständigen Landesvermessung verwendet.
+
+Das **Analysegebiet** umfasst die oberhalb gelegenen Zuflussflächen; der engere **Darstellungs- und Auswertungsraum** kann anschließend ausgeschnitten werden. Eine auf den sichtbaren Flusskorridor begrenzte Berechnung unterschätzt beitragende Flächen und erzeugt Randartefakte.
+
+Als Ausgangsvariante dient ein **5-m-Arbeitsraster** aus dem unveränderten DGM1 in **ETRS89 / UTM 32N (EPSG:25832)**. Höhenreferenz, NoData, Resampling, Ausdehnung und Pixelursprung werden geprüft. Eine Schummerung unterstützt die Kontrolle von Rinnen, Dämmen, Durchlässen und Flachbereichen. Über Wasser beschreibt das DGM häufig eine interpolierte Oberfläche und nicht die Gewässersohle.
+
+Für jeden Vergleich bleiben Datenstand, Rastergeometrie, Vorverarbeitung, Routingparameter und Ausgabeeinheit nachvollziehbar. **Gleiche Darstellung setzt gleiche Einheiten und Klassengrenzen voraus**; eine logarithmische Skalierung erleichtert den Vergleich stark gestreuter Akkumulationswerte.
+
+## Untersuchungsmodule
+
+Die Module erschließen denselben Modellfall aus verschiedenen Perspektiven. Sie können von einer auffälligen Modellbahn, einem Methodenunterschied oder einer Unsicherheit der Referenz ausgehend bearbeitet und aufeinander bezogen werden. Die gemeinsame Datengrundlage bleibt bestehen; eine feste Abfolge der Untersuchungen ist nicht erforderlich.
+
+:::: {.panel-tabset}
+
+### Routing und Implementierung
+
+**Vergleich:** D8 und MFD auf demselben Arbeits-DGM bei gleicher Senkenbehandlung und Rastergeometrie.
+
+D8 weist den Beitrag einer Zelle einem Nachbarn nach der implementierten Abstiegsregel zu. MFD verteilt Beiträge auf mehrere tieferliegende Nachbarn, häufig gefällegewichtet. Konvergenzparameter und Gefälleexponenten beeinflussen, wie stark die Verteilung konzentriert wird. MFD bezeichnet daher eine **Verfahrensfamilie**, keinen über alle Programme identischen Algorithmus.
+
+Für ein gerichtetes, zyklenfreies Routingnetz lässt sich die Akkumulation schematisch ausdrücken als
+
+$$
+A_j = a_j + \sum_{i\rightarrow j} w_{ij}\,A_i.
+$$
+
+$a_j$ ist die Fläche der Zelle $j$, $A_i$ die bereits akkumulierte Fläche einer zuführenden Zelle und $w_{ij}$ der weitergegebene Anteil. D8 verwendet einen Empfänger; MFD kann den Beitrag aufteilen. Regeln für Senken, Flachflächen und Gebietsränder ergänzen diesen Grundgedanken. **Die räumliche Weitergabe bilanziert Beiträge, bildet aber keinen zeitlichen Wassertransport ab.** Auch eine intern iterative Berechnung erzeugt noch keine hydrologische Simulationszeit.
+
+Untersuchen Sie Bündelung, flächenhafte Verteilung und Lage der Akkumulation an Hängen, Kuppen und Talböden. Stellen, an denen kleine Unterschiede der Fließrichtung größere Teile des nachfolgenden Netzes verlagern, sind für die Interpretation besonders relevant.
+
+::: {.callout-note collapse="true"}
+#### Umsetzung in SAGA, GRASS oder WhiteboxTools
+
+**SAGA direkt:** *Terrain Analysis → Hydrology → Flow Accumulation*. Als *Elevation* dasselbe Arbeits-DGM verwenden; zunächst *Deterministic 8*, anschließend *Multiple Flow Direction* rechnen. Die dokumentierte Werkzeugkette enthält eine Vorverarbeitung: Für beide Läufe dieselbe Option wählen und ein bereits bearbeitetes DGM nicht unbemerkt zusätzlich verändern. Ergebnisse als `accu_d8` und `accu_mfd` speichern; Ausgabeeinheiten prüfen.
+
+**GRASS, direkt oder über QGIS:** `r.watershed` mit identischer Region, Zellgröße und Ausdehnung. Mit `-s` wird SFD/D8 berechnet, ohne `-s` MFD. Den Konvergenzparameter festhalten. Das Modul benötigt nicht grundsätzlich ein zuvor gefülltes DGM und behandelt Senken intern. Negative Akkumulationswerte können unvollständige Zuflussinformation anzeigen; sie sind nicht kommentarlos durch Absolutwerte zu ersetzen.
+
+**WhiteboxTools:** *D8 Flow Accumulation* und *FD8 Flow Accumulation* mit vergleichbarer Vorverarbeitung und dokumentierten Ausgabeeinheiten verwenden. FD8 ist eine MFD-Variante; D∞ ist ein anderer Routingansatz. Verfügbarkeit und Parameter hängen vom installierten Provider ab.
+
+[SAGA-Werkzeugkette](https://saga-gis.sourceforge.io/saga_tool_doc/9.13.0/tc_ta_hydrology_flow_accumulation.html) · [GRASS r.watershed](https://grass.osgeo.org/grass-stable/manuals/r.watershed.html) · [WhiteboxTools](https://github.com/jblindsay/whitebox-tools)
+:::
+
+**Implementierungsvergleich:** SAGA-D8 und GRASS-SFD können auf demselben DGM verglichen werden. Unterschiede sind jedoch nicht allein dem Routingnamen zuzurechnen: interne Senkenbehandlung, Flachflächen, Randzellen und NoData können verschieden verarbeitet werden. Sind diese Regeln nicht angleichbar, vergleicht man gekoppelte Verfahrensentscheidungen statt eines isolierten Faktors.
+
+### Raster und Geländeaufbereitung
+
+**Vergleich:** Eine Änderung der räumlichen Repräsentation oder Senkenbehandlung gegenüber einem bekannten Ausgangslauf; Routing und weitere kontrollierbare Parameter bleiben gleich.
+
+| Variation | Umsetzung | Analytischer Schwerpunkt |
+|---|---|---|
+| **Rasterweite** | 5 und 10 m aus demselben DGM1; gleiche Ausrichtung und dokumentiertes Resampling | Verlust schmaler Rinnen, Änderung lokaler Gradienten, Verlagerung von Fließbahnen und Einzugsgebietsgrenzen |
+| **Senkenbehandlung** | Fill und Breach oder eine dokumentierte unbehandelte Variante | Wiederhergestellte Konnektivität gegenüber Entfernung realer Speicher oder künstlichem Durchtrennen von Barrieren |
+| **Gebietsgrenze** | Analyseausdehnung verändern; denselben inneren Raum auswerten | Abgeschnittene Zuflussflächen und Reichweite der Randbeeinflussung |
+
+Ein Wechsel der Rasterweite verändert nicht nur die Zahl der Zellen, sondern die repräsentierte Geländegeometrie. Die Wirkung einer identischen Vorverarbeitungsstrategie kann deshalb ebenfalls variieren. Sensitivität gegenüber Rasterweite und Sensitivität gegenüber Senkenbehandlung sind unterscheidbar, aber nicht grundsätzlich unabhängig.
+
+Für ungewichtete Akkumulation in Zellen gilt:
+
+$$
+A_{\mathrm{m^2}} = N_{\mathrm{Zellen}}\,\Delta x\,\Delta y,
+\qquad A_{\mathrm{ha}} = A_{\mathrm{m^2}}/10\,000.
+$$
+
+Vergleiche verschiedener Rasterweiten verwenden **beitragende Fläche**, nicht dieselbe Zellzahl. Für gewichtete Akkumulation oder spezifische Einzugsgebietsfläche gilt diese Umrechnung nicht ohne Weiteres. Räumliche Auflösung ist zudem kein Maß für Lage-, Höhen- oder Prozessgenauigkeit.
+
+::: {.callout-note collapse="true"}
+#### Senkenbehandlung als Eingriff in das Modellgelände
+
+- **Unverändert:** Reale Mulden bleiben erhalten; Datenartefakte können den Routingweg unterbrechen. Eine zusätzliche interne Senkenbehandlung des Werkzeugs ist trotzdem möglich.
+- **Fill:** Senken werden bis zu einem Abflussniveau angehoben. Prüfen Sie die Höhendifferenz zum Ausgangs-DGM und die räumliche Ausdehnung der Veränderung.
+- **Breach:** Barrieren werden durch Einschnitte durchbrochen. Ein künstlicher Damm kann dadurch korrigiert, eine reale Geländeschwelle aber ebenso unzutreffend geöffnet werden.
+- **Stream Burning:** Ein bekanntes Gewässernetz wird in das Gelände eingeprägt. Dies verändert die Abfluss-Topologie gezielt anhand von Vorwissen.
+
+Die Wirkung wird an denselben problematischen Stellen im Ausgangs-DGM, veränderten DGM und Akkumulationsraster geprüft. Ohne Kenntnis des Bauwerks oder der Senke lässt sich die hydrologische Angemessenheit nicht aus einer durchgehenden Modellbahn allein ableiten.
+:::
+
+### Gerinnenetz und Referenzvergleich
+
+**Vergleich:** Potenzielle Gerinnenetze bei gleicher beitragender Mindestfläche sowie ihre räumliche Beziehung zur kartierten Gewässerreferenz.
+
+Aus Akkumulation wird erst durch eine Extraktionsregel ein Netz. **10 und 40 ha** sind geeignete Versuchsschwellen, keine hydrologisch begründeten Quellpositionen. Bei 5-m-Zellen entsprechen sie 4.000 und 16.000 Zellen, sofern die Ausgabe Zellen zählt. Mit der Schwelle verändern sich Netzlänge, Verzweigungsdichte und Gerinneanfänge; die Routingmethode beeinflusst zusätzlich die Konzentration der Beiträge.
+
+Eine mögliche Umsetzung ist [`r.stream.extract`](https://grass.osgeo.org/grass-stable/manuals/r.stream.extract.html) mit dem jeweiligen externen Akkumulationsraster. Prüfen Sie, ob dieses tatsächlich verwendet oder intern neu berechnet wird. Extraktions-, Ausdünnungs- und Vektorisierungseinstellungen bleiben vergleichbar. Breite MFD-Bänder und getrennte Äste verlangen eine nachvollziehbare Linienableitung; Polygonumrisse einer Schwellenmaske sind kein Gerinnenetz.
+
+ATKIS liefert eine **kartierte Referenz mit eigener Generalisierung, Lageunsicherheit und Erhebungsgeschichte**. Im gemeinsamen Auswertungsraum werden seitliche Versätze, fehlende Referenzäste und zusätzliche Modelläste unterschieden. Ein Orthofoto kann die Interpretation unterstützen, verdeckte Gerinne unter Wald aber nicht zuverlässig auflösen.
+
+::: {.callout-note collapse="true"}
+#### Räumliche Übereinstimmung quantifizieren
+
+In QGIS beide Modellnetze und die Referenz auf denselben inneren Auswertungsraum begrenzen. Doppelte Linien entfernen und ausgeschlossene Randbereiche kenntlich machen. Die Referenz getrennt mit **5, 10 und 25 m** puffern; überlappende Puffer jeweils auflösen.
+
+Für jedes Modellnetz die Gesamtlänge $L$ im metrischen CRS berechnen. Anschließend das Netz mit jedem Referenzpuffer verschneiden und die enthaltenen Längen summieren:
+
+$$
+p_d=100\,\frac{L_{\mathrm{Modell\ innerhalb\ Referenzpuffer},d}}{L_{\mathrm{Modell}}}.
+$$
+
+$p_d$ beschreibt räumliche Nähe bei einer gewählten Toleranz. Die Pufferdistanzen sind keine nachgewiesenen Lagegenauigkeiten. Ein kurzes, unvollständiges Netz kann hohe Werte erreichen; fehlende Referenzäste werden damit nicht erfasst. Ergänzend lässt sich der Anteil der Referenzlänge innerhalb eines Puffers um das Modellnetz bestimmen. Bei leerem Netz ist der entsprechende Quotient nicht definiert.
+
+Die Kombination aus Netzlänge, beiden Abdeckungsrichtungen und visueller Analyse ist aussagekräftiger als eine einzelne Übereinstimmungszahl. Eine auf dieselbe Referenz optimierte Schwelle muss an unabhängigen Daten geprüft werden.
+:::
+
+**Referenzabhängigkeit:** Wurde die ATKIS-Linie zuvor per Stream Burning eingeprägt, ist ihre spätere Übereinstimmung keine unabhängige Validierung. Selbst bei unabhängigem Vergleich prüft die Linienlage zunächst die räumliche Ableitung, nicht die Richtigkeit von Abflussmengen oder Fließzeiten.
+
+### Prozessbezug und Modellgrenzen
+
+Die NetLogo-Referenzen sind **[Grand Canyon](https://ccl.northwestern.edu/netlogo/models/GrandCanyon)**, **[Erosion](https://ccl.northwestern.edu/netlogo/models/Erosion)** und **[River Meanders](https://ccl.northwestern.edu/netlogo/models/RiverMeanders)**. Die Modelle stellen verschiedene Beziehungen zwischen Wasserbewegung, Relief und Gerinnegeometrie her. Der Wechsel zum GIS ist deshalb kein Wechsel von beliebigen Regeln zu „realer Physik“, sondern zunächst ein Wechsel der Berechnung und des Untersuchungsziels.
+
+| Ansatz | Gelände und Wasser | Berechnungsprinzip | Bezug zur GIS-Untersuchung |
+|---|---|---|---|
+| **Grand Canyon** | Reales, für das Modell aufbereitetes Höhenraster; bewegliche Tropfen und Ansammlungen | Tropfen bewegen sich abwärts, sammeln sich in Senken und können diese schließlich überlaufen; Geländeerosion ist nicht enthalten | Fließwege, Senken und Randabfluss mit der statischen Routingannahme vergleichen |
+| **D8/MFD** | Festes DGM; beitragende Flächen statt bewegter Wassermengen | Beiträge werden entlang einer festgelegten Nachbarschaftsstruktur akkumuliert | Routingannahmen und räumliche Sensitivität auf realen Geodaten untersuchen |
+| **Erosion** | Erzeugtes Gelände mit Wasserständen; Geländehöhe verändert sich | Abfluss richtet sich nach Wasserstandsunterschieden; Abtragung ist mit dem Abfluss verknüpft und verändert spätere Wege | Die im statischen Routing ausgeschlossene Rückkopplung zwischen Wasser und Relief untersuchen |
+| **River Meanders** | Gerinne und Landzustände verändern sich im Modellverlauf | Bewegliche Strömungsagenten wirken mit Regeln für Erosion und Ablagerung auf die Gerinnegeometrie zurück | Seitliche Gerinneentwicklung als eigenständige Fragestellung und Übergang zur physikalischen Modellierung |
+
+**Anschluss an Grand Canyon:** Verfolgen Sie die Bewegung an einer Senke bis zum Überlauf. Stellen Sie diesem Verhalten die Konsequenzen von *Fill*, *Breach* und einer erhaltenen Senke im GIS gegenüber. In NetLogo entsteht der Überlauf im Modellverlauf; eine DGM-Korrektur verändert dagegen vor der Akkumulation die Topologie. Das sind unterschiedliche Darstellungen desselben Problems, keine austauschbaren Senkenbehandlungen. Auch die Tropfenspuren sind nicht unmittelbar eine beitragende Fläche.
+
+**Anschluss an Erosion:** Vergleichen Sie Anfangsrelief und entwickeltes Entwässerungsmuster bei veränderter Niederschlagswahrscheinlichkeit oder Erosionsresistenz. Wird nur Wasser umverteilt oder zugleich die Voraussetzung der nächsten Fließbewegung verändert? Im GIS lässt sich der Einfluss einer Geländeänderung durch erneutes Routing auf einem veränderten DGM untersuchen. Erst eine explizite Kopplung von Abfluss, Abtragung und aktualisiertem Gelände würde daraus eine Simulation dieser Rückkopplung machen.
+
+**Anschluss an River Meanders und den nächsten Modellschritt:** Vergleichen Sie Läufe mit deaktivierter Erosion und Ablagerung, nur mit Erosion und mit beiden Mechanismen. Verfolgen Sie die Veränderung der Sinuosität und der Gerinneform. Welche Rückkopplung zwischen Strömungsagenten und Geometrie ist für das Ergebnis entscheidend? Diese Untersuchung bleibt Teil der Vergleichssuite; sie wird durch das GIS-Routing ergänzt.
+
+Der anschließende Schritt zur physikalischen Modellierung greift genau diese Mechanismen auf: Wie werden Geschwindigkeiten und Wassertiefen bestimmt? Welche Belastung wirkt auf Sohle und Ufer? Unter welchen Bedingungen wird Sediment aufgenommen, transportiert oder abgelagert? Wie verändert der Materialaustausch die Geometrie und damit die nächste Strömungsberechnung? Die heuristischen Regeln des Mäandermodells dienen dabei als Bezugspunkt für die Untersuchung von Strömungs-, Sediment- und Geometriebilanzen. Ein reines Niederschlags-Abfluss-Modell beantwortet diese morphodynamischen Fragen nicht automatisch.
+
+Die Beispiele verdeutlichen zugleich, weshalb **D8 und MFD** verglichen werden: Auch in einem Modell mit scheinbar naheliegender Abwärtsbewegung muss die Verteilung auf Nachbarzellen festgelegt werden. Eine bevorzugte Richtung, eine anteilige Verteilung und eine wasserstandsabhängige Bewegung sind verschiedene Modellentscheidungen.
+
+Die drei NetLogo-Modelle unterscheiden sich in Zustandsgrößen, Regeln und Rückkopplungen; keines ist allein aufgrund seiner Dynamik mit einer kalibrierten Prozesssimulation gleichzusetzen. *Grand Canyon* nutzt zwar reale Geländedaten, doch Rastermaßstab und Modellaufbereitung allein begründen keine physikalische Zeit- oder Niederschlagsskala. *Erosion* stellt eine dynamische Rückkopplung dar, aber keine vollständige Sedimenttransport- und Ablagerungsbilanz. Die Dokumentationen nennen Deposition beziehungsweise Erosion ausdrücklich als mögliche Erweiterungen von *Erosion* beziehungsweise *Grand Canyon*. Für quantitative Aussagen müssen daher Einheiten, Bilanzen und Prozessgleichungen gesondert geprüft werden.
+
+Physikalisch basierte Modellierung verlangt dagegen eine explizite Behandlung der relevanten Zustandsgrößen und Erhaltungsbeziehungen. Für einen vereinfachten zweidimensionalen Oberflächenabfluss kann die Wasserbilanz beispielsweise lauten:
+
+$$
+\frac{\partial h}{\partial t}+\nabla\!\cdot\mathbf q=P-I.
+$$
+
+$h$ bezeichnet die Wassertiefe, $\mathbf q$ den horizontalen Durchfluss je Breite, $P$ den Niederschlag und $I$ die Infiltration. Die Gleichung allein ist noch kein geschlossenes Modell: Beziehungen für Fließwiderstand, Gefälle und Infiltration sowie Anfangs- und Randbedingungen werden zusätzlich benötigt. Dies ist eine **konzeptionelle Bilanz**, keine Behauptung einer identischen Implementierung aller hydrologischen Modelle.
+
+Die Komplexität entsteht aus der Kopplung dieser Beschreibungen: Parameter sind skalen- und zustandsabhängig; Eingangs- und Beobachtungsdaten unvollständig; die numerische Lösung muss Stabilität, Massenerhaltung und Auflösung berücksichtigen. Auch physikalisch begründete Modelle enthalten empirische Beziehungen und Parametrisierungen. Kalibrierung kann Parameterkombinationen an Beobachtungen anpassen, ohne ihre Eindeutigkeit oder Übertragbarkeit zu sichern.
+
+Landnutzung illustriert diesen Übergang: **Im hier untersuchten reinen D8-/MFD-Routing wird kein hydraulisches Rauigkeitsraster verwendet.** In einem passenden Prozessmodell kann Landnutzung die räumliche Parametrisierung von Vegetation oder Reibung unterstützen. Manning-Rauigkeit und Infiltrationsrate sind daraus aber nicht eindeutig ableitbar; etwa Boden, Bewuchs, Fließtiefe und Anfangsfeuchte müssen berücksichtigt werden.
+
+Der hydrologische Anschluss betrifft zunächst die Wasserbewegung und Wasserbilanz; der morphodynamische Anschluss aus *River Meanders* zusätzlich Sediment und Gerinneänderung. Für eine zeitabhängige Oberflächenabflussrechnung steht beispielsweise [GRASS `r.sim.water`](https://grass.osgeo.org/grass-stable/manuals/r.sim.water.html) zur Verfügung. Für die Wasserbilanz eines Einzugsgebiets über längere Zeiträume bietet sich ein eigener Modellfall etwa mit [SWAT+](https://swat.tamu.edu/software/) an. Die Auswahl richtet sich nach der untersuchten Größe: Abflusswege, Wasserstände, Gebietsabfluss oder Geländeentwicklung benötigen jeweils passende Prozessbeschreibungen.
+
+::::
+
+## Vergleich und Interpretation
+
+Für Sensitivitätsvergleiche wird gegenüber einem bekannten Ausgangslauf jeweils **ein kontrollierbarer Faktor** verändert. Gekoppelte Änderungen – etwa Rastergeometrie und Wirkung der Senkenbehandlung – werden ausdrücklich benannt. Die Betrachtung kann von jedem Modul aus auf die anderen zurückgeführt werden: Ein fehlender Gewässerast kann durch die Schwelle, durch unterbrochene Topologie oder durch abgeschnittene Zuflussflächen entstehen.
+
+Die Interpretation unterscheidet drei Ebenen:
+
+- **Sensitivität:** Wie stark verändert sich ein Ergebnis bei einer veränderten Annahme oder Parametereinstellung?
+- **Räumliche Plausibilität:** Wie verhält sich das Ergebnis zu Relief, kartierter Referenz und weiteren Beobachtungen?
+- **Prozessgültigkeit:** Welche Zustandsgrößen und Prozesse werden tatsächlich berechnet und durch welche Beobachtungen geprüft?
+
+Eine hohe räumliche Übereinstimmung beantwortet die dritte Frage nicht. Der Übergang vom Reliefrouting zur physikalischen Modellierung besteht deshalb in einer veränderten Modellstruktur und einem erweiterten Prüfbedarf – nicht lediglich in zusätzlichen GIS-Layern oder einer feineren Rasterweite.

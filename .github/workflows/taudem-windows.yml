@@ -1,0 +1,92 @@
+name: QGIS TauDEM Windows integration
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/taudem_burgwald_processing.py'
+      - 'tests/taudem/**'
+      - '.github/scripts/install-taudem-windows.ps1'
+      - '.github/workflows/taudem-windows.yml'
+  push:
+    paths:
+      - 'scripts/taudem_burgwald_processing.py'
+      - 'tests/taudem/**'
+      - '.github/scripts/install-taudem-windows.ps1'
+      - '.github/workflows/taudem-windows.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-2022
+    timeout-minutes: 45
+    env:
+      QT_QPA_PLATFORM: offscreen
+      PYTHONDONTWRITEBYTECODE: '1'
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create evidence directory
+        run: |
+          $evidence = Join-Path $env:RUNNER_TEMP 'TauDEM CI evidence'
+          New-Item -ItemType Directory -Force $evidence | Out-Null
+          "TAUDEM_CI_EVIDENCE=$evidence" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Install QGIS Python environment
+        id: qgis
+        uses: mamba-org/setup-micromamba@v3
+        with:
+          environment-name: qgis-ci
+          create-args: >-
+            -c conda-forge qgis=3.44.15 python=3.12 psutil
+          init-shell: none
+          generate-run-shell: false
+          cache-environment: true
+      - name: Install Microsoft MPI and official TauDEM distribution
+        id: taudem
+        timeout-minutes: 15
+        run: |
+          micromamba list -n qgis-ci --explicit | Out-File (Join-Path $env:TAUDEM_CI_EVIDENCE 'environment-explicit.txt')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .github/scripts/install-taudem-windows.ps1
+          exit $LASTEXITCODE
+      - name: Register QGIS script provider and execute all four modes
+        id: integration
+        run: |
+          micromamba run --no-capture-output -n qgis-ci python -X faulthandler tests/taudem/run_integration.py `
+            --taudem-bin "$env:TAUDEM_TEST_BIN" --mpi "$env:TAUDEM_TEST_MPI" `
+            --taudem-install-root "$env:TAUDEM_INSTALL_ROOT" `
+            --work-dir (Join-Path $env:TAUDEM_CI_EVIDENCE 'run with spaces')
+          exit $LASTEXITCODE
+      - name: Record success or installation blocker
+        if: always()
+        run: |
+          New-Item -ItemType Directory -Force $env:TAUDEM_CI_EVIDENCE | Out-Null
+          $state = @{
+            runner = '${{ runner.os }}'; commit = '${{ github.sha }}'
+            qgis = '${{ steps.qgis.outcome }}'; taudem = '${{ steps.taudem.outcome }}'
+            integration = '${{ steps.integration.outcome }}'
+          }
+          $state | ConvertTo-Json | Set-Content (Join-Path $env:TAUDEM_CI_EVIDENCE 'ci-step-status.json')
+          if ($state.qgis -ne 'success' -or $state.taudem -ne 'success') {
+            'BLOCKED: QGIS/GDAL, MS-MPI or official TauDEM installation failed. Windows compatibility is unverified.' |
+              Tee-Object -FilePath (Join-Path $env:TAUDEM_CI_EVIDENCE 'BLOCKER.txt') |
+              Out-File $env:GITHUB_STEP_SUMMARY -Append
+          } elseif ($state.integration -ne 'success') {
+            'FAILED: integration or process shutdown failed; inspect report.json and process-status.json.' |
+              Out-File $env:GITHUB_STEP_SUMMARY -Append
+          } else {
+            'PASS: real Windows QGIS provider, four TauDEM modes, reference values, separate GDAL DLLs, MPI cancellation and process exit 0.' |
+              Out-File $env:GITHUB_STEP_SUMMARY -Append
+          }
+      - name: Preserve installation logs, data, results and process status
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taudem-windows-evidence
+          path: '${{ runner.temp }}/TauDEM CI evidence'
+          retention-days: 30
+          if-no-files-found: error

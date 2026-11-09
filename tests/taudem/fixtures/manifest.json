@@ -1,0 +1,38 @@
+{
+  "origin": "Previously executed real QGIS 3.34.4 / TauDEM 5.6.0-beta validation, 2026-11-09. Exact input and reference-output bytes preserved; no regenerated terrain.",
+  "files_sha256": {
+    "baseline/expected/ablagerung.tif": "cf3736505e9a5b86fa876cc3edb14c1f6bb6de1bff6d845c42e8e077eea51c92",
+    "baseline/expected/ad8.tif": "3e07015ce04a103f97cbae946b45f07582c6d928e91083ec3271885b08903128",
+    "baseline/expected/ang.tif": "e542bfd46794c9be8a2f37806c2555808f9b5935bf1e244e3d6eec00f5c37261",
+    "baseline/expected/becken.tif": "e31aca7754e108fb42a28c7a464181c5589a12a332e95c8fd592c2032cbf17c6",
+    "baseline/expected/fel.tif": "027cb789591867f40a06218ea47dea0fc1d6410d08fe0ee3ba7b5439e6fd9eee",
+    "baseline/expected/p.tif": "8b54fe3769f074c0567b83d2f9b08339b3ce3dadd5090e345cbfa50ee658f981",
+    "baseline/expected/sca.tif": "a3f9ac946e32fc5f8c356fb55c9bad34101c60c204c80d130be66610b2982b38",
+    "baseline/expected/sd8.tif": "6019453d908142fe17f2452d0692304d4903cbde17532eda8807745d05778c60",
+    "baseline/expected/slp.tif": "ce82f0f7dea52ad2944d2cd4859d9c3594ea405899101ca0de3cb61584404cd0",
+    "baseline/expected/src_2ha.tif": "ba5f67e6fd530e720bd38909a16d8aec3ae3a3e3189a08e00424abfcf244818a",
+    "baseline/expected/src_5ha.tif": "ba5f67e6fd530e720bd38909a16d8aec3ae3a3e3189a08e00424abfcf244818a",
+    "baseline/expected/transport.tif": "a99b1364955da67ac314b90fce42ef7ea52d44c41a7d0dd1e6341974536850ed",
+    "baseline/expected/twi.tif": "a688edbce8d1f47e876c53118dfe1267fa5c7114cddb48a647afc17a7c51a7c8",
+    "baseline/expected/volumen_gewichtet_m3.tif": "98b3af66f24c978e080a9a204132976251dfa6b2eb2359a62543c098afb3a443",
+    "baseline/input/capacity.tif": "7fa8afaf14ad6160f5c7c92440f183831ec197823b30f14187fb2f541f10b028",
+    "baseline/input/dem5.tif": "dfcb495038cd028f1811aab82966ebf95993dc9789ce42ac05a34a3f328f5cdb",
+    "baseline/input/local-supply.tif": "b8d12764603ee01aef01f66e30afec6744735b22f46441740b9a5b84ea026add",
+    "baseline/input/local-volume.tif": "6bf67a343dfd460b65838068dfe4483c2ead8c960ccc0bb99706baef4e991f86",
+    "baseline/input/one-outlet.gpkg": "83c535f5722aee9f033ee0c6070bf62f0087cec32d25d28f5a711a2d605e3f32",
+    "known/input/ang.tif": "22cea394c17c7acb4df4d13dbafc4910d01b9a96684b5fbcb357cb7489fcad62",
+    "known/input/known-800-outlet.gpkg": "e98417b12495379d0d181fa4b5dbaa2772bb5c7330ac2df53edb7d65c05a065d",
+    "known/input/known-capacity.tif": "66322fbc1a6d96ec485a25d9fa9184abfd6e6434e15206aaf2e933b20ec6fc99",
+    "known/input/known-supply.tif": "76944b567ef7fd92a4c81c36cf04e28639fe02dd95d46755af157a134edd0593",
+    "known/input/known-weights.tif": "f9d1ebc13b242ed0c0169a2ea89f62906a81da76cde94d5a962670700968d4f2",
+    "known/input/p.tif": "263d7b6bf72823a25f5346f31dcbe8b4f063bd828db552fb3f36ec6608a1c6d5"
+  },
+  "reference_zip_sha256": "310c71a6c6be28ef3eb955673407e2b9cb782770847048f90086576e02b4cb8f",
+  "known_values": {
+    "catchment_cells": 800,
+    "volume_m3": 200.0,
+    "transport_ME": 3.0,
+    "deposition_ME": 3.0,
+    "total_supply_ME": 6.0
+  }
+}

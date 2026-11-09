@@ -36,7 +36,8 @@ def worker(args):
     if sys.platform == 'win32':
         os.environ['APPDATA'] = str(profile / 'AppData' / 'Roaming')
         os.environ['LOCALAPPDATA'] = str(profile / 'AppData' / 'Local')
-    os.environ['PATH'] = str(args.taudem_bin) + os.pathsep + os.environ['PATH']
+    # Preserve QGIS's activated DLL search order; native TauDEM has its own EXE directory.
+    os.environ['PATH'] = os.environ['PATH'] + os.pathsep + str(args.taudem_bin)
     report = {'platform': sys.platform, 'script_sha256': hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
               'tests': [], 'complete': False, 'phase': 'QGIS import'}
     report_path = args.work_dir / 'report.json'
@@ -336,6 +337,9 @@ def parent(args):
               'elapsed_seconds': time.monotonic() - started}
     write_json(args.work_dir / 'process-status.json', status)
     print(json.dumps(status, indent=2))
+    if code != 0:
+        print((args.work_dir / 'stderr.log').read_text(encoding='utf-8', errors='replace'),
+              file=sys.stderr)
     report_path = args.work_dir / 'report.json'
     complete = report_path.exists() and json.loads(report_path.read_text(encoding='utf-8')).get('complete')
     return 0 if code == 0 and complete and not timed_out else 1

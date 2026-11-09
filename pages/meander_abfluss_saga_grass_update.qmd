@@ -34,7 +34,7 @@ Ein erfolgreicher Programmlauf ist dabei weder ein Beleg für vollständige Eing
 
 ### Ausgangsdaten und Datenprüfung
 
-Im Repository liegen unter [`mini-data/`](https://github.com/gisma-courses/geo-mod-2026/tree/main/assets/mini-data) **vier benachbarte DGM1-Kacheln** (je 1 km², zusammen 2 × 2 km). Verwenden Sie diese vier Originaldateien, nicht ein bereits vorbereitetes Gesamt-DGM. Der Beispielordner enthält ausschließlich die für diesen Lauf vorgesehenen GeoTIFF-Kacheln.
+Im Repository liegen unter [`mini-data/`](https://github.com/gisma-courses/geo-mod-2026/tree/main/assets/mini-data/dgm1_32_49.zip) **vier benachbarte DGM1-Kacheln** (je 1 km², zusammen 2 × 2 km). Verwenden Sie diese vier Originaldateien, nicht ein bereits vorbereitetes Gesamt-DGM. Der Beispielordner enthält ausschließlich die für diesen Lauf vorgesehenen GeoTIFF-Kacheln.
 
 Öffnen Sie zunächst eine Kachel in QGIS und lesen Sie unter *Layer-Eigenschaften → Information* Koordinatenreferenzsystem (KBS/CRS), Pixelgröße und Ausdehnung ab. Prüfen Sie anhand der Kachelbezeichnungen und ihrer Ausdehnungen, wie die vier Dateien räumlich aneinanderliegen. Worin liegt der Unterschied zwischen **vier benachbarten Dateien** und **einem einheitlichen Berechnungsraster**?
 

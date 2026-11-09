@@ -17,7 +17,7 @@ execute:
 
 ## Wozu dieser Umweg?
 
-Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beobachtet, ein amtliches Höhenmodell beschafft, daraus Einzugsgebiete berechnet und schließlich Wasser- und Sedimentmengen unter zusätzlichen Annahmen bilanziert. Anschließend kam Itzï als Ereignismodell zum Einsatz; es gehörte nicht zur GIS-Übung. Der Weg war weitgehend vorgegeben: Modell öffnen, Daten verwenden, Werkzeug ausführen, Ergebnis betrachten.
+Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beobachtet, ein amtliches Höhenmodell beschafft, daraus Einzugsgebiete berechnet und schließlich Wasser- und Sedimentmengen unter zusätzlichen Annahmen bilanziert. Itzï ist als anschließende Ereignissimulation geplant und noch nicht vorbereitet. Dieser Schritt gehört nicht zur bisherigen GIS-Übung. Der Weg war weitgehend vorgegeben: Modell öffnen, Daten verwenden, Werkzeug ausführen, Ergebnis betrachten.
 
 **Was hätten wir selbst entscheiden müssen, wenn uns nur die Frage gestellt worden wäre: „Welche Flächen tragen zum Abfluss an diesem Durchlass bei – und wo könnte Material zurückbleiben?“** Die Antwort liegt weder in einem bestimmten Programm noch in einer möglichst langen Liste von Algorithmen. Sie liegt in den Unterscheidungen, die wir während dieser Kette tatsächlich getroffen haben.
 
@@ -30,8 +30,8 @@ Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beo
 | **River Meanders** | Ein idealisierter Gerinnekorridor mit Bewegungs-, Erosions- und Ablagerungsregeln. | Mäanderformen können aus wiederholten Regeln entstehen. Die entstehende Form bestätigt keine hydraulische oder sedimentologische Prozessgleichung. |
 | **DGM → D8/D∞ → Einzugsgebiet** | Gemessene bzw. abgeleitete Geländehöhen in einem georeferenzierten Raster, dazu explizite Nachbarschafts- und Routingregeln. | An einem gewählten Auslass werden potenzielle Entwässerungsverbindungen und beitragende Flächen berechenbar – zunächst ohne Ereigniszeit. |
 | **Abflussannahme und Sedimentbilanz** | Ein angenommenes Abflussvolumen je Zelle beziehungsweise Materialangebot und Transportkapazität auf den vorhandenen Verbindungen. | Volumen oder Materialweitergabe lassen sich bilanzieren. Weder eine Abflussganglinie noch eine Geländeentwicklung folgen automatisch daraus. |
-| **Itzï nach der GIS-Übung** | Ereignisbezogene, zeitabhängige Abflusssimulation mit Wasserständen und Flüssen. Itzï wurde in der Kursfolge eingesetzt, gehörte aber nicht zum GIS-Arbeitsblatt. | Wasserstände und Flüsse im Verlauf eines vorgegebenen Ereignisses werden berechnet; die Geländeoberfläche bleibt fest. |
-| **Weiterführende gekoppelte Modellierung** | Zeitabhängige Zustände und Beziehungen, die diese Zustände fortschreiben; gegebenenfalls ändert sich auch das für den nächsten Schritt verwendete Gelände. | Ereignisverläufe und Rückwirkungen werden berechenbar, sofern die zusätzlichen Prozessgleichungen, Parameter und Anfangs-/Randbedingungen festgelegt werden. |
+| **Itzï – geplanter Anschluss** | Ereignisbezogene, zeitabhängige Abflusssimulation mit Wasserständen und Flüssen; noch nicht vorbereitet. | Vorgesehene Erweiterung um Ereignisverläufe bei fester Geländeoberfläche. Erfahrungen und Ergebnisse dieses Schritts sind später zu ergänzen. |
+| **Optionale gekoppelte Modellierung, etwa CAESAR-Lisflood** | Zeitabhängige Zustände und Beziehungen, die diese Zustände fortschreiben; gegebenenfalls ändert sich auch das für den nächsten Schritt verwendete Gelände. | Ereignisverläufe und Rückwirkungen werden berechenbar, sofern die zusätzlichen Prozessgleichungen, Parameter und Anfangs-/Randbedingungen festgelegt werden. |
 
 Die ersten drei Modelle enthielten **bereits Dynamik und teilweise Rückkopplungen**. Die GIS-Analyse war also kein „Fortschritt von einem einfachen zu einem dynamischen Modell“. Sie führte vor allem einen **konkret lokalisierbaren Untersuchungsraum, definierte Rastergrößen und eine überprüfbare räumliche Fragestellung** ein. Wir haben mehrmals **die Art der Frage** gewechselt, nicht nur mehr Funktionen zugeschaltet.
 
@@ -129,7 +129,24 @@ Für die GIS-Strecke war TauDEM ein durchgehender Rechenweg. Das bedeutet nicht,
 
 Für eine Einzugsgebietsabgrenzung kann eine vorhandene GRASS-Lösung vollständig genügen. Für die hier verwendete Kombination aus D∞-Routing und transportbegrenzter Akkumulation war TauDEM als zusammenhängender Werkzeugweg praktisch. PCRaster wiederum ist eine Umgebung zum **Aufbau eigener räumlicher und dynamischer Modelle**; es ist nicht einfach ein weiterer Button für dasselbe Einzugsgebiet. Die Frage „Welches Paket ist wissenschaftlicher?“ führt deshalb nicht weiter.
 
-**Im Alltag darf Vertrautheit ein guter Grund sein, ein Programm weiterzuverwenden** – sofern damit die benötigte Berechnung und Dokumentation möglich sind. Nicht begründbar wäre dagegen, eine ganz andere Modellfrage auf die vorhandenen Menüeinträge zu reduzieren. Die [Werkzeugwahl-Seite](werkzeugwahl_gelaendehydrologie.qmd) diskutiert die konkreten hydrologischen Verfahren; das [Algorithmenkompendium](abfluss_algorithmen_quellen.qmd) liefert die Nachweise dazu.
+**Im Alltag darf Vertrautheit ein guter Grund sein, ein Programm weiterzuverwenden** – sofern damit die benötigte Berechnung und Dokumentation möglich sind. Nicht begründbar wäre dagegen, eine ganz andere Modellfrage auf die vorhandenen Menüeinträge zu reduzieren. Das [Algorithmenkompendium](abfluss_algorithmen_quellen.qmd) stellt die konkreten hydrologischen Verfahren mit ihren Eingaben, Einheiten und Nachweisen gegenüber.
+
+## Digitale Problemlösung und KI im Rechenweg
+
+Dateien wiederfinden, Formate unterscheiden, ein Skript lesen und einen Fehler eingrenzen sind Voraussetzungen dafür, eine Modellrechnung selbst kontrollieren zu können. Am vorhandenen Arbeitsweg lassen sich ihre wissenschaftlichen Folgen erklären:
+
+| Situation im Arbeitsablauf | Was die eigene Prüfung klärt | Was für einen späteren Lauf erhalten bleiben muss |
+|---|---|---|
+| Eine Datei ist im Projekt sichtbar, das Werkzeug findet sie jedoch nicht. | Tatsächlicher Dateipfad, gespeichertes Format und gegebenenfalls Begleitdateien; im R-Projekt zusätzlich das Arbeitsverzeichnis. | Identifizierbare Eingabedateien und ein nachvollziehbarer Bezugsweg. |
+| Ein vorgeschlagener Aufruf beseitigt NoData durch Abschalten der Randprüfung. | Ob Zuflussinformation fehlt und die vermeintliche Korrektur nur die Kennzeichnung unterdrückt. | Tatsächlich verwendete Gebietsausdehnung und Randbehandlung. |
+| Code liefert einen Wert für den 10-mm-Fall. | Einheit und Größenordnung: 2 ha entsprechen unter dieser Annahme 200 m³. Die tatsächliche Abflussbildung bleibt eine andere Prüfungsfrage. | Ausgeführter Ausdruck mit Zellfläche und Abflussannahme. |
+| Nach einer Korrektur oder Parameteränderung weichen Karten voneinander ab. | Welche Eingabe, Rechenoperation oder Einstellung verändert wurde und welche Wirkung daraus folgt. | Vergleichbare Laufstände, Änderung und Kontrollbefund. |
+
+Diese Fälle sind Bezugspunkte für den Rückblick auf tatsächlich aufgetretene Probleme; sie behaupten keine in jeder Gruppe gemachten Erfahrungen. Datenzugänge verschiedener Länder, Exportformate oder Softwarefehler können eine begründete Anpassung des Vorgehens verlangen. Die Fehlersuche beginnt damit, die betroffene Datei, Operation und Meldung einzugrenzen. Eine funktionierende Korrektur muss anschließend zu einer verständlichen Berechnung führen.
+
+KI kann helfen, Code zu erklären, eine technische Ursache vorzuschlagen, Dokumentation zu finden oder einen vorhandenen Ablauf zu strukturieren. Plausible Formulierungen und lauffähiger Code reichen zur Übernahme nicht aus. Wir müssen Eingaben, Rechenoperation, Parameter und Ausgabe erklären sowie die Wirkung an Dokumentation, Einheiten, Bilanz oder Daten kontrollieren können. Eine zweite KI-Antwort ist dabei keine unabhängige Kontrolle. Änderungen an Auslass, Senkenbehandlung, Abflussbeitrag oder Transportkapazität bleiben fachlich zu begründende Entscheidungen.
+
+Dokumentiert wird am vorhandenen Skript oder Rechenprotokoll knapp, welche Hilfe genutzt, welche Änderung übernommen und wie sie geprüft wurde; bei KI gehören System und Datum dazu. Daraus wird nachvollziehbar, auf welcher Grundlage eine Berechnung verantwortet werden kann. Die Entscheidung über Fragestellung, Modellannahmen und die wissenschaftliche Bewertung bleibt bei den Modellierenden.
 
 ## 6 · Ein nachvollziehbares Ergebnis ist mehr als eine Karte
 
@@ -149,7 +166,7 @@ Für unseren GIS-Fall müsste eine andere Person **mindestens** die folgende Ket
 | **Prüfung:** Vergleich mit ATKIS; Auslass; Bilanzkontrolle | Vorgehen, Abweichungen, nicht erklärte Befunde und Grenzen der Aussage |
 | **Ergebnis:** Karten und Raster | Welche Datei welchen Wert enthält, mit Einheit und Bedeutung; möglichst automatisch erneut erzeugbar |
 
-Das wirkt umfangreich. Tatsächlich entstehen die meisten Angaben **bereits beim Rechnen**. Das Problem entsteht erst, wenn sie als ungeordnete Klickfolge, überschriebene Zwischendatei oder nicht gespeicherte Entscheidung verloren gehen.
+Die Angaben sichern die Wiederaufnahme der eigenen Arbeit: Wenn eine frühere Karte nach einer Korrektur nicht mehr entsteht, müssen Eingaben, Einstellungen und Änderungen unterscheidbar sein. Quellen und Datenstände halten wir deshalb schon beim Bezug fest; die Bedeutung dieser Angaben wird an späteren Vergleichen und Fehlern konkret. Der Rückblick knüpft an solche Probleme aus der Arbeit und der Seminardiskussion an.
 
 ::: {.callout-note collapse="true"}
 ## Technischer Exkurs: Ein kleines, tatsächliches Modellprotokoll statt eines Screenshots des Werkzeugdialogs
@@ -213,13 +230,13 @@ Die einzelnen Arbeitsschritte lassen sich nun zu einem **wiederverwendbaren Vorg
 4. **Beziehungen:** Welche Regeln, Bilanzen, statistischen Modelle oder Prozessgleichungen erzeugen das Ergebnis? Welche Variablen ändern sich selbst im Modell?
 5. **Daten und Parameter:** Woher stammen sie, auf welcher Skala gelten sie, und welche Angaben müssen wir selbst setzen oder schätzen?
 6. **Berechnung:** Welche vorhandene Implementierung kann genau diese Modellbeschreibung umsetzen? Wo reichen vertraute Werkzeuge, wo nicht?
-7. **Prüfbarkeit:** Woran würde ein unplausibles Ergebnis auffallen, und was müsste jemand anderes erhalten, um die Rechnung nachzuvollziehen?
+7. **Prüfbarkeit:** Woran würde ein unplausibles Ergebnis auffallen, wie prüfen wir technische Korrekturen und KI-Vorschläge unabhängig, und was müsste jemand anderes erhalten, um die Rechnung nachzuvollziehen?
 
 Das ist **keine starre Reihenfolge**: Stellt sich etwa erst bei der Datenbeschaffung heraus, dass das Gerinne nicht aufgelöst ist, muss die Modellfrage oder die räumliche Repräsentation erneut betrachtet werden. Diese Rücksprünge gehören zur Modellierung.
 
 Dasselbe Vorgehen lässt sich auf andere Gegenstände übertragen: Aus Sentinel-Daten kann ein Vegetationsindex berechnet werden; dessen zeitliche Abfolge ist aber noch kein Vegetationsprozessmodell. Eine gewichtete Standort-Eignungskarte ist keine Optimierung unter Kapazitätsbedingungen. In beiden Fällen beginnt die Werkzeugwahl erst sinnvoll, nachdem die **gewünschte Aussage** und die dazu notwendigen **Beziehungen** geklärt wurden.
 
-**Das Ergebnis dieser Folge ist die Fähigkeit, ein Modell als begründete, dokumentierte Folge von Entscheidungen zu lesen.** Diese Herangehensweise nehmen wir zu späteren geographischen Fragen mit. Der zweite Kursblock ist noch nicht ausgearbeitet.
+**Aus der angeleiteten Folge soll die Fähigkeit entstehen, Modellierungsentscheidungen zu verstehen, zunehmend selbst zu treffen und ihre Folgen zu prüfen.** Dazu gehört, digitale Werkzeuge und KI zu nutzen und die tatsächlich ausgeführte Berechnung erklären und kontrollieren zu können. Diese Herangehensweise nehmen wir zu späteren geographischen Fragen mit. Der zweite Kursblock ist noch nicht ausgearbeitet.
 
 ## Quellen zum Weiterdenken – nach Funktion geordnet
 

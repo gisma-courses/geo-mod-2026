@@ -91,6 +91,35 @@ background: ../images/placeholder.png;
       }
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="Abflusswege und Sediment im kleinen Einzugsgebiet – Modellieren in der Geographie">
 <meta property="og:description" content="DGM · TauDEM · QGIS – vom Gelände zur begrenzten Transportkapazität">
@@ -432,7 +461,7 @@ background: ../images/placeholder.png;
 <figcaption>Berechnungskette mit getrennten D8- und D∞-Zweigen. ATKIS ist eine unabhängige Referenz.</figcaption>
 </figure>
 </div>
-<p><a href="../diagrams/abfluss_workflow.drawio">Flussdiagramm in draw.io bearbeiten</a>. <strong>Blau:</strong> technischer Ablauf; <strong>grün:</strong> fachliche Erklärung;</p>
+<p><a href="../diagrams/abfluss_workflow.drawio">Flussdiagramm in draw.io bearbeiten</a>. <strong>Blau:</strong> technischer Ablauf; <strong>grün:</strong> fachliche Erklärung. Fachliche und technische Klappboxen vertiefen die jeweiligen Arbeitsschritte.</p>
 </section>
 <section id="gelände-und-referenz-öffnen-ca.-10-minuten" class="level2">
 <h2 class="anchored" data-anchor-id="gelände-und-referenz-öffnen-ca.-10-minuten">1 · Gelände und Referenz öffnen (ca. 10 Minuten)</h2>
@@ -459,6 +488,7 @@ background: ../images/placeholder.png;
 <div class="callout-body-container callout-body">
 <p>In QGIS <em>Raster → Projektionen → Warp (Reprojektieren)</em>: Ziel-KBS <code>EPSG:25832</code>, Zielauflösung <strong>5 × 5 m</strong>, Resampling <strong>Average/Mittelwert</strong>, GeoTIFF-Ausgabe <code>processing/dgm5.tif</code>. Bei mehreren Quellkacheln zunächst das virtuelle Raster als Eingabe wählen. Nicht das DGM auf 2 × 2 km beschneiden: Der Kartenausschnitt ist <strong>nicht</strong> das Rechengebiet. Alle späteren Raster verwenden Ausdehnung, Ursprung und Zellweite von <code>dgm5.tif</code>. Original-DGM1 unverändert aufheben.</p>
 <p>Wenn ein 5-m-Arbeitsraster bereits bereitgestellt wird, entfällt dieser Schritt. Eine höhere Pixelzahl ist nicht automatisch eine genauere Darstellung einer Gewässersohle.</p>
+<p><strong>Dateien wiederfinden:</strong> Speichern Sie das QGIS-Projekt im Arbeitsordner und verwenden Sie darin <code>data/</code> für Originaldaten, <code>processing/</code> für abgeleitete Eingaben und <code>results/</code> für Ausgaben. Prüfen Sie bei jedem Layer unter <em>Eigenschaften → Information/Quelle</em> Dateipfad, Format, CRS, Ausdehnung und Pixelgröße. Eine gespeicherte <code>.qgz</code>-Projektdatei verweist auf Geodaten; sie enthält diese nicht automatisch. Nach dem Entpacken eines Shape-Downloads bleiben <code>.shp</code>, <code>.shx</code>, <code>.dbf</code> und <code>.prj</code> zusammen. Notieren Sie den tatsächlich bezogenen Datenstand und die verwendeten Dateien, auch wenn ein anderes Landesportal als der hessische Zugang nötig war.</p>
 </div>
 </div>
 </div>
@@ -515,7 +545,9 @@ background: ../images/placeholder.png;
 </table>
 <p>Das Skript ruft dafür <code>PitRemove</code>, <code>D8FlowDir</code> und <code>AreaD8</code> auf. Lassen Sie die <strong>Prüfung auf Randeinflüsse aktiviert</strong> und setzen Sie keine Auslasspunkte als Einschränkung. Stellen Sie <code>ad8.tif</code> mit logarithmischer Farbskala oder mehreren abgestuften Klassen dar: Die großen Werte markieren die <strong>potenziellen Konzentrationslinien</strong> im Relief. Prüfen Sie außerdem mit dem Rasterrechner <code>"fel@1" - "dgm5@1"</code> an mindestens einer Vertiefung, <strong>wo das Senkenfüllen Höhen verändert hat</strong>. Ein Wert von <code>0</code> bedeutet: unverändert.</p>
 <p><strong>Lesen Sie den Wert an einer Zelle der Talrinne ab.</strong> Bei 5 m Rasterweite gilt:</p>
-<p>[ A_{}=N_{}&nbsp;^2. ]</p>
+<p><span class="math display">\[
+A_{\mathrm{D8}}=N_{\mathrm{D8}}\cdot 25\ \mathrm{m}^2.
+\]</span></p>
 <p>Beispiel: <code>ad8 = 4 000</code> bedeutet <strong>100 000 m² = 10 ha</strong> beitragende Fläche – <strong>nicht</strong> 4 000 Liter, 4 000 m³/s oder 4 000 tatsächlich dort eintreffende Regentropfen.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -564,6 +596,8 @@ background: ../images/placeholder.png;
 <div class="callout-body-container callout-body">
 <p>Öffnen Sie <a href="../scripts/taudem_burgwald_processing.py"><code>scripts/taudem_burgwald_processing.py</code></a> im QGIS-Processing-Skripteditor und <strong>speichern Sie es dort als <code>.py</code></strong>. Es erscheint anschließend unter <em>Skripte → Modellieren in der Geographie</em>. Wählen Sie <strong>Berechnung 1 – Grundlage</strong>, das DGM und einen dauerhaften Ergebnisordner. Das Skript berechnet <code>fel</code>, <code>p</code>, <code>sd8</code>, <code>ad8</code>, <code>ang</code>, <code>slp</code>, <code>sca</code>, <code>twi</code> und die beiden Gerinneschwellen in einem Lauf. Die Schwellen werden aus <strong>2 ha und 5 ha</strong> in Zellzahlen umgerechnet.</p>
 <p>Linux und Windows verwenden dieselbe <code>.py</code>-Datei. Im Dialog können Sie ein <strong>TauDEM-Binärverzeichnis</strong> und den <strong>MPI-Launcher</strong> (<code>mpiexec</code> oder dessen vollständigen Pfad) angeben. TauDEM und MPI müssen zum jeweiligen Betriebssystem passen. Die Dateien werden bei erneutem Aufruf <strong>nicht überschrieben</strong>; für eine zweite Grundlage einen anderen Ergebnisordner wählen.</p>
+<p><strong>Wenn der Lauf scheitert:</strong> Lesen Sie im Processing-Protokoll den ersten fehlgeschlagenen Schritt mit Fehlermeldung und verwendeten Pfaden. Prüfen Sie, ob die Eingabedatei gespeichert und erreichbar ist oder ob TauDEM beziehungsweise MPI nicht gefunden wird. Eine Rasteranzeige in QGIS allein belegt noch keinen für TauDEM verwendbaren Dateipfad. Wird dagegen die Randprüfung als NoData sichtbar, prüfen Sie das Rechengebiet; das Abschalten der Randprüfung würde fehlende Zuflüsse verdecken.</p>
+<p><strong>Dokumentation und KI gezielt nutzen:</strong> Geben Sie den betroffenen Aufruf, Fehlermeldung, Softwareversion und die geprüften Dateieigenschaften an. Lassen Sie sich eine Korrektur und ihre Wirkung erklären. Prüfen Sie vorgeschlagene Werkzeugnamen und Optionen in der <a href="../pages/abfluss_algorithmen_quellen.html">Werkzeugdokumentation</a>. Vor dem Ausführen müssen Sie Eingaben, Operation, veränderte Parameter und Ausgabe benennen können. Ändern sich dabei Zellweite, Senkenbehandlung oder Randprüfung, verändert sich die Modellrechnung; eine solche Änderung braucht eine fachliche Begründung. Bewahren Sie den vorherigen Stand auf, übernehmen Sie eine begrenzte Änderung und prüfen Sie deren Ergebnis an den Kontrollen dieses Arbeitsblatts. Bei unklarer Wirkung hilft die gemeinsame Fehlersuche im Seminar.</p>
 </div>
 </div>
 </div>
@@ -577,6 +611,7 @@ background: ../images/placeholder.png;
 <li>Wählen Sie an Ihrem Bach einen Punkt <strong>auf einer berechneten <code>src_2ha</code>-Gerinnezelle</strong> als Auslass. Erstellen Sie einen Punktlayer <code>processing/auslass.shp</code> mit dem ganzzahligen Feld <code>id</code> (für den einen Punkt <code>id = 1</code>). Der Punkt darf nicht lediglich optisch auf der ATKIS-Linie liegen.</li>
 <li>Starten Sie dasselbe Processing-Skript mit <strong>Berechnung 2 – Einzugsgebiet</strong>: Ergebnisordner <code>results</code>, Auslass <code>auslass.shp</code>, <strong>Verschieben = 0</strong>. Intern rechnet TauDEM <em>Gage Watershed</em> mit <code>p.tif</code> und schreibt <code>becken.tif</code>. Die Rasterzellen mit Wert <strong>1</strong> bilden das zum Punkt entwässernde Gebiet. Stellen Sie dessen Grenze zusammen mit <code>ad8.tif</code> dar.</li>
 </ol>
+<p>Die ATKIS-Linie besitzt eine eigene Generalisierung, Lageunsicherheit und Erhebungsgeschichte. Unterschiede zum DGM können deshalb auch die Referenz betreffen.</p>
 <p><strong>Prüfung am eigenen Bach:</strong> Wo liegt die Wasserscheide? Welche Seitenhänge sind angeschlossen? Verändert die Gerinneschwelle die <strong>eingezeichneten Bachanfänge</strong>, obwohl <code>p.tif</code> und das Einzugsgebiet am unveränderten Auslass gleich bleiben? Vergleichen Sie den berechneten Talweg gerade an der gewählten Krümmung mit der amtlichen Gewässerlinie. <strong>Die Krümmung kann im Relief bereits enthalten sein; der Algorithmus erzeugt sie nicht durch Ufererosion.</strong></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
@@ -642,6 +677,7 @@ background: ../images/placeholder.png;
 </tbody>
 </table>
 <p>D8 leitet den gesamten Zellbeitrag an <strong>einen</strong> Empfänger. D∞ verteilt ihn je nach berechnetem Winkel auf <strong>höchstens zwei</strong> benachbarte Zellen. Vergleichen Sie auf einer breiten Hangfläche und im Tal die <strong>Muster</strong> von <code>ad8</code> und <code>sca</code>. Achten Sie dabei darauf, dass die Raster <strong>nicht dieselbe Einheit</strong> haben. <code>sca</code> lässt sich nicht allein durch eine andere Farbskala in <code>ad8</code> umrechnen.</p>
+<p>Für einen Zahlenvergleich wäre die jeweilige Flächen- beziehungsweise Breitenbezugsgröße anzugleichen; der hier geforderte Mustervergleich allein isoliert den Einfluss der Routingregel nicht.</p>
 <p>Die Grundlage berechnet außerdem den TauDEM <strong>Topographic Wetness Index</strong> aus <code>sca.tif</code> und <code>slp.tif</code> als <code>twi.tif</code>. Zeigen Sie die höchsten TWI-Werte und betrachten Sie, ob es sich eher um flache Talbereiche oder steile Hänge handelt.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
@@ -679,7 +715,9 @@ background: ../images/placeholder.png;
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>SCA = Specific Catchment Area</strong>, deutsch <em>spezifische beitragende Einzugsfläche</em>. TauDEM <code>AreaDinf</code> summiert die <strong>anteiligen Flächenbeiträge</strong> von oberhalb und bezieht sie im Standardfall auf die <strong>Rasterbreite</strong>. Für quadratische 5-m-Zellen gilt schematisch:</p>
-<p>[ a=, ==. ]</p>
+<p><span class="math display">\[
+a=\frac{A_{\mathrm{eff}}}{\Delta x}, \qquad [a]=\frac{\mathrm{m}^2}{\mathrm{m}}=\mathrm{m}.
+\]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/sca_flaeche_pro_breite.svg" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -703,7 +741,9 @@ background: ../images/placeholder.png;
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>TWI = Topographic Wetness Index.</strong> TauDEM verbindet die spezifische Fläche <code>a = sca</code> mit der lokalen Neigung <code>tan(β) = slp</code>:</p>
-<p>[=!().]</p>
+<p><span class="math display">\[
+\mathrm{TWI}=\ln\!\left(\frac{a}{\tan\beta}\right).
+\]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/twi_interpretation.svg" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -720,7 +760,7 @@ background: ../images/placeholder.png;
 <p>Im QGIS-Rasterrechner berechnen Sie aus <code>ad8.tif</code> das Raster <code>results/volumen_10mm.tif</code>:</p>
 <pre class="text"><code>"ad8@1" * 25 * 0.010</code></pre>
 <p><strong>Annahme:</strong> Jede Zelle liefert einmalig <strong>10 mm effektiven Abfluss</strong> (also Niederschlagsüberschuss nach allen Verlusten). Weil jede Zelle 25 m² groß ist, entspräche das <strong>0,25 m³ pro beitragender Zelle</strong>. Der Rasterwert am gewählten Auslass ist damit die <em>potenzielle gesamte Abflussmenge in m³</em>, die sich aus dieser angenommenen flächendeckenden Abflussbildung ergibt – <strong>wenn alle Beiträge den Auslass erreichen</strong>.</p>
-<p>Vergleichen Sie den Wert an Ihrem Auslass mit <code>ad8 · 25 · 0,010</code>. <strong>Neu ist die Volumeneinheit; nicht neu ist die Fließrichtung.</strong> Sie kennen weiterhin weder die Fließzeit noch einen Spitzenabfluss in m³/s.</p>
+<p>Prüfen Sie den Rasterrechner-Ausdruck über seine Größen: <code>ad8</code> zählt Zellen, <code>25 m²</code> ist die Zellfläche und <code>0,010 m</code> die effektive Abflusshöhe. Für den bereits verwendeten Kontrollwert von <strong>2 ha</strong> müssen daraus <strong>200 m³</strong> entstehen. Das prüft Einheiten und Umsetzung der gesetzten Annahme; die tatsächliche Abflussbildung wird dadurch nicht bestätigt. Dieselbe Kontrolle gilt für einen von KI vorgeschlagenen Ausdruck. Sie kennen weiterhin weder die Fließzeit noch einen Spitzenabfluss in m³/s.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -750,7 +790,7 @@ background: ../images/placeholder.png;
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Wenn ein Raster <code>runoff_zelle_m3.tif</code> für <strong>jede Zelle</strong> einen angenommenen Beitrag in m³ enthält, wählen Sie im Processing-Skript <strong>Berechnung 3 – gewichtete Abflussakkumulation</strong>. Eingabe ist dieses Gewichtsraster, Ergebnisordner wieder <code>results</code>. Intern verwendet TauDEM <em>D8 Contributing Area</em> die vorhandenen <code>p.tif</code>-Verbindungen. Das Ergebnis <code>volumen_gewichtet_m3.tif</code> enthält die <strong>Summe der Zellvolumina in m³</strong>, nicht eine Zellzahl.</p>
-<p><code>runoff_zelle_m3.tif</code> muss exakt auf dem <code>dgm5</code>-Raster liegen. Bei konstant 0,25 m³ pro Zelle stimmt das Ergebnis (abgesehen von Rundung und NoData) mit <code>volumen_10mm.tif</code> überein.</p>
+<p><code>runoff_zelle_m3.tif</code> muss exakt auf dem <code>dgm5</code>-Raster liegen. Bei konstant 0,25 m³ pro Zelle stimmt das Ergebnis (abgesehen von Rundung und NoData) mit <code>volumen_10mm.tif</code> überein. Prüfen Sie diese Bedeutung auch bei vorgeschlagenem Code: Ein lokaler Zellbeitrag und ein bereits akkumuliertes Volumen sind unterschiedliche Eingaben; eine erneute Akkumulation des Letzteren würde Beiträge mehrfach zählen.</p>
 </div>
 </div>
 </div>
@@ -785,9 +825,15 @@ background: ../images/placeholder.png;
 </tr>
 </tbody>
 </table>
-<p>Die Zahlen <strong>0,02 ME</strong>, <strong>0,2 ME</strong>, <strong>5 m</strong>, <strong>0,05 m/m</strong> und der kleine Gefällezusatz <code>0,0001</code> sind gesetzte <strong>Versuchsparameter, keine kalibrierten Naturkonstanten</strong>. <code>sca / 5 m</code> und <code>slp / 0,05</code> sind dimensionslos; daher steht die Kapazität wie das Angebot in ME.</p>
+<p>Die Zahlen <strong>0,02 ME</strong>, <strong>0,2 ME</strong>, <strong>5 m</strong> als Bezugsbreite der Formel, <strong>0,05 m/m</strong> und der kleine Gefällezusatz <code>0,0001</code> sind gesetzte <strong>Versuchsparameter, keine kalibrierten Naturkonstanten</strong>. <code>sca / 5 m</code> und <code>slp / 0,05</code> sind dimensionslos; daher steht die Kapazität wie das Angebot in ME.</p>
 <p>Starten Sie TauDEM <strong>D-Infinity Transport Limited Accumulation</strong> mit <code>ang.tif</code>, <code>angebot.tif</code> (<em>Supply</em>) und <code>kapazitaet.tif</code> (<em>Transport Capacity</em>). Speichern Sie <code>transport.tif</code> und <code>ablagerung.tif</code>. Das Werkzeug bilanziert in jeder Rasterzelle:</p>
-<p>[ M_{}=M_{}+M_{}, M_{}=(M_{},T_{}), M_{}=M_{}-M_{}. ]</p>
+<p><span class="math display">\[
+\begin{aligned}
+M_{\mathrm{verfügbar}} &amp;= M_{\mathrm{von\ oben}} + M_{\mathrm{lokal}}, \\
+M_{\mathrm{weiter}} &amp;= \min\!\left(M_{\mathrm{verfügbar}}, T_{\mathrm{cap}}\right), \\
+M_{\mathrm{abgelagert}} &amp;= M_{\mathrm{verfügbar}} - M_{\mathrm{weiter}}.
+\end{aligned}
+\]</span></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -826,6 +872,7 @@ background: ../images/placeholder.png;
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Speichern Sie beide Eingaberaster mit denselben Grenzen und Pixelzentren wie <code>ang.tif</code> und prüfen Sie die NoData-Maske. Wählen Sie im Processing-Skript <strong>Berechnung 4 – Transport und Ablagerung</strong>, den Ergebnisordner <code>results</code>, <code>angebot.tif</code> und <code>kapazitaet.tif</code>. Intern läuft <code>DinfTransLimAccum</code>; es schreibt <code>transport.tif</code> und <code>ablagerung.tif</code>. Für den zweiten Durchlauf mit <strong>Kapazitätsfaktor 0,05</strong> setzen Sie zusätzlich den <strong>Ausgabesuffix <code>kap05</code></strong>; dadurch entstehen <code>transport_kap05.tif</code> und <code>ablagerung_kap05.tif</code>, ohne den ersten Versuch zu überschreiben.</p>
+<p>Bei einer Änderung des Ausdrucks oder des Skripts vergleichen Sie die betroffenen Zeilen mit dem vorherigen Stand: Wurde nur der Kapazitätsfaktor geändert? Angebot, Routing und Rastergitter müssen für diesen Vergleich gleich bleiben. Prüfen Sie das Ergebnis an der bereits erläuterten Bilanz: Bei 4 ME Zufluss, 2 ME lokalem Angebot und 3 ME Kapazität werden 3 ME weitergegeben und 3 ME zurückgehalten. Ein fehlerfreier Programmlauf allein prüft diese Bedeutung nicht.</p>
 </div>
 </div>
 </div>
@@ -849,7 +896,8 @@ background: ../images/placeholder.png;
 <section id="befund-am-untersuchten-bach-festhalten" class="level2">
 <h2 class="anchored" data-anchor-id="befund-am-untersuchten-bach-festhalten">Befund am untersuchten Bach festhalten</h2>
 <p>Legen Sie im QGIS-Projekt <strong>eine Ansicht</strong> mit Schummerung, ATKIS-Bach, Auslass, D8-Einzugsgebiet und der 2-ha-Gerinnelinie an. Für die zweite Ansicht schalten Sie TWI oder Ablagerung ein. Erläutern Sie an <strong>einer konkreten Abweichung</strong> zwischen amtlichem Gerinne und berechneter Linie: Liegt sie plausibel an DGM, Rasterweite, Senkenbehandlung oder Routingregel? Halten Sie daneben fest, <strong>welche Größe erst durch die 10-mm-Annahme und welche erst durch Materialangebot/Kapazität entstanden ist</strong>.</p>
-<p>Es geht hier <strong>nicht</strong> darum, eine Mäanderbewegung vorzurechnen: Die Form des heutigen Bachs kann im DGM sichtbar sein, ihre <strong>Entstehung</strong> wird mit keiner der verwendeten Rechnungen simuliert.</p>
+<p>Benennen Sie zu dieser Abweichung, welche Erklärung Ihre Daten stützen, was offenbleibt und welche Entscheidung Sie deshalb beibehalten oder ändern. Die Rechnungen beziehen sich auf die vorhandene Geländeform; eine zeitliche Mäanderentwicklung wurde damit nicht berechnet.</p>
+<p>Nutzen Sie dafür die bereits entstandenen Dateien, Processing-Aufrufe und Kommentare. Halten Sie bei einer technischen Korrektur knapp fest: Problem, übernommene Änderung, verwendete Hilfe oder Dokumentation und Ergebnis der eigenen Kontrolle. Bei KI-Hilfe nennen Sie das verwendete System und das Datum. Eine Chatabschrift ersetzt weder den ausgeführten Code noch die fachliche Begründung. So lässt sich später unterscheiden, ob zwei Ergebnisse wegen anderer Daten, Annahmen oder einer technischen Korrektur voneinander abweichen.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">

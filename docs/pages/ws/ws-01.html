@@ -458,11 +458,9 @@ background: ../../images/placeholder.png;
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>eingabe <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"daten"</span>, <span class="st">"burgwald_hull.GPKG"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Führen Sie das Skript erneut aus. Lesen Sie die Fehlermeldung und prüfen Sie mit <code>getwd()</code> und <code>dir.exists("daten")</code>, worauf der Pfad verweist. Stellen Sie anschließend den richtigen Pfad wieder her.</p>
-<p>Nutzen Sie bei Bedarf die Dokumentation oder KI. Ein passender Auftrag lautet:</p>
-<blockquote class="blockquote">
-<p>Mein RStudio-Projekt enthält die Ordner data, scripts und output. Erkläre diese Fehlermeldung und nenne die kleinste notwendige Korrektur. Ändere keine weiteren Teile des Skripts: [Fehlermeldung und betroffene Codezeilen einfügen].</p>
-</blockquote>
-<p>Halten Sie in einem Kommentar fest, was falsch war und wie Sie die Korrektur geprüft haben. Kommentare sollen den Zweck oder eine Entscheidung erklären, beispielsweise die Wahl eines metrischen Koordinatensystems.</p>
+<p>Nutzen Sie bei Bedarf die R-Dokumentation oder KI zur Erklärung der Meldung. Teilen Sie die betroffenen Zeilen, das mit <code>getwd()</code> bestimmte Arbeitsverzeichnis und die bereits geprüften Pfade mit. Vergleichen Sie die vorgeschlagene Änderung mit dem gespeicherten Skript: Welche Datei wird danach gelesen oder geschrieben? Werden neben dem Pfad auch Datenquelle, CRS, Pufferabstand oder Ausgabe geändert? Für diesen Pfadfehler genügt die Korrektur der Eingabe; weitere Änderungen sind einzeln zu begründen.</p>
+<p>Prüfen Sie vorgeschlagene R-Funktionen mit <code>?file.exists</code>, <code>?download.file</code> beziehungsweise <code>?sf::st_buffer</code>. Vor dem Ausführen müssen Sie erklären können, was die betroffenen Zeilen bewirken. Prüfen Sie die korrigierte Fassung mit den bereits vorhandenen Kontrollen: Datei unter <code>data/</code>, CRS 25832, Gebiet innerhalb des Puffers und größere Pufferfläche. Nach dem Neustart im nächsten Schritt muss derselbe Ablauf erneut funktionieren.</p>
+<p>Halten Sie im vorhandenen Kommentar das Problem, die übernommene Korrektur und deren Prüfung fest; nennen Sie bei KI-Hilfe System und Datum. Kommentare erklären auch fachliche Entscheidungen, etwa die Wahl eines metrischen Koordinatensystems.</p>
 </section>
 <section id="ohne-gespeicherte-objekte-erneut-ausführen" class="level2">
 <h2 class="anchored" data-anchor-id="ohne-gespeicherte-objekte-erneut-ausführen">5 · Ohne gespeicherte Objekte erneut ausführen</h2>

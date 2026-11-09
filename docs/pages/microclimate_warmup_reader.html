@@ -385,7 +385,8 @@ window.Quarto = {
 <section id="das-skript" class="level1">
 <h1>Das Skript</h1>
 <p>Das vollständige R-Skript kann hier heruntergeladen werden:</p>
-<p><a href="../scripts/microclimate_warmup_minimal.R" download="microclimate_warmup_minimal.R"><strong>microclimate_warmup_minimal.R herunterladen</strong></a></p>
+<p><a href="../assets/Archive.zip" download="Archive.zip"><strong>Projekt-ZIP mit dem Skript herunterladen</strong></a></p>
+<p>Nach dem Entpacken liegt das Skript unter <code>scripts/microclimate_warmup_minimal.R</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Skript anzeigen">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -730,8 +731,6 @@ window.Quarto = {
 </blockquote>
 <p>Das Modell schätzt eine lineare Beziehung zwischen Stationshöhe und Temperatur. Anschließend wird diese Beziehung auf jede Rasterzelle des DEM angewendet. Dadurch folgt das Ergebnis stark dem Höhenmuster.</p>
 <p>Dieses Modell ist methodisch anders als Voronoi und IDW. Es füllt den Raum nicht über Stationsnachbarschaft, sondern über eine erklärende Variable. Wenn Höhe fachlich relevant ist, kann das sinnvoll sein. Wenn die gemessenen Temperaturunterschiede stärker durch Schatten, Vegetation oder lokale Kaltluft geprägt sind, kann ein reines Höhenmodell zu kurz greifen.</p>
-<p>Ja, der Abschnitt verschiebt die Aufmerksamkeit zu stark auf <code>x/y/altitude</code> und sagt zu wenig klar: <strong>RF sagt weiterhin Temperatur vorher</strong>. Die Koordinaten und die Höhe sind nur die Eingangsvariablen, mit denen RF versucht, die gemessene Temperatur zu rekonstruieren.</p>
-<p>Ersetze den Abschnitt durch diese Fassung:</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Code-Snippet: LM altitude">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">

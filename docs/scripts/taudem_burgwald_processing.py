@@ -203,10 +203,14 @@ class TaudemBurgwaldProcessing(QgsProcessingAlgorithm):
         if custom_dir:
             folder = Path(os.path.expandvars(os.path.expanduser(custom_dir))).resolve()
             candidate = folder / (name + ext)
+            if not candidate.is_file() and sys.platform.startswith("linux"):
+                candidate = folder / name.lower()
             if not candidate.is_file():
                 raise QgsProcessingException("TauDEM-Programm fehlt: " + str(candidate))
             return str(candidate)
         found = shutil.which(name + ext) or shutil.which(name)
+        if not found and sys.platform.startswith("linux"):
+            found = shutil.which(name.lower())
         if not found:
             raise QgsProcessingException("TauDEM-Programm nicht im PATH: " + name)
         return found

@@ -29,7 +29,7 @@ Hier betrachten wir **einen vorhandenen Oberlauf im realen Gelände**. Zuerst be
 
 ![Berechnungskette mit getrennten D8- und D∞-Zweigen. ATKIS ist eine unabhängige Referenz.](../images/abfluss_workflow.svg){width="100%" fig-alt="DGM1 wird zum 5-m-Arbeitsraster und nach der Senkenbehandlung in D8 und D∞ verzweigt: D8 liefert Flächenakkumulation, Gerinneschwellen, Einzugsgebiet und ein hypothetisches Abflussvolumen; D∞ liefert SCA, TWI und eine Materialbilanz. ATKIS ist nur Vergleich."}
 
-[Flussdiagramm in draw.io bearbeiten](../diagrams/abfluss_workflow.drawio). **Blau:** technischer Ablauf; **grün:** fachliche Erklärung; 
+[Flussdiagramm in draw.io bearbeiten](../diagrams/abfluss_workflow.drawio). **Blau:** technischer Ablauf; **grün:** fachliche Erklärung. Fachliche und technische Klappboxen vertiefen die jeweiligen Arbeitsschritte.
 
 ## 1 · Gelände und Referenz öffnen (ca. 10 Minuten)
 
@@ -50,6 +50,8 @@ Erstellen Sie eine **Schummerung** (Werkzeugsuche: *Hillshade/Schummerung*). Wä
 In QGIS *Raster → Projektionen → Warp (Reprojektieren)*: Ziel-KBS `EPSG:25832`, Zielauflösung **5 × 5 m**, Resampling **Average/Mittelwert**, GeoTIFF-Ausgabe `processing/dgm5.tif`. Bei mehreren Quellkacheln zunächst das virtuelle Raster als Eingabe wählen. Nicht das DGM auf 2 × 2 km beschneiden: Der Kartenausschnitt ist **nicht** das Rechengebiet. Alle späteren Raster verwenden Ausdehnung, Ursprung und Zellweite von `dgm5.tif`. Original-DGM1 unverändert aufheben.
 
 Wenn ein 5-m-Arbeitsraster bereits bereitgestellt wird, entfällt dieser Schritt. Eine höhere Pixelzahl ist nicht automatisch eine genauere Darstellung einer Gewässersohle.
+
+**Dateien wiederfinden:** Speichern Sie das QGIS-Projekt im Arbeitsordner und verwenden Sie darin `data/` für Originaldaten, `processing/` für abgeleitete Eingaben und `results/` für Ausgaben. Prüfen Sie bei jedem Layer unter *Eigenschaften → Information/Quelle* Dateipfad, Format, CRS, Ausdehnung und Pixelgröße. Eine gespeicherte `.qgz`-Projektdatei verweist auf Geodaten; sie enthält diese nicht automatisch. Nach dem Entpacken eines Shape-Downloads bleiben `.shp`, `.shx`, `.dbf` und `.prj` zusammen. Notieren Sie den tatsächlich bezogenen Datenstand und die verwendeten Dateien, auch wenn ein anderes Landesportal als der hessische Zugang nötig war.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -72,9 +74,9 @@ Das Skript ruft dafür `PitRemove`, `D8FlowDir` und `AreaD8` auf. Lassen Sie die
 
 **Lesen Sie den Wert an einer Zelle der Talrinne ab.** Bei 5 m Rasterweite gilt:
 
-\[
+$$
 A_{\mathrm{D8}}=N_{\mathrm{D8}}\cdot 25\ \mathrm{m}^2.
-\]
+$$
 
 Beispiel: `ad8 = 4 000` bedeutet **100 000 m² = 10 ha** beitragende Fläche – **nicht** 4 000 Liter, 4 000 m³/s oder 4 000 tatsächlich dort eintreffende Regentropfen.
 
@@ -98,6 +100,10 @@ An einer Wasserscheide sind Zuflüsse von der jeweils anderen Seite **nicht** an
 Öffnen Sie [`scripts/taudem_burgwald_processing.py`](../scripts/taudem_burgwald_processing.py) im QGIS-Processing-Skripteditor und **speichern Sie es dort als `.py`**. Es erscheint anschließend unter *Skripte → Modellieren in der Geographie*. Wählen Sie **Berechnung 1 – Grundlage**, das DGM und einen dauerhaften Ergebnisordner. Das Skript berechnet `fel`, `p`, `sd8`, `ad8`, `ang`, `slp`, `sca`, `twi` und die beiden Gerinneschwellen in einem Lauf. Die Schwellen werden aus **2 ha und 5 ha** in Zellzahlen umgerechnet.
 
 Linux und Windows verwenden dieselbe `.py`-Datei. Im Dialog können Sie ein **TauDEM-Binärverzeichnis** und den **MPI-Launcher** (`mpiexec` oder dessen vollständigen Pfad) angeben. TauDEM und MPI müssen zum jeweiligen Betriebssystem passen. Die Dateien werden bei erneutem Aufruf **nicht überschrieben**; für eine zweite Grundlage einen anderen Ergebnisordner wählen.
+
+**Wenn der Lauf scheitert:** Lesen Sie im Processing-Protokoll den ersten fehlgeschlagenen Schritt mit Fehlermeldung und verwendeten Pfaden. Prüfen Sie, ob die Eingabedatei gespeichert und erreichbar ist oder ob TauDEM beziehungsweise MPI nicht gefunden wird. Eine Rasteranzeige in QGIS allein belegt noch keinen für TauDEM verwendbaren Dateipfad. Wird dagegen die Randprüfung als NoData sichtbar, prüfen Sie das Rechengebiet; das Abschalten der Randprüfung würde fehlende Zuflüsse verdecken.
+
+**Dokumentation und KI gezielt nutzen:** Geben Sie den betroffenen Aufruf, Fehlermeldung, Softwareversion und die geprüften Dateieigenschaften an. Lassen Sie sich eine Korrektur und ihre Wirkung erklären. Prüfen Sie vorgeschlagene Werkzeugnamen und Optionen in der [Werkzeugdokumentation](abfluss_algorithmen_quellen.qmd). Vor dem Ausführen müssen Sie Eingaben, Operation, veränderte Parameter und Ausgabe benennen können. Ändern sich dabei Zellweite, Senkenbehandlung oder Randprüfung, verändert sich die Modellrechnung; eine solche Änderung braucht eine fachliche Begründung. Bewahren Sie den vorherigen Stand auf, übernehmen Sie eine begrenzte Änderung und prüfen Sie deren Ergebnis an den Kontrollen dieses Arbeitsblatts. Bei unklarer Wirkung hilft die gemeinsame Fehlersuche im Seminar.
 :::
 
 ## 3 · Aus Zuflüssen wird ein Einzugsgebiet (ca. 15 Minuten)
@@ -108,6 +114,8 @@ Linux und Windows verwenden dieselbe `.py`-Datei. Im Dialog können Sie ein **Ta
 2. Die zweite Schwelle **5 ha = 2 000 Zellen** liegt als `src_5ha.tif` vor. Schalten Sie die beiden 1/0-Raster abwechselnd über der Schummerung ein und überlagern Sie die amtliche Gewässerlinie.
 3. Wählen Sie an Ihrem Bach einen Punkt **auf einer berechneten `src_2ha`-Gerinnezelle** als Auslass. Erstellen Sie einen Punktlayer `processing/auslass.shp` mit dem ganzzahligen Feld `id` (für den einen Punkt `id = 1`). Der Punkt darf nicht lediglich optisch auf der ATKIS-Linie liegen.
 4. Starten Sie dasselbe Processing-Skript mit **Berechnung 2 – Einzugsgebiet**: Ergebnisordner `results`, Auslass `auslass.shp`, **Verschieben = 0**. Intern rechnet TauDEM *Gage Watershed* mit `p.tif` und schreibt `becken.tif`. Die Rasterzellen mit Wert **1** bilden das zum Punkt entwässernde Gebiet. Stellen Sie dessen Grenze zusammen mit `ad8.tif` dar.
+
+Die ATKIS-Linie besitzt eine eigene Generalisierung, Lageunsicherheit und Erhebungsgeschichte. Unterschiede zum DGM können deshalb auch die Referenz betreffen.
 
 **Prüfung am eigenen Bach:** Wo liegt die Wasserscheide? Welche Seitenhänge sind angeschlossen? Verändert die Gerinneschwelle die **eingezeichneten Bachanfänge**, obwohl `p.tif` und das Einzugsgebiet am unveränderten Auslass gleich bleiben? Vergleichen Sie den berechneten Talweg gerade an der gewählten Krümmung mit der amtlichen Gewässerlinie. **Die Krümmung kann im Relief bereits enthalten sein; der Algorithmus erzeugt sie nicht durch Ufererosion.**
 
@@ -136,6 +144,8 @@ Die **Grundlage (Berechnung 1)** hat auf **demselben `fel.tif`** zwei weitere Ta
 
 D8 leitet den gesamten Zellbeitrag an **einen** Empfänger. D∞ verteilt ihn je nach berechnetem Winkel auf **höchstens zwei** benachbarte Zellen. Vergleichen Sie auf einer breiten Hangfläche und im Tal die **Muster** von `ad8` und `sca`. Achten Sie dabei darauf, dass die Raster **nicht dieselbe Einheit** haben. `sca` lässt sich nicht allein durch eine andere Farbskala in `ad8` umrechnen.
 
+Für einen Zahlenvergleich wäre die jeweilige Flächen- beziehungsweise Breitenbezugsgröße anzugleichen; der hier geforderte Mustervergleich allein isoliert den Einfluss der Routingregel nicht.
+
 Die Grundlage berechnet außerdem den TauDEM **Topographic Wetness Index** aus `sca.tif` und `slp.tif` als `twi.tif`. Zeigen Sie die höchsten TWI-Werte und betrachten Sie, ob es sich eher um flache Talbereiche oder steile Hänge handelt.
 
 ::: {.callout-tip collapse="true"}
@@ -153,9 +163,9 @@ Im Beispiel rechts sind 60/40 Prozent **nur zur Illustration gewählt**, keine f
 
 **SCA = Specific Catchment Area**, deutsch *spezifische beitragende Einzugsfläche*. TauDEM `AreaDinf` summiert die **anteiligen Flächenbeiträge** von oberhalb und bezieht sie im Standardfall auf die **Rasterbreite**. Für quadratische 5-m-Zellen gilt schematisch:
 
-\[
+$$
 a=\frac{A_{\mathrm{eff}}}{\Delta x}, \qquad [a]=\frac{\mathrm{m}^2}{\mathrm{m}}=\mathrm{m}.
-\]
+$$
 
 ![Beispiel: 150 m² effektive beitragende Fläche geteilt durch 5 m Rasterbreite ergibt eine SCA von 30 m.](../images/sca_flaeche_pro_breite.svg){width="100%"}
 
@@ -167,7 +177,9 @@ a=\frac{A_{\mathrm{eff}}}{\Delta x}, \qquad [a]=\frac{\mathrm{m}^2}{\mathrm{m}}=
 
 **TWI = Topographic Wetness Index.** TauDEM verbindet die spezifische Fläche `a = sca` mit der lokalen Neigung `tan(β) = slp`:
 
-\[\mathrm{TWI}=\ln\!\left(\frac{a}{\tan\beta}\right).\]
+$$
+\mathrm{TWI}=\ln\!\left(\frac{a}{\tan\beta}\right).
+$$
 
 ![Vergleich: eine kleine spezifische Fläche auf steilem Hang führt zu geringerem TWI als eine große Fläche auf flachem Hang.](../images/twi_interpretation.svg){width="100%"}
 
@@ -184,7 +196,7 @@ Im QGIS-Rasterrechner berechnen Sie aus `ad8.tif` das Raster `results/volumen_10
 
 **Annahme:** Jede Zelle liefert einmalig **10 mm effektiven Abfluss** (also Niederschlagsüberschuss nach allen Verlusten). Weil jede Zelle 25 m² groß ist, entspräche das **0,25 m³ pro beitragender Zelle**. Der Rasterwert am gewählten Auslass ist damit die *potenzielle gesamte Abflussmenge in m³*, die sich aus dieser angenommenen flächendeckenden Abflussbildung ergibt – **wenn alle Beiträge den Auslass erreichen**.
 
-Vergleichen Sie den Wert an Ihrem Auslass mit `ad8 · 25 · 0,010`. **Neu ist die Volumeneinheit; nicht neu ist die Fließrichtung.** Sie kennen weiterhin weder die Fließzeit noch einen Spitzenabfluss in m³/s.
+Prüfen Sie den Rasterrechner-Ausdruck über seine Größen: `ad8` zählt Zellen, `25 m²` ist die Zellfläche und `0,010 m` die effektive Abflusshöhe. Für den bereits verwendeten Kontrollwert von **2 ha** müssen daraus **200 m³** entstehen. Das prüft Einheiten und Umsetzung der gesetzten Annahme; die tatsächliche Abflussbildung wird dadurch nicht bestätigt. Dieselbe Kontrolle gilt für einen von KI vorgeschlagenen Ausdruck. Sie kennen weiterhin weder die Fließzeit noch einen Spitzenabfluss in m³/s.
 
 ::: {.callout-tip collapse="true"}
 ## Fachlich: Was sich durch Regen, Boden und Landnutzung zusätzlich festlegen ließe
@@ -197,7 +209,7 @@ Vergleichen Sie den Wert an Ihrem Auslass mit `ad8 · 25 · 0,010`. **Neu ist di
 
 Wenn ein Raster `runoff_zelle_m3.tif` für **jede Zelle** einen angenommenen Beitrag in m³ enthält, wählen Sie im Processing-Skript **Berechnung 3 – gewichtete Abflussakkumulation**. Eingabe ist dieses Gewichtsraster, Ergebnisordner wieder `results`. Intern verwendet TauDEM *D8 Contributing Area* die vorhandenen `p.tif`-Verbindungen. Das Ergebnis `volumen_gewichtet_m3.tif` enthält die **Summe der Zellvolumina in m³**, nicht eine Zellzahl.
 
-`runoff_zelle_m3.tif` muss exakt auf dem `dgm5`-Raster liegen. Bei konstant 0,25 m³ pro Zelle stimmt das Ergebnis (abgesehen von Rundung und NoData) mit `volumen_10mm.tif` überein.
+`runoff_zelle_m3.tif` muss exakt auf dem `dgm5`-Raster liegen. Bei konstant 0,25 m³ pro Zelle stimmt das Ergebnis (abgesehen von Rundung und NoData) mit `volumen_10mm.tif` überein. Prüfen Sie diese Bedeutung auch bei vorgeschlagenem Code: Ein lokaler Zellbeitrag und ein bereits akkumuliertes Volumen sind unterschiedliche Eingaben; eine erneute Akkumulation des Letzteren würde Beiträge mehrfach zählen.
 :::
 
 ## 6 · Materialangebot, Transportgrenze, Ablagerung (ca. 15 Minuten)
@@ -211,15 +223,17 @@ Erzeugen Sie im QGIS-Rasterrechner:
 | `processing/angebot.tif` | `("dgm5@1" * 0) + 0.02` | Jede gültige Zelle bietet **0,02 ME** an |
 | `processing/kapazitaet.tif` | `0.2 * sqrt("sca@1" / 5) * (("slp@1" + 0.0001) / 0.05)` | Maximal transportierbare **ME** am Zellabgang; nimmt mit spezifischer Fläche und Gefälle zu |
 
-Die Zahlen **0,02 ME**, **0,2 ME**, **5 m**, **0,05 m/m** und der kleine Gefällezusatz `0,0001` sind gesetzte **Versuchsparameter, keine kalibrierten Naturkonstanten**. `sca / 5 m` und `slp / 0,05` sind dimensionslos; daher steht die Kapazität wie das Angebot in ME.
+Die Zahlen **0,02 ME**, **0,2 ME**, **5 m** als Bezugsbreite der Formel, **0,05 m/m** und der kleine Gefällezusatz `0,0001` sind gesetzte **Versuchsparameter, keine kalibrierten Naturkonstanten**. `sca / 5 m` und `slp / 0,05` sind dimensionslos; daher steht die Kapazität wie das Angebot in ME.
 
 Starten Sie TauDEM **D-Infinity Transport Limited Accumulation** mit `ang.tif`, `angebot.tif` (*Supply*) und `kapazitaet.tif` (*Transport Capacity*). Speichern Sie `transport.tif` und `ablagerung.tif`. Das Werkzeug bilanziert in jeder Rasterzelle:
 
-\[
-M_{\mathrm{verfügbar}}=M_{\mathrm{von\ oben}}+M_{\mathrm{lokal}},\qquad
-M_{\mathrm{weiter}}=\min(M_{\mathrm{verfügbar}},T_{\mathrm{cap}}),\qquad
-M_{\mathrm{abgelagert}}=M_{\mathrm{verfügbar}}-M_{\mathrm{weiter}}.
-\]
+$$
+\begin{aligned}
+M_{\mathrm{verfügbar}} &= M_{\mathrm{von\ oben}} + M_{\mathrm{lokal}}, \\
+M_{\mathrm{weiter}} &= \min\!\left(M_{\mathrm{verfügbar}}, T_{\mathrm{cap}}\right), \\
+M_{\mathrm{abgelagert}} &= M_{\mathrm{verfügbar}} - M_{\mathrm{weiter}}.
+\end{aligned}
+$$
 
 ::: {.callout-tip collapse="true"}
 ## Kurzreader Fachwissen: Angebot, Kapazität und Ablagerung
@@ -239,6 +253,8 @@ Zeigen Sie `ablagerung.tif` über `slp.tif`: **Wo reicht die gesetzte Kapazität
 ## Technisch: Transportrechnung direkt mit TauDEM starten
 
 Speichern Sie beide Eingaberaster mit denselben Grenzen und Pixelzentren wie `ang.tif` und prüfen Sie die NoData-Maske. Wählen Sie im Processing-Skript **Berechnung 4 – Transport und Ablagerung**, den Ergebnisordner `results`, `angebot.tif` und `kapazitaet.tif`. Intern läuft `DinfTransLimAccum`; es schreibt `transport.tif` und `ablagerung.tif`. Für den zweiten Durchlauf mit **Kapazitätsfaktor 0,05** setzen Sie zusätzlich den **Ausgabesuffix `kap05`**; dadurch entstehen `transport_kap05.tif` und `ablagerung_kap05.tif`, ohne den ersten Versuch zu überschreiben.
+
+Bei einer Änderung des Ausdrucks oder des Skripts vergleichen Sie die betroffenen Zeilen mit dem vorherigen Stand: Wurde nur der Kapazitätsfaktor geändert? Angebot, Routing und Rastergitter müssen für diesen Vergleich gleich bleiben. Prüfen Sie das Ergebnis an der bereits erläuterten Bilanz: Bei 4 ME Zufluss, 2 ME lokalem Angebot und 3 ME Kapazität werden 3 ME weitergegeben und 3 ME zurückgehalten. Ein fehlerfreier Programmlauf allein prüft diese Bedeutung nicht.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -251,7 +267,9 @@ Eine physikalisch gestützte Erosions- oder Sedimentfracht benötigt mindestens 
 
 Legen Sie im QGIS-Projekt **eine Ansicht** mit Schummerung, ATKIS-Bach, Auslass, D8-Einzugsgebiet und der 2-ha-Gerinnelinie an. Für die zweite Ansicht schalten Sie TWI oder Ablagerung ein. Erläutern Sie an **einer konkreten Abweichung** zwischen amtlichem Gerinne und berechneter Linie: Liegt sie plausibel an DGM, Rasterweite, Senkenbehandlung oder Routingregel? Halten Sie daneben fest, **welche Größe erst durch die 10-mm-Annahme und welche erst durch Materialangebot/Kapazität entstanden ist**.
 
-Es geht hier **nicht** darum, eine Mäanderbewegung vorzurechnen: Die Form des heutigen Bachs kann im DGM sichtbar sein, ihre **Entstehung** wird mit keiner der verwendeten Rechnungen simuliert.
+Benennen Sie zu dieser Abweichung, welche Erklärung Ihre Daten stützen, was offenbleibt und welche Entscheidung Sie deshalb beibehalten oder ändern. Die Rechnungen beziehen sich auf die vorhandene Geländeform; eine zeitliche Mäanderentwicklung wurde damit nicht berechnet.
+
+Nutzen Sie dafür die bereits entstandenen Dateien, Processing-Aufrufe und Kommentare. Halten Sie bei einer technischen Korrektur knapp fest: Problem, übernommene Änderung, verwendete Hilfe oder Dokumentation und Ergebnis der eigenen Kontrolle. Bei KI-Hilfe nennen Sie das verwendete System und das Datum. Eine Chatabschrift ersetzt weder den ausgeführten Code noch die fachliche Begründung. So lässt sich später unterscheiden, ob zwei Ergebnisse wegen anderer Daten, Annahmen oder einer technischen Korrektur voneinander abweichen.
 
 ::: {.callout-tip collapse="true"}
 ## Fachliche Erweiterung: Rasterweite gezielt testen

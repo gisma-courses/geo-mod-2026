@@ -3,14 +3,14 @@ project:
   output-dir: docs/
   resources:
     - "assets/Archive.zip"
-    - "scripts/microclimate_warmup_minimal.R"
+    - "scripts/taudem_burgwald_processing.py"
+    - "scripts/taudem_burgwald.sh"
     
   
   render:
     - "index.qmd"
     - "pages/**/*.qmd"
     - "slides/*.qmd"
-    - "scripts/*.R"
 
 website:
   title: "Modellieren in der Geographie"

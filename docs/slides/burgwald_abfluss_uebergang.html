@@ -147,15 +147,15 @@
 </div><div class="column" style="width:49%;">
 <p><strong>Heute: Burgwald (Rotes Wasser)</strong></p>
 <ul>
-<li><strong>DGM1:</strong> tatsächliche Geländehöhen statt synthetischer Modellwelt.</li>
-<li><strong>SAGA/GRASS:</strong> Rasteralgorithmen berechnen Fließrichtungen und beitragende Flächen.</li>
+<li><strong>DGM1:</strong> räumliche Zuordnung und Flächenbezug am Roten Wasser; auch Grand Canyon verwendet bereits aufbereitete reale Höhen.</li>
+<li><strong>QGIS/TauDEM:</strong> D8 und D∞ berechnen Entwässerungsverbindungen und beitragende Flächen auf festem Gelände.</li>
 <li><strong>Vergleich:</strong> berechnete Abflussbahnen ↔︎ kartiertes Gewässernetz.</li>
 </ul>
 </div></div>
 <p><strong>Leitfrage:</strong> Was erklärt die Lage eines Flusslaufs – und was erklärt seine <strong>seitliche Verlagerung</strong>?</p>
 </section>
-<section id="drei-modellkonzepte-drei-aussagegrenzen" class="slide level1">
-<h1>Drei Modellkonzepte – drei Aussagegrenzen</h1>
+<section id="was-verändert-sich-in-der-berechnung" class="slide level1">
+<h1>Was verändert sich in der Berechnung?</h1>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -164,31 +164,30 @@
 </colgroup>
 <thead>
 <tr class="header">
-<th>Modellkonzept</th>
-<th>Verfahren</th>
-<th>Ergebnis / fehlende Prozesse</th>
+<th>Schritt</th>
+<th>Berechnung</th>
+<th>Aussage</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Topografisches Routing</strong></td>
-<td>SAGA <em>Flow Accumulation</em> (D8/MFD); GRASS <code>r.watershed</code></td>
-<td><strong>Beitragende Fläche und Fließwege</strong>; keine Ereigniszeit oder hydraulische Reibung</td>
+<td><strong>Reliefrouting</strong></td>
+<td>TauDEM D8/D∞, Akkumulation und Einzugsgebiet</td>
+<td>Räumliche Verbindungen und beitragende Flächen bei festem DGM</td>
 </tr>
 <tr class="even">
-<td><strong>Zeitabhängiger Oberflächenabfluss</strong></td>
-<td>SAGA <em>Overland Flow</em>; GRASS <code>r.sim.water</code></td>
-<td><strong>Wassertiefe/Abfluss in der Zeit</strong>; zusätzlich Regen, Infiltration und Rauigkeit nötig</td>
+<td><strong>Abfluss- und Materialannahmen</strong></td>
+<td>10 mm effektiver Abfluss; Materialangebot und Transportkapazität</td>
+<td>Hypothetisches Volumen und Materialbilanz auf den vorhandenen Verbindungen</td>
 </tr>
 <tr class="odd">
-<td><strong>Gerinnemigration</strong></td>
-<td>z. B. <em>MeanderPy</em>; weiterführende morphodynamische Modelle</td>
-<td><strong>Seitliche Verlagerung</strong>; nicht aus D8/MFD allein ableitbar</td>
+<td><strong>Geplanter Anschluss: Itzï</strong></td>
+<td>Zeitabhängige Wasserzustände und Flüsse; noch nicht vorbereitet</td>
+<td>Ereignisverlauf mit zusätzlichen Antrieben und Randbedingungen</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Skalenfrage:</strong> 1 m, 5 m oder 10 m Rasterweite können andere Rinnen und Fließakkumulationen ergeben.</p>
-<p><strong>Landnutzung (ATKIS)</strong> liefert erst bei einem geeigneten <em>dynamischen</em> Modell Anhaltspunkte für die Parametrisierung der Rauigkeit (z. B. Manning-<code>n</code>) – <strong>nicht</strong> für das reine D8-/MFD-Routing.</p>
+<p><strong>Fachliche Entscheidungen:</strong> Datenstand, Gebiet, Rasterweite, Senkenbehandlung und Auslass bestimmen die Rechnung. Landnutzung liefert mögliche Hinweise für spätere Parameter; konkrete Rauigkeits- oder Infiltrationswerte brauchen eine eigene Begründung. CAESAR-Lisflood bleibt eine optionale Vertiefung zur gekoppelten Geländeentwicklung.</p>
 </section>
 <section id="heute-abflusswege-im-burgwald-untersuchen" class="slide level1">
 <h1>Heute: Abflusswege im Burgwald untersuchen</h1>
@@ -204,19 +203,19 @@
 <p><strong>2 · Rechnen</strong></p>
 <ul>
 <li>DGM prüfen und Senkenbehandlung dokumentieren.</li>
-<li>In <strong>SAGA: D8 vs.&nbsp;MFD</strong>; optional GRASS <code>r.watershed</code>.</li>
-<li>Rasterweite <strong>5 m / 10 m</strong> vergleichen.</li>
+<li>In <strong>QGIS/TauDEM: D8 und D∞</strong>, Einzugsgebiet und Gerinneschwellen.</li>
+<li>Abfluss- und Materialannahmen ergänzen; Rasterweite optional vergleichen.</li>
 </ul>
 </div><div class="column" style="width:32%;">
 <p><strong>3 · Bewerten</strong></p>
 <ul>
 <li>Akkumulationskarten mit dem <strong>ATKIS-Gewässerlauf</strong> überlagern.</li>
 <li>Unterschiede aus Regeln, Rasterweite und Randbedingungen erklären.</li>
-<li><strong>Keine</strong> Mäanderwanderung aus der Karte behaupten.</li>
+<li>Erklären, welche Annahme welche Größe ermöglicht und was offenbleibt.</li>
 </ul>
 </div></div>
-<p><strong>Abgabe:</strong> Zwei Karten (D8/MFD), eine Überlagerung mit dem Gewässernetz und <strong>150–250 Wörter Modellkritik</strong>.</p>
-<p><strong><a href="../pages/meander_abfluss_saga_grass.html">→ Worksheet / Hands-on: Burgwald – SAGA, GRASS und Landnutzung</a></strong></p>
+<p><strong>Ergebnis:</strong> Die im Arbeitsblatt vorgesehenen zwei Ansichten und der Befund an einer konkreten Abweichung; Rechenannahmen und Kontrollen nachvollziehbar halten.</p>
+<p><strong><a href="../pages/meander_abfluss_saga_grass.html">→ Arbeitsblatt: Abflusswege und Sediment im kleinen Einzugsgebiet</a></strong></p>
 
 
 </section>

@@ -34,25 +34,23 @@ execute:
 ::: {.column width="49%"}
 **Heute: Burgwald (Rotes Wasser)**
 
-- **DGM1:** tatsächliche Geländehöhen statt synthetischer Modellwelt.
-- **SAGA/GRASS:** Rasteralgorithmen berechnen Fließrichtungen und beitragende Flächen.
+- **DGM1:** räumliche Zuordnung und Flächenbezug am Roten Wasser; auch Grand Canyon verwendet bereits aufbereitete reale Höhen.
+- **QGIS/TauDEM:** D8 und D∞ berechnen Entwässerungsverbindungen und beitragende Flächen auf festem Gelände.
 - **Vergleich:** berechnete Abflussbahnen ↔ kartiertes Gewässernetz.
 :::
 :::
 
 **Leitfrage:** Was erklärt die Lage eines Flusslaufs – und was erklärt seine **seitliche Verlagerung**?
 
-# Drei Modellkonzepte – drei Aussagegrenzen
+# Was verändert sich in der Berechnung?
 
-| Modellkonzept | Verfahren | Ergebnis / fehlende Prozesse |
+| Schritt | Berechnung | Aussage |
 |---|---|---|
-| **Topografisches Routing** | SAGA *Flow Accumulation* (D8/MFD); GRASS `r.watershed` | **Beitragende Fläche und Fließwege**; keine Ereigniszeit oder hydraulische Reibung |
-| **Zeitabhängiger Oberflächenabfluss** | SAGA *Overland Flow*; GRASS `r.sim.water` | **Wassertiefe/Abfluss in der Zeit**; zusätzlich Regen, Infiltration und Rauigkeit nötig |
-| **Gerinnemigration** | z. B. *MeanderPy*; weiterführende morphodynamische Modelle | **Seitliche Verlagerung**; nicht aus D8/MFD allein ableitbar |
+| **Reliefrouting** | TauDEM D8/D∞, Akkumulation und Einzugsgebiet | Räumliche Verbindungen und beitragende Flächen bei festem DGM |
+| **Abfluss- und Materialannahmen** | 10 mm effektiver Abfluss; Materialangebot und Transportkapazität | Hypothetisches Volumen und Materialbilanz auf den vorhandenen Verbindungen |
+| **Geplanter Anschluss: Itzï** | Zeitabhängige Wasserzustände und Flüsse; noch nicht vorbereitet | Ereignisverlauf mit zusätzlichen Antrieben und Randbedingungen |
 
-**Skalenfrage:** 1 m, 5 m oder 10 m Rasterweite können andere Rinnen und Fließakkumulationen ergeben.
-
-**Landnutzung (ATKIS)** liefert erst bei einem geeigneten *dynamischen* Modell Anhaltspunkte für die Parametrisierung der Rauigkeit (z. B. Manning-`n`) – **nicht** für das reine D8-/MFD-Routing.
+**Fachliche Entscheidungen:** Datenstand, Gebiet, Rasterweite, Senkenbehandlung und Auslass bestimmen die Rechnung. Landnutzung liefert mögliche Hinweise für spätere Parameter; konkrete Rauigkeits- oder Infiltrationswerte brauchen eine eigene Begründung. CAESAR-Lisflood bleibt eine optionale Vertiefung zur gekoppelten Geländeentwicklung.
 
 # Heute: Abflusswege im Burgwald untersuchen
 
@@ -68,18 +66,18 @@ execute:
 **2 · Rechnen**
 
 - DGM prüfen und Senkenbehandlung dokumentieren.
-- In **SAGA: D8 vs. MFD**; optional GRASS `r.watershed`.
-- Rasterweite **5 m / 10 m** vergleichen.
+- In **QGIS/TauDEM: D8 und D∞**, Einzugsgebiet und Gerinneschwellen.
+- Abfluss- und Materialannahmen ergänzen; Rasterweite optional vergleichen.
 :::
 ::: {.column width="32%"}
 **3 · Bewerten**
 
 - Akkumulationskarten mit dem **ATKIS-Gewässerlauf** überlagern.
 - Unterschiede aus Regeln, Rasterweite und Randbedingungen erklären.
-- **Keine** Mäanderwanderung aus der Karte behaupten.
+- Erklären, welche Annahme welche Größe ermöglicht und was offenbleibt.
 :::
 :::
 
-**Abgabe:** Zwei Karten (D8/MFD), eine Überlagerung mit dem Gewässernetz und **150–250 Wörter Modellkritik**.
+**Ergebnis:** Die im Arbeitsblatt vorgesehenen zwei Ansichten und der Befund an einer konkreten Abweichung; Rechenannahmen und Kontrollen nachvollziehbar halten.
 
-**[→ Worksheet / Hands-on: Burgwald – SAGA, GRASS und Landnutzung](../pages/meander_abfluss_saga_grass.qmd)**
+**[→ Arbeitsblatt: Abflusswege und Sediment im kleinen Einzugsgebiet](../pages/meander_abfluss_saga_grass.qmd)**

@@ -142,7 +142,7 @@ In A sollte im vollständig erfassten Gebiet keine kapazitätsbedingte Ablagerun
 | **Itzï:** Wann wird beim vorgegebenen Starkregen der Weg an der Biegung überströmt, wie tief und wie lange? | DGM, Weglage, Landnutzung als Grundlage für Reibung | Niederschlags- oder Zuflussverlauf, Anfangs- und Randbedingungen sowie Annahmen zu Verlusten und Rauigkeit. Wasserstände und Flüsse ändern sich über die Zeit; die Sohle bleibt fest. |
 | **CAESAR-Lisflood:** Verändert der Abfluss die Sohle oder das Ufer so, dass der nächste Abfluss einen anderen Weg nimmt? | Gelände und Lage der Biegung; der 5-m-Datensatz muss das Gerinne für diese Frage ausreichend auflösen | Hydraulik, Sedimentangebot und Korngrößen, Abtrag, Transport und Aktualisierung der Geländegeometrie. Eine belastbare Aussage zur seitlichen Verlagerung braucht zusätzlich geeignete Uferparameter und beobachtete Gerinnepositionen zum Vergleich. |
 
-Die Karten aus dieser Übung sind der Ausgangszustand für diese Fragen. **Die Ereignis- und Geländeentwicklung werden in einer eigenen Übung gerechnet.**
+Die Karten aus dieser Übung bieten einen Ausgangszustand für diese Fragen. **Itzï ist als eigener Anschluss geplant und noch nicht vorbereitet. CAESAR-Lisflood bleibt optional.**
 
 ## Methodenkompendium und Quellen
 

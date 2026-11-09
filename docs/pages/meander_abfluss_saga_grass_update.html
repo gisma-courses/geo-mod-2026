@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Abflusswege und Sediment im kleinen Einzugsgebiet – Modellieren in der Geographie</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="..//images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-c8e893c45ba768c613f97d88ef0faa80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: black;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: black;
+background: ../images/placeholder.png;
+      }
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Abflusswege und Sediment im kleinen Einzugsgebiet – Modellieren in der Geographie">
+<meta property="og:description" content="DGM-Kacheln vorbereiten · TauDEM anwenden · Modellannahmen untersuchen">
+<meta property="og:image" content="https://gisma-courses.github.io/geo-mod-2026/images/abfluss_workflow.svg">
+<meta property="og:site_name" content="Modellieren in der Geographie">
+<meta property="og:image:alt" content="Ab dem aufbereiteten DGM verzweigt TauDEM nach Pit Remove in D8 und D∞: D8 liefert Akkumulation, Gerinneschwellen und Einzugsgebiet; D∞ liefert spezifische Fläche und TWI. Wasser- und Materialbilanzen fügen zusätzliche Annahmen hinzu.">
+<meta name="twitter:title" content="Abflusswege und Sediment im kleinen Einzugsgebiet – Modellieren in der Geographie">
+<meta name="twitter:description" content="DGM-Kacheln vorbereiten · TauDEM anwenden · Modellannahmen untersuchen">
+<meta name="twitter:image" content="https://gisma-courses.github.io/geo-mod-2026/images/abfluss_workflow.svg">
+<meta name="twitter:creator" content="@gisma">
+<meta name="twitter:image:alt" content="Ab dem aufbereiteten DGM verzweigt TauDEM nach Pit Remove in D8 und D∞: D8 liefert Akkumulation, Gerinneschwellen und Einzugsgebiet; D∞ liefert spezifische Fläche und TWI. Wasser- und Materialbilanzen fügen zusätzliche Annahmen hinzu.">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Abflusswege und Sediment im kleinen Einzugsgebiet</h1>
+            <p class="subtitle lead">DGM-Kacheln vorbereiten · TauDEM anwenden · Modellannahmen untersuchen</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhalt</h2>
+   
+  <ul class="collapse">
+  <li><a href="#vom-bekannten-beispiel-zum-eigenen-untersuchungsfall" id="toc-vom-bekannten-beispiel-zum-eigenen-untersuchungsfall" class="nav-link active" data-scroll-target="#vom-bekannten-beispiel-zum-eigenen-untersuchungsfall">Vom bekannten Beispiel zum eigenen Untersuchungsfall</a></li>
+  <li><a href="#a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster" id="toc-a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster" class="nav-link" data-scroll-target="#a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster">A · Referenzlauf: Vier DGM-Kacheln zu einem Arbeitsraster</a></li>
+  <li><a href="#b-eigenständige-übertragung-ein-realer-oberlauf" id="toc-b-eigenständige-übertragung-ein-realer-oberlauf" class="nav-link" data-scroll-target="#b-eigenständige-übertragung-ein-realer-oberlauf">B · Eigenständige Übertragung: Ein realer Oberlauf</a></li>
+  <li><a href="#c-was-folgt-allein-aus-dem-gelände" id="toc-c-was-folgt-allein-aus-dem-gelände" class="nav-link" data-scroll-target="#c-was-folgt-allein-aus-dem-gelände">C · Was folgt allein aus dem Gelände?</a></li>
+  <li><a href="#d-was-ändert-sich-durch-eine-abflussannahme" id="toc-d-was-ändert-sich-durch-eine-abflussannahme" class="nav-link" data-scroll-target="#d-was-ändert-sich-durch-eine-abflussannahme">D · Was ändert sich durch eine Abflussannahme?</a></li>
+  <li><a href="#e-was-ändert-sich-durch-eine-transportgrenze" id="toc-e-was-ändert-sich-durch-eine-transportgrenze" class="nav-link" data-scroll-target="#e-was-ändert-sich-durch-eine-transportgrenze">E · Was ändert sich durch eine Transportgrenze?</a></li>
+  <li><a href="#f-ergebnis-und-nachvollziehbarkeit" id="toc-f-ergebnis-und-nachvollziehbarkeit" class="nav-link" data-scroll-target="#f-ergebnis-und-nachvollziehbarkeit">F · Ergebnis und Nachvollziehbarkeit</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/meander_abfluss_saga_grass_update.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<p><a href="../index.html">← Kursübersicht</a> · <a href="../pages/netlogo_modellvergleich.html">NetLogo-Vergleich</a> · <a href="../pages/modellbildung_gis_reader.html">Modellbildung im GIS</a> · <a href="../pages/abfluss_algorithmen_quellen.html">Daten, Algorithmen und Literatur</a></p>
+<section id="vom-bekannten-beispiel-zum-eigenen-untersuchungsfall" class="level2">
+<h2 class="anchored" data-anchor-id="vom-bekannten-beispiel-zum-eigenen-untersuchungsfall">Vom bekannten Beispiel zum eigenen Untersuchungsfall</h2>
+<p>In NetLogos <em>Grand Canyon</em> konnten Tropfen auf einem Relief verfolgt werden: Wo verlaufen ihre Wege, und wo treffen sie zusammen? <em>Erosion</em> ergänzte die zeitliche Veränderung des Reliefs, <em>River Meanders</em> die Veränderung eines Gerinnes durch Erosions- und Ablagerungsregeln. Jetzt arbeiten wir mit <strong>tatsächlichen Geodaten</strong> – und müssen zunächst selbst ein verwendbares Höhenraster herstellen.</p>
+<p>Die Modellkette beantwortet drei verschiedene Fragen: <strong>Wo konzentrieren sich Abflusswege im Gelände? Was folgt, wenn wir zusätzlich eine effektive Abflussmenge annehmen? Was ändert sich durch eine begrenzte Sedimenttransportkapazität?</strong> Das Gelände wird in diesem GIS-Modell <strong>nicht dynamisch verändert</strong>.</p>
+<p>Der Arbeitsweg ist in zwei Teile getrennt:</p>
+<ul>
+<li><strong>Referenzlauf:</strong> Sie führen mit vier bereitgestellten DGM-Kacheln die Datenaufbereitung und eine erste TauDEM-Berechnung aus. Dieser Lauf prüft den <em>technischen Weg</em>, ist aber noch keine Untersuchung eines vollständig erfassten Einzugsgebiets.</li>
+<li><strong>Eigener Fall:</strong> Sie wählen einen Oberlauf, beschaffen dessen DGM-Daten und <strong>übertragen denselben Workflow</strong>. Die anschließenden Modellrechnungen und ihre fachliche Beurteilung beziehen sich auf diesen Fall, nicht auf den Referenzdatensatz.</li>
+</ul>
+<p>Ein erfolgreicher Programmlauf ist dabei weder ein Beleg für vollständige Eingangsdaten noch für eine zutreffende Prozessbeschreibung.</p>
+</section>
+<section id="a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster" class="level2">
+<h2 class="anchored" data-anchor-id="a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster">A · Referenzlauf: Vier DGM-Kacheln zu einem Arbeitsraster</h2>
+<section id="ausgangsdaten-und-datenprüfung" class="level3">
+<h3 class="anchored" data-anchor-id="ausgangsdaten-und-datenprüfung">Ausgangsdaten und Datenprüfung</h3>
+<p>Im Repository liegen unter <a href="https://github.com/gisma-courses/geo-mod-2026/tree/main/assets/mini-data"><code>mini-data/</code></a> <strong>vier benachbarte DGM1-Kacheln</strong> (je 1 km², zusammen 2 × 2 km). Verwenden Sie diese vier Originaldateien, nicht ein bereits vorbereitetes Gesamt-DGM. Der Beispielordner enthält ausschließlich die für diesen Lauf vorgesehenen GeoTIFF-Kacheln.</p>
+<p>Öffnen Sie zunächst eine Kachel in QGIS und lesen Sie unter <em>Layer-Eigenschaften → Information</em> Koordinatenreferenzsystem (KBS/CRS), Pixelgröße und Ausdehnung ab. Prüfen Sie anhand der Kachelbezeichnungen und ihrer Ausdehnungen, wie die vier Dateien räumlich aneinanderliegen. Worin liegt der Unterschied zwischen <strong>vier benachbarten Dateien</strong> und <strong>einem einheitlichen Berechnungsraster</strong>?</p>
+</section>
+<section id="datenaufbereitung-als-eigener-verarbeitungsschritt" class="level3">
+<h3 class="anchored" data-anchor-id="datenaufbereitung-als-eigener-verarbeitungsschritt">Datenaufbereitung als eigener Verarbeitungsschritt</h3>
+<p>Laden Sie <a href="../scripts/prepare_dgm.py"><code>scripts/prepare_dgm.py</code></a> über den <strong>QGIS-Processing-Skripteditor</strong> und speichern Sie die Datei dort als Python-Skript. Das Werkzeug erscheint unter <strong>Verarbeitung → Werkzeugkiste → Skripte → Modellieren in der Geographie → DGM vorbereiten: Kacheln mosaikieren und Arbeitsraster erzeugen</strong>.</p>
+<p>Starten Sie das Werkzeug mit folgenden Eingaben:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Referenzlauf</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ordner mit DGM-Kacheln</td>
+<td><code>mini-data/</code></td>
+</tr>
+<tr class="even">
+<td>Ergebnisordner</td>
+<td><code>processing/beispiel/</code> (getrennt von den Quellkacheln)</td>
+</tr>
+<tr class="odd">
+<td>Zellweite des Arbeitsrasters</td>
+<td><strong>5 m</strong> als Voreinstellung; Wert ist frei wählbar</td>
+</tr>
+<tr class="even">
+<td>Ziel-KBS</td>
+<td>Leer lassen, wenn das Quell-KBS bereits projiziert ist und Meter verwendet; für den Burgwald sonst <code>EPSG:25832</code></td>
+</tr>
+</tbody>
+</table>
+<p>Das Werkzeug prüft zunächst die Georeferenzierung der Kacheln und weist u. a. unterschiedliche Quellgitter und überlappende Kacheln zurück. Dann erzeugt es ein <strong>virtuelles Mosaik</strong> und mit GDAL <em>Warp/Average</em> ein gemeinsames GeoTIFF. Bei 5 m entstehen:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Datei</th>
+<th>Aufgabe</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>processing/beispiel/dgm_mosaik.vrt</code></td>
+<td>Virtuelles Mosaik; verweist weiterhin auf die ursprünglichen Kacheln</td>
+</tr>
+<tr class="even">
+<td><code>processing/beispiel/dgm5.tif</code></td>
+<td>Eigenständiges, für TauDEM verwendbares 5-m-Arbeitsraster</td>
+</tr>
+<tr class="odd">
+<td><code>processing/beispiel/dgm_pruefung.json</code></td>
+<td>Verarbeitungsparameter, Kacheleigenschaften, gültige/ungültige Zellen und Prüfsummen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prüfen Sie die Ausgaben</strong>, statt nur eine Erfolgsmeldung zu übernehmen: Sind alle vier Kacheln enthalten? Sind an den Übergängen erkennbare Sprünge oder fehlende Werte vorhanden? Stimmen CRS, Ausdehnung und Pixelgröße? Was wurde bei der Reduktion von DGM1 auf 5 m verändert? Das Prüfprotokoll dokumentiert technische Eigenschaften; es garantiert <strong>nicht</strong>, dass das Gelände fachlich vollständig oder fehlerfrei ist.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technisch: Was dieses Werkzeug tut – und was ausdrücklich nicht
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>prepare_dgm.py</code> übernimmt <strong>ausschließlich die Rasteraufbereitung</strong>: Kacheln prüfen, VRT bilden, ein auf ein Zielgitter ausgerichtetes GeoTIFF erzeugen und das Ergebnis dokumentieren. Die originale DGM1-Auflösung bleibt in den Quellkacheln erhalten; das Arbeitsraster entsteht durch Mittelwertbildung (<em>Average</em>) bei der Umrechnung. Kleine NoData-Lücken können dabei verdeckt werden. Das ist keine hydrologische Senkenfüllung.</p>
+<p><strong><code>Pit Remove</code>, D8, D∞, Einzugsgebiete und Sedimenttransport gehören zum separaten TauDEM-Skript.</strong> Halten Sie diese Trennung auch bei späteren Änderungen ein.</p>
+<p>Die VRT-Datei ist kein eigenständiges Datenarchiv: Verschieben Sie die referenzierten Quellkacheln nicht nachträglich. Das Werkzeug überschreibt bestehende Ausgaben nicht; für eine andere Zellweite oder einen zweiten Lauf einen eigenen Ergebnisordner wählen. Es liest GeoTIFFs unmittelbar aus dem gewählten Ordner, nicht aus Unterordnern.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="erster-rechenlauf-mit-taudem" class="level3">
+<h3 class="anchored" data-anchor-id="erster-rechenlauf-mit-taudem">Erster Rechenlauf mit TauDEM</h3>
+<p>Laden Sie auch <a href="../scripts/taudem_burgwald_processing.py"><code>scripts/taudem_burgwald_processing.py</code></a> im QGIS-Processing-Skripteditor. Es erscheint unter derselben Gruppe <strong>Modellieren in der Geographie</strong> als <em>TauDEM: Abflusswege, Einzugsgebiet, Wasser, Sediment</em>. Wählen Sie <strong>Berechnung 1 – Grundlage</strong>, das soeben erzeugte <code>processing/beispiel/dgm5.tif</code> und den <strong>separaten Ergebnisordner</strong> <code>results/beispiel/</code>. TauDEM und MPI müssen lokal installiert und für das Betriebssystem erreichbar sein.</p>
+<p>Kontrollieren Sie <code>fel.tif</code>, <code>p.tif</code>, <code>ad8.tif</code> und die beiden Gerinneschwellen (<code>src_2ha.tif</code>, <code>src_5ha.tif</code>). Für 5-m-Zellen entsprechen <strong>2 ha = 800 Zellen</strong> und <strong>5 ha = 2 000 Zellen</strong>. Welche Raster stellen <strong>Richtungen</strong> dar, welche <strong>aufsummierte Flächenbeiträge</strong>? Lassen Sie die Prüfung auf Randeinflüsse aktiviert.</p>
+<p><strong>Grenze des Referenzlaufs:</strong> Das Mosaik umfasst nur 4 km². Schneidet sein Rand oberhalb eines betrachteten Punktes Zuflüsse ab, ist das dort berechnete Einzugsgebiet unvollständig. Aus einem technisch korrekten Ergebnis wird dadurch noch kein sachlich belastbarer Befund für einen realen Bach.</p>
+</section>
+</section>
+<section id="b-eigenständige-übertragung-ein-realer-oberlauf" class="level2">
+<h2 class="anchored" data-anchor-id="b-eigenständige-übertragung-ein-realer-oberlauf">B · Eigenständige Übertragung: Ein realer Oberlauf</h2>
+<p>Wählen Sie einen kleinen Oberlauf mit einer erkennbaren Talrinne oder Bachkrümmung, beispielsweise am <em>Roten Wasser</em> im Burgwald. Legen Sie einen <strong>Betrachtungsraum von ungefähr 2 × 2 km</strong> fest. Er ist nicht zwangsläufig das <strong>Rechengebiet</strong>: Für eine Einzugsgebietsabgrenzung muss das DGM gegebenenfalls weit über diesen Ausschnitt hinausreichen, damit die oberhalb des Auslasses liegenden Zuflüsse erfasst werden.</p>
+<p>Beschaffen Sie selbst die erforderlichen DGM-Kacheln. Für Hessen beginnen Sie bei <a href="https://gds.hessen.de/">Geodaten online</a> unter <em>3D-Daten → DGM1</em>; <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/3d-daten/digitale-gelaendemodelle">HVBG-Produktinformationen zum DGM</a> erläutern den Datensatz. Sichern Sie die Originaldateien in <code>data/</code>. Zum unabhängigen Vergleich besorgen Sie die <strong>Gewässerlinien des ATKIS-Basis-DLM</strong> (vorzugsweise als Shape-Dateien); <a href="https://hvbg.hessen.de/landesvermessung/geotopographie/digitales-basis-landschaftsmodell">Produktinformationen Basis-DLM</a>. Eine Landnutzungskarte ist für den Relief-Routing-Schritt noch nicht erforderlich.</p>
+<p><strong>Übertragen Sie nun Teil A auf Ihre eigenen Daten.</strong> Verwenden Sie denselben Aufbereitungsalgorithmus, einen eigenen Ergebnisordner <code>processing/</code> und anschließend das neue Arbeitsraster <code>processing/dgm5.tif</code>. Verwenden Sie bei der ersten Übertragung <strong>5 m</strong>, damit die nachfolgenden Kontrollrechnungen vergleichbar bleiben. Für die spätere Auflösungsanalyse können Sie die Zellweite im Dialog ändern. Bewahren Sie die Originalkacheln auf und dokumentieren Sie Datenquelle, Datensatz/Stand, gewählten Ausschnitt, verwendete Dateien, CRS und Zielauflösung.</p>
+<p>Beurteilen Sie das erzeugte DGM vor jeder hydrologischen Berechnung: Zeigt es den relevanten Oberlauf? Fehlen Kacheln am oberen Rand? Stimmen die Kachelanschlüsse? Ist die gewählte Fläche groß genug für die beabsichtigte Frage? Falls nicht, <strong>erweitern Sie das Rechengebiet oder begrenzen Sie Ihre Aussage</strong> – deaktivieren Sie nicht einfach die Randeinflussprüfung.</p>
+<p>Erstellen Sie in QGIS eine <strong>Schummerung</strong> und legen Sie die amtlichen Gewässerlinien darüber. Suchen Sie eine Bachkrümmung oder einen Durchlass und vergleichen Sie sichtbare Talrinne und kartierte Gewässerlage. Die ATKIS-Linie ist ein <strong>unabhängiger Vergleich</strong>, keine Eingabe in das Routing und auch keine fehlerfreie Bodenwahrheit.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachlich: Warum ein räumlich zu kleiner Ausschnitt nicht ausreicht
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Eine Akkumulation berücksichtigt nur Zuflüsse, die das Modellgitter erreicht. Schneidet dessen Rand einen Hang oder Oberlauf ab, fehlen Beiträge. TauDEM kann solche Randeinflüsse als NoData kennzeichnen. <strong>Ein Kartenfenster von 4 km² ist kein Einzugsgebiet von 4 km².</strong> Die Eignung des Berechnungsraums lässt sich deshalb nicht allein aus seiner Größe ableiten.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="c-was-folgt-allein-aus-dem-gelände" class="level2">
+<h2 class="anchored" data-anchor-id="c-was-folgt-allein-aus-dem-gelände">C · Was folgt allein aus dem Gelände?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/abfluss_workflow.svg" class="img-fluid figure-img" style="width:100.0%" alt="Ab dem aufbereiteten DGM verzweigt TauDEM nach Pit Remove in D8 und D∞: D8 liefert Akkumulation, Gerinneschwellen und Einzugsgebiet; D∞ liefert spezifische Fläche und TWI. Wasser- und Materialbilanzen fügen zusätzliche Annahmen hinzu."></p>
+<figcaption>Berechnungskette mit getrennten D8- und D∞-Zweigen. ATKIS dient dem unabhängigen Vergleich.</figcaption>
+</figure>
+</div>
+<p><a href="../diagrams/abfluss_workflow.drawio">Flussdiagramm in draw.io bearbeiten</a>. Die <strong>Datenaufbereitung aus Teil A/B geht der hier dargestellten Modellkette voraus</strong>.</p>
+<section id="entwässerungsverbindungen-und-flächenakkumulation" class="level3">
+<h3 class="anchored" data-anchor-id="entwässerungsverbindungen-und-flächenakkumulation">Entwässerungsverbindungen und Flächenakkumulation</h3>
+<p>Verwenden Sie nun das <strong>eigene</strong> Arbeitsraster <code>processing/dgm5.tif</code> aus der Datenaufbereitung – nicht das Raster des Referenzlaufs. Öffnen Sie <strong>Verarbeitung → Werkzeugkiste → Skripte → Modellieren in der Geographie → TauDEM: Abflusswege, Einzugsgebiet, Wasser, Sediment</strong>. Wählen Sie <strong>Berechnung 1 – Grundlage</strong> und den Ergebnisordner <code>results/</code>. Das Skript führt die folgende TauDEM-Folge auf <strong>demselben <code>dgm5.tif</code></strong> aus:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>TauDEM-Werkzeug</th>
+<th>Eingabe → Ausgabe</th>
+<th>Bedeutung des Ergebnisses</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pit Remove</strong></td>
+<td><code>dgm5.tif</code> → <code>fel.tif</code></td>
+<td>Für den Abfluss aufbereitete Höhenwerte, weiterhin <strong>m</strong></td>
+</tr>
+<tr class="even">
+<td><strong>D8 Flow Directions</strong></td>
+<td><code>fel.tif</code> → <code>p.tif</code>, <code>sd8.tif</code></td>
+<td><code>p</code>: kodierte Richtung zu <strong>einem</strong> Nachbarn; <code>sd8</code>: Gefälle <strong>m/m</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>D8 Contributing Area</strong></td>
+<td><code>p.tif</code> → <code>ad8.tif</code></td>
+<td>Anzahl der zu einer Zelle entwässernden Zellen einschließlich der Zelle selbst</td>
+</tr>
+</tbody>
+</table>
+<p>Das Skript ruft dafür <code>PitRemove</code>, <code>D8FlowDir</code> und <code>AreaD8</code> auf. Lassen Sie die <strong>Prüfung auf Randeinflüsse aktiviert</strong> und setzen Sie keine Auslasspunkte als Einschränkung. Stellen Sie <code>ad8.tif</code> mit logarithmischer Farbskala oder mehreren abgestuften Klassen dar: Die großen Werte markieren die <strong>potenziellen Konzentrationslinien</strong> im Relief. Prüfen Sie außerdem mit dem Rasterrechner <code>"fel@1" - "dgm5@1"</code> an mindestens einer Vertiefung, <strong>wo das Senkenfüllen Höhen verändert hat</strong>. Ein Wert von <code>0</code> bedeutet: unverändert.</p>
+<p><strong>Lesen Sie den Wert an einer Zelle der Talrinne ab.</strong> Für das hier verwendete <strong>5-m-Arbeitsraster</strong> gilt (bei anderer Zielzellweite ist die Zellfläche anzupassen):</p>
+<p><span class="math display">\[
+A_{\mathrm{D8}}=N_{\mathrm{D8}}\cdot 25\ \mathrm{m}^2.
+\]</span></p>
+<p>Beispiel: <code>ad8 = 4 000</code> bedeutet <strong>100 000 m² = 10 ha</strong> beitragende Fläche – <strong>nicht</strong> 4 000 Liter, 4 000 m³/s oder 4 000 tatsächlich dort eintreffende Regentropfen.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Routing und Akkumulation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Routing</strong> legt für jede Zelle fest, <strong>wohin</strong> ein Beitrag weitergegeben wird. <strong>Akkumulation</strong> zählt bzw. summiert anschließend, <strong>was von oberhalb ankommt</strong>. Bei D8 stehen im Raster <code>p.tif</code> nur Richtungs<strong>codes</strong> (acht mögliche Nachbarn), in <code>ad8.tif</code> dagegen <strong>Zellanzahlen</strong>. Die Zahl <code>4000</code> ist nicht die vierte Fließrichtung, sondern 4000 vollständig verbundene Zellen einschließlich der Zielzelle. Erst die Multiplikation mit der Zellfläche erzeugt eine Fläche in m².</p>
+<p>An einer Wasserscheide sind Zuflüsse von der jeweils anderen Seite <strong>nicht</strong> angeschlossen. Umgekehrt können am Auslass viele Hangzellen zusammenkommen. Beides ergibt sich aus denselben Richtungsverbindungen; die Akkumulation stellt deshalb keine neue Fließregel dar.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachlich: Was bei der Senkenbehandlung verändert wird
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>Pit Remove</code> hebt geschlossene Vertiefungen bis zum niedrigsten Überlaufniveau an, damit eine zusammenhängende Abflussverbindung entstehen kann. Das ist für das Relief-Routing zweckmäßig, aber <strong>keine Beobachtung eines aufgefüllten Geländes</strong>. Echte Senken, Straßendämme, Brücken und Durchlässe können andere Regeln erfordern. Prüfen Sie eine auffällige Abweichung zwischen kartiertem Bach und berechnetem Weg zunächst im <strong>ursprünglichen</strong> DGM, nicht erst durch weiteres Glätten.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technisch: Fehler eingrenzen statt Rechenregeln verändern
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Falls TauDEM abbricht, lesen Sie im QGIS-Processing-Protokoll zuerst den fehlgeschlagenen Befehl und seine Eingaben. Prüfen Sie Dateipfade, das gewählte TauDEM-Binärverzeichnis, den MPI-Launcher und das Koordinatensystem. Die Quellkacheln dürfen nicht direkt als Ersatz für <code>processing/dgm5.tif</code> eingesetzt werden.</p>
+<p>Bei unklaren Aufrufen oder Fehlermeldungen können Sie technische Dokumentation und KI-Unterstützung nutzen; maßgeblich bleiben der tatsächlich ausgeführte Befehl, die Softwareversion und das überprüfte Ergebnis. Eine Änderung an Zellweite, Senkenbehandlung oder Randeinflussprüfung ist <strong>keine</strong> bloße technische Reparatur, sondern verändert gegebenenfalls die Modellannahme.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="gerinneschwelle-auslass-und-einzugsgebiet" class="level3">
+<h3 class="anchored" data-anchor-id="gerinneschwelle-auslass-und-einzugsgebiet">Gerinneschwelle, Auslass und Einzugsgebiet</h3>
+<p><strong>Gerinne sind zunächst keine Eingabedaten:</strong> Wir zeichnen eine potenzielle Bachlinie dort, wo ausreichend viele Oberhangzellen zusammenkommen.</p>
+<ol type="1">
+<li>In der bereits gerechneten <strong>eigenen Grundlage</strong> hat TauDEM <em>Stream Definition By Threshold</em> die Schwelle <strong>2 ha = 800 Zellen</strong> als <code>src_2ha.tif</code> gespeichert (bei 5-m-Zellen).</li>
+<li>Die zweite Schwelle <strong>5 ha = 2 000 Zellen</strong> liegt als <code>src_5ha.tif</code> vor. Schalten Sie die beiden 1/0-Raster abwechselnd über der Schummerung ein und überlagern Sie die amtliche Gewässerlinie.</li>
+<li>Wählen Sie an Ihrem <strong>eigenen</strong> Bach einen Punkt <strong>auf einer berechneten <code>src_2ha</code>-Gerinnezelle</strong> als Auslass. Erstellen Sie einen <strong>gespeicherten, ungefilterten</strong> Punktlayer <code>processing/auslass.shp</code> im KBS des DGM mit dem ganzzahligen Feld <code>id</code> (für den einen Punkt <code>id = 1</code>). Der Punkt darf nicht lediglich optisch auf der ATKIS-Linie liegen.</li>
+<li>Prüfen Sie, ob der Punkt wirklich auf dem <strong>eigenen Raster</strong> liegt und der Layer genau einen Punkt mit gültiger ganzzahliger <code>id</code> enthält. Starten Sie dasselbe Processing-Skript mit <strong>Berechnung 2 – Einzugsgebiet</strong>: Ergebnisordner <code>results</code>, Auslass <code>auslass.shp</code>, <strong>Verschieben = 0</strong>. Intern rechnet TauDEM <em>Gage Watershed</em> mit <code>p.tif</code> und schreibt <code>becken.tif</code>. Die Rasterzellen mit Wert <strong>1</strong> bilden das zum Punkt entwässernde Gebiet. Stellen Sie dessen Grenze zusammen mit <code>ad8.tif</code> dar.</li>
+</ol>
+<p>Die ATKIS-Linie besitzt eine eigene Generalisierung, Lageunsicherheit und Erhebungsgeschichte. Unterschiede zum DGM können deshalb auch die Referenz betreffen.</p>
+<p><strong>Prüfung am eigenen Bach:</strong> Wo liegt die Wasserscheide? Welche Seitenhänge sind angeschlossen? Verändert die Gerinneschwelle die <strong>eingezeichneten Bachanfänge</strong>, obwohl <code>p.tif</code> und das Einzugsgebiet am unveränderten Auslass gleich bleiben? Vergleichen Sie den berechneten Talweg gerade an der gewählten Krümmung mit der amtlichen Gewässerlinie. <strong>Die Krümmung kann im Relief bereits enthalten sein; der Algorithmus erzeugt sie nicht durch Ufererosion.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technisch: Punkt liegt neben dem berechneten Gerinne
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Im <strong>Processing-Skript, Berechnung 2</strong> können Sie <strong>„Auslass maximal um N Zellen verschieben“ = 2</strong> einstellen. TauDEM <em>Move Outlets To Streams</em> sucht dann entlang der D8-Verbindung eine Gerinnezelle (Standard <code>src_2ha.tif</code>). Das Skript speichert <code>auslass_auf_gerinne.shp</code> und berechnet daraus <code>becken.tif</code>. Kontrollieren Sie <code>dist_moved</code> und die tatsächlich verwendete Lage. Bei 5 m Rasterweite sind dies höchstens zwei D8-Schritte (je nach Richtung bis rund <strong>14,1 m</strong>); wenn kein Gerinne erreicht wird, wählen Sie den Auslass neu. Die Auslassposition bestimmt das Ergebnis; eine automatische Verschiebung darf nicht unbemerkt eine andere Fragestellung erzeugen.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Gerinneschwelle, Auslass und Wasserscheide
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die <strong>Gerinneschwelle</strong> markiert Zellen mit <code>ad8</code> oberhalb eines vorgegebenen Flächenbeitrags als potenziellen Bach. Bei 5-m-Zellen: <code>800 × 25 m² = 2 ha</code>. Eine höhere Schwelle lässt Bachlinien <strong>später</strong> beginnen; sie ändert weder das D8-Richtungsraster <code>p</code> noch die reale Quelle des Bachs. Bei 10-m-Zellen entsprechen <strong>200 Zellen</strong> denselben 2 ha – die Schwelle muss also in <strong>Fläche</strong>, nicht in Zellzahl, verglichen werden.</p>
+<p>Der <strong>Auslass</strong> ist die Rasterzelle, zu der alle ausgewiesenen Oberlieger entwässern. Ihre Menge bildet das <strong>Einzugsgebiet</strong>. Dessen Rand heißt <strong>Wasserscheide</strong>: Nach der verwendeten Routingregel führen die Abflusswege außerhalb nicht zu diesem Auslass. Die Lage des Auslasses ist daher eine fachliche Entscheidung, kein beliebiger Kartenmarker.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="d8-und-d-eine-andere-weiterleitungsregel" class="level3">
+<h3 class="anchored" data-anchor-id="d8-und-d-eine-andere-weiterleitungsregel">D8 und D∞: Eine andere Weiterleitungsregel</h3>
+<p>Die <strong>Grundlage für das eigene Gebiet (Berechnung 1)</strong> hat auf <strong>demselben <code>fel.tif</code></strong> zwei weitere TauDEM-Schritte bereits ausgeführt:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>TauDEM-Werkzeug</th>
+<th>Eingabe → Ausgabe</th>
+<th>Werte</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>D-Infinity Flow Directions</strong></td>
+<td><code>fel.tif</code> → <code>ang.tif</code>, <code>slp.tif</code></td>
+<td>Winkel <strong>rad</strong> und lokale Hangneigung <strong>m/m</strong></td>
+</tr>
+<tr class="even">
+<td><strong>D-Infinity Contributing Area</strong></td>
+<td><code>ang.tif</code> → <code>sca.tif</code></td>
+<td><strong>spezifische</strong> beitragende Fläche <strong>m²/m = m</strong></td>
+</tr>
+</tbody>
+</table>
+<p>D8 leitet den gesamten Zellbeitrag an <strong>einen</strong> Empfänger. D∞ verteilt ihn je nach berechnetem Winkel auf <strong>höchstens zwei</strong> benachbarte Zellen. Vergleichen Sie auf einer breiten Hangfläche und im Tal die <strong>Muster</strong> von <code>ad8</code> und <code>sca</code>. Achten Sie dabei darauf, dass die Raster <strong>nicht dieselbe Einheit</strong> haben. <code>sca</code> lässt sich nicht allein durch eine andere Farbskala in <code>ad8</code> umrechnen.</p>
+<p>Für einen Zahlenvergleich wäre die jeweilige Flächen- beziehungsweise Breitenbezugsgröße anzugleichen; der hier geforderte Mustervergleich allein isoliert den Einfluss der Routingregel nicht.</p>
+<p>Die Grundlage berechnet außerdem den TauDEM <strong>Topographic Wetness Index</strong> aus <code>sca.tif</code> und <code>slp.tif</code> als <code>twi.tif</code>. Zeigen Sie die höchsten TWI-Werte und betrachten Sie, ob es sich eher um flache Talbereiche oder steile Hänge handelt.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: D8, D∞ und MFD – was wird verteilt?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>D8:</strong> Von acht Nachbarn erhält genau <strong>einer</strong> den gesamten Beitrag; das kann am Hang künstlich schmale Fließlinien erzeugen. <strong>D∞ (D-Infinity):</strong> Die Richtung ist ein <strong>kontinuierlicher Winkel</strong> aus dreieckigen Teilflächen des Höhenrasters. Liegt er zwischen zwei Nachbarzellen, wird der Beitrag <strong>anteilig auf diese beiden</strong> verteilt. Das <code>∞</code> bezeichnet also die kontinuierlich möglichen Richtungswinkel, <strong>nicht unendlich viele Empfänger</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/routing_d8_dinf.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Schematische Verteilung: D8 an eine Nachbarzelle, D∞ anteilig an höchstens zwei Zellen.</figcaption>
+</figure>
+</div>
+<p>Im Beispiel rechts sind 60/40 Prozent <strong>nur zur Illustration gewählt</strong>, keine festen TauDEM-Gewichte. Ein klassisches <strong>MFD (Multiple Flow Direction)</strong> kann Beiträge auf <strong>mehr als zwei</strong> tieferliegende Nachbarn verteilen. D∞ ist <strong>nicht</strong> gleichbedeutend mit klassischem MFD. Originalmethode: <a href="https://doi.org/10.1029/96WR03137">Tarboton (1997)</a>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Was bedeutet SCA?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>SCA = Specific Catchment Area</strong>, deutsch <em>spezifische beitragende Einzugsfläche</em>. TauDEM <code>AreaDinf</code> summiert die <strong>anteiligen Flächenbeiträge</strong> von oberhalb und bezieht sie im Standardfall auf die <strong>Rasterbreite</strong>. Für quadratische 5-m-Zellen gilt schematisch:</p>
+<p><span class="math display">\[
+a=\frac{A_{\mathrm{eff}}}{\Delta x}, \qquad [a]=\frac{\mathrm{m}^2}{\mathrm{m}}=\mathrm{m}.
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/sca_flaeche_pro_breite.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Beispiel: 150 m² effektive beitragende Fläche geteilt durch 5 m Rasterbreite ergibt eine SCA von 30 m.</figcaption>
+</figure>
+</div>
+<p><strong>Lesebeispiel:</strong> <code>sca = 30</code> bedeutet <strong>30 m² Beitrag je Meter Bezugsbreite</strong>, also rechnerisch <code>150 m²</code> bei <code>5 m</code> Zellbreite. Anders als <code>ad8</code> enthält <code>sca</code> <strong>Teilbeiträge</strong> und ist bereits auf die Breite bezogen. <code>ad8 = 30</code> bedeutet dagegen bloß <strong>30 vollständig angeschlossene Zellen</strong>. Die beiden Raster sind deshalb weder in Wert noch in Routingannahme direkt vergleichbar. Grundlage: <a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityContributingArea.html">TauDEM-Dokumentation zu AreaDinf</a>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Was zeigt der TWI?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>TWI = Topographic Wetness Index.</strong> TauDEM verbindet die spezifische Fläche <code>a = sca</code> mit der lokalen Neigung <code>tan(β) = slp</code>:</p>
+<p><span class="math display">\[
+\mathrm{TWI}=\ln\!\left(\frac{a}{\tan\beta}\right).
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/twi_interpretation.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Vergleich: eine kleine spezifische Fläche auf steilem Hang führt zu geringerem TWI als eine große Fläche auf flachem Hang.</figcaption>
+</figure>
+</div>
+<p>Bei <strong>gleicher Neigung</strong> steigt der Index mit <code>a</code>, bei <strong>gleichem a</strong> steigt er mit geringerem Gefälle. Er beschreibt damit eine <em>topografische Disposition</em> innerhalb eines Modells, keine gemessene Bodenfeuchte. Für die Auswertung ist zusätzlich die Behandlung sehr kleiner oder verschwindender Neigungen wichtig. Hydrologischer Hintergrund: <a href="https://doi.org/10.1080/02626667909491834">Beven &amp; Kirkby (1979)</a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="d-was-ändert-sich-durch-eine-abflussannahme" class="level2">
+<h2 class="anchored" data-anchor-id="d-was-ändert-sich-durch-eine-abflussannahme">D · Was ändert sich durch eine Abflussannahme?</h2>
+<p>Im QGIS-Rasterrechner berechnen Sie für <strong>5-m-Zellen</strong> aus <code>ad8.tif</code> das Raster <code>results/volumen_10mm.tif</code>:</p>
+<pre class="text"><code>"ad8@1" * 25 * 0.010</code></pre>
+<p><strong>Bei anderer Rasterweite</strong> ersetzen Sie <code>25</code> durch die tatsächliche Zellfläche in m² (<code>Zellweite²</code>). Die effektive Abflusshöhe bleibt <code>0.010</code> m, sofern Sie diese Annahme nicht ausdrücklich verändern.</p>
+<p><strong>Annahme:</strong> Jede Zelle liefert einmalig <strong>10 mm effektiven Abfluss</strong> (also Niederschlagsüberschuss nach allen Verlusten). Weil jede Zelle 25 m² groß ist, entspräche das <strong>0,25 m³ pro beitragender Zelle</strong>. Der Rasterwert am gewählten Auslass ist damit die <em>potenzielle gesamte Abflussmenge in m³</em>, die sich aus dieser angenommenen flächendeckenden Abflussbildung ergibt – <strong>wenn alle Beiträge den Auslass erreichen</strong>.</p>
+<p>Prüfen Sie den Rasterrechner-Ausdruck über seine Größen: <code>ad8</code> zählt Zellen, <code>25 m²</code> ist die Zellfläche und <code>0,010 m</code> die effektive Abflusshöhe. Für den bereits verwendeten Kontrollwert von <strong>2 ha</strong> müssen daraus <strong>200 m³</strong> entstehen. Das prüft Einheiten und Umsetzung der gesetzten Annahme; die tatsächliche Abflussbildung wird dadurch nicht bestätigt. Dieselbe Kontrolle gilt für einen von KI vorgeschlagenen Ausdruck. Sie kennen weiterhin weder die Fließzeit noch einen Spitzenabfluss in m³/s.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachlich: Was sich durch Regen, Boden und Landnutzung zusätzlich festlegen ließe
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>10 mm</code> bezeichnet hier <strong>effektiven Abfluss</strong>, nicht automatisch <code>10 mm</code> Niederschlag. Bei einem Niederschlag <code>P</code> und einem Abflussanteil <code>C</code> wäre der Zellbeitrag <code>P · C · Zellfläche</code>. Ein nach Landnutzung differenziertes <code>C</code> wäre <strong>eine zusätzliche empirische Zuordnung</strong>. ATKIS enthält Nutzungs- und Bedeckungsklassen, aber keinen gemessenen Abflussbeiwert, keine Bodenleitfähigkeit und keinen Sedimentabtrag. Für eine belastbare Differenzierung wären Boden, Versiegelung, Zustand und Ereignisannahme zu begründen.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technisch: Räumlich verschiedene Abflussbeiträge korrekt akkumulieren
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Wenn ein Raster <code>runoff_zelle_m3.tif</code> für <strong>jede Zelle</strong> einen angenommenen Beitrag in m³ enthält, wählen Sie im Processing-Skript <strong>Berechnung 3 – gewichtete Abflussakkumulation</strong>. Eingabe ist dieses Gewichtsraster, Ergebnisordner wieder <code>results</code>. Intern verwendet TauDEM <em>D8 Contributing Area</em> die vorhandenen <code>p.tif</code>-Verbindungen. Das Ergebnis <code>volumen_gewichtet_m3.tif</code> enthält die <strong>Summe der Zellvolumina in m³</strong>, nicht eine Zellzahl.</p>
+<p><code>runoff_zelle_m3.tif</code> muss exakt auf dem <code>dgm5</code>-Raster liegen. Bei konstant 0,25 m³ pro 5-m-Zelle stimmt das Ergebnis (abgesehen von Rundung und NoData) mit <code>volumen_10mm.tif</code> überein. Prüfen Sie diese Bedeutung auch bei vorgeschlagenem Code: Ein lokaler Zellbeitrag und ein bereits akkumuliertes Volumen sind unterschiedliche Eingaben; eine erneute Akkumulation des Letzteren würde Beiträge mehrfach zählen.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="e-was-ändert-sich-durch-eine-transportgrenze" class="level2">
+<h2 class="anchored" data-anchor-id="e-was-ändert-sich-durch-eine-transportgrenze">E · Was ändert sich durch eine Transportgrenze?</h2>
+<p>Im <strong>eigenen Untersuchungsgebiet</strong> erhält dasselbe D∞-Entwässerungsnetz <strong>zwei neue Raster</strong>. Wir verwenden bewusst <strong>synthetische, dimensionslose Materialeinheiten (ME)</strong>, weil weder gemessene Erosionsraten noch Sedimenttransportparameter vorliegen. Jeder Wert bezieht sich auf <strong>denselben gedachten Bilanzfall</strong>; eine reale Zeitdauer wird nicht simuliert.</p>
+<p>Erzeugen Sie im QGIS-Rasterrechner:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Raster</th>
+<th>Ausdruck</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>processing/angebot.tif</code></td>
+<td><code>("dgm5@1" * 0) + 0.02</code></td>
+<td>Jede gültige Zelle bietet <strong>0,02 ME</strong> an</td>
+</tr>
+<tr class="even">
+<td><code>processing/kapazitaet.tif</code></td>
+<td><code>0.2 * sqrt("sca@1" / 5) * (("slp@1" + 0.0001) / 0.05)</code></td>
+<td>Maximal transportierbare <strong>ME</strong> am Zellabgang; nimmt mit spezifischer Fläche und Gefälle zu</td>
+</tr>
+</tbody>
+</table>
+<p>Die Zahlen <strong>0,02 ME</strong>, <strong>0,2 ME</strong>, <strong>5 m</strong> als <strong>fest gewählte Bezugsbreite in der Formel</strong> (nicht automatisch die jeweils eingestellte Zellweite), <strong>0,05 m/m</strong> und der kleine Gefällezusatz <code>0,0001</code> sind gesetzte <strong>Versuchsparameter, keine kalibrierten Naturkonstanten</strong>. <code>sca / 5 m</code> und <code>slp / 0,05</code> sind dimensionslos; daher steht die Kapazität wie das Angebot in ME.</p>
+<p>Starten Sie TauDEM <strong>D-Infinity Transport Limited Accumulation</strong> mit <code>ang.tif</code>, <code>angebot.tif</code> (<em>Supply</em>) und <code>kapazitaet.tif</code> (<em>Transport Capacity</em>). Speichern Sie <code>transport.tif</code> und <code>ablagerung.tif</code>. Das Werkzeug bilanziert in jeder Rasterzelle:</p>
+<p><span class="math display">\[
+\begin{aligned}
+M_{\mathrm{verfügbar}} &amp;= M_{\mathrm{von\ oben}} + M_{\mathrm{lokal}}, \\
+M_{\mathrm{weiter}} &amp;= \min\!\left(M_{\mathrm{verfügbar}}, T_{\mathrm{cap}}\right), \\
+M_{\mathrm{abgelagert}} &amp;= M_{\mathrm{verfügbar}} - M_{\mathrm{weiter}}.
+\end{aligned}
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Angebot, Kapazität und Ablagerung
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Materialangebot</strong> (<code>tsup</code>) ist die hypothetisch <strong>neu bereitgestellte</strong> Menge pro Zelle. <strong>Transportkapazität</strong> (<code>tc</code>) ist die im selben Bilanzfall maximal <strong>weiterleitbare</strong> Menge. Was von oberhalb kommt, wird zum lokalen Angebot addiert. Reicht die Kapazität nicht, bleibt eine <strong>Restmenge als Ablagerung</strong> (<code>tdep</code>) zurück; die tatsächlich weitergegebene Menge steht in <code>tla</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/transport_limit_bilanz.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Bilanzbeispiel: 4 Materialeinheiten kommen von oben, 2 entstehen lokal, höchstens 3 werden transportiert, 3 bleiben zurück.</figcaption>
+</figure>
+</div>
+<p>Die Rasterwerte sind in dieser Übung <strong>ME pro gedachtem Bilanzfall</strong>, keine gemessenen Sedimentmassen oder Frachten pro Sekunde. Die Rechnung enthält <strong>keine Zeitintegration</strong> und aktualisiert <strong>nicht</strong> das Höhenraster. Werkzeugdefinition: <a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityTransportLimitedAccumulation.html">TauDEM DinfTransLimAccum</a>.</p>
+</div>
+</div>
+</div>
+<p>Zeigen Sie <code>ablagerung.tif</code> über <code>slp.tif</code>: <strong>Wo reicht die gesetzte Kapazität nicht für das ankommende Material?</strong> Prüfen Sie dieselbe Stelle mit <code>transport.tif</code>. Ändern Sie anschließend <strong>nur den Vorfaktor 0,2 auf 0,05</strong>, berechnen Sie <code>kapazitaet.tif</code> neu und führen Sie die Transportrechnung erneut aus. Welche Ablagerungsbereiche wachsen?</p>
+<p><strong>Grenze des Ergebnisses:</strong> Die Rechnung transportiert angebotene Modellmengen entlang festgelegter D∞-Verbindungen. Sie berechnet <strong>weder reale Erosion aus Schubspannung noch die Änderung der DGM-Höhen</strong>. Ihre Ablagerungskarte ist kein Nachweis von Sedimentbänken am Bach.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technisch: Transportrechnung direkt mit TauDEM starten
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Speichern Sie beide Eingaberaster mit denselben Grenzen und Pixelzentren wie <code>ang.tif</code> und prüfen Sie die NoData-Maske. Wählen Sie im Processing-Skript <strong>Berechnung 4 – Transport und Ablagerung</strong>, den Ergebnisordner <code>results</code>, <code>angebot.tif</code> und <code>kapazitaet.tif</code>. Intern läuft <code>DinfTransLimAccum</code>; es schreibt <code>transport.tif</code> und <code>ablagerung.tif</code>. Für den zweiten Durchlauf mit <strong>Kapazitätsfaktor 0,05</strong> setzen Sie zusätzlich den <strong>Ausgabesuffix <code>kap05</code></strong>; dadurch entstehen <code>transport_kap05.tif</code> und <code>ablagerung_kap05.tif</code>, ohne den ersten Versuch zu überschreiben.</p>
+<p>Bei einer Änderung des Ausdrucks oder des Skripts vergleichen Sie die betroffenen Zeilen mit dem vorherigen Stand: Wurde nur der Kapazitätsfaktor geändert? Angebot, Routing und Rastergitter müssen für diesen Vergleich gleich bleiben. Prüfen Sie das Ergebnis an der bereits erläuterten Bilanz: Bei 4 ME Zufluss, 2 ME lokalem Angebot und 3 ME Kapazität werden 3 ME weitergegeben und 3 ME zurückgehalten. Ein fehlerfreier Programmlauf allein prüft diese Bedeutung nicht.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachlich: Was für einen belastbaren Sedimentansatz noch fehlte
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Eine physikalisch gestützte Erosions- oder Sedimentfracht benötigt mindestens <strong>Materialeigenschaften, Verfügbarkeit/Abtragsbedingungen, einen transportwirksamen Abfluss und eine dazu passende Kapazitätsbeziehung</strong>. Unsere Kapazitätsformel ist nur eine prüfbare Hypothese: mehr beitragende Fläche und stärkeres Gefälle erlauben mehr Transport. Ob und wie stark das tatsächlich gilt, ist damit nicht belegt. Selbst bei realistischen Parametern würde TauDEMs Transportakkumulation das <strong>Gelände nicht aktualisieren</strong>. Die Rückwirkung auf den weiteren Abfluss war im NetLogo-Modell <em>Erosion</em> bereits als Regel enthalten; hier fehlt sie ausdrücklich.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="f-ergebnis-und-nachvollziehbarkeit" class="level2">
+<h2 class="anchored" data-anchor-id="f-ergebnis-und-nachvollziehbarkeit">F · Ergebnis und Nachvollziehbarkeit</h2>
+<p>Arbeiten Sie <strong>am selbst gewählten Bach</strong>, nicht an den vier Referenzkacheln. Geben Sie einen nachvollziehbaren Befund ab, der die folgenden drei Bestandteile zusammenführt:</p>
+<ol type="1">
+<li><strong>Daten und Rechenweg:</strong> Gebiet und Auslass, Herkunft der verwendeten DGM-Kacheln, gewählte Rasterweite, Aufbereitungsbericht (<code>dgm_pruefung.json</code>), ausgeführte TauDEM-Operationen und Ergebnisdateien. Das gespeicherte QGIS-Projekt allein enthält die Rasterdaten nicht.</li>
+<li><strong>Zwei Kartenansichten:</strong> Erstens Schummerung, amtliche Gewässerlinie, berechnete Gerinnelinien, Auslass und D8-Einzugsgebiet; zweitens TWI <strong>oder</strong> Ablagerung am gleichen Gebiet. Lesbare Legenden mit Einheiten bzw. Hinweis auf Modellwerte gehören dazu.</li>
+<li><strong>Interpretation an einer konkreten Stelle:</strong> Erklären Sie eine beobachtete Übereinstimmung oder Abweichung zwischen berechnetem und kartiertem Gerinne. Trennen Sie begründbare Erklärungen von offenen Fragen. Zeigen Sie, welche Ergebnisse <strong>aus dem DGM</strong> hervorgehen und welche erst durch <strong>10 mm effektiven Abfluss</strong> beziehungsweise <strong>Materialangebot und Transportkapazität</strong> entstehen.</li>
+</ol>
+<p>Sie müssen nicht jeden Zwischenschritt als Bildschirmfoto dokumentieren. Entscheidend ist, dass aus Quelldaten, Bearbeitungsschritten, Parametern und Ergebnissen ein <strong>nachvollziehbarer und möglichst wiederholbarer Arbeitsweg</strong> entsteht. Technische Hilfen einschließlich KI sind zulässig; ein plausibel klingender Vorschlag ersetzt keinen überprüften Aufruf. Dokumentieren Sie relevante technische Änderungen und die dafür verwendeten Hilfen knapp, statt Chatprotokolle abzugeben.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Reflexion: Welche Modellierungsentscheidung war tatsächlich Ihre eigene?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die Programme haben das Raster mosaikiert und die Fließwege gerechnet. <strong>Sie</strong> haben den Ort, die Datengrundlage, das Rechengebiet, die Zielauflösung und die Prüfstrategie festgelegt. Danach kamen Annahmen zu Abfluss und Materialtransport hinzu. Welche dieser Entscheidungen war für Ihren Befund besonders folgenreich – und woran lässt sich das erkennen?</p>
+<p>Das Relief-Routing beschreibt die <strong>vorhandene Geländeform</strong>; es simuliert nicht die zeitliche Entstehung einer Mäanderschlinge. Genau hierin unterscheidet es sich von den zuvor untersuchten dynamischen NetLogo-Modellen.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachliche Erweiterung: Rasterweite gezielt testen
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Wiederholen Sie die DGM-Vorbereitung aus denselben Quellkacheln mit <strong>10 m</strong> Zielzellweite in einem neuen Ergebnisordner und wiederholen Sie <code>Pit Remove</code> → D8 → <code>AreaD8</code>. Vergleichen Sie am <strong>gleichen realen Auslass</strong> Gerinnelage und Einzugsgebietsfläche in <strong>m²</strong>, nicht die Zellzahlen. Verwenden Sie für 2 ha als Gerinneschwelle nun <strong>200 Zellen</strong>. Unterscheiden Sie Änderungen durch <strong>Generalisation des Reliefs</strong> von den rein rechnerischen Folgen einer größeren Zellfläche.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technische Orientierung: Ordner und Schnittstellen
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre class="text"><code>mini-data/                   # vier Quellkacheln für den Referenzlauf
+processing/beispiel/         # dgm_mosaik.vrt, dgm5.tif, dgm_pruefung.json
+results/beispiel/            # Ergebnisse von TauDEM-Modus 1 am Beispiel
+data/                        # selbst beschaffte DGM-Kacheln
+processing/dgm_mosaik.vrt    # eigenes virtuelles Mosaik
+processing/dgm5.tif         # eigenes TauDEM-Eingaberaster
+processing/dgm_pruefung.json
+processing/auslass.shp       # plus .shx/.dbf/.prj; einzelner Punkt im DGM-KBS
+processing/angebot.tif
+processing/kapazitaet.tif
+results/                     # Ergebnisse am eigenen Oberlauf</code></pre>
+<p><strong>Schnittstelle:</strong> <code>prepare_dgm.py</code> liefert das Arbeitsraster; erst <code>taudem_burgwald_processing.py</code> übernimmt dieses als DGM-Eingabe. Bei späterer Variation der Rasterweite entstehen andere Dateinamen (z. B. <code>dgm10.tif</code>) und die aus Zellzahl berechneten Flächen müssen entsprechend angepasst werden. Die <a href="../pages/abfluss_algorithmen_quellen.html">Algorithmen- und Quellenübersicht</a> erläutert außerdem alternative GIS-Werkzeuge (GRASS, SAGA, WhiteboxTools).</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/gisma-courses\.github\.io\/geo-mod-2026");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/meander_abfluss_saga_grass_update.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

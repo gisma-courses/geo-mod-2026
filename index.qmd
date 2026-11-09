@@ -22,6 +22,8 @@ Wie entstehen räumliche Muster, und was können wir aus ihnen über die zugrund
 
 Im Mittelpunkt stehen **heuristische Regeln**, **physikalisch begründete Näherungen** und **Prozessmodelle**. An Beispielen zur Oberflächenentwässerung und Flussentwicklung werden die in einem Modell implementierten Mechanismen explizit gemacht und mit seinen Resultaten verglichen.
 
+Digitale Handlungsfähigkeit gehört zum Kurs: Dateien und Formate handhaben, Software und Skripte einsetzen, Fehler eingrenzen und einen Arbeitsstand erneut berechnen können. KI kann bei Code, Fehlersuche und Dokumentationsrecherche helfen. Fragestellung, Modellannahmen und wissenschaftliche Bewertung werden von den Studierenden begründet; vorgeschlagene Änderungen werden vor der Übernahme verstanden und am Ergebnis geprüft.
+
 ## Angeleitete Modellierungsfolge
 
 Der Kurs folgt einer hydrologisch-geomorphologischen Modellkette. Wir **beobachten** Muster in den NetLogo-Modellen, **analysieren** Regeln und Rückkopplungen, wechseln zu realen Geländedaten und **begreifen** daran, welche Aussagen verschiedene GIS- und Prozessmodellierungen tragen. Das Resümee zieht daraus eine Herangehensweise für weitere geographische Fragen.
@@ -32,7 +34,7 @@ Der Kurs folgt einer hydrologisch-geomorphologischen Modellkette. Wir **beobacht
 | **NetLogo: Grand Canyon, Erosion, River Meanders** | Wie entstehen Muster aus Regeln, Zuständen und Rückkopplungen? | [NetLogo-Vergleich](pages/netlogo_modellvergleich.qmd) |
 | **Einstieg Abflussmodellierung** | Was ändert sich beim Wechsel vom Modellraum zum realen Relief? | [Einstieg](pages/einstieg_abflussmodellierung.qmd) |
 | **GIS: Relief, Routing, Abfluss und Sediment** | Welche Flächen tragen zum Abfluss bei und welche Zusatzannahmen verändern die berechneten Größen? | [GIS-Übung](pages/meander_abfluss_saga_grass.qmd) · [Kompendium](pages/abfluss_algorithmen_quellen.qmd) |
-| **Itzï** | Wie wird aus der räumlichen Reliefanalyse eine zeitabhängige Abflusssimulation? Itzï kommt nach der GIS-Übung zum Einsatz; es ist kein Teil des GIS-Arbeitsblatts. | [Einordnung im Einstieg](pages/einstieg_abflussmodellierung.qmd) |
+| **Itzï** | Wie wird aus der räumlichen Reliefanalyse eine zeitabhängige Abflusssimulation? Itzï ist als anschließender Schritt geplant und noch nicht vorbereitet; es gehört nicht zum GIS-Arbeitsblatt. | [Einordnung im Einstieg](pages/einstieg_abflussmodellierung.qmd) |
 | **Resümee** | Welche Entscheidungen haben wir getroffen, und was lässt sich daraus für andere Modellfragen ableiten? | [Rückblick](pages/resuemee_modellierung_geographie.qmd) |
 
 ## Materialien zur Modellierungsfolge
@@ -44,7 +46,7 @@ Die Seiten sind entlang des Arbeitsgangs verlinkt: [Kurseinstieg](pages/modellbi
 | Prüffrage | Worauf ist zu achten? |
 |---|---|
 | **Welche Eingangsdaten?** | Digitales Geländemodell, Landnutzung, Wasserstände, Agentenpositionen, Modellparameter |
-| **Welche Regeln?** | Kraftanalogie, Wahl des niedrigsten Nachbarn, D8- oder MFD-Routing |
+| **Welche Regeln?** | Kraftanalogie, Wahl des niedrigsten Nachbarn, D8- oder D∞-Routing |
 | **Welche Größen werden berechnet?** | Agentenbewegung, Wasserverlagerung, Fließakkumulation, Geländeänderung |
 | **Welche Bilanz wird erfüllt?** | Lokale Wassererhaltung, Impuls- oder Sedimentbilanz – oder keine davon? |
 | **Was kann geprüft werden?** | Lage des beobachteten Flusslaufs, Entwässerungsmuster, Sensitivität gegenüber Parametern |

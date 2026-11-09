@@ -432,6 +432,7 @@ window.Quarto = {
   <li><a href="#schon-die-datenbeschaffung-ist-eine-modellentscheidung" id="toc-schon-die-datenbeschaffung-ist-eine-modellentscheidung" class="nav-link" data-scroll-target="#schon-die-datenbeschaffung-ist-eine-modellentscheidung">3 · Schon die Datenbeschaffung ist eine Modellentscheidung</a></li>
   <li><a href="#wir-haben-verschiedene-beziehungen-formalisiert" id="toc-wir-haben-verschiedene-beziehungen-formalisiert" class="nav-link" data-scroll-target="#wir-haben-verschiedene-beziehungen-formalisiert">4 · Wir haben verschiedene Beziehungen formalisiert</a></li>
   <li><a href="#wann-kommt-die-software-ins-spiel" id="toc-wann-kommt-die-software-ins-spiel" class="nav-link" data-scroll-target="#wann-kommt-die-software-ins-spiel">5 · Wann kommt die Software ins Spiel?</a></li>
+  <li><a href="#digitale-problemlösung-und-ki-im-rechenweg" id="toc-digitale-problemlösung-und-ki-im-rechenweg" class="nav-link" data-scroll-target="#digitale-problemlösung-und-ki-im-rechenweg">Digitale Problemlösung und KI im Rechenweg</a></li>
   <li><a href="#ein-nachvollziehbares-ergebnis-ist-mehr-als-eine-karte" id="toc-ein-nachvollziehbares-ergebnis-ist-mehr-als-eine-karte" class="nav-link" data-scroll-target="#ein-nachvollziehbares-ergebnis-ist-mehr-als-eine-karte">6 · Ein nachvollziehbares Ergebnis ist mehr als eine Karte</a></li>
   <li><a href="#reproduzierbar-ist-nicht-automatisch-richtig" id="toc-reproduzierbar-ist-nicht-automatisch-richtig" class="nav-link" data-scroll-target="#reproduzierbar-ist-nicht-automatisch-richtig">7 · Reproduzierbar ist nicht automatisch richtig</a></li>
   <li><a href="#was-bleibt-wenn-die-kursleitung-den-nächsten-weg-nicht-mehr-vorgibt" id="toc-was-bleibt-wenn-die-kursleitung-den-nächsten-weg-nicht-mehr-vorgibt" class="nav-link" data-scroll-target="#was-bleibt-wenn-die-kursleitung-den-nächsten-weg-nicht-mehr-vorgibt">8 · Was bleibt, wenn die Kursleitung den nächsten Weg nicht mehr vorgibt?</a></li>
@@ -466,7 +467,7 @@ window.Quarto = {
 <p><a href="../index.html">← Kursübersicht</a> · <a href="../pages/netlogo_modellvergleich.html">Die drei NetLogo-Modelle</a> · <a href="../pages/meander_abfluss_saga_grass.html">GIS-Worksheet: Abfluss und Sediment</a> · <a href="../pages/einstieg_abflussmodellierung.html">Einstieg Abflussmodellierung</a> · <a href="../pages/abfluss_algorithmen_quellen.html">Daten und Algorithmen</a></p>
 <section id="wozu-dieser-umweg" class="level2">
 <h2 class="anchored" data-anchor-id="wozu-dieser-umweg">Wozu dieser Umweg?</h2>
-<p>Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beobachtet, ein amtliches Höhenmodell beschafft, daraus Einzugsgebiete berechnet und schließlich Wasser- und Sedimentmengen unter zusätzlichen Annahmen bilanziert. Anschließend kam Itzï als Ereignismodell zum Einsatz; es gehörte nicht zur GIS-Übung. Der Weg war weitgehend vorgegeben: Modell öffnen, Daten verwenden, Werkzeug ausführen, Ergebnis betrachten.</p>
+<p>Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beobachtet, ein amtliches Höhenmodell beschafft, daraus Einzugsgebiete berechnet und schließlich Wasser- und Sedimentmengen unter zusätzlichen Annahmen bilanziert. Itzï ist als anschließende Ereignissimulation geplant und noch nicht vorbereitet. Dieser Schritt gehört nicht zur bisherigen GIS-Übung. Der Weg war weitgehend vorgegeben: Modell öffnen, Daten verwenden, Werkzeug ausführen, Ergebnis betrachten.</p>
 <p><strong>Was hätten wir selbst entscheiden müssen, wenn uns nur die Frage gestellt worden wäre: „Welche Flächen tragen zum Abfluss an diesem Durchlass bei – und wo könnte Material zurückbleiben?“</strong> Die Antwort liegt weder in einem bestimmten Programm noch in einer möglichst langen Liste von Algorithmen. Sie liegt in den Unterscheidungen, die wir während dieser Kette tatsächlich getroffen haben.</p>
 </section>
 <section id="rückwärts-durch-die-modellkette" class="level2">
@@ -511,12 +512,12 @@ window.Quarto = {
 <td style="text-align: left;">Volumen oder Materialweitergabe lassen sich bilanzieren. Weder eine Abflussganglinie noch eine Geländeentwicklung folgen automatisch daraus.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Itzï nach der GIS-Übung</strong></td>
-<td style="text-align: left;">Ereignisbezogene, zeitabhängige Abflusssimulation mit Wasserständen und Flüssen. Itzï wurde in der Kursfolge eingesetzt, gehörte aber nicht zum GIS-Arbeitsblatt.</td>
-<td style="text-align: left;">Wasserstände und Flüsse im Verlauf eines vorgegebenen Ereignisses werden berechnet; die Geländeoberfläche bleibt fest.</td>
+<td style="text-align: left;"><strong>Itzï – geplanter Anschluss</strong></td>
+<td style="text-align: left;">Ereignisbezogene, zeitabhängige Abflusssimulation mit Wasserständen und Flüssen; noch nicht vorbereitet.</td>
+<td style="text-align: left;">Vorgesehene Erweiterung um Ereignisverläufe bei fester Geländeoberfläche. Erfahrungen und Ergebnisse dieses Schritts sind später zu ergänzen.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Weiterführende gekoppelte Modellierung</strong></td>
+<td style="text-align: left;"><strong>Optionale gekoppelte Modellierung, etwa CAESAR-Lisflood</strong></td>
 <td style="text-align: left;">Zeitabhängige Zustände und Beziehungen, die diese Zustände fortschreiben; gegebenenfalls ändert sich auch das für den nächsten Schritt verwendete Gelände.</td>
 <td style="text-align: left;">Ereignisverläufe und Rückwirkungen werden berechenbar, sofern die zusätzlichen Prozessgleichungen, Parameter und Anfangs-/Randbedingungen festgelegt werden.</td>
 </tr>
@@ -685,7 +686,50 @@ S(t+\Delta t)=S(t)+\bigl(I(t)-O(t)\bigr)\,\Delta t.
 <h2 class="anchored" data-anchor-id="wann-kommt-die-software-ins-spiel">5 · Wann kommt die Software ins Spiel?</h2>
 <p>Für die GIS-Strecke war TauDEM ein durchgehender Rechenweg. Das bedeutet nicht, dass TauDEM grundsätzlich „hydrologischer“ wäre als GRASS, WhiteboxTools, SAGA oder PCRaster. Wir benötigen eine bestimmte Operation – etwa Routing, Akkumulation, zeitliche Fortschreibung oder räumliche Optimierung – und suchen eine Implementierung, die <strong>unsere gewählte Modellbeschreibung</strong> ausführen kann.</p>
 <p>Für eine Einzugsgebietsabgrenzung kann eine vorhandene GRASS-Lösung vollständig genügen. Für die hier verwendete Kombination aus D∞-Routing und transportbegrenzter Akkumulation war TauDEM als zusammenhängender Werkzeugweg praktisch. PCRaster wiederum ist eine Umgebung zum <strong>Aufbau eigener räumlicher und dynamischer Modelle</strong>; es ist nicht einfach ein weiterer Button für dasselbe Einzugsgebiet. Die Frage „Welches Paket ist wissenschaftlicher?“ führt deshalb nicht weiter.</p>
-<p><strong>Im Alltag darf Vertrautheit ein guter Grund sein, ein Programm weiterzuverwenden</strong> – sofern damit die benötigte Berechnung und Dokumentation möglich sind. Nicht begründbar wäre dagegen, eine ganz andere Modellfrage auf die vorhandenen Menüeinträge zu reduzieren. Die <a href="werkzeugwahl_gelaendehydrologie.qmd">Werkzeugwahl-Seite</a> diskutiert die konkreten hydrologischen Verfahren; das <a href="../pages/abfluss_algorithmen_quellen.html">Algorithmenkompendium</a> liefert die Nachweise dazu.</p>
+<p><strong>Im Alltag darf Vertrautheit ein guter Grund sein, ein Programm weiterzuverwenden</strong> – sofern damit die benötigte Berechnung und Dokumentation möglich sind. Nicht begründbar wäre dagegen, eine ganz andere Modellfrage auf die vorhandenen Menüeinträge zu reduzieren. Das <a href="../pages/abfluss_algorithmen_quellen.html">Algorithmenkompendium</a> stellt die konkreten hydrologischen Verfahren mit ihren Eingaben, Einheiten und Nachweisen gegenüber.</p>
+</section>
+<section id="digitale-problemlösung-und-ki-im-rechenweg" class="level2">
+<h2 class="anchored" data-anchor-id="digitale-problemlösung-und-ki-im-rechenweg">Digitale Problemlösung und KI im Rechenweg</h2>
+<p>Dateien wiederfinden, Formate unterscheiden, ein Skript lesen und einen Fehler eingrenzen sind Voraussetzungen dafür, eine Modellrechnung selbst kontrollieren zu können. Am vorhandenen Arbeitsweg lassen sich ihre wissenschaftlichen Folgen erklären:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situation im Arbeitsablauf</th>
+<th>Was die eigene Prüfung klärt</th>
+<th>Was für einen späteren Lauf erhalten bleiben muss</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Eine Datei ist im Projekt sichtbar, das Werkzeug findet sie jedoch nicht.</td>
+<td>Tatsächlicher Dateipfad, gespeichertes Format und gegebenenfalls Begleitdateien; im R-Projekt zusätzlich das Arbeitsverzeichnis.</td>
+<td>Identifizierbare Eingabedateien und ein nachvollziehbarer Bezugsweg.</td>
+</tr>
+<tr class="even">
+<td>Ein vorgeschlagener Aufruf beseitigt NoData durch Abschalten der Randprüfung.</td>
+<td>Ob Zuflussinformation fehlt und die vermeintliche Korrektur nur die Kennzeichnung unterdrückt.</td>
+<td>Tatsächlich verwendete Gebietsausdehnung und Randbehandlung.</td>
+</tr>
+<tr class="odd">
+<td>Code liefert einen Wert für den 10-mm-Fall.</td>
+<td>Einheit und Größenordnung: 2 ha entsprechen unter dieser Annahme 200 m³. Die tatsächliche Abflussbildung bleibt eine andere Prüfungsfrage.</td>
+<td>Ausgeführter Ausdruck mit Zellfläche und Abflussannahme.</td>
+</tr>
+<tr class="even">
+<td>Nach einer Korrektur oder Parameteränderung weichen Karten voneinander ab.</td>
+<td>Welche Eingabe, Rechenoperation oder Einstellung verändert wurde und welche Wirkung daraus folgt.</td>
+<td>Vergleichbare Laufstände, Änderung und Kontrollbefund.</td>
+</tr>
+</tbody>
+</table>
+<p>Diese Fälle sind Bezugspunkte für den Rückblick auf tatsächlich aufgetretene Probleme; sie behaupten keine in jeder Gruppe gemachten Erfahrungen. Datenzugänge verschiedener Länder, Exportformate oder Softwarefehler können eine begründete Anpassung des Vorgehens verlangen. Die Fehlersuche beginnt damit, die betroffene Datei, Operation und Meldung einzugrenzen. Eine funktionierende Korrektur muss anschließend zu einer verständlichen Berechnung führen.</p>
+<p>KI kann helfen, Code zu erklären, eine technische Ursache vorzuschlagen, Dokumentation zu finden oder einen vorhandenen Ablauf zu strukturieren. Plausible Formulierungen und lauffähiger Code reichen zur Übernahme nicht aus. Wir müssen Eingaben, Rechenoperation, Parameter und Ausgabe erklären sowie die Wirkung an Dokumentation, Einheiten, Bilanz oder Daten kontrollieren können. Eine zweite KI-Antwort ist dabei keine unabhängige Kontrolle. Änderungen an Auslass, Senkenbehandlung, Abflussbeitrag oder Transportkapazität bleiben fachlich zu begründende Entscheidungen.</p>
+<p>Dokumentiert wird am vorhandenen Skript oder Rechenprotokoll knapp, welche Hilfe genutzt, welche Änderung übernommen und wie sie geprüft wurde; bei KI gehören System und Datum dazu. Daraus wird nachvollziehbar, auf welcher Grundlage eine Berechnung verantwortet werden kann. Die Entscheidung über Fragestellung, Modellannahmen und die wissenschaftliche Bewertung bleibt bei den Modellierenden.</p>
 </section>
 <section id="ein-nachvollziehbares-ergebnis-ist-mehr-als-eine-karte" class="level2">
 <h2 class="anchored" data-anchor-id="ein-nachvollziehbares-ergebnis-ist-mehr-als-eine-karte">6 · Ein nachvollziehbares Ergebnis ist mehr als eine Karte</h2>
@@ -734,7 +778,7 @@ S(t+\Delta t)=S(t)+\bigl(I(t)-O(t)\bigr)\,\Delta t.
 </tr>
 </tbody>
 </table>
-<p>Das wirkt umfangreich. Tatsächlich entstehen die meisten Angaben <strong>bereits beim Rechnen</strong>. Das Problem entsteht erst, wenn sie als ungeordnete Klickfolge, überschriebene Zwischendatei oder nicht gespeicherte Entscheidung verloren gehen.</p>
+<p>Die Angaben sichern die Wiederaufnahme der eigenen Arbeit: Wenn eine frühere Karte nach einer Korrektur nicht mehr entsteht, müssen Eingaben, Einstellungen und Änderungen unterscheidbar sein. Quellen und Datenstände halten wir deshalb schon beim Bezug fest; die Bedeutung dieser Angaben wird an späteren Vergleichen und Fehlern konkret. Der Rückblick knüpft an solche Probleme aus der Arbeit und der Seminardiskussion an.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -802,11 +846,11 @@ S(t+\Delta t)=S(t)+\bigl(I(t)-O(t)\bigr)\,\Delta t.
 <li><strong>Beziehungen:</strong> Welche Regeln, Bilanzen, statistischen Modelle oder Prozessgleichungen erzeugen das Ergebnis? Welche Variablen ändern sich selbst im Modell?</li>
 <li><strong>Daten und Parameter:</strong> Woher stammen sie, auf welcher Skala gelten sie, und welche Angaben müssen wir selbst setzen oder schätzen?</li>
 <li><strong>Berechnung:</strong> Welche vorhandene Implementierung kann genau diese Modellbeschreibung umsetzen? Wo reichen vertraute Werkzeuge, wo nicht?</li>
-<li><strong>Prüfbarkeit:</strong> Woran würde ein unplausibles Ergebnis auffallen, und was müsste jemand anderes erhalten, um die Rechnung nachzuvollziehen?</li>
+<li><strong>Prüfbarkeit:</strong> Woran würde ein unplausibles Ergebnis auffallen, wie prüfen wir technische Korrekturen und KI-Vorschläge unabhängig, und was müsste jemand anderes erhalten, um die Rechnung nachzuvollziehen?</li>
 </ol>
 <p>Das ist <strong>keine starre Reihenfolge</strong>: Stellt sich etwa erst bei der Datenbeschaffung heraus, dass das Gerinne nicht aufgelöst ist, muss die Modellfrage oder die räumliche Repräsentation erneut betrachtet werden. Diese Rücksprünge gehören zur Modellierung.</p>
 <p>Dasselbe Vorgehen lässt sich auf andere Gegenstände übertragen: Aus Sentinel-Daten kann ein Vegetationsindex berechnet werden; dessen zeitliche Abfolge ist aber noch kein Vegetationsprozessmodell. Eine gewichtete Standort-Eignungskarte ist keine Optimierung unter Kapazitätsbedingungen. In beiden Fällen beginnt die Werkzeugwahl erst sinnvoll, nachdem die <strong>gewünschte Aussage</strong> und die dazu notwendigen <strong>Beziehungen</strong> geklärt wurden.</p>
-<p><strong>Das Ergebnis dieser Folge ist die Fähigkeit, ein Modell als begründete, dokumentierte Folge von Entscheidungen zu lesen.</strong> Diese Herangehensweise nehmen wir zu späteren geographischen Fragen mit. Der zweite Kursblock ist noch nicht ausgearbeitet.</p>
+<p><strong>Aus der angeleiteten Folge soll die Fähigkeit entstehen, Modellierungsentscheidungen zu verstehen, zunehmend selbst zu treffen und ihre Folgen zu prüfen.</strong> Dazu gehört, digitale Werkzeuge und KI zu nutzen und die tatsächlich ausgeführte Berechnung erklären und kontrollieren zu können. Diese Herangehensweise nehmen wir zu späteren geographischen Fragen mit. Der zweite Kursblock ist noch nicht ausgearbeitet.</p>
 </section>
 <section id="quellen-zum-weiterdenken-nach-funktion-geordnet" class="level2">
 <h2 class="anchored" data-anchor-id="quellen-zum-weiterdenken-nach-funktion-geordnet">Quellen zum Weiterdenken – nach Funktion geordnet</h2>

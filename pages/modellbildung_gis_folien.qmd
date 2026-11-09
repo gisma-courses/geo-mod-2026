@@ -27,7 +27,7 @@ execute:
 
 # Was soll das Modell leisten?
 
-**Eine Karte ist zunächst eine Darstellung.** Zum Modell wird sie, wenn wir Regeln festlegen, die aus Eingaben neue Aussagen ableiten.
+**Eine Karte abstrahiert bereits räumliche Eigenschaften.** Für eine Berechnung legen wir zusätzlich fest, welche Beziehungen aus diesen Eingaben neue Aussagen ableiten.
 
 Am Beispiel Starkregen lautet die Frage:
 

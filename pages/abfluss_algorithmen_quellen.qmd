@@ -77,6 +77,10 @@ Die folgenden TauDEM-Namen entsprechen der offiziellen Werkzeugdokumentation. Di
 `AreaD8` zählt im Standardlauf vollständig angeschlossene Zellen. `AreaDinf` summiert **gewichtete Teilbeiträge** und normiert im Standard auf die Rasterbreite (m²/m). Die Umrechnung `ad8 × Zellfläche` liefert eine D8-Fläche in m²; `sca × 5 m` liefert eine *nominale* flächenbezogene Größe zur Visualisierung des D∞-Verteilungsbilds unter dieser Breitenannahme. Beide Rechnungen enthalten **unterschiedliche Routingregeln** – deshalb ist die Umrechnung keine Gleichsetzung der Ergebnisse.
 :::
 
+### Rechenweg im Terminal
+
+Die [Shell-Alternative](../scripts/taudem_burgwald.sh) benötigt TauDEM/MPI sowie `gdalinfo` und Python 3 für die Prüfung der Zellgeometrie und die Umrechnung der 2-/5-ha-Schwellen. Sie verwendet wie der Processing-Standard den eingegebenen Auslass ohne automatische Verschiebung und schützt vorhandene Ausgaben. Für einen weiteren Wasser- oder Materiallauf kann `SUFFIX=kap05` gesetzt werden. Rasterausrichtung und NoData der zusätzlichen Eingaben werden hier vor dem Aufruf in QGIS geprüft; das Processing-Skript prüft CRS, Rasterdimensionen und Ausdehnung zusätzlich selbst. Die verwendete Variante und der konkrete Aufruf gehören zum Rechenprotokoll.
+
 ## 3 · Vergleichsalgorithmen, nicht zusätzliche Pflichtwege
 
 | Frage | Alternative / Zugang | Konzeptioneller Unterschied zum Hauptweg |

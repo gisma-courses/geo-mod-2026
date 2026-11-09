@@ -45,6 +45,12 @@ jobs:
           init-shell: none
           generate-run-shell: false
           cache-environment: true
+      - name: Verify QGIS import before installing TauDEM
+        id: qgis_baseline
+        run: |
+          micromamba run -n qgis-ci python -c "import json, psutil; from qgis.core import Qgis; from osgeo import gdal; print(json.dumps({'qgis': Qgis.QGIS_VERSION, 'gdal': gdal.VersionInfo(), 'loaded_gdal': [m.path for m in psutil.Process().memory_maps() if 'gdal' in m.path.lower()]}))" |
+            Tee-Object (Join-Path $env:TAUDEM_CI_EVIDENCE 'qgis-before-installer.json')
+          exit $LASTEXITCODE
       - name: Install Microsoft MPI and official TauDEM distribution
         id: taudem
         timeout-minutes: 15
@@ -67,11 +73,12 @@ jobs:
           New-Item -ItemType Directory -Force $env:TAUDEM_CI_EVIDENCE | Out-Null
           $state = @{
             runner = '${{ runner.os }}'; commit = '${{ github.sha }}'
-            qgis = '${{ steps.qgis.outcome }}'; taudem = '${{ steps.taudem.outcome }}'
+            qgis = '${{ steps.qgis.outcome }}'; qgis_import = '${{ steps.qgis_baseline.outcome }}'
+            taudem = '${{ steps.taudem.outcome }}'
             integration = '${{ steps.integration.outcome }}'
           }
           $state | ConvertTo-Json | Set-Content (Join-Path $env:TAUDEM_CI_EVIDENCE 'ci-step-status.json')
-          if ($state.qgis -ne 'success' -or $state.taudem -ne 'success') {
+          if ($state.qgis -ne 'success' -or $state.qgis_import -ne 'success' -or $state.taudem -ne 'success') {
             'BLOCKED: QGIS/GDAL, MS-MPI or official TauDEM installation failed. Windows compatibility is unverified.' |
               Tee-Object -FilePath (Join-Path $env:TAUDEM_CI_EVIDENCE 'BLOCKER.txt') |
               Out-File $env:GITHUB_STEP_SUMMARY -Append

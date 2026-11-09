@@ -36,8 +36,6 @@ def worker(args):
     if sys.platform == 'win32':
         os.environ['APPDATA'] = str(profile / 'AppData' / 'Roaming')
         os.environ['LOCALAPPDATA'] = str(profile / 'AppData' / 'Local')
-    # Preserve QGIS's activated DLL search order; native TauDEM has its own EXE directory.
-    os.environ['PATH'] = os.environ['PATH'] + os.pathsep + str(args.taudem_bin)
     report = {'platform': sys.platform, 'script_sha256': hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
               'tests': [], 'complete': False, 'phase': 'QGIS import'}
     report_path = args.work_dir / 'report.json'
@@ -98,6 +96,8 @@ def worker(args):
             algorithm = QgsApplication.processingRegistry().algorithmById('script:taudem_burgwald')
             assert algorithm is not None
             passed('actual script provider', algorithm.id())
+            # Initialize QGIS before exposing the separate TauDEM DLL directory.
+            os.environ['PATH'] += os.pathsep + str(args.taudem_bin)
             resolved = {}
             for name in NAMES:
                 custom = algorithm._resolve_exec(name, str(args.taudem_bin))

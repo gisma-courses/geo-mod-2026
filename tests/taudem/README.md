@@ -10,7 +10,7 @@ GDAL 3.8.4, TauDEM 5.6.0-beta und zwei echten MPI-Prozessen erfolgreich durch.
 Alle Referenzprüfungen einschließlich Abbruch bestanden; Prozess-Exit-Code 0.
 `actionlint` und die Python-Syntaxprüfung bestanden.
 
-## Tatsächlicher Windows-Befund vom 09.11.2026
+## Vorheriger Conda-Befund vom 09.11.2026
 
 Der Branch `validation/taudem-windows-20261109` wurde auf echten
 `windows-2022`-Runnern ausgeführt. Der offizielle TauDEM-5.5.0-Installer wurde
@@ -44,7 +44,7 @@ im externen Prüfarchiv erhalten.
 | Programmauflösung | Linux sucht ursprüngliche und kleingeschriebene Namen. Windows ergänzt `.exe`; die normale Windows-Dateisuche berücksichtigt Groß-/Kleinschreibung nicht. Verzeichnis und `PATH` werden im echten Test verwendet. |
 | MPI | Argumentliste mit `-n 2`, ohne Shell. Windows verwendet den vollständigen Pfad von MS-MPI, gewöhnlich unter `Program Files`. Installation und echte Ausführung werden getrennt protokolliert. |
 | Leerzeichen | Eingabe-, Ausgabe- und Windows-Installationspfade enthalten absichtlich Leerzeichen. Es werden weder Programme umbenannt noch Namensverweise angelegt. |
-| QGIS | QGIS-Python, Bindings, Qt und GDAL stammen aus derselben aktivierten Conda-Umgebung. Der echte Skriptprovider lädt eine bytegleiche Kopie des Repository-Skripts. |
+| QGIS | QGIS-Python, Bindings, Qt und GDAL stammen aus dem offiziellen QGIS-MSI. Basistest und Integration starten über den unveränderten mitgelieferten Python-Launcher; eigene DLL-Pfade werden nicht gesetzt. Der echte Skriptprovider lädt eine bytegleiche Kopie des Repository-Skripts. |
 | DLLs | TauDEM wird mit dem offiziellen `TauDEM550_setup_x64.exe` installiert (SHA-256 geprüft). Ein Beobachtungsthread erfasst die tatsächlich geladenen GDAL-DLL-Pfade der TauDEM-Prozesse für alle vier Modi. QGIS muss seine eigene GDAL-DLL behalten; TauDEM muss die DLL aus seinem Installationsverzeichnis laden. Der Test kompiliert nichts und ersetzt keine DLLs. |
 | Abbruch | Windows verwendet im Skript `taskkill /T /F`, Linux die Prozessgruppe. Der Test beobachtet einen tatsächlich gestarteten MPI-Prozess und bricht dann über QGIS-Feedback ab. Er kontrolliert das Ende der beobachteten Prozesse. Dies prüft einen Abbruch beim MPI-Start, keinen lang laufenden Rechenfall. Ein äußerer Timeout führt zu einem fehlgeschlagenen Test. |
 
@@ -86,9 +86,10 @@ das produktive QGIS-Skript erhält dadurch keine neue Python-Abhängigkeit.
 
 ## Installation und Nachweise
 
-Windows: QGIS 3.44/Python 3.12 aus conda-forge, Microsoft MPI und der
-offizielle TauDEM-5.5.0-Installer. Keine SDK-Installation und kein Compiler.
-Aufgelöste Conda-Pakete, Download-/Binärprüfsummen und Installerlogs werden
+Windows: offizielles QGIS-3.44.15-MSI mit mitgeliefertem Python-Launcher,
+Microsoft MPI und der offizielle TauDEM-5.5.0-Installer. Kein Conda, keine
+SDK-Installation und kein Compiler. Download-/Binärprüfsummen, die unveränderte
+Launcherdatei und Installerlogs werden
 aufbewahrt. Quellen: [QGIS-Paket](https://github.com/conda-forge/qgis-feedstock),
 [TauDEM v5.5.0](https://github.com/dtarb/TauDEM/releases/tag/v5.5.0),
 [Microsoft MPI](https://github.com/microsoft/Microsoft-MPI/releases/tag/v10.1.1).
@@ -106,3 +107,19 @@ Unter Windows liegt der zusätzliche Nachweis in `windows-loaded-gdal.json`. Er 
 die beobachteten Programme, PIDs und GDAL-DLL-Pfade sowie die QGIS-DLL-Pfade vor
 und nach den Berechnungen. Unvollständige DLL-Beobachtung lässt den Test ebenfalls
 fehlschlagen; daraus wird keine bestandene DLL-Kompatibilität abgeleitet.
+
+## QGIS-Herstellerumgebung als Voraussetzung
+
+Der aktuelle Workflow installiert `QGIS-OSGeo4W-3.44.15-1.msi` vom offiziellen
+Downloadserver und sucht anschließend den mitgelieferten
+`bin/python-qgis-ltr.bat` beziehungsweise `bin/python-qgis.bat`. Genau dieser
+Launcher startet zuerst `check_qgis_launcher.py`. Es werden keine eigenen
+`PYTHONPATH`-, `QGIS_PREFIX_PATH`- oder DLL-Verzeichnisse für den Import erzeugt.
+
+Der Bericht `qgis-before-installer.json` enthält Versionen, Interpreter, die vom
+Launcher bereitgestellte Umgebung und tatsächlich geladene native Module.
+Scheitert dieser Basistest, bleiben TauDEM-Installation und Rechenmodi gesperrt.
+Erst nach Erfolg werden gegebenenfalls die zusätzliche Testabhängigkeit psutil
+installiert, der offizielle TauDEM-Installer ausgeführt und die vorhandenen
+Integrationstests mit demselben QGIS-Launcher gestartet. Die Unterprozesse
+verwenden dessen unverändert geerbte QGIS-Umgebung.

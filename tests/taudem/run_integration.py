@@ -125,7 +125,9 @@ def worker(args):
                 assert args.taudem_install_root, 'Windows DLL check requires installer root'
                 parent_gdal = loaded_gdal(psutil.Process())
                 assert parent_gdal, 'No actual QGIS/Python GDAL DLL observed'
-                assert all(Path(p).is_relative_to(Path(sys.prefix)) for p in parent_gdal), parent_gdal
+                qgis_root = Path(os.environ.get('OSGEO4W_ROOT', sys.prefix)).resolve()
+                assert all(Path(p).is_relative_to(qgis_root) for p in parent_gdal), parent_gdal
+                report['qgis_runtime_root'] = str(qgis_root)
 
                 def observe_installed_dlls():
                     while not dll_stop.is_set():

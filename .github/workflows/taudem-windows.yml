@@ -7,12 +7,14 @@ on:
       - 'scripts/taudem_burgwald_processing.py'
       - 'tests/taudem/**'
       - '.github/scripts/install-taudem-windows.ps1'
+      - '.github/scripts/install-qgis-windows.ps1'
       - '.github/workflows/taudem-windows.yml'
   push:
     paths:
       - 'scripts/taudem_burgwald_processing.py'
       - 'tests/taudem/**'
       - '.github/scripts/install-taudem-windows.ps1'
+      - '.github/scripts/install-qgis-windows.ps1'
       - '.github/workflows/taudem-windows.yml'
 
 permissions:
@@ -35,34 +37,35 @@ jobs:
           $evidence = Join-Path $env:RUNNER_TEMP 'TauDEM CI evidence'
           New-Item -ItemType Directory -Force $evidence | Out-Null
           "TAUDEM_CI_EVIDENCE=$evidence" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
-      - name: Install QGIS Python environment
+      - name: Install official QGIS with supplied Python launcher
         id: qgis
-        uses: mamba-org/setup-micromamba@v3
-        with:
-          environment-name: qgis-ci
-          create-args: >-
-            -c conda-forge qgis=3.44 python=3.12 psutil
-          init-shell: none
-          generate-run-shell: false
-          cache-environment: true
-      - name: Verify QGIS import before installing TauDEM
+        timeout-minutes: 15
+        run: |
+          & .github/scripts/install-qgis-windows.ps1
+          exit $LASTEXITCODE
+      - name: Verify minimal PyQGIS import through supplied launcher
         id: qgis_baseline
         run: |
-          micromamba run -n qgis-ci python -c "import json, psutil; from qgis.core import Qgis; from osgeo import gdal; print(json.dumps({'qgis': Qgis.QGIS_VERSION, 'gdal': gdal.VersionInfo(), 'loaded_gdal': [m.path for m in psutil.Process().memory_maps() if 'gdal' in m.path.lower()]}))" |
-            Tee-Object (Join-Path $env:TAUDEM_CI_EVIDENCE 'qgis-before-installer.json')
+          & "$env:QGIS_PYTHON_LAUNCHER" -X faulthandler tests/taudem/check_qgis_launcher.py `
+            --output (Join-Path $env:TAUDEM_CI_EVIDENCE 'qgis-before-installer.json')
           exit $LASTEXITCODE
+      - name: Ensure process-observation test dependency
+        run: |
+          & "$env:QGIS_PYTHON_LAUNCHER" -c "import psutil"
+          if ($LASTEXITCODE -ne 0) {
+            & "$env:QGIS_PYTHON_LAUNCHER" -m pip install --disable-pip-version-check psutil==5.9.8
+            exit $LASTEXITCODE
+          }
       - name: Install Microsoft MPI and official TauDEM distribution
         id: taudem
         timeout-minutes: 15
         run: |
-          micromamba list -n qgis-ci --explicit | Out-File (Join-Path $env:TAUDEM_CI_EVIDENCE 'environment-explicit.txt')
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           & .github/scripts/install-taudem-windows.ps1
           exit $LASTEXITCODE
       - name: Register QGIS script provider and execute all four modes
         id: integration
         run: |
-          micromamba run -n qgis-ci python -X faulthandler tests/taudem/run_integration.py `
+          & "$env:QGIS_PYTHON_LAUNCHER" -X faulthandler tests/taudem/run_integration.py `
             --taudem-bin "$env:TAUDEM_TEST_BIN" --mpi "$env:TAUDEM_TEST_MPI" `
             --taudem-install-root "$env:TAUDEM_INSTALL_ROOT" `
             --work-dir (Join-Path $env:TAUDEM_CI_EVIDENCE 'run with spaces')

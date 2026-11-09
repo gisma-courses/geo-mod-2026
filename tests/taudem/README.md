@@ -8,8 +8,34 @@ Der Workflow wird auf einem getrennten Validierungsbranch veröffentlicht und do
 Prüfstand 09.11.2026: Der portable Test lief unter Linux mit QGIS 3.34.4,
 GDAL 3.8.4, TauDEM 5.6.0-beta und zwei echten MPI-Prozessen erfolgreich durch.
 Alle Referenzprüfungen einschließlich Abbruch bestanden; Prozess-Exit-Code 0.
-`actionlint` und die Python-Syntaxprüfung bestanden. Der Windows-Job wurde noch
-nicht gestartet; die Windows-Installation ist damit noch nicht praktisch bestätigt.
+`actionlint` und die Python-Syntaxprüfung bestanden.
+
+## Tatsächlicher Windows-Befund vom 09.11.2026
+
+Der Branch `validation/taudem-windows-20261109` wurde auf echten
+`windows-2022`-Runnern ausgeführt. Der offizielle TauDEM-5.5.0-Installer wurde
+mit geprüftem SHA-256 erfolgreich installiert; `installation.json` bestätigt
+Programme, MS-MPI und die beiden mitgelieferten GDAL-DLL-Pfade. Es fand kein
+TauDEM-Build statt, und es wurden keine DLLs ersetzt.
+
+Die QGIS-Conda-Umgebung wurde installiert (beobachtete Pakete: QGIS 3.44.14,
+GDAL 3.13.3, Python 3.12). Sie ist jedoch nicht lauffähig: Im gesonderten
+Kontrolllauf scheitert bereits **vor jeder TauDEM-Installation**
+`from qgis.core import Qgis` mit
+`ImportError: DLL load failed while importing _core: The specified procedure could not be found.`
+
+Nachweis: [QGIS-Kontrolllauf vor TauDEM](https://github.com/gisma-courses/geo-mod-2026/actions/runs/42709351194).
+Die zugrunde liegende fehlende DLL-Prozedur ist noch nicht identifiziert.
+Daher wurden keine vier Windows-Rechenmodi erfolgreich ausgeführt und keine
+DLL-Verträglichkeit zwischen QGIS und TauDEM nachgewiesen. Der Job bleibt
+korrekt fehlgeschlagen. Der nächste Schritt ist eine eigenständige lauffähige
+QGIS-Windows-Umgebung; der TauDEM-Rechenweg bleibt unverändert.
+
+Der anfänglich nicht verfügbare Pin `qgis=3.44.15`, eine unter Windows nicht
+unterstützte Micromamba-Aufrufoption und die vorzeitige Aufnahme des
+TauDEM-Verzeichnisses in den Test-PATH wurden ausschließlich in CI/Testdateien
+korrigiert. Die ursprünglichen fehlgeschlagenen Läufe bleiben auf GitHub und
+im externen Prüfarchiv erhalten.
 
 ## Plattformprüfung am vorhandenen Skript
 

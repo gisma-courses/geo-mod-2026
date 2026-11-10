@@ -1,7 +1,7 @@
 ---
 title: "Modellbildung im GIS – Kurzreader"
 subtitle: "Was wir annehmen, berechnen und behaupten dürfen"
-author: "KlimaResilienzSchule"
+
 date: "2026-10-26"
 format:
   html:

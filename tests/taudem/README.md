@@ -1,14 +1,42 @@
 # QGIS/TauDEM: echte Plattformtests
 
 Der Workflow `.github/workflows/taudem-windows.yml` verwendet einen echten
-`windows-2022`-Runner. Er ist vorbereitet; ohne einen ausgeführten grünen
-Windows-Job ist Windows-Kompatibilität weiterhin **nicht nachgewiesen**.
+`windows-2022`-Runner. Der echte Windows-Lauf ist für die unten dokumentierte Konfiguration
+**bestanden**: [Original-Actions-Lauf](https://github.com/gisma-courses/geo-mod-2026/actions/runs/42713047855).
 Der Workflow wird auf einem getrennten Validierungsbranch veröffentlicht und dort ausgeführt.
 
 Prüfstand 09.11.2026: Der portable Test lief unter Linux mit QGIS 3.34.4,
 GDAL 3.8.4, TauDEM 5.6.0-beta und zwei echten MPI-Prozessen erfolgreich durch.
 Alle Referenzprüfungen einschließlich Abbruch bestanden; Prozess-Exit-Code 0.
 `actionlint` und die Python-Syntaxprüfung bestanden.
+
+## Erfolgreicher Hersteller-Launcher-Lauf
+
+Lauf vom 09.11.2026, ausgewertet am 10.11.2026; getesteter Commit
+`05f70383c67aa3da98fa5e57dd4bfe093e9ce47c`.
+
+| Prüfung | Tatsächliches Ergebnis |
+|---|---|
+| Offizielles QGIS-MSI und mitgelieferter Launcher | QGIS 3.44.15, `bin/python-qgis-ltr.bat`, minimaler Import bestanden |
+| QGIS-eigene GDAL-Bibliothek | GDAL 3.13.3, `gdal313.dll`, vor/nach den Rechnungen unverändert |
+| Offizieller TauDEM-5.5.0-Installer | SHA-256 geprüft, erfolgreich installiert, kein Build und kein DLL-Austausch |
+| Tatsächliche TauDEM-DLLs | `TauDEM5Exe/gdal.dll`, Version 3.10.3; in Prozessen aller vier Modi beobachtet |
+| Skriptprovider und vier echte Modi | Registriert und mit zwei echten MPI-Prozessen ausgeführt |
+| 14 Referenzraster | CRS, Gitter, NoData-Masken und Werte bestanden |
+| Bekannte Kontrollwerte | 800 Zellen, 200 m³; 3 ME Transport + 3 ME Ablagerung |
+| Echter MPI-Abbruch beim Start | Bestanden, keine beobachteten Prozesse verblieben |
+| Prozessabschluss | Exit-Code 0, 13,063 Sekunden, kein Timeout |
+
+Windows meldet teilweise 8.3-Kurznamen (`PROGRA~1`). Der DLL-Nachweis löst beide
+Vergleichspfade vor der Herkunftsprüfung auf. Dadurch bleibt die Herkunftsprüfung
+streng, ohne dieselbe Datei wegen unterschiedlicher Schreibweisen abzulehnen.
+An der Herstellerumgebung oder an Bibliotheken wurde dafür nichts geändert.
+
+Das vollständige Original-Artefakt enthält 100 Dateien. Es ist dauerhaft im
+externen Prüfarchiv gesichert; ZIP-CRC und SHA-256 wurden geprüft. Dort liegen
+auch die tatsächlichen Windows-Ergebnisraster und alle ursprünglichen Logs.
+Die folgenden Conda-Befunde sind historische Fehlversuche und beschreiben
+nicht den jetzt bestandenen Hersteller-Launcher-Lauf.
 
 ## Vorheriger Conda-Befund vom 09.11.2026
 

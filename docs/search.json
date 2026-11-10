@@ -233,6 +233,116 @@
     ]
   },
   {
+    "objectID": "pages/modellbildung_gis_folien.html",
+    "href": "pages/modellbildung_gis_folien.html",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "",
+    "text": "← Kursübersicht · Auftakt: Folien · NetLogo-Vergleich · GIS-Übung · Resümee",
+    "crumbs": [
+      "Angeleitete Modellierungsfolge",
+      "Auftakt: Modellbildung"
+    ]
+  },
+  {
+    "objectID": "pages/modellbildung_gis_folien.html#nicht-jede-berechnete-karte-ist-ein-prozessmodell",
+    "href": "pages/modellbildung_gis_folien.html#nicht-jede-berechnete-karte-ist-ein-prozessmodell",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "Nicht jede berechnete Karte ist ein Prozessmodell",
+    "text": "Nicht jede berechnete Karte ist ein Prozessmodell\nEin GIS kann Flächen überlagern, Indizes bilden, Fließwege ableiten und Modelle mit räumlichen Eingaben versorgen. Die Karte allein zeigt aber nicht, was berechnet wurde. Entscheidend sind die Regeln oder Gleichungen zwischen Eingangsdaten und Ergebnis. Als roter Faden dient die Frage: Wo sammelt sich bei Starkregen Wasser?\nDieser Reader stellt die Begriffe bereit, mit denen wir im Kurs Modelle einordnen, Entscheidungen unterscheiden und Ergebnisse prüfen. Die Übungsseiten wenden sie an, ohne sie jedes Mal neu zu erklären.\n\n\n\n\n\n\n\n\n\n\nModellzugang\nWas wird gerechnet?\nMindestdaten\nAussage – und Grenze\nIm Kurs\n\n\n\n\nHeuristik\nKlassen, Regeln und gewichtete Indikatoren\nLandbedeckung, ggf. DGM/Böden\nVerdachtsräume; keine Wassertiefe\nGrand Canyon, River Meanders\n\n\nPhysikalisch begründete Näherung\nvereinfachte, prozessbezogene Größenbeziehungen\nje nach Formel DGM, Fläche, Regen oder Materialparameter\nIndex oder überschlägige Größe; nur unter ihren Annahmen gültig\nErosion; GIS-Übung: D8/D∞-Routing, TWI, Volumen aus \\(h_{\\mathrm{eff}}\\), Transportbegrenzung\n\n\nProzessmodell\nzeitabhängige Erhaltung und Transport\nGelände, Antrieb, Parameter, Anfangs-/Randbedingungen\nsimulierte Zustände, z. B. Wassertiefe über die Zeit; mit Modell- und Datenunsicherheit\nItzï (geplant), CAESAR-Lisflood (optional)\n\n\n\nDie Zuordnung in der letzten Spalte ist eine Einordnung des jeweiligen Rechenkerns, kein Werturteil. Erosion ist zugleich dynamisch, ohne ein hydraulisches Prozessmodell zu sein – dazu der Abschnitt Andere Achsen.",
+    "crumbs": [
+      "Angeleitete Modellierungsfolge",
+      "Auftakt: Modellbildung"
+    ]
+  },
+  {
+    "objectID": "pages/modellbildung_gis_folien.html#heuristische-regeln-begründet-aber-gesetzt",
+    "href": "pages/modellbildung_gis_folien.html#heuristische-regeln-begründet-aber-gesetzt",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "1. Heuristische Regeln: begründet, aber gesetzt",
+    "text": "1. Heuristische Regeln: begründet, aber gesetzt\nWir markieren Flächen, auf denen mehrere plausible Hinweise zusammenkommen: versiegelte Oberflächen, Geländesenken, gering durchlässige Böden. Eine gewichtete Überlagerung könnte lauten:\n\\[\nH=0{,}5V+0{,}3S+0{,}2D\n\\]\nDie Variablen sind Indikatoren, zuvor einheitlich auf 0 bis 1 skaliert. Die Gewichte sind eine Entscheidung der Modellierenden. Andere plausible Gewichte erzeugen möglicherweise andere Ergebnisse. Deshalb dokumentieren wir Klassen, Grenzwerte und Gewichtungen und testen deren Einfluss. \\(H\\) ist ein Such- oder Priorisierungsindex. Ihn als Überflutungswahrscheinlichkeit oder Wassertiefe auszugeben, wäre unbegründet.\nWerkzeuge: QGIS (Rasterrechner, Reclassification, Vektor-/Rasterüberlagerung), SAGA GIS und der QGIS-Modell-Designer für reproduzierbare Abläufe.",
+    "crumbs": [
+      "Angeleitete Modellierungsfolge",
+      "Auftakt: Modellbildung"
+    ]
+  },
+  {
+    "objectID": "pages/modellbildung_gis_folien.html#geländealgorithmus-oder-physikalische-näherung",
+    "href": "pages/modellbildung_gis_folien.html#geländealgorithmus-oder-physikalische-näherung",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "2. Geländealgorithmus oder physikalische Näherung?",
+    "text": "2. Geländealgorithmus oder physikalische Näherung?\nEin digitaler Höhenwert allein enthält noch keinen Abfluss. Geländewerkzeuge – im Kurs TauDEM, ebenso SAGA Flow Accumulation oder GRASS r.watershed – leiten aus Höhenunterschieden und einer gewählten Routingregel Fließrichtungen, Einzugsflächen oder Akkumulationsmuster ab. Ob der Algorithmus das Wasser einer Zelle auf eine (D8) oder mehrere Nachbarzellen (D∞, MFD) verteilt, ist bereits eine Modellentscheidung.\nDer Topographic Wetness Index verbindet beitragende Fläche und Gefälle:\n\\[\n\\mathrm{TWI}=\\ln\\!\\left(\\frac{a}{\\tan\\beta}\\right)\n\\]\nDas ist ein physikalisch motivierter Geländeindikator, keine berechnete Wasserbilanz und keine Starkregenüberflutung. Für eine tatsächliche Vernässung fehlen etwa Regen, Bodenhydraulik und zeitliche Entwicklung. Besonders wichtig: topografische Fließakkumulation und physikalisch berechneter Wasserabfluss sind nicht dasselbe.\nEine andere, explizite Näherung ist die Rationalformel für den Spitzenabfluss kleiner Einzugsgebiete:\n\\[\nQ_{\\mathrm{max}}\\approx C\\,i\\,A\n\\]\nDabei sind \\(A\\) die Einzugsgebietsfläche, \\(i\\) eine für die Abflusskonzentration maßgebende Regenintensität und \\(C\\) ein empirischer Abflussbeiwert. Die Einheiten müssen zueinander passen: Mit \\(i\\) in m/s und \\(A\\) in m² ergibt sich \\(Q\\) in m³/s; mit den üblichen Angaben in mm/h und km² kommt ein Umrechnungsfaktor hinzu. Die Formel benötigt mehr als eine Karte, liefert aber weder Wassertiefen noch einen räumlich-zeitlichen Fließverlauf.\nDer Vergleich mit der GIS-Übung ist lehrreich: Dort berechnen wir \\(V = A \\cdot h_{\\mathrm{eff}}\\), also ein Volumen aus Fläche und gesetzter Abflusshöhe. Die Rationalformel liefert dagegen einen Durchfluss und braucht dafür eine Intensität, also eine Zeitangabe. Aus dem Volumen allein folgt kein Spitzenabfluss.\nWerkzeuge: TauDEM über QGIS-Processing (im Kurs), SAGA (Hydrology, Wetness Index), GRASS r.watershed; Formeln zusätzlich im Rasterrechner, in R oder Python. Die Wahl des Werkzeugs macht eine Rechnung nicht von selbst physikalisch.",
+    "crumbs": [
+      "Angeleitete Modellierungsfolge",
+      "Auftakt: Modellbildung"
+    ]
+  },
+  {
+    "objectID": "pages/modellbildung_gis_folien.html#prozessmodell-ein-ereignis-entwickelt-sich",
+    "href": "pages/modellbildung_gis_folien.html#prozessmodell-ein-ereignis-entwickelt-sich",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "3. Prozessmodell: ein Ereignis entwickelt sich",
+    "text": "3. Prozessmodell: ein Ereignis entwickelt sich\nEin dynamisches 2D-Abflussmodell berechnet, wie sich Wasserstände und Geschwindigkeiten während eines Regens verändern. Eine vereinfachte Massenerhaltung lautet:\n\\[\n\\frac{\\partial h}{\\partial t}+\\nabla\\!\\cdot(h\\boldsymbol{u})=r-f\n\\]\n\\(h\\) bezeichnet die Wassertiefe, \\(\\boldsymbol{u}\\) die Fließgeschwindigkeit, \\(r\\) den Regenzufluss und \\(f\\) die Infiltration. Für eine hydraulische Simulation kommen die Bewegungsgleichungen hinzu; Itzï verwendet dafür eine lokal-inertiale Näherung. Benötigt werden nun auch zeitlich aufgelöster Niederschlag, Rauheit, geeignete Geländedaten, Anfangs- und Randbedingungen, gegebenenfalls Kanalnetz und Bauwerke sowie eine numerische Diskretisierung.\nWerkzeuge: im Kurs Itzï (geplant), optional CAESAR-Lisflood mit Sedimenttransport und Geländerückkopplung; in der Praxis etwa auch HEC-RAS 2D. QGIS, SAGA und GRASS dienen der Vorverarbeitung, Geometrie, Parameterkarten und Auswertung. Ein Prozessmodell ist trotzdem nicht „physikalisch exakt“: Gleichungen, räumliche Auflösung und Parameter bleiben Vereinfachungen.",
+    "crumbs": [
+      "Angeleitete Modellierungsfolge",
+      "Auftakt: Modellbildung"
+    ]
+  },
+  {
+    "objectID": "pages/modellbildung_gis_folien.html#modellieren-heißt-auch-realisieren-welche-art-von-entscheidung",
+    "href": "pages/modellbildung_gis_folien.html#modellieren-heißt-auch-realisieren-welche-art-von-entscheidung",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "4. Modellieren heißt auch realisieren: Welche Art von Entscheidung?",
+    "text": "4. Modellieren heißt auch realisieren: Welche Art von Entscheidung?\nEin Modell ist nicht fertig, sobald eine Beziehung formuliert ist. Es muss auf konkreten Daten ausführbar werden. Dabei treffen wir Entscheidungen unterschiedlicher Art – und nicht jede davon ist eine Annahme über den Prozess.\n\n\n\n\n\n\n\n\nArt der Entscheidung\nBeispiele aus der GIS-Übung\nWas sie verändert\n\n\n\n\nFragestellung und Abgrenzung\nRechengebiet, Lage des Auslasses\nwelche Flächen überhaupt erfasst werden\n\n\nDatenrepräsentation\nRasterweite, Resampling, Senkenbehandlung, Umgang mit NoData\nwelche Geländeformen das Modell „sieht“\n\n\nWeiterleitungsregel\nD8 oder D∞\nwie Beiträge zwischen Zellen verteilt werden\n\n\nKlassifikation\nGerinneschwelle 2 oder 5 ha\nwie Ergebnisse benannt werden – nicht die Berechnung selbst\n\n\nProzessannahme\n\\(h_{\\mathrm{eff}} = 10\\) mm, Materialangebot, Kapazitätsbeziehung samt Gefällezusatz\nwelche Mengen das Modell erzeugt\n\n\nKorrekte Umsetzung\nZellfläche im Rasterausdruck, Einheiten, gemeinsames Rastergitter, Dateipfade\nob die Rechnung die gewählten Regeln tatsächlich ausführt\n\n\n\nDie ersten fünf Zeilen sind Modellentscheidungen: Wer sie ändert, rechnet ein anderes Modell. Die letzte Zeile ist eine Anforderung an die Ausführung. Wer bei einem 10-m-Raster die Zellfläche von 25 auf 100 m² anpasst, ändert keine Annahme, sondern setzt dieselbe Gleichung korrekt um.",
+    "crumbs": [
+      "Angeleitete Modellierungsfolge",
+      "Auftakt: Modellbildung"
+    ]
+  },
+  {
+    "objectID": "pages/modellbildung_gis_folien.html#drei-arten-von-modellgrenzen",
+    "href": "pages/modellbildung_gis_folien.html#drei-arten-von-modellgrenzen",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "5. Drei Arten von Modellgrenzen",
+    "text": "5. Drei Arten von Modellgrenzen\nWas ein Modell nicht enthält, fehlt aus unterschiedlichen Gründen. Die Grenzen lassen sich deshalb auch nicht auf dieselbe Weise beheben.\n\n\n\n\n\n\n\n\nGrenze\nBeispiel\nWas würde helfen?\n\n\n\n\nRechengebiet und Datenabdeckung\nZufluss von Flächen außerhalb des DGM\nDaten erweitern, Berechnung wiederholen\n\n\nNicht abgebildeter Prozess\nAbflussbildung aus Niederschlag, Boden und Bedeckung; zeitlicher Abflussverlauf\nzusätzliche Prozessbeziehung und passende Daten\n\n\nFehlende Rückkopplung\nAblagerung verändert das Gelände und damit die Fließrichtungen\neine andere Modellarchitektur, die Zustände über die Zeit fortschreibt\n\n\n\nDie Wirkungsgraphen der GIS-Übung unterscheiden diese Grenzen auch grafisch. Lesehilfe: Blau sind Eingaben, grau Verfahren, grün berechnete Ergebnisse und orange gesetzte Annahmen. Rot gestrichelt ist, was im Modell nicht berechnet wird, blau gestrichelt die Grenze des Rechengebiets und grau gepunktet ein Vergleich ohne Eingabe in die Rechnung. Ein Wirkungsgraph zeigt Abhängigkeiten, keine Werkzeugfolge. Er eignet sich auch, um ein eigenes Modell vor der ersten Berechnung zu entwerfen.",
+    "crumbs": [
+      "Angeleitete Modellierungsfolge",
+      "Auftakt: Modellbildung"
+    ]
+  },
+  {
+    "objectID": "pages/modellbildung_gis_folien.html#was-entscheidet-über-die-aussagekraft",
+    "href": "pages/modellbildung_gis_folien.html#was-entscheidet-über-die-aussagekraft",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "Was entscheidet über die Aussagekraft?",
+    "text": "Was entscheidet über die Aussagekraft?\n\n\n\n\n\n\n\n\n\nFrage vor der Interpretation\nHeuristik\nGeländeindex / Näherung\nProzessmodell\n\n\n\n\nWas ist bewusst festgelegt?\nGewichte, Klassen, Regeln\nRouting oder Gültigkeit der Formel\nGleichungen, Parameter, Numerik\n\n\nWas fehlt im Modell?\nkonkrete Dynamik und Mengen\noft Zeitverlauf, Speicher und Transport\nnicht aufgelöste Prozesse und ungenaue Randdaten\n\n\nWie prüfen wir?\nSensitivität, Vergleich mit unabhängigen Orten\nDGM-/Methodenvergleich, Messgrößen wenn vorhanden\nunabhängige Wasserstände, Ausdehnungen oder Abflussganglinien\n\n\n\nPrüfungen beantworten verschiedene Fragen. Verifikation klärt, ob die Rechnung die formulierte Regel korrekt umsetzt – etwa über Einheiten oder eine Bilanz. Die Prüfung der Abgrenzung klärt, ob Rechengebiet und Daten für die Frage ausreichen. Eine Sensitivitätsanalyse zeigt, wie stark Ergebnisse von gewählten Parametern abhängen, nicht welcher Wert zutrifft. Erst der Vergleich mit unabhängigen Beobachtungen kann ein Modell stützen oder widerlegen. Musterähnlichkeit, physikalische Plausibilität und quantitative Validität sind deshalb verschiedene Qualitätskriterien.",
+    "crumbs": [
+      "Angeleitete Modellierungsfolge",
+      "Auftakt: Modellbildung"
+    ]
+  },
+  {
+    "objectID": "pages/modellbildung_gis_folien.html#andere-achsen-explizit-empirisch-dynamisch",
+    "href": "pages/modellbildung_gis_folien.html#andere-achsen-explizit-empirisch-dynamisch",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "Andere Achsen: explizit, empirisch, dynamisch",
+    "text": "Andere Achsen: explizit, empirisch, dynamisch\nExplizit bedeutet lediglich, dass Annahmen oder Gleichungen benannt sind. Auch eine Heuristik kann explizit sein. Empirisch beschreibt die Herkunft einer Regel oder eines Parameters; ein physikalisch begründetes Modell kann empirisch kalibrierte Größen enthalten. Dynamisch beschreibt Zeitabhängigkeit. Diese Eigenschaften sind keine zusätzlichen Stufen zwischen Heuristik und Prozessmodell.\nPraktische Entscheidungsregel: Brauche ich nur eine begründete Suchkarte, reichen oft räumliche Regeln. Brauche ich eine geschätzte Abflussgröße, benötige ich passende physikalische Annahmen und zusätzliche Messgrößen. Will ich wissen, wie sich Wasser bei einem konkreten Ereignis im Raum bewegt, brauche ich ein dynamisches Modell und die Daten zu seinem Antrieb. Je mehr Prozesse wir abbilden, desto mehr müssen wir spezifizieren und überprüfen.",
+    "crumbs": [
+      "Angeleitete Modellierungsfolge",
+      "Auftakt: Modellbildung"
+    ]
+  },
+  {
+    "objectID": "pages/modellbildung_gis_folien.html#dokumentation-der-werkzeuge",
+    "href": "pages/modellbildung_gis_folien.html#dokumentation-der-werkzeuge",
+    "title": "Modellbildung im GIS – Kurzreader",
+    "section": "Dokumentation der Werkzeuge",
+    "text": "Dokumentation der Werkzeuge\nIm Kurs verwendet\n\nTauDEM 5 – Senkenbehandlung, D8/D∞-Routing, Akkumulation, Einzugsgebiete, transportbegrenzte Akkumulation.\nNetLogo Models Library – Grand Canyon, Erosion, River Meanders.\nItzï – geplante zeitabhängige Oberflächenabflusssimulation.\nCAESAR-Lisflood – optionale gekoppelte Hydraulik- und Sedimentmodellierung.\n\nAlternativen und Vertiefung\n\nSAGA GIS: Hydrologie-Werkzeuge – Fließakkumulation, SAGA Wetness Index und TWI.\nGRASS GIS: r.watershed – Akkumulation, Fließrichtungen, Einzugsgebiete und topografischer Index.\nQGIS: externe Processing-Anwendungen – je nach Installation müssen zusätzliche Anbieter eingerichtet werden.\nHEC-RAS: Dokumentation und hydraulische Modellgrundlagen – 1D-/2D-Strömungsmodellierung und ihre Datenanforderungen.",
+    "crumbs": [
+      "Angeleitete Modellierungsfolge",
+      "Auftakt: Modellbildung"
+    ]
+  },
+  {
     "objectID": "pages/meander_abfluss_saga_grass.html",
     "href": "pages/meander_abfluss_saga_grass.html",
     "title": "Abflusswege und Sediment im realen Einzugsgebiet",

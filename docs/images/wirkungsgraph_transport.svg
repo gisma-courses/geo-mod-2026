@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1350" height="700" viewBox="0 0 1350 700" role="img" aria-label="E · Materialangebot, Kapazität und Weitergabe">
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#536473"/></marker><marker id="arrow-muted" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#A87979"/></marker></defs>
+<rect width="1350" height="700" fill="#FFFFFF"/>
+<text x="40" y="35" font-family="DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#263648">E · Materialangebot, Kapazität und Weitergabe</text>
+<path d="M 200,145 L 222,145 L 222,123 L 248,123" fill="none" stroke="#536473" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M 200,145 L 222,145 L 222,215 L 248,215" fill="none" stroke="#536473" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M 394,123 L 422,123 L 422,167 L 450,167" fill="none" stroke="#536473" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M 394,215 L 422,215 L 422,194 L 450,194" fill="none" stroke="#536473" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M 240,345 L 265,345 L 265,380 L 291,380" fill="none" stroke="#536473" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M 240,455 L 265,455 L 265,405 L 291,405" fill="none" stroke="#536473" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M 495,388 L 545,388 L 545,356 L 585,356" fill="none" stroke="#536473" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M 688,177 L 710,177 L 710,297 L 693,297 L 693,322" fill="none" stroke="#536473" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M 801,343 L 841,343 L 841,331 L 874,331" fill="none" stroke="#536473" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M 974,365 L 974,435" fill="none" stroke="#536473" stroke-width="2" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M 1069,473 L 1122,473" fill="none" stroke="#A87979" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow-muted)"/>
+<path d="M 1220,505 L 1220,565" fill="none" stroke="#A87979" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow-muted)"/>
+<path d="M 971,297 L 971,268 L 140,268 L 140,308" fill="none" stroke="#536473" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="150" y="260" font-size="15" font-style="italic" font-family="DejaVu Sans,Arial,sans-serif" fill="#536473">wird zur Weitergabe an die Unterlieger-Zelle (entlang D∞)</text>
+<path d="M 1120,600 L 20,600 L 20,145 L 38,145" fill="none" stroke="#A87979" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#arrow-muted)"/>
+<text x="300" y="592" font-size="15" font-style="italic" font-family="DejaVu Sans,Arial,sans-serif" fill="#A87979">Rückkopplung fehlt – sie erfordert ein dynamisches Modell (vgl. NetLogo Erosion)</text>
+<path d="M 393,428 L 393,476 L 872,476" fill="none" stroke="#536473" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="560" y="468" font-size="15" font-style="italic" font-family="DejaVu Sans,Arial,sans-serif" fill="#536473">M_verfügbar</text>
+<rect x="40" y="115" width="160" height="60" rx="12" fill="#E9F2FA" stroke="#52748F" stroke-width="1.5" />
+<text x="120.0" y="140.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">DGM</text>
+<text x="120.0" y="161.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">D∞-Routing</text>
+<rect x="248" y="93" width="146" height="60" rx="12" fill="#E9F2FA" stroke="#52748F" stroke-width="1.5" />
+<text x="321.0" y="128.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">SCA a</text>
+<rect x="248" y="185" width="146" height="60" rx="12" fill="#E9F2FA" stroke="#52748F" stroke-width="1.5" />
+<text x="321.0" y="220.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">Hangneigung s</text>
+<rect x="450" y="140" width="238" height="78" rx="12" fill="#FFF0D8" stroke="#9E7736" stroke-width="1.5" />
+<text x="569.0" y="174.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">T_cap(a,s)</text>
+<text x="569.0" y="195.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">angenommene Beziehung</text>
+<rect x="40" y="420" width="200" height="70" rx="12" fill="#FFF0D8" stroke="#9E7736" stroke-width="1.5" />
+<text x="140.0" y="450.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">Lokales Angebot</text>
+<text x="140.0" y="471.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">0,02 ME / Zelle</text>
+<rect x="40" y="310" width="200" height="70" rx="12" fill="#E5F3E8" stroke="#548365" stroke-width="1.5" />
+<text x="140.0" y="340.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">Weitergabe</text>
+<text x="140.0" y="361.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">von oberhalb</text>
+<rect x="291" y="350" width="204" height="78" rx="12" fill="#F0F3F7" stroke="#64748B" stroke-width="1.5" />
+<text x="393.0" y="384.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">Verfügbare Menge</text>
+<text x="393.0" y="405.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">Zufluss + Angebot</text>
+<rect x="585" y="322" width="216" height="78" rx="12" fill="#F0F3F7" stroke="#64748B" stroke-width="1.5" />
+<text x="693.0" y="356.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">Transportbegrenzung</text>
+<text x="693.0" y="377.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">min(M, T_cap)</text>
+<rect x="874" y="297" width="195" height="68" rx="12" fill="#E5F3E8" stroke="#548365" stroke-width="1.5" />
+<text x="971.5" y="336.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">Weitertransport</text>
+<rect x="874" y="435" width="195" height="82" rx="12" fill="#E5F3E8" stroke="#548365" stroke-width="1.5" />
+<text x="971.5" y="471.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">Ablagerung</text>
+<text x="971.5" y="492.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">M − M_weiter</text>
+<rect x="1124" y="435" width="192" height="70" rx="12" fill="#F7EEEE" stroke="#A57878" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="1220.0" y="475.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">Geländeänderung</text>
+<rect x="1120" y="565" width="205" height="70" rx="12" fill="#F7EEEE" stroke="#A57878" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="1222.5" y="605.0" font-size="17" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" fill="#243447">Neue Fließrichtungen</text>
+<text x="40" y="676" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" fill="#607183">Durchgezogen: im Modell berechneter Zusammenhang     – – –  gestrichelt: im Modell nicht berechnet</text>
+</svg>

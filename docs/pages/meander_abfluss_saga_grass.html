@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Abflusswege und Sediment im kleinen Einzugsgebiet – Modellieren in der Geographie</title>
+<title>Abflusswege und Sediment im realen Einzugsgebiet – Modellieren in der Geographie</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -121,16 +121,14 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="Abflusswege und Sediment im kleinen Einzugsgebiet – Modellieren in der Geographie">
-<meta property="og:description" content="DGM-Kacheln vorbereiten · TauDEM anwenden · Modellannahmen untersuchen">
+<meta property="og:title" content="Abflusswege und Sediment im realen Einzugsgebiet – Modellieren in der Geographie">
+<meta property="og:description" content="Daten vorbereiten · Werkzeuge anwenden · Modellannahmen untersuchen">
 <meta property="og:image" content="https://gisma-courses.github.io/geo-mod-2026/images/abfluss_workflow.svg">
 <meta property="og:site_name" content="Modellieren in der Geographie">
-<meta property="og:image:alt" content="Ab dem aufbereiteten DGM verzweigt TauDEM nach Pit Remove in D8 und D∞: D8 liefert Akkumulation, Gerinneschwellen und Einzugsgebiet; D∞ liefert spezifische Fläche und TWI. Wasser- und Materialbilanzen fügen zusätzliche Annahmen hinzu.">
-<meta name="twitter:title" content="Abflusswege und Sediment im kleinen Einzugsgebiet – Modellieren in der Geographie">
-<meta name="twitter:description" content="DGM-Kacheln vorbereiten · TauDEM anwenden · Modellannahmen untersuchen">
+<meta name="twitter:title" content="Abflusswege und Sediment im realen Einzugsgebiet – Modellieren in der Geographie">
+<meta name="twitter:description" content="Daten vorbereiten · Werkzeuge anwenden · Modellannahmen untersuchen">
 <meta name="twitter:image" content="https://gisma-courses.github.io/geo-mod-2026/images/abfluss_workflow.svg">
 <meta name="twitter:creator" content="@gisma">
-<meta name="twitter:image:alt" content="Ab dem aufbereiteten DGM verzweigt TauDEM nach Pit Remove in D8 und D∞: D8 liefert Akkumulation, Gerinneschwellen und Einzugsgebiet; D∞ liefert spezifische Fläche und TWI. Wasser- und Materialbilanzen fügen zusätzliche Annahmen hinzu.">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -306,7 +304,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Abflusswege und Sediment im kleinen Einzugsgebiet</h1>
+          <h1 class="quarto-secondary-nav-title">Abflusswege und Sediment im realen Einzugsgebiet</h1>
         </a>     
     </div>
   </nav>
@@ -315,8 +313,8 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Abflusswege und Sediment im kleinen Einzugsgebiet</h1>
-            <p class="subtitle lead">DGM-Kacheln vorbereiten · TauDEM anwenden · Modellannahmen untersuchen</p>
+      <h1 class="title d-none d-lg-block">Abflusswege und Sediment im realen Einzugsgebiet</h1>
+            <p class="subtitle lead">Daten vorbereiten · Werkzeuge anwenden · Modellannahmen untersuchen</p>
                       </div>
   </div>
     
@@ -428,16 +426,49 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Inhalt</h2>
    
+  <ul>
+  <li><a href="#vom-modellbeispiel-zur-eigenen-untersuchung" id="toc-vom-modellbeispiel-zur-eigenen-untersuchung" class="nav-link active" data-scroll-target="#vom-modellbeispiel-zur-eigenen-untersuchung">Vom Modellbeispiel zur eigenen Untersuchung</a></li>
+  <li><a href="#a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster" id="toc-a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster" class="nav-link" data-scroll-target="#a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster">A · Referenzlauf: Vier DGM-Kacheln zu einem Arbeitsraster</a>
   <ul class="collapse">
-  <li><a href="#vom-bekannten-beispiel-zum-eigenen-untersuchungsfall" id="toc-vom-bekannten-beispiel-zum-eigenen-untersuchungsfall" class="nav-link active" data-scroll-target="#vom-bekannten-beispiel-zum-eigenen-untersuchungsfall">Vom bekannten Beispiel zum eigenen Untersuchungsfall</a></li>
-  <li><a href="#a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster" id="toc-a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster" class="nav-link" data-scroll-target="#a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster">A · Referenzlauf: Vier DGM-Kacheln zu einem Arbeitsraster</a></li>
-  <li><a href="#b-den-workflow-auf-ein-eigenes-untersuchungsgebiet-übertragen" id="toc-b-den-workflow-auf-ein-eigenes-untersuchungsgebiet-übertragen" class="nav-link" data-scroll-target="#b-den-workflow-auf-ein-eigenes-untersuchungsgebiet-übertragen">B · Den Workflow auf ein eigenes Untersuchungsgebiet übertragen</a></li>
-  <li><a href="#c-was-folgt-allein-aus-dem-gelände" id="toc-c-was-folgt-allein-aus-dem-gelände" class="nav-link" data-scroll-target="#c-was-folgt-allein-aus-dem-gelände">C · Was folgt allein aus dem Gelände?</a></li>
-  <li><a href="#d-was-ändert-sich-durch-eine-abflussannahme" id="toc-d-was-ändert-sich-durch-eine-abflussannahme" class="nav-link" data-scroll-target="#d-was-ändert-sich-durch-eine-abflussannahme">D · Was ändert sich durch eine Abflussannahme?</a></li>
-  <li><a href="#e-was-ändert-sich-durch-eine-transportgrenze" id="toc-e-was-ändert-sich-durch-eine-transportgrenze" class="nav-link" data-scroll-target="#e-was-ändert-sich-durch-eine-transportgrenze">E · Was ändert sich durch eine Transportgrenze?</a></li>
-  <li><a href="#f-was-haben-wir-über-unseren-bach-herausgefunden" id="toc-f-was-haben-wir-über-unseren-bach-herausgefunden" class="nav-link" data-scroll-target="#f-was-haben-wir-über-unseren-bach-herausgefunden">F · Was haben wir über unseren Bach herausgefunden?</a></li>
+  <li><a href="#ausgangsdaten-und-datenprüfung" id="toc-ausgangsdaten-und-datenprüfung" class="nav-link" data-scroll-target="#ausgangsdaten-und-datenprüfung">Ausgangsdaten und Datenprüfung</a></li>
+  <li><a href="#datenaufbereitung" id="toc-datenaufbereitung" class="nav-link" data-scroll-target="#datenaufbereitung">Datenaufbereitung</a></li>
+  <li><a href="#vom-höhenmodell-zu-berechneten-abflusswegen" id="toc-vom-höhenmodell-zu-berechneten-abflusswegen" class="nav-link" data-scroll-target="#vom-höhenmodell-zu-berechneten-abflusswegen">Vom Höhenmodell zu berechneten Abflusswegen</a></li>
+  </ul></li>
+  <li><a href="#b-den-workflow-auf-ein-eigenes-untersuchungsgebiet-übertragen" id="toc-b-den-workflow-auf-ein-eigenes-untersuchungsgebiet-übertragen" class="nav-link" data-scroll-target="#b-den-workflow-auf-ein-eigenes-untersuchungsgebiet-übertragen">B · Den Workflow auf ein eigenes Untersuchungsgebiet übertragen</a>
+  <ul class="collapse">
+  <li><a href="#untersuchungsgebiet-und-daten-auswählen" id="toc-untersuchungsgebiet-und-daten-auswählen" class="nav-link" data-scroll-target="#untersuchungsgebiet-und-daten-auswählen">1 · Untersuchungsgebiet und Daten auswählen</a></li>
+  <li><a href="#dgm-selbstständig-aufbereiten" id="toc-dgm-selbstständig-aufbereiten" class="nav-link" data-scroll-target="#dgm-selbstständig-aufbereiten">2 · DGM selbstständig aufbereiten</a></li>
+  <li><a href="#ist-der-gewählte-dgm-ausschnitt-geeignet" id="toc-ist-der-gewählte-dgm-ausschnitt-geeignet" class="nav-link" data-scroll-target="#ist-der-gewählte-dgm-ausschnitt-geeignet">3 · Ist der gewählte DGM-Ausschnitt geeignet?</a></li>
+  </ul></li>
+  <li><a href="#c-was-folgt-allein-aus-dem-gelände" id="toc-c-was-folgt-allein-aus-dem-gelände" class="nav-link" data-scroll-target="#c-was-folgt-allein-aus-dem-gelände">C · Was folgt allein aus dem Gelände?</a>
+  <ul class="collapse">
+  <li><a href="#entwässerungsverbindungen-und-flächenakkumulation" id="toc-entwässerungsverbindungen-und-flächenakkumulation" class="nav-link" data-scroll-target="#entwässerungsverbindungen-und-flächenakkumulation">Entwässerungsverbindungen und Flächenakkumulation</a></li>
+  <li><a href="#gerinneschwelle-auslass-und-einzugsgebiet" id="toc-gerinneschwelle-auslass-und-einzugsgebiet" class="nav-link" data-scroll-target="#gerinneschwelle-auslass-und-einzugsgebiet">Gerinneschwelle, Auslass und Einzugsgebiet</a></li>
+  <li><a href="#d8-und-d-zwei-regeln-für-dasselbe-gelände" id="toc-d8-und-d-zwei-regeln-für-dasselbe-gelände" class="nav-link" data-scroll-target="#d8-und-d-zwei-regeln-für-dasselbe-gelände">D8 und D∞: Zwei Regeln für dasselbe Gelände</a></li>
+  </ul></li>
+  <li><a href="#d-von-der-einzugsfläche-zur-hypothetischen-abflussmenge" id="toc-d-von-der-einzugsfläche-zur-hypothetischen-abflussmenge" class="nav-link" data-scroll-target="#d-von-der-einzugsfläche-zur-hypothetischen-abflussmenge">D · Von der Einzugsfläche zur hypothetischen Abflussmenge</a>
+  <ul class="collapse">
+  <li><a href="#ein-einheitlicher-abflussbeitrag" id="toc-ein-einheitlicher-abflussbeitrag" class="nav-link" data-scroll-target="#ein-einheitlicher-abflussbeitrag">Ein einheitlicher Abflussbeitrag</a></li>
+  <li><a href="#was-wäre-bei-räumlich-unterschiedlichen-abflussbeiträgen" id="toc-was-wäre-bei-räumlich-unterschiedlichen-abflussbeiträgen" class="nav-link" data-scroll-target="#was-wäre-bei-räumlich-unterschiedlichen-abflussbeiträgen">Was wäre bei räumlich unterschiedlichen Abflussbeiträgen?</a></li>
+  </ul></li>
+  <li><a href="#e-was-ändert-sich-durch-eine-transportgrenze" id="toc-e-was-ändert-sich-durch-eine-transportgrenze" class="nav-link" data-scroll-target="#e-was-ändert-sich-durch-eine-transportgrenze">E · Was ändert sich durch eine Transportgrenze?</a>
+  <ul class="collapse">
+  <li><a href="#materialangebot-und-transportkapazität-festlegen" id="toc-materialangebot-und-transportkapazität-festlegen" class="nav-link" data-scroll-target="#materialangebot-und-transportkapazität-festlegen">1 · Materialangebot und Transportkapazität festlegen</a></li>
+  <li><a href="#transport-und-ablagerung-berechnen" id="toc-transport-und-ablagerung-berechnen" class="nav-link" data-scroll-target="#transport-und-ablagerung-berechnen">2 · Transport und Ablagerung berechnen</a></li>
+  <li><a href="#was-bewirkt-eine-geringere-transportkapazität" id="toc-was-bewirkt-eine-geringere-transportkapazität" class="nav-link" data-scroll-target="#was-bewirkt-eine-geringere-transportkapazität">3 · Was bewirkt eine geringere Transportkapazität?</a></li>
+  <li><a href="#was-beschreibt-dieses-modell-und-was-nicht" id="toc-was-beschreibt-dieses-modell-und-was-nicht" class="nav-link" data-scroll-target="#was-beschreibt-dieses-modell-und-was-nicht">4 · Was beschreibt dieses Modell – und was nicht?</a></li>
+  </ul></li>
+  <li><a href="#f-vom-rechenweg-zum-geographischen-modell" id="toc-f-vom-rechenweg-zum-geographischen-modell" class="nav-link" data-scroll-target="#f-vom-rechenweg-zum-geographischen-modell">F · Vom Rechenweg zum geographischen Modell</a>
+  <ul class="collapse">
+  <li><a href="#welche-modellentscheidungen-haben-wir-umgesetzt" id="toc-welche-modellentscheidungen-haben-wir-umgesetzt" class="nav-link" data-scroll-target="#welche-modellentscheidungen-haben-wir-umgesetzt">1 · Welche Modellentscheidungen haben wir umgesetzt?</a></li>
+  <li><a href="#was-haben-unsere-prüfungen-tatsächlich-gezeigt" id="toc-was-haben-unsere-prüfungen-tatsächlich-gezeigt" class="nav-link" data-scroll-target="#was-haben-unsere-prüfungen-tatsächlich-gezeigt">2 · Was haben unsere Prüfungen tatsächlich gezeigt?</a></li>
+  <li><a href="#was-können-wir-über-unseren-bach-begründet-aussagen" id="toc-was-können-wir-über-unseren-bach-begründet-aussagen" class="nav-link" data-scroll-target="#was-können-wir-über-unseren-bach-begründet-aussagen">3 · Was können wir über unseren Bach begründet aussagen?</a></li>
+  <li><a href="#was-wäre-wenn-unsere-forschungsfrage-eine-andere-wäre" id="toc-was-wäre-wenn-unsere-forschungsfrage-eine-andere-wäre" class="nav-link" data-scroll-target="#was-wäre-wenn-unsere-forschungsfrage-eine-andere-wäre">4 · Was wäre, wenn unsere Forschungsfrage eine andere wäre?</a></li>
+  <li><a href="#den-eigenen-modellierungsweg-nachvollziehbar-machen" id="toc-den-eigenen-modellierungsweg-nachvollziehbar-machen" class="nav-link" data-scroll-target="#den-eigenen-modellierungsweg-nachvollziehbar-machen">5 · Den eigenen Modellierungsweg nachvollziehbar machen</a></li>
+  <li><a href="#ausblick-die-modellierung-einmal-andersherum-beginnen" id="toc-ausblick-die-modellierung-einmal-andersherum-beginnen" class="nav-link" data-scroll-target="#ausblick-die-modellierung-einmal-andersherum-beginnen">Ausblick · Die Modellierung einmal andersherum beginnen</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/meander_abfluss_saga_grass.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/meander_abfluss_saga_grass.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -448,27 +479,26 @@ window.Quarto = {
 
 
 <p><a href="../index.html">← Kursübersicht</a> · <a href="../pages/netlogo_modellvergleich.html">NetLogo-Vergleich</a> · <a href="../pages/modellbildung_gis_reader.html">Modellbildung im GIS</a> · <a href="../pages/abfluss_algorithmen_quellen.html">Dokumentation: Daten und Werkzeugfolge</a></p>
-<section id="vom-bekannten-beispiel-zum-eigenen-untersuchungsfall" class="level2">
-<h2 class="anchored" data-anchor-id="vom-bekannten-beispiel-zum-eigenen-untersuchungsfall">Vom bekannten Beispiel zum eigenen Untersuchungsfall</h2>
-<p>In NetLogos <em>Grand Canyon</em> konnten Tropfen auf einem Relief verfolgt werden: Wo verlaufen ihre Wege, und wo treffen sie zusammen? <em>Erosion</em> ergänzte die zeitliche Veränderung des Reliefs, <em>River Meanders</em> die Veränderung eines Gerinnes durch Erosions- und Ablagerungsregeln. Jetzt arbeiten wir mit <strong>tatsächlichen Geodaten</strong> – und müssen zunächst selbst ein verwendbares Höhenraster herstellen.</p>
-<p>Die Modellkette beantwortet drei verschiedene Fragen: <strong>Wo konzentrieren sich Abflusswege im Gelände? Was folgt, wenn wir zusätzlich eine effektive Abflussmenge annehmen? Was ändert sich durch eine begrenzte Sedimenttransportkapazität?</strong> Das Gelände wird in diesem GIS-Modell <strong>nicht dynamisch verändert</strong>.</p>
-<p>Der Arbeitsweg ist in zwei Teile getrennt:</p>
-<ul>
-<li><strong>Referenzlauf:</strong> Sie führen mit vier bereitgestellten DGM-Kacheln die Datenaufbereitung und eine erste TauDEM-Berechnung aus. Dieser Lauf prüft den <em>technischen Weg</em>, ist aber noch keine Untersuchung eines vollständig erfassten Einzugsgebiets.</li>
-<li><strong>Eigener Fall:</strong> Sie wählen einen Oberlauf, beschaffen dessen DGM-Daten und <strong>übertragen denselben Workflow</strong>. Die anschließenden Modellrechnungen und ihre fachliche Beurteilung beziehen sich auf diesen Fall, nicht auf den Referenzdatensatz.</li>
-</ul>
-<p>Ein erfolgreicher Programmlauf ist dabei weder ein Beleg für vollständige Eingangsdaten noch für eine zutreffende Prozessbeschreibung.</p>
+<section id="vom-modellbeispiel-zur-eigenen-untersuchung" class="level2">
+<h2 class="anchored" data-anchor-id="vom-modellbeispiel-zur-eigenen-untersuchung">Vom Modellbeispiel zur eigenen Untersuchung</h2>
+<p>In den bisherigen NetLogo-Modellen waren Gelände und Modellregeln bereits vorgegeben. Wir konnten unmittelbar untersuchen, wie aus lokalen Regeln Abflusswege, Erosion oder veränderte Gerinneformen entstehen.</p>
+<p>Bei der eigenständigen Modellierung eines realen Bachabschnitts beginnt die Arbeit früher: <strong>Welcher Teil der Landschaft soll untersucht werden, welche Geodaten stehen dafür zur Verfügung und wie werden daraus geeignete Modelleingaben?</strong> Diese Entscheidungen bestimmen mit, welche Ergebnisse die anschließenden Berechnungen liefern können.</p>
+<p>Wir beginnen mit vier bereitgestellten DGM-Kacheln und einem vollständigen, nachvollziehbaren Verarbeitungsweg. Anschließend übertragen Sie dieses Verfahren auf einen selbst gewählten Bachabschnitt. Dabei müssen Sie die erforderlichen Daten selbst beschaffen, aufbereiten und die Eignung Ihres Rechengebiets anhand der Ergebnisse überprüfen.</p>
+<p>Auf dieser Grundlage untersuchen Sie, welche Aussagen sich aus dem Relief ableiten lassen und was erst durch zusätzliche Annahmen über Abfluss und Sedimenttransport entsteht. <strong>Zur Modellierung gehört dabei auch die Umsetzung:</strong> Daten in ein berechenbares Raster überführen, Regeln ausführen, Ergebnisse prüfen und nötigenfalls den Ansatz ändern.</p>
 </section>
 <section id="a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster" class="level2">
 <h2 class="anchored" data-anchor-id="a-referenzlauf-vier-dgm-kacheln-zu-einem-arbeitsraster">A · Referenzlauf: Vier DGM-Kacheln zu einem Arbeitsraster</h2>
 <section id="ausgangsdaten-und-datenprüfung" class="level3">
 <h3 class="anchored" data-anchor-id="ausgangsdaten-und-datenprüfung">Ausgangsdaten und Datenprüfung</h3>
-<p>Im Repository liegen unter <a href="https://github.com/gisma-courses/geo-mod-2026/tree/main/assets/mini-data/dgm1_32_49.zip"><code>mini-data/</code></a> <strong>vier benachbarte DGM1-Kacheln</strong> (je 1 km², zusammen 2 × 2 km). Verwenden Sie diese vier Originaldateien, nicht ein bereits vorbereitetes Gesamt-DGM. Der Beispielordner enthält ausschließlich die für diesen Lauf vorgesehenen GeoTIFF-Kacheln.</p>
-<p>Öffnen Sie zunächst eine Kachel in QGIS und lesen Sie unter <em>Layer-Eigenschaften → Information</em> Koordinatenreferenzsystem (KBS/CRS), Pixelgröße und Ausdehnung ab. Prüfen Sie anhand der Kachelbezeichnungen und ihrer Ausdehnungen, wie die vier Dateien räumlich aneinanderliegen. Worin liegt der Unterschied zwischen <strong>vier benachbarten Dateien</strong> und <strong>einem einheitlichen Berechnungsraster</strong>?</p>
+<p>Laden Sie das Archiv <a href="https://github.com/gisma-courses/geo-mod-2026/raw/main/assets/mini-data/dgm1_32_49.zip"><code>dgm1_32_49.zip</code></a> mit <strong>vier benachbarten DGM1-Kacheln</strong> (je 1 km², zusammen 2 × 2 km) herunter. Entpacken Sie die vier GeoTIFF-Dateien direkt in einen Ordner <code>mini-data/</code> in Ihrem Projektordner, ohne zusätzlichen Unterordner. Das Archiv enthält ausschließlich die für diesen Lauf vorgesehenen Kacheln; verwenden Sie diese Originaldateien unverändert.</p>
+<p>Öffnen Sie zunächst eine Kachel in QGIS und lesen Sie unter <em>Layer-Eigenschaften → Information</em> Koordinatenreferenzsystem (KBS/CRS), Pixelgröße und Ausdehnung ab. Prüfen Sie anhand der Kachelbezeichnungen und ihrer Ausdehnungen, wie die vier Dateien räumlich aneinanderliegen. Machen Sie sich klar, worin der Unterschied zwischen <strong>vier benachbarten Dateien</strong> und <strong>einem einheitlichen Berechnungsraster</strong> besteht.</p>
 </section>
-<section id="datenaufbereitung-als-eigener-verarbeitungsschritt" class="level3">
-<h3 class="anchored" data-anchor-id="datenaufbereitung-als-eigener-verarbeitungsschritt">Datenaufbereitung als eigener Verarbeitungsschritt</h3>
-<p>Laden Sie <a href="../scripts/prepare_dgm.py"><code>scripts/prepare_dgm.py</code></a> über den <strong>QGIS-Processing-Skripteditor</strong> und speichern Sie die Datei dort als Python-Skript. Das Werkzeug erscheint unter <strong>Verarbeitung → Werkzeugkiste → Skripte → Modellieren in der Geographie → DGM vorbereiten: Kacheln mosaikieren und Arbeitsraster erzeugen</strong>.</p>
+<section id="datenaufbereitung" class="level3">
+<h3 class="anchored" data-anchor-id="datenaufbereitung">Datenaufbereitung</h3>
+<p>Bei der Arbeit mit realen Geodaten nimmt die <strong>Datenaufbereitung (Data Preparation und Data Cleaning)</strong> häufig einen erheblichen Teil des gesamten Modellierungsaufwands ein – nicht selten mehr als die eigentliche Modellberechnung. Daten müssen beschafft, auf ihre Eignung geprüft, zusammengeführt und in eine einheitliche Struktur gebracht werden. Das ist oft mühsam, aber keineswegs nur technische Vorarbeit: Fehler, Datenlücken oder ungeeignete Transformationen können sämtliche nachfolgenden Modellergebnisse erheblich beeinflussen.</p>
+<p><strong>Entscheidend sind deshalb Transparenz und Reproduzierbarkeit.</strong> Welche Ausgangsdaten wurden verwendet? Welche Veränderungen wurden vorgenommen? Welche Eigenschaften gingen dabei möglicherweise verloren? Ein automatisierter Workflow erleichtert die wiederholbare Verarbeitung, entbindet aber nicht davon, die einzelnen Schritte und ihre Auswirkungen zu verstehen und zu kontrollieren.</p>
+<p>Für unsere Übung übernimmt ein eigenes Skript die wiederkehrenden Verarbeitungsschritte. Laden Sie <a href="../scripts/prepare_dgm.py"><code>scripts/prepare_dgm.py</code></a> über den <strong>QGIS-Processing-Skripteditor</strong> und speichern Sie die Datei dort als Python-Skript. Das Werkzeug erscheint unter <strong>Verarbeitung → Werkzeugkiste → Skripte → Modellieren in der Geographie → DGM vorbereiten: Kacheln mosaikieren und Arbeitsraster erzeugen</strong>.</p>
+<p>Die einzelnen Verarbeitungsschritte und verwendeten GDAL-Werkzeuge sind in der <a href="../pages/abfluss_algorithmen_quellen.html">Dokumentation der Werkzeugfolge</a> erläutert.</p>
 <p>Starten Sie das Werkzeug mit folgenden Eingaben:</p>
 <table class="caption-top table">
 <colgroup>
@@ -527,23 +557,24 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p><strong>Prüfen Sie die Ausgaben</strong>, statt nur eine Erfolgsmeldung zu übernehmen: Sind alle vier Kacheln enthalten? Sind an den Übergängen erkennbare Sprünge oder fehlende Werte vorhanden? Stimmen CRS, Ausdehnung und Pixelgröße? Was wurde bei der Reduktion von DGM1 auf 5 m verändert? Das Prüfprotokoll dokumentiert technische Eigenschaften; es garantiert <strong>nicht</strong>, dass das Gelände fachlich vollständig oder fehlerfrei ist.</p>
-<p>Welche GDAL-Werkzeuge das Skript in welcher Reihenfolge mit welchen Parametern aufruft, ist in der <a href="../pages/abfluss_algorithmen_quellen.html">Dokumentation der DGM-Aufbereitung</a> aufgeführt.</p>
+<p>Mit der Zielzellweite entscheiden Sie zugleich, welche Geländeformen im Arbeitsraster noch aufgelöst werden. Diese Detailverluste lassen sich durch das spätere Routing nicht rückgängig machen.</p>
+<p>Kontrollieren Sie das erzeugte Arbeitsraster dgm5.tif in QGIS und vergleichen Sie es mit dem Prüfbericht dgm_pruefung.json: Stimmen Koordinatensystem und Zellweite mit den gewählten Einstellungen überein? Sind alle vier DGM-Kacheln enthalten und korrekt zusammengesetzt? Gibt es unerwartete Datenlücken, Überlappungen oder auffällige Übergänge zwischen den Kacheln?</p>
+<p>Erst wenn diese Eigenschaften stimmen, verwenden Sie das Raster als Eingabe für TauDEM.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Technisch: Was dieses Werkzeug tut – und was ausdrücklich nicht
+<span class="screen-reader-only">Note</span>Technisch: Was dieses Werkzeug tut
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><code>prepare_dgm.py</code> übernimmt <strong>ausschließlich die Rasteraufbereitung</strong>: Kacheln prüfen, VRT bilden, ein auf ein Zielgitter ausgerichtetes GeoTIFF erzeugen und das Ergebnis dokumentieren. Die originale DGM1-Auflösung bleibt in den Quellkacheln erhalten; das Arbeitsraster entsteht durch Mittelwertbildung (<em>Average</em>) bei der Umrechnung. Kleine NoData-Lücken können dabei verdeckt werden. Das ist keine hydrologische Senkenfüllung.</p>
-<p><strong><code>Pit Remove</code>, D8, D∞, Einzugsgebiete und Sedimenttransport gehören zum separaten TauDEM-Skript.</strong> Halten Sie diese Trennung auch bei späteren Änderungen ein.</p>
-<p>Die VRT-Datei ist kein eigenständiges Datenarchiv: Verschieben Sie die referenzierten Quellkacheln nicht nachträglich. Das Werkzeug überschreibt bestehende Ausgaben nicht; für eine andere Zellweite oder einen zweiten Lauf einen eigenen Ergebnisordner wählen. Es liest GeoTIFFs unmittelbar aus dem gewählten Ordner, nicht aus Unterordnern.</p>
+<p><code>prepare_dgm.py</code> beschränkt sich auf die <strong>Rasteraufbereitung</strong>: Es prüft die DGM-Kacheln, erstellt ein virtuelles Mosaik (VRT), erzeugt daraus ein einheitliches GeoTIFF im gewählten Zielraster und dokumentiert die Verarbeitung. Die originalen DGM1-Kacheln bleiben unverändert. Bei der Umrechnung auf die Zielauflösung werden Höhenwerte mittels <em>Average</em> gemittelt. Dabei können kleinere NoData-Lücken überdeckt werden. Mit der später notwendigen <strong>hydrologischen Senkenfüllung</strong> hat dieser Effekt nichts zu tun.</p>
+<p><strong>Wichtig für die weitere Verwendung:</strong> Die VRT-Datei enthält keine eigenen Rasterdaten, sondern verweist auf die ursprünglichen Kacheln. Sie bleibt daher nur nutzbar, solange diese Dateien am referenzierten Speicherort verfügbar sind. Das erzeugte GeoTIFF ist dagegen eigenständig.</p>
+<p>Das Werkzeug berücksichtigt nur GeoTIFF-Dateien im ausgewählten Ordner, nicht in dessen Unterordnern. Bereits vorhandene Ausgaben werden nicht überschrieben; für einen erneuten Durchlauf verwenden Sie deshalb einen neuen Ergebnisordner.</p>
 </div>
 </div>
 </div>
@@ -552,39 +583,45 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="vom-höhenmodell-zu-berechneten-abflusswegen">Vom Höhenmodell zu berechneten Abflusswegen</h3>
 <p>Wir haben aus den vier DGM-Kacheln ein zusammenhängendes Höhenraster erzeugt. Es enthält für jede Rasterzelle die Geländehöhe. <strong>Wie lässt sich daraus ableiten, wohin Wasser aufgrund des Geländes fließen würde und wo sich Zuflüsse sammeln?</strong></p>
 <p>Dafür verwenden wir das vorbereitete TauDEM-Werkzeug.</p>
-<p>Öffnen Sie <code>scripts/taudem_burgwald_processing.py</code> im QGIS-Processing-Skripteditor und speichern Sie es dort. Sie finden das Werkzeug anschließend unter <strong>Verarbeitung → Skripte → Modellieren in der Geographie → TauDEM: Abflusswege, Einzugsgebiet, Wasser, Sediment</strong>.</p>
-<p>Wählen Sie:</p>
-<ul>
-<li><strong>Berechnung:</strong> <code>1 – Grundlage</code></li>
-<li><strong>DGM:</strong> <code>processing/beispiel/dgm5.tif</code></li>
-<li><strong>Ergebnisordner:</strong> <code>results/beispiel/</code></li>
-</ul>
-<p>Starten Sie die Berechnung. TauDEM und MPI müssen dafür installiert sein. Lassen Sie die voreingestellte Prüfung auf Randeinflüsse aktiviert.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Windows: QGIS, TauDEM und MPI installieren
+<span class="screen-reader-only">Tip</span>Was ist TauDEM und wie installiere ich es?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p><strong>TauDEM (Terrain Analysis Using Digital Elevation Models)</strong> ist eine an der Utah State University entwickelte Sammlung von Werkzeugen zur hydrologischen Geländeanalyse. Aus digitalen Höhenmodellen lassen sich damit unter anderem Fließrichtungen, beitragende Einzugsflächen, potenzielle Gerinnenetze und Wasserscheiden berechnen.</p>
+<p>TauDEM ist kein eigenständiges GIS, sondern besteht aus spezialisierten Rechenprogrammen, die einzeln oder in einer Verarbeitungskette ausgeführt werden. Viele dieser Programme können Berechnungen mithilfe von <strong>MPI (Message Passing Interface)</strong> auf mehrere Prozessorprozesse verteilen und somit eine deutlich höhere Verarbeitungsgeschwindigkeit erzeugen.</p>
+<p>In unserer Übung übernimmt <strong>QGIS</strong> die Verwaltung, Aufbereitung und Darstellung der Geodaten. Das bereitgestellte Python-Skript verbindet QGIS mit den TauDEM-Programmen und führt die benötigten Berechnungen in festgelegter Reihenfolge aus.</p>
+<p><strong>Wichtig:</strong> TauDEM berechnet hydrologisch relevante Größen aus dem Gelände. Daraus entsteht nicht automatisch eine Simulation tatsächlicher Wasserbewegungen. Welche Aussagen möglich sind, hängt von den gewählten Algorithmen, Eingabedaten und zusätzlichen Modellannahmen ab.</p>
+<p>Die <a href="../pages/abfluss_algorithmen_quellen.html">Dokumentation der verwendeten Werkzeuge</a> erläutert die einzelnen Berechnungsschritte. Weiterführend: <a href="https://hydrology.usu.edu/taudem/taudem5/documentation.html">Offizielle TauDEM-Dokumentation</a>.</p>
+<p><strong>TauDEM und MPI installieren</strong></p>
 <p>Für die folgenden Berechnungen benötigen Sie <strong>QGIS</strong>, <strong>TauDEM 5.5.0</strong> und <strong>Microsoft MPI</strong>.</p>
 <ol type="1">
-<li><strong>QGIS installieren:</strong> Laden Sie die aktuelle Windows-Version von <a href="https://qgis.org/download/">qgis.org</a> herunter und installieren Sie sie.</li>
-<li><strong>TauDEM installieren:</strong> Laden Sie den <a href="https://github.com/dtarb/TauDEM/releases/tag/v5.5.0">offiziellen TauDEM-5.5.0-Komplettinstaller</a> (<code>TauDEM550_setup_x64.exe</code>) herunter und führen Sie ihn aus. Der Komplettinstaller enthält auch Microsoft MPI.</li>
-<li><strong>Processing-Skript einbinden:</strong> Öffnen Sie <a href="../scripts/taudem_burgwald_processing.py"><code>taudem_burgwald_processing.py</code></a> im QGIS-Processing-Skripteditor und speichern Sie es dort.</li>
-<li><strong>Installation prüfen:</strong> Öffnen Sie das Werkzeug unter <em>Verarbeitung → Werkzeugkiste → Skripte → Modellieren in der Geographie</em>. Wählen Sie <strong>Berechnung 1 – Grundlage</strong>, das vorbereitete DGM und einen leeren Ergebnisordner.</li>
-<li><strong>Programmpfade kontrollieren:</strong> Falls TauDEM oder MPI nicht automatisch gefunden werden, geben Sie im Werkzeugdialog das Installationsverzeichnis der TauDEM-Programme und den vollständigen Pfad zu <code>mpiexec.exe</code> an.</li>
+<li><p><strong>QGIS-Processing aktivieren:</strong> Öffnen Sie in QGIS <strong>Erweiterungen → Erweiterungen verwalten und installieren → Installiert</strong>. Suchen Sie nach <strong>Processing</strong> und aktivieren Sie die Erweiterung, falls sie noch nicht eingeschaltet ist. Anschließend steht das Menü <strong>Verarbeitung</strong> mit der Werkzeugkiste zur Verfügung.</p></li>
+<li><p><strong>TauDEM installieren:</strong> Laden Sie den <a href="https://github.com/dtarb/TauDEM/releases/tag/v5.5.0">offiziellen TauDEM-5.5.0-Komplettinstaller</a> (<code>TauDEM550_setup_x64.exe</code>) herunter und führen Sie ihn aus. Der Komplettinstaller enthält auch Microsoft MPI.</p></li>
+<li><p><strong>Processing-Skript einbinden:</strong> Öffnen Sie <a href="../scripts/taudem_burgwald_processing.py"><code>taudem_burgwald_processing.py</code></a> im QGIS-Processing-Skripteditor und speichern Sie es dort. Das Skript wird dadurch beim Skriptanbieter registriert.</p></li>
+<li><p><strong>Installation prüfen:</strong> Prüfen Sie, ob unter <strong>Verarbeitung → Werkzeugkiste → Skripte → Modellieren in der Geographie</strong> das Werkzeug <strong>TauDEM: Abflusswege, Einzugsgebiet, Wasser, Sediment</strong> erscheint. Starten Sie hier noch keine Berechnung; der erste Lauf ist der anschließende Referenzlauf.</p></li>
+<li><p><strong>Programmpfade kontrollieren:</strong> Falls TauDEM oder MPI beim Referenzlauf nicht automatisch gefunden werden, geben Sie im Werkzeugdialog das Installationsverzeichnis der TauDEM-Programme und den vollständigen Pfad zu <code>mpiexec.exe</code> an.</p></li>
 </ol>
-<p>Ein erfolgreicher Test erzeugt unter anderem <code>fel.tif</code>, <code>p.tif</code> und <code>ad8.tif</code>. Öffnen Sie die Raster in QGIS und prüfen Sie, ob sie gültige Werte enthalten.</p>
+<p><strong>Hinweis:</strong> Die bereitgestellten Python-Skripte verwenden den integrierten QGIS-Processing-Skriptanbieter und benötigen kein zusätzliches Plugin. Für die <strong>manuelle Ausführung einzelner TauDEM-Algorithmen</strong> über die QGIS-Werkzeugkiste ist dagegen ein entsprechendes TauDEM-Processing-Provider-Plugin erforderlich.</p>
 <p><strong>Linux:</strong> Die Installation wird in diesem Kurs nicht unterstützt. Für Linux existiert auf Nachfrage eine separate lokale Lösung.</p>
 </div>
 </div>
 </div>
+<p>Nach der Installation (siehe Kasten, Schritt 3) finden Sie das Werkzeug unter <strong>Verarbeitung → Werkzeugkiste → Skripte → Modellieren in der Geographie → TauDEM: Abflusswege, Einzugsgebiet, Wasser, Sediment</strong>.</p>
+<p>Wählen Sie:</p>
+<ul>
+<li><strong>Berechnung:</strong> <code>1 – Grundlage</code></li>
+<li><strong>DGM:</strong> <code>processing/beispiel/dgm5.tif</code></li>
+<li><strong>Ergebnisordner:</strong> <code>resultate/beispiel/</code></li>
+</ul>
+<p>Starten Sie die Berechnung. Lassen Sie die voreingestellte Prüfung auf Randeinflüsse aktiviert.</p>
 <section id="was-hat-das-werkzeug-berechnet" class="level4">
 <h4 class="anchored" data-anchor-id="was-hat-das-werkzeug-berechnet">Was hat das Werkzeug berechnet?</h4>
 <p>Öffnen Sie die folgenden Raster in QGIS und betrachten Sie sie nacheinander:</p>
@@ -647,48 +684,85 @@ window.Quarto = {
 <section id="dgm-selbstständig-aufbereiten" class="level3">
 <h3 class="anchored" data-anchor-id="dgm-selbstständig-aufbereiten">2 · DGM selbstständig aufbereiten</h3>
 <p>Verwenden Sie das bereits kennengelernte QGIS-Werkzeug <strong>Modellieren in der Geographie → DGM vorbereiten</strong>.</p>
-<p>Wählen Sie Ihre eigenen DGM-Kacheln und einen neuen Ausgabeordner <code>processing/eigen/</code>. Behalten Sie zunächst die Zielauflösung von <strong>5 m</strong> bei.</p>
+<p>Wählen Sie Ihre eigenen DGM-Kacheln und einen neuen Ausgabeordner <code>processing/myBurgwald/</code>. Behalten Sie zunächst die Zielauflösung von <strong>5 m</strong> bei.</p>
 <p>Prüfen Sie anhand des erzeugten Rasters und des Prüfberichts, ob Koordinatensystem, Pixelgröße, räumliche Abdeckung und Kachelanschlüsse plausibel sind.</p>
-<p>Dokumentieren Sie die Datenquelle, den Datenstand, die verwendeten Kacheln und die gewählte Zielauflösung.</p>
 </section>
 <section id="ist-der-gewählte-dgm-ausschnitt-geeignet" class="level3">
 <h3 class="anchored" data-anchor-id="ist-der-gewählte-dgm-ausschnitt-geeignet">3 · Ist der gewählte DGM-Ausschnitt geeignet?</h3>
+<p>Laden Sie Ihr aufbereitetes DGM in QGIS und ergänzen Sie als unabhängige Referenz das <a href="https://www.geoportal.hessen.de/spatial-objects/262">amtliche Gewässernetz Hessen (DLM25)</a>.</p>
+<p>Die Gewässerlinien dienen zum visuellen Vergleich mit den berechneten Abflusswegen; sie gehen nicht in die TauDEM-Berechnung ein.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Technisch: Amtliches Gewässernetz über WFS in QGIS einbinden
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Das Hessische Landesamt für Naturschutz, Umwelt und Geologie (HLNUG) stellt das Gewässernetz <code>Gewaessernetz_DLM25</code> als <strong>Web Feature Service (WFS)</strong> bereit. Darüber können Sie die Gewässerlinien direkt in QGIS laden, ohne einen vollständigen Datensatz herunterladen zu müssen.</p>
+<ol type="1">
+<li>Öffnen Sie in QGIS <strong>Layer → Layer hinzufügen → WFS/OGC API Features-Layer hinzufügen</strong>.</li>
+<li>Klicken Sie auf <strong>Neu</strong>, um eine Verbindung anzulegen.</li>
+<li>Tragen Sie folgende Angaben ein:
+<ul>
+<li><strong>Name:</strong> <code>HLNUG Gewässernetz Hessen</code></li>
+<li><strong>URL:</strong> <code>https://geodienste-umwelt.hessen.de/arcgis/services/inspire/gewaessernetz/MapServer/WFSServer?</code></li>
+</ul></li>
+<li>Bestätigen Sie mit <strong>OK</strong> und klicken Sie anschließend auf <strong>Verbinden</strong>.</li>
+<li>Wählen Sie den Layer <code>inspire_gewaessernetz:Gewaessernetz_DLM25</code> und klicken Sie auf <strong>Hinzufügen</strong>.</li>
+</ol>
+<p>Die Gewässerlinien erscheinen nun als Vektorlayer in QGIS. Stellen Sie den Kartenausschnitt auf Ihr Untersuchungsgebiet ein.</p>
+<p><strong>Daten lokal speichern:</strong> Für eine reproduzierbare Bearbeitung empfiehlt es sich, die benötigten Gewässerlinien als GeoPackage zu sichern. Klicken Sie mit der rechten Maustaste auf den Layer und wählen Sie <strong>Exportieren → Objekte speichern als …</strong>. Wählen Sie das Format <strong>GeoPackage</strong>, begrenzen Sie die Ausgabe bei Bedarf auf Ihren Untersuchungsraum und speichern Sie die Datei beispielsweise unter <code>data/gewaessernetz.gpkg</code>.</p>
+<p>Der WFS stellt tatsächliche Liniengeometrien und Attribute bereit, nicht nur ein Kartenbild. Die Gewässerlinien dienen als <strong>unabhängige Referenz</strong> für den späteren Vergleich mit den berechneten Abflusswegen. Sie gehen nicht in das TauDEM-Routing ein.</p>
+<p><strong>Datenquelle:</strong> <a href="https://www.geoportal.hessen.de/spatial-objects/262">HLNUG – Gewässernetz Hessen, Geoportal</a>, Lizenz CC BY 4.0.</p>
+</div>
+</div>
+</div>
 <p>Laden Sie Ihr aufbereitetes DGM zusammen mit den amtlichen Gewässerlinien in QGIS. Suchen Sie den Bachabschnitt, den Sie untersuchen möchten, und verfolgen Sie den kartierten Bach sowie seine Zuflüsse <strong>flussaufwärts</strong>.</p>
 <p><strong>Verlassen der Bach oder einer seiner Zuflüsse das DGM am oberen Rand?</strong> Dann fehlen offensichtlich Geländedaten für die spätere Berechnung. Ergänzen Sie die entsprechenden DGM-Kacheln.</p>
 <p>Diese erste Prüfung erkennt jedoch nur offensichtliche Lücken. Zuflüsse über die umliegenden Hänge lassen sich aus der Gewässerkarte allein nicht zuverlässig erfassen.</p>
-<p><strong>Die Wahl des Rechengebiets ist deshalb ein iterativer, explorativer Prozess:</strong> Wir beginnen mit einem begründeten Ausschnitt, berechnen Abflusswege und Einzugsgebiete und überprüfen anschließend, ob die Modellgrenzen das Ergebnis beeinflussen. Gegebenenfalls erweitern wir das DGM und wiederholen die Berechnung.</p>
+<p><strong>Die Wahl des Rechengebiets ist deshalb ein iterativer, explorativer Prozess:</strong> Wir beginnen mit einem begründeten Ausschnitt, berechnen Abflusswege und Einzugsgebiete und überprüfen anschließend, ob die Modellgrenzen das Ergebnis beeinflussen. Gegebenenfalls erweitern wir das DGM und wiederholen die Berechnung. Die Prüfung dafür folgt in Teil C (<em>Pflichtkontrolle</em>).</p>
 <p>Alternativ könnten wir von Anfang an ein sehr großes Gebiet berechnen, das mit hoher Wahrscheinlichkeit sämtliche relevanten Zuflüsse umfasst. Das erfordert jedoch erheblich mehr Geodaten und Rechenaufwand.</p>
 <p>Für unsere Übung wählen wir bewusst den <strong>iterativen Weg</strong>: Die Frage nach der notwendigen räumlichen Ausdehnung wird damit selbst zu einem Teil der Modellierung.</p>
 </section>
 </section>
 <section id="c-was-folgt-allein-aus-dem-gelände" class="level2">
 <h2 class="anchored" data-anchor-id="c-was-folgt-allein-aus-dem-gelände">C · Was folgt allein aus dem Gelände?</h2>
+<p>Im ersten Rechenschritt verwenden wir nur das aufbereitete Höhenraster. TauDEM berechnet daraus Fließrichtungen und beitragende Flächen. So lässt sich untersuchen, wo sich Abfluss im Gelände bündelt und welche Flächen zu einem gewählten Auslass entwässern.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/abfluss_workflow.svg" class="img-fluid figure-img" style="width:100.0%" alt="Ab dem aufbereiteten DGM verzweigt TauDEM nach Pit Remove in D8 und D∞: D8 liefert Akkumulation, Gerinneschwellen und Einzugsgebiet; D∞ liefert spezifische Fläche und TWI. Wasser- und Materialbilanzen fügen zusätzliche Annahmen hinzu."></p>
-<figcaption>Berechnungskette mit getrennten D8- und D∞-Zweigen. ATKIS dient dem unabhängigen Vergleich.</figcaption>
+<p><img src="../images/abfluss_workflow.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Vereinfachte Berechnungskette ab dem aufbereiteten DGM.</figcaption>
 </figure>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-warning callout-titled" title="Wichtig">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Voraussetzung: DGM-Aufbereitung abschließen
+<span class="screen-reader-only">Warning</span>Wichtig
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p><strong>Die Datenaufbereitung aus Teil A/B muss abgeschlossen sein, bevor Sie mit der hier dargestellten Modellkette beginnen.</strong></p>
-<p>Als Eingabe benötigen Sie das aufbereitete Höhenraster <code>dgm5.tif</code>. Die folgenden TauDEM-Berechnungen setzen ein zusammenhängendes Raster mit einheitlichem Koordinatensystem, einheitlicher Zellweite und überprüfter Datenabdeckung voraus.</p>
+<p>Die Datenaufbereitung aus Teil A/B <strong>muss abgeschlossen</strong> sein, bevor Sie mit der hier dargestellten Modellkette beginnen.</p>
 </div>
 </div>
 </div>
 <section id="entwässerungsverbindungen-und-flächenakkumulation" class="level3">
 <h3 class="anchored" data-anchor-id="entwässerungsverbindungen-und-flächenakkumulation">Entwässerungsverbindungen und Flächenakkumulation</h3>
-<p>Verwenden Sie nun das <strong>eigene</strong> Arbeitsraster <code>processing/dgm5.tif</code> aus der Datenaufbereitung – nicht das Raster des Referenzlaufs. Öffnen Sie <strong>Verarbeitung → Werkzeugkiste → Skripte → Modellieren in der Geographie → TauDEM: Abflusswege, Einzugsgebiet, Wasser, Sediment</strong>. Wählen Sie <strong>Berechnung 1 – Grundlage</strong> und den Ergebnisordner <code>results/</code>. Das Skript führt die folgende TauDEM-Folge auf <strong>demselben <code>dgm5.tif</code></strong> aus:</p>
+<p>Öffnen Sie <strong>Verarbeitung → Werkzeugkiste → Skripte → Modellieren in der Geographie → TauDEM: Abflusswege, Einzugsgebiet, Wasser, Sediment</strong>. Wählen Sie <strong>Berechnung 1 – Grundlage</strong> mit</p>
+<ul>
+<li><strong>DGM:</strong> <code>processing/myBurgwald/dgm5.tif</code></li>
+<li><strong>Ergebnisordner:</strong> <code>resultate/myBurgwald/</code></li>
+</ul>
+<p>Verwenden Sie diesen Ergebnisordner auch für die Berechnungen 2–4, denn das Skript sucht dort die bereits erzeugten Routingraster. Die erste Modellregel wird nun als Berechnung umgesetzt: Relief für das Routing vorbereiten, D8-Fließrichtungen bestimmen und Beiträge entlang dieser Verbindungen aufsummieren. Das Skript führt dazu auf Ihr eigenes Arbeitsraster folgende TauDEM-Schritte aus:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -722,13 +796,18 @@ window.Quarto = {
 </table>
 <p>Das Skript ruft dafür <code>PitRemove</code>, <code>D8FlowDir</code> und <code>AreaD8</code> auf. Lassen Sie die <strong>Prüfung auf Randeinflüsse aktiviert</strong> und setzen Sie keine Auslasspunkte als Einschränkung. Stellen Sie <code>ad8.tif</code> mit logarithmischer Farbskala oder mehreren abgestuften Klassen dar: Die großen Werte markieren die <strong>potenziellen Konzentrationslinien</strong> im Relief. Prüfen Sie außerdem mit dem Rasterrechner <code>"fel@1" - "dgm5@1"</code> an mindestens einer Vertiefung, <strong>wo das Senkenfüllen Höhen verändert hat</strong>. Ein Wert von <code>0</code> bedeutet: unverändert.</p>
 <p>Die <a href="../pages/abfluss_algorithmen_quellen.html">Werkzeugdokumentation</a> führt die vollständige Abfolge aller vier TauDEM-Modi mit Eingaben, Parametern, Ausgaben und Kontrollen auf.</p>
-<p><strong>Lesen Sie den Wert an einer Zelle der Talrinne ab.</strong> Für das hier verwendete <strong>5-m-Arbeitsraster</strong> gilt (bei anderer Zielzellweite ist die Zellfläche anzupassen):</p>
+<p><strong>Lesen Sie den Wert an einer Zelle der Talrinne ab.</strong> Das D8-Akkumulationsraster gibt die Anzahl der beitragenden Rasterzellen an. Multipliziert mit der Zellfläche ergibt sich die beitragende Einzugsfläche:</p>
 <p><span class="math display">\[
-A_{\mathrm{D8}}=N_{\mathrm{D8}}\cdot 25\ \mathrm{m}^2.
+A_{\mathrm{D8}} = N_{\mathrm{D8}} \cdot \Delta x \cdot \Delta y
 \]</span></p>
-<p>Beispiel: <code>ad8 = 4 000</code> bedeutet <strong>100 000 m² = 10 ha</strong> beitragende Fläche – <strong>nicht</strong> 4 000 Liter, 4 000 m³/s oder 4 000 tatsächlich dort eintreffende Regentropfen.</p>
+<p>Dabei ist <span class="math inline">\(N_{\mathrm{D8}}\)</span> die Anzahl beitragender Zellen und <span class="math inline">\(\Delta x\)</span>, <span class="math inline">\(\Delta y\)</span> sind die Zellabmessungen in Metern. Für quadratische Rasterzellen mit der Zellweite <span class="math inline">\(r\)</span> vereinfacht sich die Gleichung zu:</p>
+<p><span class="math display">\[
+A_{\mathrm{D8}} = N_{\mathrm{D8}} \cdot r^2
+\]</span></p>
+<p>Bei einer Zellweite von 5 m entspricht jede Zelle einer Fläche von 25 m².</p>
+<p>Beispiel: <code>ad8 = 4000</code> bedeutet <strong>100 000 m² = 10 ha</strong> beitragende Fläche – <strong>nicht</strong> 4 000 Liter, 4 000 m³/s oder 4 000 tatsächlich dort eintreffende Regentropfen.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -737,26 +816,10 @@ A_{\mathrm{D8}}=N_{\mathrm{D8}}\cdot 25\ \mathrm{m}^2.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>Routing</strong> legt für jede Zelle fest, <strong>wohin</strong> ein Beitrag weitergegeben wird. <strong>Akkumulation</strong> zählt bzw. summiert anschließend, <strong>was von oberhalb ankommt</strong>. Bei D8 stehen im Raster <code>p.tif</code> nur Richtungs<strong>codes</strong> (acht mögliche Nachbarn), in <code>ad8.tif</code> dagegen <strong>Zellanzahlen</strong>. Die Zahl <code>4000</code> ist nicht die vierte Fließrichtung, sondern 4000 vollständig verbundene Zellen einschließlich der Zielzelle. Erst die Multiplikation mit der Zellfläche erzeugt eine Fläche in m².</p>
 <p>An einer Wasserscheide sind Zuflüsse von der jeweils anderen Seite <strong>nicht</strong> angeschlossen. Umgekehrt können am Auslass viele Hangzellen zusammenkommen. Beides ergibt sich aus denselben Richtungsverbindungen; die Akkumulation stellt deshalb keine neue Fließregel dar.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Fachliche Erweiterung: Rasterweite gezielt testen
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Wiederholen Sie die DGM-Vorbereitung aus denselben Quellkacheln mit <strong>10 m</strong> Zielzellweite in einem neuen Ergebnisordner und wiederholen Sie <code>Pit Remove</code> → D8 → <code>AreaD8</code>. Vergleichen Sie am <strong>gleichen realen Auslass</strong> Gerinnelage und Einzugsgebietsfläche in <strong>m²</strong>, nicht die Zellzahlen. Verwenden Sie für 2 ha als Gerinneschwelle nun <strong>200 Zellen</strong>. Unterscheiden Sie Änderungen durch <strong>Generalisation des Reliefs</strong> von den rein rechnerischen Folgen einer größeren Zellfläche.</p>
 </div>
 </div>
 </div>
@@ -766,18 +829,34 @@ A_{\mathrm{D8}}=N_{\mathrm{D8}}\cdot 25\ \mathrm{m}^2.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Fachlich: Was bei der Senkenbehandlung verändert wird
+<span class="screen-reader-only">Tip</span>Fachliche Erweiterung: Rasterweite gezielt testen
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Wiederholen Sie die DGM-Vorbereitung aus denselben Quellkacheln mit <strong>10 m</strong> Zielzellweite in einem neuen Ergebnisordner und wiederholen Sie <code>Pit Remove</code> → D8 → <code>AreaD8</code>. Vergleichen Sie am <strong>gleichen realen Auslass</strong> Gerinnelage und Einzugsgebietsfläche in <strong>m²</strong>, nicht die Zellzahlen. Verwenden Sie für 2 ha als Gerinneschwelle nun <strong>200 Zellen</strong>. Unterscheiden Sie Änderungen durch <strong>Generalisation des Reliefs</strong> von den rein rechnerischen Folgen einer größeren Zellfläche.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fachlich: Was bei der Senkenbehandlung verändert wird
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><code>Pit Remove</code> hebt geschlossene Vertiefungen bis zum niedrigsten Überlaufniveau an, damit eine zusammenhängende Abflussverbindung entstehen kann. Das ist für das Relief-Routing zweckmäßig, aber <strong>keine Beobachtung eines aufgefüllten Geländes</strong>. Echte Senken, Straßendämme, Brücken und Durchlässe können andere Regeln erfordern. Prüfen Sie eine auffällige Abweichung zwischen kartiertem Bach und berechnetem Weg zunächst im <strong>ursprünglichen</strong> DGM, nicht erst durch weiteres Glätten.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -786,9 +865,9 @@ A_{\mathrm{D8}}=N_{\mathrm{D8}}\cdot 25\ \mathrm{m}^2.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Falls TauDEM abbricht, lesen Sie im QGIS-Processing-Protokoll zuerst den fehlgeschlagenen Befehl und seine Eingaben. Prüfen Sie Dateipfade, das gewählte TauDEM-Binärverzeichnis, den MPI-Launcher und das Koordinatensystem. Die Quellkacheln dürfen nicht direkt als Ersatz für <code>processing/dgm5.tif</code> eingesetzt werden.</p>
+<p>Falls TauDEM abbricht, lesen Sie im QGIS-Processing-Protokoll zuerst den fehlgeschlagenen Befehl und seine Eingaben. Prüfen Sie Dateipfade, das gewählte TauDEM-Binärverzeichnis, den MPI-Launcher und das Koordinatensystem. Die Quellkacheln dürfen nicht direkt als Ersatz für <code>dgm5.tif</code> eingesetzt werden.</p>
 <p>Bei unklaren Aufrufen oder Fehlermeldungen können Sie technische Dokumentation und KI-Unterstützung nutzen; maßgeblich bleiben der tatsächlich ausgeführte Befehl, die Softwareversion und das überprüfte Ergebnis. Eine Änderung an Zellweite, Senkenbehandlung oder Randeinflussprüfung ist <strong>keine</strong> bloße technische Reparatur, sondern verändert gegebenenfalls die Modellannahme.</p>
 </div>
 </div>
@@ -796,78 +875,79 @@ A_{\mathrm{D8}}=N_{\mathrm{D8}}\cdot 25\ \mathrm{m}^2.
 </section>
 <section id="gerinneschwelle-auslass-und-einzugsgebiet" class="level3">
 <h3 class="anchored" data-anchor-id="gerinneschwelle-auslass-und-einzugsgebiet">Gerinneschwelle, Auslass und Einzugsgebiet</h3>
-<p><strong>Gerinne sind zunächst keine Eingabedaten:</strong> Wir zeichnen eine potenzielle Bachlinie dort, wo ausreichend viele Oberhangzellen zusammenkommen.</p>
+<p>Aus <code>p.tif</code> kennen wir die D8-Fließrichtung jeder Rasterzelle; <code>ad8.tif</code> zählt die Zellen, deren Fließwege an einem bestimmten Punkt zusammenlaufen. Dadurch werden Konzentrationslinien im Relief sichtbar. <strong>Ein Gewässernetz ist damit noch nicht abgegrenzt.</strong></p>
+<p>Ein <em>Gerinne</em> ist eine räumlich begrenzte Abflussbahn. Ob sich dort tatsächlich ein Bachbett bildet, hängt unter anderem von Abfluss, Gefälle, Untergrund und Erosion ab. Diese Entstehungsprozesse berechnet unser Routing nicht. Für die Darstellung eines <strong>potenziellen Gerinnenetzes</strong> treffen wir deshalb eine einfache Annahme: Eine Rasterzelle zählt als Gerinne, sobald ihre beitragende Fläche einen festgelegten Schwellenwert erreicht.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/wirkungsgraph_gelaende.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Wirkungsgraph Teil C: Die Gerinneschwelle klassifiziert potenzielle Gerinne, ohne ihre Entstehung abzubilden; das Einzugsgebiet folgt den Fließrichtungen und dem am Gerinne gewählten Auslass.</figcaption>
+</figure>
+</div>
+<section id="gerinneschwelle-was-wird-zum-gewässernetz-gezählt" class="level4">
+<h4 class="anchored" data-anchor-id="gerinneschwelle-was-wird-zum-gewässernetz-gezählt">Gerinneschwelle: Was wird zum Gewässernetz gezählt?</h4>
+<p>Das TauDEM-Werkzeug <em>Stream Definition By Threshold</em> hat in Berechnung 1 bereits zwei Raster erzeugt:</p>
+<ul>
+<li><code>src_2ha.tif</code>: potenzielle Gerinne ab <strong>2 ha</strong> beitragender Fläche;</li>
+<li><code>src_5ha.tif</code>: potenzielle Gerinne ab <strong>5 ha</strong> beitragender Fläche.</li>
+</ul>
+<p>Die Gerinnezellen tragen den Wert <code>1</code>, die übrigen gültigen Zellen <code>0</code>. Bei der hier verwendeten Zellweite von 5 m entsprechen 2 ha <strong>800 Zellen</strong> und 5 ha <strong>2 000 Zellen</strong>. Bei anderer Zellweite wird die erforderliche Zellzahl entsprechend der tatsächlichen Zellfläche berechnet.</p>
+<p>Stellen Sie beide Raster nacheinander dar (Wert <code>0</code> möglichst transparent). <strong>Wo beginnen die modellierten Gerinne? Welche Oberläufe und Verzweigungen entfallen bei 5 ha?</strong> Suchen Sie einen Abschnitt, an dem der Unterschied besonders deutlich ist.</p>
+<p>Die Schwelle ist eine <strong>Klassifikationsregel</strong>, keine Naturkonstante: Sie ändert, welche Zellen wir als Gerinne bezeichnen, <strong>nicht</strong> die D8-Fließrichtungen in <code>p.tif</code> oder die Akkumulation in <code>ad8.tif</code>.</p>
+</section>
+<section id="auslass-welches-gelände-entwässert-zu-diesem-punkt" class="level4">
+<h4 class="anchored" data-anchor-id="auslass-welches-gelände-entwässert-zu-diesem-punkt">Auslass: Welches Gelände entwässert zu <em>diesem</em> Punkt?</h4>
+<p>Für einen bestimmten Bachabschnitt interessiert uns nicht das gesamte Gerinnenetz, sondern die Fläche, deren D8-Fließwege an <strong>einem gewählten Punkt</strong> zusammenlaufen. Diesen Punkt nennen wir <em>Auslass</em>; die zu ihm entwässernden Zellen bilden sein <em>Einzugsgebiet</em>. Dessen äußerer Rand ist die berechnete <em>Wasserscheide</em>.</p>
 <ol type="1">
-<li>In der bereits gerechneten <strong>eigenen Grundlage</strong> hat TauDEM <em>Stream Definition By Threshold</em> die Schwelle <strong>2 ha = 800 Zellen</strong> als <code>src_2ha.tif</code> gespeichert (bei 5-m-Zellen).</li>
-<li>Die zweite Schwelle <strong>5 ha = 2 000 Zellen</strong> liegt als <code>src_5ha.tif</code> vor. Schalten Sie die beiden 1/0-Raster abwechselnd ein und überlagern Sie die amtliche Gewässerlinie.</li>
-<li>Wählen Sie an Ihrem <strong>eigenen</strong> Bach einen Punkt <strong>auf einer berechneten <code>src_2ha</code>-Gerinnezelle</strong> als Auslass. Erstellen Sie einen <strong>gespeicherten, ungefilterten</strong> Punktlayer <code>processing/auslass.gpkg</code> im KBS des DGM mit dem ganzzahligen Feld <code>id</code> (für den einen Punkt <code>id = 1</code>). Der Punkt darf nicht lediglich optisch auf der ATKIS-Linie liegen.</li>
-<li>Prüfen Sie, ob der Punkt wirklich auf dem <strong>eigenen Raster</strong> liegt und der Layer genau einen Punkt mit gültiger ganzzahliger <code>id</code> enthält. Starten Sie dasselbe Processing-Skript mit <strong>Berechnung 2 – Einzugsgebiet</strong>: Ergebnisordner <code>results</code>, Auslass <code>auslass.gpkg</code>, <strong>Verschieben = 0</strong>. Intern rechnet TauDEM <em>Gage Watershed</em> mit <code>p.tif</code> und schreibt <code>becken.tif</code>. Die Rasterzellen mit Wert <strong>1</strong> bilden das zum Punkt entwässernde Gebiet. Stellen Sie dessen Grenze zusammen mit <code>ad8.tif</code> dar.</li>
+<li><strong>Auslass setzen:</strong> Wählen Sie auf <code>src_2ha.tif</code> eine Gerinnezelle Ihres eigenen Bachs. Erstellen Sie über <strong>Layer → Layer erstellen → Neuer GeoPackage-Layer</strong> einen Punktlayer <code>data/auslass.gpkg</code> im KBS des DGM mit dem ganzzahligen Feld <code>id</code>. Speichern Sie genau <strong>einen</strong> Punkt mit <code>id = 1</code> auf dieser Zelle. Maßgeblich ist die berechnete Gerinnezelle, nicht allein die optische Lage auf der amtlichen Gewässerlinie. Verwenden Sie einen gespeicherten, ungefilterten Layer.</li>
+<li><strong>Einzugsgebiet berechnen:</strong> Öffnen Sie das TauDEM-Processing-Skript, wählen Sie <strong>Berechnung 2 – Einzugsgebiet</strong>, den Auslasslayer, den Ergebnisordner <code>resultate/myBurgwald/</code> und zunächst <strong>Verschieben = 0</strong>. <em>Gage Watershed</em> verfolgt dazu die Verbindungen aus <code>p.tif</code> rückwärts und schreibt <code>becken.tif</code>.</li>
+<li><strong>Abgrenzung prüfen:</strong> Stellen Sie <code>becken.tif</code> zusammen mit <code>ad8.tif</code> dar. Die Rasterzellen mit <code>id = 1</code> gehören zum Einzugsgebiet. Bestimmen Sie ihre Anzahl und Fläche und vergleichen Sie die Zellanzahl mit dem Wert von <code>ad8.tif</code> <strong>an derselben Auslasszelle</strong>. Bei gültigen D8-Werten und übereinstimmender Auslassposition sollten beide Anzahlen gleich sein.</li>
 </ol>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Fachlich: Wie beeinflusst die DGM-Grenze das berechnete Einzugsgebiet?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Sie haben einen Auslass festgelegt und mit TauDEM dessen Einzugsgebiet berechnet. <strong>Aber erfasst das verwendete DGM tatsächlich alle Flächen, die zu diesem Punkt entwässern?</strong></p>
-<p>Prüfen Sie dazu Ihre Ergebnisse:</p>
-<ol type="1">
-<li><strong>Wasserscheide:</strong> Reicht das berechnete Einzugsgebiet bis an den Rand des DGM?</li>
-<li><strong>Akkumulation:</strong> Treten entlang der Zuflusswege in <code>ad8.tif</code> NoData-Werte auf, die auf abgeschnittene Oberlieger hinweisen?</li>
-<li><strong>Datenabdeckung:</strong> Welche zusätzlichen DGM-Kacheln könnten erforderlich sein, um diese Zuflüsse zu erfassen?</li>
-</ol>
-<p><strong>Untersuchen Sie einen möglichen Randeinfluss:</strong> Erweitern Sie das DGM um die entsprechenden Kacheln, bereiten Sie das Raster erneut auf und wiederholen Sie die Berechnung am selben Auslass.</p>
-<p>Vergleichen Sie die berechnete Einzugsgebietsfläche und die Akkumulation vor und nach der Erweiterung.</p>
-<p><strong>Was hat sich verändert, obwohl Auslass, Routingverfahren und Rasterweite gleich geblieben sind?</strong></p>
-<p>Der Vergleich zeigt, wie die räumliche Abgrenzung der Eingangsdaten die Ergebnisse eines Modells beeinflussen kann.</p>
-</div>
-</div>
-</div>
-<p>Die ATKIS-Linie besitzt eine eigene Generalisierung, Lageunsicherheit und Erhebungsgeschichte. Unterschiede zum DGM können deshalb auch die Referenz betreffen.</p>
-<p><strong>Prüfung am eigenen Bach:</strong> Wo liegt die Wasserscheide? Welche Seitenhänge sind angeschlossen? Verändert die Gerinneschwelle die <strong>eingezeichneten Bachanfänge</strong>, obwohl <code>p.tif</code> und das Einzugsgebiet am unveränderten Auslass gleich bleiben? Vergleichen Sie den berechneten Talweg gerade an der gewählten Krümmung mit der amtlichen Gewässerlinie. <strong>Die Krümmung kann im Relief bereits enthalten sein; der Algorithmus erzeugt sie nicht durch Ufererosion.</strong></p>
+<p>Für <em>Gage Watershed</em> sind die D8-Fließrichtungen und die Auslassposition entscheidend, <strong>nicht</strong> die zuvor gewählte Gerinneschwelle. Diese hilft lediglich dabei, einen Auslass auf einem berechneten Fließweg zu platzieren.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Technisch: Punkt liegt neben dem berechneten Gerinne
+<span class="screen-reader-only">Note</span>Technisch: Wenn der Auslass neben dem berechneten Gerinne liegt
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Im <strong>Processing-Skript, Berechnung 2</strong> können Sie <strong>„Auslass maximal um N Zellen verschieben“ = 2</strong> einstellen. TauDEM <em>Move Outlets To Streams</em> sucht dann entlang der D8-Verbindung eine Gerinnezelle (Standard <code>src_2ha.tif</code>). Das Skript speichert <code>auslass_auf_gerinne.shp</code> und berechnet daraus <code>becken.tif</code>. Kontrollieren Sie <code>dist_moved</code> und die tatsächlich verwendete Lage. Bei 5 m Rasterweite sind dies höchstens zwei D8-Schritte (je nach Richtung bis rund <strong>14,1 m</strong>); wenn kein Gerinne erreicht wird, wählen Sie den Auslass neu. Die Auslassposition bestimmt das Ergebnis; eine automatische Verschiebung darf nicht unbemerkt eine andere Fragestellung erzeugen.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Gerinneschwelle, Auslass und Wasserscheide
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Die <strong>Gerinneschwelle</strong> markiert Zellen mit <code>ad8</code> oberhalb eines vorgegebenen Flächenbeitrags als potenziellen Bach. Bei 5-m-Zellen: <code>800 × 25 m² = 2 ha</code>. Eine höhere Schwelle lässt Bachlinien <strong>später</strong> beginnen; sie ändert weder das D8-Richtungsraster <code>p</code> noch die reale Quelle des Bachs. Bei 10-m-Zellen entsprechen <strong>200 Zellen</strong> denselben 2 ha – die Schwelle muss also in <strong>Fläche</strong>, nicht in Zellzahl, verglichen werden.</p>
-<p>Der <strong>Auslass</strong> ist die Rasterzelle, zu der alle ausgewiesenen Oberlieger entwässern. Ihre Menge bildet das <strong>Einzugsgebiet</strong>. Dessen Rand heißt <strong>Wasserscheide</strong>: Nach der verwendeten Routingregel führen die Abflusswege außerhalb nicht zu diesem Auslass. Die Lage des Auslasses ist daher eine fachliche Entscheidung, kein beliebiger Kartenmarker.</p>
+<p>In <strong>Berechnung 2</strong> können Sie <strong>„Auslass maximal um N Zellen verschieben“</strong> einstellen. TauDEM <em>Move Outlets To Streams</em> sucht dann entlang der D8-Verbindung eine Gerinnezelle (standardmäßig aus <code>src_2ha.tif</code>). Bei <code>N = 2</code> sind höchstens zwei D8-Schritte erlaubt; bei 5-m-Zellen sind das je nach Richtung bis etwa 14,1 m.</p>
+<p>Kontrollieren Sie die tatsächliche Position in <code>auslass_auf_gerinne.shp</code> und den Wert <code>dist_moved</code>. Bei <code>-1</code> wurde kein geeignetes Gerinne erreicht; wählen Sie dann den Auslass selbst neu. Verwenden Sie für den Vergleich von Einzugsgebieten immer die <strong>tatsächlich verwendete</strong> Auslassposition.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="d8-und-d-eine-andere-weiterleitungsregel" class="level3">
-<h3 class="anchored" data-anchor-id="d8-und-d-eine-andere-weiterleitungsregel">D8 und D∞: Eine andere Weiterleitungsregel</h3>
-<p>Die <strong>Grundlage für das eigene Gebiet (Berechnung 1)</strong> hat auf <strong>demselben <code>fel.tif</code></strong> zwei weitere TauDEM-Schritte bereits ausgeführt:</p>
+<section id="pflichtkontrolle-reicht-unser-dgm-für-diesen-auslass-aus" class="level4">
+<h4 class="anchored" data-anchor-id="pflichtkontrolle-reicht-unser-dgm-für-diesen-auslass-aus">Pflichtkontrolle: Reicht unser DGM für diesen Auslass aus?</h4>
+<p>Ein aus <code>becken.tif</code> abgegrenztes Gebiet ist noch kein Nachweis dafür, dass <strong>alle</strong> oberhalb liegenden Zuflüsse erfasst wurden. Das Modell kennt nur das Relief innerhalb des vorliegenden DGM. Kontrollieren Sie deshalb <strong>vor der Interpretation der Einzugsgebietsfläche</strong>:</p>
+<ol type="1">
+<li><strong>Lage zum Rasterrand:</strong> Berührt das berechnete Einzugsgebiet den Rand des DGM? Prüfen Sie dann, ob mögliche Oberlieger außerhalb der verfügbaren Daten liegen.</li>
+<li><strong>NoData und Randeinflussprüfung:</strong> Treten auf den relevanten Zuflusswegen in <code>ad8.tif</code> NoData-Werte auf? TauDEM kann damit bei aktivierter Randeinflussprüfung unvollständige Zuflüsse anzeigen; NoData kann allerdings auch durch Lücken der Eingangsdaten entstehen. Beides muss unterschieden werden.</li>
+<li><strong>Rechenkonsistenz:</strong> Stimmt die Anzahl der Zellen in <code>becken.tif</code> mit <code>ad8.tif</code> am Auslass überein? Eine Übereinstimmung bestätigt die interne D8-Zuordnung, <strong>nicht</strong> automatisch die Vollständigkeit des DGM.</li>
+</ol>
+<p>Bei Hinweisen auf abgeschnittene Zuflüsse erweitern Sie den Kachelbestand, erstellen das Arbeitsraster erneut und wiederholen die Berechnung für <strong>denselben geografischen Auslass</strong>. Vergleichen Sie die beiden Einzugsgebietsflächen und Akkumulationswerte. Eine bloße Deaktivierung der Randeinflussprüfung löst das Datenproblem nicht.</p>
+</section>
+<section id="berechnete-fließwege-mit-dem-kartierten-bach-vergleichen" class="level4">
+<h4 class="anchored" data-anchor-id="berechnete-fließwege-mit-dem-kartierten-bach-vergleichen">Berechnete Fließwege mit dem kartierten Bach vergleichen</h4>
+<p>Gehen Sie zu einer Stelle, an der <code>src_2ha.tif</code> oder <code>src_5ha.tif</code> von der amtlichen Gewässerlinie abweicht. <strong>Wo</strong> tritt die Abweichung auf, und <strong>welcher Befund</strong> lässt sich im ursprünglichen DGM dazu finden? Kommen beispielsweise die Rasterauflösung, die Senkenbehandlung oder die D8-Richtungswahl als Erklärung infrage? Berücksichtigen Sie auch die Lagegenauigkeit und Generalisierung der amtlichen Gewässerreferenz. Sie ist unabhängig vom Routing, aber nicht fehlerfrei.</p>
+<p>Die Routingrechnung nutzt die <strong>vorhandene Geländeform</strong>. Eine bereits vorhandene Bachkrümmung kann daher im berechneten Verlauf erscheinen; ihre Entstehung durch Ufererosion wird hier nicht simuliert.</p>
+</section>
+</section>
+<section id="d8-und-d-zwei-regeln-für-dasselbe-gelände" class="level3">
+<h3 class="anchored" data-anchor-id="d8-und-d-zwei-regeln-für-dasselbe-gelände">D8 und D∞: Zwei Regeln für dasselbe Gelände</h3>
+<p>Bisher haben wir mit <strong>D8</strong> gearbeitet: Der gesamte Beitrag einer Zelle wird einem ihrer acht Nachbarn zugewiesen. Auf breiten Hängen kann diese Festlegung schmale, stark konzentrierte Fließlinien erzeugen. <strong>D∞ (D-Infinity)</strong> bestimmt dagegen einen kontinuierlichen Fließwinkel aus dem Relief und verteilt den Beitrag – je nach Winkel – anteilig auf höchstens zwei Nachbarzellen. Es handelt sich also nicht einfach um dieselbe Berechnung mit einer anderen Darstellung.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/routing_d8_dinf.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Schematische Verteilung: D8 leitet an eine Nachbarzelle weiter, D∞ anteilig an höchstens zwei Zellen.</figcaption>
+</figure>
+</div>
+<p>Die gezeigte Aufteilung 60/40 ist illustrativ, kein festes TauDEM-Verhältnis. Bei klassischem <em>Multiple Flow Direction</em> (MFD) kann ein Beitrag auch auf mehr als zwei Nachbarn verteilt werden. <a href="https://doi.org/10.1029/96WR03137">Tarboton (1997)</a> beschreibt das D∞-Verfahren.</p>
+<p>Berechnung 1 hat beide Routingvarianten bereits aus <strong>demselben senkenbehandelten Raster <code>fel.tif</code></strong> erzeugt:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -876,314 +956,333 @@ A_{\mathrm{D8}}=N_{\mathrm{D8}}\cdot 25\ \mathrm{m}^2.
 </colgroup>
 <thead>
 <tr class="header">
-<th>TauDEM-Werkzeug</th>
-<th>Eingabe → Ausgabe</th>
-<th>Werte</th>
+<th>Ausgabe</th>
+<th>Berechnung</th>
+<th>Bedeutung</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>D-Infinity Flow Directions</strong></td>
-<td><code>fel.tif</code> → <code>ang.tif</code>, <code>slp.tif</code></td>
-<td>Winkel <strong>rad</strong> und lokale Hangneigung <strong>m/m</strong></td>
+<td><code>p.tif</code>, <code>ad8.tif</code></td>
+<td>D8-Richtungen und <em>D8 Contributing Area</em></td>
+<td>Richtungskennungen und Anzahl vollständig beitragender Zellen</td>
 </tr>
 <tr class="even">
-<td><strong>D-Infinity Contributing Area</strong></td>
-<td><code>ang.tif</code> → <code>sca.tif</code></td>
-<td><strong>spezifische</strong> beitragende Fläche <strong>m²/m = m</strong></td>
+<td><code>ang.tif</code>, <code>slp.tif</code></td>
+<td><em>D-Infinity Flow Directions</em></td>
+<td>Kontinuierlicher Fließwinkel (rad) und Hangneigung (m/m)</td>
+</tr>
+<tr class="odd">
+<td><code>sca.tif</code></td>
+<td><em>D-Infinity Contributing Area</em></td>
+<td>Spezifische beitragende Fläche (<em>SCA</em>, m²/m = m)</td>
+</tr>
+<tr class="even">
+<td><code>twi.tif</code></td>
+<td><em>Topographic Wetness Index</em></td>
+<td>Aus SCA und Hangneigung abgeleiteter Index</td>
 </tr>
 </tbody>
 </table>
-<p>D8 leitet den gesamten Zellbeitrag an <strong>einen</strong> Empfänger. D∞ verteilt ihn je nach berechnetem Winkel auf <strong>höchstens zwei</strong> benachbarte Zellen. Vergleichen Sie auf einer breiten Hangfläche und im Tal die <strong>Muster</strong> von <code>ad8</code> und <code>sca</code>. Achten Sie dabei darauf, dass die Raster <strong>nicht dieselbe Einheit</strong> haben. <code>sca</code> lässt sich nicht allein durch eine andere Farbskala in <code>ad8</code> umrechnen.</p>
-<p>Für einen Zahlenvergleich wäre die jeweilige Flächen- beziehungsweise Breitenbezugsgröße anzugleichen; der hier geforderte Mustervergleich allein isoliert den Einfluss der Routingregel nicht.</p>
-<p>Die Grundlage berechnet außerdem den TauDEM <strong>Topographic Wetness Index</strong> aus <code>sca.tif</code> und <code>slp.tif</code> als <code>twi.tif</code>. Zeigen Sie die höchsten TWI-Werte und betrachten Sie, ob es sich eher um flache Talbereiche oder steile Hänge handelt.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: D8, D∞ und MFD – was wird verteilt?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><strong>D8:</strong> Von acht Nachbarn erhält genau <strong>einer</strong> den gesamten Beitrag; das kann am Hang künstlich schmale Fließlinien erzeugen. <strong>D∞ (D-Infinity):</strong> Die Richtung ist ein <strong>kontinuierlicher Winkel</strong> aus dreieckigen Teilflächen des Höhenrasters. Liegt er zwischen zwei Nachbarzellen, wird der Beitrag <strong>anteilig auf diese beiden</strong> verteilt. Das <code>∞</code> bezeichnet also die kontinuierlich möglichen Richtungswinkel, <strong>nicht unendlich viele Empfänger</strong>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/routing_d8_dinf.svg" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Schematische Verteilung: D8 an eine Nachbarzelle, D∞ anteilig an höchstens zwei Zellen.</figcaption>
-</figure>
-</div>
-<p>Im Beispiel rechts sind 60/40 Prozent <strong>nur zur Illustration gewählt</strong>, keine festen TauDEM-Gewichte. Ein klassisches <strong>MFD (Multiple Flow Direction)</strong> kann Beiträge auf <strong>mehr als zwei</strong> tieferliegende Nachbarn verteilen. D∞ ist <strong>nicht</strong> gleichbedeutend mit klassischem MFD. Originalmethode: <a href="https://doi.org/10.1029/96WR03137">Tarboton (1997)</a>.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Was bedeutet SCA?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><strong>SCA = Specific Catchment Area</strong>, deutsch <em>spezifische beitragende Einzugsfläche</em>. TauDEM <code>AreaDinf</code> summiert die <strong>anteiligen Flächenbeiträge</strong> von oberhalb und bezieht sie im Standardfall auf die <strong>Rasterbreite</strong>. Für quadratische 5-m-Zellen gilt schematisch:</p>
+<p><strong>Vergleichen Sie <code>ad8.tif</code> und <code>sca.tif</code></strong> auf einer Hangfläche und entlang des Talzugs. Welche Strukturen erscheinen scharf gebündelt, welche breiter verteilt? Vergleichen Sie zunächst die <strong>räumlichen Muster</strong>, nicht die Zahlenwerte: <code>ad8</code> zählt Zellen, <code>sca</code> gibt einen Flächenbeitrag bezogen auf eine Breite an. Der Mustervergleich allein trennt zudem den Einfluss der Routingregel nicht vollständig von dem der unterschiedlichen Bezugsgrößen.</p>
+<section id="was-bedeuten-sca-und-twi" class="level4">
+<h4 class="anchored" data-anchor-id="was-bedeuten-sca-und-twi">Was bedeuten SCA und TWI?</h4>
+<p>Die <em>Specific Catchment Area</em> (<code>sca.tif</code>) verteilt die von oberhalb kommenden Flächenbeiträge nach D∞ und bezieht sie auf eine Breite. Für quadratische Zellen mit Zellweite <span class="math inline">\(r\)</span> gilt schematisch:</p>
 <p><span class="math display">\[
-a=\frac{A_{\mathrm{eff}}}{\Delta x}, \qquad [a]=\frac{\mathrm{m}^2}{\mathrm{m}}=\mathrm{m}.
+a = \frac{A_{\mathrm{eff}}}{r}, \qquad [a] = \mathrm{m}.
 \]</span></p>
+<p>Bei <strong>5 m</strong> Zellweite entspricht <code>sca = 30</code> einer effektiven beitragenden Fläche von rechnerisch <strong>150 m²</strong> je 5 m Bezugsbreite – nicht 30 vollständig beitragenden Rasterzellen.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/sca_flaeche_pro_breite.svg" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Beispiel: 150 m² effektive beitragende Fläche geteilt durch 5 m Rasterbreite ergibt eine SCA von 30 m.</figcaption>
+<figcaption>SCA: 150 m² effektiver Beitrag geteilt durch 5 m Bezugsbreite ergeben 30 m.</figcaption>
 </figure>
 </div>
-<p><strong>Lesebeispiel:</strong> <code>sca = 30</code> bedeutet <strong>30 m² Beitrag je Meter Bezugsbreite</strong>, also rechnerisch <code>150 m²</code> bei <code>5 m</code> Zellbreite. Anders als <code>ad8</code> enthält <code>sca</code> <strong>Teilbeiträge</strong> und ist bereits auf die Breite bezogen. <code>ad8 = 30</code> bedeutet dagegen bloß <strong>30 vollständig angeschlossene Zellen</strong>. Die beiden Raster sind deshalb weder in Wert noch in Routingannahme direkt vergleichbar. Grundlage: <a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityContributingArea.html">TauDEM-Dokumentation zu AreaDinf</a>.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Was zeigt der TWI?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><strong>TWI = Topographic Wetness Index.</strong> TauDEM verbindet die spezifische Fläche <code>a = sca</code> mit der lokalen Neigung <code>tan(β) = slp</code>:</p>
+<p>Der <em>Topographic Wetness Index</em> (<code>twi.tif</code>) verknüpft diese spezifische Fläche mit der Hangneigung:</p>
 <p><span class="math display">\[
-\mathrm{TWI}=\ln\!\left(\frac{a}{\tan\beta}\right).
+\mathrm{TWI} = \ln\!\left(\frac{a}{\tan\beta}\right).
 \]</span></p>
+<p>Bei vergleichbarer Neigung führt eine größere SCA zu höheren Indexwerten; bei vergleichbarer SCA führt ein geringeres Gefälle zu höheren Werten. <strong>Zeigen Sie die höchsten Werte in <code>twi.tif</code>: Liegen sie an steilen Hängen oder in flacheren, zuflussreichen Bereichen?</strong> Der Index beschreibt eine modellierte topografische Feuchte-Disposition, <strong>keine gemessene Bodenfeuchte</strong>. Die Behandlung sehr geringer Neigungen beeinflusst das Ergebnis.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/twi_interpretation.svg" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Vergleich: eine kleine spezifische Fläche auf steilem Hang führt zu geringerem TWI als eine große Fläche auf flachem Hang.</figcaption>
+<figcaption>SCA und Gefälle wirken gemeinsam auf den TWI.</figcaption>
 </figure>
 </div>
-<p>Bei <strong>gleicher Neigung</strong> steigt der Index mit <code>a</code>, bei <strong>gleichem a</strong> steigt er mit geringerem Gefälle. Er beschreibt damit eine <em>topografische Disposition</em> innerhalb eines Modells, keine gemessene Bodenfeuchte. Für die Auswertung ist zusätzlich die Behandlung sehr kleiner oder verschwindender Neigungen wichtig. Hydrologischer Hintergrund: <a href="https://doi.org/10.1080/02626667909491834">Beven &amp; Kirkby (1979)</a>.</p>
-</div>
-</div>
-</div>
+<p>Hintergrund: <a href="https://doi.org/10.1080/02626667909491834">Beven &amp; Kirkby (1979)</a>. Die <a href="../pages/abfluss_algorithmen_quellen.html">Dokumentation der verwendeten Werkzeugfolge</a> zeigt die konkreten TauDEM-Aufrufe mit Eingaben und Ausgaben.</p>
 </section>
 </section>
-<section id="d-was-ändert-sich-durch-eine-abflussannahme" class="level2">
-<h2 class="anchored" data-anchor-id="d-was-ändert-sich-durch-eine-abflussannahme">D · Was ändert sich durch eine Abflussannahme?</h2>
-<p>Im QGIS-Rasterrechner berechnen Sie für <strong>5-m-Zellen</strong> aus <code>ad8.tif</code> das Raster <code>results/volumen_10mm.tif</code>:</p>
+</section>
+<section id="d-von-der-einzugsfläche-zur-hypothetischen-abflussmenge" class="level2">
+<h2 class="anchored" data-anchor-id="d-von-der-einzugsfläche-zur-hypothetischen-abflussmenge">D · Von der Einzugsfläche zur hypothetischen Abflussmenge</h2>
+<p>Bisher beschreibt unsere D8-Akkumulation, <strong>wie viele Rasterzellen zu einem bestimmten Punkt entwässern</strong>. Daraus lässt sich die beitragende Einzugsfläche berechnen. Über die tatsächlich anfallende Wassermenge sagt diese Fläche allein jedoch nichts aus.</p>
+<p>Dazu benötigen wir eine zusätzliche Annahme über die <strong>Abflussbildung</strong>: Wie viel Wasser liefert jede Fläche überhaupt an das berechnete Entwässerungsnetz?</p>
+<section id="ein-einheitlicher-abflussbeitrag" class="level3">
+<h3 class="anchored" data-anchor-id="ein-einheitlicher-abflussbeitrag">Ein einheitlicher Abflussbeitrag</h3>
+<p>Wir nehmen zunächst an, dass jede Rasterzelle während eines gedachten Niederschlagsereignisses <strong>10 mm effektiven Abfluss</strong> liefert. Gemeint ist der Niederschlagsüberschuss nach Abzug sämtlicher Verluste, nicht die gesamte Niederschlagsmenge.</p>
+<p>Damit ergibt sich für jede Zelle ein Beitrag von</p>
+<p><span class="math display">\[
+V_{\mathrm{Zelle}} = A_{\mathrm{Zelle}} \cdot h_{\mathrm{eff}}
+\]</span></p>
+<p>und für einen beliebigen Punkt im D8-Netz:</p>
+<p><span class="math display">\[
+V = N_{\mathrm{D8}} \cdot A_{\mathrm{Zelle}} \cdot h_{\mathrm{eff}}
+\]</span></p>
+<p>Dabei ist <span class="math inline">\(N_{\mathrm{D8}}\)</span> die Anzahl der beitragenden Zellen aus <code>ad8.tif</code>, <span class="math inline">\(A_{\mathrm{Zelle}}\)</span> deren Fläche in m² und <span class="math inline">\(h_{\mathrm{eff}}\)</span> die angenommene effektive Abflusshöhe in Metern.</p>
+<p><strong>Berechnen Sie das hypothetische Abflussvolumen für Ihr Untersuchungsgebiet.</strong> Öffnen Sie den QGIS-Rasterrechner und verwenden Sie bei einer Zellweite von 5 m:</p>
 <pre class="text"><code>"ad8@1" * 25 * 0.010</code></pre>
-<p><strong>Bei anderer Rasterweite</strong> ersetzen Sie <code>25</code> durch die tatsächliche Zellfläche in m² (<code>Zellweite²</code>). Die effektive Abflusshöhe bleibt <code>0.010</code> m, sofern Sie diese Annahme nicht ausdrücklich verändern.</p>
-<p><strong>Annahme:</strong> Jede Zelle liefert einmalig <strong>10 mm effektiven Abfluss</strong> (also Niederschlagsüberschuss nach allen Verlusten). Weil jede Zelle 25 m² groß ist, entspräche das <strong>0,25 m³ pro beitragender Zelle</strong>. Der Rasterwert am gewählten Auslass ist damit die <em>potenzielle gesamte Abflussmenge in m³</em>, die sich aus dieser angenommenen flächendeckenden Abflussbildung ergibt – <strong>wenn alle Beiträge den Auslass erreichen</strong>.</p>
-<p>Prüfen Sie den Rasterrechner-Ausdruck über seine Größen: <code>ad8</code> zählt Zellen, <code>25 m²</code> ist die Zellfläche und <code>0,010 m</code> die effektive Abflusshöhe. Für den bereits verwendeten Kontrollwert von <strong>2 ha</strong> müssen daraus <strong>200 m³</strong> entstehen. Das prüft Einheiten und Umsetzung der gesetzten Annahme; die tatsächliche Abflussbildung wird dadurch nicht bestätigt. Dieselbe Kontrolle gilt für einen von KI vorgeschlagenen Ausdruck. Sie kennen weiterhin weder die Fließzeit noch einen Spitzenabfluss in m³/s.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Der Rasterausdruck setzt die Modellgleichung unmittelbar um: <code>ad8</code> liefert die beitragende Zellanzahl, <code>25</code> die Fläche einer 5-m-Zelle und <code>0.010</code> die angenommene effektive Abflusshöhe. Die Zellfläche muss zum Arbeitsraster passen; die Abflusshöhe ist dagegen eine zusätzliche Modellannahme.</p>
+<p>Speichern Sie das Ergebnis als <code>resultate/myBurgwald/volumen_10mm.tif</code>. Bei anderen Rasterweiten muss die Zellfläche entsprechend angepasst werden.</p>
+<p>Lesen Sie den Wert an Ihrem zuvor festgelegten Auslass ab und rechnen Sie ihn mit der dort ermittelten Einzugsgebietsfläche von Hand nach. Für beispielsweise 800 beitragende Zellen zu je 25 m² ergeben sich:</p>
+<p><span class="math display">\[
+V = 800 \cdot 25\,\mathrm{m}^2 \cdot 0{,}010\,\mathrm{m}
+  = 200\,\mathrm{m}^3
+\]</span></p>
+<p><strong>Was haben wir mit dieser Rechnung gewonnen?</strong> Wir können der beitragenden Fläche unter einer gesetzten Abflussannahme ein Wasservolumen zuordnen. Die räumlichen Muster bleiben dabei unverändert: Wo sich zuvor viele beitragende Zellen konzentrierten, entstehen nun große Volumenwerte. Weder die Fließrichtungen noch die Verteilung der Abflussbildung wurden neu bestimmt.</p>
+<p>Auch die zeitliche Verteilung bleibt unbekannt. Aus 200 m³ Gesamtvolumen lässt sich ohne weitere Annahmen kein Spitzenabfluss in m³/s ableiten.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/wirkungsgraph_abfluss.svg" class="img-fluid figure-img" style="width:77.0%"></p>
+<figcaption>Wirkungsgraph Teil D: Die gesetzte Abflusshöhe ersetzt Niederschlag, Boden und Bedeckung; Fließzeiten und Q(t) werden nicht berechnet.</figcaption>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Fachlich: Was sich durch Regen, Boden und Landnutzung zusätzlich festlegen ließe
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><code>10 mm</code> bezeichnet hier <strong>effektiven Abfluss</strong>, nicht automatisch <code>10 mm</code> Niederschlag. Bei einem Niederschlag <code>P</code> und einem Abflussanteil <code>C</code> wäre der Zellbeitrag <code>P · C · Zellfläche</code>. Ein nach Landnutzung differenziertes <code>C</code> wäre <strong>eine zusätzliche empirische Zuordnung</strong>. ATKIS enthält Nutzungs- und Bedeckungsklassen, aber keinen gemessenen Abflussbeiwert, keine Bodenleitfähigkeit und keinen Sedimentabtrag. Für eine belastbare Differenzierung wären Boden, Versiegelung, Zustand und Ereignisannahme zu begründen.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Technisch: Räumlich verschiedene Abflussbeiträge korrekt akkumulieren
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Wenn ein Raster <code>runoff_zelle_m3.tif</code> für <strong>jede Zelle</strong> einen angenommenen Beitrag in m³ enthält, wählen Sie im Processing-Skript <strong>Berechnung 3 – gewichtete Abflussakkumulation</strong>. Eingabe ist dieses Gewichtsraster, Ergebnisordner wieder <code>results</code>. Intern verwendet TauDEM <em>D8 Contributing Area</em> die vorhandenen <code>p.tif</code>-Verbindungen. Das Ergebnis <code>volumen_gewichtet_m3.tif</code> enthält die <strong>Summe der Zellvolumina in m³</strong>, nicht eine Zellzahl.</p>
-<p><code>runoff_zelle_m3.tif</code> muss exakt auf dem <code>dgm5</code>-Raster liegen. Bei konstant 0,25 m³ pro 5-m-Zelle stimmt das Ergebnis (abgesehen von Rundung und NoData) mit <code>volumen_10mm.tif</code> überein. Prüfen Sie diese Bedeutung auch bei vorgeschlagenem Code: Ein lokaler Zellbeitrag und ein bereits akkumuliertes Volumen sind unterschiedliche Eingaben; eine erneute Akkumulation des Letzteren würde Beiträge mehrfach zählen.</p>
-</div>
-</div>
-</div>
+</section>
+<section id="was-wäre-bei-räumlich-unterschiedlichen-abflussbeiträgen" class="level3">
+<h3 class="anchored" data-anchor-id="was-wäre-bei-räumlich-unterschiedlichen-abflussbeiträgen">Was wäre bei räumlich unterschiedlichen Abflussbeiträgen?</h3>
+<p>Unsere bisherige Rechnung unterstellt, dass Waldflächen, versiegelte Flächen und andere Oberflächen denselben effektiven Abfluss liefern. Für ein reales Niederschlagsereignis ist das im Allgemeinen nicht plausibel.</p>
+<p>Ein nächster Modellierungsschritt könnte daher jeder Zelle einen eigenen Abflussbeitrag zuweisen, beispielsweise nach dem vereinfachten Ansatz</p>
+<p><span class="math display">\[
+V_i = P \cdot C_i \cdot A_i
+\]</span></p>
+<p>mit Niederschlagshöhe <span class="math inline">\(P\)</span>, einem räumlich variierenden Abflussbeiwert <span class="math inline">\(C_i\)</span> und der Zellfläche <span class="math inline">\(A_i\)</span>.</p>
+<p>Dafür reichen die bisherigen Geländedaten nicht mehr aus. Wir benötigen zusätzliche Informationen über die Flächeneigenschaften und begründete Annahmen darüber, wie diese die Abflussbildung beeinflussen. Eine ATKIS-Landnutzungsklasse liefert beispielsweise noch keinen unmittelbar gültigen Abflussbeiwert.</p>
+<p><strong>Erst hier wird die gewichtete Akkumulation relevant:</strong> Statt überall denselben Zellbeitrag anzunehmen, summiert TauDEM die räumlich unterschiedlichen Beiträge entlang der bereits berechneten D8-Fließverbindungen.</p>
+<p>Das vorhandene Processing-Skript bietet dafür <strong>Berechnung 3 – gewichtete Abflussakkumulation</strong>. Es benötigt ein Raster <code>runoff_zelle_m3.tif</code>, das den <em>lokalen</em> Abflussbeitrag jeder einzelnen Zelle enthält. Dieses muss hinsichtlich Zellweite, Ausdehnung und Rasterausrichtung zum Routingraster passen. Die Ausgabe <code>volumen_gewichtet_m3.tif</code> enthält dann die aufsummierten Beiträge.</p>
+<p>Würden wir jeder 5-m-Zelle erneut konstant 0,25 m³ zuweisen, müsste die gewichtete Akkumulation dasselbe Ergebnis liefern wie unsere erste Volumenrechnung. <strong>Der zusätzliche Algorithmus schafft also nicht von sich aus mehr hydrologische Information. Entscheidend ist, welche räumlich differenzierten Eingaben wir ihm geben und wie wir diese begründen.</strong></p>
+</section>
 </section>
 <section id="e-was-ändert-sich-durch-eine-transportgrenze" class="level2">
 <h2 class="anchored" data-anchor-id="e-was-ändert-sich-durch-eine-transportgrenze">E · Was ändert sich durch eine Transportgrenze?</h2>
-<p>Im <strong>eigenen Untersuchungsgebiet</strong> erhält dasselbe D∞-Entwässerungsnetz <strong>zwei neue Raster</strong>. Wir verwenden bewusst <strong>synthetische, dimensionslose Materialeinheiten (ME)</strong>, weil weder gemessene Erosionsraten noch Sedimenttransportparameter vorliegen. Jeder Wert bezieht sich auf <strong>denselben gedachten Bilanzfall</strong>; eine reale Zeitdauer wird nicht simuliert.</p>
-<p>Erzeugen Sie im QGIS-Rasterrechner:</p>
+<p>Bisher haben wir berechnet, wie sich Flächen- oder Mengenbeiträge entlang eines Entwässerungsnetzes ansammeln. Dabei wurde angenommen, dass die Beiträge ohne Einschränkung weitergeleitet werden.</p>
+<p>Für den Transport von Material ist das keine ausreichende Beschreibung. Wasser kann beispielsweise Sediment mitführen, seine Transportfähigkeit hängt aber unter anderem von den Strömungsverhältnissen ab. <strong>Was geschieht, wenn an einer Stelle mehr Material ankommt, als weitertransportiert werden kann?</strong></p>
+<p>Wir untersuchen diese Frage mit einem vereinfachten Modell, das zwei Größen unterscheidet:</p>
+<ul>
+<li><strong>Materialangebot:</strong> Wie viel Material wird in einer Zelle zusätzlich bereitgestellt?</li>
+<li><strong>Transportkapazität:</strong> Wie viel Material kann die Zelle insgesamt an die nächsten Zellen weitergeben?</li>
+</ul>
+<p>Das ankommende Material wird zum lokalen Angebot addiert. Übersteigt die verfügbare Menge die Transportkapazität, verbleibt der Überschuss als Ablagerung.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/transport_limit_bilanz.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Materialbilanz einer Rasterzelle: Von insgesamt 6 Materialeinheiten können 3 weitertransportiert werden, 3 bleiben zurück.</figcaption>
+</figure>
+</div>
+<p>Die zugehörige Bilanz lautet:</p>
+<p><span class="math display">\[
+\begin{aligned}
+M_{\mathrm{verfügbar}} &amp;= M_{\mathrm{von\ oben}} + M_{\mathrm{lokal}},\\
+M_{\mathrm{weiter}} &amp;= \min(M_{\mathrm{verfügbar}},T_{\mathrm{cap}}),\\
+M_{\mathrm{abgelagert}} &amp;= M_{\mathrm{verfügbar}}-M_{\mathrm{weiter}}.
+\end{aligned}
+\]</span></p>
+<p>TauDEM setzt diese Regel mit <em>D-Infinity Transport Limited Accumulation</em> entlang der bereits berechneten D∞-Fließverbindungen um. Anders als bei der D8-Akkumulation können die weitergegebenen Beiträge dabei auf zwei Nachbarzellen verteilt werden.</p>
+<section id="materialangebot-und-transportkapazität-festlegen" class="level3">
+<h3 class="anchored" data-anchor-id="materialangebot-und-transportkapazität-festlegen">1 · Materialangebot und Transportkapazität festlegen</h3>
+<p>Für unser Untersuchungsgebiet liegen weder gemessene Erosionsraten noch geeignete Sedimenttransportparameter vor. Deshalb verwenden wir <strong>synthetische Materialeinheiten (ME)</strong>. Sie beziehen sich auf einen gemeinsamen gedachten Bilanzfall, nicht auf eine reale Zeitspanne.</p>
+<p>Wir treffen zwei Annahmen:</p>
+<p><strong>Materialangebot:</strong> Jede gültige Rasterzelle stellt zusätzlich <code>0,02 ME</code> bereit, unabhängig von ihrer Lage.</p>
+<p><strong>Transportkapazität:</strong> Zellen mit größerer spezifischer beitragender Fläche (<code>sca</code>) und höherem Gefälle (<code>slp</code>) dürfen mehr Material weitergeben. Dafür setzen wir folgende Modellbeziehung an:</p>
+<p><span class="math display">\[
+T_{\mathrm{cap}}
+= 0{,}2\,\mathrm{ME}
+\cdot\sqrt{\frac{a}{5\,\mathrm{m}}}
+\cdot\frac{s+0{,}0001}{0{,}05}
+\]</span></p>
+<p>Dabei ist <span class="math inline">\(a\)</span> die spezifische beitragende Fläche in Metern und <span class="math inline">\(s\)</span> die dimensionslose Hangneigung. Die Bezugsgrößen von 5 m und 0,05 machen die beiden Quotienten dimensionslos.</p>
+<p><strong>Diese Beziehung ist eine Versuchsannahme, kein empirisch kalibriertes Sedimenttransportgesetz.</strong> Der Faktor <code>0,2 ME</code>, die Bezugsgrößen und der kleine Gefällezusatz sind frei gesetzte Parameter. Die 5 m im Ausdruck sind eine feste Bezugsbreite und nicht automatisch die jeweils eingestellte Rasterweite. Der kleine Gefällezusatz <code>0.0001</code> verhindert, dass die Transportkapazität bei einem Gefälle von null ebenfalls null wird. Er ermöglicht damit einen geringen Weitertransport auch auf rechnerisch ebenen Zellen. Das ist keine numerische Notwendigkeit, sondern eine zusätzliche Modellannahme, deren Wirkung insbesondere bei sehr kleinen Gefällen relevant wird.</p>
+<p>Erzeugen Sie im QGIS-Rasterrechner die beiden Eingaberaster:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Raster</th>
 <th>Ausdruck</th>
-<th>Bedeutung</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><code>processing/angebot.tif</code></td>
 <td><code>("dgm5@1" * 0) + 0.02</code></td>
-<td>Jede gültige Zelle bietet <strong>0,02 ME</strong> an</td>
 </tr>
 <tr class="even">
 <td><code>processing/kapazitaet.tif</code></td>
 <td><code>0.2 * sqrt("sca@1" / 5) * (("slp@1" + 0.0001) / 0.05)</code></td>
-<td>Maximal transportierbare <strong>ME</strong> am Zellabgang; nimmt mit spezifischer Fläche und Gefälle zu</td>
 </tr>
 </tbody>
 </table>
-<p>Die Zahlen <strong>0,02 ME</strong>, <strong>0,2 ME</strong>, <strong>5 m</strong> als <strong>fest gewählte Bezugsbreite in der Formel</strong> (nicht automatisch die jeweils eingestellte Zellweite), <strong>0,05 m/m</strong> und der kleine Gefällezusatz <code>0,0001</code> sind gesetzte <strong>Versuchsparameter, keine kalibrierten Naturkonstanten</strong>. <code>sca / 5 m</code> und <code>slp / 0,05</code> sind dimensionslos; daher steht die Kapazität wie das Angebot in ME.</p>
-<p>Starten Sie TauDEM <strong>D-Infinity Transport Limited Accumulation</strong> mit <code>ang.tif</code>, <code>angebot.tif</code> (<em>Supply</em>) und <code>kapazitaet.tif</code> (<em>Transport Capacity</em>). Speichern Sie <code>transport.tif</code> und <code>ablagerung.tif</code>. Das Werkzeug bilanziert in jeder Rasterzelle:</p>
-<p><span class="math display">\[
-\begin{aligned}
-M_{\mathrm{verfügbar}} &amp;= M_{\mathrm{von\ oben}} + M_{\mathrm{lokal}}, \\
-M_{\mathrm{weiter}} &amp;= \min\!\left(M_{\mathrm{verfügbar}}, T_{\mathrm{cap}}\right), \\
-M_{\mathrm{abgelagert}} &amp;= M_{\mathrm{verfügbar}} - M_{\mathrm{weiter}}.
-\end{aligned}
-\]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Kurzreader Fachwissen: Angebot, Kapazität und Ablagerung
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><strong>Materialangebot</strong> (<code>tsup</code>) ist die hypothetisch <strong>neu bereitgestellte</strong> Menge pro Zelle. <strong>Transportkapazität</strong> (<code>tc</code>) ist die im selben Bilanzfall maximal <strong>weiterleitbare</strong> Menge. Was von oberhalb kommt, wird zum lokalen Angebot addiert. Reicht die Kapazität nicht, bleibt eine <strong>Restmenge als Ablagerung</strong> (<code>tdep</code>) zurück; die tatsächlich weitergegebene Menge steht in <code>tla</code>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/transport_limit_bilanz.svg" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Bilanzbeispiel: 4 Materialeinheiten kommen von oben, 2 entstehen lokal, höchstens 3 werden transportiert, 3 bleiben zurück.</figcaption>
-</figure>
-</div>
-<p>Die Rasterwerte sind in dieser Übung <strong>ME pro gedachtem Bilanzfall</strong>, keine gemessenen Sedimentmassen oder Frachten pro Sekunde. Die Rechnung enthält <strong>keine Zeitintegration</strong> und aktualisiert <strong>nicht</strong> das Höhenraster. Werkzeugdefinition: <a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityTransportLimitedAccumulation.html">TauDEM DinfTransLimAccum</a>.</p>
-</div>
-</div>
-</div>
-<p>Zeigen Sie <code>ablagerung.tif</code> über <code>slp.tif</code>: <strong>Wo reicht die gesetzte Kapazität nicht für das ankommende Material?</strong> Prüfen Sie dieselbe Stelle mit <code>transport.tif</code>. Ändern Sie anschließend <strong>nur den Vorfaktor 0,2 auf 0,05</strong>, berechnen Sie <code>kapazitaet.tif</code> neu und führen Sie die Transportrechnung erneut aus. Welche Ablagerungsbereiche wachsen?</p>
-<p><strong>Grenze des Ergebnisses:</strong> Die Rechnung transportiert angebotene Modellmengen entlang festgelegter D∞-Verbindungen. Sie berechnet <strong>weder reale Erosion aus Schubspannung noch die Änderung der DGM-Höhen</strong>. Ihre Ablagerungskarte ist kein Nachweis von Sedimentbänken am Bach.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Technisch: Transportrechnung direkt mit TauDEM starten
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Speichern Sie beide Eingaberaster mit denselben Grenzen und Pixelzentren wie <code>ang.tif</code> und prüfen Sie die NoData-Maske. Wählen Sie im Processing-Skript <strong>Berechnung 4 – Transport und Ablagerung</strong>, den Ergebnisordner <code>results</code>, <code>angebot.tif</code> und <code>kapazitaet.tif</code>. Intern läuft <code>DinfTransLimAccum</code>; es schreibt <code>transport.tif</code> und <code>ablagerung.tif</code>. Für den zweiten Durchlauf mit <strong>Kapazitätsfaktor 0,05</strong> setzen Sie zusätzlich den <strong>Ausgabesuffix <code>kap05</code></strong>; dadurch entstehen <code>transport_kap05.tif</code> und <code>ablagerung_kap05.tif</code>, ohne den ersten Versuch zu überschreiben.</p>
-<p>Bei einer Änderung des Ausdrucks oder des Skripts vergleichen Sie die betroffenen Zeilen mit dem vorherigen Stand: Wurde nur der Kapazitätsfaktor geändert? Angebot, Routing und Rastergitter müssen für diesen Vergleich gleich bleiben. Prüfen Sie das Ergebnis an der bereits erläuterten Bilanz: Bei 4 ME Zufluss, 2 ME lokalem Angebot und 3 ME Kapazität werden 3 ME weitergegeben und 3 ME zurückgehalten. Ein fehlerfreier Programmlauf allein prüft diese Bedeutung nicht.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Fachlich: Was für einen belastbaren Sedimentansatz noch fehlte
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Eine physikalisch gestützte Erosions- oder Sedimentfracht benötigt mindestens <strong>Materialeigenschaften, Verfügbarkeit/Abtragsbedingungen, einen transportwirksamen Abfluss und eine dazu passende Kapazitätsbeziehung</strong>. Unsere Kapazitätsformel ist nur eine prüfbare Hypothese: mehr beitragende Fläche und stärkeres Gefälle erlauben mehr Transport. Ob und wie stark das tatsächlich gilt, ist damit nicht belegt. Selbst bei realistischen Parametern würde TauDEMs Transportakkumulation das <strong>Gelände nicht aktualisieren</strong>. Die Rückwirkung auf den weiteren Abfluss war im NetLogo-Modell <em>Erosion</em> bereits als Regel enthalten; hier fehlt sie ausdrücklich.</p>
-</div>
-</div>
-</div>
+<p>Beide Raster müssen auf demselben Rastergitter wie <code>ang.tif</code> liegen. Überprüfen Sie Zellweite, Rasterausrichtung, Ausdehnung und NoData-Bereiche.</p>
+<p>Das Angebot ist als Menge <strong>pro Rasterzelle</strong> festgelegt. Bei einem Vergleich unterschiedlicher Rasterweiten wäre deshalb auch diese Annahme anzupassen.</p>
 </section>
-<section id="f-was-haben-wir-über-unseren-bach-herausgefunden" class="level2">
-<h2 class="anchored" data-anchor-id="f-was-haben-wir-über-unseren-bach-herausgefunden">F · Was haben wir über unseren Bach herausgefunden?</h2>
-<p>Wir haben mit einem Höhenmodell begonnen. Daraus wurden zunächst Fließrichtungen und beitragende Flächen berechnet, anschließend ein Einzugsgebiet abgegrenzt. Mit zusätzlichen Annahmen kamen ein hypothetisches Abflussvolumen und schließlich eine Materialbilanz hinzu.</p>
-<p><strong>Doch was wissen wir damit tatsächlich über den untersuchten Bach?</strong></p>
-<section id="einen-konkreten-bachabschnitt-untersuchen" class="level3">
-<h3 class="anchored" data-anchor-id="einen-konkreten-bachabschnitt-untersuchen">1 · Einen konkreten Bachabschnitt untersuchen</h3>
-<p>Wählen Sie an Ihrem selbst untersuchten Bach einen Auslass, für den Sie ein plausibles Einzugsgebiet berechnen konnten.</p>
-<p>Stellen Sie das berechnete Einzugsgebiet, die Gerinnelinien für 2 und 5 ha sowie die amtliche Gewässerlinie gemeinsam dar.</p>
-<p>Untersuchen Sie an diesem Beispiel:</p>
+<section id="transport-und-ablagerung-berechnen" class="level3">
+<h3 class="anchored" data-anchor-id="transport-und-ablagerung-berechnen">2 · Transport und Ablagerung berechnen</h3>
+<p>Starten Sie das bereitgestellte TauDEM-Processing-Skript mit <strong>Berechnung 4 – Transport und Ablagerung</strong>.</p>
+<p>Verwenden Sie:</p>
 <ul>
-<li>Wie viele Rasterzellen tragen nach D8 zum Auslass bei (<code>ad8.tif</code>)? Welcher Einzugsgebietsfläche entspricht das?</li>
-<li>Wo stimmen die berechneten Gerinnelinien mit dem kartierten Bach überein, wo weichen sie ab?</li>
-<li>Welche Abschnitte verschwinden, wenn die Gerinneschwelle von 2 auf 5 ha steigt? Hat sich dadurch der berechnete Wasserweg geändert oder lediglich unsere Definition eines Gerinnes?</li>
+<li><strong>Materialangebot:</strong> <code>processing/angebot.tif</code></li>
+<li><strong>Transportkapazität:</strong> <code>processing/kapazitaet.tif</code></li>
+<li><strong>Ergebnisordner:</strong> <code>resultate/myBurgwald/</code></li>
+<li><strong>Ausgabesuffix:</strong> zunächst leer</li>
 </ul>
-<p><strong>Halten Sie eine auffällige Stelle fest.</strong> Versuchen Sie anhand des DGM, der Routingregel und der verwendeten Daten zu erklären, weshalb das Ergebnis dort so aussieht. Unterscheiden Sie dabei zwischen einer nachvollziehbaren Erklärung und einer bloßen Vermutung.</p>
-</section>
-<section id="was-haben-die-zusätzlichen-modellannahmen-verändert" class="level3">
-<h3 class="anchored" data-anchor-id="was-haben-die-zusätzlichen-modellannahmen-verändert">2 · Was haben die zusätzlichen Modellannahmen verändert?</h3>
-<p>Betrachten Sie nun denselben Untersuchungsraum über die weiteren Modellschritte hinweg.</p>
-<p><strong>Abflussvolumen:</strong> Berechnen Sie für Ihren Auslass aus der beitragenden Fläche und 10 mm effektivem Abfluss das hypothetische Gesamtvolumen. Was wurde gegenüber der ursprünglichen Flächenakkumulation tatsächlich neu berechnet? Welche Information fehlt weiterhin, um beispielsweise einen Hochwasserabfluss in m³/s anzugeben?</p>
-<p><strong>Materialtransport:</strong> Vergleichen Sie die beiden Berechnungen mit dem Kapazitätsfaktor 0,2 beziehungsweise 0,05. Wählen Sie einen Bereich, in dem sich die modellierte Ablagerung verändert. Beschreiben Sie diese Änderung anhand der Rasterwerte und erklären Sie sie aus dem Zusammenspiel von Materialangebot, Transportkapazität und Weiterleitung.</p>
-<p>Beachten Sie: Der Materialtransport verwendet D∞-Verbindungen. Die Ergebnisse lassen sich deshalb nicht ohne Weiteres als zusätzliche Größe der zuvor berechneten D8-Akkumulation interpretieren.</p>
-</section>
-<section id="was-beschreibt-unser-modell-und-was-nicht" class="level3">
-<h3 class="anchored" data-anchor-id="was-beschreibt-unser-modell-und-was-nicht">3 · Was beschreibt unser Modell – und was nicht?</h3>
-<p>Am Ende liegen verschiedene Karten desselben Geländes vor. Ordnen Sie diese Ergebnisse anhand Ihres konkreten Beispiels ein:</p>
+<p>Das Skript ruft <em>DinfTransLimAccum</em> mit den vorhandenen D∞-Fließrichtungen (<code>ang.tif</code>) auf und erzeugt zwei Raster:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Ergebnis</th>
-<th>Welche Information steckt darin?</th>
-<th>Welche zusätzliche Annahme war nötig?</th>
+<th>Bedeutung</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Abflusswege und Einzugsgebiet</td>
-<td>Räumliche Verbindungen und beitragende Flächen</td>
-<td>Routingverfahren, Senkenbehandlung, Auslass</td>
+<td><code>transport.tif</code></td>
+<td>Tatsächlich aus jeder Zelle weitergegebene Materialmenge</td>
 </tr>
 <tr class="even">
-<td>Hypothetisches Abflussvolumen</td>
-<td>Insgesamt angenommener Wasserbeitrag</td>
-<td>10 mm effektiver Abfluss</td>
-</tr>
-<tr class="odd">
-<td>Transport und Ablagerung</td>
-<td>Verteilung synthetischer Materialmengen</td>
-<td>Materialangebot und begrenzte Transportkapazität</td>
+<td><code>ablagerung.tif</code></td>
+<td>In der jeweiligen Zelle aufgrund der Kapazitätsgrenze zurückgehaltene Menge</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Die entscheidende Grenze:</strong> Auch wenn TauDEM an einer Stelle Ablagerung berechnet, verändert sich dadurch das DGM nicht. Eine weitere Routingberechnung würde weiterhin dieselben Geländehöhen verwenden. Im zuvor untersuchten NetLogo-Modell <em>Erosion</em> konnte die Geländeänderung dagegen selbst wieder zum Ausgangspunkt weiterer Prozesse werden.</p>
-<p>Was müsste ein Modell zusätzlich leisten, damit aus der berechneten Ablagerung eine veränderte Geländeform und daraus ein neuer Abflussweg entstehen könnte?</p>
+<p>Prüfen Sie zunächst die Rechenregel an der Bilanzgrafik: Treffen <strong>4 ME</strong> von oberhalb ein, entstehen lokal weitere <strong>2 ME</strong> und beträgt die Kapazität <strong>3 ME</strong>, müssen <strong>3 ME weitergegeben und 3 ME abgelagert</strong> werden.</p>
+<p>Stellen Sie anschließend <code>ablagerung.tif</code> zusammen mit <code>slp.tif</code> dar. Suchen Sie Stellen mit hohen Ablagerungswerten und vergleichen Sie dort <code>transport.tif</code>, <code>sca.tif</code> und das Gefälle.</p>
+<p><strong>Warum entsteht an diesen Stellen eine Ablagerung?</strong> Entscheidend ist nicht allein eine geringe Kapazität, sondern das Verhältnis zwischen verfügbarem Material und maximal weiterleitbarer Menge.</p>
 </section>
-<section id="transparenz-und-reproduzierbarkeit-herstellen" class="level3">
-<h3 class="anchored" data-anchor-id="transparenz-und-reproduzierbarkeit-herstellen">Transparenz und Reproduzierbarkeit herstellen</h3>
-<p>Eine berechnete Einzugsgebietsfläche oder Ablagerungskarte ist nur dann wissenschaftlich nachvollziehbar, wenn erkennbar bleibt, <strong>auf welcher Datengrundlage, mit welchen Verfahren und unter welchen Annahmen</strong> sie entstanden ist.</p>
-<p>Dokumentieren Sie Ihren eigenen Rechenweg in einer kurzen <code>README.md</code> im Projektordner. Darin müssen drei Fragen beantwortet werden:</p>
+<section id="was-bewirkt-eine-geringere-transportkapazität" class="level3">
+<h3 class="anchored" data-anchor-id="was-bewirkt-eine-geringere-transportkapazität">3 · Was bewirkt eine geringere Transportkapazität?</h3>
+<p>Wir verändern nun <strong>nur eine Modellannahme</strong>: den Kapazitätsfaktor von <code>0,2</code> auf <code>0,05</code>. Materialangebot, D∞-Fließrichtungen und alle übrigen Parameter bleiben unverändert. Dadurch vergleichen wir zwei ausführbare Varianten derselben Bilanzregel, die sich nur im Kapazitätsfaktor unterscheiden.</p>
+<p>Erzeugen Sie dafür ein zweites Kapazitätsraster <code>processing/kapazitaet_kap05.tif</code>:</p>
+<pre class="text"><code>0.05 * sqrt("sca@1" / 5) * (("slp@1" + 0.0001) / 0.05)</code></pre>
+<p>Wiederholen Sie <strong>Berechnung 4</strong> mit diesem neuen Raster und dem Ausgabesuffix <code>kap05</code>. Dadurch entstehen:</p>
+<ul>
+<li><code>resultate/myBurgwald/transport_kap05.tif</code></li>
+<li><code>resultate/myBurgwald/ablagerung_kap05.tif</code></li>
+</ul>
+<p>Vergleichen Sie beide Szenarien. Wo nimmt die Ablagerung zu, wo verlagert sie sich? Untersuchen Sie auch Stellen, an denen weniger Material abgelagert wird, obwohl die Kapazität insgesamt niedriger angesetzt wurde.</p>
+<p><strong>Beachten Sie die Verbindung zwischen den Zellen:</strong> Wird bereits weiter oberhalb mehr Material zurückgehalten, erreicht entsprechend weniger Material die unterhalb gelegenen Zellen. Eine verringerte Transportkapazität muss daher nicht in jeder einzelnen Zelle zu mehr Ablagerung führen.</p>
+</section>
+<section id="was-beschreibt-dieses-modell-und-was-nicht" class="level3">
+<h3 class="anchored" data-anchor-id="was-beschreibt-dieses-modell-und-was-nicht">4 · Was beschreibt dieses Modell – und was nicht?</h3>
+<p>Die beiden Szenarien zeigen, wie eine <strong>gesetzte Transportgrenze</strong> die Verteilung einer angebotenen Materialmenge verändert. Der Vergleich isoliert dabei den Einfluss des Kapazitätsfaktors, weil alle übrigen Eingaben gleich bleiben.</p>
+<p>Die Ergebnisse sind jedoch keine Vorhersage tatsächlicher Sedimentablagerungen. Dafür würden unter anderem Informationen über Materialverfügbarkeit, Abtragsbedingungen, transportwirksamen Abfluss und eine physikalisch oder empirisch begründete Transportbeziehung benötigt.</p>
+<p>Eine weitere Grenze ist entscheidend: <strong>Das DGM verändert sich während der Rechnung nicht.</strong> Auch wenn <code>ablagerung.tif</code> große Werte zeigt, wird dort keine Geländehöhe angehoben. Die berechneten Fließrichtungen bleiben unverändert.</p>
+<p>Im zuvor untersuchten NetLogo-Modell <em>Erosion</em> konnte die Veränderung des Geländes wiederum die Wasserbewegung beeinflussen. Unser TauDEM-Modell berechnet dagegen eine <strong>Materialbilanz auf einem fest vorgegebenen Gelände</strong>. Die Rückkopplung zwischen Transport, Geländeänderung und erneuter Wasserführung fehlt.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/wirkungsgraph_transport.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Wirkungsgraph Teil E: Weitertransport wird zur Weitergabe an die Unterlieger-Zelle (berechnet); der Weg über Geländeänderung zurück zum Routing fehlt.</figcaption>
+</figure>
+</div>
+<p>Werkzeugdefinition und Bilanzregel: <a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityTransportLimitedAccumulation.html">TauDEM – D-Infinity Transport Limited Accumulation</a>.</p>
+</section>
+</section>
+<section id="f-vom-rechenweg-zum-geographischen-modell" class="level2">
+<h2 class="anchored" data-anchor-id="f-vom-rechenweg-zum-geographischen-modell">F · Vom Rechenweg zum geographischen Modell</h2>
+<p>Sie haben die Modellkette an eigenen Geodaten <strong>technisch realisiert und berechnet</strong>: vom Arbeitsraster über die Weiterleitungsregeln bis zu Wasser- und Materialbilanzen. Die erzeugten Karten sind damit Ergebnisse konkreter Daten-, Verfahrens- und Parameterentscheidungen.</p>
+<p><strong>Was davon bildet Ihren Bach ab – und was folgt aus unseren Entscheidungen?</strong></p>
+<section id="welche-modellentscheidungen-haben-wir-umgesetzt" class="level3">
+<h3 class="anchored" data-anchor-id="welche-modellentscheidungen-haben-wir-umgesetzt">1 · Welche Modellentscheidungen haben wir umgesetzt?</h3>
+<p>Diese Entscheidungen stecken bereits in den ausgeführten Berechnungen:</p>
+<p><strong>Wir haben den Untersuchungsraum festgelegt.</strong> Mit der Auswahl der DGM-Kacheln, der Rasterweite und der Senkenbehandlung entstand ein bestimmtes digitales Geländemodell. Es bildet die Geländeoberfläche vereinfacht ab. Was außerhalb des Rasters liegt oder durch die Auflösung nicht erfasst wird, kann die folgenden Berechnungen beeinflussen.</p>
+<p><strong>Wir haben Regeln für die Weiterleitung festgelegt.</strong> D8 und D∞ beschreiben, wie Beiträge entlang des Reliefs weitergegeben werden. Erst diese Regeln machen aus den Höhenwerten ein gerichtetes Entwässerungssystem. Die Gerinneschwelle und die Lage des Auslasses bestimmen anschließend, welche Teile dieses Systems wir als Bachnetz beziehungsweise Einzugsgebiet betrachten.</p>
+<p><strong>Wir haben zusätzliche Größen vorgegeben.</strong> Die 10 mm effektiver Abfluss wurden nicht aus Niederschlag, Boden und Vegetation berechnet, sondern vorgegeben. Auch Materialangebot und Transportkapazität beruhen auf gewählten Beziehungen, nicht auf Messungen am untersuchten Bach.</p>
+<p><strong>Wir haben die Modellregeln in ausführbare Berechnungen umgesetzt.</strong> Dazu gehören nicht nur die Gleichungen, sondern auch die Rasteraufbereitung, die Senkenbehandlung sowie der Umgang mit NoData-Werten und Modellgrenzen. Diese Entscheidungen bestimmen, wie die formulierten Zusammenhänge auf den konkreten Geodaten berechnet werden.</p>
+<p>In den Wirkungsgraphen der Teile C, D und E stehen diese Setzungen als orange Kästen. Gestrichelt ist, was sie ersetzen, was im Modell fehlt oder wo das Rechengebiet endet – drei verschiedene Arten von Grenzen.</p>
+<p>Damit haben wir nicht ein einziges, immer vollständigeres Modell aufgebaut. Wir haben verschiedene <strong>Teilmodelle und Auswertungen miteinander verknüpft</strong>: eine Repräsentation des Geländes, Regeln für die räumliche Weiterleitung, eine angenommene Abflussbildung und schließlich eine begrenzte Materialweiterleitung.</p>
+<p>Jeder zusätzliche Modellschritt beantwortet eine neue Frage. Er übernimmt aber auch die Einschränkungen der vorherigen Schritte.</p>
+</section>
+<section id="was-haben-unsere-prüfungen-tatsächlich-gezeigt" class="level3">
+<h3 class="anchored" data-anchor-id="was-haben-unsere-prüfungen-tatsächlich-gezeigt">2 · Was haben unsere Prüfungen tatsächlich gezeigt?</h3>
+<p>Im Verlauf der Übung haben wir Ergebnisse auf unterschiedliche Weise kontrolliert. Diese Prüfungen erfüllen nicht dieselbe Aufgabe:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Unsere Untersuchung</th>
+<th>Was lässt sich damit beurteilen?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Einheitenkontrolle der Volumenrechnung, beispielsweise 2 ha × 10 mm = 200 m³</td>
+<td><strong>Korrekte Umsetzung:</strong> Stimmen Berechnungsweg, Einheiten und Ergebnis mit der angenommenen Regel überein?</td>
+</tr>
+<tr class="even">
+<td>Prüfung der DGM-Grenzen und gegebenenfalls Erweiterung des Untersuchungsgebiets</td>
+<td><strong>Eignung der räumlichen Modellabgrenzung:</strong> Sind die benötigten Oberlieger überhaupt erfasst?</td>
+</tr>
+<tr class="odd">
+<td>Vergleich der Gerinneschwellen von 2 und 5 ha sowie der Transportkapazitäten von 0,2 und 0,05</td>
+<td><strong>Sensitivität:</strong> Wie stark hängen die Ergebnisse von gewählten Modellparametern ab?</td>
+</tr>
+<tr class="even">
+<td>Vergleich der berechneten Gerinne mit den amtlichen Gewässerlinien</td>
+<td><strong>Vergleich mit unabhängigen Referenzdaten:</strong> Wie gut stimmen die räumlichen Strukturen überein, und wo bestehen erklärungsbedürftige Abweichungen?</td>
+</tr>
+</tbody>
+</table>
+<p>Diese Unterscheidung ist entscheidend: Eine korrekt ausgeführte Berechnung ist noch keine Bestätigung ihrer Annahmen. Ein Sensitivitätsvergleich zeigt, welche Folgen eine Parameteränderung hat, aber nicht, welcher Parameterwert in der Natur zutrifft.</p>
+<p>Ebenso kann die Übereinstimmung mit einer amtlichen Gewässerlinie die räumliche Plausibilität des berechneten Talwegs stützen. Sie bestätigt weder die angenommene Abflussmenge noch die berechnete Sedimentablagerung.</p>
+<p>Die technische Umsetzung, die Parametervergleiche und die Referenzdatenprüfung beantworten unterschiedliche Fragen. Erst zusammen begrenzen sie, welche Aussage wir aus den berechneten Ergebnissen ableiten können.</p>
+</section>
+<section id="was-können-wir-über-unseren-bach-begründet-aussagen" class="level3">
+<h3 class="anchored" data-anchor-id="was-können-wir-über-unseren-bach-begründet-aussagen">3 · Was können wir über unseren Bach begründet aussagen?</h3>
+<p>Formulieren Sie nun eine kurze, zusammenhängende <strong>Modellaussage zu Ihrem selbst untersuchten Bachabschnitt</strong>. Verwenden Sie dafür die bereits berechneten Ergebnisse – neue Berechnungen sind hier nicht erforderlich.</p>
+<p>Beginnen Sie mit einem konkreten Befund, beispielsweise der Größe und Abgrenzung Ihres Einzugsgebiets oder einer auffälligen Abweichung zwischen berechnetem und kartiertem Bachverlauf.</p>
+<p>Begründen Sie diesen Befund, indem Sie vier Dinge miteinander verbinden:</p>
 <ol type="1">
-<li><strong>Woher stammen die Ergebnisse?</strong> Benennen Sie die Originaldaten mit Quelle und Datenstand sowie die verwendeten Skripte. Der Aufbereitungsbericht <code>dgm_pruefung.json</code> dokumentiert die Rasterverarbeitung.</li>
-<li><strong>Wie wurden sie erzeugt?</strong> Halten Sie die Reihenfolge der Verarbeitungsschritte und die tatsächlich verwendeten Parameter fest – insbesondere Rasterweite, Auslass, Gerinneschwellen und veränderte Modellannahmen. Verweisen Sie auf die entsprechenden Eingabe- und Ergebnisdateien.</li>
-<li><strong>Wie wurden sie überprüft?</strong> Dokumentieren Sie die Kontrollen, auf denen Ihre Interpretation beruht: etwa den Vergleich mit dem kartierten Gewässer, die Prüfung der DGM-Grenzen oder den Vergleich zweier Transportkapazitäten.</li>
+<li><strong>Beobachtung:</strong> Was zeigen Ihre Ergebnisse konkret? Geben Sie den relevanten Ort, Rasterwerte oder Flächengrößen an.</li>
+<li><strong>Modellkonstruktion:</strong> Welche Eingangsdaten, Verarbeitungsentscheidungen und Regeln haben dieses Ergebnis hervorgebracht?</li>
+<li><strong>Überprüfung:</strong> Durch welche Ihrer bisherigen Kontrollen wird die Interpretation gestützt? Wo bleiben Unsicherheiten?</li>
+<li><strong>Aussagegrenze:</strong> Was dürfen Sie daraus über den realen Bach folgern – und welche weitergehende Aussage wäre mit diesem Modell nicht gerechtfertigt?</li>
 </ol>
-<p>Bewahren Sie die Originaldaten und selbst erstellten Eingaben auf. Die eingesetzten Skriptversionen müssen eindeutig identifizierbar sein. Automatisch erzeugte Zwischenprodukte müssen nicht einzeln erläutert werden, sofern sie aus den dokumentierten Eingaben und Einstellungen wiederhergestellt werden können.</p>
-<p><strong>Transparenz</strong> bedeutet, dass andere Ihre Modellierungsentscheidungen und Schlussfolgerungen prüfen können. <strong>Reproduzierbarkeit</strong> bedeutet, dass sie die Berechnungen mit denselben Eingangsdaten, Programmen und Einstellungen erneut ausführen können.</p>
+<p>Wählen Sie dafür eine aussagekräftige Karte oder einen Kartenausschnitt mit den benötigten Vergleichsdaten. Entscheidend ist die nachvollziehbare Argumentation, nicht die Anzahl der Abbildungen.</p>
+</section>
+<section id="was-wäre-wenn-unsere-forschungsfrage-eine-andere-wäre" class="level3">
+<h3 class="anchored" data-anchor-id="was-wäre-wenn-unsere-forschungsfrage-eine-andere-wäre">4 · Was wäre, wenn unsere Forschungsfrage eine andere wäre?</h3>
+<p>Nehmen wir an, die ursprüngliche Forschungsfrage hätte stattdessen gelautet:</p>
+<p><strong>„Wann erreicht ein Hochwasser nach einem Starkregen den ausgewählten Bachabschnitt, und wie hoch fällt der Spitzenabfluss aus?“</strong></p>
+<p>Dafür reichen unsere bisherigen Berechnungen nicht aus. Wir müssten zusätzlich die zeitliche Abflussbildung und den Transport des Wassers berücksichtigen: Niederschlagsverlauf, Speicher- und Infiltrationsprozesse sowie Fließ- und Laufzeiten. Ein anderes Modellkonzept wäre erforderlich.</p>
+<p>Oder die Frage hätte gelautet:</p>
+<p><strong>„Wie verändert sich die Bachkrümmung durch Erosion und Ablagerung?“</strong></p>
+<p>Dann müsste abgetragenes oder abgelagertes Material die Geländeform verändern. Auf dem veränderten Gelände wären die Fließrichtungen und Transportbedingungen erneut zu bestimmen. Erst diese Rückkopplung, die im Wirkungsgraphen zu Teil E gestrichelt bleibt, könnte eine zeitliche Entwicklung des Bachverlaufs ermöglichen.</p>
+<p><strong>Nicht das verfügbare Werkzeug bestimmt die Forschungsfrage. Die Forschungsfrage bestimmt, welche räumlichen Zusammenhänge und Prozesse ein Modell überhaupt abbilden muss.</strong></p>
+</section>
+<section id="den-eigenen-modellierungsweg-nachvollziehbar-machen" class="level3">
+<h3 class="anchored" data-anchor-id="den-eigenen-modellierungsweg-nachvollziehbar-machen">5 · Den eigenen Modellierungsweg nachvollziehbar machen</h3>
+<p>Bisher war ein großer Teil des Vorgehens vorgegeben: die verwendeten Algorithmen, die Reihenfolge der Berechnungen und die exemplarischen Modellannahmen. Sie haben diese Kette auf eigene Geodaten übertragen, Auslass und Untersuchungsraum festgelegt und ihre Ergebnisse überprüft.</p>
+<p>Damit andere Ihre Ergebnisse nachvollziehen und die Modellrechnungen wiederholen können, erstellen Sie eine kurze <code>README.md</code> in Ihrem Projektordner.</p>
+<p>Dokumentieren Sie darin die <strong>Herkunft Ihrer Daten</strong>, den gewählten Untersuchungsraum, die tatsächlich verwendeten Skript- und Programmversionen sowie die Modellparameter. Insbesondere müssen die Rasterweite, der Auslass, die Gerinneschwellen und die Abfluss- und Transportannahmen erkennbar sein. Verweisen Sie auf die relevanten Eingabe- und Ergebnisdateien sowie auf den Aufbereitungsbericht <code>dgm_pruefung.json</code>.</p>
+<p>Halten Sie außerdem fest, welche Kontrollen Sie durchgeführt haben und welche Einschränkungen für Ihre Ergebnisse bestehen. Die ursprünglichen Eingangsdaten und selbst erzeugten Modellvorgaben müssen erhalten bleiben; aus den dokumentierten Eingaben und Programmen sollen die übrigen Raster erneut berechnet werden können.</p>
+<p>Damit erfüllen Sie zwei unterschiedliche Anforderungen:</p>
+<p><strong>Transparenz</strong> macht erkennbar, wie aus einer Fragestellung über Daten und Annahmen eine bestimmte Aussage entstanden ist.</p>
+<p><strong>Reproduzierbarkeit</strong> ermöglicht es anderen, denselben Rechenweg mit denselben Eingaben und Einstellungen zu wiederholen.</p>
+<p>Beides ist notwendig, um Modellergebnisse wissenschaftlich einzuordnen. Beides ersetzt jedoch nicht die Prüfung, ob das gewählte Modell für die gestellte Frage überhaupt geeignet ist.</p>
+<hr>
+</section>
+<section id="ausblick-die-modellierung-einmal-andersherum-beginnen" class="level3">
+<h3 class="anchored" data-anchor-id="ausblick-die-modellierung-einmal-andersherum-beginnen">Ausblick · Die Modellierung einmal andersherum beginnen</h3>
+<p>In diesem Block stand die Verarbeitungskette weitgehend fest. Sie haben gelernt, was die einzelnen Schritte leisten, welche Entscheidungen die Ergebnisse verändern und wo ihre Grenzen liegen.</p>
+<p><strong>Im nächsten Block kehren wir die Reihenfolge um:</strong> Nicht ein bereitgestellter Algorithmus bildet den Ausgangspunkt, sondern eine geographische Frage.</p>
+<p>Dann müssen Sie selbst entscheiden, welche Daten eine Antwort ermöglichen, welche Prozesse und räumlichen Beziehungen im Modell enthalten sein müssen, welche Vereinfachungen vertretbar sind und wie sich die Ergebnisse überprüfen lassen.</p>
 
 
 </section>

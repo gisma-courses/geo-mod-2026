@@ -1,6 +1,8 @@
 ---
 title: "Kompendium: Daten, Geländealgorithmen und Quellen"
 subtitle: "Zum Arbeitsblatt Abflusswege und Sediment im kleinen Einzugsgebiet"
+title-block-banner: ../images/placeholder.png
+title-block-banner-color: black
 order: 41
 format:
   html:

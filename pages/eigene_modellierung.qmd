@@ -1,6 +1,8 @@
 ---
 title: "Eigenes Modell: begleitet statt geführt"
 subtitle: "Von einer selbst gewählten Frage zu einer begründeten Modellaussage"
+title-block-banner: ../images/placeholder.png
+title-block-banner-color: black
 order: 80
 format:
   html:

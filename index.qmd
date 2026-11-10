@@ -20,13 +20,13 @@ execute:
 
 Wie entstehen räumliche Muster, und was können wir aus ihnen über die zugrunde liegenden Prozesse lernen? Der Kurs **Modellieren in der Geographie** untersucht den Weg von einer räumlichen Beobachtung über eine Modellannahme zu einer berechneten Darstellung – und zur kritischen Prüfung der Aussagekraft.
 
-Im Mittelpunkt stehen **heuristische Regeln**, **physikalisch begründete Näherungen** und **Prozessmodelle**. An Beispielen zur Oberflächenentwässerung und Flussentwicklung werden die in einem Modell implementierten Mechanismen explizit gemacht und mit seinen Resultaten verglichen.
+Im Mittelpunkt stehen **heuristische Regeln**, **physikalisch begründete Näherungen** und **Prozessmodelle**. An Beispielen zur Oberflächenentwässerung und Flussentwicklung werden die in einem Modell implementierten Mechanismen explizit gemacht und mit seinen Resultaten verglichen. Die Hydrologie dient dabei als durchgerechnetes Beispiel: In der ersten Kurshälfte wird es angeleitet erarbeitet, in der zweiten bilden die Studierenden begleitet ein eigenes Modell zu einer selbst gewählten Frage.
 
 Digitale Handlungsfähigkeit gehört zum Kurs: Dateien und Formate handhaben, Software und Skripte einsetzen, Fehler eingrenzen und einen Arbeitsstand erneut berechnen können. KI kann bei Code, Fehlersuche und Dokumentationsrecherche helfen. Fragestellung, Modellannahmen und wissenschaftliche Bewertung werden von den Studierenden begründet; vorgeschlagene Änderungen werden vor der Übernahme verstanden und am Ergebnis geprüft.
 
-## Angeleitete Modellierungsfolge
+## Kursverlauf
 
-Der Kurs folgt einer hydrologisch-geomorphologischen Modellkette. Wir **beobachten** Muster in den NetLogo-Modellen, **analysieren** Regeln und Rückkopplungen, wechseln zu realen Geländedaten und **begreifen** daran, welche Aussagen verschiedene GIS- und Prozessmodellierungen tragen. Das Resümee zieht daraus eine Herangehensweise für weitere geographische Fragen.
+Der Kurs folgt einer hydrologisch-geomorphologischen Modellkette. Wir **beobachten** Muster in den NetLogo-Modellen, **analysieren** Regeln und Rückkopplungen, wechseln zu realen Geländedaten und **begreifen** daran, welche Aussagen verschiedene GIS- und Prozessmodellierungen tragen. Das Resümee zieht daraus eine Herangehensweise für weitere geographische Fragen, die anschließend an einem eigenen Modell erprobt wird.
 
 | Station | Modellierungsfrage | Material |
 |---|---|---|
@@ -34,12 +34,12 @@ Der Kurs folgt einer hydrologisch-geomorphologischen Modellkette. Wir **beobacht
 | **NetLogo: Grand Canyon, Erosion, River Meanders** | Wie entstehen Muster aus Regeln, Zuständen und Rückkopplungen? | [NetLogo-Vergleich](pages/netlogo_modellvergleich.qmd) |
 | **Einstieg Abflussmodellierung** | Was ändert sich beim Wechsel vom Modellraum zum realen Relief? | [Einstieg](pages/einstieg_abflussmodellierung.qmd) |
 | **GIS: Relief, Routing, Abfluss und Sediment** | Welche Flächen tragen zum Abfluss bei und welche Zusatzannahmen verändern die berechneten Größen? | [GIS-Übung](pages/meander_abfluss_saga_grass.qmd) · [Kompendium](pages/abfluss_algorithmen_quellen.qmd) |
-| **Itzï** | Wie wird aus der räumlichen Reliefanalyse eine zeitabhängige Abflusssimulation? Itzï ist als anschließender Schritt geplant und noch nicht vorbereitet; es gehört nicht zum GIS-Arbeitsblatt. | [Einordnung im Einstieg](pages/einstieg_abflussmodellierung.qmd) |
 | **Resümee** | Welche Entscheidungen haben wir getroffen, und was lässt sich daraus für andere Modellfragen ableiten? | [Rückblick](pages/resuemee_modellierung_geographie.qmd) |
+| **Eigene Modellierung** | Welche Frage will ich beantworten, und welches Modell trägt diese Aussage? Zweite Kurshälfte, begleitet statt geführt. | [Begleitete Modellierung](pages/eigene_modellierung.qmd) |
 
 ## Materialien zur Modellierungsfolge
 
-Die Seiten sind entlang des Arbeitsgangs verlinkt: [Kurseinstieg](pages/modellbildung_gis_folien.qmd), [NetLogo-Vergleich](pages/netlogo_modellvergleich.qmd), [Einstieg Abflussmodellierung](pages/einstieg_abflussmodellierung.qmd), [GIS-Arbeitsblatt](pages/meander_abfluss_saga_grass.qmd), [Daten- und Werkzeugkompendium](pages/abfluss_algorithmen_quellen.qmd) und [Resümee](pages/resuemee_modellierung_geographie.qmd).
+Die Seiten sind entlang des Arbeitsgangs verlinkt: [Kurseinstieg](pages/modellbildung_gis_folien.qmd), [NetLogo-Vergleich](pages/netlogo_modellvergleich.qmd), [Einstieg Abflussmodellierung](pages/einstieg_abflussmodellierung.qmd), [GIS-Arbeitsblatt](pages/meander_abfluss_saga_grass.qmd), [Daten- und Werkzeugkompendium](pages/abfluss_algorithmen_quellen.qmd), [Resümee](pages/resuemee_modellierung_geographie.qmd) und [Eigene Modellierung](pages/eigene_modellierung.qmd).
 
 ## Gemeinsame Vergleichsfragen
 

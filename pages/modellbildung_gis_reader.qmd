@@ -2,6 +2,8 @@
 title: "Modellbildung im GIS – Kurzreader"
 subtitle: "Begriffe zum Einordnen, Entscheiden und Prüfen"
 date: "2026-10-26"
+title-block-banner: ../images/placeholder.png
+title-block-banner-color: black
 format:
   html:
     toc: true

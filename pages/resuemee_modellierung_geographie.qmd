@@ -1,6 +1,8 @@
 ---
 title: "Rückblick: Was haben wir eigentlich modelliert?"
 subtitle: "Vom Regelmodell über die Geländeanalyse zur Prozessbeschreibung – und was sich daraus für eigene Projekte ableiten lässt"
+title-block-banner: ../images/placeholder.png
+title-block-banner-color: black
 order: 70
 format:
   html:

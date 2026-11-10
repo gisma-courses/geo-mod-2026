@@ -67,6 +67,10 @@ website:
               text: Daten- und Werkzeugkompendium
             - href: pages/resuemee_modellierung_geographie.qmd
               text: Resümee
+        - section: "Begleitete Modellierung"
+          contents:
+            - href: pages/eigene_modellierung.qmd
+              text: Eigenes Modell
         - section: "Ergänzende Materialien"
           contents:
             - href: pages/modellbildung_gis_reader.qmd

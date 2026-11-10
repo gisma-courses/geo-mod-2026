@@ -34,7 +34,7 @@ Nicht die Darstellung ist der Kern, sondern die Modellannahme dahinter.
 
 Projekt-ZIP herunterladen:
 
-[**Projekt herunterladen**](../assets/Archiv.zip){download="Archiv.zip"}
+[**Projekt herunterladen**](../assets/Archive.zip){download="Archive.zip"}
 
 Dann:
 
@@ -47,12 +47,10 @@ Skript im Ordner scripts/ öffnen
 Das Skript liegt im Projekt unter:
 
 ```text
-scripts/microclimate_warmup_minimal_kommentiert.R
+scripts/microclimate_warmup_minimal.R
 ```
 
-Skript separat:
-
-[**R-Skript herunterladen**](../scripts/microclimate_warmup_minimal_kommentiert.R){download="microclimate_warmup_minimal_kommentiert.R"}
+Das Skript ist im [**Projekt-ZIP**](../assets/Archive.zip) enthalten.
 
 # Warum Skripte?
 

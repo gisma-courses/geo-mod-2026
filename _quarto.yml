@@ -71,8 +71,7 @@ website:
           contents:
             - href: pages/modellbildung_gis_reader.qmd
               text: Kurzreader Modellbildung
-            - href: slides/burgwald_abfluss_uebergang.qmd
-              text: Übergangsfolien zum GIS
+
 
 execute:
   freeze: auto

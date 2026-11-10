@@ -364,8 +364,8 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#begriffe-am-jeweiligen-arbeitsschritt" id="toc-begriffe-am-jeweiligen-arbeitsschritt" class="nav-link active" data-scroll-target="#begriffe-am-jeweiligen-arbeitsschritt">Begriffe am jeweiligen Arbeitsschritt</a></li>
   <li><a href="#amtliche-und-ergänzende-daten-für-einen-burgwald-oberlauf" id="toc-amtliche-und-ergänzende-daten-für-einen-burgwald-oberlauf" class="nav-link" data-scroll-target="#amtliche-und-ergänzende-daten-für-einen-burgwald-oberlauf">1 · Amtliche und ergänzende Daten für einen Burgwald-Oberlauf</a></li>
-  <li><a href="#der-taudem-rechenweg-mit-eingaben-und-größen" id="toc-der-taudem-rechenweg-mit-eingaben-und-größen" class="nav-link" data-scroll-target="#der-taudem-rechenweg-mit-eingaben-und-größen">2 · Der TauDEM-Rechenweg, mit Eingaben und Größen</a></li>
-  <li><a href="#vergleichsalgorithmen-nicht-zusätzliche-pflichtwege" id="toc-vergleichsalgorithmen-nicht-zusätzliche-pflichtwege" class="nav-link" data-scroll-target="#vergleichsalgorithmen-nicht-zusätzliche-pflichtwege">3 · Vergleichsalgorithmen, nicht zusätzliche Pflichtwege</a></li>
+  <li><a href="#die-manuelle-werkzeugfolge-hinter-den-skripten" id="toc-die-manuelle-werkzeugfolge-hinter-den-skripten" class="nav-link" data-scroll-target="#die-manuelle-werkzeugfolge-hinter-den-skripten">2 · Die manuelle Werkzeugfolge hinter den Skripten</a></li>
+  <li><a href="#andere-verfahren-für-andere-modellannahmen" id="toc-andere-verfahren-für-andere-modellannahmen" class="nav-link" data-scroll-target="#andere-verfahren-für-andere-modellannahmen">3 · Andere Verfahren für andere Modellannahmen</a></li>
   <li><a href="#primärliteratur-und-methodische-schlüsseltexte" id="toc-primärliteratur-und-methodische-schlüsseltexte" class="nav-link" data-scroll-target="#primärliteratur-und-methodische-schlüsseltexte">4 · Primärliteratur und methodische Schlüsseltexte</a></li>
   <li><a href="#was-die-ergebnisse-belegen-und-was-nicht" id="toc-was-die-ergebnisse-belegen-und-was-nicht" class="nav-link" data-scroll-target="#was-die-ergebnisse-belegen-und-was-nicht">5 · Was die Ergebnisse belegen – und was nicht</a></li>
   </ul>
@@ -396,7 +396,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><a href="../pages/meander_abfluss_saga_grass.html">← Arbeitsblatt</a> · <a href="../index.html">Kursübersicht</a></p>
-<p>Dieses Kompendium ist <strong>kein zweiter Software-Parcours</strong>. Die Pflichtübung verwendet <strong>QGIS + TauDEM</strong>. Die Einträge sind danach sortiert, <strong>welche Daten eine Aussage tragen, welcher Algorithmus welche Größe erzeugt und an welcher Stelle seine Annahmen überprüft werden müssen</strong>. Direkte Werkzeuganleitungen sind vorrangig; die Primärliteratur dient zum Nachlesen der zugrunde liegenden Routing- und Indexkonzepte.</p>
+<p>Dieses Kompendium macht die <strong>manuelle Abfolge hinter den beiden QGIS-Skripten</strong> sichtbar. Das Arbeitsblatt führt die Berechnungen automatisiert mit <code>prepare_dgm.py</code> und <code>taudem_burgwald_processing.py</code> aus. Wer dieselben Ergebnisse ohne diese Skripte erzeugen wollte, müsste die in Abschnitt 2 aufgeführten GDAL- und TauDEM-Werkzeuge <strong>in genau dieser Reihenfolge</strong>, mit den passenden Zwischendateien und Parametern ausführen. Das ist <strong>keine zusätzliche Aufgabe</strong>, sondern die nachvollziehbare Offenlegung der im Arbeitsblatt verwendeten Verarbeitungskette.</p>
+<p>Die Datenquellen in Abschnitt 1 klären, worauf die Berechnungen beruhen. Abschnitt 2 legt für jeden tatsächlichen Werkzeugaufruf Eingabe, Parameter, Ergebnis und notwendige Kontrolle offen. Die Abschnitte 3–5 dienen zur Einordnung von Modellentscheidungen, Literatur und Aussagegrenzen. So lässt sich unterscheiden, <strong>was die Daten vorgeben, was ein Algorithmus daraus berechnet und was als Modellannahme gewählt wurde</strong>.</p>
 <section id="begriffe-am-jeweiligen-arbeitsschritt" class="level2">
 <h2 class="anchored" data-anchor-id="begriffe-am-jeweiligen-arbeitsschritt">Begriffe am jeweiligen Arbeitsschritt</h2>
 <table class="caption-top table">
@@ -516,94 +517,185 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <p><strong>Für selbstgewählte hessische Oberläufe:</strong> dieselben Datenquellen, dasselbe metrische KBS <code>EPSG:25832</code>, aber die tatsächlichen Kacheln müssen das <strong>oberhalb liegende Einzugsgebiet</strong> enthalten. Ein 2 × 2 km großer Kartenausschnitt legt weder die hydrologische Gebietsgröße noch einen geeigneten Auslass fest.</p>
 </section>
-<section id="der-taudem-rechenweg-mit-eingaben-und-größen" class="level2">
-<h2 class="anchored" data-anchor-id="der-taudem-rechenweg-mit-eingaben-und-größen">2 · Der TauDEM-Rechenweg, mit Eingaben und Größen</h2>
-<p>Die folgenden TauDEM-Namen entsprechen der offiziellen Werkzeugdokumentation. Die Aufrufe erfolgen über das mitgelieferte QGIS-Processing-Skript <code>scripts/taudem_burgwald_processing.py</code>; es startet die TauDEM-Programme direkt mit MPI. TauDEM ist <strong>kein QGIS-eigenes Hydrologiemodell</strong>; das Processing-Skript stellt nur die Bedienoberfläche für die externen Algorithmen bereit.</p>
+<section id="die-manuelle-werkzeugfolge-hinter-den-skripten" class="level2">
+<h2 class="anchored" data-anchor-id="die-manuelle-werkzeugfolge-hinter-den-skripten">2 · Die manuelle Werkzeugfolge hinter den Skripten</h2>
+<p>Das Arbeitsblatt führt diese Kette über zwei QGIS-Processing-Skripte aus. <strong>Ohne die Skripte</strong> wären zunächst zwei GDAL-Schritte und danach die einzeln aufgeführten TauDEM-Aufrufe nötig. Die folgende Reihenfolge ist aus <code>prepare_dgm.py</code> und <code>taudem_burgwald_processing.py</code> abgeleitet, <strong>nicht</strong> aus einer allgemeinen Sammlung denkbarer GIS-Werkzeuge. Die Namen und Kommandozeilenparameter erlauben, jeden Schritt im jeweiligen Werkzeugdialog oder direkt mit TauDEM nachzuvollziehen. TauDEM benötigt dazu eine funktionierende Installation mit MPI; nicht jede QGIS-Installation bietet alle TauDEM-Programme als einzelne Processing-Werkzeuge an.</p>
+<section id="a-dgm-aus-den-höhenkacheln-vorbereiten-prepare_dgm.py" class="level3">
+<h3 class="anchored" data-anchor-id="a-dgm-aus-den-höhenkacheln-vorbereiten-prepare_dgm.py">A · DGM aus den Höhenkacheln vorbereiten (<code>prepare_dgm.py</code>)</h3>
+<p><strong>Vor der Verarbeitung:</strong> Die heruntergeladenen GeoTIFF-Kacheln müssen jeweils genau ein Höhenband besitzen und dasselbe KBS, dieselbe Pixelgröße sowie dasselbe Rastergitter verwenden. Überlappungen sind nicht zugelassen. Dies prüft das Skript vor dem ersten GDAL-Aufruf; bei manueller Durchführung wären die Eigenschaften der Eingaberaster in QGIS zu vergleichen. Auch die Lage der Kachelgrenzen ist zu kontrollieren.</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Schritt / Programm</th>
-<th>Eingaben</th>
-<th>Ausgabe; Bedeutung / Einheit</th>
-<th>Werkzeug und entscheidende Annahme</th>
+<th>Folge</th>
+<th>Manuelles Werkzeug und Einstellung</th>
+<th>Eingabe → Ausgabe</th>
+<th>Was dabei entschieden bzw. geprüft wird</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Pit Remove</strong> (<code>PitRemove</code>)</td>
-<td>DGM <code>z</code></td>
-<td><code>fel</code> Höhen <strong>m</strong></td>
-<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/PitRemove.html">Handbuch</a>: geschlossene Senken werden bis zum Überlauf angehoben; reale Senken ggf. maskieren</td>
+<td><strong>A1</strong></td>
+<td>QGIS <strong>GDAL → Verschiedenes → Virtuelles Raster erzeugen</strong> (<code>BuildVRT</code>); Auflösung wie Quelldaten, Resampling <code>nearest</code>, kein separates Band je Kachel</td>
+<td>Höhenkacheln → <code>dgm_mosaik.vrt</code></td>
+<td>Die Dateien werden <strong>referenziert</strong>, noch nicht auf 5 m gemittelt. Die VRT benötigt die Originalkacheln weiterhin.</td>
 </tr>
 <tr class="even">
-<td><strong>D8 Flow Directions</strong> (<code>D8FlowDir</code>)</td>
-<td><code>fel</code></td>
-<td><code>p</code> Richtungs<strong>code</strong> 1–8; <code>sd8</code> Gefälle <strong>m/m</strong></td>
-<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/d8flowdirections.html">Handbuch</a>: steilster Abstieg zu einem der acht Nachbarn</td>
-</tr>
-<tr class="odd">
-<td><strong>D8 Contributing Area</strong> (<code>AreaD8</code>)</td>
-<td><code>p</code>, optional Zellgewicht <code>wg</code></td>
-<td><code>ad8</code> <strong>Zellen</strong> ohne Gewichte; mit <code>wg</code> Summe in der <strong>Einheit des Gewichts</strong></td>
-<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/D8ContributingArea.html">Handbuch</a>: Zelle plus alle D8-Oberlieger; Randprüfung standardmäßig aktiv</td>
-</tr>
-<tr class="even">
-<td><strong>Stream Definition By Threshold</strong> (<code>Threshold</code>)</td>
-<td>z. B. <code>ad8</code>; Schwelle</td>
-<td><code>src</code> als <strong>0/1</strong>-Raster</td>
-<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/StreamDefinitionByThreshold.html">Handbuch</a>: Gerinne dort, wo Rasterwert ≥ Schwelle; <strong>kein gemessener Gewässerbeginn</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>Move Outlets To Streams</strong> (<code>MoveOutletsToStreams</code>)</td>
-<td><code>p</code>, <code>src</code>, Auslasspunkte</td>
-<td>verschobene Auslasspunkte; <code>dist_moved</code></td>
-<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/MoveOutletsToStreams.html">Handbuch</a>: Punkt entlang D8 bis zur Gerinnezelle suchen; tatsächliche Verschiebung kontrollieren</td>
-</tr>
-<tr class="even">
-<td><strong>Gage Watershed</strong> (<code>GageWatershed</code>)</td>
-<td><code>p</code>, Punkte mit Feld <code>id</code></td>
-<td>Einzugsgebiet als Raster mit <strong>Punkt-ID</strong></td>
-<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/GageWatershed.html">Handbuch</a>: Gebiet ist <strong>vom Auslass abhängig</strong>; nur D8-Verbindungen</td>
-</tr>
-<tr class="odd">
-<td><strong>D-Infinity Flow Directions</strong> (<code>DinfFlowDir</code>)</td>
-<td><code>fel</code></td>
-<td><code>ang</code> Winkel <strong>rad</strong>; <code>slp</code> Gefälle <strong>m/m</strong></td>
-<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityFlowDirections.html">Handbuch</a>: Richtung über Dreiecksfacetten; Teilung auf höchstens zwei Nachbarn</td>
-</tr>
-<tr class="even">
-<td><strong>D-Infinity Contributing Area</strong> (<code>AreaDinf</code>)</td>
-<td><code>ang</code>, optional Zellgewicht <code>wg</code></td>
-<td><code>sca</code> ohne Gewicht <strong>m</strong> = m²/m</td>
-<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityContributingArea.html">Handbuch</a>: spezifische Fläche, nicht unmittelbar identisch zu <code>ad8</code>-Zellzahl</td>
-</tr>
-<tr class="odd">
-<td><strong>Topographic Wetness Index</strong> (<code>TWI</code>)</td>
-<td><code>sca</code> und <code>slp</code></td>
-<td><code>twi</code> als logarithmischer <strong>Index</strong></td>
-<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/TopographicWetnessIndex.html">Handbuch</a>: <code>ln(a/tanβ)</code>; kein TWI bei Nullgefälle</td>
-</tr>
-<tr class="even">
-<td><strong>D∞ Transport Limited Accumulation</strong> (<code>DinfTransLimAccum</code>)</td>
-<td><code>ang</code>, Materialangebot <code>tsup</code>, Kapazität <code>tc</code></td>
-<td><code>tla</code> transportierte <strong>Materialeinheit</strong>, <code>tdep</code> abgelagerte <strong>Materialeinheit</strong></td>
-<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityTransportLimitedAccumulation.html">Handbuch</a>: <code>M_out = min(M_in + E, Tcap)</code>; <strong>keine neue DGM-Höhe</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>D∞ Concentration Limited Accumulation</strong> (<code>DinfConcLimAccum</code>)</td>
-<td>Strömungsrichtung, Runoff-Gewicht, Quellgebiet und Konzentrationsparameter</td>
-<td>Konzentration einer transportierten Substanz</td>
-<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityConcentrationLimitedAccumulation.html">Handbuch</a>: alternative Hypothese über <strong>Konzentrationsbegrenzung</strong>, nicht Teil der Pflichtübung</td>
-</tr>
-<tr class="even">
-<td><strong>D8 Distance To Streams</strong> (<code>d8hdisttostrm</code>)</td>
-<td><code>p</code>, Gerinneraster, Höhenangabe</td>
-<td>horizontale Entfernung <strong>m</strong> entlang des D8-Fließwegs bis zum Gerinne</td>
-<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/D8DistanceToStreams.html">Handbuch</a>: mögliche Folgefrage nach Distanz, <strong>keine</strong> Fließzeit</td>
+<td><strong>A2</strong></td>
+<td>QGIS <strong>GDAL → Rasterprojektionen → Warp (Reprojizieren)</strong> (<code>Warp</code>); Ziel-KBS metrisch (Burgwald: <code>EPSG:25832</code>), Zielauflösung <strong>5 × 5 m</strong>, Resampling <strong>Average</strong>, auf Zielraster ausrichten (<code>-tap</code>), Ausgabe <code>Float32</code>, NoData <code>-9999</code>; optional wie im Skript <code>COMPRESS=DEFLATE</code>, <code>TILED=YES</code>, <code>PREDICTOR=3</code></td>
+<td><code>dgm_mosaik.vrt</code> → <code>dgm5.tif</code></td>
+<td>Mittelung verändert die Höhenoberfläche und unter Umständen die Darstellung kleiner NoData-Lücken. Projektion, Ausdehnung, Zellgröße und fehlende Werte im Ergebnis prüfen.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Einheitenkontrolle für das verwendete 5-m-Raster:</strong></p>
+<p>Bei <strong>10 m</strong> statt 5 m entsteht <code>dgm10.tif</code>. Die Zielauflösung beeinflusst nachfolgend die Flächenumrechnung und möglicherweise die abgeleiteten Fließwege. Das Skript erstellt außerdem <code>dgm_pruefung.json</code> mit Angaben zu Kacheln, Prüfsummen, Quell-/Zielgitter und NoData-Zahlen. <strong>Dies ist kein dritter GDAL-Algorithmus</strong>: Bei manueller Bearbeitung müssten diese Angaben aus den Rastereigenschaften bzw. einem eigenen Protokoll festgehalten werden.</p>
+<p>Werkzeugdokumentation: <a href="https://gdal.org/en/stable/programs/gdalbuildvrt.html">GDAL <code>gdalbuildvrt</code></a> · <a href="https://gdal.org/en/stable/programs/gdalwarp.html">GDAL <code>gdalwarp</code></a>.</p>
+</section>
+<section id="b-abflusswege-gerinneschwellen-und-twi-taudem_burgwald_processing.py-modus-1" class="level3">
+<h3 class="anchored" data-anchor-id="b-abflusswege-gerinneschwellen-und-twi-taudem_burgwald_processing.py-modus-1">B · Abflusswege, Gerinneschwellen und TWI (<code>taudem_burgwald_processing.py</code>, Modus 1)</h3>
+<p>Die <strong>acht Aufrufe</strong> erfolgen in dieser Reihenfolge. Jeder Schritt braucht die Ausgabe eines vorherigen Schrittes; es genügt nicht, alle Werkzeuge unabhängig auf das ursprüngliche DGM anzuwenden. Die Schalter in der dritten Spalte sind die tatsächlichen TauDEM-Eingabe-/Ausgabeparameter aus dem Skript.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Folge</th>
+<th>TauDEM-Werkzeug</th>
+<th>Eingabeparameter → Ergebnisdatei</th>
+<th>Inhalt / unmittelbar zu kontrollieren</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>B1</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/PitRemove.html"><strong>PitRemove</strong></a></td>
+<td><code>-z dgm5.tif -fel fel.tif</code></td>
+<td>Höhenraster nach Senkenfüllung; Differenzen zum ursprünglichen DGM und mögliche reale Senken beurteilen.</td>
+</tr>
+<tr class="even">
+<td><strong>B2</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/d8flowdirections.html"><strong>D8FlowDir</strong></a></td>
+<td><code>-fel fel.tif -p p.tif -sd8 sd8.tif</code></td>
+<td>Ein D8-Empfänger je Zelle (<code>p</code>, Richtungscode) und Gefälle (<code>sd8</code>).</td>
+</tr>
+<tr class="odd">
+<td><strong>B3</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/D8ContributingArea.html"><strong>AreaD8</strong></a></td>
+<td><code>-p p.tif -ad8 ad8.tif</code></td>
+<td>Akkumulation <strong>in Zellen</strong>, noch nicht in m² oder m³. Randprüfung eingeschaltet lassen (<code>-nc</code> <strong>nicht</strong> setzen).</td>
+</tr>
+<tr class="even">
+<td><strong>B4</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/StreamDefinitionByThreshold.html"><strong>Threshold</strong></a></td>
+<td><code>-ssa ad8.tif -src src_2ha.tif -thresh 800</code></td>
+<td>Gerinnemaske für <strong>2 ha bei 5-m-Zellen</strong>; Schwellwert ist eine Modellentscheidung, keine kartierte Bachquelle.</td>
+</tr>
+<tr class="odd">
+<td><strong>B5</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/StreamDefinitionByThreshold.html"><strong>Threshold</strong></a></td>
+<td><code>-ssa ad8.tif -src src_5ha.tif -thresh 2000</code></td>
+<td>Zweite Gerinnemaske für <strong>5 ha bei 5-m-Zellen</strong>; Veränderung der Gerinnedichte vergleichen.</td>
+</tr>
+<tr class="even">
+<td><strong>B6</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityFlowDirections.html"><strong>DinfFlowDir</strong></a></td>
+<td><code>-fel fel.tif -ang ang.tif -slp slp.tif</code></td>
+<td>D∞-Winkel (<code>ang</code>, Radiant) und Hangneigung (<code>slp</code>); anderes Routing als in B2.</td>
+</tr>
+<tr class="odd">
+<td><strong>B7</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityContributingArea.html"><strong>AreaDinf</strong></a></td>
+<td><code>-ang ang.tif -sca sca.tif</code></td>
+<td>Spezifische beitragende Fläche <strong>in m</strong> (m² je m Konturbreite); nicht mit der D8-Zellzahl gleichsetzen.</td>
+</tr>
+<tr class="even">
+<td><strong>B8</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/TopographicWetnessIndex.html"><strong>TWI</strong></a></td>
+<td><code>-slp slp.tif -sca sca.tif -twi twi.tif</code></td>
+<td>Topografischer Feuchteindex aus D∞-SCA und Gefälle; <strong>keine</strong> gemessene Bodenfeuchte.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Schwellenberechnung:</strong> Das Skript wandelt Hektar vor B4 und B5 in Zellzahlen um:</p>
+<p>[ N = . ]</p>
+<p>Bei 5 × 5 m gilt <code>2 ha = 800 Zellen</code> und <code>5 ha = 2000 Zellen</code>. Bei 10 × 10 m sind es <strong>200</strong> bzw. <strong>500 Zellen</strong>. Die Zahlen 800 und 2000 gehören deshalb <strong>nicht fest zum TauDEM-Algorithmus</strong>, sondern zur gewählten Rasterweite.</p>
+</section>
+<section id="c-einzugsgebiet-am-gewählten-auslass-modus-2" class="level3">
+<h3 class="anchored" data-anchor-id="c-einzugsgebiet-am-gewählten-auslass-modus-2">C · Einzugsgebiet am gewählten Auslass (Modus 2)</h3>
+<p>Zunächst in QGIS <strong>einen Auslasspunkt</strong> anlegen und als Vektordatei speichern; der Layer benötigt ein ganzzahliges Attribut <strong><code>id</code></strong>. Die Lage ist eine fachliche Entscheidung. Das Skript übernimmt sie standardmäßig <strong>unverändert</strong>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Folge</th>
+<th>TauDEM-Werkzeug</th>
+<th>Eingabeparameter → Ergebnisdatei</th>
+<th>Zu prüfen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>C1</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/GageWatershed.html"><strong>GageWatershed</strong></a></td>
+<td><code>-p p.tif -o auslass.gpkg -gw becken.tif</code> (bei mehrschichtigem GeoPackage zusätzlich <code>-lyrname &lt;Layername&gt;</code>)</td>
+<td>Welche Zellen entwässern <strong>nach D8</strong> zu genau diesem Punkt? Liegt der Auslass auf dem tatsächlich gemeinten Rasterfließweg?</td>
+</tr>
+</tbody>
+</table>
+<p>Nur wenn die <strong>optionale Auslassverschiebung</strong> gewählt wird, muss <strong>vor C1</strong> <a href="https://hydrology.usu.edu/taudem/taudem5/help53/MoveOutletsToStreams.html"><strong>MoveOutletsToStreams</strong></a> ausgeführt werden: <code>-p p.tif -src src_2ha.tif -o auslass.gpkg -om auslass_auf_gerinne.shp -md N</code>. Dabei bezeichnet <code>N</code> die maximale Verschiebung <strong>in Zellen</strong>; im Skript ist <strong><code>N = 0</code> (aus)</strong> voreingestellt. Bei aktivierter Verschiebung wird die neue Punktdatei als <code>-o</code> für C1 verwendet; ihre Position und tatsächliche Verschiebung müssen kontrolliert werden. Die gewählte Gerinneschwelle beeinflusst dann die Lage des Auslasses.</p>
+</section>
+<section id="d-gewichtet-akkumulieren-modus-3" class="level3">
+<h3 class="anchored" data-anchor-id="d-gewichtet-akkumulieren-modus-3">D · Gewichtet akkumulieren (Modus 3)</h3>
+<p>Dieser Schritt ist <strong>kein weiterer Fließrichtungsalgorithmus</strong>: Die D8-Verbindungen aus B2 bleiben erhalten. Statt je Zelle „1“ zu zählen, wird ein <strong>extern erzeugtes Gewichtsraster</strong> aufsummiert.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Folge</th>
+<th>TauDEM-Werkzeug</th>
+<th>Eingabeparameter → Ergebnisdatei</th>
+<th>Zu prüfen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>D1</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/D8ContributingArea.html"><strong>AreaD8</strong></a> <strong>mit Gewicht</strong></td>
+<td><code>-p p.tif -wg wasserbeitrag_m3.tif -ad8 volumen_gewichtet_m3.tif</code></td>
+<td>Jede gültige Zelle des Eingaberasters muss einen <strong>Volumenbeitrag in m³ pro Zelle</strong> enthalten; das Ergebnis ist die akkumulierte Menge, keine Fließgeschwindigkeit oder Ganglinie.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Eingabedaten-Schritt außerhalb des Skripts:</strong> Ein solches Gewichtsraster muss zuvor z. B. mit dem QGIS-Rasterrechner auf <strong>demselben Rastergitter</strong> erstellt werden. Bei angenommenen einheitlichen 10 mm <em>effektivem</em> Abfluss und 5-m-Zellen wäre der Beitrag <strong>0,01 m × 25 m² = 0,25 m³ je gültiger Zelle</strong>. Die 10 mm sind eine explizite Szenarioannahme, keine Ableitung aus dem DGM. <code>taudem_burgwald_processing.py</code> erstellt das Gewichtsraster nicht.</p>
+</section>
+<section id="e-materialtransport-und-ablagerung-modus-4" class="level3">
+<h3 class="anchored" data-anchor-id="e-materialtransport-und-ablagerung-modus-4">E · Materialtransport und Ablagerung (Modus 4)</h3>
+<p>Auch hier werden die Eingaberaster <strong>nicht</strong> durch das Processing-Skript erzeugt. Erst nach Festlegung eines Materialangebots und einer Transportkapazität auf demselben Rastergitter folgt der eigentliche TauDEM-Aufruf.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Folge</th>
+<th>TauDEM-Werkzeug</th>
+<th>Eingabeparameter → Ergebnisdateien</th>
+<th>Zu prüfen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>E1</strong></td>
+<td><a href="https://hydrology.usu.edu/taudem/taudem5/help53/DInfinityTransportLimitedAccumulation.html"><strong>DinfTransLimAccum</strong></a></td>
+<td><code>-ang ang.tif -tsup materialangebot.tif -tc transportkapazitaet.tif -tla transport.tif -tdep ablagerung.tif</code></td>
+<td><code>tsup</code> und <code>tc</code> müssen in <strong>kompatiblen Materialeinheiten</strong> vorliegen. Ergebnis ist eine modellierte Transport-/Ablagerungsbilanz, <strong>keine Änderung des DGMs</strong>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="f-was-bei-manueller-durchführung-zusätzlich-festzuhalten-wäre" class="level3">
+<h3 class="anchored" data-anchor-id="f-was-bei-manueller-durchführung-zusätzlich-festzuhalten-wäre">F · Was bei manueller Durchführung zusätzlich festzuhalten wäre</h3>
+<p>Die Skripte verkürzen nicht nur die Bedienung, sondern übernehmen technische Kontrollen. Für eine transparente <strong>manuelle Rekonstruktion</strong> der Ergebnisse müssen deshalb auch die <strong>gewählten Eingabedateien, Rasterweite, KBS, Gerinneschwellen und gegebenenfalls die Auslassverschiebung</strong> festgehalten werden. Bei gewichteter Akkumulation und Materialtransport gehören <strong>Herkunft, Einheit und Berechnungsregel der zusätzlichen Raster</strong> dazu. Eingaben müssen deckungsgleich sein: KBS, Pixelgröße, Ursprung, Ausdehnung und gültiger Datenbereich sind zu prüfen.</p>
+<p>Bei TauDEM läuft jeder der Schritte mit MPI; das Skript setzt standardmäßig <strong>2 Prozesse</strong> und protokolliert die ausgeführten Befehle im QGIS-Verarbeitungsprotokoll. Eine manuelle Reproduktion sollte zusätzlich Softwareversionen und die tatsächlich verwendeten Werkzeuge dokumentieren. Das ist die Grundlage, um Unterschiede in Ergebniskarten einer <strong>Datenentscheidung</strong>, einer <strong>Parameterwahl</strong> oder dem <strong>Routingverfahren</strong> zuordnen zu können.</p>
+<p><strong>Einheitenbeispiele für das 5-m-Raster:</strong></p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -613,35 +705,35 @@ ul.task-list li input[type="checkbox"] {
 <thead>
 <tr class="header">
 <th>Rasterwert</th>
-<th>Rechenbeispiel</th>
-<th>Zulässige Deutung</th>
+<th>Umrechnung</th>
+<th>Aussage</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><code>ad8 = 800</code></td>
-<td><code>800 × 25 m² = 20 000 m² = 2 ha</code></td>
-<td>D8-Einzugsfläche der Rasterzelle</td>
+<td>800 × 25 m² = <strong>2 ha</strong></td>
+<td>D8-beitragende Fläche</td>
 </tr>
 <tr class="even">
 <td><code>sca = 30</code></td>
-<td><strong>30 m²/m</strong>, nicht 30 m²</td>
-<td>spezifische D∞-Einzugsfläche; Bezug auf wirksame Konturlänge</td>
+<td><strong>30 m²/m = 30 m</strong></td>
+<td>spezifische D∞-Einzugsfläche, keine D8-Zellzahl</td>
 </tr>
 <tr class="odd">
 <td><code>slp = 0,05</code></td>
-<td>5 % Gefälle</td>
-<td>Verhältnis Höhenunterschied / horizontale Entfernung</td>
+<td><strong>5 % Gefälle</strong></td>
+<td>Geländeneigung</td>
 </tr>
 <tr class="even">
-<td><code>volumen = 200</code></td>
-<td><strong>200 m³</strong> bei 10 mm effektivem Abfluss über 2 ha</td>
-<td>angenommene Bilanzmenge, keine Ganglinie oder Spitze</td>
+<td><code>volumen_gewichtet_m3 = 200</code></td>
+<td><strong>200 m³</strong></td>
+<td>aufsummiertes Szenariovolumen, keine Abflussganglinie</td>
 </tr>
 <tr class="odd">
-<td><code>tdep = 0,4</code></td>
-<td><strong>0,4 ME</strong> beim angenommenen Materialfall</td>
-<td>rechnerisch nicht abtransportierter Materialanteil, <strong>keine</strong> Aufschüttungshöhe</td>
+<td><code>ablagerung = 0,4</code></td>
+<td><strong>0,4 Materialeinheiten</strong></td>
+<td>im Modell abgelagerte Menge, keine Höhenänderung</td>
 </tr>
 </tbody>
 </table>
@@ -651,23 +743,20 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Fachlich: Flächenakkumulation und D∞-SCA sind nicht austauschbar
+<span class="screen-reader-only">Tip</span>Warum D8-Akkumulation und D∞-SCA nicht direkt vergleichbar sind
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><code>AreaD8</code> zählt im Standardlauf vollständig angeschlossene Zellen. <code>AreaDinf</code> summiert <strong>gewichtete Teilbeiträge</strong> und normiert im Standard auf die Rasterbreite (m²/m). Die Umrechnung <code>ad8 × Zellfläche</code> liefert eine D8-Fläche in m²; <code>sca × 5 m</code> liefert eine <em>nominale</em> flächenbezogene Größe zur Visualisierung des D∞-Verteilungsbilds unter dieser Breitenannahme. Beide Rechnungen enthalten <strong>unterschiedliche Routingregeln</strong> – deshalb ist die Umrechnung keine Gleichsetzung der Ergebnisse.</p>
+<p><code>AreaD8</code> summiert vollständige Beiträge entlang genau einer D8-Verbindung. <code>AreaDinf</code> verteilt Anteile entlang kontinuierlicher Richtungen und gibt im Standard die spezifische Einzugsfläche (m²/m) aus. Selbst wenn beide Ergebnisse auf Flächeneinheiten umgerechnet werden, unterscheiden sie sich durch die <strong>Routingregel</strong>. Entscheidend ist deshalb nicht nur die Einheit, sondern auch, wie der Algorithmus die Oberlieger definiert.</p>
 </div>
 </div>
 </div>
-<section id="rechenweg-im-terminal" class="level3">
-<h3 class="anchored" data-anchor-id="rechenweg-im-terminal">Rechenweg im Terminal</h3>
-<p>Die <a href="../scripts/taudem_burgwald.sh">Shell-Alternative</a> benötigt TauDEM/MPI sowie <code>gdalinfo</code> und Python 3 für die Prüfung der Zellgeometrie und die Umrechnung der 2-/5-ha-Schwellen. Sie verwendet wie der Processing-Standard den eingegebenen Auslass ohne automatische Verschiebung und schützt vorhandene Ausgaben. Für einen weiteren Wasser- oder Materiallauf kann <code>SUFFIX=kap05</code> gesetzt werden. Rasterausrichtung und NoData der zusätzlichen Eingaben werden hier vor dem Aufruf in QGIS geprüft; das Processing-Skript prüft CRS, Rasterdimensionen und Ausdehnung zusätzlich selbst. Die verwendete Variante und der konkrete Aufruf gehören zum Rechenprotokoll.</p>
 </section>
 </section>
-<section id="vergleichsalgorithmen-nicht-zusätzliche-pflichtwege" class="level2">
-<h2 class="anchored" data-anchor-id="vergleichsalgorithmen-nicht-zusätzliche-pflichtwege">3 · Vergleichsalgorithmen, nicht zusätzliche Pflichtwege</h2>
+<section id="andere-verfahren-für-andere-modellannahmen" class="level2">
+<h2 class="anchored" data-anchor-id="andere-verfahren-für-andere-modellannahmen">3 · Andere Verfahren für andere Modellannahmen</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -751,7 +840,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>D∞-Winkel:</strong> Winkel in <strong>Radiant</strong>, gegen den Uhrzeigersinn ab Osten; kein D8-Code.</li>
 <li><strong>D∞-SCA:</strong> Standardwerte in <strong>m</strong>, während D8 standardmäßig <strong>Zellen</strong> summiert.</li>
 <li><strong><code>-nc</code>:</strong> In der TauDEM-Kommandozeile deaktiviert dieser Schalter die Randprüfung; für die Übung <strong>weglassen</strong>. Eine große Fläche wird dadurch nicht „vollständiger“.</li>
-<li><strong>Punkt am Bach:</strong> Ein kartierter Gewässerpunkt muss nicht exakt auf dem aus D8 erzeugten Rastergerinne liegen. Der verschobene Auslass ist immer zu kontrollieren.</li>
+<li><strong>Punkt am Bach:</strong> Ein kartierter Gewässerpunkt muss nicht exakt auf dem aus D8 erzeugten Rastergerinne liegen. Im Standardlauf bleibt die gewählte Auslassposition unverändert; bei einer optionalen Verschiebung deren Strecke und neue Position kontrollieren.</li>
 <li><strong>Rasterverschiebung:</strong> Gleiche Pixelgröße allein reicht nicht aus; <strong>Rasterursprung, Ausdehnung, Projektion und NoData</strong> müssen ebenfalls passen.</li>
 </ul>
 </div>

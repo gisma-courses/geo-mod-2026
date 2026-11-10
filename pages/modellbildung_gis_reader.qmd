@@ -1,90 +1,74 @@
 ---
 title: "Modellbildung im GIS – Kurzreader"
-subtitle: "Was wir annehmen, berechnen und behaupten dürfen"
-
+subtitle: "Begriffe zum Einordnen, Entscheiden und Prüfen"
 date: "2026-10-26"
 format:
   html:
-    toc: false
+    toc: true
+    toc-depth: 2
     number-sections: false
-    theme: cosmo
 execute:
   echo: false
   warning: false
   message: false
 ---
 
-# Nicht jede berechnete Karte ist ein Prozessmodell
+[← Kursübersicht](../index.qmd) · [Auftakt: Folien](modellbildung_gis_folien.qmd) · [GIS-Übung](meander_abfluss_saga_grass.qmd) · [Resümee](resuemee_modellierung_geographie.qmd)
 
-Ein GIS kann Flächen überlagern, Indizes bilden, Fließwege ableiten und Modelle mit räumlichen Eingaben versorgen. Die Karte allein zeigt aber nicht, *was* berechnet wurde. Entscheidend sind die Regeln oder Gleichungen zwischen Eingangsdaten und Ergebnis. Als roter Faden dient die Frage: **Wo sammelt sich bei Starkregen Wasser?**
+Dieser Reader sammelt die Unterscheidungen, mit denen wir im Kurs Modelle einordnen, Entscheidungen benennen und Ergebnisse prüfen. Die Übungsseiten verweisen hierher, statt die Begriffe jedes Mal neu zu erklären. Beispiele und Formeln zu den drei Modellzugängen stehen in den [Auftaktfolien](modellbildung_gis_folien.qmd).
 
-| Modellzugang | Was wird gerechnet? | Mindestdaten | Aussage – und Grenze |
+## Drei Modellzugänge {#zugaenge}
+
+| Zugang | Was wird gerechnet? | Aussage – und Grenze | Im Kurs |
 |---|---|---|---|
-| **Heuristik** | Klassen, Regeln und gewichtete Indikatoren | Landbedeckung, ggf. DGM/Böden | Verdachtsräume; **keine** Wassertiefe |
-| **Physikalisch begründete Näherung** | vereinfachte, prozessbezogene Größenbeziehungen | je nach Formel DGM, Fläche, Regen oder Materialparameter | Index oder überschlägige Größe; nur unter ihren Annahmen gültig |
-| **Prozessmodell** | zeitabhängige Erhaltung und Transport | Gelände, Antrieb, Parameter, Anfangs-/Randbedingungen | simulierte Zustände, z. B. Wassertiefe über die Zeit; mit Modell- und Datenunsicherheit |
+| **Heuristik** | Klassen, Regeln, gewichtete Indikatoren | Verdachtsräume; **keine** Wassertiefe | *Grand Canyon*, *River Meanders* |
+| **Physikalisch begründete Näherung** | vereinfachte, prozessbezogene Größenbeziehungen | Index oder überschlägige Größe; nur unter ihren Annahmen gültig | *Erosion*; GIS-Übung: D8/D∞-Routing, TWI, Volumen aus $h_{\mathrm{eff}}$, Transportbegrenzung |
+| **Prozessmodell** | zeitabhängige Erhaltung und Transport | simulierte Zustände, z. B. Wassertiefe über die Zeit | Itzï (geplant), CAESAR-Lisflood (optional) |
 
-## 1. Heuristische Regeln: begründet, aber gesetzt
+Die drei Zugänge sind **keine Qualitätsstufen**, sondern Antworten auf unterschiedlich genaue Fragen. **Explizit**, **empirisch** und **dynamisch** beschreiben weitere, davon unabhängige Eigenschaften: *Erosion* ist dynamisch, ohne ein hydraulisches Prozessmodell zu sein. Die Software bestimmt den Zugang nicht. Entscheidend ist, welche Regeln oder Gleichungen das konkrete Verfahren löst.
 
-Wir markieren Flächen, auf denen mehrere plausible Hinweise zusammenkommen: versiegelte Oberflächen, Geländesenken, gering durchlässige Böden. Eine gewichtete Überlagerung könnte lauten:
+## Welche Art von Entscheidung? {#entscheidungen}
 
-$$
-H=0{,}5V+0{,}3S+0{,}2D
-$$
+Ein Modell ist nicht fertig, sobald eine Beziehung formuliert ist. Es muss auf konkreten Daten ausführbar werden. Dabei treffen wir Entscheidungen unterschiedlicher Art – und nicht jede davon ist eine Annahme über den Prozess.
 
-Die Variablen sind Indikatoren, zuvor einheitlich auf 0 bis 1 skaliert. **Die Gewichte sind eine Entscheidung der Modellierenden.** Andere plausible Gewichte erzeugen möglicherweise andere Ergebnisse. Deshalb dokumentieren wir Klassen, Grenzwerte und Gewichtungen und testen deren Einfluss. $H$ ist ein Such- oder Priorisierungsindex. Ihn als Überflutungswahrscheinlichkeit oder Wassertiefe auszugeben, wäre unbegründet.
+| Art der Entscheidung | Beispiele aus der GIS-Übung | Was sie verändert |
+|---|---|---|
+| **Fragestellung und Abgrenzung** | Rechengebiet, Lage des Auslasses | welche Flächen überhaupt erfasst werden |
+| **Datenrepräsentation** | Rasterweite, Resampling, Senkenbehandlung, Umgang mit NoData | welche Geländeformen das Modell „sieht“ |
+| **Weiterleitungsregel** | D8 oder D∞ | wie Beiträge zwischen Zellen verteilt werden |
+| **Klassifikation** | Gerinneschwelle 2 oder 5 ha | wie Ergebnisse benannt werden – nicht die Berechnung selbst |
+| **Prozessannahme** | $h_{\mathrm{eff}} = 10$ mm, Materialangebot, Kapazitätsbeziehung samt Gefällezusatz | welche Mengen das Modell erzeugt |
+| **Korrekte Umsetzung** | Zellfläche im Rasterausdruck, Einheiten, gemeinsames Rastergitter, Dateipfade | ob die Rechnung die gewählten Regeln tatsächlich ausführt |
 
-**Werkzeuge:** QGIS (Rasterrechner, Reclassification, Vektor-/Rasterüberlagerung), SAGA GIS und der QGIS-Modell-Designer für reproduzierbare Abläufe.
+Die ersten fünf Zeilen sind Modellentscheidungen: Wer sie ändert, rechnet ein anderes Modell. Die letzte Zeile ist eine Anforderung an die Ausführung. Wer bei einem 10-m-Raster die Zellfläche von 25 auf 100 m² anpasst, ändert keine Annahme, sondern setzt dieselbe Gleichung korrekt um.
 
-## 2. Geländealgorithmus oder physikalische Näherung?
+## Drei Arten von Modellgrenzen {#grenzen}
 
-Ein digitaler Höhenwert allein enthält noch keinen Abfluss. GIS-Werkzeuge wie **SAGA Flow Accumulation** oder **GRASS `r.watershed`** leiten aus Höhenunterschieden und einer gewählten Routingregel Fließrichtungen, Einzugsflächen oder Akkumulationsmuster ab. Ob der Algorithmus das Wasser einer Zelle auf eine oder mehrere Nachbarzellen verteilt, ist bereits eine Modellentscheidung.
+Was ein Modell nicht enthält, fehlt aus unterschiedlichen Gründen. Die Grenzen lassen sich deshalb auch nicht auf dieselbe Weise beheben.
 
-Der *Topographic Wetness Index* verbindet beitragende Fläche und Gefälle:
+| Grenze | Beispiel | Was würde helfen? |
+|---|---|---|
+| **Rechengebiet und Datenabdeckung** | Zufluss von Flächen außerhalb des DGM | Daten erweitern, Berechnung wiederholen |
+| **Nicht abgebildeter Prozess** | Abflussbildung aus Niederschlag, Boden und Bedeckung; zeitlicher Abflussverlauf | zusätzliche Prozessbeziehung und passende Daten |
+| **Fehlende Rückkopplung** | Ablagerung verändert das Gelände und damit die Fließrichtungen | eine andere Modellarchitektur, die Zustände über die Zeit fortschreibt |
 
-$$
-\mathrm{TWI}=\ln\!\left(\frac{a}{\tan\beta}\right)
-$$
+**Lesehilfe für die Wirkungsgraphen der GIS-Übung:** Blau sind Eingaben, grau Verfahren, grün berechnete Ergebnisse und orange gesetzte Annahmen. Rot gestrichelt ist, was im Modell nicht berechnet wird, blau gestrichelt die Grenze des Rechengebiets und grau gepunktet ein Vergleich ohne Eingabe in die Rechnung. Ein Wirkungsgraph zeigt Abhängigkeiten, keine Werkzeugfolge. Er eignet sich auch, um ein eigenes Modell vor der ersten Berechnung zu entwerfen.
 
-Das ist ein **physikalisch motivierter Geländeindikator**, keine berechnete Wasserbilanz und keine Starkregenüberflutung. Für eine tatsächliche Vernässung fehlen etwa Regen, Bodenhydraulik und zeitliche Entwicklung. Besonders wichtig: *topografische Fließakkumulation* und *physikalisch berechneter Wasserabfluss* sind nicht dasselbe.
+## Was eine Prüfung zeigt – und was nicht {#pruefen}
 
-Eine andere, explizite Näherung ist die Rationalformel für den Spitzenabfluss kleiner Einzugsgebiete:
+| Prüfung | Frage | Beispiel aus der GIS-Übung |
+|---|---|---|
+| **Rechenprüfung** (Verifikation) | Setzt die Rechnung die formulierte Regel korrekt um? | Einheitenkontrolle 2 ha × 10 mm = 200 m³; Zellzahl in `becken.tif` gleich `ad8` am Auslass |
+| **Prüfung der Abgrenzung** | Reichen Rechengebiet und Daten für die Frage? | Berührt das Einzugsgebiet den DGM-Rand? |
+| **Sensitivität** | Wie stark hängt das Ergebnis von gewählten Parametern ab? | Gerinneschwelle 2 und 5 ha; Kapazitätsfaktor 0,2 und 0,05 |
+| **Vergleich mit unabhängigen Daten** | Stützen Referenzen oder Messungen das Ergebnis? | Lage der berechneten Gerinne gegenüber dem amtlichen Gewässernetz |
 
-$$
-Q_{\mathrm{max}}\approx C\,i\,A
-$$
+Eine bestandene Rechenprüfung bestätigt keine Annahme. Eine Sensitivitätsanalyse zeigt die Folgen einer Parameterwahl, nicht den zutreffenden Wert. Und eine räumlich passende Gewässerlinie stützt den berechneten Talweg, aber weder die angenommene Abflussmenge noch die Sedimentablagerung. **Musterähnlichkeit, physikalische Plausibilität und quantitative Validität** sind verschiedene Qualitätskriterien.
 
-Dabei sind $A$ die Einzugsgebietsfläche, $i$ eine für die Abflusskonzentration maßgebende Regenintensität und $C$ ein empirischer Abflussbeiwert. Sie benötigt **mehr als eine Karte**, liefert aber weder Wassertiefen noch einen räumlich-zeitlichen Fließverlauf. Ihre Anwendbarkeit hängt von Gebiet, Regenannahmen und Konventionen für den Abflussbeiwert ab.
+## Werkzeuge
 
-**Werkzeuge:** SAGA (Hydrology, Wetness Index), GRASS `r.watershed`, QGIS zur Datenaufbereitung; Formeln zusätzlich im GIS, in R oder Python. Die Wahl des Werkzeugs macht eine Rechnung nicht von selbst physikalisch.
+Im Kurs: [TauDEM](https://hydrology.usu.edu/taudem/taudem5/documentation.html) · [NetLogo Models Library](https://ccl.northwestern.edu/netlogo/models/) · [Itzï](https://www.itzi.org/about/) · [CAESAR-Lisflood](https://sourceforge.net/projects/caesar-lisflood/)
 
-## 3. Prozessmodell: ein Ereignis entwickelt sich
+Alternativen: [SAGA Hydrologie](https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html) · [GRASS `r.watershed`](https://grass.osgeo.org/grass85/manuals/r.watershed.html) · [WhiteboxTools](https://jblindsay.github.io/wbt_book/available_tools/index.html) · [HEC-RAS](https://www.hec.usace.army.mil/confluence/rasdocs) · [QGIS: externe Processing-Anbieter](https://documentation.qgis.org/3.44/de/docs/user_manual/processing/3rdParty.html)
 
-Ein dynamisches 2D-Abflussmodell berechnet, wie sich Wasserstände und Geschwindigkeiten während eines Regens verändern. Eine vereinfachte Massenerhaltung lautet:
-
-$$
-\frac{\partial h}{\partial t}+\nabla\!\cdot(h\boldsymbol{u})=r-f
-$$
-
-$h$ bezeichnet die Wassertiefe, $\boldsymbol{u}$ die Fließgeschwindigkeit, $r$ den Regenzufluss und $f$ die Infiltration. Für eine hydraulische Simulation kommen die Bewegungsgleichungen hinzu. Benötigt werden nun auch **zeitlich aufgelöster Niederschlag, Rauheit, geeignete Geländedaten, Anfangs- und Randbedingungen**, gegebenenfalls Kanalnetz und Bauwerke sowie eine numerische Diskretisierung.
-
-**Werkzeuge:** etwa HEC-RAS 2D für Hydrodynamik; QGIS/SAGA/GRASS für Vorverarbeitung, Geometrie, Parameterkarten und Auswertung. Ein Prozessmodell ist trotzdem nicht „physikalisch exakt“: Gleichungen, räumliche Auflösung und Parameter bleiben Vereinfachungen.
-
-## Was entscheidet über die Aussagekraft?
-
-| Frage vor der Interpretation | Heuristik | Geländeindex / Näherung | Prozessmodell |
-|---|---|---|---|
-| Was ist bewusst festgelegt? | Gewichte, Klassen, Regeln | Routing oder Gültigkeit der Formel | Gleichungen, Parameter, Numerik |
-| Was fehlt im Modell? | konkrete Dynamik und Mengen | oft Zeitverlauf, Speicher und Transport | nicht aufgelöste Prozesse und ungenaue Randdaten |
-| Wie prüfen wir? | Sensitivität, Vergleich mit unabhängigen Orten | DGM-/Methodenvergleich, Messgrößen wenn vorhanden | unabhängige Wasserstände, Ausdehnungen oder Abflussganglinien |
-
-**Explizit** bedeutet lediglich, dass Annahmen oder Gleichungen benannt sind. Auch eine Heuristik kann explizit sein. **Empirisch** beschreibt die Herkunft einer Regel oder eines Parameters; ein physikalisch begründetes Modell kann empirisch kalibrierte Größen enthalten. **Dynamisch** beschreibt Zeitabhängigkeit. Diese Eigenschaften sind keine zusätzlichen Stufen zwischen Heuristik und Prozessmodell.
-
-**Praktische Entscheidungsregel:** Brauche ich nur eine *begründete Suchkarte*, reichen oft räumliche Regeln. Brauche ich eine *geschätzte Abflussgröße*, benötige ich passende physikalische Annahmen und zusätzliche Messgrößen. Will ich wissen, *wie sich Wasser bei einem konkreten Ereignis im Raum bewegt*, brauche ich ein dynamisches Modell und die Daten zu seinem Antrieb. Je mehr Prozesse wir abbilden, desto mehr müssen wir spezifizieren **und überprüfen**.
-
-## Dokumentation der Werkzeuge
-
-- [SAGA GIS: Hydrologie-Werkzeuge](https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html) – Fließakkumulation, SAGA Wetness Index und TWI.
-- [GRASS GIS: `r.watershed`](https://grass.osgeo.org/grass85/manuals/r.watershed.html) – Akkumulation, Fließrichtungen, Einzugsgebiete und topografischer Index.
-- [QGIS: externe Processing-Anwendungen](https://documentation.qgis.org/3.44/de/docs/user_manual/processing/3rdParty.html) – je nach Installation müssen zusätzliche Anbieter eingerichtet werden.
-- [HEC-RAS: Dokumentation und hydraulische Modellgrundlagen](https://www.hec.usace.army.mil/confluence/rasdocs) – 1D-/2D-Strömungsmodellierung und ihre Datenanforderungen.
+Verfahren, Eingaben und Einheiten der GIS-Übung im Detail: [Daten- und Werkzeugkompendium](abfluss_algorithmen_quellen.qmd).

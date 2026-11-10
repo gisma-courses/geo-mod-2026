@@ -39,10 +39,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5ab3112ed347c1b44b40621e8c556bd8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-c8e893c45ba768c613f97d88ef0faa80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c5ca5c32b214fe74a527b2ba75d794cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -101,15 +105,177 @@ window.Quarto = {
 </script>
 
 <meta property="og:title" content="Modellbildung im GIS – Kurzreader – Modellieren in der Geographie">
-<meta property="og:description" content="Was wir annehmen, berechnen und behaupten dürfen">
+<meta property="og:description" content="Begriffe zum Einordnen, Entscheiden und Prüfen">
 <meta property="og:site_name" content="Modellieren in der Geographie">
 <meta name="twitter:title" content="Modellbildung im GIS – Kurzreader – Modellieren in der Geographie">
-<meta name="twitter:description" content="Was wir annehmen, berechnen und behaupten dürfen">
+<meta name="twitter:description" content="Begriffe zum Einordnen, Entscheiden und Prüfen">
 <meta name="twitter:creator" content="@gisma">
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -131,6 +297,9 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Modellieren in der Geographie</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -211,14 +380,27 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhalt</h2>
+   
+  <ul class="collapse">
+  <li><a href="#zugaenge" id="toc-zugaenge" class="nav-link active" data-scroll-target="#zugaenge">Drei Modellzugänge</a></li>
+  <li><a href="#entscheidungen" id="toc-entscheidungen" class="nav-link" data-scroll-target="#entscheidungen">Welche Art von Entscheidung?</a></li>
+  <li><a href="#grenzen" id="toc-grenzen" class="nav-link" data-scroll-target="#grenzen">Drei Arten von Modellgrenzen</a></li>
+  <li><a href="#pruefen" id="toc-pruefen" class="nav-link" data-scroll-target="#pruefen">Was eine Prüfung zeigt – und was nicht</a></li>
+  <li><a href="#werkzeuge" id="toc-werkzeuge" class="nav-link" data-scroll-target="#werkzeuge">Werkzeuge</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/modellbildung_gis_reader.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title d-none d-lg-block">Modellbildung im GIS – Kurzreader</h1>
-<p class="subtitle lead">Was wir annehmen, berechnen und behaupten dürfen</p>
+<p class="subtitle lead">Begriffe zum Einordnen, Entscheiden und Prüfen</p>
 </div>
 
 
@@ -241,9 +423,10 @@ window.Quarto = {
 </header>
 
 
-<section id="nicht-jede-berechnete-karte-ist-ein-prozessmodell" class="level1">
-<h1>Nicht jede berechnete Karte ist ein Prozessmodell</h1>
-<p>Ein GIS kann Flächen überlagern, Indizes bilden, Fließwege ableiten und Modelle mit räumlichen Eingaben versorgen. Die Karte allein zeigt aber nicht, <em>was</em> berechnet wurde. Entscheidend sind die Regeln oder Gleichungen zwischen Eingangsdaten und Ergebnis. Als roter Faden dient die Frage: <strong>Wo sammelt sich bei Starkregen Wasser?</strong></p>
+<p><a href="../index.html">← Kursübersicht</a> · <a href="../pages/modellbildung_gis_folien.html">Auftakt: Folien</a> · <a href="../pages/meander_abfluss_saga_grass.html">GIS-Übung</a> · <a href="../pages/resuemee_modellierung_geographie.html">Resümee</a></p>
+<p>Dieser Reader sammelt die Unterscheidungen, mit denen wir im Kurs Modelle einordnen, Entscheidungen benennen und Ergebnisse prüfen. Die Übungsseiten verweisen hierher, statt die Begriffe jedes Mal neu zu erklären. Beispiele und Formeln zu den drei Modellzugängen stehen in den <a href="../pages/modellbildung_gis_folien.html">Auftaktfolien</a>.</p>
+<section id="zugaenge" class="level2">
+<h2 class="anchored" data-anchor-id="zugaenge">Drei Modellzugänge</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -253,123 +436,187 @@ window.Quarto = {
 </colgroup>
 <thead>
 <tr class="header">
-<th>Modellzugang</th>
+<th>Zugang</th>
 <th>Was wird gerechnet?</th>
-<th>Mindestdaten</th>
 <th>Aussage – und Grenze</th>
+<th>Im Kurs</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>Heuristik</strong></td>
-<td>Klassen, Regeln und gewichtete Indikatoren</td>
-<td>Landbedeckung, ggf. DGM/Böden</td>
+<td>Klassen, Regeln, gewichtete Indikatoren</td>
 <td>Verdachtsräume; <strong>keine</strong> Wassertiefe</td>
+<td><em>Grand Canyon</em>, <em>River Meanders</em></td>
 </tr>
 <tr class="even">
 <td><strong>Physikalisch begründete Näherung</strong></td>
 <td>vereinfachte, prozessbezogene Größenbeziehungen</td>
-<td>je nach Formel DGM, Fläche, Regen oder Materialparameter</td>
 <td>Index oder überschlägige Größe; nur unter ihren Annahmen gültig</td>
+<td><em>Erosion</em>; GIS-Übung: D8/D∞-Routing, TWI, Volumen aus <span class="math inline">\(h_{\mathrm{eff}}\)</span>, Transportbegrenzung</td>
 </tr>
 <tr class="odd">
 <td><strong>Prozessmodell</strong></td>
 <td>zeitabhängige Erhaltung und Transport</td>
-<td>Gelände, Antrieb, Parameter, Anfangs-/Randbedingungen</td>
-<td>simulierte Zustände, z. B. Wassertiefe über die Zeit; mit Modell- und Datenunsicherheit</td>
+<td>simulierte Zustände, z. B. Wassertiefe über die Zeit</td>
+<td>Itzï (geplant), CAESAR-Lisflood (optional)</td>
 </tr>
 </tbody>
 </table>
-<section id="heuristische-regeln-begründet-aber-gesetzt" class="level2">
-<h2 class="anchored" data-anchor-id="heuristische-regeln-begründet-aber-gesetzt">1. Heuristische Regeln: begründet, aber gesetzt</h2>
-<p>Wir markieren Flächen, auf denen mehrere plausible Hinweise zusammenkommen: versiegelte Oberflächen, Geländesenken, gering durchlässige Böden. Eine gewichtete Überlagerung könnte lauten:</p>
-<p><span class="math display">\[
-H=0{,}5V+0{,}3S+0{,}2D
-\]</span></p>
-<p>Die Variablen sind Indikatoren, zuvor einheitlich auf 0 bis 1 skaliert. <strong>Die Gewichte sind eine Entscheidung der Modellierenden.</strong> Andere plausible Gewichte erzeugen möglicherweise andere Ergebnisse. Deshalb dokumentieren wir Klassen, Grenzwerte und Gewichtungen und testen deren Einfluss. <span class="math inline">\(H\)</span> ist ein Such- oder Priorisierungsindex. Ihn als Überflutungswahrscheinlichkeit oder Wassertiefe auszugeben, wäre unbegründet.</p>
-<p><strong>Werkzeuge:</strong> QGIS (Rasterrechner, Reclassification, Vektor-/Rasterüberlagerung), SAGA GIS und der QGIS-Modell-Designer für reproduzierbare Abläufe.</p>
+<p>Die drei Zugänge sind <strong>keine Qualitätsstufen</strong>, sondern Antworten auf unterschiedlich genaue Fragen. <strong>Explizit</strong>, <strong>empirisch</strong> und <strong>dynamisch</strong> beschreiben weitere, davon unabhängige Eigenschaften: <em>Erosion</em> ist dynamisch, ohne ein hydraulisches Prozessmodell zu sein. Die Software bestimmt den Zugang nicht. Entscheidend ist, welche Regeln oder Gleichungen das konkrete Verfahren löst.</p>
 </section>
-<section id="geländealgorithmus-oder-physikalische-näherung" class="level2">
-<h2 class="anchored" data-anchor-id="geländealgorithmus-oder-physikalische-näherung">2. Geländealgorithmus oder physikalische Näherung?</h2>
-<p>Ein digitaler Höhenwert allein enthält noch keinen Abfluss. GIS-Werkzeuge wie <strong>SAGA Flow Accumulation</strong> oder <strong>GRASS <code>r.watershed</code></strong> leiten aus Höhenunterschieden und einer gewählten Routingregel Fließrichtungen, Einzugsflächen oder Akkumulationsmuster ab. Ob der Algorithmus das Wasser einer Zelle auf eine oder mehrere Nachbarzellen verteilt, ist bereits eine Modellentscheidung.</p>
-<p>Der <em>Topographic Wetness Index</em> verbindet beitragende Fläche und Gefälle:</p>
-<p><span class="math display">\[
-\mathrm{TWI}=\ln\!\left(\frac{a}{\tan\beta}\right)
-\]</span></p>
-<p>Das ist ein <strong>physikalisch motivierter Geländeindikator</strong>, keine berechnete Wasserbilanz und keine Starkregenüberflutung. Für eine tatsächliche Vernässung fehlen etwa Regen, Bodenhydraulik und zeitliche Entwicklung. Besonders wichtig: <em>topografische Fließakkumulation</em> und <em>physikalisch berechneter Wasserabfluss</em> sind nicht dasselbe.</p>
-<p>Eine andere, explizite Näherung ist die Rationalformel für den Spitzenabfluss kleiner Einzugsgebiete:</p>
-<p><span class="math display">\[
-Q_{\mathrm{max}}\approx C\,i\,A
-\]</span></p>
-<p>Dabei sind <span class="math inline">\(A\)</span> die Einzugsgebietsfläche, <span class="math inline">\(i\)</span> eine für die Abflusskonzentration maßgebende Regenintensität und <span class="math inline">\(C\)</span> ein empirischer Abflussbeiwert. Sie benötigt <strong>mehr als eine Karte</strong>, liefert aber weder Wassertiefen noch einen räumlich-zeitlichen Fließverlauf. Ihre Anwendbarkeit hängt von Gebiet, Regenannahmen und Konventionen für den Abflussbeiwert ab.</p>
-<p><strong>Werkzeuge:</strong> SAGA (Hydrology, Wetness Index), GRASS <code>r.watershed</code>, QGIS zur Datenaufbereitung; Formeln zusätzlich im GIS, in R oder Python. Die Wahl des Werkzeugs macht eine Rechnung nicht von selbst physikalisch.</p>
-</section>
-<section id="prozessmodell-ein-ereignis-entwickelt-sich" class="level2">
-<h2 class="anchored" data-anchor-id="prozessmodell-ein-ereignis-entwickelt-sich">3. Prozessmodell: ein Ereignis entwickelt sich</h2>
-<p>Ein dynamisches 2D-Abflussmodell berechnet, wie sich Wasserstände und Geschwindigkeiten während eines Regens verändern. Eine vereinfachte Massenerhaltung lautet:</p>
-<p><span class="math display">\[
-\frac{\partial h}{\partial t}+\nabla\!\cdot(h\boldsymbol{u})=r-f
-\]</span></p>
-<p><span class="math inline">\(h\)</span> bezeichnet die Wassertiefe, <span class="math inline">\(\boldsymbol{u}\)</span> die Fließgeschwindigkeit, <span class="math inline">\(r\)</span> den Regenzufluss und <span class="math inline">\(f\)</span> die Infiltration. Für eine hydraulische Simulation kommen die Bewegungsgleichungen hinzu. Benötigt werden nun auch <strong>zeitlich aufgelöster Niederschlag, Rauheit, geeignete Geländedaten, Anfangs- und Randbedingungen</strong>, gegebenenfalls Kanalnetz und Bauwerke sowie eine numerische Diskretisierung.</p>
-<p><strong>Werkzeuge:</strong> etwa HEC-RAS 2D für Hydrodynamik; QGIS/SAGA/GRASS für Vorverarbeitung, Geometrie, Parameterkarten und Auswertung. Ein Prozessmodell ist trotzdem nicht „physikalisch exakt“: Gleichungen, räumliche Auflösung und Parameter bleiben Vereinfachungen.</p>
-</section>
-<section id="was-entscheidet-über-die-aussagekraft" class="level2">
-<h2 class="anchored" data-anchor-id="was-entscheidet-über-die-aussagekraft">Was entscheidet über die Aussagekraft?</h2>
+<section id="entscheidungen" class="level2">
+<h2 class="anchored" data-anchor-id="entscheidungen">Welche Art von Entscheidung?</h2>
+<p>Ein Modell ist nicht fertig, sobald eine Beziehung formuliert ist. Es muss auf konkreten Daten ausführbar werden. Dabei treffen wir Entscheidungen unterschiedlicher Art – und nicht jede davon ist eine Annahme über den Prozess.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Frage vor der Interpretation</th>
-<th>Heuristik</th>
-<th>Geländeindex / Näherung</th>
-<th>Prozessmodell</th>
+<th>Art der Entscheidung</th>
+<th>Beispiele aus der GIS-Übung</th>
+<th>Was sie verändert</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Was ist bewusst festgelegt?</td>
-<td>Gewichte, Klassen, Regeln</td>
-<td>Routing oder Gültigkeit der Formel</td>
-<td>Gleichungen, Parameter, Numerik</td>
+<td><strong>Fragestellung und Abgrenzung</strong></td>
+<td>Rechengebiet, Lage des Auslasses</td>
+<td>welche Flächen überhaupt erfasst werden</td>
 </tr>
 <tr class="even">
-<td>Was fehlt im Modell?</td>
-<td>konkrete Dynamik und Mengen</td>
-<td>oft Zeitverlauf, Speicher und Transport</td>
-<td>nicht aufgelöste Prozesse und ungenaue Randdaten</td>
+<td><strong>Datenrepräsentation</strong></td>
+<td>Rasterweite, Resampling, Senkenbehandlung, Umgang mit NoData</td>
+<td>welche Geländeformen das Modell „sieht“</td>
 </tr>
 <tr class="odd">
-<td>Wie prüfen wir?</td>
-<td>Sensitivität, Vergleich mit unabhängigen Orten</td>
-<td>DGM-/Methodenvergleich, Messgrößen wenn vorhanden</td>
-<td>unabhängige Wasserstände, Ausdehnungen oder Abflussganglinien</td>
+<td><strong>Weiterleitungsregel</strong></td>
+<td>D8 oder D∞</td>
+<td>wie Beiträge zwischen Zellen verteilt werden</td>
+</tr>
+<tr class="even">
+<td><strong>Klassifikation</strong></td>
+<td>Gerinneschwelle 2 oder 5 ha</td>
+<td>wie Ergebnisse benannt werden – nicht die Berechnung selbst</td>
+</tr>
+<tr class="odd">
+<td><strong>Prozessannahme</strong></td>
+<td><span class="math inline">\(h_{\mathrm{eff}} = 10\)</span> mm, Materialangebot, Kapazitätsbeziehung samt Gefällezusatz</td>
+<td>welche Mengen das Modell erzeugt</td>
+</tr>
+<tr class="even">
+<td><strong>Korrekte Umsetzung</strong></td>
+<td>Zellfläche im Rasterausdruck, Einheiten, gemeinsames Rastergitter, Dateipfade</td>
+<td>ob die Rechnung die gewählten Regeln tatsächlich ausführt</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Explizit</strong> bedeutet lediglich, dass Annahmen oder Gleichungen benannt sind. Auch eine Heuristik kann explizit sein. <strong>Empirisch</strong> beschreibt die Herkunft einer Regel oder eines Parameters; ein physikalisch begründetes Modell kann empirisch kalibrierte Größen enthalten. <strong>Dynamisch</strong> beschreibt Zeitabhängigkeit. Diese Eigenschaften sind keine zusätzlichen Stufen zwischen Heuristik und Prozessmodell.</p>
-<p><strong>Praktische Entscheidungsregel:</strong> Brauche ich nur eine <em>begründete Suchkarte</em>, reichen oft räumliche Regeln. Brauche ich eine <em>geschätzte Abflussgröße</em>, benötige ich passende physikalische Annahmen und zusätzliche Messgrößen. Will ich wissen, <em>wie sich Wasser bei einem konkreten Ereignis im Raum bewegt</em>, brauche ich ein dynamisches Modell und die Daten zu seinem Antrieb. Je mehr Prozesse wir abbilden, desto mehr müssen wir spezifizieren <strong>und überprüfen</strong>.</p>
+<p>Die ersten fünf Zeilen sind Modellentscheidungen: Wer sie ändert, rechnet ein anderes Modell. Die letzte Zeile ist eine Anforderung an die Ausführung. Wer bei einem 10-m-Raster die Zellfläche von 25 auf 100 m² anpasst, ändert keine Annahme, sondern setzt dieselbe Gleichung korrekt um.</p>
 </section>
-<section id="dokumentation-der-werkzeuge" class="level2">
-<h2 class="anchored" data-anchor-id="dokumentation-der-werkzeuge">Dokumentation der Werkzeuge</h2>
-<ul>
-<li><a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html">SAGA GIS: Hydrologie-Werkzeuge</a> – Fließakkumulation, SAGA Wetness Index und TWI.</li>
-<li><a href="https://grass.osgeo.org/grass85/manuals/r.watershed.html">GRASS GIS: <code>r.watershed</code></a> – Akkumulation, Fließrichtungen, Einzugsgebiete und topografischer Index.</li>
-<li><a href="https://documentation.qgis.org/3.44/de/docs/user_manual/processing/3rdParty.html">QGIS: externe Processing-Anwendungen</a> – je nach Installation müssen zusätzliche Anbieter eingerichtet werden.</li>
-<li><a href="https://www.hec.usace.army.mil/confluence/rasdocs">HEC-RAS: Dokumentation und hydraulische Modellgrundlagen</a> – 1D-/2D-Strömungsmodellierung und ihre Datenanforderungen.</li>
-</ul>
+<section id="grenzen" class="level2">
+<h2 class="anchored" data-anchor-id="grenzen">Drei Arten von Modellgrenzen</h2>
+<p>Was ein Modell nicht enthält, fehlt aus unterschiedlichen Gründen. Die Grenzen lassen sich deshalb auch nicht auf dieselbe Weise beheben.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Grenze</th>
+<th>Beispiel</th>
+<th>Was würde helfen?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Rechengebiet und Datenabdeckung</strong></td>
+<td>Zufluss von Flächen außerhalb des DGM</td>
+<td>Daten erweitern, Berechnung wiederholen</td>
+</tr>
+<tr class="even">
+<td><strong>Nicht abgebildeter Prozess</strong></td>
+<td>Abflussbildung aus Niederschlag, Boden und Bedeckung; zeitlicher Abflussverlauf</td>
+<td>zusätzliche Prozessbeziehung und passende Daten</td>
+</tr>
+<tr class="odd">
+<td><strong>Fehlende Rückkopplung</strong></td>
+<td>Ablagerung verändert das Gelände und damit die Fließrichtungen</td>
+<td>eine andere Modellarchitektur, die Zustände über die Zeit fortschreibt</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lesehilfe für die Wirkungsgraphen der GIS-Übung:</strong> Blau sind Eingaben, grau Verfahren, grün berechnete Ergebnisse und orange gesetzte Annahmen. Rot gestrichelt ist, was im Modell nicht berechnet wird, blau gestrichelt die Grenze des Rechengebiets und grau gepunktet ein Vergleich ohne Eingabe in die Rechnung. Ein Wirkungsgraph zeigt Abhängigkeiten, keine Werkzeugfolge. Er eignet sich auch, um ein eigenes Modell vor der ersten Berechnung zu entwerfen.</p>
+</section>
+<section id="pruefen" class="level2">
+<h2 class="anchored" data-anchor-id="pruefen">Was eine Prüfung zeigt – und was nicht</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Prüfung</th>
+<th>Frage</th>
+<th>Beispiel aus der GIS-Übung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Rechenprüfung</strong> (Verifikation)</td>
+<td>Setzt die Rechnung die formulierte Regel korrekt um?</td>
+<td>Einheitenkontrolle 2 ha × 10 mm = 200 m³; Zellzahl in <code>becken.tif</code> gleich <code>ad8</code> am Auslass</td>
+</tr>
+<tr class="even">
+<td><strong>Prüfung der Abgrenzung</strong></td>
+<td>Reichen Rechengebiet und Daten für die Frage?</td>
+<td>Berührt das Einzugsgebiet den DGM-Rand?</td>
+</tr>
+<tr class="odd">
+<td><strong>Sensitivität</strong></td>
+<td>Wie stark hängt das Ergebnis von gewählten Parametern ab?</td>
+<td>Gerinneschwelle 2 und 5 ha; Kapazitätsfaktor 0,2 und 0,05</td>
+</tr>
+<tr class="even">
+<td><strong>Vergleich mit unabhängigen Daten</strong></td>
+<td>Stützen Referenzen oder Messungen das Ergebnis?</td>
+<td>Lage der berechneten Gerinne gegenüber dem amtlichen Gewässernetz</td>
+</tr>
+</tbody>
+</table>
+<p>Eine bestandene Rechenprüfung bestätigt keine Annahme. Eine Sensitivitätsanalyse zeigt die Folgen einer Parameterwahl, nicht den zutreffenden Wert. Und eine räumlich passende Gewässerlinie stützt den berechneten Talweg, aber weder die angenommene Abflussmenge noch die Sedimentablagerung. <strong>Musterähnlichkeit, physikalische Plausibilität und quantitative Validität</strong> sind verschiedene Qualitätskriterien.</p>
+</section>
+<section id="werkzeuge" class="level2">
+<h2 class="anchored" data-anchor-id="werkzeuge">Werkzeuge</h2>
+<p>Im Kurs: <a href="https://hydrology.usu.edu/taudem/taudem5/documentation.html">TauDEM</a> · <a href="https://ccl.northwestern.edu/netlogo/models/">NetLogo Models Library</a> · <a href="https://www.itzi.org/about/">Itzï</a> · <a href="https://sourceforge.net/projects/caesar-lisflood/">CAESAR-Lisflood</a></p>
+<p>Alternativen: <a href="https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html">SAGA Hydrologie</a> · <a href="https://grass.osgeo.org/grass85/manuals/r.watershed.html">GRASS <code>r.watershed</code></a> · <a href="https://jblindsay.github.io/wbt_book/available_tools/index.html">WhiteboxTools</a> · <a href="https://www.hec.usace.army.mil/confluence/rasdocs">HEC-RAS</a> · <a href="https://documentation.qgis.org/3.44/de/docs/user_manual/processing/3rdParty.html">QGIS: externe Processing-Anbieter</a></p>
+<p>Verfahren, Eingaben und Einheiten der GIS-Übung im Detail: <a href="../pages/abfluss_algorithmen_quellen.html">Daten- und Werkzeugkompendium</a>.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -787,4 +1034,4 @@ Q_{\mathrm{max}}\approx C\,i\,A
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/modellbildung_gis_reader.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gisma-courses/geo-mod-2026/edit/main/pages/modellbildung_gis_reader.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gisma-courses/geo-mod-2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

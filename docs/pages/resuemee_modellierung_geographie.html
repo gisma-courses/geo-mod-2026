@@ -656,7 +656,7 @@ S(t+\Delta t)=S(t)+\bigl(I(t)-O(t)\bigr)\,\Delta t.
 <li><strong>Ein begrenzter Stofftransport:</strong> Vorhandenes und neu angebotenes Material wird mit einer gesetzten Transportkapazität verglichen. Die resultierende Ablagerung verändert im Worksheet <strong>nicht</strong> das Höhenraster.</li>
 <li><strong>Ein anderer Modelltyp würde Zustände fortschreiben:</strong> Wasserhöhe, Geschwindigkeit und gegebenenfalls Geländeentwicklung würden zu veränderlichen Größen mit eigenen Anfangsbedingungen, Randbedingungen und Zeitschritten. Erst eine implementierte Kopplung lässt eine berechnete Geländeveränderung auf den folgenden Abfluss zurückwirken.</li>
 </ol>
-<p>Diese Unterschiede erklären auch, weshalb die <strong>gleiche Karte</strong> keine eindeutige Aussage über den zugrunde liegenden Prozess liefert. Eine plausible Bachlinie kann aus einem einfachen Routingverfahren entstehen, ohne dass Fließgeschwindigkeit, Infiltration oder Sedimenttransport modelliert wurden. Vergleichbare Erscheinungsbilder beweisen keine vergleichbaren Mechanismen.</p>
+<p>Diese Unterschiede erklären auch, weshalb die <strong>gleiche Karte</strong> keine eindeutige Aussage über den zugrunde liegenden Prozess liefert. Eine plausible Bachlinie kann aus einem einfachen Routingverfahren entstehen, ohne dass Fließgeschwindigkeit, Infiltration oder Sedimenttransport modelliert wurden. Vergleichbare Erscheinungsbilder beweisen keine vergleichbaren Mechanismen. Welche Art von Entscheidung hinter den einzelnen Schritten steht – Abgrenzung, Datenrepräsentation, Regel, Klassifikation oder Prozessannahme –, fasst der <a href="../pages/modellbildung_gis_reader.html#entscheidungen">Kurzreader</a> zusammen.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -822,7 +822,7 @@ S(t+\Delta t)=S(t)+\bigl(I(t)-O(t)\bigr)\,\Delta t.
 <section id="reproduzierbar-ist-nicht-automatisch-richtig" class="level2">
 <h2 class="anchored" data-anchor-id="reproduzierbar-ist-nicht-automatisch-richtig">7 · Reproduzierbar ist nicht automatisch richtig</h2>
 <p>Ein reproduzierbarer Fehler bleibt ein Fehler. Wir könnten den gleichen D8-Algorithmus hundertmal auf demselben, an einem Durchlass unzutreffenden DGM ausführen: Das Ergebnis wäre sehr gut reproduzierbar und könnte gerade dort falsch sein, wo uns der Abflussweg interessiert.</p>
-<p>Drei Prüfungen sind deshalb auseinanderzuhalten:</p>
+<p>Drei Prüfungen sind deshalb auseinanderzuhalten (zusammen mit der Sensitivität im <a href="../pages/modellbildung_gis_reader.html#pruefen">Kurzreader</a> gegenübergestellt):</p>
 <ul>
 <li><strong>Rechenprüfung:</strong> Entspricht die Ausgabe den dokumentierten Eingaben und Rechenregeln? Beispielsweise: Bei 5-m-Zellen entsprechen 800 Zellen genau 2 ha. Stimmt die Volumenbilanz bei 10 mm mit 200 m³ überein?</li>
 <li><strong>Plausibilitäts- und Datenprüfung:</strong> Stimmen berechnete Gerinne und Einzugsgebietsgrenzen mit unabhängigen Hinweisen aus ATKIS, Orthofoto und Relief überein? Wo sind Abweichungen durch Durchlässe, Senken oder Rastergrenzen erklärbar?</li>

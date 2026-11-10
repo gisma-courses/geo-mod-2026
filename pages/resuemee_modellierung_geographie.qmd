@@ -106,7 +106,7 @@ Auch am selben DGM haben wir nicht „denselben Abfluss“ auf vier Arten berech
 4. **Ein begrenzter Stofftransport:** Vorhandenes und neu angebotenes Material wird mit einer gesetzten Transportkapazität verglichen. Die resultierende Ablagerung verändert im Worksheet **nicht** das Höhenraster.
 5. **Ein anderer Modelltyp würde Zustände fortschreiben:** Wasserhöhe, Geschwindigkeit und gegebenenfalls Geländeentwicklung würden zu veränderlichen Größen mit eigenen Anfangsbedingungen, Randbedingungen und Zeitschritten. Erst eine implementierte Kopplung lässt eine berechnete Geländeveränderung auf den folgenden Abfluss zurückwirken.
 
-Diese Unterschiede erklären auch, weshalb die **gleiche Karte** keine eindeutige Aussage über den zugrunde liegenden Prozess liefert. Eine plausible Bachlinie kann aus einem einfachen Routingverfahren entstehen, ohne dass Fließgeschwindigkeit, Infiltration oder Sedimenttransport modelliert wurden. Vergleichbare Erscheinungsbilder beweisen keine vergleichbaren Mechanismen.
+Diese Unterschiede erklären auch, weshalb die **gleiche Karte** keine eindeutige Aussage über den zugrunde liegenden Prozess liefert. Eine plausible Bachlinie kann aus einem einfachen Routingverfahren entstehen, ohne dass Fließgeschwindigkeit, Infiltration oder Sedimenttransport modelliert wurden. Vergleichbare Erscheinungsbilder beweisen keine vergleichbaren Mechanismen. Welche Art von Entscheidung hinter den einzelnen Schritten steht – Abgrenzung, Datenrepräsentation, Regel, Klassifikation oder Prozessannahme –, fasst der [Kurzreader](modellbildung_gis_reader.qmd#entscheidungen) zusammen.
 
 ::: {.callout-tip collapse="true"}
 ## Fachlicher Exkurs: Woran erkennt man eine zusätzliche Prozessannahme?
@@ -212,7 +212,7 @@ Die [FAIR-Prinzipien](https://doi.org/10.1038/sdata.2016.18) (auffindbar, zugän
 
 Ein reproduzierbarer Fehler bleibt ein Fehler. Wir könnten den gleichen D8-Algorithmus hundertmal auf demselben, an einem Durchlass unzutreffenden DGM ausführen: Das Ergebnis wäre sehr gut reproduzierbar und könnte gerade dort falsch sein, wo uns der Abflussweg interessiert.
 
-Drei Prüfungen sind deshalb auseinanderzuhalten:
+Drei Prüfungen sind deshalb auseinanderzuhalten (zusammen mit der Sensitivität im [Kurzreader](modellbildung_gis_reader.qmd#pruefen) gegenübergestellt):
 
 - **Rechenprüfung:** Entspricht die Ausgabe den dokumentierten Eingaben und Rechenregeln? Beispielsweise: Bei 5-m-Zellen entsprechen 800 Zellen genau 2 ha. Stimmt die Volumenbilanz bei 10 mm mit 200 m³ überein?
 - **Plausibilitäts- und Datenprüfung:** Stimmen berechnete Gerinne und Einzugsgebietsgrenzen mit unabhängigen Hinweisen aus ATKIS, Orthofoto und Relief überein? Wo sind Abweichungen durch Durchlässe, Senken oder Rastergrenzen erklärbar?

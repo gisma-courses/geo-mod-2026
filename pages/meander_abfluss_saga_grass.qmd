@@ -601,7 +601,7 @@ Diese Entscheidungen stecken bereits in den ausgeführten Berechnungen:
 
 **Wir haben die Modellregeln in ausführbare Berechnungen umgesetzt.** Dazu gehören nicht nur die Gleichungen, sondern auch die Rasteraufbereitung, die Senkenbehandlung sowie der Umgang mit NoData-Werten und Modellgrenzen. Diese Entscheidungen bestimmen, wie die formulierten Zusammenhänge auf den konkreten Geodaten berechnet werden.
 
-In den Wirkungsgraphen der Teile C, D und E stehen diese Setzungen als orange Kästen. Gestrichelt ist, was sie ersetzen, was im Modell fehlt oder wo das Rechengebiet endet – drei verschiedene Arten von Grenzen.
+In den Wirkungsgraphen der Teile C, D und E stehen diese Setzungen als orange Kästen. Gestrichelt ist, was sie ersetzen, was im Modell fehlt oder wo das Rechengebiet endet – drei verschiedene [Arten von Grenzen](modellbildung_gis_reader.qmd#grenzen). Welche Art von Entscheidung jeweils vorliegt, fasst der [Kurzreader](modellbildung_gis_reader.qmd#entscheidungen) zusammen.
 
 Damit haben wir nicht ein einziges, immer vollständigeres Modell aufgebaut. Wir haben verschiedene **Teilmodelle und Auswertungen miteinander verknüpft**: eine Repräsentation des Geländes, Regeln für die räumliche Weiterleitung, eine angenommene Abflussbildung und schließlich eine begrenzte Materialweiterleitung.
 
@@ -618,7 +618,7 @@ Im Verlauf der Übung haben wir Ergebnisse auf unterschiedliche Weise kontrollie
 | Vergleich der Gerinneschwellen von 2 und 5 ha sowie der Transportkapazitäten von 0,2 und 0,05 | **Sensitivität:** Wie stark hängen die Ergebnisse von gewählten Modellparametern ab? |
 | Vergleich der berechneten Gerinne mit den amtlichen Gewässerlinien | **Vergleich mit unabhängigen Referenzdaten:** Wie gut stimmen die räumlichen Strukturen überein, und wo bestehen erklärungsbedürftige Abweichungen? |
 
-Diese Unterscheidung ist entscheidend: Eine korrekt ausgeführte Berechnung ist noch keine Bestätigung ihrer Annahmen. Ein Sensitivitätsvergleich zeigt, welche Folgen eine Parameteränderung hat, aber nicht, welcher Parameterwert in der Natur zutrifft.
+Diese Unterscheidung ist entscheidend: Eine korrekt ausgeführte Berechnung ist noch keine Bestätigung ihrer Annahmen. Ein Sensitivitätsvergleich zeigt, welche Folgen eine Parameteränderung hat, aber nicht, welcher Parameterwert in der Natur zutrifft. Die Prüfarten im Überblick: [Kurzreader](modellbildung_gis_reader.qmd#pruefen).
 
 Ebenso kann die Übereinstimmung mit einer amtlichen Gewässerlinie die räumliche Plausibilität des berechneten Talwegs stützen. Sie bestätigt weder die angenommene Abflussmenge noch die berechnete Sedimentablagerung.
 

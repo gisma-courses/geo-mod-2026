@@ -17,7 +17,7 @@ execute:
 
 ## Wozu dieser Umweg?
 
-Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beobachtet, ein amtliches Höhenmodell beschafft, daraus Einzugsgebiete berechnet und schließlich Wasser- und Sedimentmengen unter zusätzlichen Annahmen bilanziert. Itzï ist als anschließende Ereignissimulation geplant und noch nicht vorbereitet. Dieser Schritt gehört nicht zur bisherigen GIS-Übung. Der Weg war weitgehend vorgegeben: Modell öffnen, Daten verwenden, Werkzeug ausführen, Ergebnis betrachten.
+Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beobachtet, ein amtliches Höhenmodell beschafft, daraus Einzugsgebiete berechnet und schließlich Wasser- und Sedimentmengen unter zusätzlichen Annahmen bilanziert. Der Weg war weitgehend vorgegeben: Modell öffnen, Daten verwenden, Werkzeug ausführen, Ergebnis betrachten.
 
 **Was hätten wir selbst entscheiden müssen, wenn uns nur die Frage gestellt worden wäre: „Welche Flächen tragen zum Abfluss an diesem Durchlass bei – und wo könnte Material zurückbleiben?“** Die Antwort liegt weder in einem bestimmten Programm noch in einer möglichst langen Liste von Algorithmen. Sie liegt in den Unterscheidungen, die wir während dieser Kette tatsächlich getroffen haben.
 
@@ -30,8 +30,8 @@ Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beo
 | **River Meanders** | Ein idealisierter Gerinnekorridor mit Bewegungs-, Erosions- und Ablagerungsregeln. | Mäanderformen können aus wiederholten Regeln entstehen. Die entstehende Form bestätigt keine hydraulische oder sedimentologische Prozessgleichung. |
 | **DGM → D8/D∞ → Einzugsgebiet** | Gemessene bzw. abgeleitete Geländehöhen in einem georeferenzierten Raster, dazu explizite Nachbarschafts- und Routingregeln. | An einem gewählten Auslass werden potenzielle Entwässerungsverbindungen und beitragende Flächen berechenbar – zunächst ohne Ereigniszeit. |
 | **Abflussannahme und Sedimentbilanz** | Ein angenommenes Abflussvolumen je Zelle beziehungsweise Materialangebot und Transportkapazität auf den vorhandenen Verbindungen. | Volumen oder Materialweitergabe lassen sich bilanzieren. Weder eine Abflussganglinie noch eine Geländeentwicklung folgen automatisch daraus. |
-| **Itzï – geplanter Anschluss** | Ereignisbezogene, zeitabhängige Abflusssimulation mit Wasserständen und Flüssen; noch nicht vorbereitet. | Vorgesehene Erweiterung um Ereignisverläufe bei fester Geländeoberfläche. Erfahrungen und Ergebnisse dieses Schritts sind später zu ergänzen. |
-| **Optionale gekoppelte Modellierung, etwa CAESAR-Lisflood** | Zeitabhängige Zustände und Beziehungen, die diese Zustände fortschreiben; gegebenenfalls ändert sich auch das für den nächsten Schritt verwendete Gelände. | Ereignisverläufe und Rückwirkungen werden berechenbar, sofern die zusätzlichen Prozessgleichungen, Parameter und Anfangs-/Randbedingungen festgelegt werden. |
+| **Ausblick: Itzï** | Ereignisbezogene, zeitabhängige Abflusssimulation mit Wasserständen und Flüssen; im Kurs nicht gerechnet. | Würde Ereignisverläufe bei fester Geländeoberfläche ergänzen. |
+| **Ausblick: gekoppelte Modellierung, etwa CAESAR-Lisflood** | Zeitabhängige Zustände und Beziehungen, die diese Zustände fortschreiben; gegebenenfalls ändert sich auch das für den nächsten Schritt verwendete Gelände. | Ereignisverläufe und Rückwirkungen werden berechenbar, sofern die zusätzlichen Prozessgleichungen, Parameter und Anfangs-/Randbedingungen festgelegt werden. |
 
 Die ersten drei Modelle enthielten **bereits Dynamik und teilweise Rückkopplungen**. Die GIS-Analyse war also kein „Fortschritt von einem einfachen zu einem dynamischen Modell“. Sie führte vor allem einen **konkret lokalisierbaren Untersuchungsraum, definierte Rastergrößen und eine überprüfbare räumliche Fragestellung** ein. Wir haben mehrmals **die Art der Frage** gewechselt, nicht nur mehr Funktionen zugeschaltet.
 
@@ -236,7 +236,7 @@ Das ist **keine starre Reihenfolge**: Stellt sich etwa erst bei der Datenbeschaf
 
 Dasselbe Vorgehen lässt sich auf andere Gegenstände übertragen: Aus Sentinel-Daten kann ein Vegetationsindex berechnet werden; dessen zeitliche Abfolge ist aber noch kein Vegetationsprozessmodell. Eine gewichtete Standort-Eignungskarte ist keine Optimierung unter Kapazitätsbedingungen. In beiden Fällen beginnt die Werkzeugwahl erst sinnvoll, nachdem die **gewünschte Aussage** und die dazu notwendigen **Beziehungen** geklärt wurden.
 
-**Aus der angeleiteten Folge soll die Fähigkeit entstehen, Modellierungsentscheidungen zu verstehen, zunehmend selbst zu treffen und ihre Folgen zu prüfen.** Dazu gehört, digitale Werkzeuge und KI zu nutzen und die tatsächlich ausgeführte Berechnung erklären und kontrollieren zu können. Diese Herangehensweise nehmen wir zu späteren geographischen Fragen mit. Der zweite Kursblock ist noch nicht ausgearbeitet.
+**Aus der angeleiteten Folge soll die Fähigkeit entstehen, Modellierungsentscheidungen zu verstehen, zunehmend selbst zu treffen und ihre Folgen zu prüfen.** Dazu gehört, digitale Werkzeuge und KI zu nutzen und die tatsächlich ausgeführte Berechnung erklären und kontrollieren zu können. Diese Herangehensweise nehmen wir zu späteren geographischen Fragen mit. Genau das ist die Aufgabe der [zweiten Kurshälfte](eigene_modellierung.qmd): eine eigene Frage, ein eigenes Modell – begleitet statt geführt.
 
 ## Quellen zum Weiterdenken – nach Funktion geordnet
 

@@ -17,15 +17,23 @@ execute:
 
 Dieser Reader sammelt die Unterscheidungen, mit denen wir im Kurs Modelle einordnen, Entscheidungen benennen und Ergebnisse prüfen. Die Übungsseiten verweisen hierher, statt die Begriffe jedes Mal neu zu erklären. Beispiele und Formeln zu den drei Modellzugängen stehen in den [Auftaktfolien](modellbildung_gis_folien.qmd).
 
-## Drei Modellzugänge {#zugaenge}
+## Drei Vorgehensweisen – und drei Fragen an jedes Modell {#zugaenge}
 
-| Zugang | Was wird gerechnet? | Aussage – und Grenze | Im Kurs |
-|---|---|---|---|
-| **Heuristik** | Klassen, Regeln, gewichtete Indikatoren | Verdachtsräume; **keine** Wassertiefe | *Grand Canyon*, *River Meanders* |
-| **Physikalisch begründete Näherung** | vereinfachte, prozessbezogene Größenbeziehungen | Index oder überschlägige Größe; nur unter ihren Annahmen gültig | *Erosion*; GIS-Übung: D8/D∞-Routing, TWI, Volumen aus $h_{\mathrm{eff}}$, Transportbegrenzung |
-| **Prozessmodell** | zeitabhängige Erhaltung und Transport | simulierte Zustände, z. B. Wassertiefe über die Zeit | Itzï (geplant), CAESAR-Lisflood (optional) |
+Für die Frage „Wo sammelt sich bei Starkregen Wasser?“ zeigen die [Auftaktfolien](modellbildung_gis_folien.qmd) drei beispielhafte Vorgehensweisen:
 
-Die drei Zugänge sind **keine Qualitätsstufen**, sondern Antworten auf unterschiedlich genaue Fragen. **Explizit**, **empirisch** und **dynamisch** beschreiben weitere, davon unabhängige Eigenschaften: *Erosion* ist dynamisch, ohne ein hydraulisches Prozessmodell zu sein. Die Software bestimmt den Zugang nicht. Entscheidend ist, welche Regeln oder Gleichungen das konkrete Verfahren löst.
+| Vorgehensweise | Was wird gerechnet? | Aussage – und Grenze |
+|---|---|---|
+| **Heuristik** | Klassen, Regeln, gewichtete Indikatoren | Verdachtsräume; **keine** Wassertiefe |
+| **Physikalisch begründete Näherung** | vereinfachte, prozessbezogene Größenbeziehungen | Index oder überschlägige Größe; nur unter ihren Annahmen gültig |
+| **Hydraulisches Prozessmodell** | zeitabhängige Erhaltung und Transport von Wasser | simulierte Zustände, z. B. Wassertiefe über die Zeit |
+
+Das sind **keine trennscharfen Modellklassen und keine Qualitätsstufen**, sondern Antworten auf unterschiedlich genaue Fragen. Ein konkretes Modell lässt sich besser mit drei Fragen beschreiben:
+
+- **Wie sind die Regeln begründet?** Heuristisch gesetzt, empirisch abgeleitet oder physikalisch hergeleitet.
+- **Welche zeitliche Struktur hat das Modell?** Statisch oder dynamisch.
+- **Welche Vorgänge werden berechnet?** Klassifikation, räumliche Weiterleitung, Bilanz, Zustandsänderung, Rückkopplung.
+
+*River Meanders* zum Beispiel ist dynamisch und berechnet Zustandsänderungen mit Rückkopplung, seine Regeln sind aber nicht hydraulisch hergeleitet. Die D8-Akkumulation der GIS-Übung ist statisch, physikalisch motiviert und berechnet eine räumliche Weiterleitung. Die Software bestimmt keine dieser Eigenschaften. Entscheidend ist, welche Regeln oder Gleichungen das konkrete Verfahren löst.
 
 ## Welche Art von Entscheidung? {#entscheidungen}
 
@@ -36,7 +44,7 @@ Ein Modell ist nicht fertig, sobald eine Beziehung formuliert ist. Es muss auf k
 | **Fragestellung und Abgrenzung** | Rechengebiet, Lage des Auslasses | welche Flächen überhaupt erfasst werden |
 | **Datenrepräsentation** | Rasterweite, Resampling, Senkenbehandlung, Umgang mit NoData | welche Geländeformen das Modell „sieht“ |
 | **Weiterleitungsregel** | D8 oder D∞ | wie Beiträge zwischen Zellen verteilt werden |
-| **Klassifikation** | Gerinneschwelle 2 oder 5 ha | wie Ergebnisse benannt werden – nicht die Berechnung selbst |
+| **Klassifikation** | Gerinneschwelle 2 oder 5 ha | welche Rasterzellen als Gerinne ausgewiesen werden; die zuvor berechneten Fließrichtungen und Flächenbeiträge bleiben unverändert |
 | **Prozessannahme** | $h_{\mathrm{eff}} = 10$ mm, Materialangebot, Kapazitätsbeziehung samt Gefällezusatz | welche Mengen das Modell erzeugt |
 | **Korrekte Umsetzung** | Zellfläche im Rasterausdruck, Einheiten, gemeinsames Rastergitter, Dateipfade | ob die Rechnung die gewählten Regeln tatsächlich ausführt |
 
@@ -65,9 +73,21 @@ Was ein Modell nicht enthält, fehlt aus unterschiedlichen Gründen. Die Grenzen
 
 Eine bestandene Rechenprüfung bestätigt keine Annahme. Eine Sensitivitätsanalyse zeigt die Folgen einer Parameterwahl, nicht den zutreffenden Wert. Und eine räumlich passende Gewässerlinie stützt den berechneten Talweg, aber weder die angenommene Abflussmenge noch die Sedimentablagerung. **Musterähnlichkeit, physikalische Plausibilität und quantitative Validität** sind verschiedene Qualitätskriterien.
 
+## Für Ihr eigenes Modell {#eigenes-modell}
+
+Die Beispiele oben stammen aus der Hydrologie. Die Unterscheidungen gelten für jede Modellfrage. Vor und während der [eigenen Modellierung](eigene_modellierung.qmd) helfen fünf Fragen:
+
+1. **Aussage:** Welche Größe oder Beziehung soll das Modell für welchen Ort, Zeitraum und Maßstab liefern – und welche [Begründung der Regeln, zeitliche Struktur und berechneten Vorgänge](#zugaenge) braucht sie?
+2. **Wirkungsgraph:** Welche Eingaben, Annahmen und berechneten Größen hängen wie zusammen? Was bleibt bewusst draußen?
+3. **Entscheidungen:** Welche Ihrer Festlegungen sind Abgrenzung, Datenrepräsentation, Regel, Klassifikation oder Prozessannahme – und was ist nur korrekte Umsetzung? ([Tabelle](#entscheidungen))
+4. **Grenzen:** Welche Lücke liegt an den Daten, welche an einem nicht abgebildeten Prozess, welche an einer fehlenden Rückkopplung? ([Tabelle](#grenzen))
+5. **Prüfung:** Welche Rechenprüfung, welche Sensitivität und welcher unabhängige Vergleich sind möglich – und was können sie jeweils nicht zeigen? ([Tabelle](#pruefen))
+
 ## Werkzeuge
 
-Im Kurs: [TauDEM](https://hydrology.usu.edu/taudem/taudem5/documentation.html) · [NetLogo Models Library](https://ccl.northwestern.edu/netlogo/models/) · [Itzï](https://www.itzi.org/about/) · [CAESAR-Lisflood](https://sourceforge.net/projects/caesar-lisflood/)
+Im Kurs: [TauDEM](https://hydrology.usu.edu/taudem/taudem5/documentation.html) · [NetLogo Models Library](https://ccl.northwestern.edu/netlogo/models/)
+
+Ausblick: [Itzï](https://www.itzi.org/about/) · [CAESAR-Lisflood](https://sourceforge.net/projects/caesar-lisflood/)
 
 Alternativen: [SAGA Hydrologie](https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html) · [GRASS `r.watershed`](https://grass.osgeo.org/grass85/manuals/r.watershed.html) · [WhiteboxTools](https://jblindsay.github.io/wbt_book/available_tools/index.html) · [HEC-RAS](https://www.hec.usace.army.mil/confluence/rasdocs) · [QGIS: externe Processing-Anbieter](https://documentation.qgis.org/3.44/de/docs/user_manual/processing/3rdParty.html)
 

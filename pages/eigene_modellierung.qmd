@@ -1,0 +1,78 @@
+---
+title: "Eigenes Modell: begleitet statt geführt"
+subtitle: "Von einer selbst gewählten Frage zu einer begründeten Modellaussage"
+order: 80
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+[← Kursübersicht](../index.qmd) · [Resümee](resuemee_modellierung_geographie.qmd) · [Kurzreader](modellbildung_gis_reader.qmd) · [GIS-Übung als Beispiel](meander_abfluss_saga_grass.qmd)
+
+## Worum es in der zweiten Kurshälfte geht
+
+In der ersten Hälfte war der Weg vorgegeben: Modelle, Daten, Werkzeuge und Reihenfolge standen fest. Die Hydrologie war dabei **ein durchgerechnetes Beispiel**, kein Selbstzweck. Jetzt kehren wir die Reihenfolge um. Am Anfang steht Ihre eigene geographische Frage. Welche Daten, Beziehungen und Werkzeuge ein Modell dafür braucht, entscheiden Sie selbst.
+
+Wir geben keinen Rechenweg vor. Wir begleiten Ihre Entscheidungen: an festen Meilensteinen, mit Rückfragen und Rückmeldungen. Ein einfaches Modell, dessen Annahmen Sie begründen und dessen Grenzen Sie kennen, ist dabei mehr wert als ein aufwendiges, das Sie nicht erklären können.
+
+## Werkzeuge, die Sie schon kennen
+
+| Werkzeug | Wo im Kurs | Wofür Sie es jetzt nutzen |
+|---|---|---|
+| Vorgehen in sieben Schritten | [Resümee, Abschnitt 8](resuemee_modellierung_geographie.qmd) | Frage, Abstraktion, Repräsentation, Beziehungen, Daten, Berechnung und Prüfbarkeit klären – mit Rücksprüngen |
+| Begriffe zu Entscheidungen, Grenzen und Prüfungen | [Kurzreader](modellbildung_gis_reader.qmd#eigenes-modell) | eigene Festlegungen einordnen und benennen |
+| Wirkungsgraph | Teile C–E der [GIS-Übung](meander_abfluss_saga_grass.qmd) | das Modell vor der ersten Berechnung entwerfen |
+| Modellaussage und README | F.3 und F.5 der GIS-Übung | Ergebnis begründen und nachvollziehbar dokumentieren |
+
+Wenn Sie an einer Stelle nicht weiterkommen, lohnt der Blick auf das Beispiel: Wie wurde dort das Rechengebiet begründet, eine Annahme gesetzt oder eine Prüfung gewählt?
+
+## Eine geeignete Frage finden
+
+Ihre Frage muss nicht hydrologisch sein. Sie sollte aber
+
+- **räumlich** sein und sich auf einen konkreten Untersuchungsraum beziehen,
+- **eine prüfbare Aussage** anstreben – beispielsweise eine berechnete Größe, ein räumliches Muster oder einen Vergleich, dessen Zustandekommen und Aussagekraft sich untersuchen lassen,
+- mit **verfügbaren Daten** bearbeitbar sein,
+- in der **verbleibenden Kurszeit** zu einer ersten lauffähigen Version führen.
+
+Mögliche Richtungen, als Anregung und nicht als Liste zur Auswahl:
+
+- **Stadtklima:** Wo ist mit stärkerer Überwärmung zu rechnen? Ein heuristischer Index aus Versiegelung und Grünanteil ist ein anderes Modell als eine Energiebilanz.
+- **Vegetation:** Was lässt sich aus einer Zeitreihe von Satellitendaten über Vegetationsentwicklung sagen – und was davon ist Beschreibung, was Prozess?
+- **Standortwahl:** Welche Flächen eignen sich für eine Nutzung? Eine gewichtete Eignungskarte ist keine Optimierung unter Kapazitätsbedingungen.
+- **Ausbreitung:** Wie breitet sich eine Art, ein Stoff oder eine Nutzung im Raum aus? Agenten, Diffusion oder Nachbarschaftsregeln führen zu unterschiedlichen Aussagen.
+- **Erreichbarkeit:** Wer erreicht welche Einrichtung in welcher Zeit? Netzwerk und Rasterdistanz beruhen auf verschiedenen Repräsentationen.
+
+## Meilensteine
+
+Die Meilensteine dienen der fachlichen Begleitung. Zu jedem bringen Sie einen kurzen Arbeitsstand mit, an dem wir offene Entscheidungen, Schwierigkeiten und nächste Schritte besprechen. Rücksprünge sind ausdrücklich vorgesehen. Termine und Regelungen zu Leistungsnachweisen werden im Kurs festgelegt.
+
+| Meilenstein | Was vorliegt | Leitfrage der Besprechung |
+|---|---|---|
+| **1 · Frage und Wirkungsgraph** | Fragestellung in zwei, drei Sätzen; erster Wirkungsgraph | Welche Aussage soll das Modell tragen – und was bleibt bewusst draußen? |
+| **2 · Entscheidungen und Daten** | Übersicht Ihrer Festlegungen, etwa als Tabelle nach den Arten im [Kurzreader](modellbildung_gis_reader.qmd#entscheidungen); Datenquellen | Welche Entscheidungen sind begründet, welche nur gesetzt? Reichen die Daten? |
+| **3 · Minimale lauffähige Version** | ein Modell, das rechnet – so einfach wie möglich, Werkzeug frei gewählt | Setzt die Berechnung die Regeln korrekt um? Was ist die nächste sinnvolle Erweiterung? |
+| **4 · Prüfungen** | mindestens eine Rechenprüfung, eine Sensitivität und, wo möglich, ein Vergleich mit unabhängigen Daten | Was zeigen die Prüfungen – und was zeigen sie [nicht](modellbildung_gis_reader.qmd#pruefen)? |
+| **5 · Modellaussage** | begründete Aussage nach dem Muster von F.3, Wirkungsgraph in der Endfassung, README | Was darf man aus dem Modell über den Raum folgern – und was nicht? |
+
+## Werkzeuge und KI
+
+Die Wahl der Software ist Ihre Entscheidung. Vertrautheit ist ein guter Grund, ein Programm zu verwenden, solange es die benötigte Berechnung ausführen kann. Nicht begründbar wäre, die Frage an die vorhandenen Menüeinträge anzupassen.
+
+KI darf bei Code, Fehlersuche und Recherche helfen. Maßgeblich bleibt, dass Sie die tatsächlich ausgeführte Berechnung erklären und ihr Ergebnis prüfen können. Vorgeschlagene Änderungen übernehmen Sie erst, wenn Sie verstehen, was sie am Modell verändern.
+
+## Was am Ende vorliegt
+
+- ein **lauffähiges Modell** mit seinen Skripten, Projektdateien beziehungsweise ausführbaren Modellregeln sowie den notwendigen Eingangsdaten,
+- mindestens ein **dokumentierter Rechenlauf** mit den Ergebnissen, auf die sich die Untersuchung stützt,
+- ein **Wirkungsgraph**, der die wesentlichen Zusammenhänge und Modellentscheidungen darstellt,
+- eine begründete **Modellaussage**, die Ergebnisse, Überprüfungen und Aussagegrenzen miteinander verbindet,
+- eine kurze **README** mit Datenquellen, Parametern und Angaben zur erneuten Ausführung.
+
+Die wesentlichen Modellentscheidungen müssen nachvollziehbar sein; dafür kann eine Tabelle hilfreich sein. Eine zusätzliche Dokumentation derselben Entscheidungen in mehreren Formaten ist nicht erforderlich.

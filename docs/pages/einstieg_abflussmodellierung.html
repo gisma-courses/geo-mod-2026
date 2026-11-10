@@ -366,12 +366,29 @@ background: ../images/placeholder.png;
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Ergänzende Materialien</span></a>
+ <span class="menu-text">Begleitete Modellierung</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/eigene_modellierung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Eigenes Modell</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Ergänzende Materialien</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/modellbildung_gis_reader.html" class="sidebar-item-text sidebar-link">
@@ -409,7 +426,7 @@ background: ../images/placeholder.png;
 <p>Die NetLogo-Modelle greifen bekannte Eigenschaften von Flüssen auf: Wasser bewegt sich entlang eines Gefälles, Abtrag verändert das Relief, Erosion und Ablagerung verändern die Gerinneform. Wir erkennen diese Vorgänge aus alltäglichen Beobachtungen wieder: Wasser fließt bergab, spült Boden fort und lagert mitgeführtes Material an anderer Stelle ab. Die NetLogo-Modelle greifen diese Erfahrungen auf und machen ausgewählte Zusammenhänge durch vereinfachte Regeln untersuchbar. Ihr didaktischer Zweck besteht darin, einzelne Mechanismen und Rückkopplungen nachvollziehbar zu machen. Ob und wieviel Physik dabei verwendet wird, hängt vom jeweiligen Modell ab.</p>
 <p><strong>Im weiteren Kurs prüfen wir diese Abstraktionen an anderen Berechnungsfragen:</strong> Welcher Ausschnitt eines Vorgangs wird beschrieben? Durch welche Größen und Beziehungen? Für welches Gelände, welchen Zeitraum und welche Bedingungen soll die Beschreibung gelten? In NetLogo ändern sich bereits Wasserzustände und teilweise das Gelände. Die GIS-Rechnung hält das Gelände fest und bestimmt zunächst räumliche Entwässerungsverbindungen. Grand Canyon verwendet ebenfalls ein reales, für das Modell aufbereitetes Relief.</p>
 <p>Die GIS-Übung beginnt mit der <strong>räumlichen Abstraktion eines konkreten Einzugsgebiets</strong>. Das Gelände wird als Höhenraster dargestellt; D8 und D∞ beschreiben seine Entwässerungsverbindungen. Daraus berechnen wir Einzugsflächen und Abflusskonzentrationen und prüfen sie am vorhandenen Gewässernetz. Rasterweite, Senkenbehandlung und Routingregel legen fest, welche Geländeeigenschaften in dieser Beschreibung erhalten bleiben und welche verändert oder ausgelassen werden.</p>
-<p>Nach der GIS-Übung ist <strong><a href="https://www.itzi.org/about/">Itzï</a></strong> als eigene Ereignissimulation geplant. Dieser Schritt ist <strong>noch nicht vorbereitet</strong> und gehört nicht zum GIS-Arbeitsblatt. Die geplante Simulation erweitert die Beschreibung um Niederschlag beziehungsweise Zufluss, Wasserstände, hydraulische Reibung und zeitabhängige Wasserflüsse. Als <strong>optionale Vertiefung</strong> bezieht <strong><a href="https://sourceforge.net/projects/caesar-lisflood/">CAESAR-Lisflood</a></strong> zusätzlich Sedimenttransport, Abtrag und Ablagerung ein; das veränderte Gelände wirkt auf die weitere Strömung zurück. Damit werden für die jeweilige Berechnungsfrage andere Zustände und Beziehungen festgelegt. Jeder Schritt verlangt begründete Vereinfachungen, zusätzliche Parameter und eine Prüfung daran, ob die berechneten Größen den untersuchten Vorgang angemessen beschreiben.</p>
+<p>Mit der GIS-Übung endet die hydrologische Beispielkette des Kurses. Wie es weiterginge, zeigen zwei Modelle, die wir <strong>nicht rechnen</strong>, sondern als Ausblick betrachten: <strong><a href="https://www.itzi.org/about/">Itzï</a></strong> würde die Beschreibung erweitern um Niederschlag beziehungsweise Zufluss, Wasserstände, hydraulische Reibung und zeitabhängige Wasserflüsse. <strong><a href="https://sourceforge.net/projects/caesar-lisflood/">CAESAR-Lisflood</a></strong> bezieht zusätzlich Sedimenttransport, Abtrag und Ablagerung ein; das veränderte Gelände wirkt auf die weitere Strömung zurück. Damit würden für die jeweilige Berechnungsfrage andere Zustände und Beziehungen festgelegt. Jeder solche Schritt verlangt begründete Vereinfachungen, zusätzliche Parameter und eine Prüfung daran, ob die berechneten Größen den untersuchten Vorgang angemessen beschreiben.</p>
 </section>
 <section id="untersuchungsraum-und-vergleichsansatz" class="level2">
 <h2 class="anchored" data-anchor-id="untersuchungsraum-und-vergleichsansatz">Untersuchungsraum und Vergleichsansatz</h2>
@@ -420,7 +437,7 @@ background: ../images/placeholder.png;
 </section>
 <section id="modellvergleich-berechnung-verwendung-und-aussagegrenze" class="level2">
 <h2 class="anchored" data-anchor-id="modellvergleich-berechnung-verwendung-und-aussagegrenze">Modellvergleich: Berechnung, Verwendung und Aussagegrenze</h2>
-<p>Die Tabelle zeigt, wie Gelände, Wasser und Material in den <strong>bereits untersuchten NetLogo-Modellen</strong>, der <strong>aktuellen GIS-Rechnung</strong> und den <strong>anschließenden Prozessmodellen</strong> jeweils beschrieben werden. Verglichen werden die berechneten Größen und die dafür verwendeten Regeln beziehungsweise Gleichungen. Itzï ist nach der GIS-Übung geplant, aber noch nicht vorbereitet. CAESAR-Lisflood bleibt ein optionaler Ausblick auf gekoppelte Gelände- und Gerinneentwicklung.</p>
+<p>Die Tabelle zeigt, wie Gelände, Wasser und Material in den <strong>bereits untersuchten NetLogo-Modellen</strong>, der <strong>aktuellen GIS-Rechnung</strong> und zwei <strong>weiterführenden Prozessmodellen</strong> jeweils beschrieben werden. Verglichen werden die berechneten Größen und die dafür verwendeten Regeln beziehungsweise Gleichungen. Itzï und CAESAR-Lisflood werden im Kurs nicht gerechnet. Itzï berechnet zeitabhängige hydraulische Vorgänge auf festem Gelände; CAESAR-Lisflood koppelt sie mit Sedimenttransport und Geländeänderung und kann unter geeigneten Voraussetzungen seitliche Gerinneverlagerung abbilden. <em>River Meanders</em> bildet Gerinneentwicklung bereits ab – mit anderen Regeln und einem anderen Abstraktionsgrad. Interessant ist deshalb nicht, ob Mäander entstehen, sondern mit welchen Mechanismen die Modelle sie erzeugen und welche Aussagen über reale Gewässer sich damit begründen lassen.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -462,20 +479,20 @@ background: ../images/placeholder.png;
 <td>Reale Uferverlagerungsraten. Agentenbewegung und Zellumwandlung ersetzen keine hydraulische Strömungsberechnung und keinen bilanzierten Sedimenttransport.</td>
 </tr>
 <tr class="odd">
-<td><strong>Itzï – geplanter Anschluss</strong></td>
+<td><strong>Itzï – Ausblick</strong></td>
 <td>Wasserbilanz und eine <strong>lokal-inertiale Näherung der Flachwassergleichungen</strong> bestimmen Wasserstände und Flüsse. Niederschlag, Infiltration und hydraulische Rauigkeit gehen in die Berechnung ein; die konvektive Beschleunigung wird vernachlässigt.</td>
 <td><strong>Zeitabhängige Wassertiefen, Wasserflüsse und Überflutungsflächen</strong> für ein vorgegebenes Ereignis.</td>
 <td>Erweitert die GIS-Analyse um Wassermengen und Ereigniszeit. Das Gelände bleibt fest; Sedimenttransport und Mäanderwanderung werden nicht simuliert.</td>
 </tr>
 <tr class="even">
-<td><strong>CAESAR-Lisflood – optionale Vertiefung</strong></td>
+<td><strong>CAESAR-Lisflood – Ausblick</strong></td>
 <td>Die LISFLOOD-FP-Hydraulik wird mit <strong>Sedimenttransport, Erosion und Ablagerung</strong> gekoppelt. Aktualisierte Geländehöhen wirken auf die weitere Strömung zurück; seitliche Ufererosion wird parametrisiert.</td>
 <td><strong>Zeitabhängige Wasserverteilung, Sedimentbewegung und Höhenänderung</strong>; bei geeigneter Geometrie und Parametrisierung auch seitliche Gerinneverlagerung.</td>
 <td>Greift die Rückkopplungen aus <em>Erosion</em> und <em>River Meanders</em> auf. Zusätzlich zum DGM werden Wasser- und Sedimentzufuhr, Korngrößen und Prozessparameter benötigt. Ein lauffähiges Lehrszenario ist noch keine belastbare Prognose der realen Gewässerentwicklung.</td>
 </tr>
 </tbody>
 </table>
-<p>Die Konkretisierung setzt sich bei den Eingangsdaten fort: Für die anschließenden Simulationen wird die Geländegrundlage der GIS-Übung auf ihre Eignung für die jeweilige Prozessrechnung geprüft. Die jeweils modellierte Frage bestimmt die weiteren Eingaben: ein Niederschlags- oder Zuflussverlauf für die Wasserbewegung, zusätzlich Sedimentvorgaben und Materialparameter für die Geländeentwicklung. Ein DGM, das zur Abgrenzung von Einzugsgebieten genügt, muss die Sohle und Ufer eines kleinen Gewässers noch nicht ausreichend auflösen. Rasterweite und Geländeaufbereitung werden deshalb für die hydraulische und morphodynamische Rechnung erneut geprüft. Neben dem räumlichen Referenzvergleich treten nun Wasser- und Sedimentbilanzen, numerische Stabilität und der Abgleich mit beobachteten Zuständen oder Änderungsraten.</p>
+<p>Die Konkretisierung setzt sich bei den Eingangsdaten fort: Für solche Simulationen müsste die Geländegrundlage der GIS-Übung auf ihre Eignung für die jeweilige Prozessrechnung geprüft werden. Die jeweils modellierte Frage bestimmt die weiteren Eingaben: ein Niederschlags- oder Zuflussverlauf für die Wasserbewegung, zusätzlich Sedimentvorgaben und Materialparameter für die Geländeentwicklung. Ein DGM, das zur Abgrenzung von Einzugsgebieten genügt, muss die Sohle und Ufer eines kleinen Gewässers noch nicht ausreichend auflösen. Rasterweite und Geländeaufbereitung werden deshalb für die hydraulische und morphodynamische Rechnung erneut geprüft. Neben dem räumlichen Referenzvergleich treten nun Wasser- und Sedimentbilanzen, numerische Stabilität und der Abgleich mit beobachteten Zuständen oder Änderungsraten.</p>
 
 
 </section>

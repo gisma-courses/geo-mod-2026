@@ -1,0 +1,401 @@
+diff --git a/_quarto.yml b/_quarto.yml
+index b76124b..278496e 100644
+--- a/_quarto.yml
++++ b/_quarto.yml
+@@ -67,6 +67,10 @@ website:
+               text: Daten- und Werkzeugkompendium
+             - href: pages/resuemee_modellierung_geographie.qmd
+               text: Resümee
++        - section: "Begleitete Modellierung"
++          contents:
++            - href: pages/eigene_modellierung.qmd
++              text: Eigenes Modell
+         - section: "Ergänzende Materialien"
+           contents:
+             - href: pages/modellbildung_gis_reader.qmd
+diff --git a/index.qmd b/index.qmd
+index a6109d3..bdefc8c 100644
+--- a/index.qmd
++++ b/index.qmd
+@@ -20,13 +20,13 @@ execute:
+ 
+ Wie entstehen räumliche Muster, und was können wir aus ihnen über die zugrunde liegenden Prozesse lernen? Der Kurs **Modellieren in der Geographie** untersucht den Weg von einer räumlichen Beobachtung über eine Modellannahme zu einer berechneten Darstellung – und zur kritischen Prüfung der Aussagekraft.
+ 
+-Im Mittelpunkt stehen **heuristische Regeln**, **physikalisch begründete Näherungen** und **Prozessmodelle**. An Beispielen zur Oberflächenentwässerung und Flussentwicklung werden die in einem Modell implementierten Mechanismen explizit gemacht und mit seinen Resultaten verglichen.
++Im Mittelpunkt stehen **heuristische Regeln**, **physikalisch begründete Näherungen** und **Prozessmodelle**. An Beispielen zur Oberflächenentwässerung und Flussentwicklung werden die in einem Modell implementierten Mechanismen explizit gemacht und mit seinen Resultaten verglichen. Die Hydrologie dient dabei als durchgerechnetes Beispiel: In der ersten Kurshälfte wird es angeleitet erarbeitet, in der zweiten bilden die Studierenden begleitet ein eigenes Modell zu einer selbst gewählten Frage.
+ 
+ Digitale Handlungsfähigkeit gehört zum Kurs: Dateien und Formate handhaben, Software und Skripte einsetzen, Fehler eingrenzen und einen Arbeitsstand erneut berechnen können. KI kann bei Code, Fehlersuche und Dokumentationsrecherche helfen. Fragestellung, Modellannahmen und wissenschaftliche Bewertung werden von den Studierenden begründet; vorgeschlagene Änderungen werden vor der Übernahme verstanden und am Ergebnis geprüft.
+ 
+-## Angeleitete Modellierungsfolge
++## Kursverlauf
+ 
+-Der Kurs folgt einer hydrologisch-geomorphologischen Modellkette. Wir **beobachten** Muster in den NetLogo-Modellen, **analysieren** Regeln und Rückkopplungen, wechseln zu realen Geländedaten und **begreifen** daran, welche Aussagen verschiedene GIS- und Prozessmodellierungen tragen. Das Resümee zieht daraus eine Herangehensweise für weitere geographische Fragen.
++Der Kurs folgt einer hydrologisch-geomorphologischen Modellkette. Wir **beobachten** Muster in den NetLogo-Modellen, **analysieren** Regeln und Rückkopplungen, wechseln zu realen Geländedaten und **begreifen** daran, welche Aussagen verschiedene GIS- und Prozessmodellierungen tragen. Das Resümee zieht daraus eine Herangehensweise für weitere geographische Fragen, die anschließend an einem eigenen Modell erprobt wird.
+ 
+ | Station | Modellierungsfrage | Material |
+ |---|---|---|
+@@ -34,12 +34,12 @@ Der Kurs folgt einer hydrologisch-geomorphologischen Modellkette. Wir **beobacht
+ | **NetLogo: Grand Canyon, Erosion, River Meanders** | Wie entstehen Muster aus Regeln, Zuständen und Rückkopplungen? | [NetLogo-Vergleich](pages/netlogo_modellvergleich.qmd) |
+ | **Einstieg Abflussmodellierung** | Was ändert sich beim Wechsel vom Modellraum zum realen Relief? | [Einstieg](pages/einstieg_abflussmodellierung.qmd) |
+ | **GIS: Relief, Routing, Abfluss und Sediment** | Welche Flächen tragen zum Abfluss bei und welche Zusatzannahmen verändern die berechneten Größen? | [GIS-Übung](pages/meander_abfluss_saga_grass.qmd) · [Kompendium](pages/abfluss_algorithmen_quellen.qmd) |
+-| **Itzï** | Wie wird aus der räumlichen Reliefanalyse eine zeitabhängige Abflusssimulation? Itzï ist als anschließender Schritt geplant und noch nicht vorbereitet; es gehört nicht zum GIS-Arbeitsblatt. | [Einordnung im Einstieg](pages/einstieg_abflussmodellierung.qmd) |
+ | **Resümee** | Welche Entscheidungen haben wir getroffen, und was lässt sich daraus für andere Modellfragen ableiten? | [Rückblick](pages/resuemee_modellierung_geographie.qmd) |
++| **Eigene Modellierung** | Welche Frage will ich beantworten, und welches Modell trägt diese Aussage? Zweite Kurshälfte, begleitet statt geführt. | [Begleitete Modellierung](pages/eigene_modellierung.qmd) |
+ 
+ ## Materialien zur Modellierungsfolge
+ 
+-Die Seiten sind entlang des Arbeitsgangs verlinkt: [Kurseinstieg](pages/modellbildung_gis_folien.qmd), [NetLogo-Vergleich](pages/netlogo_modellvergleich.qmd), [Einstieg Abflussmodellierung](pages/einstieg_abflussmodellierung.qmd), [GIS-Arbeitsblatt](pages/meander_abfluss_saga_grass.qmd), [Daten- und Werkzeugkompendium](pages/abfluss_algorithmen_quellen.qmd) und [Resümee](pages/resuemee_modellierung_geographie.qmd).
++Die Seiten sind entlang des Arbeitsgangs verlinkt: [Kurseinstieg](pages/modellbildung_gis_folien.qmd), [NetLogo-Vergleich](pages/netlogo_modellvergleich.qmd), [Einstieg Abflussmodellierung](pages/einstieg_abflussmodellierung.qmd), [GIS-Arbeitsblatt](pages/meander_abfluss_saga_grass.qmd), [Daten- und Werkzeugkompendium](pages/abfluss_algorithmen_quellen.qmd), [Resümee](pages/resuemee_modellierung_geographie.qmd) und [Eigene Modellierung](pages/eigene_modellierung.qmd).
+ 
+ ## Gemeinsame Vergleichsfragen
+ 
+diff --git a/pages/eigene_modellierung.qmd b/pages/eigene_modellierung.qmd
+new file mode 100644
+index 0000000..83f1fd9
+--- /dev/null
++++ b/pages/eigene_modellierung.qmd
+@@ -0,0 +1,78 @@
++---
++title: "Eigenes Modell: begleitet statt geführt"
++subtitle: "Von einer selbst gewählten Frage zu einer begründeten Modellaussage"
++order: 80
++format:
++  html:
++    toc: true
++    toc-depth: 2
++    number-sections: false
++execute:
++  echo: false
++  warning: false
++  message: false
++---
++
++[← Kursübersicht](../index.qmd) · [Resümee](resuemee_modellierung_geographie.qmd) · [Kurzreader](modellbildung_gis_reader.qmd) · [GIS-Übung als Beispiel](meander_abfluss_saga_grass.qmd)
++
++## Worum es in der zweiten Kurshälfte geht
++
++In der ersten Hälfte war der Weg vorgegeben: Modelle, Daten, Werkzeuge und Reihenfolge standen fest. Die Hydrologie war dabei **ein durchgerechnetes Beispiel**, kein Selbstzweck. Jetzt kehren wir die Reihenfolge um. Am Anfang steht Ihre eigene geographische Frage. Welche Daten, Beziehungen und Werkzeuge ein Modell dafür braucht, entscheiden Sie selbst.
++
++Wir geben keinen Rechenweg vor. Wir begleiten Ihre Entscheidungen: an festen Meilensteinen, mit Rückfragen und Rückmeldungen. Ein einfaches Modell, dessen Annahmen Sie begründen und dessen Grenzen Sie kennen, ist dabei mehr wert als ein aufwendiges, das Sie nicht erklären können.
++
++## Werkzeuge, die Sie schon kennen
++
++| Werkzeug | Wo im Kurs | Wofür Sie es jetzt nutzen |
++|---|---|---|
++| Vorgehen in sieben Schritten | [Resümee, Abschnitt 8](resuemee_modellierung_geographie.qmd) | Frage, Abstraktion, Repräsentation, Beziehungen, Daten, Berechnung und Prüfbarkeit klären – mit Rücksprüngen |
++| Begriffe zu Entscheidungen, Grenzen und Prüfungen | [Kurzreader](modellbildung_gis_reader.qmd#eigenes-modell) | eigene Festlegungen einordnen und benennen |
++| Wirkungsgraph | Teile C–E der [GIS-Übung](meander_abfluss_saga_grass.qmd) | das Modell vor der ersten Berechnung entwerfen |
++| Modellaussage und README | F.3 und F.5 der GIS-Übung | Ergebnis begründen und nachvollziehbar dokumentieren |
++
++Wenn Sie an einer Stelle nicht weiterkommen, lohnt der Blick auf das Beispiel: Wie wurde dort das Rechengebiet begründet, eine Annahme gesetzt oder eine Prüfung gewählt?
++
++## Eine geeignete Frage finden
++
++Ihre Frage muss nicht hydrologisch sein. Sie sollte aber
++
++- **räumlich** sein und sich auf einen konkreten Untersuchungsraum beziehen,
++- **eine prüfbare Aussage** anstreben – beispielsweise eine berechnete Größe, ein räumliches Muster oder einen Vergleich, dessen Zustandekommen und Aussagekraft sich untersuchen lassen,
++- mit **verfügbaren Daten** bearbeitbar sein,
++- in der **verbleibenden Kurszeit** zu einer ersten lauffähigen Version führen.
++
++Mögliche Richtungen, als Anregung und nicht als Liste zur Auswahl:
++
++- **Stadtklima:** Wo ist mit stärkerer Überwärmung zu rechnen? Ein heuristischer Index aus Versiegelung und Grünanteil ist ein anderes Modell als eine Energiebilanz.
++- **Vegetation:** Was lässt sich aus einer Zeitreihe von Satellitendaten über Vegetationsentwicklung sagen – und was davon ist Beschreibung, was Prozess?
++- **Standortwahl:** Welche Flächen eignen sich für eine Nutzung? Eine gewichtete Eignungskarte ist keine Optimierung unter Kapazitätsbedingungen.
++- **Ausbreitung:** Wie breitet sich eine Art, ein Stoff oder eine Nutzung im Raum aus? Agenten, Diffusion oder Nachbarschaftsregeln führen zu unterschiedlichen Aussagen.
++- **Erreichbarkeit:** Wer erreicht welche Einrichtung in welcher Zeit? Netzwerk und Rasterdistanz beruhen auf verschiedenen Repräsentationen.
++
++## Meilensteine
++
++Die Meilensteine dienen der fachlichen Begleitung. Zu jedem bringen Sie einen kurzen Arbeitsstand mit, an dem wir offene Entscheidungen, Schwierigkeiten und nächste Schritte besprechen. Rücksprünge sind ausdrücklich vorgesehen. Termine und Regelungen zu Leistungsnachweisen werden im Kurs festgelegt.
++
++| Meilenstein | Was vorliegt | Leitfrage der Besprechung |
++|---|---|---|
++| **1 · Frage und Wirkungsgraph** | Fragestellung in zwei, drei Sätzen; erster Wirkungsgraph | Welche Aussage soll das Modell tragen – und was bleibt bewusst draußen? |
++| **2 · Entscheidungen und Daten** | Übersicht Ihrer Festlegungen, etwa als Tabelle nach den Arten im [Kurzreader](modellbildung_gis_reader.qmd#entscheidungen); Datenquellen | Welche Entscheidungen sind begründet, welche nur gesetzt? Reichen die Daten? |
++| **3 · Minimale lauffähige Version** | ein Modell, das rechnet – so einfach wie möglich, Werkzeug frei gewählt | Setzt die Berechnung die Regeln korrekt um? Was ist die nächste sinnvolle Erweiterung? |
++| **4 · Prüfungen** | mindestens eine Rechenprüfung, eine Sensitivität und, wo möglich, ein Vergleich mit unabhängigen Daten | Was zeigen die Prüfungen – und was zeigen sie [nicht](modellbildung_gis_reader.qmd#pruefen)? |
++| **5 · Modellaussage** | begründete Aussage nach dem Muster von F.3, Wirkungsgraph in der Endfassung, README | Was darf man aus dem Modell über den Raum folgern – und was nicht? |
++
++## Werkzeuge und KI
++
++Die Wahl der Software ist Ihre Entscheidung. Vertrautheit ist ein guter Grund, ein Programm zu verwenden, solange es die benötigte Berechnung ausführen kann. Nicht begründbar wäre, die Frage an die vorhandenen Menüeinträge anzupassen.
++
++KI darf bei Code, Fehlersuche und Recherche helfen. Maßgeblich bleibt, dass Sie die tatsächlich ausgeführte Berechnung erklären und ihr Ergebnis prüfen können. Vorgeschlagene Änderungen übernehmen Sie erst, wenn Sie verstehen, was sie am Modell verändern.
++
++## Was am Ende vorliegt
++
++- ein **lauffähiges Modell** mit seinen Skripten, Projektdateien beziehungsweise ausführbaren Modellregeln sowie den notwendigen Eingangsdaten,
++- mindestens ein **dokumentierter Rechenlauf** mit den Ergebnissen, auf die sich die Untersuchung stützt,
++- ein **Wirkungsgraph**, der die wesentlichen Zusammenhänge und Modellentscheidungen darstellt,
++- eine begründete **Modellaussage**, die Ergebnisse, Überprüfungen und Aussagegrenzen miteinander verbindet,
++- eine kurze **README** mit Datenquellen, Parametern und Angaben zur erneuten Ausführung.
++
++Die wesentlichen Modellentscheidungen müssen nachvollziehbar sein; dafür kann eine Tabelle hilfreich sein. Eine zusätzliche Dokumentation derselben Entscheidungen in mehreren Formaten ist nicht erforderlich.
+diff --git a/pages/einstieg_abflussmodellierung.qmd b/pages/einstieg_abflussmodellierung.qmd
+index 475486b..aaa4264 100644
+--- a/pages/einstieg_abflussmodellierung.qmd
++++ b/pages/einstieg_abflussmodellierung.qmd
+@@ -26,7 +26,7 @@ Die NetLogo-Modelle greifen bekannte Eigenschaften von Flüssen auf: Wasser bewe
+ 
+ Die GIS-Übung beginnt mit der **räumlichen Abstraktion eines konkreten Einzugsgebiets**. Das Gelände wird als Höhenraster dargestellt; D8 und D∞ beschreiben seine Entwässerungsverbindungen. Daraus berechnen wir Einzugsflächen und Abflusskonzentrationen und prüfen sie am vorhandenen Gewässernetz. Rasterweite, Senkenbehandlung und Routingregel legen fest, welche Geländeeigenschaften in dieser Beschreibung erhalten bleiben und welche verändert oder ausgelassen werden.
+ 
+-Nach der GIS-Übung ist **[Itzï](https://www.itzi.org/about/)** als eigene Ereignissimulation geplant. Dieser Schritt ist **noch nicht vorbereitet** und gehört nicht zum GIS-Arbeitsblatt. Die geplante Simulation erweitert die Beschreibung um Niederschlag beziehungsweise Zufluss, Wasserstände, hydraulische Reibung und zeitabhängige Wasserflüsse. Als **optionale Vertiefung** bezieht **[CAESAR-Lisflood](https://sourceforge.net/projects/caesar-lisflood/)** zusätzlich Sedimenttransport, Abtrag und Ablagerung ein; das veränderte Gelände wirkt auf die weitere Strömung zurück. Damit werden für die jeweilige Berechnungsfrage andere Zustände und Beziehungen festgelegt. Jeder Schritt verlangt begründete Vereinfachungen, zusätzliche Parameter und eine Prüfung daran, ob die berechneten Größen den untersuchten Vorgang angemessen beschreiben.
++Mit der GIS-Übung endet die hydrologische Beispielkette des Kurses. Wie es weiterginge, zeigen zwei Modelle, die wir **nicht rechnen**, sondern als Ausblick betrachten: **[Itzï](https://www.itzi.org/about/)** würde die Beschreibung erweitern um Niederschlag beziehungsweise Zufluss, Wasserstände, hydraulische Reibung und zeitabhängige Wasserflüsse. **[CAESAR-Lisflood](https://sourceforge.net/projects/caesar-lisflood/)** bezieht zusätzlich Sedimenttransport, Abtrag und Ablagerung ein; das veränderte Gelände wirkt auf die weitere Strömung zurück. Damit würden für die jeweilige Berechnungsfrage andere Zustände und Beziehungen festgelegt. Jeder solche Schritt verlangt begründete Vereinfachungen, zusätzliche Parameter und eine Prüfung daran, ob die berechneten Größen den untersuchten Vorgang angemessen beschreiben.
+ 
+ ## Untersuchungsraum und Vergleichsansatz
+ 
+@@ -40,7 +40,7 @@ Auf dieser Grundlage lassen sich weitere Entscheidungen getrennt untersuchen: Wi
+ 
+ ## Modellvergleich: Berechnung, Verwendung und Aussagegrenze
+ 
+-Die Tabelle zeigt, wie Gelände, Wasser und Material in den **bereits untersuchten NetLogo-Modellen**, der **aktuellen GIS-Rechnung** und den **anschließenden Prozessmodellen** jeweils beschrieben werden. Verglichen werden die berechneten Größen und die dafür verwendeten Regeln beziehungsweise Gleichungen. Itzï ist nach der GIS-Übung geplant, aber noch nicht vorbereitet. CAESAR-Lisflood bleibt ein optionaler Ausblick auf gekoppelte Gelände- und Gerinneentwicklung.
++Die Tabelle zeigt, wie Gelände, Wasser und Material in den **bereits untersuchten NetLogo-Modellen**, der **aktuellen GIS-Rechnung** und zwei **weiterführenden Prozessmodellen** jeweils beschrieben werden. Verglichen werden die berechneten Größen und die dafür verwendeten Regeln beziehungsweise Gleichungen. Itzï und CAESAR-Lisflood werden im Kurs nicht gerechnet. Itzï berechnet zeitabhängige hydraulische Vorgänge auf festem Gelände; CAESAR-Lisflood koppelt sie mit Sedimenttransport und Geländeänderung und kann unter geeigneten Voraussetzungen seitliche Gerinneverlagerung abbilden. *River Meanders* bildet Gerinneentwicklung bereits ab – mit anderen Regeln und einem anderen Abstraktionsgrad. Interessant ist deshalb nicht, ob Mäander entstehen, sondern mit welchen Mechanismen die Modelle sie erzeugen und welche Aussagen über reale Gewässer sich damit begründen lassen.
+ 
+ | Modell | Wie wird gerechnet? | Was liefert die Rechnung? | Grenze und Einordnung im Kurs |
+ |---|---|---|---|
+@@ -48,7 +48,7 @@ Die Tabelle zeigt, wie Gelände, Wasser und Material in den **bereits untersucht
+ | **NetLogo: Grand Canyon – Referenz** | Wasseragenten bewegen sich zu einem Nachbarn mit niedrigerem **Wasserspiegel aus Gelände- und Wasserhöhe**. Liegen gebliebene Agenten erhöhen den örtlichen Wasserstand und beeinflussen spätere Wege. | **Tropfenwege und Wasseransammlungen** auf einem realen, für das Modell skalierten Höhenraster. | Physikalische Fließgeschwindigkeiten und Abflussganglinien. Das Grundmodell trägt kein Gelände ab. |
+ | **NetLogo: Erosion – Referenz** | Wasser wird zum Nachbarn mit dem niedrigsten Wasserspiegel umverteilt. Die Austauschmenge hängt vom **Wasserspiegelunterschied** und der verfügbaren Wassermenge ab; Austauschmenge und Bodenhärte bestimmen den Geländeabtrag. | **Veränderte Wasserstände und Geländehöhen**; der Abtrag verändert die nachfolgenden Abflusswege. | Gemessene Erosionsraten oder eine vollständige Sedimentbilanz: Abgetragenes Material wird nicht als transportierte und wieder abgelagerte Masse bilanziert. |
+ | **NetLogo: River Meanders – Referenz** | Strömungsagenten bewegen sich nach vorgegebenen Beschleunigungsregeln. Beim Auftreffen auf Land entsteht eine Gewässerzelle; Ablagerungsregeln können Gewässerzellen wieder in Land umwandeln. | **Veränderung der Gerinneform**, Mäanderschlingen und Durchbrüche; Entwicklung der Sinuosität. | Reale Uferverlagerungsraten. Agentenbewegung und Zellumwandlung ersetzen keine hydraulische Strömungsberechnung und keinen bilanzierten Sedimenttransport. |
+-| **Itzï – geplanter Anschluss** | Wasserbilanz und eine **lokal-inertiale Näherung der Flachwassergleichungen** bestimmen Wasserstände und Flüsse. Niederschlag, Infiltration und hydraulische Rauigkeit gehen in die Berechnung ein; die konvektive Beschleunigung wird vernachlässigt. | **Zeitabhängige Wassertiefen, Wasserflüsse und Überflutungsflächen** für ein vorgegebenes Ereignis. | Erweitert die GIS-Analyse um Wassermengen und Ereigniszeit. Das Gelände bleibt fest; Sedimenttransport und Mäanderwanderung werden nicht simuliert. |
+-| **CAESAR-Lisflood – optionale Vertiefung** | Die LISFLOOD-FP-Hydraulik wird mit **Sedimenttransport, Erosion und Ablagerung** gekoppelt. Aktualisierte Geländehöhen wirken auf die weitere Strömung zurück; seitliche Ufererosion wird parametrisiert. | **Zeitabhängige Wasserverteilung, Sedimentbewegung und Höhenänderung**; bei geeigneter Geometrie und Parametrisierung auch seitliche Gerinneverlagerung. | Greift die Rückkopplungen aus *Erosion* und *River Meanders* auf. Zusätzlich zum DGM werden Wasser- und Sedimentzufuhr, Korngrößen und Prozessparameter benötigt. Ein lauffähiges Lehrszenario ist noch keine belastbare Prognose der realen Gewässerentwicklung. |
++| **Itzï – Ausblick** | Wasserbilanz und eine **lokal-inertiale Näherung der Flachwassergleichungen** bestimmen Wasserstände und Flüsse. Niederschlag, Infiltration und hydraulische Rauigkeit gehen in die Berechnung ein; die konvektive Beschleunigung wird vernachlässigt. | **Zeitabhängige Wassertiefen, Wasserflüsse und Überflutungsflächen** für ein vorgegebenes Ereignis. | Erweitert die GIS-Analyse um Wassermengen und Ereigniszeit. Das Gelände bleibt fest; Sedimenttransport und Mäanderwanderung werden nicht simuliert. |
++| **CAESAR-Lisflood – Ausblick** | Die LISFLOOD-FP-Hydraulik wird mit **Sedimenttransport, Erosion und Ablagerung** gekoppelt. Aktualisierte Geländehöhen wirken auf die weitere Strömung zurück; seitliche Ufererosion wird parametrisiert. | **Zeitabhängige Wasserverteilung, Sedimentbewegung und Höhenänderung**; bei geeigneter Geometrie und Parametrisierung auch seitliche Gerinneverlagerung. | Greift die Rückkopplungen aus *Erosion* und *River Meanders* auf. Zusätzlich zum DGM werden Wasser- und Sedimentzufuhr, Korngrößen und Prozessparameter benötigt. Ein lauffähiges Lehrszenario ist noch keine belastbare Prognose der realen Gewässerentwicklung. |
+ 
+-Die Konkretisierung setzt sich bei den Eingangsdaten fort: Für die anschließenden Simulationen wird die Geländegrundlage der GIS-Übung auf ihre Eignung für die jeweilige Prozessrechnung geprüft. Die jeweils modellierte Frage bestimmt die weiteren Eingaben: ein Niederschlags- oder Zuflussverlauf für die Wasserbewegung, zusätzlich Sedimentvorgaben und Materialparameter für die Geländeentwicklung. Ein DGM, das zur Abgrenzung von Einzugsgebieten genügt, muss die Sohle und Ufer eines kleinen Gewässers noch nicht ausreichend auflösen. Rasterweite und Geländeaufbereitung werden deshalb für die hydraulische und morphodynamische Rechnung erneut geprüft. Neben dem räumlichen Referenzvergleich treten nun Wasser- und Sedimentbilanzen, numerische Stabilität und der Abgleich mit beobachteten Zuständen oder Änderungsraten.
++Die Konkretisierung setzt sich bei den Eingangsdaten fort: Für solche Simulationen müsste die Geländegrundlage der GIS-Übung auf ihre Eignung für die jeweilige Prozessrechnung geprüft werden. Die jeweils modellierte Frage bestimmt die weiteren Eingaben: ein Niederschlags- oder Zuflussverlauf für die Wasserbewegung, zusätzlich Sedimentvorgaben und Materialparameter für die Geländeentwicklung. Ein DGM, das zur Abgrenzung von Einzugsgebieten genügt, muss die Sohle und Ufer eines kleinen Gewässers noch nicht ausreichend auflösen. Rasterweite und Geländeaufbereitung werden deshalb für die hydraulische und morphodynamische Rechnung erneut geprüft. Neben dem räumlichen Referenzvergleich treten nun Wasser- und Sedimentbilanzen, numerische Stabilität und der Abgleich mit beobachteten Zuständen oder Änderungsraten.
+diff --git a/pages/meander_abfluss_saga_grass.qmd b/pages/meander_abfluss_saga_grass.qmd
+index 010de5c..bb1f1af 100644
+--- a/pages/meander_abfluss_saga_grass.qmd
++++ b/pages/meander_abfluss_saga_grass.qmd
+@@ -601,7 +601,7 @@ Diese Entscheidungen stecken bereits in den ausgeführten Berechnungen:
+ 
+ **Wir haben die Modellregeln in ausführbare Berechnungen umgesetzt.** Dazu gehören nicht nur die Gleichungen, sondern auch die Rasteraufbereitung, die Senkenbehandlung sowie der Umgang mit NoData-Werten und Modellgrenzen. Diese Entscheidungen bestimmen, wie die formulierten Zusammenhänge auf den konkreten Geodaten berechnet werden.
+ 
+-In den Wirkungsgraphen der Teile C, D und E stehen diese Setzungen als orange Kästen. Gestrichelt ist, was sie ersetzen, was im Modell fehlt oder wo das Rechengebiet endet – drei verschiedene Arten von Grenzen.
++In den Wirkungsgraphen der Teile C, D und E stehen diese Setzungen als orange Kästen. Gestrichelt ist, was sie ersetzen, was im Modell fehlt oder wo das Rechengebiet endet – drei verschiedene [Arten von Grenzen](modellbildung_gis_reader.qmd#grenzen). Welche Art von Entscheidung jeweils vorliegt, fasst der [Kurzreader](modellbildung_gis_reader.qmd#entscheidungen) zusammen.
+ 
+ Damit haben wir nicht ein einziges, immer vollständigeres Modell aufgebaut. Wir haben verschiedene **Teilmodelle und Auswertungen miteinander verknüpft**: eine Repräsentation des Geländes, Regeln für die räumliche Weiterleitung, eine angenommene Abflussbildung und schließlich eine begrenzte Materialweiterleitung.
+ 
+@@ -618,7 +618,7 @@ Im Verlauf der Übung haben wir Ergebnisse auf unterschiedliche Weise kontrollie
+ | Vergleich der Gerinneschwellen von 2 und 5 ha sowie der Transportkapazitäten von 0,2 und 0,05 | **Sensitivität:** Wie stark hängen die Ergebnisse von gewählten Modellparametern ab? |
+ | Vergleich der berechneten Gerinne mit den amtlichen Gewässerlinien | **Vergleich mit unabhängigen Referenzdaten:** Wie gut stimmen die räumlichen Strukturen überein, und wo bestehen erklärungsbedürftige Abweichungen? |
+ 
+-Diese Unterscheidung ist entscheidend: Eine korrekt ausgeführte Berechnung ist noch keine Bestätigung ihrer Annahmen. Ein Sensitivitätsvergleich zeigt, welche Folgen eine Parameteränderung hat, aber nicht, welcher Parameterwert in der Natur zutrifft.
++Diese Unterscheidung ist entscheidend: Eine korrekt ausgeführte Berechnung ist noch keine Bestätigung ihrer Annahmen. Ein Sensitivitätsvergleich zeigt, welche Folgen eine Parameteränderung hat, aber nicht, welcher Parameterwert in der Natur zutrifft. Die Prüfarten im Überblick: [Kurzreader](modellbildung_gis_reader.qmd#pruefen).
+ 
+ Ebenso kann die Übereinstimmung mit einer amtlichen Gewässerlinie die räumliche Plausibilität des berechneten Talwegs stützen. Sie bestätigt weder die angenommene Abflussmenge noch die berechnete Sedimentablagerung.
+ 
+@@ -679,6 +679,6 @@ Beides ist notwendig, um Modellergebnisse wissenschaftlich einzuordnen. Beides e
+ 
+ In diesem Block stand die Verarbeitungskette weitgehend fest. Sie haben gelernt, was die einzelnen Schritte leisten, welche Entscheidungen die Ergebnisse verändern und wo ihre Grenzen liegen.
+ 
+-**Im nächsten Block kehren wir die Reihenfolge um:** Nicht ein bereitgestellter Algorithmus bildet den Ausgangspunkt, sondern eine geographische Frage.
++**In der [zweiten Kurshälfte](eigene_modellierung.qmd) kehren wir die Reihenfolge um:** Nicht ein bereitgestellter Algorithmus bildet den Ausgangspunkt, sondern eine geographische Frage.
+ 
+ Dann müssen Sie selbst entscheiden, welche Daten eine Antwort ermöglichen, welche Prozesse und räumlichen Beziehungen im Modell enthalten sein müssen, welche Vereinfachungen vertretbar sind und wie sich die Ergebnisse überprüfen lassen.
+\ No newline at end of file
+diff --git a/pages/modellbildung_gis_reader.qmd b/pages/modellbildung_gis_reader.qmd
+index 2756752..e641e73 100644
+--- a/pages/modellbildung_gis_reader.qmd
++++ b/pages/modellbildung_gis_reader.qmd
+@@ -1,90 +1,94 @@
+ ---
+ title: "Modellbildung im GIS – Kurzreader"
+-subtitle: "Was wir annehmen, berechnen und behaupten dürfen"
+-author: "KlimaResilienzSchule"
++subtitle: "Begriffe zum Einordnen, Entscheiden und Prüfen"
+ date: "2026-10-26"
+ format:
+   html:
+-    toc: false
++    toc: true
++    toc-depth: 2
+     number-sections: false
+-    theme: cosmo
+ execute:
+   echo: false
+   warning: false
+   message: false
+ ---
+ 
+-# Nicht jede berechnete Karte ist ein Prozessmodell
++[← Kursübersicht](../index.qmd) · [Auftakt: Folien](modellbildung_gis_folien.qmd) · [GIS-Übung](meander_abfluss_saga_grass.qmd) · [Resümee](resuemee_modellierung_geographie.qmd)
+ 
+-Ein GIS kann Flächen überlagern, Indizes bilden, Fließwege ableiten und Modelle mit räumlichen Eingaben versorgen. Die Karte allein zeigt aber nicht, *was* berechnet wurde. Entscheidend sind die Regeln oder Gleichungen zwischen Eingangsdaten und Ergebnis. Als roter Faden dient die Frage: **Wo sammelt sich bei Starkregen Wasser?**
++Dieser Reader sammelt die Unterscheidungen, mit denen wir im Kurs Modelle einordnen, Entscheidungen benennen und Ergebnisse prüfen. Die Übungsseiten verweisen hierher, statt die Begriffe jedes Mal neu zu erklären. Beispiele und Formeln zu den drei Modellzugängen stehen in den [Auftaktfolien](modellbildung_gis_folien.qmd).
+ 
+-| Modellzugang | Was wird gerechnet? | Mindestdaten | Aussage – und Grenze |
+-|---|---|---|---|
+-| **Heuristik** | Klassen, Regeln und gewichtete Indikatoren | Landbedeckung, ggf. DGM/Böden | Verdachtsräume; **keine** Wassertiefe |
+-| **Physikalisch begründete Näherung** | vereinfachte, prozessbezogene Größenbeziehungen | je nach Formel DGM, Fläche, Regen oder Materialparameter | Index oder überschlägige Größe; nur unter ihren Annahmen gültig |
+-| **Prozessmodell** | zeitabhängige Erhaltung und Transport | Gelände, Antrieb, Parameter, Anfangs-/Randbedingungen | simulierte Zustände, z. B. Wassertiefe über die Zeit; mit Modell- und Datenunsicherheit |
++## Drei Vorgehensweisen – und drei Fragen an jedes Modell {#zugaenge}
+ 
+-## 1. Heuristische Regeln: begründet, aber gesetzt
++Für die Frage „Wo sammelt sich bei Starkregen Wasser?“ zeigen die [Auftaktfolien](modellbildung_gis_folien.qmd) drei beispielhafte Vorgehensweisen:
+ 
+-Wir markieren Flächen, auf denen mehrere plausible Hinweise zusammenkommen: versiegelte Oberflächen, Geländesenken, gering durchlässige Böden. Eine gewichtete Überlagerung könnte lauten:
++| Vorgehensweise | Was wird gerechnet? | Aussage – und Grenze |
++|---|---|---|
++| **Heuristik** | Klassen, Regeln, gewichtete Indikatoren | Verdachtsräume; **keine** Wassertiefe |
++| **Physikalisch begründete Näherung** | vereinfachte, prozessbezogene Größenbeziehungen | Index oder überschlägige Größe; nur unter ihren Annahmen gültig |
++| **Hydraulisches Prozessmodell** | zeitabhängige Erhaltung und Transport von Wasser | simulierte Zustände, z. B. Wassertiefe über die Zeit |
+ 
+-$$
+-H=0{,}5V+0{,}3S+0{,}2D
+-$$
++Das sind **keine trennscharfen Modellklassen und keine Qualitätsstufen**, sondern Antworten auf unterschiedlich genaue Fragen. Ein konkretes Modell lässt sich besser mit drei Fragen beschreiben:
+ 
+-Die Variablen sind Indikatoren, zuvor einheitlich auf 0 bis 1 skaliert. **Die Gewichte sind eine Entscheidung der Modellierenden.** Andere plausible Gewichte erzeugen möglicherweise andere Ergebnisse. Deshalb dokumentieren wir Klassen, Grenzwerte und Gewichtungen und testen deren Einfluss. $H$ ist ein Such- oder Priorisierungsindex. Ihn als Überflutungswahrscheinlichkeit oder Wassertiefe auszugeben, wäre unbegründet.
++- **Wie sind die Regeln begründet?** Heuristisch gesetzt, empirisch abgeleitet oder physikalisch hergeleitet.
++- **Welche zeitliche Struktur hat das Modell?** Statisch oder dynamisch.
++- **Welche Vorgänge werden berechnet?** Klassifikation, räumliche Weiterleitung, Bilanz, Zustandsänderung, Rückkopplung.
+ 
+-**Werkzeuge:** QGIS (Rasterrechner, Reclassification, Vektor-/Rasterüberlagerung), SAGA GIS und der QGIS-Modell-Designer für reproduzierbare Abläufe.
++*River Meanders* zum Beispiel ist dynamisch und berechnet Zustandsänderungen mit Rückkopplung, seine Regeln sind aber nicht hydraulisch hergeleitet. Die D8-Akkumulation der GIS-Übung ist statisch, physikalisch motiviert und berechnet eine räumliche Weiterleitung. Die Software bestimmt keine dieser Eigenschaften. Entscheidend ist, welche Regeln oder Gleichungen das konkrete Verfahren löst.
+ 
+-## 2. Geländealgorithmus oder physikalische Näherung?
++## Welche Art von Entscheidung? {#entscheidungen}
+ 
+-Ein digitaler Höhenwert allein enthält noch keinen Abfluss. GIS-Werkzeuge wie **SAGA Flow Accumulation** oder **GRASS `r.watershed`** leiten aus Höhenunterschieden und einer gewählten Routingregel Fließrichtungen, Einzugsflächen oder Akkumulationsmuster ab. Ob der Algorithmus das Wasser einer Zelle auf eine oder mehrere Nachbarzellen verteilt, ist bereits eine Modellentscheidung.
++Ein Modell ist nicht fertig, sobald eine Beziehung formuliert ist. Es muss auf konkreten Daten ausführbar werden. Dabei treffen wir Entscheidungen unterschiedlicher Art – und nicht jede davon ist eine Annahme über den Prozess.
+ 
+-Der *Topographic Wetness Index* verbindet beitragende Fläche und Gefälle:
++| Art der Entscheidung | Beispiele aus der GIS-Übung | Was sie verändert |
++|---|---|---|
++| **Fragestellung und Abgrenzung** | Rechengebiet, Lage des Auslasses | welche Flächen überhaupt erfasst werden |
++| **Datenrepräsentation** | Rasterweite, Resampling, Senkenbehandlung, Umgang mit NoData | welche Geländeformen das Modell „sieht“ |
++| **Weiterleitungsregel** | D8 oder D∞ | wie Beiträge zwischen Zellen verteilt werden |
++| **Klassifikation** | Gerinneschwelle 2 oder 5 ha | welche Rasterzellen als Gerinne ausgewiesen werden; die zuvor berechneten Fließrichtungen und Flächenbeiträge bleiben unverändert |
++| **Prozessannahme** | $h_{\mathrm{eff}} = 10$ mm, Materialangebot, Kapazitätsbeziehung samt Gefällezusatz | welche Mengen das Modell erzeugt |
++| **Korrekte Umsetzung** | Zellfläche im Rasterausdruck, Einheiten, gemeinsames Rastergitter, Dateipfade | ob die Rechnung die gewählten Regeln tatsächlich ausführt |
+ 
+-$$
+-\mathrm{TWI}=\ln\!\left(\frac{a}{\tan\beta}\right)
+-$$
++Die ersten fünf Zeilen sind Modellentscheidungen: Wer sie ändert, rechnet ein anderes Modell. Die letzte Zeile ist eine Anforderung an die Ausführung. Wer bei einem 10-m-Raster die Zellfläche von 25 auf 100 m² anpasst, ändert keine Annahme, sondern setzt dieselbe Gleichung korrekt um.
+ 
+-Das ist ein **physikalisch motivierter Geländeindikator**, keine berechnete Wasserbilanz und keine Starkregenüberflutung. Für eine tatsächliche Vernässung fehlen etwa Regen, Bodenhydraulik und zeitliche Entwicklung. Besonders wichtig: *topografische Fließakkumulation* und *physikalisch berechneter Wasserabfluss* sind nicht dasselbe.
++## Drei Arten von Modellgrenzen {#grenzen}
+ 
+-Eine andere, explizite Näherung ist die Rationalformel für den Spitzenabfluss kleiner Einzugsgebiete:
++Was ein Modell nicht enthält, fehlt aus unterschiedlichen Gründen. Die Grenzen lassen sich deshalb auch nicht auf dieselbe Weise beheben.
+ 
+-$$
+-Q_{\mathrm{max}}\approx C\,i\,A
+-$$
++| Grenze | Beispiel | Was würde helfen? |
++|---|---|---|
++| **Rechengebiet und Datenabdeckung** | Zufluss von Flächen außerhalb des DGM | Daten erweitern, Berechnung wiederholen |
++| **Nicht abgebildeter Prozess** | Abflussbildung aus Niederschlag, Boden und Bedeckung; zeitlicher Abflussverlauf | zusätzliche Prozessbeziehung und passende Daten |
++| **Fehlende Rückkopplung** | Ablagerung verändert das Gelände und damit die Fließrichtungen | eine andere Modellarchitektur, die Zustände über die Zeit fortschreibt |
+ 
+-Dabei sind $A$ die Einzugsgebietsfläche, $i$ eine für die Abflusskonzentration maßgebende Regenintensität und $C$ ein empirischer Abflussbeiwert. Sie benötigt **mehr als eine Karte**, liefert aber weder Wassertiefen noch einen räumlich-zeitlichen Fließverlauf. Ihre Anwendbarkeit hängt von Gebiet, Regenannahmen und Konventionen für den Abflussbeiwert ab.
++**Lesehilfe für die Wirkungsgraphen der GIS-Übung:** Blau sind Eingaben, grau Verfahren, grün berechnete Ergebnisse und orange gesetzte Annahmen. Rot gestrichelt ist, was im Modell nicht berechnet wird, blau gestrichelt die Grenze des Rechengebiets und grau gepunktet ein Vergleich ohne Eingabe in die Rechnung. Ein Wirkungsgraph zeigt Abhängigkeiten, keine Werkzeugfolge. Er eignet sich auch, um ein eigenes Modell vor der ersten Berechnung zu entwerfen.
+ 
+-**Werkzeuge:** SAGA (Hydrology, Wetness Index), GRASS `r.watershed`, QGIS zur Datenaufbereitung; Formeln zusätzlich im GIS, in R oder Python. Die Wahl des Werkzeugs macht eine Rechnung nicht von selbst physikalisch.
++## Was eine Prüfung zeigt – und was nicht {#pruefen}
+ 
+-## 3. Prozessmodell: ein Ereignis entwickelt sich
++| Prüfung | Frage | Beispiel aus der GIS-Übung |
++|---|---|---|
++| **Rechenprüfung** (Verifikation) | Setzt die Rechnung die formulierte Regel korrekt um? | Einheitenkontrolle 2 ha × 10 mm = 200 m³; Zellzahl in `becken.tif` gleich `ad8` am Auslass |
++| **Prüfung der Abgrenzung** | Reichen Rechengebiet und Daten für die Frage? | Berührt das Einzugsgebiet den DGM-Rand? |
++| **Sensitivität** | Wie stark hängt das Ergebnis von gewählten Parametern ab? | Gerinneschwelle 2 und 5 ha; Kapazitätsfaktor 0,2 und 0,05 |
++| **Vergleich mit unabhängigen Daten** | Stützen Referenzen oder Messungen das Ergebnis? | Lage der berechneten Gerinne gegenüber dem amtlichen Gewässernetz |
+ 
+-Ein dynamisches 2D-Abflussmodell berechnet, wie sich Wasserstände und Geschwindigkeiten während eines Regens verändern. Eine vereinfachte Massenerhaltung lautet:
++Eine bestandene Rechenprüfung bestätigt keine Annahme. Eine Sensitivitätsanalyse zeigt die Folgen einer Parameterwahl, nicht den zutreffenden Wert. Und eine räumlich passende Gewässerlinie stützt den berechneten Talweg, aber weder die angenommene Abflussmenge noch die Sedimentablagerung. **Musterähnlichkeit, physikalische Plausibilität und quantitative Validität** sind verschiedene Qualitätskriterien.
+ 
+-$$
+-\frac{\partial h}{\partial t}+\nabla\!\cdot(h\boldsymbol{u})=r-f
+-$$
++## Für Ihr eigenes Modell {#eigenes-modell}
+ 
+-$h$ bezeichnet die Wassertiefe, $\boldsymbol{u}$ die Fließgeschwindigkeit, $r$ den Regenzufluss und $f$ die Infiltration. Für eine hydraulische Simulation kommen die Bewegungsgleichungen hinzu. Benötigt werden nun auch **zeitlich aufgelöster Niederschlag, Rauheit, geeignete Geländedaten, Anfangs- und Randbedingungen**, gegebenenfalls Kanalnetz und Bauwerke sowie eine numerische Diskretisierung.
++Die Beispiele oben stammen aus der Hydrologie. Die Unterscheidungen gelten für jede Modellfrage. Vor und während der [eigenen Modellierung](eigene_modellierung.qmd) helfen fünf Fragen:
+ 
+-**Werkzeuge:** etwa HEC-RAS 2D für Hydrodynamik; QGIS/SAGA/GRASS für Vorverarbeitung, Geometrie, Parameterkarten und Auswertung. Ein Prozessmodell ist trotzdem nicht „physikalisch exakt“: Gleichungen, räumliche Auflösung und Parameter bleiben Vereinfachungen.
++1. **Aussage:** Welche Größe oder Beziehung soll das Modell für welchen Ort, Zeitraum und Maßstab liefern – und welche [Begründung der Regeln, zeitliche Struktur und berechneten Vorgänge](#zugaenge) braucht sie?
++2. **Wirkungsgraph:** Welche Eingaben, Annahmen und berechneten Größen hängen wie zusammen? Was bleibt bewusst draußen?
++3. **Entscheidungen:** Welche Ihrer Festlegungen sind Abgrenzung, Datenrepräsentation, Regel, Klassifikation oder Prozessannahme – und was ist nur korrekte Umsetzung? ([Tabelle](#entscheidungen))
++4. **Grenzen:** Welche Lücke liegt an den Daten, welche an einem nicht abgebildeten Prozess, welche an einer fehlenden Rückkopplung? ([Tabelle](#grenzen))
++5. **Prüfung:** Welche Rechenprüfung, welche Sensitivität und welcher unabhängige Vergleich sind möglich – und was können sie jeweils nicht zeigen? ([Tabelle](#pruefen))
+ 
+-## Was entscheidet über die Aussagekraft?
++## Werkzeuge
+ 
+-| Frage vor der Interpretation | Heuristik | Geländeindex / Näherung | Prozessmodell |
+-|---|---|---|---|
+-| Was ist bewusst festgelegt? | Gewichte, Klassen, Regeln | Routing oder Gültigkeit der Formel | Gleichungen, Parameter, Numerik |
+-| Was fehlt im Modell? | konkrete Dynamik und Mengen | oft Zeitverlauf, Speicher und Transport | nicht aufgelöste Prozesse und ungenaue Randdaten |
+-| Wie prüfen wir? | Sensitivität, Vergleich mit unabhängigen Orten | DGM-/Methodenvergleich, Messgrößen wenn vorhanden | unabhängige Wasserstände, Ausdehnungen oder Abflussganglinien |
++Im Kurs: [TauDEM](https://hydrology.usu.edu/taudem/taudem5/documentation.html) · [NetLogo Models Library](https://ccl.northwestern.edu/netlogo/models/)
+ 
+-**Explizit** bedeutet lediglich, dass Annahmen oder Gleichungen benannt sind. Auch eine Heuristik kann explizit sein. **Empirisch** beschreibt die Herkunft einer Regel oder eines Parameters; ein physikalisch begründetes Modell kann empirisch kalibrierte Größen enthalten. **Dynamisch** beschreibt Zeitabhängigkeit. Diese Eigenschaften sind keine zusätzlichen Stufen zwischen Heuristik und Prozessmodell.
++Ausblick: [Itzï](https://www.itzi.org/about/) · [CAESAR-Lisflood](https://sourceforge.net/projects/caesar-lisflood/)
+ 
+-**Praktische Entscheidungsregel:** Brauche ich nur eine *begründete Suchkarte*, reichen oft räumliche Regeln. Brauche ich eine *geschätzte Abflussgröße*, benötige ich passende physikalische Annahmen und zusätzliche Messgrößen. Will ich wissen, *wie sich Wasser bei einem konkreten Ereignis im Raum bewegt*, brauche ich ein dynamisches Modell und die Daten zu seinem Antrieb. Je mehr Prozesse wir abbilden, desto mehr müssen wir spezifizieren **und überprüfen**.
++Alternativen: [SAGA Hydrologie](https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html) · [GRASS `r.watershed`](https://grass.osgeo.org/grass85/manuals/r.watershed.html) · [WhiteboxTools](https://jblindsay.github.io/wbt_book/available_tools/index.html) · [HEC-RAS](https://www.hec.usace.army.mil/confluence/rasdocs) · [QGIS: externe Processing-Anbieter](https://documentation.qgis.org/3.44/de/docs/user_manual/processing/3rdParty.html)
+ 
+-## Dokumentation der Werkzeuge
+-
+-- [SAGA GIS: Hydrologie-Werkzeuge](https://saga-gis.sourceforge.io/saga_tool_doc/9.13.1/ta_hydrology.html) – Fließakkumulation, SAGA Wetness Index und TWI.
+-- [GRASS GIS: `r.watershed`](https://grass.osgeo.org/grass85/manuals/r.watershed.html) – Akkumulation, Fließrichtungen, Einzugsgebiete und topografischer Index.
+-- [QGIS: externe Processing-Anwendungen](https://documentation.qgis.org/3.44/de/docs/user_manual/processing/3rdParty.html) – je nach Installation müssen zusätzliche Anbieter eingerichtet werden.
+-- [HEC-RAS: Dokumentation und hydraulische Modellgrundlagen](https://www.hec.usace.army.mil/confluence/rasdocs) – 1D-/2D-Strömungsmodellierung und ihre Datenanforderungen.
++Verfahren, Eingaben und Einheiten der GIS-Übung im Detail: [Daten- und Werkzeugkompendium](abfluss_algorithmen_quellen.qmd).
+diff --git a/pages/resuemee_modellierung_geographie.qmd b/pages/resuemee_modellierung_geographie.qmd
+index e854750..ebf2a1b 100644
+--- a/pages/resuemee_modellierung_geographie.qmd
++++ b/pages/resuemee_modellierung_geographie.qmd
+@@ -17,7 +17,7 @@ execute:
+ 
+ ## Wozu dieser Umweg?
+ 
+-Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beobachtet, ein amtliches Höhenmodell beschafft, daraus Einzugsgebiete berechnet und schließlich Wasser- und Sedimentmengen unter zusätzlichen Annahmen bilanziert. Itzï ist als anschließende Ereignissimulation geplant und noch nicht vorbereitet. Dieser Schritt gehört nicht zur bisherigen GIS-Übung. Der Weg war weitgehend vorgegeben: Modell öffnen, Daten verwenden, Werkzeug ausführen, Ergebnis betrachten.
++Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beobachtet, ein amtliches Höhenmodell beschafft, daraus Einzugsgebiete berechnet und schließlich Wasser- und Sedimentmengen unter zusätzlichen Annahmen bilanziert. Der Weg war weitgehend vorgegeben: Modell öffnen, Daten verwenden, Werkzeug ausführen, Ergebnis betrachten.
+ 
+ **Was hätten wir selbst entscheiden müssen, wenn uns nur die Frage gestellt worden wäre: „Welche Flächen tragen zum Abfluss an diesem Durchlass bei – und wo könnte Material zurückbleiben?“** Die Antwort liegt weder in einem bestimmten Programm noch in einer möglichst langen Liste von Algorithmen. Sie liegt in den Unterscheidungen, die wir während dieser Kette tatsächlich getroffen haben.
+ 
+@@ -30,8 +30,8 @@ Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beo
+ | **River Meanders** | Ein idealisierter Gerinnekorridor mit Bewegungs-, Erosions- und Ablagerungsregeln. | Mäanderformen können aus wiederholten Regeln entstehen. Die entstehende Form bestätigt keine hydraulische oder sedimentologische Prozessgleichung. |
+ | **DGM → D8/D∞ → Einzugsgebiet** | Gemessene bzw. abgeleitete Geländehöhen in einem georeferenzierten Raster, dazu explizite Nachbarschafts- und Routingregeln. | An einem gewählten Auslass werden potenzielle Entwässerungsverbindungen und beitragende Flächen berechenbar – zunächst ohne Ereigniszeit. |
+ | **Abflussannahme und Sedimentbilanz** | Ein angenommenes Abflussvolumen je Zelle beziehungsweise Materialangebot und Transportkapazität auf den vorhandenen Verbindungen. | Volumen oder Materialweitergabe lassen sich bilanzieren. Weder eine Abflussganglinie noch eine Geländeentwicklung folgen automatisch daraus. |
+-| **Itzï – geplanter Anschluss** | Ereignisbezogene, zeitabhängige Abflusssimulation mit Wasserständen und Flüssen; noch nicht vorbereitet. | Vorgesehene Erweiterung um Ereignisverläufe bei fester Geländeoberfläche. Erfahrungen und Ergebnisse dieses Schritts sind später zu ergänzen. |
+-| **Optionale gekoppelte Modellierung, etwa CAESAR-Lisflood** | Zeitabhängige Zustände und Beziehungen, die diese Zustände fortschreiben; gegebenenfalls ändert sich auch das für den nächsten Schritt verwendete Gelände. | Ereignisverläufe und Rückwirkungen werden berechenbar, sofern die zusätzlichen Prozessgleichungen, Parameter und Anfangs-/Randbedingungen festgelegt werden. |
++| **Ausblick: Itzï** | Ereignisbezogene, zeitabhängige Abflusssimulation mit Wasserständen und Flüssen; im Kurs nicht gerechnet. | Würde Ereignisverläufe bei fester Geländeoberfläche ergänzen. |
++| **Ausblick: gekoppelte Modellierung, etwa CAESAR-Lisflood** | Zeitabhängige Zustände und Beziehungen, die diese Zustände fortschreiben; gegebenenfalls ändert sich auch das für den nächsten Schritt verwendete Gelände. | Ereignisverläufe und Rückwirkungen werden berechenbar, sofern die zusätzlichen Prozessgleichungen, Parameter und Anfangs-/Randbedingungen festgelegt werden. |
+ 
+ Die ersten drei Modelle enthielten **bereits Dynamik und teilweise Rückkopplungen**. Die GIS-Analyse war also kein „Fortschritt von einem einfachen zu einem dynamischen Modell“. Sie führte vor allem einen **konkret lokalisierbaren Untersuchungsraum, definierte Rastergrößen und eine überprüfbare räumliche Fragestellung** ein. Wir haben mehrmals **die Art der Frage** gewechselt, nicht nur mehr Funktionen zugeschaltet.
+ 
+@@ -106,7 +106,7 @@ Auch am selben DGM haben wir nicht „denselben Abfluss“ auf vier Arten berech
+ 4. **Ein begrenzter Stofftransport:** Vorhandenes und neu angebotenes Material wird mit einer gesetzten Transportkapazität verglichen. Die resultierende Ablagerung verändert im Worksheet **nicht** das Höhenraster.
+ 5. **Ein anderer Modelltyp würde Zustände fortschreiben:** Wasserhöhe, Geschwindigkeit und gegebenenfalls Geländeentwicklung würden zu veränderlichen Größen mit eigenen Anfangsbedingungen, Randbedingungen und Zeitschritten. Erst eine implementierte Kopplung lässt eine berechnete Geländeveränderung auf den folgenden Abfluss zurückwirken.
+ 
+-Diese Unterschiede erklären auch, weshalb die **gleiche Karte** keine eindeutige Aussage über den zugrunde liegenden Prozess liefert. Eine plausible Bachlinie kann aus einem einfachen Routingverfahren entstehen, ohne dass Fließgeschwindigkeit, Infiltration oder Sedimenttransport modelliert wurden. Vergleichbare Erscheinungsbilder beweisen keine vergleichbaren Mechanismen.
++Diese Unterschiede erklären auch, weshalb die **gleiche Karte** keine eindeutige Aussage über den zugrunde liegenden Prozess liefert. Eine plausible Bachlinie kann aus einem einfachen Routingverfahren entstehen, ohne dass Fließgeschwindigkeit, Infiltration oder Sedimenttransport modelliert wurden. Vergleichbare Erscheinungsbilder beweisen keine vergleichbaren Mechanismen. Welche Art von Entscheidung hinter den einzelnen Schritten steht – Abgrenzung, Datenrepräsentation, Regel, Klassifikation oder Prozessannahme –, fasst der [Kurzreader](modellbildung_gis_reader.qmd#entscheidungen) zusammen.
+ 
+ ::: {.callout-tip collapse="true"}
+ ## Fachlicher Exkurs: Woran erkennt man eine zusätzliche Prozessannahme?
+@@ -212,7 +212,7 @@ Die [FAIR-Prinzipien](https://doi.org/10.1038/sdata.2016.18) (auffindbar, zugän
+ 
+ Ein reproduzierbarer Fehler bleibt ein Fehler. Wir könnten den gleichen D8-Algorithmus hundertmal auf demselben, an einem Durchlass unzutreffenden DGM ausführen: Das Ergebnis wäre sehr gut reproduzierbar und könnte gerade dort falsch sein, wo uns der Abflussweg interessiert.
+ 
+-Drei Prüfungen sind deshalb auseinanderzuhalten:
++Drei Prüfungen sind deshalb auseinanderzuhalten (zusammen mit der Sensitivität im [Kurzreader](modellbildung_gis_reader.qmd#pruefen) gegenübergestellt):
+ 
+ - **Rechenprüfung:** Entspricht die Ausgabe den dokumentierten Eingaben und Rechenregeln? Beispielsweise: Bei 5-m-Zellen entsprechen 800 Zellen genau 2 ha. Stimmt die Volumenbilanz bei 10 mm mit 200 m³ überein?
+ - **Plausibilitäts- und Datenprüfung:** Stimmen berechnete Gerinne und Einzugsgebietsgrenzen mit unabhängigen Hinweisen aus ATKIS, Orthofoto und Relief überein? Wo sind Abweichungen durch Durchlässe, Senken oder Rastergrenzen erklärbar?
+@@ -236,7 +236,7 @@ Das ist **keine starre Reihenfolge**: Stellt sich etwa erst bei der Datenbeschaf
+ 
+ Dasselbe Vorgehen lässt sich auf andere Gegenstände übertragen: Aus Sentinel-Daten kann ein Vegetationsindex berechnet werden; dessen zeitliche Abfolge ist aber noch kein Vegetationsprozessmodell. Eine gewichtete Standort-Eignungskarte ist keine Optimierung unter Kapazitätsbedingungen. In beiden Fällen beginnt die Werkzeugwahl erst sinnvoll, nachdem die **gewünschte Aussage** und die dazu notwendigen **Beziehungen** geklärt wurden.
+ 
+-**Aus der angeleiteten Folge soll die Fähigkeit entstehen, Modellierungsentscheidungen zu verstehen, zunehmend selbst zu treffen und ihre Folgen zu prüfen.** Dazu gehört, digitale Werkzeuge und KI zu nutzen und die tatsächlich ausgeführte Berechnung erklären und kontrollieren zu können. Diese Herangehensweise nehmen wir zu späteren geographischen Fragen mit. Der zweite Kursblock ist noch nicht ausgearbeitet.
++**Aus der angeleiteten Folge soll die Fähigkeit entstehen, Modellierungsentscheidungen zu verstehen, zunehmend selbst zu treffen und ihre Folgen zu prüfen.** Dazu gehört, digitale Werkzeuge und KI zu nutzen und die tatsächlich ausgeführte Berechnung erklären und kontrollieren zu können. Diese Herangehensweise nehmen wir zu späteren geographischen Fragen mit. Genau das ist die Aufgabe der [zweiten Kurshälfte](eigene_modellierung.qmd): eine eigene Frage, ein eigenes Modell – begleitet statt geführt.
+ 
+ ## Quellen zum Weiterdenken – nach Funktion geordnet
+ 

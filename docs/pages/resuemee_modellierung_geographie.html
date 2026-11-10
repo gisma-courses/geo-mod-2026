@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../pages/modellbildung_gis_reader.html" rel="next">
+<link href="../pages/eigene_modellierung.html" rel="next">
 <link href="../pages/abfluss_algorithmen_quellen.html" rel="prev">
 <link href="..//images/logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -396,12 +396,29 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Ergänzende Materialien</span></a>
+ <span class="menu-text">Begleitete Modellierung</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/eigene_modellierung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Eigenes Modell</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Ergänzende Materialien</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/modellbildung_gis_reader.html" class="sidebar-item-text sidebar-link">
@@ -461,7 +478,7 @@ window.Quarto = {
 <p><a href="../index.html">← Kursübersicht</a> · <a href="../pages/netlogo_modellvergleich.html">Die drei NetLogo-Modelle</a> · <a href="../pages/meander_abfluss_saga_grass.html">GIS-Worksheet: Abfluss und Sediment</a> · <a href="../pages/einstieg_abflussmodellierung.html">Einstieg Abflussmodellierung</a> · <a href="../pages/abfluss_algorithmen_quellen.html">Daten und Algorithmen</a></p>
 <section id="wozu-dieser-umweg" class="level2">
 <h2 class="anchored" data-anchor-id="wozu-dieser-umweg">Wozu dieser Umweg?</h2>
-<p>Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beobachtet, ein amtliches Höhenmodell beschafft, daraus Einzugsgebiete berechnet und schließlich Wasser- und Sedimentmengen unter zusätzlichen Annahmen bilanziert. Itzï ist als anschließende Ereignissimulation geplant und noch nicht vorbereitet. Dieser Schritt gehört nicht zur bisherigen GIS-Übung. Der Weg war weitgehend vorgegeben: Modell öffnen, Daten verwenden, Werkzeug ausführen, Ergebnis betrachten.</p>
+<p>Wir haben Wasseragenten durch ein Relief laufen lassen, Erosion und Mäander beobachtet, ein amtliches Höhenmodell beschafft, daraus Einzugsgebiete berechnet und schließlich Wasser- und Sedimentmengen unter zusätzlichen Annahmen bilanziert. Der Weg war weitgehend vorgegeben: Modell öffnen, Daten verwenden, Werkzeug ausführen, Ergebnis betrachten.</p>
 <p><strong>Was hätten wir selbst entscheiden müssen, wenn uns nur die Frage gestellt worden wäre: „Welche Flächen tragen zum Abfluss an diesem Durchlass bei – und wo könnte Material zurückbleiben?“</strong> Die Antwort liegt weder in einem bestimmten Programm noch in einer möglichst langen Liste von Algorithmen. Sie liegt in den Unterscheidungen, die wir während dieser Kette tatsächlich getroffen haben.</p>
 </section>
 <section id="rückwärts-durch-die-modellkette" class="level2">
@@ -506,12 +523,12 @@ window.Quarto = {
 <td style="text-align: left;">Volumen oder Materialweitergabe lassen sich bilanzieren. Weder eine Abflussganglinie noch eine Geländeentwicklung folgen automatisch daraus.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Itzï – geplanter Anschluss</strong></td>
-<td style="text-align: left;">Ereignisbezogene, zeitabhängige Abflusssimulation mit Wasserständen und Flüssen; noch nicht vorbereitet.</td>
-<td style="text-align: left;">Vorgesehene Erweiterung um Ereignisverläufe bei fester Geländeoberfläche. Erfahrungen und Ergebnisse dieses Schritts sind später zu ergänzen.</td>
+<td style="text-align: left;"><strong>Ausblick: Itzï</strong></td>
+<td style="text-align: left;">Ereignisbezogene, zeitabhängige Abflusssimulation mit Wasserständen und Flüssen; im Kurs nicht gerechnet.</td>
+<td style="text-align: left;">Würde Ereignisverläufe bei fester Geländeoberfläche ergänzen.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Optionale gekoppelte Modellierung, etwa CAESAR-Lisflood</strong></td>
+<td style="text-align: left;"><strong>Ausblick: gekoppelte Modellierung, etwa CAESAR-Lisflood</strong></td>
 <td style="text-align: left;">Zeitabhängige Zustände und Beziehungen, die diese Zustände fortschreiben; gegebenenfalls ändert sich auch das für den nächsten Schritt verwendete Gelände.</td>
 <td style="text-align: left;">Ereignisverläufe und Rückwirkungen werden berechenbar, sofern die zusätzlichen Prozessgleichungen, Parameter und Anfangs-/Randbedingungen festgelegt werden.</td>
 </tr>
@@ -844,7 +861,7 @@ S(t+\Delta t)=S(t)+\bigl(I(t)-O(t)\bigr)\,\Delta t.
 </ol>
 <p>Das ist <strong>keine starre Reihenfolge</strong>: Stellt sich etwa erst bei der Datenbeschaffung heraus, dass das Gerinne nicht aufgelöst ist, muss die Modellfrage oder die räumliche Repräsentation erneut betrachtet werden. Diese Rücksprünge gehören zur Modellierung.</p>
 <p>Dasselbe Vorgehen lässt sich auf andere Gegenstände übertragen: Aus Sentinel-Daten kann ein Vegetationsindex berechnet werden; dessen zeitliche Abfolge ist aber noch kein Vegetationsprozessmodell. Eine gewichtete Standort-Eignungskarte ist keine Optimierung unter Kapazitätsbedingungen. In beiden Fällen beginnt die Werkzeugwahl erst sinnvoll, nachdem die <strong>gewünschte Aussage</strong> und die dazu notwendigen <strong>Beziehungen</strong> geklärt wurden.</p>
-<p><strong>Aus der angeleiteten Folge soll die Fähigkeit entstehen, Modellierungsentscheidungen zu verstehen, zunehmend selbst zu treffen und ihre Folgen zu prüfen.</strong> Dazu gehört, digitale Werkzeuge und KI zu nutzen und die tatsächlich ausgeführte Berechnung erklären und kontrollieren zu können. Diese Herangehensweise nehmen wir zu späteren geographischen Fragen mit. Der zweite Kursblock ist noch nicht ausgearbeitet.</p>
+<p><strong>Aus der angeleiteten Folge soll die Fähigkeit entstehen, Modellierungsentscheidungen zu verstehen, zunehmend selbst zu treffen und ihre Folgen zu prüfen.</strong> Dazu gehört, digitale Werkzeuge und KI zu nutzen und die tatsächlich ausgeführte Berechnung erklären und kontrollieren zu können. Diese Herangehensweise nehmen wir zu späteren geographischen Fragen mit. Genau das ist die Aufgabe der <a href="../pages/eigene_modellierung.html">zweiten Kurshälfte</a>: eine eigene Frage, ein eigenes Modell – begleitet statt geführt.</p>
 </section>
 <section id="quellen-zum-weiterdenken-nach-funktion-geordnet" class="level2">
 <h2 class="anchored" data-anchor-id="quellen-zum-weiterdenken-nach-funktion-geordnet">Quellen zum Weiterdenken – nach Funktion geordnet</h2>
@@ -1309,8 +1326,8 @@ S(t+\Delta t)=S(t)+\bigl(I(t)-O(t)\bigr)\,\Delta t.
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../pages/modellbildung_gis_reader.html" class="pagination-link" aria-label="Kurzreader Modellbildung">
-        <span class="nav-page-text">Kurzreader Modellbildung</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../pages/eigene_modellierung.html" class="pagination-link" aria-label="Eigenes Modell">
+        <span class="nav-page-text">Eigenes Modell</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

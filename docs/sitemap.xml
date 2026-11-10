@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gisma-courses.github.io/geo-mod-2026/pages/resuemee_modellierung_geographie.html</loc>
-    <lastmod>2026-11-10T10:37:49.180Z</lastmod>
+    <lastmod>2026-11-10T11:25:52.689Z</lastmod>
   </url>
   <url>
     <loc>https://gisma-courses.github.io/geo-mod-2026/pages/modellbildung_gis_reader.html</loc>
-    <lastmod>2026-11-10T10:37:29.737Z</lastmod>
+    <lastmod>2026-11-10T11:25:51.246Z</lastmod>
   </url>
   <url>
     <loc>https://gisma-courses.github.io/geo-mod-2026/pages/meander_abfluss_saga_grass_neu.html</loc>
@@ -17,36 +17,40 @@
     <lastmod>2026-11-09T23:51:45.673Z</lastmod>
   </url>
   <url>
-    <loc>https://gisma-courses.github.io/geo-mod-2026/pages/abflussmodellierung_burgwald_kompakt.html</loc>
-    <lastmod>2026-11-09T16:36:13.975Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gisma-courses.github.io/geo-mod-2026/assets/resuemee-geo-mod-2026/pages/resuemee_modellierung_geographie.html</loc>
-    <lastmod>2026-11-09T08:31:34.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gisma-courses.github.io/geo-mod-2026/assets/geo-mod-2026-abfluss/pages/abfluss_algorithmen_quellen.html</loc>
-    <lastmod>2026-11-08T21:47:02.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gisma-courses.github.io/geo-mod-2026/index.html</loc>
-    <lastmod>2026-11-09T16:35:32.911Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gisma-courses.github.io/geo-mod-2026/assets/geo-mod-2026-abfluss/pages/meander_abfluss_saga_grass.html</loc>
-    <lastmod>2026-11-08T21:49:36.000Z</lastmod>
+    <loc>https://gisma-courses.github.io/geo-mod-2026/pages/eigene_modellierung.html</loc>
+    <lastmod>2026-11-10T11:25:53.225Z</lastmod>
   </url>
   <url>
     <loc>https://gisma-courses.github.io/geo-mod-2026/pages/abfluss_algorithmen_quellen.html</loc>
     <lastmod>2026-11-10T00:25:03.772Z</lastmod>
   </url>
   <url>
+    <loc>https://gisma-courses.github.io/geo-mod-2026/assets/geo-mod-2026-abfluss/pages/meander_abfluss_saga_grass.html</loc>
+    <lastmod>2026-11-08T21:49:36.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gisma-courses.github.io/geo-mod-2026/index.html</loc>
+    <lastmod>2026-11-10T11:25:47.937Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gisma-courses.github.io/geo-mod-2026/assets/geo-mod-2026-abfluss/pages/abfluss_algorithmen_quellen.html</loc>
+    <lastmod>2026-11-08T21:47:02.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gisma-courses.github.io/geo-mod-2026/assets/resuemee-geo-mod-2026/pages/resuemee_modellierung_geographie.html</loc>
+    <lastmod>2026-11-09T08:31:34.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gisma-courses.github.io/geo-mod-2026/pages/abflussmodellierung_burgwald_kompakt.html</loc>
+    <lastmod>2026-11-09T16:36:13.975Z</lastmod>
+  </url>
+  <url>
     <loc>https://gisma-courses.github.io/geo-mod-2026/pages/einstieg_abflussmodellierung.html</loc>
-    <lastmod>2026-11-09T16:40:09.175Z</lastmod>
+    <lastmod>2026-11-10T11:25:49.368Z</lastmod>
   </url>
   <url>
     <loc>https://gisma-courses.github.io/geo-mod-2026/pages/meander_abfluss_saga_grass.html</loc>
-    <lastmod>2026-11-10T10:37:41.347Z</lastmod>
+    <lastmod>2026-11-10T11:25:50.376Z</lastmod>
   </url>
   <url>
     <loc>https://gisma-courses.github.io/geo-mod-2026/pages/modellbildung_gis_folien.html</loc>
